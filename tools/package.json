@@ -1,0 +1,7 @@
+{
+  "name": "vci-source-monitor",
+  "private": true,
+  "type": "module",
+  "scripts": { "check": "node check-sources.mjs" },
+  "dependencies": { "playwright": "1.47.2" }
+}

@@ -1,0 +1,31 @@
+name: Check VA sources for updates
+on:
+  schedule:
+    - cron: '17 11 * * 1'   # Mondays, 11:17 UTC
+  workflow_dispatch: {}     # lets you run it any time from the Actions tab
+permissions:
+  contents: write
+  issues: write
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: 20 }
+      - name: Install
+        working-directory: tools
+        run: npm install --no-audit --no-fund && npx playwright install --with-deps chromium
+      - name: Check sources
+        working-directory: tools
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: node check-sources.mjs
+      - name: Save what was seen
+        run: |
+          git config user.name "vci-source-monitor"
+          git config user.email "vci-source-monitor@users.noreply.github.com"
+          git add tools/state.json tools/report.md
+          git diff --cached --quiet || git commit -m "Source check $(date -u +%F)"
+          git push

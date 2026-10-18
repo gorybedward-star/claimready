@@ -1,0 +1,1135 @@
+{
+ "articles": {
+  "554400000014407": {
+   "cite": "M21-1 V.iii.1.A",
+   "name": "Painful Motion and Functional Loss",
+   "updated": "2026-03-25"
+  },
+  "554400000014410": {
+   "cite": "M21-1 V.iii.1.B",
+   "name": "Musculoskeletal Disabilities of the Extremities and Spine",
+   "updated": "2026-03-25"
+  },
+  "554400000014413": {
+   "cite": "M21-1 V.iii.1.C",
+   "name": "Arthritis",
+   "updated": "2025-05-28"
+  },
+  "554400000014418": {
+   "cite": "M21-1 V.iii.1.D",
+   "name": "Osteomyelitis",
+   "updated": "2025-05-28"
+  },
+  "554400000014422": {
+   "cite": "M21-1 V.iii.1.E",
+   "name": "Muscle Injuries",
+   "updated": "2025-05-28"
+  },
+  "554400000014425": {
+   "cite": "M21-1 V.iii.1.F",
+   "name": "Other Musculoskeletal Considerations",
+   "updated": "2025-05-28"
+  },
+  "554400000014461": {
+   "cite": "M21-1 V.iii.2.A",
+   "name": "Conditions of the Eyes",
+   "updated": "2025-05-28"
+  },
+  "554400000014464": {
+   "cite": "M21-1 V.iii.2.B",
+   "name": "Conditions of the Auditory System",
+   "updated": "2025-05-28"
+  },
+  "554400000014467": {
+   "cite": "M21-1 V.iii.3",
+   "name": "Infectious Diseases, Immune Disorders, and Nutritional Deficiencies",
+   "updated": "2025-10-02"
+  },
+  "554400000014520": {
+   "cite": "M21-1 V.iii.5",
+   "name": "Cardiovascular System Conditions",
+   "updated": "2026-03-19"
+  },
+  "554400000014523": {
+   "cite": "M21-1 V.iii.6",
+   "name": "Digestive Disabilities",
+   "updated": "2025-05-28"
+  },
+  "554400000015095": {
+   "cite": "M21-1 IX.ii.1.A",
+   "name": "General Information on Requirements for Aid and Attendance (A&A) and",
+   "updated": "2025-05-28"
+  },
+  "554400000015098": {
+   "cite": "M21-1 IX.ii.1.B",
+   "name": "Aid and Attendance (A&A) Status for Beneficiaries Who Are Patients in",
+   "updated": "2025-05-28"
+  },
+  "554400000141004": {
+   "cite": "M21-5, Ch. 5",
+   "name": "Higher-Level Review Procedures",
+   "updated": "2026-06-12"
+  },
+  "554400000173635": {
+   "cite": "M21-1 XIII.i.1.B",
+   "name": "Notification and Award Actions for Dependents' Educational Assistanc",
+   "updated": "2026-02-06"
+  },
+  "554400000173638": {
+   "cite": "M21-1 XIII.i.2.A",
+   "name": "Automobile Allowance and Adaptive Equipment Under 38 U.S.C. Chapter",
+   "updated": "2026-09-17"
+  },
+  "554400000173639": {
+   "cite": "M21-1 XIII.i.2.B",
+   "name": "Specially Adapted Housing (SAH) or Special Home Adaptation (SHA) Gra",
+   "updated": "2026-03-09"
+  },
+  "554400000173828": {
+   "cite": "M21-1 XIII.i.8.A",
+   "name": "Clothing Allowance",
+   "updated": "2026-10-14"
+  },
+  "554400000173834": {
+   "cite": "M21-1 XIII.i.5.B",
+   "name": "Memorandum Ratings for Veteran Readiness and Employment (VR&E) Purpo",
+   "updated": "2025-12-16"
+  },
+  "554400000173835": {
+   "cite": "M21-1 XIII.i.5.A",
+   "name": "Veteran Readiness and Employment (VR&E) Eligibility",
+   "updated": "2025-12-15"
+  },
+  "554400000173836": {
+   "cite": "M21-1 XIII.i.4.B",
+   "name": "Processing Dental Claims",
+   "updated": "2025-05-29"
+  },
+  "554400000173837": {
+   "cite": "M21-1 XIII.i.4.A",
+   "name": "Overview of Classes of Eligibility for Dental Treatment",
+   "updated": "2025-05-29"
+  },
+  "554400000173838": {
+   "cite": "M21-1 XIII.i.4.C",
+   "name": "Ratings for Dental Treatment Purposes",
+   "updated": "2026-05-20"
+  },
+  "554400000173844": {
+   "cite": "M21-1 XIII.i.3.I",
+   "name": "Civilian Health and Medical Program of the Department of Veterans Af",
+   "updated": "2026-06-18"
+  },
+  "554400000174191": {
+   "cite": "M21-1 XI.ii.2",
+   "name": "Month of Death (MOD) Benefit",
+   "updated": "2026-07-31"
+  },
+  "554400000174192": {
+   "cite": "M21-1 XI.ii.3.A",
+   "name": "Entitlement to Accrued Benefits Under 38 U.S.C. 5121",
+   "updated": "2026-01-21"
+  },
+  "554400000174201": {
+   "cite": "M21-1 XI.iii.1.B",
+   "name": "Burial Benefits",
+   "updated": "2026-09-25"
+  },
+  "554400000174205": {
+   "cite": "M21-1 XI.ii.3.B",
+   "name": "Substitution in Case of Death of Claimant",
+   "updated": "2026-09-04"
+  },
+  "554400000174206": {
+   "cite": "M21-1 XI.ii.3.C",
+   "name": "Development for Accrued and Requests for Substitution",
+   "updated": "2026-08-17"
+  },
+  "554400000174207": {
+   "cite": "M21-1 XI.ii.3.D",
+   "name": "Rating Accrued Claims",
+   "updated": "2025-05-29"
+  },
+  "554400000174208": {
+   "cite": "M21-1 XI.ii.3.E",
+   "name": "Accrued Authorization and Notification",
+   "updated": "2026-05-22"
+  },
+  "554400000174873": {
+   "cite": "M21-1 II.iii.2.A",
+   "name": "Intent to File (ITF)",
+   "updated": "2026-08-03"
+  },
+  "554400000174874": {
+   "cite": "M21-1 II.iii.2.B",
+   "name": "Supplemental Claims",
+   "updated": "2026-09-21"
+  },
+  "554400000175201": {
+   "cite": "M21-1 XII.i.1.A",
+   "name": "Overview of Dependency and Indemnity Compensation (DIC)",
+   "updated": "2026-02-11"
+  },
+  "554400000175203": {
+   "cite": "M21-1 XII.i.1.B",
+   "name": "Common Dependency and Indemnity Compensation (D.I.C.) Processing Issu",
+   "updated": "2026-09-23"
+  },
+  "554400000175206": {
+   "cite": "M21-1 XII.i.1.C",
+   "name": "In-Service Death and Former Prisoner of War (FPOW) Dependency and Ind",
+   "updated": "2025-12-31"
+  },
+  "554400000175207": {
+   "cite": "M21-1 XII.i.2.A",
+   "name": "Ratings for Dependency and Indemnity Compensation (DIC)",
+   "updated": "2026-01-14"
+  },
+  "554400000175208": {
+   "cite": "M21-1 XII.i.2.B",
+   "name": "Aid and Attendance (A&A) and Housebound Determinations for Survivors",
+   "updated": "2025-05-29"
+  },
+  "554400000176613": {
+   "cite": "M21-1 VII.i.1.A",
+   "name": "General Information on Relationship and Dependency",
+   "updated": "2025-08-29"
+  },
+  "554400000177422": {
+   "cite": "M21-1 VIII.i.1.A",
+   "name": "General Information on Claims Based on Herbicide Exposure",
+   "updated": "2025-12-29"
+  },
+  "554400000177423": {
+   "cite": "M21-1 VIII.i.1.B",
+   "name": "Developing Claims for Service Connection (SC) Based on Herbicide Exp",
+   "updated": "2026-07-16"
+  },
+  "554400000177426": {
+   "cite": "M21-1 VIII.i.2.B",
+   "name": "Determining Eligibility to Retroactive Payment Under the Nehmer Stip",
+   "updated": "2026-09-09"
+  },
+  "554400000177427": {
+   "cite": "M21-1 VIII.i.2.C",
+   "name": "Authorization Under the Nehmer Stipulation",
+   "updated": "2025-05-28"
+  },
+  "554400000177434": {
+   "cite": "M21-1 VIII.ii.1.A",
+   "name": "General Information on Presumptive Service Connection (SC) for Pers",
+   "updated": "2025-06-06"
+  },
+  "554400000177438": {
+   "cite": "M21-1 VIII.ii.1.B",
+   "name": "Developing Presumptive Service Connection (SC) Claims from Persian",
+   "updated": "2026-04-09"
+  },
+  "554400000177440": {
+   "cite": "M21-1 VIII.ii.1.C",
+   "name": "Rating Presumptive Service Connection (SC) Claims for Persian Gulf",
+   "updated": "2025-06-06"
+  },
+  "554400000177441": {
+   "cite": "M21-1 VIII.ii.2.A",
+   "name": "General Information on Claims Based on Exposure to Burn Pits and Ot",
+   "updated": "2025-06-06"
+  },
+  "554400000177442": {
+   "cite": "M21-1 VIII.ii.2.B",
+   "name": "Developing Claims Based On Exposure to Burn Pits and Other Toxins,",
+   "updated": "2025-11-25"
+  },
+  "554400000177443": {
+   "cite": "M21-1 VIII.ii.2.C",
+   "name": "Rating Claims Based on Exposure to Burn Pits and Other Toxins, Incl",
+   "updated": "2025-06-06"
+  },
+  "554400000177452": {
+   "cite": "M21-1 VIII.iii.3.A",
+   "name": "Developing Claims for Service Connection (SC) for Disabilities Res",
+   "updated": "2026-04-13"
+  },
+  "554400000177453": {
+   "cite": "M21-1 VIII.iii.3.B",
+   "name": "Rating Claims for Disabilities Associated With Mustard Gas or Lewi",
+   "updated": "2026-04-13"
+  },
+  "554400000177454": {
+   "cite": "M21-1 VIII.iii.4.A",
+   "name": "Developing Claims for Service Connection (SC) for Disabilities Res",
+   "updated": "2025-12-23"
+  },
+  "554400000177455": {
+   "cite": "M21-1 VIII.iii.4.B",
+   "name": "Developing Claims for Service Connection (SC) for Disabilities Res",
+   "updated": "2025-12-23"
+  },
+  "554400000177456": {
+   "cite": "M21-1 VIII.iii.4.C",
+   "name": "Rating Claims for Disabilities Associated With Radiation Exposure",
+   "updated": "2025-12-23"
+  },
+  "554400000177457": {
+   "cite": "M21-1 VIII.iii.5.A",
+   "name": "Developing Claims Based on Participation in Chemical Biological Ra",
+   "updated": "2025-12-23"
+  },
+  "554400000177459": {
+   "cite": "M21-1 VIII.iii.6.A",
+   "name": "Developing Claims Based on Participation in Project Shipboard Haza",
+   "updated": "2026-05-18"
+  },
+  "554400000177461": {
+   "cite": "M21-1 VIII.iii.7.A",
+   "name": "General Information on Claims Based on Exposure to Asbestos",
+   "updated": "2025-05-28"
+  },
+  "554400000177462": {
+   "cite": "M21-1 VIII.iii.7.B",
+   "name": "Development and Examination Requests for Claims Based on Exposure",
+   "updated": "2026-02-11"
+  },
+  "554400000177463": {
+   "cite": "M21-1 VIII.iii.7.C",
+   "name": "Evaluating Evidence of Asbestos Exposure",
+   "updated": "2025-05-28"
+  },
+  "554400000177465": {
+   "cite": "M21-1 VIII.iii.8.A",
+   "name": "Developing Claims Based on Exposure to Contaminants in the Water S",
+   "updated": "2025-05-28"
+  },
+  "554400000177467": {
+   "cite": "M21-1 VIII.iii.8.B",
+   "name": "Rating Claims Based on Exposure to Contaminants in the Water Suppl",
+   "updated": "2025-05-28"
+  },
+  "554400000177468": {
+   "cite": "M21-1 VIII.iv.1.A",
+   "name": "General Information and Development for Posttraumatic Stress Disord",
+   "updated": "2026-03-17"
+  },
+  "554400000177469": {
+   "cite": "M21-1 VIII.iv.1.B",
+   "name": "Development for Posttraumatic Stress Disorder (PTSD) or Other Claim",
+   "updated": "2026-07-31"
+  },
+  "554400000177470": {
+   "cite": "M21-1 VIII.iv.2.A",
+   "name": "Former Prisoner of War (FPOW) Status",
+   "updated": "2025-05-28"
+  },
+  "554400000177471": {
+   "cite": "M21-1 VIII.iv.2.B",
+   "name": "Former Prisoner of War (FPOW) Service Records",
+   "updated": "2025-05-28"
+  },
+  "554400000177472": {
+   "cite": "M21-1 VIII.iv.2.C",
+   "name": "Development and Examination Request for Claims Based on Former Pris",
+   "updated": "2025-12-17"
+  },
+  "554400000177473": {
+   "cite": "M21-1 VIII.iv.2.D",
+   "name": "Rating Claims Based on Former Prisoner of War (FPOW) Status",
+   "updated": "2025-05-28"
+  },
+  "554400000177474": {
+   "cite": "M21-1 VIII.iv.3.A",
+   "name": "General Information on Individual Unemployability (IU) Claims",
+   "updated": "2025-09-18"
+  },
+  "554400000177475": {
+   "cite": "M21-1 VIII.iv.3.B",
+   "name": "Individual Unemployability (IU) Claims Development",
+   "updated": "2025-09-25"
+  },
+  "554400000177476": {
+   "cite": "M21-1 VIII.iv.3.C",
+   "name": "Individual Unemployability (IU) Rating and Decision Review",
+   "updated": "2025-06-09"
+  },
+  "554400000177477": {
+   "cite": "M21-1 VIII.iv.3.D",
+   "name": "Monitoring Income for Veterans in Receipt of Individual Unemployabi",
+   "updated": "2025-05-28"
+  },
+  "554400000177478": {
+   "cite": "M21-1 VIII.iv.8.A",
+   "name": "Prestabilization Ratings Under 38 CFR 4.28",
+   "updated": "2025-05-28"
+  },
+  "554400000177479": {
+   "cite": "M21-1 VIII.iv.8.B",
+   "name": "Hospitalization Ratings Under 38 CFR 4.29",
+   "updated": "2025-11-17"
+  },
+  "554400000177480": {
+   "cite": "M21-1 VIII.iv.4.A",
+   "name": "Special Monthly Compensation (SMC)",
+   "updated": "2026-03-23"
+  },
+  "554400000177481": {
+   "cite": "M21-1 VIII.iv.4.B",
+   "name": "History of Special Monthly Compensation (SMC)",
+   "updated": "2025-12-05"
+  },
+  "554400000177482": {
+   "cite": "M21-1 VIII.iv.5",
+   "name": "Service Connection (SC) for Chronic Diseases",
+   "updated": "2025-05-28"
+  },
+  "554400000177483": {
+   "cite": "M21-1 VIII.iv.6.A",
+   "name": "Developing Claims Filed Under 38 U.S.C. 1151",
+   "updated": "2026-01-28"
+  },
+  "554400000177484": {
+   "cite": "M21-1 VIII.iv.6.B",
+   "name": "Rating Claims Filed Under 38 U.S.C. 1151",
+   "updated": "2025-05-28"
+  },
+  "554400000177485": {
+   "cite": "M21-1 VIII.iv.6.C",
+   "name": "Authorization of Awards Under 38 U.S.C. 1151",
+   "updated": "2026-05-01"
+  },
+  "554400000177486": {
+   "cite": "M21-1 VIII.iv.7.A",
+   "name": "Compensation for Paired Organs or Extremities Under 38 CFR 3.383",
+   "updated": "2025-05-28"
+  },
+  "554400000177487": {
+   "cite": "M21-1 VIII.iv.7.B",
+   "name": "Awards and Offsets for Paired Organs and Extremities Under 38 CFR 3",
+   "updated": "2025-05-28"
+  },
+  "554400000177489": {
+   "cite": "M21-1 VIII.iv.9.B",
+   "name": "Diving-Related Disabilities",
+   "updated": "2025-05-29"
+  },
+  "554400000177542": {
+   "cite": "M21-1 VIII.iv.8.C",
+   "name": "Convalescent Ratings Under 38 CFR 4.30",
+   "updated": "2025-11-20"
+  },
+  "554400000177543": {
+   "cite": "M21-1 VIII.iv.8.D",
+   "name": "Other Temporary Total Evaluations",
+   "updated": "2025-05-28"
+  },
+  "554400000177713": {
+   "cite": "M21-1 VIII.iv.1.C",
+   "name": "Examinations and Medical Opinions for Posttraumatic Stress Disorder",
+   "updated": "2025-05-28"
+  },
+  "554400000177714": {
+   "cite": "M21-1 VIII.iv.1.D",
+   "name": "Evidence Evaluation and Decisions for Posttraumatic Stress Disorder",
+   "updated": "2025-06-30"
+  },
+  "554400000177715": {
+   "cite": "M21-1 VIII.iv.1.E",
+   "name": "Evidence Evaluation and Decisions for Posttraumatic Stress Disorder",
+   "updated": "2025-09-16"
+  },
+  "554400000177963": {
+   "cite": "M21-1 X.ii.2.A",
+   "name": "Revision Based on Specific Types of Submissions, Including Supplementa",
+   "updated": "2025-05-29"
+  },
+  "554400000177965": {
+   "cite": "M21-1 X.ii.3.A",
+   "name": "Notice of Proposed Adverse Action",
+   "updated": "2026-09-29"
+  },
+  "554400000177966": {
+   "cite": "M21-1 X.ii.3.B",
+   "name": "Adverse Action Proposal Period",
+   "updated": "2026-09-16"
+  },
+  "554400000177967": {
+   "cite": "M21-1 X.ii.3.C",
+   "name": "Contemporaneous Notice",
+   "updated": "2025-05-29"
+  },
+  "554400000177968": {
+   "cite": "M21-1 X.ii.3.D",
+   "name": "Completing Proposed Rating Decisions",
+   "updated": "2025-05-29"
+  },
+  "554400000177969": {
+   "cite": "M21-1 X.ii.4.A",
+   "name": "Rating Decisions for Reduction Due to Improvement",
+   "updated": "2025-05-29"
+  },
+  "554400000177970": {
+   "cite": "M21-1 X.ii.4.B",
+   "name": "Authorization for Reductions in Disability Evaluations Under 38 CFR 3.",
+   "updated": "2026-06-26"
+  },
+  "554400000177971": {
+   "cite": "M21-1 X.ii.5.A",
+   "name": "Revision Due to Clear and Unmistakable Error (CUE)",
+   "updated": "2025-05-29"
+  },
+  "554400000177972": {
+   "cite": "M21-1 X.ii.5.B",
+   "name": "Severance of Service Connection (SC)",
+   "updated": "2026-05-13"
+  },
+  "554400000177973": {
+   "cite": "M21-1 X.ii.5.C",
+   "name": "Due Process and Authorization Issues for Clear and Unmistakable Error",
+   "updated": "2026-05-13"
+  },
+  "554400000177974": {
+   "cite": "M21-1 X.ii.6.A",
+   "name": "Evaluating and Rating Competency",
+   "updated": "2026-03-04"
+  },
+  "554400000177975": {
+   "cite": "M21-1 X.ii.6.B",
+   "name": "A Child’s Permanent Incapacity for Self-Support",
+   "updated": "2026-03-11"
+  },
+  "554400000177976": {
+   "cite": "M21-1 X.ii.6.C",
+   "name": "General Information on Incompetency and Fiduciary Cases",
+   "updated": "2026-01-12"
+  },
+  "554400000177986": {
+   "cite": "M21-1 X.iv.1.A",
+   "name": "Character of Discharge (COD) and Bars to Benefits",
+   "updated": "2025-08-01"
+  },
+  "554400000177987": {
+   "cite": "M21-1 X.iv.1.C",
+   "name": "Willful Misconduct and Line of Duty (LOD)",
+   "updated": "2025-05-29"
+  },
+  "554400000177988": {
+   "cite": "M21-1 X.iv.1.D",
+   "name": "Disability or Death from Use of Alcohol, Drugs, or Tobacco Products",
+   "updated": "2025-05-29"
+  },
+  "554400000177991": {
+   "cite": "M21-1 X.iv.2.A",
+   "name": "Insanity Determinations",
+   "updated": "2025-05-29"
+  },
+  "554400000178524": {
+   "cite": "M21-1 X.iv.1.B",
+   "name": "Special Topics Involving Character of Discharge",
+   "updated": "2025-12-18"
+  },
+  "554400000179498": {
+   "cite": "M21-1 VI.iii.2.C",
+   "name": "Debt Disputes and Collection",
+   "updated": "2025-06-04"
+  },
+  "554400000180481": {
+   "cite": "M21-1 V.ii.2.A",
+   "name": "Direct Service Connection (SC) and Service Incurrence of an Injury",
+   "updated": "2026-01-14"
+  },
+  "554400000180482": {
+   "cite": "M21-1 V.ii.2.B",
+   "name": "Presumptive Service Connection (SC)",
+   "updated": "2025-05-27"
+  },
+  "554400000180483": {
+   "cite": "M21-1 V.ii.2.C",
+   "name": "In-Service Aggravation of a Pre-Service Disability",
+   "updated": "2025-05-27"
+  },
+  "554400000180488": {
+   "cite": "M21-1 V.ii.3.C",
+   "name": "Reviewing Diagnoses",
+   "updated": "2026-05-01"
+  },
+  "554400000180492": {
+   "cite": "M21-1 V.ii.4.A",
+   "name": "Effective Dates",
+   "updated": "2026-04-02"
+  },
+  "554400000180509": {
+   "cite": "M21-1 V.iii.14",
+   "name": "Dental and Oral Conditions",
+   "updated": "2026-03-20"
+  },
+  "554400000180511": {
+   "cite": "M21-1 V.iii.8.A",
+   "name": "Disabilities of the Gynecological System",
+   "updated": "2025-09-30"
+  },
+  "554400000180513": {
+   "cite": "M21-1 V.iii.9",
+   "name": "Hematologic and Lymphatic Systems",
+   "updated": "2025-09-15"
+  },
+  "554400000180514": {
+   "cite": "M21-1 IV.i.3.A",
+   "name": "General Criteria for Sufficiency of Examination Reports",
+   "updated": "2026-01-12"
+  },
+  "554400000180515": {
+   "cite": "M21-1 V.iii.10",
+   "name": "Skin Conditions",
+   "updated": "2026-01-14"
+  },
+  "554400000180518": {
+   "cite": "M21-1 V.iii.11",
+   "name": "Endocrine Conditions",
+   "updated": "2025-05-28"
+  },
+  "554400000180519": {
+   "cite": "M21-1 V.iii.12.A",
+   "name": "Neurological Conditions and Convulsive Disorders",
+   "updated": "2026-01-14"
+  },
+  "554400000180520": {
+   "cite": "M21-1 V.iii.13",
+   "name": "Mental Disorders",
+   "updated": "2026-05-27"
+  },
+  "554400000180523": {
+   "cite": "M21-1 V.iv.1.A",
+   "name": "Completing the Rating Decision Narrative",
+   "updated": "2026-07-29"
+  },
+  "554400000180524": {
+   "cite": "M21-1 V.iv.1.B",
+   "name": "Codesheet Section",
+   "updated": "2026-03-23"
+  },
+  "554400000180525": {
+   "cite": "M21-1 V.iv.1.C",
+   "name": "Coded Conclusion",
+   "updated": "2025-12-29"
+  },
+  "554400000180593": {
+   "cite": "M21-1 V.iii.7",
+   "name": "Genitourinary Disabilities",
+   "updated": "2026-03-19"
+  },
+  "554400000180832": {
+   "cite": "M21-1 V.iii.12.B",
+   "name": "Traumatic Brain Injury (TBI)",
+   "updated": "2025-12-29"
+  },
+  "554400000180833": {
+   "cite": "M21-1 V.iii.12.C",
+   "name": "Progressive Neurological Disorders",
+   "updated": "2025-07-17"
+  },
+  "554400000180879": {
+   "cite": "M21-1 V.iii.8.B",
+   "name": "Disabilities of the Breast",
+   "updated": "2026-08-27"
+  },
+  "554400000180881": {
+   "cite": "M21-1 V.iii.4.B",
+   "name": "Tuberculosis",
+   "updated": "2025-05-28"
+  },
+  "554400000180967": {
+   "cite": "M21-1 V.iii.4.A",
+   "name": "Respiratory Conditions",
+   "updated": "2025-05-28"
+  },
+  "554400000181485": {
+   "cite": "M21-1 I.ii.2",
+   "name": "Department of Veterans Affairs (VA) Benefit Programs",
+   "updated": "2025-05-27"
+  },
+  "554400000202897": {
+   "cite": "M21-1 VIII.iii.9.A",
+   "name": "General Information on Exposure to Specific Environmental or Milit",
+   "updated": "2025-12-23"
+  },
+  "554400000202901": {
+   "cite": "M21-1 VIII.iii.9.B",
+   "name": "Processing Claims Based on Exposure to Specific Environmental or M",
+   "updated": "2026-04-27"
+  },
+  "554400000207820": {
+   "cite": "M21-1 VI.iv.2.B",
+   "name": "Paying Benefits to the Dependent(s) of an Incarcerated Veteran",
+   "updated": "2026-03-09"
+  },
+  "554400000207953": {
+   "cite": "M21-1 VI.iv.2.A",
+   "name": "Apportionment Process",
+   "updated": "2026-03-09"
+  },
+  "554400000259721": {
+   "cite": "M21-1 VIII.ii.1.D",
+   "name": "Presumptive Service Connection (SC) for Infectious Disease Under 38",
+   "updated": "2025-06-30"
+  },
+  "554400000308860": {
+   "cite": "M21-1 VIII.i.1.C",
+   "name": "Ratings for Disabilities Associated With Herbicide Exposure",
+   "updated": "2025-09-15"
+  },
+  "554400000308863": {
+   "cite": "M21-1 VIII.i.1.D",
+   "name": "Processing Claims Based on Nautical Herbicide Exposure",
+   "updated": "2025-09-17"
+  },
+  "554400000181424": {
+   "cite": "M21-1 III.i.1.A",
+   "name": "Establishing Veteran Status",
+   "updated": "2025-05-27"
+  },
+  "554400000177948": {
+   "cite": "M21-1 X.i.5.A",
+   "name": "Establishing Veteran Status Based on Merchant Marine Service",
+   "updated": "2026-02-02"
+  },
+  "554400000181426": {
+   "cite": "M21-1 III.i.1.C",
+   "name": "Civilian Groups Approved for Veteran Status",
+   "updated": "2025-05-27"
+  },
+  "554400000014383": {
+   "cite": "M21-1 V.ii.1.A",
+   "name": "Principles of Reviewing and Weighing Evidence",
+   "updated": "2025-05-27"
+  },
+  "554400000014389": {
+   "cite": "M21-1 V.ii.1.B",
+   "name": "Reviewing Testimony and Lay Evidence",
+   "updated": "2025-05-27"
+  },
+  "554400000180485": {
+   "cite": "M21-1 V.ii.2.E",
+   "name": "SC for Congenital, Developmental, or Hereditary Disorders",
+   "updated": "2025-05-28"
+  },
+  "554400000180486": {
+   "cite": "M21-1 V.ii.3.A",
+   "name": "Determining the Issues",
+   "updated": "2026-05-01"
+  },
+  "554400000180487": {
+   "cite": "M21-1 V.ii.3.B",
+   "name": "Making Partial Rating Decisions",
+   "updated": "2025-05-27"
+  },
+  "554400000180489": {
+   "cite": "M21-1 V.ii.3.D",
+   "name": "Evaluating Disabilities",
+   "updated": "2026-07-29"
+  },
+  "554400000180494": {
+   "cite": "M21-1 IV.i.1.A",
+   "name": "Duty to Assist With Providing a Medical Examination or Opinion",
+   "updated": "2025-05-27"
+  },
+  "554400000180495": {
+   "cite": "M21-1 IV.i.1.B",
+   "name": "Evidentiary Standards for Finding an Examination or Opinion Necessary",
+   "updated": "2026-05-01"
+  },
+  "554400000180498": {
+   "cite": "M21-1 IV.i.2.A",
+   "name": "Examination Requests Overview",
+   "updated": "2026-08-18"
+  },
+  "554400000180507": {
+   "cite": "M21-1 IV.i.2.E",
+   "name": "Examinations in Special Situations",
+   "updated": "2026-08-18"
+  },
+  "554400000180508": {
+   "cite": "M21-1 IV.i.2.F",
+   "name": "Failure to Report and Rescheduling Examinations",
+   "updated": "2025-05-27"
+  },
+  "554400000180516": {
+   "cite": "M21-1 IV.i.3.B",
+   "name": "Examination Sufficiency for Specific Disabilities",
+   "updated": "2025-05-27"
+  },
+  "554400000180517": {
+   "cite": "M21-1 IV.i.3.C",
+   "name": "Insufficient Examinations",
+   "updated": "2025-07-23"
+  }
+ },
+ "topics": {
+  "ptsd": [
+   "554400000177468",
+   "554400000177469",
+   "554400000177713",
+   "554400000177714",
+   "554400000177715"
+  ],
+  "fpow": [
+   "554400000177470",
+   "554400000177471",
+   "554400000177472",
+   "554400000177473"
+  ],
+  "iu": [
+   "554400000177474",
+   "554400000177475",
+   "554400000177476",
+   "554400000177477"
+  ],
+  "smc": [
+   "554400000177480",
+   "554400000177481"
+  ],
+  "smccheck": [
+   "554400000177480",
+   "554400000177481"
+  ],
+  "diving": [
+   "554400000177489"
+  ],
+  "ao": [
+   "554400000177422",
+   "554400000177423",
+   "554400000308860",
+   "554400000308863"
+  ],
+  "nehmer": [
+   "554400000177426",
+   "554400000177427"
+  ],
+  "gulf": [
+   "554400000177434",
+   "554400000177438",
+   "554400000177440",
+   "554400000259721"
+  ],
+  "bpot": [
+   "554400000177441",
+   "554400000177442",
+   "554400000177443"
+  ],
+  "radiation": [
+   "554400000177454",
+   "554400000177455",
+   "554400000177456"
+  ],
+  "mustard": [
+   "554400000177452",
+   "554400000177453"
+  ],
+  "cbrne": [
+   "554400000177457"
+  ],
+  "shad": [
+   "554400000177459"
+  ],
+  "asbestos": [
+   "554400000177461",
+   "554400000177462",
+   "554400000177463"
+  ],
+  "lejeune": [
+   "554400000177465",
+   "554400000177467"
+  ],
+  "emoh": [
+   "554400000202897",
+   "554400000202901"
+  ],
+  "cod": [
+   "554400000177986",
+   "554400000178524",
+   "554400000177991"
+  ],
+  "lod": [
+   "554400000177987",
+   "554400000177988",
+   "554400000177991"
+  ],
+  "direct": [
+   "554400000180481"
+  ],
+  "preagg": [
+   "554400000180483"
+  ],
+  "obesity": [
+   "554400000180488"
+  ],
+  "dx": [
+   "554400000180488"
+  ],
+  "presume": [
+   "554400000180482"
+  ],
+  "chronic": [
+   "554400000177482"
+  ],
+  "programs": [
+   "554400000181485"
+  ],
+  "housing": [
+   "554400000173639"
+  ],
+  "autoallow": [
+   "554400000173638"
+  ],
+  "clothing": [
+   "554400000173828"
+  ],
+  "va1151": [
+   "554400000177483",
+   "554400000177484",
+   "554400000177485"
+  ],
+  "paired": [
+   "554400000177486",
+   "554400000177487"
+  ],
+  "temp": [
+   "554400000177478",
+   "554400000177479",
+   "554400000177542",
+   "554400000177543"
+  ],
+  "aa": [
+   "554400000015095",
+   "554400000015098"
+  ],
+  "dependents": [
+   "554400000176613"
+  ],
+  "dea": [
+   "554400000173635"
+  ],
+  "champva": [
+   "554400000173844"
+  ],
+  "dentaltx": [
+   "554400000173837",
+   "554400000173836",
+   "554400000173838"
+  ],
+  "vre": [
+   "554400000173835",
+   "554400000173834"
+  ],
+  "dic": [
+   "554400000175201",
+   "554400000175203",
+   "554400000175206",
+   "554400000175207",
+   "554400000175208"
+  ],
+  "mod": [
+   "554400000174191"
+  ],
+  "accrued": [
+   "554400000174192",
+   "554400000174205",
+   "554400000174206",
+   "554400000174207",
+   "554400000174208"
+  ],
+  "burial": [
+   "554400000174201"
+  ],
+  "debts": [
+   "554400000179498"
+  ],
+  "incarc": [
+   "554400000207953",
+   "554400000207820"
+  ],
+  "ratingdec": [
+   "554400000180523",
+   "554400000180524",
+   "554400000180525"
+  ],
+  "effdate": [
+   "554400000180492"
+  ],
+  "itf": [
+   "554400000174873"
+  ],
+  "supp": [
+   "554400000174874",
+   "554400000177963"
+  ],
+  "reduce": [
+   "554400000177965",
+   "554400000177966",
+   "554400000177967",
+   "554400000177968",
+   "554400000177969",
+   "554400000177970"
+  ],
+  "cue": [
+   "554400000177971",
+   "554400000177972",
+   "554400000177973"
+  ],
+  "competency": [
+   "554400000177974",
+   "554400000177976"
+  ],
+  "helpless": [
+   "554400000177975"
+  ],
+  "nerves": [
+   "554400000180519"
+  ],
+  "tbir": [
+   "554400000180832"
+  ],
+  "neuro": [
+   "554400000180833"
+  ],
+  "mentalr": [
+   "554400000180520"
+  ],
+  "painmotion": [
+   "554400000014407"
+  ],
+  "msk": [
+   "554400000014410"
+  ],
+  "arthritis": [
+   "554400000014413",
+   "554400000014418",
+   "554400000014422",
+   "554400000014425"
+  ],
+  "eyes": [
+   "554400000014461"
+  ],
+  "ears": [
+   "554400000014464"
+  ],
+  "infect": [
+   "554400000014467"
+  ],
+  "resp": [
+   "554400000180967",
+   "554400000180881"
+  ],
+  "heart": [
+   "554400000014520"
+  ],
+  "digest": [
+   "554400000014523"
+  ],
+  "gu": [
+   "554400000180593"
+  ],
+  "blood": [
+   "554400000180513"
+  ],
+  "skin": [
+   "554400000180515"
+  ],
+  "endo": [
+   "554400000180518"
+  ],
+  "dental": [
+   "554400000180509"
+  ],
+  "gyn": [
+   "554400000180511",
+   "554400000180879"
+  ],
+  "conds": [
+   "554400000180514",
+   "554400000180516"
+  ],
+  "insuf": [
+   "554400000180514",
+   "554400000180517"
+  ],
+  "hlr": [
+   "554400000141004"
+  ],
+  "vetstatus": [
+   "554400000181424"
+  ],
+  "civmm": [
+   "554400000177948",
+   "554400000181426"
+  ],
+  "evidence": [
+   "554400000014383",
+   "554400000014389"
+  ],
+  "congenital": [
+   "554400000180485"
+  ],
+  "issues": [
+   "554400000180486",
+   "554400000180487"
+  ],
+  "evaluate": [
+   "554400000180489"
+  ],
+  "exams": [
+   "554400000180494",
+   "554400000180495",
+   "554400000180498",
+   "554400000180507",
+   "554400000180508",
+   "554400000180514",
+   "554400000180516",
+   "554400000180517"
+  ]
+ },
+ "ecfr": [
+  {
+   "part": "3",
+   "name": "38 CFR Part 3 (Adjudication)"
+  },
+  {
+   "part": "4",
+   "name": "38 CFR Part 4 (Schedule for Rating Disabilities)"
+  },
+  {
+   "part": "20",
+   "name": "38 CFR Part 20 (Board of Veterans' Appeals)"
+  }
+ ],
+ "ecfrTopics": {
+  "board": [
+   "20"
+  ],
+  "part4": [
+   "4"
+  ],
+  "part3": [
+   "3"
+  ]
+ },
+ "web": {
+  "pact": {
+   "name": "VA.gov, The PACT Act and your VA benefits",
+   "url": "https://www.va.gov/resources/the-pact-act-and-your-va-benefits/",
+   "updated": "2026-06-02"
+  },
+  "board": {
+   "name": "VA.gov, Board Appeals",
+   "url": "https://www.va.gov/decision-reviews/board-appeal/",
+   "updated": "2026-10-17"
+  },
+  "part4": {
+   "name": "eCFR, 38 C.F.R. Part 4, Schedule for Rating Disabilities",
+   "url": "https://www.ecfr.gov/current/title-38/chapter-I/part-4",
+   "updated": "2026-10-18"
+  },
+  "part3": {
+   "name": "eCFR, 38 C.F.R. Part 3, Adjudication",
+   "url": "https://www.ecfr.gov/current/title-38/chapter-I/part-3",
+   "updated": "2026-10-18"
+  }
+ }
+}
