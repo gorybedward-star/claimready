@@ -23,6 +23,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: node check-sources.mjs
       - name: Save what was seen
+        if: always()
         run: |
           git config user.name "vci-source-monitor"
           git config user.email "vci-source-monitor@users.noreply.github.com"
