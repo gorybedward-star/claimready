@@ -817,6 +817,106 @@ li.chg { background: var(--ok-soft); box-shadow: inset 4px 0 0 var(--ok); paddin
 .edu-card.top, .tool-card.top { border-color: var(--wait); box-shadow: inset 4px 0 0 var(--wait); }
 .sg-star { color: var(--wait); margin-right: 3px; }
 @media print { .wayfinder { display: none; } }
+/* Learn by pillar, rating-criteria explainer, knowledge checks, disclaimer */
+.frame-note { margin: 0; padding: 10px 14px; border-radius: var(--r); background: var(--accent-soft); border: 1px solid var(--accent); font-size: .9rem; line-height: 1.45; }
+.frame-note a { color: var(--accent); }
+.review-flag { font-weight: 650; color: var(--wait); }
+.example-note { margin: 0; padding: 8px 12px; border-radius: var(--r); background: var(--wait-soft); color: var(--ink); font-size: .9rem; }
+.pillars { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 6px; }
+.pillars.ex-pick { grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); }
+.pillar-tab { min-height: 44px; border-radius: 999px; border: 1px solid var(--line); background: var(--surface); color: var(--ink); font-weight: 650; cursor: pointer; padding: 6px 12px; }
+.pillar-tab:hover { background: var(--sunk); }
+.pillar-tab[aria-pressed="true"] { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); }
+.learn-list { list-style: none; margin: 6px 0 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 8px; }
+.learn-row { width: 100%; height: 100%; display: flex; align-items: center; gap: 10px; min-height: 44px; padding: 11px 14px; border: 1px solid var(--line); border-radius: var(--r); background: var(--surface); color: var(--ink); text-align: left; cursor: pointer; }
+.learn-row:hover { background: var(--sunk); }
+.learn-row.featured { border: 2px solid var(--accent); }
+.lr-text { display: flex; flex-direction: column; gap: 2px; flex: 1; min-width: 0; }
+.lr-text > span:not(.pill):not(.upd-badge) { font-size: .86rem; color: var(--muted); }
+.lr-text .pill { align-self: flex-start; }
+.lr-go { color: var(--accent); font-weight: 700; font-size: 1.2rem; }
+.pillar-body h2 { margin: 0; }
+.ex-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.3fr); gap: 16px; align-items: start; }
+@media (max-width: 900px) { .ex-grid { grid-template-columns: minmax(0, 1fr); } }
+.ex-ctl { display: flex; align-items: center; gap: 10px; }
+.ex-step { min-width: 48px; min-height: 48px; justify-content: center; font-size: 1.4rem; font-weight: 700; }
+.ex-val { flex: 1; display: flex; align-items: center; justify-content: center; gap: 2px; font-family: var(--f-serif, Georgia, serif); font-size: 2rem; font-weight: 600; }
+.ex-val input { width: 4.2ch; text-align: center; font: inherit; border: 1px solid var(--line); border-radius: var(--r); background: var(--surface); color: var(--ink); padding: 2px 4px; }
+.ex-out h2 { margin: 0; }
+.ex-levels { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 6px; }
+.ex-level { display: flex; align-items: center; gap: 10px; padding: 10px 12px; border-radius: var(--r); border: 1px solid var(--line); background: var(--surface); color: var(--muted); }
+.ex-level b { color: var(--ink); font-weight: 600; }
+.ex-level.here { border: 2px solid var(--accent); background: var(--accent-soft); color: var(--ink); }
+.ex-level.here b { font-weight: 700; }
+.ex-note { font-size: .84rem; }
+.ex-pct { margin-left: auto; font-weight: 700; font-size: 1.05rem; color: var(--ink); }
+.ex-next { padding: 12px 14px; border-radius: var(--r); background: var(--sunk); }
+.ex-next h3 { margin: 0 0 4px; font-size: 1rem; }
+.ex-next p { margin: 0; }
+.quiz-sec { display: flex; flex-direction: column; gap: 10px; }
+.quiz-sec h2 { margin: 8px 0 0; }
+.quiz-q h3 { margin: 0; font-size: 1.02rem; line-height: 1.4; }
+.quiz-opts { display: flex; flex-direction: column; gap: 6px; }
+.quiz-opt { text-align: left; min-height: 44px; padding: 10px 12px; border-radius: var(--r); border: 1px solid var(--line); background: var(--surface); color: var(--ink); cursor: pointer; font: inherit; }
+.quiz-opt:hover { background: var(--sunk); }
+.quiz-opt.right { border: 2px solid var(--ok); background: var(--ok-soft); }
+.quiz-opt.wrong { border: 2px solid var(--bad); background: var(--bad-soft); }
+.quiz-opt.answer { border: 2px solid var(--ok); }
+.quiz-fb { padding: 10px 12px; border-radius: var(--r); font-size: .94rem; }
+.quiz-fb.right { background: var(--ok-soft); }
+.quiz-fb.wrong { background: var(--bad-soft); }
+.quiz-src { margin: 6px 0 0; font-size: .84rem; }
+.disclaimer-full p { margin: 0; max-width: 75ch; }
+/* Learn by pillar, rating-criteria explainer, knowledge checks, disclaimer */
+.frame-note { margin: 0; padding: 10px 14px; border-radius: var(--r); background: var(--accent-soft); border: 1px solid var(--accent); font-size: .9rem; line-height: 1.45; }
+.frame-note a { color: var(--accent); }
+.review-flag { font-weight: 650; color: var(--wait); }
+.example-note { margin: 0; padding: 8px 12px; border-radius: var(--r); background: var(--wait-soft); color: var(--ink); font-size: .9rem; }
+.pillars { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 6px; }
+.pillars.ex-pick { grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); }
+.pillar-tab { min-height: 44px; border-radius: 999px; border: 1px solid var(--line); background: var(--surface); color: var(--ink); font-weight: 650; cursor: pointer; padding: 6px 12px; }
+.pillar-tab:hover { background: var(--sunk); }
+.pillar-tab[aria-pressed="true"] { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); }
+.learn-list { list-style: none; margin: 6px 0 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 8px; }
+.learn-row { width: 100%; height: 100%; display: flex; align-items: center; gap: 10px; min-height: 44px; padding: 11px 14px; border: 1px solid var(--line); border-radius: var(--r); background: var(--surface); color: var(--ink); text-align: left; cursor: pointer; }
+.learn-row:hover { background: var(--sunk); }
+.learn-row.featured { border: 2px solid var(--accent); }
+.lr-text { display: flex; flex-direction: column; gap: 2px; flex: 1; min-width: 0; }
+.lr-text > span:not(.pill):not(.upd-badge) { font-size: .86rem; color: var(--muted); }
+.lr-text .pill { align-self: flex-start; }
+.lr-go { color: var(--accent); font-weight: 700; font-size: 1.2rem; }
+.pillar-body h2 { margin: 0; }
+.ex-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.3fr); gap: 16px; align-items: start; }
+@media (max-width: 900px) { .ex-grid { grid-template-columns: minmax(0, 1fr); } }
+.ex-ctl { display: flex; align-items: center; gap: 10px; }
+.ex-step { min-width: 48px; min-height: 48px; justify-content: center; font-size: 1.4rem; font-weight: 700; }
+.ex-val { flex: 1; display: flex; align-items: center; justify-content: center; gap: 2px; font-family: var(--f-serif, Georgia, serif); font-size: 2rem; font-weight: 600; }
+.ex-val input { width: 4.2ch; text-align: center; font: inherit; border: 1px solid var(--line); border-radius: var(--r); background: var(--surface); color: var(--ink); padding: 2px 4px; }
+.ex-out h2 { margin: 0; }
+.ex-levels { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 6px; }
+.ex-level { display: flex; align-items: center; gap: 10px; padding: 10px 12px; border-radius: var(--r); border: 1px solid var(--line); background: var(--surface); color: var(--muted); }
+.ex-level b { color: var(--ink); font-weight: 600; }
+.ex-level.here { border: 2px solid var(--accent); background: var(--accent-soft); color: var(--ink); }
+.ex-level.here b { font-weight: 700; }
+.ex-note { font-size: .84rem; }
+.ex-pct { margin-left: auto; font-weight: 700; font-size: 1.05rem; color: var(--ink); }
+.ex-next { padding: 12px 14px; border-radius: var(--r); background: var(--sunk); }
+.ex-next h3 { margin: 0 0 4px; font-size: 1rem; }
+.ex-next p { margin: 0; }
+.quiz-sec { display: flex; flex-direction: column; gap: 10px; }
+.quiz-sec h2 { margin: 8px 0 0; }
+.quiz-q h3 { margin: 0; font-size: 1.02rem; line-height: 1.4; }
+.quiz-opts { display: flex; flex-direction: column; gap: 6px; }
+.quiz-opt { text-align: left; min-height: 44px; padding: 10px 12px; border-radius: var(--r); border: 1px solid var(--line); background: var(--surface); color: var(--ink); cursor: pointer; font: inherit; }
+.quiz-opt:hover { background: var(--sunk); }
+.quiz-opt.right { border: 2px solid var(--ok); background: var(--ok-soft); }
+.quiz-opt.wrong { border: 2px solid var(--bad); background: var(--bad-soft); }
+.quiz-opt.answer { border: 2px solid var(--ok); }
+.quiz-fb { padding: 10px 12px; border-radius: var(--r); font-size: .94rem; }
+.quiz-fb.right { background: var(--ok-soft); }
+.quiz-fb.wrong { background: var(--bad-soft); }
+.quiz-src { margin: 6px 0 0; font-size: .84rem; }
+.disclaimer-full p { margin: 0; max-width: 75ch; }
 </style>
 <script src="site-config.js"></script>
 <script>
@@ -1702,9 +1802,28 @@ const VCI = (() => {
     }
     return { items, letterDate, skipped };
   }
+
+  // ---- Rating-criteria explainers: criteria quoted from 38 C.F.R. § 4.71a (eCFR, current as of October 15, 2026; checked October 18, 2026) ----
+  const CRITERIA_CHECKED = 'October 18, 2026'; const CRITERIA_ECFR = 'October 15, 2026';
+  const CRITERIA = {
+    kneeflex: { mode: 'atMost', head: '5260 Leg, limitation of flexion of:', unit: '°', min: 0, max: 140, step: 5,
+      levels: [{ v: 15, pct: 30, text: 'Flexion limited to 15°' }, { v: 30, pct: 20, text: 'Flexion limited to 30°' }, { v: 45, pct: 10, text: 'Flexion limited to 45°' }, { v: 60, pct: 0, text: 'Flexion limited to 60°' }] },
+    kneeext: { mode: 'atLeast', head: '5261 Leg, limitation of extension of:', unit: '°', min: 0, max: 60, step: 5,
+      levels: [{ v: 45, pct: 50, text: 'Extension limited to 45°' }, { v: 30, pct: 40, text: 'Extension limited to 30°' }, { v: 20, pct: 30, text: 'Extension limited to 20°' }, { v: 15, pct: 20, text: 'Extension limited to 15°' }, { v: 10, pct: 10, text: 'Extension limited to 10°' }, { v: 5, pct: 0, text: 'Extension limited to 5°' }] },
+    spinetl: { mode: 'atMost', head: 'General Rating Formula for Diseases and Injuries of the Spine (forward flexion criteria only):', unit: '°', min: 0, max: 90, step: 5,
+      levels: [{ v: 30, pct: 40, text: 'Forward flexion of the thoracolumbar spine 30 degrees or less' }, { v: 60, pct: 20, text: 'Forward flexion of the thoracolumbar spine greater than 30 degrees but not greater than 60 degrees' }, { v: 85, pct: 10, text: 'Forward flexion of the thoracolumbar spine greater than 60 degrees but not greater than 85 degrees' }] },
+    spinecx: { mode: 'atMost', head: 'General Rating Formula for Diseases and Injuries of the Spine (forward flexion criteria only):', unit: '°', min: 0, max: 45, step: 5,
+      levels: [{ v: 15, pct: 30, text: 'Forward flexion of the cervical spine 15 degrees or less' }, { v: 30, pct: 20, text: 'Forward flexion of the cervical spine greater than 15 degrees but not greater than 30 degrees' }, { v: 40, pct: 10, text: 'Forward flexion of the cervical spine greater than 30 degrees but not greater than 40 degrees' }] },
+  };
+  // Which listed level a single measurement falls within. atMost: the first level whose limit is at or above the value (levels listed from most to least limited). atLeast: the first level whose limit the value reaches.
+  function criteriaLevel(id, value) {
+    const c = CRITERIA[id]; const v = Number(value); if (!c || value === '' || value == null || isNaN(v)) return null;
+    const i = c.levels.findIndex(l => c.mode === 'atMost' ? v <= l.v : v >= l.v);
+    return i < 0 ? null : Object.assign({ index: i }, c.levels[i]);
+  }
   return { nextWorkday, fedHolidays, effDateCheck, reductionCheck, EFF_LAWS, EFF_FLAGS, lastDayOfMonth, firstOfNextMonth, pursuit, DECIDERS, tdiuSchedular, quickCombine, LIMBS, limbBilateral, guessLimb, parseD, iso, addDays, addYears, daysBetween, fmt, todayISO, AUTH, THEORIES, EVENT_TYPES, LANES, STATUS, BLOCK, EV_STATUS, EV_KINDS, OF_RECORD, PENDING,
     byId, evidenceFor, sortEvents, conditionState, RULES_CHECKED, MAX_PROVIDERS, PROVIDER_TYPES, REC_STATUS, providerNeed, SPECIAL_STATUS, TDIU_DOCS, tdiuCheck, PRESUMPTIVE, presumptiveMatches, TOXIC_LOCATIONS, EXPOSURE_TYPES, REASONS, denialKeys, needsSupplemental, reviewWindow, combineList, combinedRating, elementStatus, buildingBlocks, decodeDenial, evidenceCheck, followUp,
-    parseDecision, decDate, reviewOpinion, opinionSummary, opinionDirection, opinionStance, reviewOptions, overview, timeline, detectPII, emptyFolder, normalize, PLAIN, spans, RX };
+    parseDecision, decDate, reviewOpinion, opinionSummary, opinionDirection, opinionStance, reviewOptions, overview, timeline, detectPII, emptyFolder, normalize, PLAIN, spans, RX, CRITERIA, CRITERIA_CHECKED, CRITERIA_ECFR, criteriaLevel };
 })();
 if (typeof module !== 'undefined') module.exports = VCI;
 </script>
@@ -2405,6 +2524,15 @@ function vciTests(VCI, vciExample) {
   });
   t('Decision reader: presumptive grants are not mistaken for secondary', () => {
     const r = pd1('Service connection for prostate cancer is granted on a presumptive basis due to herbicide exposure with an evaluation of 100 percent effective May 1, 2023.'); eq([r.theory, r.rating], ['presumptive', 100]);
+  });
+  const lvl = (id, v) => { const r = VCI.criteriaLevel(id, v); return r ? r.pct : null; };
+  t('Criteria explainer: knee flexion falls in the DC 5260 level it is limited to (38 C.F.R. 4.71a)', () => eq([lvl('kneeflex', 15), lvl('kneeflex', 40), lvl('kneeflex', 45), lvl('kneeflex', 50), lvl('kneeflex', 60), lvl('kneeflex', 65)], [30, 10, 10, 0, 0, null]));
+  t('Criteria explainer: knee extension falls in the DC 5261 level it reaches', () => eq([lvl('kneeext', 0), lvl('kneeext', 5), lvl('kneeext', 12), lvl('kneeext', 30), lvl('kneeext', 50)], [null, 0, 10, 40, 50]));
+  t('Criteria explainer: spine forward flexion bands match the General Rating Formula', () => { eq([lvl('spinetl', 30), lvl('spinetl', 35), lvl('spinetl', 60), lvl('spinetl', 85), lvl('spinetl', 90)], [40, 20, 20, 10, null]); eq([lvl('spinecx', 15), lvl('spinecx', 30), lvl('spinecx', 35), lvl('spinecx', 45)], [30, 20, 10, null]); });
+  t('Criteria explainer: a blank measurement shows no level', () => eq([VCI.criteriaLevel('kneeflex', ''), VCI.criteriaLevel('nope', 10)], [null, null]));
+  if (typeof VCI_RATERS !== 'undefined') t('Criteria explainer and rating estimator quote the same knee criteria', () => {
+    const f = VCI_RATERS.R.knee.fields; const pick = k => f.find(x => x.key === k).groups[0][1].filter(o => o[2]).map(o => [o[1], Number(o[2])]);
+    eq(pick('flex'), VCI.CRITERIA.kneeflex.levels.map(l => [l.text, l.pct])); eq(pick('ext'), VCI.CRITERIA.kneeext.levels.map(l => [l.text, l.pct]));
   });
   return T.map(x => { try { x.fn(); return { name: x.name, pass: true }; } catch (e) { return { name: x.name, pass: false, error: e.message }; } });
 }
@@ -3779,7 +3907,12 @@ window.VCI_UPDATES = [
   function loadLocal() { try { const s = localStorage.getItem(KEY); return s ? JSON.parse(s) : null; } catch (e) { return null; } }
   function saveLocal() { try { localStorage.setItem(KEY, JSON.stringify(S)); } catch (e) { } }
   const hasData = st => st.conditions.length || st.profile.name || st.evidence.length;
+  // First visit: show the fictional example (held in memory, not saved) until the person starts their own folder.
+  const OWN_KEY = 'vci.ownFolder';
+  function ownFolder() { UI.autoExample = false; try { localStorage.setItem(OWN_KEY, '1'); } catch (e) { } }
+  function wantsExample() { try { return localStorage.getItem(OWN_KEY) !== '1'; } catch (e) { return true; } }
   function save() {
+    if (UI.autoExample) UI.autoExample = false;
     S.updatedAt = new Date().toISOString(); saveLocal();
     if (store.ref) { clearTimeout(store.timer); store.timer = setTimeout(pushRemote, 700); }
   }
@@ -3801,9 +3934,9 @@ window.VCI_UPDATES = [
       const snap = await store.ref.get();
       if (snap.exists) {
         const remote = VCI.normalize(JSON.parse(JSON.stringify(snap.data())));
-        if (!hasData(S) || (remote.updatedAt || '') >= (S.updatedAt || '')) { S = remote; saveLocal(); }
+        if (!hasData(S) || UI.autoExample || (remote.updatedAt || '') >= (S.updatedAt || '')) { UI.autoExample = false; S = remote; saveLocal(); }
         else await store.ref.set(JSON.parse(JSON.stringify(S)));
-      } else if (hasData(S)) await store.ref.set(JSON.parse(JSON.stringify(S)));
+      } else if (hasData(S) && !UI.autoExample) await store.ref.set(JSON.parse(JSON.stringify(S)));
       store.mode = 'account'; render();
     } catch (e) { store.ref = null; store.mode = 'browser'; render(); }
   }
@@ -3843,10 +3976,17 @@ window.VCI_UPDATES = [
   const inp = (id, name, val, type, extra) => `<input id="${id}" name="${name}" type="${type || 'text'}" value="${esc(val || '')}" ${extra || ''}>`;
 
   // ================= SHELL =================
-  const GROUP = { home: 'home', needed: 'home', conditions: 'conditions', cond: 'conditions', add: 'conditions', opinion: 'opinions', opinions: 'opinions', rating: 'opinions', combine: 'opinions', effcheck: 'opinions', checklist: 'opinions', smccheck: 'opinions', quick: 'opinions', tools: 'opinions', tdiu: 'opinions', doctors: 'opinions', educ: 'opinions', benefits: 'benefits', info: 'info', about: 'backup', backup: 'backup' };
+  const GROUP = { home: 'home', needed: 'home', conditions: 'conditions', cond: 'conditions', add: 'conditions', opinion: 'opinions', opinions: 'opinions', rating: 'opinions', combine: 'opinions', effcheck: 'opinions', checklist: 'opinions', smccheck: 'opinions', quick: 'opinions', tools: 'opinions', tdiu: 'opinions', doctors: 'opinions', educ: 'learn', learn: 'learn', explain: 'learn', training: 'learn', benefits: 'benefits', info: 'info', about: 'backup', terms: 'backup', backup: 'backup' };
   const LEGACY = { sc: ['conditions', 'sc'], denied: ['conditions', 'denied'], pending: ['conditions', 'open'], history: ['home'], evidence: ['home'], service: ['info'], log: ['info'], help: ['benefits'] };
   const LEGAL_LINE = 'Educational information based on public information from VA\'s M21-1 Adjudication Procedures Manual (published on KnowVA) and Title 38 of the Code of Federal Regulations (eCFR). Not affiliated with VA. VA decides every claim.';
-  const LEGAL_PRINT = 'Not legal advice. ' + LEGAL_LINE;
+  const BANNER = 'Independent educational tool. Not affiliated with or endorsed by the U.S. Department of Veterans Affairs. Not legal or medical advice. VA decides every claim.';
+  const DISCLAIMER_FULL = [
+    'VA Claims Intelligence is an independent, privately operated educational resource. It is not affiliated with, endorsed by, sponsored by, or acting on behalf of the U.S. Department of Veterans Affairs or any other government agency.',
+    'The information here is drawn from publicly available sources, including VA’s M21-1 Adjudication Procedures Manual and Title 38 of the Code of Federal Regulations, and is informed by 20 years of experience in VA decision-making. It is provided for general education only and is not legal, medical, or financial advice. Using this site does not create an attorney-client, representative, or provider relationship of any kind.',
+    'VA laws, regulations, and procedures change often. We work to keep this content current, but we cannot guarantee it is complete, accurate, or up to date. Always confirm with official VA sources. No outcome is guaranteed. All decisions on VA claims are made solely by VA.',
+    'For help with a claim, contact a VA-accredited representative. Accredited veterans service organizations help at no cost. You can find one through VA’s accreditation search at va.gov.',
+    'Information you enter stays on your device and is not sent to us. This site is provided “as is,” and you use it at your own risk.'];
+  const LEGAL_PRINT = BANNER + ' ' + LEGAL_LINE;
   function render() {
     const [p] = UI.route.split('.');
     if (LEGACY[p]) { UI.route = LEGACY[p][0]; if (LEGACY[p][1]) UI.filter = LEGACY[p][1]; }
@@ -3856,12 +3996,12 @@ window.VCI_UPDATES = [
       <a class="skip" href="#main" data-act="skip">Skip to main content</a>
       <header class="topbar">
         <div class="brand"><span class="mark">VCI</span><span class="name">VA Claims Intelligence</span></div>
-        <nav class="toptabs" aria-label="Sections">${tab('home', 'Dashboard')}${tab('conditions', 'Conditions')}${tab('opinions', 'Tools', 'tools')}${tab('info', 'My info')}${tab('benefits', 'Find benefits')}${tab('backup', 'Backup')}</nav>
+        <nav class="toptabs" aria-label="Sections">${tab('home', 'Dashboard')}${tab('learn', 'Learn')}${tab('conditions', 'Conditions')}${tab('opinions', 'Tools', 'tools')}${tab('info', 'My info')}${tab('benefits', 'Find benefits')}${tab('backup', 'Backup')}</nav>
         <button class="btn small doc-btn" data-act="openQuick">Quick sheet for my doctor</button>
         <span class="store ${store.mode}" title="${store.mode === 'account' ? 'Saved to your private space in your account. Only you can see it.' : 'Saved in this browser only.'}">Private<span class="store-more">${store.mode === 'account' ? ' · saved to your account' : ' · saved on this device'}</span></span>
         <button class="btn small textsize" data-act="textSize" aria-label="Text size: ${TEXT_SIZES[UI.textSize].label}. Select to change.">A<span aria-hidden="true">${['', '+', '++'][UI.textSize]}</span> <span class="ts-label">Text size</span></button>
       </header>
-      <div class="strip legal" role="note"><b>Not legal advice.</b> ${LEGAL_LINE}</div>
+      <div class="strip legal" role="note">${BANNER} <button class="btn link" data-go="terms">Full disclaimer</button></div>
       ${store.error ? `<div class="strip bad">${esc(store.error)}</div>` : ''}
       ${S.example ? `<div class="strip">You are looking at a fictional example. ${UI.confirm === 'startOwn' ? `Erase it and start your own folder? <button class="btn small danger" data-act="startOwn">Yes, start fresh</button> <button class="btn small" data-act="cancelConfirm">Cancel</button>` : '<button class="btn small" data-act="askConfirm" data-key="startOwn">Start my own folder</button>'}</div>` : ''}
       ${nudges()}
@@ -3888,6 +4028,10 @@ window.VCI_UPDATES = [
         case 'needed': return neededPage();
         case 'doctors': return doctorsPage();
         case 'educ': return educPage(id);
+        case 'learn': return learnPage(id);
+        case 'explain': return explainPage(id);
+        case 'training': return trainingPage();
+        case 'terms': return termsPage();
         case 'info': return infoPage();
         case 'benefits': return benefitsPage();
         case 'backup': return backupPage();
@@ -3904,7 +4048,7 @@ window.VCI_UPDATES = [
   }
   function nudges() {
     if (UI.nudge === 'backup') return `<div class="strip nudge" role="status"><span><b>Your first condition is saved on this device.</b> Download a backup file now so you never lose your folder.</span> <button class="btn small primary" data-act="downloadBackup">Download backup</button> <button class="btn small" data-act="dismissNudge">Later</button></div>`;
-    if (hasData(S) && !UI.installHidden && UI.route === 'home') return installCard(true);
+    if (hasData(S) && !UI.autoExample && !UI.installHidden && UI.route === 'home') return installCard(true);
     return '';
   }
   const notice = `<p class="notice">VCI organizes your own records. It does not decide eligibility, service connection, ratings, effective dates, or deadlines; your VA decision letters control. Combined ratings and review windows are estimates. Not legal or medical advice. Not affiliated with VA. Rules last checked ${VCI.RULES_CHECKED}. <button class="btn link" data-go="about">About and privacy</button></p>`;
@@ -3974,7 +4118,14 @@ window.VCI_UPDATES = [
           ${sc.length ? `<div class="bars">${sc.map(r => `<button class="bar-row" data-go="cond.${r.c.id}"><span class="bar-label">${esc(r.c.name)}</span><span class="bar-track"><span class="bar-fill" style="width:${Math.max(r.s.rating || 0, 1)}%"></span></span><span class="num bar-val">${pct(r.s.rating)}</span></button>`).join('')}</div>` : '<p class="empty">No service-connected conditions yet.</p>'}
         </section>
       </div>
-      <div class="dash-cards"><section class="panel need-card-dash"><div class="spread"><div><h2>What evidence does VA need?</h2><p class="muted" style="margin:4px 0 0">A short summary of VA's evidence rules and the additional forms some claims need, marked for your folder.</p></div>
+      ${dashTopicsHTML()}
+      <section class="panel"><div class="panel-head"><h2>Recent activity</h2></div>
+        ${recent.length ? `<div class="timeline">${recent.map(x => eventRow(x.c, x.e, true)).join('')}</div>` : '<p class="empty">No decisions recorded yet.</p>'}</section>
+      ${notice}</div>`;
+  }
+  // The five Dashboard topics are always shown, with or without a folder: the wayfinder and these four cards.
+  function dashTopicsHTML() {
+    return `<div class="dash-cards"><section class="panel need-card-dash"><div class="spread"><div><h2>What evidence does VA need?</h2><p class="muted" style="margin:4px 0 0">A short summary of VA's evidence rules and the additional forms some claims need, marked for your folder.</p></div>
         <div class="row" style="gap:8px"><button class="btn primary" data-go="needed">See what VA needs</button><button class="btn" data-act="needForms">Additional forms</button></div>
         <p class="muted" style="font-size:.82rem;margin:0;width:100%">From VA: <a href="${NEED_SRC}" target="_blank" rel="noopener">Evidence needed</a> · <a href="${FORMS_SRC}" target="_blank" rel="noopener">Additional forms</a></p></div></section>
       <section class="panel quick-card"><div class="spread"><div><h2>Seeing a doctor for your claim?</h2><p class="muted" style="margin:4px 0 0">Give them the one-page quick sheet: how to sign, VA's standard of proof, and what your claims need. It is prepared from your folder.</p></div>
@@ -3992,10 +4143,7 @@ window.VCI_UPDATES = [
           <li><b>After you file:</b> answer any VA letter and go to every scheduled exam.</li>
         </ul>
         <div class="row" style="gap:8px"><a class="btn primary" href="https://www.va.gov/disability/how-to-file-claim/" target="_blank" rel="noopener">File a claim (VA.gov)</a><a class="btn" href="https://www.va.gov/forms/" target="_blank" rel="noopener">Find a VA form</a></div>
-        <p class="muted" style="font-size:.8rem;margin:0;width:100%">Common forms: 21-526EZ (claim), 21-0966 (intent to file), 20-0995 (Supplemental Claim), 20-0996 (Higher-Level Review), 10182 (Board appeal), 21-4142 (release of private records), 21-8940 (IU), 21-2680 (aid and attendance).</p></div></section></div>
-      <section class="panel"><div class="panel-head"><h2>Recent activity</h2></div>
-        ${recent.length ? `<div class="timeline">${recent.map(x => eventRow(x.c, x.e, true)).join('')}</div>` : '<p class="empty">No decisions recorded yet.</p>'}</section>
-      ${notice}</div>`;
+        <p class="muted" style="font-size:.8rem;margin:0;width:100%">Common forms: 21-526EZ (claim), 21-0966 (intent to file), 20-0995 (Supplemental Claim), 20-0996 (Higher-Level Review), 10182 (Board appeal), 21-4142 (release of private records), 21-8940 (IU), 21-2680 (aid and attendance).</p></div></section></div>`;
   }
   function welcome() {
     return `<div class="page">
@@ -4005,7 +4153,7 @@ window.VCI_UPDATES = [
         <p>Record every condition you have claimed: what VA granted, at what rating and effective date, and what it denied and why. VCI tracks your deadlines, estimates your combined rating, and shows what each claim still needs.</p>
         <p class="muted">Only you can see what you enter. Do not type your Social Security number, VA file number, or DoD ID; VCI blocks them.</p>
         ${installCard(false)}<div class="row"><button class="btn primary" data-go="add">Add my first condition</button><button class="btn" data-act="loadExample">See a fictional example</button></div>
-      </section>${wayfinderHTML()}${notice}</div>`;
+      </section>${wayfinderHTML()}${dashTopicsHTML()}${notice}</div>`;
   }
 
   // ================= CONDITIONS =================
@@ -4475,8 +4623,8 @@ window.VCI_UPDATES = [
   const TOOL_GROUPS = [
     ['Checklists', [['checklist', 'Claim checklist', 'Every step and benefit to consider before you file, with a few questions to fit it to you.'], ['smccheck', 'SMC checklist', 'Which special monthly compensation levels may fit, and what an exam should document.']]],
     ['For your doctor', [['quick', 'Quick sheet', 'A one-page sheet of what VA needs in an exam or opinion, for your claim type and conditions.'], ['doctors', 'Doctor guide', 'The full guide for a provider writing a VA medical opinion or DBQ.'], ['opinions', 'Check an exam opinion', 'Paste a C&P exam opinion to spot common problems VA should fix.']]],
-    ['Ratings and dates', [['tdiu', 'TDIU calculator', 'Check whether your ratings and work situation fit Individual Unemployability (paid at the 100% rate).'], ['rating', 'Estimate a rating', 'Match your symptoms to VA\'s rating criteria.'], ['combine', 'Combine ratings', 'VA math: how separate ratings combine, including the bilateral factor.'], ['effcheck', 'Effective date check', 'Compare the date VA picked with the rules.']]],
-    ['Learn', [['educ', 'Provider education', 'Plain-language guides to VA\'s manual, by topic, with search.']]],
+    ['Ratings and dates', [['tdiu', 'TDIU calculator', 'Check whether your ratings and work situation fit Individual Unemployability (paid at the 100% rate).'], ['explain', 'Rating-criteria explainer', 'Each level of the criteria, quoted from 38 C.F.R. Part 4, and where a measurement falls.'], ['rating', 'Estimate a rating', 'Match your symptoms to VA\'s rating criteria.'], ['combine', 'Combine ratings', 'VA math: how separate ratings combine, including the bilateral factor.'], ['effcheck', 'Effective date check', 'Compare the date VA picked with the rules.']]],
+    ['Learn', [['learn', 'Learn by Exams, Benefits, Ratings', 'Every guide sorted into the three parts of a claim, with search.'], ['educ', 'Provider education', 'Plain-language guides to VA\'s manual, by topic, with search.'], ['training', 'Knowledge checks', 'Scenario questions for trainers and service officers.']]],
   ];
   function subnav(cur) {
     return `<nav class="sub-groups" aria-label="Tools"><button class="sg-home" data-go="tools" ${cur === 'tools' ? 'aria-current="page"' : ''}>All tools</button>${TOOL_GROUPS.map(([g, items]) => `<span class="sg"><span class="sg-lbl">${g}</span>${items.map(([r, l]) => `<button data-go="${r}" ${cur === r ? 'aria-current="page"' : ''}>${TOP_TOOLS.includes(r) ? '<span class="sg-star" aria-hidden="true">★</span>' : ''}${l}</button>`).join('')}</span>`).join('')}</nav>`;
@@ -6459,7 +6607,7 @@ ${quickPanelHTML(sel)}
     if (cur) {
       const body = markChanges(cur, eduPanel(cur, sel)).replace(/(<div class="insuf-card vet"><h3 class="edu-h">[^<]*)(<\/h3>)/g, '$1 <span class="rule-tag tip">Educational tip</span>$2');
       return `<div class="page"><h1 class="sr-only">${label(cur)}</h1>
-      <nav class="edu-crumb" aria-label="Breadcrumb"><button class="btn link" data-act="eduTop">Provider education</button> <span aria-hidden="true">›</span> <span>${label(cur)}</span></nav>
+      <nav class="edu-crumb" aria-label="Breadcrumb">${(p => `<button class="btn link" data-go="learn.${p[0]}">Learn: ${p[1]}</button>`)(PILLARS.find(p => p[4].some(g => g[1].includes(cur))) || PILLARS[0])} <span aria-hidden="true">›</span> <span>${label(cur)}</span></nav>
       <div id="edu-topic">${topicNoticeHTML(cur)}${reviewNoticeHTML(cur)}${body}
         ${sourcesHTML(cur)}
         <nav class="edu-pager" aria-label="Topics">${i > 0 ? `<button class="btn" data-act="eduTopic" data-id="${EDU_ORDER[i - 1]}">← ${label(EDU_ORDER[i - 1])}</button>` : '<span></span>'}<button class="btn link" data-act="eduTop">All topics</button>${i < EDU_ORDER.length - 1 ? `<button class="btn" data-act="eduTopic" data-id="${EDU_ORDER[i + 1]}">${label(EDU_ORDER[i + 1])} →</button>` : '<span></span>'}</nav></div>
@@ -6487,6 +6635,180 @@ ${quickPanelHTML(sel)}
         : '<p class="empty">Choose a topic above to read it. Everything is also in the full reference download.</p>'}
       <p class="muted" style="font-size:.82rem">Summarized from VA's adjudication manual, M21-1. Each section shows its source. A plain-language summary, not legal or medical advice.</p>
       ${notice}</div>`;
+  }
+
+  // ================= LEARN BY PILLAR: Exams, Benefits, Ratings =================
+  const EDU_FRAME = 'Based on public VA information, for education purposes.';
+  const PILLARS = [
+    ['exams', 'Exams', 'Examinations: understand the evidence', 'C&P exams and medical opinions: when VA owes you one, what happens on exam day, what a sufficient report contains, and how VA weighs it with other evidence.', [
+      ['Start here', ['exams']],
+      ['What the exam report must contain', ['conds', 'dx', 'insuf']],
+      ['How VA weighs exam findings', ['evidence']]],
+      [['quick', 'Quick sheet for your doctor', 'One page of what VA needs in an exam or opinion, for your claim type and conditions.'], ['doctors', 'Guide for your doctor', 'What a provider writing a DBQ or medical opinion needs to know.'], ['opinions', 'Check an exam opinion', 'Spot common problems in an opinion that VA should fix.']]],
+    ['benefits', 'Benefits', 'Benefits: understand potential entitlements', 'How service connection works, when payments start, special monthly compensation, and other benefits worth asking about.', [
+      ['Start here', ['programs']],
+      ['How service connection works', ['direct', 'secondary', 'presume', 'preagg', 'obesity', 'congenital', 'chronic']],
+      ['Effective dates and keeping your date', ['effdate', 'itf', 'supp', 'hlr', 'board', 'cue', 'issues']],
+      ['Special claims and SMC', ['smc', 'smccheck', 'iu', 'ptsd', 'fpow', 'specops', 'diving', 'va1151', 'temp']],
+      ['Toxic and radiation exposures', ['pact', 'ao', 'nehmer', 'gulf', 'bpot', 'radiation', 'mustard', 'cbrne', 'shad', 'asbestos', 'lejeune', 'emoh']],
+      ['Other benefits worth considering', ['aa', 'dependents', 'housing', 'autoallow', 'clothing', 'paired', 'dea', 'champva', 'dentaltx', 'vre']],
+      ['Eligibility', ['part3', 'vetstatus', 'civmm', 'cod', 'lod']],
+      ['Survivors, debts, and payments', ['dic', 'mod', 'accrued', 'burial', 'debts', 'incarc', 'competency', 'helpless']]],
+      [['checklist', 'Claim checklist', 'Every step and benefit to consider before you file.'], ['effcheck', 'Effective date check', 'Compare the date VA picked with the rules.'], ['tdiu', 'TDIU calculator', 'Whether your ratings fit Individual Unemployability.'], ['benefits', 'Find benefits', 'Presumptive conditions and special benefits to ask about.']]],
+    ['ratings', 'Ratings', 'Ratings: understand disability evaluations', 'How VA turns the medical evidence into an evaluation: diagnostic codes, severity and function, the whole record, and the higher of two ratings.', [
+      ['Start here', ['evaluate', 'part4']],
+      ['Reading and questioning a rating', ['ratingdec', 'painmotion', 'reduce']],
+      ['How VA rates specific conditions', ['msk', 'arthritis', 'nerves', 'tbir', 'neuro', 'mentalr', 'eyes', 'ears', 'infect', 'resp', 'heart', 'digest', 'gu', 'blood', 'skin', 'endo', 'dental', 'gyn']]],
+      [['explain', 'Rating-criteria explainer', 'See each level of the criteria, quoted from 38 C.F.R. Part 4, and where a measurement falls.'], ['combine', 'Combine ratings', 'VA math: how separate ratings combine, including the bilateral factor.'], ['rating', 'Estimate a rating', 'Match your symptoms to VA\'s rating criteria.']]],
+  ];
+  const pillarOf = id => PILLARS.find(p => p[0] === id) || PILLARS[0];
+  const frameNote = extra => `<p class="frame-note" role="note"><b>${EDU_FRAME}</b> ${extra || 'Not official VA material. VA decides every claim.'}</p>`;
+  function learnPage(pid) {
+    const [id, name, h, lead, groups, tools] = pillarOf(pid);
+    const all = EDU_GROUPS.flatMap(g => g[1]); const topic = t => all.find(x => x[0] === t);
+    return `<div class="page"><div class="page-head"><span class="eyebrow">Learn</span><h1>How VA decides your claim</h1><p>Pick a part of the process. Each guide shows the rule and where it comes from.</p></div>
+      ${frameNote('Each guide names its source: <span class="rule-tag law">Law</span> for statutes and regulations, <span class="rule-tag guide">VA guidance</span> for VA\'s manual, and <span class="rule-tag tip">Educational tip</span> for general advice.')}
+      <section class="panel edu-search" role="search" aria-label="Search all topics"><div class="field" style="max-width:560px;margin:0"><label for="edu-q"><b>Search all ${EDU_ORDER.length} topics</b></label><input id="edu-q" type="search" autocomplete="off" placeholder="e.g. knee, sleep apnea, back pay" value="${esc(UI.eduQ || '')}" data-live="eduSearch"></div>
+        <div id="edu-results" aria-live="polite">${eduResultsHTML(UI.eduQ)}</div></section>
+      <nav class="pillars" aria-label="Choose a part of the process">${PILLARS.map(p => `<button class="pillar-tab" data-go="learn.${p[0]}" aria-pressed="${p[0] === id}">${p[1]}</button>`).join('')}</nav>
+      <section class="panel pillar-body" aria-labelledby="pl-h"><h2 id="pl-h">${h}</h2><p class="muted" style="margin:0">${lead}</p>
+        ${groups.map(([g, ids]) => `<div class="edu-group"><span class="eyebrow">${g}</span><ul class="learn-list">${ids.map(t => topic(t)).filter(Boolean).map(([t, title, sub]) => `<li><button class="learn-row" data-act="eduTopic" data-id="${t}"><span class="lr-text"><b>${title}</b>${updBadge(t)}<span>${sub}</span></span><span class="lr-go" aria-hidden="true">›</span></button></li>`).join('')}</ul></div>`).join('')}
+        <div class="edu-group"><span class="eyebrow">Interactive tools</span><ul class="learn-list">${tools.map(([r, title, sub]) => `<li><button class="learn-row${r === 'explain' ? ' featured' : ''}" data-go="${r}"><span class="lr-text">${r === 'explain' ? '<span class="pill t-info">New</span>' : ''}<b>${title}</b><span>${sub}</span></span><span class="lr-go" aria-hidden="true">›</span></button></li>`).join('')}</ul></div></section>
+      <section class="panel"><div class="spread"><div><span class="eyebrow">For trainers and service officers</span><h2 style="margin:2px 0 4px">Knowledge checks</h2><p class="muted" style="margin:0;font-size:.9rem">Short scenario questions on exams, benefits, and ratings, with the rule behind each answer. ${EDU_FRAME}</p></div><button class="btn" data-go="training">Open knowledge checks</button></div></section>
+      <p class="muted" style="font-size:.86rem">Looking for the full list as VA's manual organizes it? <button class="btn link" data-go="educ">Provider education index</button></p>
+      ${notice}</div>`;
+  }
+
+  // ================= RATING-CRITERIA EXPLAINER =================
+  const P4_SECTION_URL = 'https://www.ecfr.gov/current/title-38/chapter-I/part-4/subpart-B/subject-group-ECFR1d3d2a8f4ab4fd0/section-4.71a';
+  const EXPLAINERS = [
+    ['kneeflex', 'Knee: bending (flexion)', 'Diagnostic Code 5260, 38 C.F.R. § 4.71a', 'Flexion from the exam report', 'How far the knee bends. VA\'s Plate II in § 4.71 shows normal knee flexion as 0 to 140 degrees.', 50,
+      'Dana\'s knee exam measured flexion of 50 degrees. Change the number to see how each level of the criteria reads.',
+      ['Limited straightening (DC 5261) is a separate code. Instability (DC 5257) is another.']],
+    ['kneeext', 'Knee: straightening (extension)', 'Diagnostic Code 5261, 38 C.F.R. § 4.71a', 'Extension from the exam report', 'How many degrees short of fully straight the knee stops. A knee that straightens fully is at 0 degrees.', 10,
+      'Dana\'s knee stops 10 degrees short of straight. Change the number to see how each level of the criteria reads.',
+      ['Limited bending (DC 5260) is a separate code. Instability (DC 5257) is another.']],
+    ['spinetl', 'Back: bending forward (thoracolumbar spine)', 'General Rating Formula for Diseases and Injuries of the Spine, 38 C.F.R. § 4.71a', 'Forward flexion from the exam report', 'Note (2) of the formula: "Normal forward flexion of the thoracolumbar spine is zero to 90 degrees."', 55,
+      'Dana\'s back exam measured forward flexion of 55 degrees. Change the number to see how each level of the criteria reads.',
+      ['The same formula also lists combined range of motion, muscle spasm or guarding, vertebral fracture, and ankylosis (a frozen spine). This explainer shows the forward flexion criteria only.', 'Note (1): "Evaluate any associated objective neurologic abnormalities, including, but not limited to, bowel or bladder impairment, separately, under an appropriate diagnostic code."']],
+    ['spinecx', 'Neck: bending forward (cervical spine)', 'General Rating Formula for Diseases and Injuries of the Spine, 38 C.F.R. § 4.71a', 'Forward flexion from the exam report', 'Note (2) of the formula: "normal forward flexion of the cervical spine is zero to 45 degrees."', 35,
+      'A neck exam measuring forward flexion of 35 degrees. Change the number to see how each level of the criteria reads.',
+      ['The same formula also lists combined range of motion, muscle spasm or guarding, vertebral fracture, and ankylosis (a frozen spine). This explainer shows the forward flexion criteria only.']],
+  ];
+  const EX_RULES = [
+    ['§ 4.7', 'Higher of two evaluations', '"Where there is a question as to which of two evaluations shall be applied, the higher evaluation will be assigned if the disability picture more nearly approximates the criteria required for that rating."', true],
+    ['§§ 4.40 and 4.45', 'Functional loss', 'VA considers pain, weakness, excess fatigability, incoordination, and flare-ups that limit motion or function beyond what a single measurement shows.', false],
+    ['§ 4.59', 'Painful motion', 'The schedule recognizes painful motion as disabling. An actually painful, unstable, or malaligned joint from a healed injury is entitled to at least the minimum compensable rating for the joint.', false],
+  ];
+  function explainState() { if (!UI.ex) UI.ex = { id: 'kneeflex', v: {} }; return UI.ex; }
+  function exValue(id) { const st = explainState(); const e = EXPLAINERS.find(x => x[0] === id); return st.v[id] != null ? st.v[id] : e[5]; }
+  function explainOut(id) {
+    const C = VCI.CRITERIA[id]; const v = exValue(id); const met = VCI.criteriaLevel(id, v);
+    const rows = C.levels.map((l, i) => { const here = met && met.index === i; const within = C.mode === 'atMost' ? v <= l.v : v >= l.v;
+      return `<li class="ex-level${here ? ' here' : ''}"><span class="stack" style="gap:1px;min-width:0"><b>"${esc(l.text)}"</b><span class="ex-note">${here ? `${v}° falls within this level's wording` : within ? `${v}° also meets this wording, but it falls within the more limited level above` : `Not reached by ${v}°`}</span></span><span class="num ex-pct">${l.pct}%</span></li>`; }).join('');
+    const i = met ? met.index : C.levels.length;
+    const up = i > 0 ? C.levels[i - 1] : null;
+    const next = !met ? `A measurement of ${v}° is outside every level listed for these criteria. ${C.levels.length ? `The least limited level listed reads: "${esc(C.levels[C.levels.length - 1].text)}."` : ''} Pain, flare-ups, and other codes may still matter (see below).`
+      : up ? `The next level up in the criteria (${up.pct}%) reads: "${esc(up.text)}." The record, including flare-ups and repeated use, is what VA compares with that wording.`
+      : 'This is the most limited level these criteria list. Other codes or criteria may still apply.';
+    return `<h2 id="ex-lv-h">The criteria, level by level</h2><p class="muted" style="margin:0;font-size:.9rem">${esc(C.head)}</p><ol class="ex-levels">${rows}</ol>
+      <div class="ex-next"><h3>What the next level describes</h3><p>${next}</p></div>`;
+  }
+  function explainPage(pid) {
+    const st = explainState(); const id = EXPLAINERS.some(x => x[0] === pid) ? pid : st.id; st.id = id;
+    const [, title, code, mlabel, mhelp, , example, extra] = EXPLAINERS.find(x => x[0] === id); const C = VCI.CRITERIA[id]; const v = exValue(id);
+    return `<div class="page"><nav class="edu-crumb" aria-label="Breadcrumb"><button class="btn link" data-go="learn.ratings">Learn: Ratings</button> <span aria-hidden="true">›</span> <span>Rating-criteria explainer</span></nav>
+      <div class="page-head"><span class="eyebrow">Ratings · Criteria explainer</span><h1>${title}</h1><p>See every level of VA's rating criteria for this measurement, in the regulation's own words, and where a number falls. This explains the criteria; it does not rate anyone. VA decides the rating from the whole record.</p></div>
+      ${frameNote(`The criteria are quoted from <a href="${P4_SECTION_URL}" target="_blank" rel="noopener">38 C.F.R. § 4.71a on eCFR</a> (current as of ${VCI.CRITERIA_ECFR}; checked ${VCI.CRITERIA_CHECKED}). <span class="review-flag">The plain-language notes were written by VCI and are awaiting expert review.</span>`)}
+      <nav class="pillars ex-pick" aria-label="Choose a measurement">${EXPLAINERS.map(e => `<button class="pillar-tab" data-go="explain.${e[0]}" aria-pressed="${e[0] === id}">${{ kneeflex: 'Knee bending', kneeext: 'Knee straightening', spinetl: 'Back bending', spinecx: 'Neck bending' }[e[0]]}</button>`).join('')}</nav>
+      <p class="example-note"><b>Fictional example.</b> ${example} Not a VA determination.</p>
+      <div class="ex-grid">
+        <section class="panel" aria-labelledby="ex-m-h"><h2 id="ex-m-h">${mlabel}</h2>
+          <div class="ex-ctl"><button class="btn ex-step" data-act="exStep" data-d="-${C.step}" aria-label="Decrease by ${C.step} degrees">−</button>
+            <label class="ex-val" for="ex-in"><span class="sr-only">${mlabel}, in degrees</span><input id="ex-in" type="number" inputmode="numeric" min="${C.min}" max="${C.max}" step="1" value="${v}" data-live="exVal"><span aria-hidden="true">°</span></label>
+            <button class="btn ex-step" data-act="exStep" data-d="${C.step}" aria-label="Increase by ${C.step} degrees">+</button></div>
+          <p class="muted" style="margin:0;font-size:.88rem">${mhelp} Use the number after repeated motion and during flare-ups if the report gives one.</p>
+          <p class="muted" style="margin:0;font-size:.82rem"><span class="rule-tag law">Law</span> ${code}</p></section>
+        <section class="panel ex-out" id="ex-out" aria-live="polite" aria-labelledby="ex-lv-h">${explainOut(id)}</section>
+      </div>
+      <section class="panel" aria-labelledby="ex-o-h"><h2 id="ex-o-h">Other rules VA must consider</h2>
+        <ul class="plain-list">${EX_RULES.map(([cite, name, txt, quoted]) => `<li><span class="rule-tag law">Law</span> <b>${name} (38 C.F.R. ${cite}).</b> ${txt}${quoted ? ' <span class="muted">(Quoted; checked ' + VCI.CRITERIA_CHECKED + '.)</span>' : ' <span class="review-flag">Summary awaiting expert review.</span>'}</li>`).join('')}
+        ${extra.map(x => `<li>${x}</li>`).join('')}</ul></section>
+      <p class="muted" style="font-size:.86rem">More: <button class="btn link" data-go="educ.painmotion">Painful motion and flare-ups</button> · <button class="btn link" data-go="educ.msk">Arms, hands, spine, legs, and feet</button> · <a href="https://www.ecfr.gov/current/title-38/chapter-I/part-4" target="_blank" rel="noopener">The full rating schedule (38 C.F.R. Part 4)</a></p>
+      ${notice}</div>`;
+  }
+  function explainRefresh() {
+    const id = explainState().id; const out = $('#ex-out'); if (!out) return render(); out.innerHTML = explainOut(id);
+    const inp = $('#ex-in'); if (inp && document.activeElement !== inp) inp.value = exValue(id);
+  }
+
+  // ================= TRAINING: KNOWLEDGE CHECKS (separate page) =================
+  // checked: the cited source text was compared on eCFR on the date shown. Unchecked items rest on VCI's own knowledge of the rule.
+  const QUIZ = [
+    ['exams', 'Exams', [
+      ['ex1', 'Dana has knee pain now, a service record of a knee injury, and no medical opinion on a link. Does VA owe Dana an exam?', 0,
+        ['Usually yes. There is a current problem, an in-service event, an indication of a possible link, and not enough medical evidence to decide.', 'No. Dana must first get a private doctor\'s opinion.', 'Only if Dana was injured in combat.'],
+        'VA will provide an exam or opinion when the record "does not contain sufficient competent medical evidence to decide the claim," but shows a current disability or persistent or recurrent symptoms, an in-service event, injury, or disease, and "indicates that the claimed disability or symptoms may be associated with" service.', 'Law', '38 C.F.R. § 3.159(c)(4)(i)', true],
+      ['ex2', 'Dana\'s examiner wrote "less likely than not related to service" with no explanation. What is the problem?', 1,
+        ['Nothing. Any opinion from a VA examiner settles the question.', 'An opinion needs reasons. A conclusion with no rationale carries little weight.', 'The examiner should have given an exact percentage chance.'],
+        'VA weighs a medical opinion by its reasoning, not just its conclusion. VA\'s manual says a rationale should identify the evidence relied on and show how the conclusion was reached; an opinion without one can be returned as insufficient.', 'VA guidance', 'M21-1, Part V, Subpart ii, 1.A.3', false],
+      ['ex3', 'Dana misses the exam for a first (original) compensation claim, with no good reason. What happens next?', 2,
+        ['The claim is closed and can never be filed again.', 'VA must wait until Dana reschedules.', 'VA decides the claim on the evidence it already has.'],
+        'For an original compensation claim, the claim is "rated based on the evidence of record." For a claim for increase, the claim is denied. Good cause, such as illness or hospitalization, can justify missing the exam.', 'Law', '38 C.F.R. § 3.655(a)–(b)', true]]],
+    ['benefits', 'Benefits', [
+      ['be1', 'Which three things does service connection usually need?', 1,
+        ['A combat medal, a diagnosis, and a doctor\'s letter.', 'A current disability, an in-service event, injury, or disease, and a link between the two.', 'Ten years of service, a diagnosis, and a VA exam.'],
+        'Direct service connection generally needs a current disability, an in-service incurrence or aggravation, and a nexus (link) between them. Presumptive rules can supply the link for some conditions.', 'Law', '38 C.F.R. § 3.303; Shedden v. Principi (Fed. Cir. 2004)', false],
+      ['be2', 'Dana\'s service-connected rhinitis brings on migraines. How could the migraines be service connected?', 0,
+        ['As secondary: a condition caused or made worse by a service-connected condition can be service connected.', 'They cannot. Only conditions that began in service count.', 'Only if the migraines started within one year of discharge.'],
+        'A disability that is proximately due to or the result of a service-connected condition is service connected, and so is the increase when a service-connected condition aggravates another condition.', 'Law', '38 C.F.R. § 3.310(a)–(b)', false],
+      ['be3', 'Dana submits an intent to file, then files the complete claim ten months later. Which date can VA use as the date of claim?', 2,
+        ['The date the complete claim arrived, no matter what.', 'The date of Dana\'s discharge.', 'The intent-to-file date, because the complete claim arrived within one year.'],
+        'A complete claim received within one year of an intent to file is considered filed as of the date the intent to file was received.', 'Law', '38 C.F.R. § 3.155(b)', false]]],
+    ['ratings', 'Ratings', [
+      ['ra1', 'An exam shows Dana\'s knee bends (flexes) to 40 degrees. Which level of Diagnostic Code 5260\'s wording does that measurement fall within?', 1,
+        ['"Flexion limited to 30°" (20%)', '"Flexion limited to 45°" (10%)', '"Flexion limited to 60°" (0%)'],
+        'The DC 5260 levels read "Flexion limited to 15°" (30%), "30°" (20%), "45°" (10%), and "60°" (0%). Forty degrees is limited to 45 but not to 30. VA still decides the rating from the whole record, including pain and flare-ups.', 'Law', '38 C.F.R. § 4.71a, DC 5260', true],
+      ['ra2', 'Dana\'s symptoms fall between two rating levels. What rule tells VA which one to assign?', 0,
+        ['The higher one, if the disability picture more nearly approximates its criteria.', 'Always the lower one.', 'The average of the two.'],
+        '"Where there is a question as to which of two evaluations shall be applied, the higher evaluation will be assigned if the disability picture more nearly approximates the criteria required for that rating." Otherwise, the lower rating is assigned.', 'Law', '38 C.F.R. § 4.7', true],
+      ['ra3', 'Dana has ratings of 50% and 30%. What is the combined rating?', 2,
+        ['80%, because the ratings are added.', '60%, because the lower rating is ignored.', '70%: 30% of the remaining 50% is 15, which gives 65, rounded to 70.'],
+        'VA combines ratings from highest to lowest, applying each to the remaining efficiency, then rounds the result to the nearest 10.', 'Law', '38 C.F.R. § 4.25', false]]],
+  ];
+  const QUIZ_ITEMS = QUIZ.flatMap(([, , qs]) => qs);
+  function trainingPage() {
+    const a = UI.quiz || {};
+    const done = QUIZ_ITEMS.filter(q => a[q[0]] != null).length; const right = QUIZ_ITEMS.filter(q => a[q[0]] === q[2]).length;
+    return `<div class="page"><div class="page-head"><span class="eyebrow">Training · Knowledge checks</span><h1>Check what you know about VA claims</h1><p>Scenario questions on exams, benefits, and ratings. Pick an answer to see the rule behind it. Nothing is saved or sent anywhere.</p></div>
+      ${frameNote('This is not official VA training and is not a VA certification. The questions were written by VCI from public sources and are awaiting review by a VA-accredited representative or attorney before anyone uses them to train staff.')}
+      <p class="example-note"><b>Fictional scenarios.</b> Dana is not a real veteran, and these answers are not VA determinations.</p>
+      <p class="muted" aria-live="polite" style="margin:0">${done ? `${done} of ${QUIZ_ITEMS.length} answered · ${right} right` : `${QUIZ_ITEMS.length} questions`} ${done ? '<button class="btn link" data-act="quizReset">Start over</button>' : ''}</p>
+      ${QUIZ.map(([pid, pname, qs]) => `<section class="quiz-sec" aria-labelledby="qz-${pid}"><h2 id="qz-${pid}">${pname}</h2>
+        ${qs.map(([qid, text, ans, opts, why, kind, cite, checked], qi) => { const pick = a[qid]; const answered = pick != null; const ok = pick === ans;
+          return `<div class="panel quiz-q"><h3 id="qq-${qid}">${qi + 1}. ${text}</h3><div class="quiz-opts" role="group" aria-labelledby="qq-${qid}">${opts.map((o, oi) => `<button id="qo-${qid}-${oi}" class="quiz-opt${pick === oi ? (ok ? ' right' : ' wrong') : answered && oi === ans ? ' answer' : ''}" data-act="quizPick" data-q="${qid}" data-o="${oi}" aria-pressed="${pick === oi}">${answered && oi === ans ? '<span class="sr-only">Correct answer: </span>' : ''}${o}</button>`).join('')}</div>
+            ${answered ? `<div class="quiz-fb ${ok ? 'right' : 'wrong'}" role="status"><b>${ok ? 'Right.' : 'Not quite.'}</b> ${why}<p class="quiz-src"><span class="rule-tag ${kind === 'Law' ? 'law' : 'guide'}">${kind}</span> ${cite}. ${checked ? `<span class="muted">Source text checked on eCFR, ${VCI.CRITERIA_CHECKED}.</span>` : '<span class="review-flag">Not yet checked against the source text; awaiting expert review.</span>'}</p></div>` : ''}</div>`; }).join('')}</section>`).join('')}
+      <p class="muted" style="font-size:.86rem">Want the full explanation? <button class="btn link" data-go="learn.exams">Learn: Exams</button> · <button class="btn link" data-go="learn.benefits">Learn: Benefits</button> · <button class="btn link" data-go="learn.ratings">Learn: Ratings</button></p>
+      ${notice}</div>`;
+  }
+
+  // ================= TERMS OF USE =================
+  function disclaimerHTML() { return DISCLAIMER_FULL.map((p, i) => `<p>${i === 0 ? '<b>Disclaimer.</b> ' : ''}${esc(p)}</p>`).join(''); }
+  function termsPage() {
+    return `<div class="page"><div class="page-head"><h1>Terms of use</h1><p>Please read this before using VA Claims Intelligence.</p></div>
+      <section class="panel disclaimer-full" aria-labelledby="tos-h"><h2 id="tos-h">Disclaimer</h2>${disclaimerHTML()}</section>
+      <p><button class="btn" data-go="about">About and privacy</button></p>
+      ${notice}</div>`;
+  }
+  // Checks of the app's own content, run with the self-check on the Backup tab.
+  function appChecks() {
+    const T = []; const t = (name, fn) => { try { const r = fn(); T.push({ name, pass: r === true, error: r === true ? '' : String(r) }); } catch (e) { T.push({ name, pass: false, error: e.message }); } };
+    t('Learn: every Education topic is listed under Exams, Benefits, or Ratings', () => { const inP = new Set(PILLARS.flatMap(p => p[4].flatMap(g => g[1]))); const miss = EDU_ORDER.filter(id => !inP.has(id)); return miss.length ? 'missing: ' + miss.join(', ') : true; });
+    t('Learn: every pillar topic opens an Education article', () => { const bad = PILLARS.flatMap(p => p[4].flatMap(g => g[1])).filter(id => !EDU_ORDER.includes(id)); return bad.length ? 'unknown: ' + bad.join(', ') : true; });
+    t('Knowledge checks: each question has three answers and a valid correct answer', () => QUIZ_ITEMS.every(q => q[3].length === 3 && q[2] >= 0 && q[2] < 3) || 'bad question');
+    t('Explainers: every explainer has quoted criteria', () => EXPLAINERS.every(e => VCI.CRITERIA[e[0]] && VCI.CRITERIA[e[0]].levels.length) || 'missing criteria');
+    t('Disclaimers: the one-line banner and the full disclaimer are present', () => (BANNER.startsWith('Independent educational tool.') && DISCLAIMER_FULL.length === 5) || 'missing');
+    return T;
   }
 
   // ================= EVIDENCE VA NEEDS (condensed from va.gov) =================
@@ -6804,7 +7126,8 @@ ${quickPanelHTML(sel)}
         ${site.note ? `<p>${esc(site.note)}</p>` : ''}
         ${site.reviewedBy ? `<p><span class="pill t-ok plain">${esc(site.reviewedBy)}</span></p>` : ''}
         <p><b>VCI is free.</b> No one may charge you to use it, and no one is allowed to charge you to file your first VA claim. Anyone who asks for a fee or a share of your back pay to help with an initial claim is breaking VA rules.</p>
-        <p class="muted" style="font-size:.9rem">VCI is not affiliated with or endorsed by the Department of Veterans Affairs. It is not a VA-accredited representative and does not give legal or medical advice. For free help with a claim, contact an accredited Veterans Service Organization representative: va.gov/get-help-from-accredited-representative.</p></section>
+        <p class="muted" style="font-size:.9rem">For free help with a claim, contact an accredited Veterans Service Organization representative: <a href="https://www.va.gov/get-help-from-accredited-representative/" target="_blank" rel="noopener">va.gov/get-help-from-accredited-representative</a>.</p></section>
+      <section class="panel disclaimer-full" aria-labelledby="disc-h"><h2 id="disc-h">Disclaimer</h2>${disclaimerHTML()}<p><button class="btn small" data-go="terms">Terms of use</button></p></section>
       <section class="panel"><h2>Your privacy</h2>
         <ul class="plain-list">
           <li><b>We collect nothing.</b> There are no accounts, no tracking, no analytics, and no advertising.</li>
@@ -6818,6 +7141,7 @@ ${quickPanelHTML(sel)}
           <p><a class="btn" href="${esc(mail)}">Open an email with a problem form</a></p>
           <p class="muted" style="font-size:.86rem">Tell us what you were doing and what happened. Never include your Social Security number, VA file number, or medical details. We cannot see your folder, so describe the problem in words.</p>`
           : '<p class="muted">The site owner has not added a contact address yet.</p>'}</section>
+      <section class="panel"><h2>Training and knowledge checks</h2><p>Scenario questions on exams, benefits, and ratings for trainers and new service officers, on their own page. ${EDU_FRAME} Not official VA training.</p><p><button class="btn" data-go="training">Open knowledge checks</button></p></section>
       <section class="panel"><h2>Keeping the guidance current</h2><p>VA changes its rules and lists. The guidance in VCI was last checked on <b>${VCI.RULES_CHECKED}</b>. Your VA decision letters and VA.gov always control.</p></section>
       ${installCard(false)}
       ${notice}</div>`;
@@ -6852,7 +7176,7 @@ ${quickPanelHTML(sel)}
   const findCond = id => byId(S.conditions, id);
   async function saveFile(filename, data, isBackup) {
     if (!isBackup && typeof data === 'string' && /\.txt$/.test(filename)) data += '\n\n' + LEGAL_PRINT + '\n';
-    if (!isBackup && typeof data === 'string' && data.includes('</body>')) data = data.replace('</body>', `<p style="margin-top:12px;padding-top:8px;border-top:1px solid #ccc;font-size:11px;color:#555"><b>Not legal advice.</b> ${LEGAL_LINE}</p></body>`);
+    if (!isBackup && typeof data === 'string' && data.includes('</body>')) data = data.replace('</body>', `<p style="margin-top:12px;padding-top:8px;border-top:1px solid #ccc;font-size:11px;color:#555">${LEGAL_PRINT}</p></body>`);
     const done = () => { if (isBackup) { S.meta.lastBackup = new Date().toISOString(); saveLocal(); if (store.ref) pushRemote(); render(); } toast('Saved to your downloads'); };
     if (store.downloads) {
       try { await store.downloads.save({ filename, data }); done(); }
@@ -6968,8 +7292,8 @@ ${p.toxic.answer || p.toxic.exposures.length ? sec('Toxic exposure', `<p>Believe
     askConfirm: el => { UI.confirm = el.dataset.key; render(); },
     cancelConfirm: () => { UI.confirm = null; render(); },
     loadExample: () => { S = VCI.normalize(vciExample(TODAY)); save(); toast('Fictional example loaded'); go('home'); },
-    startOwn: () => { S = VCI.emptyFolder(); save(); toast('Example erased. Your folder is empty.'); go('home'); },
-    erase: () => { S = VCI.emptyFolder(); save(); toast('Folder erased'); go('home'); },
+    startOwn: () => { ownFolder(); S = VCI.emptyFolder(); save(); toast('Example erased. Your folder is empty.'); go('home'); },
+    erase: () => { ownFolder(); S = VCI.emptyFolder(); save(); toast('Folder erased'); go('home'); },
     editEvent: el => { UI.editEvent = el.dataset.id; render(); },
     cancelEditEvent: () => { UI.editEvent = null; render(); },
     delEvent: el => { const c = findCond(el.dataset.cond); c.events = c.events.filter(e => e.id !== el.dataset.id); UI.confirm = null; save(); toast('Entry deleted'); render(); },
@@ -7009,7 +7333,10 @@ ${p.toxic.answer || p.toxic.exposures.length ? sec('Toxic exposure', `<p>Believe
     downloadCsv: () => saveFile(`vci-conditions-${TODAY}.csv`, csv()),
     showBackup: () => { UI.backupText = JSON.stringify(S); render(); },
     copyBackup: () => copyText(UI.backupText, '#backup-out'),
-    runTests: () => { UI.tests = vciTests(VCI, vciExample); render(); },
+    runTests: () => { UI.tests = vciTests(VCI, vciExample).concat(appChecks()); render(); },
+    exStep: el => { const st = explainState(); const C = VCI.CRITERIA[st.id]; st.v[st.id] = Math.max(C.min, Math.min(C.max, exValue(st.id) + Number(el.dataset.d))); explainRefresh(); },
+    quizPick: el => { UI.quiz = Object.assign({}, UI.quiz, { [el.dataset.q]: Number(el.dataset.o) }); const id = el.id; render(); const b = id && document.getElementById(id); if (b) b.focus({ preventScroll: true }); },
+    quizReset: () => { UI.quiz = {}; render(); focusHeading(); },
   };
   const Cg = {
     tdiuWork: el => { UI.tdiu.work = el.value; tdiuRefresh(); },
@@ -7120,6 +7447,10 @@ ${p.toxic.answer || p.toxic.exposures.length ? sec('Toxic exposure', `<p>Believe
   });
   document.addEventListener('input', ev => { liveRate(ev); });
   document.addEventListener('change', ev => { liveRate(ev); }, true);
+  document.addEventListener('input', ev => {
+    if (ev.target.dataset.live !== 'exVal') return; const st = explainState(); const C = VCI.CRITERIA[st.id]; const n = ev.target.value === '' ? null : Number(ev.target.value);
+    if (n == null || isNaN(n)) return; st.v[st.id] = Math.max(C.min, Math.min(C.max, Math.round(n))); explainRefresh();
+  });
   let eduT = 0;
   document.addEventListener('input', ev => {
     if (ev.target.dataset.live !== 'eduSearch') return; UI.eduQ = ev.target.value; clearTimeout(eduT);
@@ -7158,6 +7489,7 @@ ${p.toxic.answer || p.toxic.exposures.length ? sec('Toxic exposure', `<p>Believe
   applyTextSize();
   if (window.VCI_INSTALL) window.VCI_INSTALL.onChange(() => render());
   const h = (location.hash || '').slice(1); if (h) UI.route = h;
+  if (!hasData(S) && wantsExample()) { S = VCI.normalize(vciExample(TODAY)); UI.autoExample = true; }
   render(); connect();
 })();
 </script>
