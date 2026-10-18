@@ -11,11 +11,18 @@ const ECFR = process.env.ECFR_API || 'https://www.ecfr.gov/api/versioner/v1/vers
 const DELAY = Number(process.env.CHECK_DELAY_MS || 2500); // be gentle with VA's site
 const MON = { Jan: 0, Feb: 1, Mar: 2, Apr: 3, May: 4, Jun: 5, Jul: 6, Aug: 7, Sep: 8, Oct: 9, Nov: 10, Dec: 11 };
 
+// Accepts "Updated Mar 25, 2026", "Updated: March 25, 2026", "Last updated 03/25/2026".
 export function parseUpdated(text) {
-  const m = /Updated\s+(Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)[a-z]*\.?\s+(\d{1,2}),\s+(\d{4})/.exec(text || '');
-  if (!m) return null;
-  const d = new Date(Date.UTC(+m[3], MON[m[1]], +m[2]));
-  return d.toISOString().slice(0, 10);
+  const t = text || '';
+  const m = /Updated:?\s+(Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)[a-z]*\.?\s+(\d{1,2}),?\s+(\d{4})/i.exec(t);
+  if (m) { const mon = m[1][0].toUpperCase() + m[1].slice(1, 3).toLowerCase(); return new Date(Date.UTC(+m[3], MON[mon], +m[2])).toISOString().slice(0, 10); }
+  const n = /Updated:?\s+(\d{1,2})\/(\d{1,2})\/(\d{4})/i.exec(t);
+  if (n) return new Date(Date.UTC(+n[3], +n[1] - 1, +n[2])).toISOString().slice(0, 10);
+  return null;
+}
+// What the browser actually saw, so a failed run explains itself in the report.
+async function describe(page) {
+  try { return await page.evaluate(() => `saw "${document.title.slice(0, 60)}" at ${location.href.slice(0, 120)}: ${document.body.innerText.replace(/\s+/g, ' ').slice(0, 160)}`); } catch { return 'page could not be read'; }
 }
 const sleep = ms => new Promise(r => setTimeout(r, ms));
 const readJSON = async (name, dflt) => { try { return JSON.parse(await readFile(new URL(name, DIR), 'utf8')); } catch { return dflt; } };
@@ -35,9 +42,10 @@ async function main() {
     const base = (state.articles[id] && state.articles[id].updated) || a.updated;
     try {
       await page.goto(KNOWVA.replace('{id}', id), { waitUntil: 'domcontentloaded', timeout: 60000 });
-      await page.waitForFunction(() => /Updated\s+[A-Z][a-z]{2}/.test(document.body.innerText), null, { timeout: 30000 });
+      try { await page.waitForFunction(() => /Updated:?\s+([A-Z][a-z]{2}|\d{1,2}\/)/i.test(document.body.innerText), null, { timeout: 30000 }); }
+      catch { await page.waitForLoadState('networkidle', { timeout: 30000 }).catch(() => {}); } // slow page: give it one more chance, then read what is there
       const now = parseUpdated(await page.evaluate(() => document.body.innerText));
-      if (!now) throw new Error('no "Updated" date found');
+      if (!now) throw new Error('no "Updated" date found; ' + await describe(page));
       if (now > base) changed.push({ kind: 'M21-1', id, cite: a.cite, name: a.name, was: base, now, url: KNOWVA.replace('{id}', id), topics: topicsFor(id) });
       ok++; state.articles[id] = { updated: now > base ? now : base, checked: new Date().toISOString().slice(0, 10) };
     } catch (e) { failed.push({ id, cite: a.cite, error: String(e.message || e).slice(0, 160) }); }
@@ -70,10 +78,13 @@ async function main() {
 
   // 3. Open an issue only when there is something to act on.
   const { GITHUB_TOKEN: token, GITHUB_REPOSITORY: repo } = process.env;
-  if (token && repo && (changed.length || failed.length > total / 2)) {
-    const title = changed.length ? `VA source updates found: ${changed.length} (${new Date().toISOString().slice(0, 10)})` : 'Source monitor could not read most pages';
+  // A run that could not read KnowVA at all must not look like "no changes".
+  const knowvaDown = !ok && Object.keys(src.articles).length > 0;
+  if (token && repo && (changed.length || knowvaDown || failed.length > total / 2)) {
+    const title = changed.length ? `VA source updates found: ${changed.length} (${new Date().toISOString().slice(0, 10)})` : knowvaDown ? 'Source monitor could not read any M21-1 (KnowVA) page' : 'Source monitor could not read most pages';
     const r = await fetch(`https://api.github.com/repos/${repo}/issues`, { method: 'POST', headers: { authorization: `Bearer ${token}`, accept: 'application/vnd.github+json' }, body: JSON.stringify({ title, body: md, labels: ['source-update'] }) });
     console.log('Issue:', r.status);
   }
+  if (knowvaDown) { console.error('No KnowVA article could be checked. See report.md.'); process.exitCode = 2; }
 }
 if (process.argv[1] && import.meta.url.endsWith(process.argv[1].split('/').pop())) main().catch(e => { console.error(e); process.exit(1); });

@@ -721,6 +721,12 @@ fieldset.crit-pick legend { font-size: .95rem; color: var(--ink); margin-bottom:
 li.chg { background: var(--ok-soft); box-shadow: inset 4px 0 0 var(--ok); padding-left: 10px; border-radius: 4px; }
 .src-box { border: 1px solid var(--line); border-radius: 10px; padding: 10px 14px; margin: 12px 0; font-size: .88rem; }
 .src-box .plain-list { margin: 6px 0 0; }
+.rule-tag { display: inline-block; font-size: .68rem; font-weight: 700; letter-spacing: .04em; text-transform: uppercase; padding: 0 6px; border-radius: 999px; border: 1px solid var(--line); color: var(--ink); background: var(--sunk); vertical-align: middle; white-space: nowrap; }
+.rule-tag.law { border-color: var(--accent); background: var(--accent-soft); }
+.rule-tag.tip { font-family: var(--f-ui); }
+.review-note { border-color: var(--wait); background: var(--wait-soft); }
+.edu-crumb { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 6px; margin: 0 0 12px; font-size: .9rem; color: var(--muted); }
+.edu-crumb .btn.link { min-height: 24px; }
 
 /* Paste a rating decision */
 .pd-panel { border: 2px solid var(--accent); }
@@ -1626,7 +1632,7 @@ const VCI = (() => {
     return { version: 2, example: false, updatedAt: '', meta: { lastBackup: '' }, profile: { name: '', service: [], deployments: [], itf: '', lettersKept: '', rep: { name: '', org: '', phone: '' }, toxic: { answer: '', locations: [], exposures: [] }, providers: [], special: {}, checklist: {}, ckq: {} }, conditions: [], evidence: [], opinions: [], calls: [] };
   }
   function normalize(st) {
-    const e = emptyFolder(); if (!st || typeof st !== 'object') return e;
+    const e = emptyFolder(); if (!st || typeof st !== 'object') st = {};
     const out = Object.assign(e, st); out.profile = Object.assign(emptyFolder().profile, st.profile || {}); out.profile.rep = Object.assign({ name: '', org: '', phone: '' }, (st.profile || {}).rep || {});
     ['conditions', 'evidence', 'opinions', 'calls'].forEach(k => { if (!Array.isArray(out[k])) out[k] = []; });
     out.conditions.forEach(c => { if (!Array.isArray(c.events)) c.events = []; if (!THEORIES[c.theory]) c.theory = 'direct'; });
@@ -2212,6 +2218,9 @@ function vciTests(VCI, vciExample) {
   });
   t('Backup import repairs missing sections', () => {
     const st = VCI.normalize({ conditions: [{ id: 'a', name: 'X' }] }); eq([Array.isArray(st.evidence), st.conditions[0].theory, st.conditions[0].events.length], [true, 'direct', 0]);
+  });
+  t('First visit: an empty folder has every special-benefit section (Find benefits opens)', () => {
+    const st = VCI.normalize(null); eq(['tdiu', 'hb', 'aa', 'smck', 'dep', 'temp', 'r324', 'dea'].every(k => st.profile.special[k] && typeof st.profile.special[k].docs === 'object'), true);
   });
   t('Reason boxes: Not in service, No nexus, No diagnosis map to building blocks', () => {
     const c = { theory: 'direct', events: [{ type: 'denied', date: '2026-01-05', reasonCodes: ['event', 'dx'] }] }; eq(VCI.denialKeys(c).sort(), ['dx', 'event']);
@@ -3804,11 +3813,11 @@ window.VCI_UPDATES = [
   let toastTimer;
   function toast(m) { UI.toast = m; clearTimeout(toastTimer); toastTimer = setTimeout(() => { UI.toast = ''; const t = $('.toast'); if (t) t.hidden = true; }, 2600); }
   let settingHash = false;
-  function focusHeading() { const h = document.querySelector('#main h1'); if (h) { h.setAttribute('tabindex', '-1'); h.focus({ preventScroll: true }); } }
+  function focusHeading() { const h = document.querySelector('#edu-topic h2') || document.querySelector('#main h1'); if (h) { h.setAttribute('tabindex', '-1'); h.focus({ preventScroll: true }); } }
   const TEXT_SIZES = [{ label: 'standard', scale: 1 }, { label: 'large', scale: 1.15 }, { label: 'extra large', scale: 1.3 }];
   function applyTextSize() { document.documentElement.style.fontSize = (16 * TEXT_SIZES[UI.textSize].scale) + 'px'; }
   function go(route) { UI.route = route; UI.editEvent = null; UI.confirm = null; UI.activeCheck = null; UI.editOpText = false; render(); window.scrollTo(0, 0); focusHeading(); try { settingHash = true; location.hash = route; } catch (e) { } setTimeout(() => settingHash = false, 0); }
-  window.addEventListener('hashchange', () => { if (settingHash) return; const h = location.hash.slice(1); if (h && h !== UI.route) { UI.route = h; render(); } });
+  window.addEventListener('hashchange', () => { if (settingHash) return; const h = location.hash.slice(1); if (h && h !== UI.route) { UI.route = h; render(); window.scrollTo(0, 0); focusHeading(); } });
 
   // ================= HELPERS =================
   const opt = (v, l, cur) => `<option value="${esc(v)}"${String(v) === String(cur == null ? '' : cur) ? ' selected' : ''}>${esc(l)}</option>`;
@@ -4430,7 +4439,7 @@ window.VCI_UPDATES = [
   const WHERE = [
     ['start', 'Just starting', 'New to VA claims, or filing for the first time.', [
       ['checklist', 'Tool', 'Claim checklist', 'Every step and benefit to consider before you file, fitted to you.'],
-      ['educ.programs', 'Guide', 'VA benefits at a glance', 'Every VA program on one page. Most people miss at least one.'],
+      ['educ.programs', 'Guide', 'VA benefits at a glance', 'Every VA program on one page, so you can see which may fit you.'],
       ['educ.itf', 'Guide', 'Intent to file', 'Hold your effective date for up to a year while you gather evidence.']]],
     ['exam', 'Exam coming up', 'You have a C&P exam scheduled, or expect one.', [
       ['educ.exams', 'Flagship guide', 'C&P exams: the complete guide', 'Your rights, exam-day checklist, and what the report must contain.'],
@@ -6125,7 +6134,7 @@ ${topics.length ? `<h2>5. For these conditions</h2><ul>${topics.map(t => `<li><b
         <div class="insuf-grid">${cardsHTML(BURIAL, [1, 6])}
           <div class="insuf-card vet"><h3 class="edu-h">For families</h3><ul class="plain-list"><li>Keep the itemized funeral bill, including transportation charges.</li><li>Tell VA if the veteran died in VA care, a State Veterans home, or on VA hospice after a VA stay.</li><li>Burial benefits are separate from <button class="btn link" data-go="educ.dic">DIC</button>; file VA Form 21P-534EZ for monthly payments.</li><li>Ask about burial in a national, State, or tribal Veterans cemetery.</li></ul></div></div></section>`;
       case 'programs': return `<section class="panel temp-ed start-article" id="ed-programs"><span class="eyebrow">Start here · the one article to read</span><div class="panel-head"><h2>VA benefits at a glance</h2><span class="muted num">M21-1 I.ii.2</span></div>
-        <p style="margin:0 0 10px">Every VA program a veteran or family may qualify for, on one page: who it is for, what it takes, and where to learn more. Most people only know about disability compensation. Check every row.</p>
+        <p style="margin:0 0 10px">Every VA program a veteran or family may qualify for, on one page: who it is for, what it takes, and where to learn more. Disability compensation is only one of them. Check every row.</p>
         <div class="tablewrap" tabindex="0" role="region" aria-label="VA benefits table"><table class="prog-tbl"><caption class="sr-only">VA benefits: who qualifies and what it takes</caption><thead><tr><th scope="col">Benefit</th><th scope="col">For</th><th scope="col">What it takes</th><th scope="col">Rule</th></tr></thead><tbody>${PROG_TABLE.map(r => `<tr><td><b>${r[0]}</b>${r[4] ? `<br><button class="btn link" data-go="educ.${r[4]}" aria-label="Learn more about ${r[0]}">Learn more</button>` : ''}</td><td>${r[1]}</td><td>${r[2]}</td><td class="num">${r[3]}</td></tr>`).join('')}</tbody></table></div>
         <div class="insuf-card must" style="margin:12px 0"><h3 class="edu-h">For examiners: your findings open these benefits</h3><ul class="plain-list">${PROG_EXAM.map(x => `<li>${x}</li>`).join('')}</ul></div>
         <div class="aa-callout" role="note"><b>Often missed:</b> extra pay for dependents at 30%, a <b>yearly clothing allowance</b> if a brace, wheelchair, or skin medicine damages your clothes, and <b>Veterans Pension</b> for wartime veterans who are 65 or older or totally disabled with limited income.</div>
@@ -6198,7 +6207,7 @@ ${topics.length ? `<h2>5. For these conditions</h2><ul>${topics.map(t => `<li><b
       case 'exams': {
         const stage = (n, id, title, body) => `<section class="exam-stage" id="ex-${id}" aria-labelledby="ex-${id}-h"><div class="exam-stage-head"><span class="exam-num" aria-hidden="true">${n}</span><h3 id="ex-${id}-h">${title}</h3></div>${body}</section>`;
         return `<section class="panel flag-article" id="ed-exams">
-        <div class="flag-band"><span class="eyebrow">Flagship guide</span><h2>C&amp;P exams: the complete guide</h2><p>Most claims are won or lost at the exam. This guide follows VA's manual from the day you file to the report on your rating decision: when VA owes you an exam, how it is ordered, your rights on exam day, what a sufficient report must contain, and what happens if you miss one.</p>
+        <div class="flag-band"><span class="eyebrow">Flagship guide</span><h2>C&amp;P exams: the complete guide</h2><p>The exam report is medical evidence VA weighs with everything else in your file. This guide follows VA's manual from the day you file to the report on your rating decision: when VA owes you an exam, how it is ordered, your rights on exam day, what a sufficient report must contain, and what happens if you miss one.</p>
           <nav class="exam-steps" aria-label="Exam guide stages">${EXAM_STAGES.map(([id, t], i) => `<button class="exam-step" data-act="jump" data-to="ex-${id}"><span class="exam-num" aria-hidden="true">${i + 1}</span><span>${t}</span></button>`).join('')}</nav></div>
         ${stage(1, 'owe', 'Does VA owe you an exam?', `<p class="muted" style="margin:0 0 10px">VA must give an exam or opinion when the evidence is not enough to decide and all three of these are present.</p>
           <div class="exam-elements" role="list">${EXAM_ELEMENTS.map(([t, d], i) => `${i ? '<span class="exam-plus" aria-hidden="true">+</span>' : ''}<div class="exam-el" role="listitem"><b>${i + 1}. ${t}</b><p>${d}</p></div>`).join('')}<span class="exam-plus" aria-hidden="true">=</span><div class="exam-el exam-result" role="listitem"><b>VA owes an exam</b><p>The bar is low, lower than what it takes to win.</p></div></div>
@@ -6424,24 +6433,44 @@ ${quickPanelHTML(sel)}
     const marks = topicUpdates(id).filter(x => ageDays(x.date) <= UPD_DAYS || x.kind === 'pending').flatMap(x => x.marks || []); if (!marks.length) return html;
     return html.replace(/<li>([\s\S]*?)<\/li>/g, (m, inner) => marks.some(k => inner.includes(k)) ? `<li class="chg">${inner}</li>` : m);
   }
+  // Topics with content written from general knowledge rather than VA source text, until an expert reviews them.
+  const REVIEW_PENDING = {
+    part3: 'The section summaries and paragraph letters for 38 C.F.R. 3.105 and 3.303 to 3.400',
+    part4: 'The Part 4 section numbers and summaries',
+    exams: 'The exam-day tips'
+  };
+  function reviewNoticeHTML(id) {
+    return REVIEW_PENDING[id] ? `<div class="src-box review-note" role="note"><b>Awaiting expert review.</b> ${REVIEW_PENDING[id]} in this topic were written from general knowledge, not copied from VA source text. Check the linked regulation before relying on a detail.</div>` : '';
+  }
   function sourcesHTML(id) {
     const arts = (SRC.topics[id] || []).map(a => Object.assign({ id: a }, SRC.articles[a]));
     const web = SRC.web && SRC.web[id]; const ecfr = (SRC.ecfrTopics && SRC.ecfrTopics[id]) || [];
     const pend = topicUpdates(id).some(x => x.kind === 'pending');
-    const items = arts.map(a => `<li><a href="${KNOWVA_URL(a.id)}" target="_blank" rel="noopener">${a.cite}</a>, ${esc(a.name)}. <span class="muted">Version updated ${VCI.fmt(a.updated)}.</span></li>`)
-      .concat(ecfr.map(pn => `<li><a href="https://www.ecfr.gov/current/title-38/chapter-I/part-${pn}" target="_blank" rel="noopener">38 C.F.R. Part ${pn}</a> (eCFR).</li>`))
-      .concat(web ? [`<li><a href="${web.url}" target="_blank" rel="noopener">${esc(web.name)}</a>. <span class="muted">Checked ${VCI.fmt(web.updated)}.</span></li>`] : []);
+    const items = ecfr.map(pn => `<li><span class="rule-tag law">Law</span> <a href="https://www.ecfr.gov/current/title-38/chapter-I/part-${pn}" target="_blank" rel="noopener">38 C.F.R. Part ${pn}</a> (eCFR).</li>`)
+      .concat(arts.map(a => `<li><span class="rule-tag guide">VA guidance</span> <a href="${KNOWVA_URL(a.id)}" target="_blank" rel="noopener">${a.cite}</a>, ${esc(a.name)}. <span class="muted">Version updated ${VCI.fmt(a.updated)}.</span></li>`))
+      .concat(web ? [`<li><span class="rule-tag guide">VA guidance</span> <a href="${web.url}" target="_blank" rel="noopener">${esc(web.name)}</a>. <span class="muted">Checked ${VCI.fmt(web.updated)}.</span></li>`] : []);
     return `<div class="src-box"><b>Sources for this topic</b>${pend ? ' <span class="upd-badge pend">Update pending review</span>' : ''}${items.length ? `<ul class="plain-list">${items.join('')}</ul>` : '<p class="muted" style="margin:2px 0 0">Cited in the section headings above.</p>'}
+      <p class="muted" style="font-size:.82rem;margin:4px 0 0"><b>Law</b> (38 U.S.C. and 38 C.F.R.) binds VA and the Board. <b>VA guidance</b> (the M21-1 manual and VA.gov) tells VA staff how to apply the law; the Board is not bound by it. <b>Educational tips</b> are general suggestions from VCI, not rules.</p>
       <p class="muted" style="font-size:.82rem;margin:4px 0 0">VCI reviewed ${EDU_REVIEWED}. VA updates its manual often; check the source before relying on a detail.${pend ? ' VA has changed a source since this topic was written; parts may be out of date.' : ''}</p></div>`;
   }
   function educPage(topic) {
     const sel = educSelected(); const cur = EDU_ORDER.includes(topic) ? topic : '';
     const i = EDU_ORDER.indexOf(cur); const label = id => EDU_GROUPS.flatMap(g => g[1]).find(t => t[0] === id)[1];
+    if (cur) {
+      const body = markChanges(cur, eduPanel(cur, sel)).replace(/(<div class="insuf-card vet"><h3 class="edu-h">[^<]*)(<\/h3>)/g, '$1 <span class="rule-tag tip">Educational tip</span>$2');
+      return `<div class="page"><h1 class="sr-only">${label(cur)}</h1>
+      <nav class="edu-crumb" aria-label="Breadcrumb"><button class="btn link" data-act="eduTop">Provider education</button> <span aria-hidden="true">›</span> <span>${label(cur)}</span></nav>
+      <div id="edu-topic">${topicNoticeHTML(cur)}${reviewNoticeHTML(cur)}${body}
+        ${sourcesHTML(cur)}
+        <nav class="edu-pager" aria-label="Topics">${i > 0 ? `<button class="btn" data-act="eduTopic" data-id="${EDU_ORDER[i - 1]}">← ${label(EDU_ORDER[i - 1])}</button>` : '<span></span>'}<button class="btn link" data-act="eduTop">All topics</button>${i < EDU_ORDER.length - 1 ? `<button class="btn" data-act="eduTopic" data-id="${EDU_ORDER[i + 1]}">${label(EDU_ORDER[i + 1])} →</button>` : '<span></span>'}</nav></div>
+      <p class="muted" style="font-size:.82rem">Summarized from VA's adjudication manual, M21-1, and 38 C.F.R. Each section shows its source. A plain-language summary, not legal or medical advice.</p>
+      ${notice}</div>`;
+    }
     return `<div class="page"><div class="spread"><div class="page-head"><h1>Provider education</h1><p>What VA's manual says an exam report must include for specific conditions. Raters send back reports that miss these points, so share them with your doctor. Start with the one-page quick sheet, or choose a topic to learn more.</p></div></div>
       ${subnav('educ')}
       ${cur ? '' : wayfinderHTML()}
-      ${cur === 'programs' ? '' : `<section class="panel start-hero" aria-labelledby="start-hl"><span class="eyebrow">Start here · if you read one article, read this one</span><h2 id="start-hl" style="margin:2px 0 6px">VA benefits at a glance</h2><p style="margin:0 0 10px">Every VA program on one page: compensation, pension, extra pay for dependents, aid and attendance, clothing and car allowances, housing grants, VR&amp;E, education for families, and survivors benefits. Most people miss at least one.</p><button class="btn primary" data-go="educ.programs">Read the article</button></section>`}
-      ${cur === 'exams' ? '' : `<section class="panel flag-hero" aria-labelledby="flag-hl"><span class="eyebrow">Flagship guide</span><h2 id="flag-hl">C&amp;P exams: the complete guide</h2><p>Most claims are won or lost at the exam. When VA owes you one, how it is ordered, your rights on exam day, what the report must contain, and what to do if you miss it.</p><ol class="flag-mini">${EXAM_STAGES.map(([, t]) => `<li>${t}</li>`).join('')}</ol><button class="btn primary" data-go="educ.exams">Open the exam guide</button></section>`}
+      ${cur === 'programs' ? '' : `<section class="panel start-hero" aria-labelledby="start-hl"><span class="eyebrow">Start here · if you read one article, read this one</span><h2 id="start-hl" style="margin:2px 0 6px">VA benefits at a glance</h2><p style="margin:0 0 10px">Every VA program on one page: compensation, pension, extra pay for dependents, aid and attendance, clothing and car allowances, housing grants, VR&amp;E, education for families, and survivors benefits. See which ones may fit you.</p><button class="btn primary" data-go="educ.programs">Read the article</button></section>`}
+      ${cur === 'exams' ? '' : `<section class="panel flag-hero" aria-labelledby="flag-hl"><span class="eyebrow">Flagship guide</span><h2 id="flag-hl">C&amp;P exams: the complete guide</h2><p>The exam report is medical evidence VA weighs with everything else in your file. When VA owes you one, how it is ordered, your rights on exam day, what the report must contain, and what to do if you miss it.</p><ol class="flag-mini">${EXAM_STAGES.map(([, t]) => `<li>${t}</li>`).join('')}</ol><button class="btn primary" data-go="educ.exams">Open the exam guide</button></section>`}
       ${cur === 'smccheck' ? '' : `<section class="panel smc-headline" aria-labelledby="smc-hl"><div class="spread"><div><span class="eyebrow">Featured tool</span><h2 id="smc-hl" style="margin:2px 0 4px">SMC checklist</h2><p class="muted" style="margin:0;font-size:.9rem">Special monthly compensation is paid on top of the rating. Check which levels may fit, with what the exam should document for each.</p></div><button class="btn primary" data-go="educ.smccheck">Open the SMC checklist</button></div></section>`}
       ${cur === 'part3' || cur === 'part4' ? '' : `<section class="panel regs-headline" aria-labelledby="regs-hl"><span class="eyebrow">The regulations</span><h2 id="regs-hl" style="margin:2px 0 4px">The rules VA must follow</h2><p class="muted" style="margin:0 0 8px;font-size:.9rem"><b>Part 3</b> decides who is eligible and what is service connected. <b>Part 4</b> decides the rating.</p><p style="margin:0">${P3_LINKS} <button class="btn link" data-go="educ.part3">Key Part 3 rules</button> <button class="btn link" data-go="educ.part4">Key Part 4 rules</button></p></section>`}
       <section class="panel edu-search" role="search" aria-label="Search Education"><div class="field" style="max-width:560px;margin:0"><label for="edu-q"><b>Search all ${EDU_ORDER.length} topics</b></label><input id="edu-q" type="search" autocomplete="off" placeholder="e.g. sleep apnea, knee, spouse, deadline, back pay" value="${esc(UI.eduQ || '')}" data-live="eduSearch"></div>
@@ -6970,8 +6999,8 @@ ${p.toxic.answer || p.toxic.exposures.length ? sec('Toxic exposure', `<p>Believe
     needForms: () => { go('needed'); const t = document.getElementById('need-forms'); if (t) { t.scrollIntoView({ block: 'start' }); const h = t.querySelector('h2'); if (h) { h.setAttribute('tabindex', '-1'); h.focus({ preventScroll: true }); } } },
     openQuick: () => { UI.educ = null; UI.educTh = null; UI.educFor = ''; go('quick'); },
     qsReset: () => { UI.educ = []; UI.educTh = []; UI.educFor = ''; UI.qsOpen = true; render(); toast('Selections cleared'); const f = document.querySelector('[data-change="educTheory"]'); if (f) f.focus(); },
-    eduTopic: el => { const id = el.dataset.id; UI.route = 'educ.' + id; render(); try { settingHash = true; location.hash = UI.route; } catch (e) { } setTimeout(() => settingHash = false, 0); const t = document.getElementById('edu-topic'); if (t) { t.scrollIntoView({ block: 'start' }); const h = t.querySelector('h2'); if (h) { h.setAttribute('tabindex', '-1'); h.focus({ preventScroll: true }); } } },
-    eduTop: () => { const t = document.querySelector('.edu-index'); if (t) { t.scrollIntoView({ block: 'start' }); const b = t.querySelector('.edu-card[aria-pressed="true"]') || t.querySelector('.edu-card'); if (b) b.focus({ preventScroll: true }); } },
+    eduTopic: el => go('educ.' + el.dataset.id),
+    eduTop: () => { const prev = UI.route.split('.')[1] || ''; go('educ'); const b = prev && document.querySelector(`.edu-card[data-id="${prev}"]`); if (b) { b.scrollIntoView({ block: 'center' }); b.focus({ preventScroll: true }); } },
     educReset: () => { UI.educ = null; UI.educTh = null; UI.educFor = ''; render(); },
     shareDoc: el => { const c = byId(S.conditions, el.dataset.cond); UI.educ = EDU.filter(t => t.re.test(c.name)).map(t => t.id); UI.educTh = [c.theory]; UI.educFor = c.name; UI.qsOpen = true; go('quick'); },
     downloadEduc: () => saveFile('guide-for-my-doctor.html', docGuideHTML(EDU.filter(t => educSelected().includes(t.id)))),
