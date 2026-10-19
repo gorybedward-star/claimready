@@ -462,7 +462,7 @@ const TT = (() => {
     const win = ent.start ? `${fmt(ent.start)} to ${fmt(ent.end)}` : 'the temporary total period';
     // SMC(s)
     if (q.other60 === 'yes') S.push({ id: 'smcs', name: 'SMC(s), statutory housebound', status: ent.start ? 'confirmed' : 'review', text: `A temporary total plus other service-connected disabilities combining to 60% or more meets the housebound-rate screen during ${win}. Payable months follow § 3.31.`, cite: '38 U.S.C. 1114(s); § 3.350(i)(1); M21-1 VIII.iv.8.B.1.c' });
-    else if (q.other60 === 'no') S.push({ id: 'smcs', name: 'SMC(s), statutory housebound', status: 'none', text: 'The other ratings you entered do not combine to 60%. Housebound in fact (§ 3.350(i)(2)) needs a permanent 100%, which a temporary total is not.', cite: '§ 3.350(i)' });
+    else if (q.other60 === 'no') S.push({ id: 'smcs', name: 'SMC(s), statutory housebound', status: 'none', text: 'The other ratings you entered do not combine to 60%. Housebound in fact (§ 3.350(i)(2)) also needs you to be substantially confined to your home because of service-connected disabilities, and expected to stay that way for life. This tool does not screen for that.', cite: '§ 3.350(i)' });
     else S.push({ id: 'smcs', name: 'SMC(s), statutory housebound', status: 'review', text: 'Not answered. If your other service-connected disabilities combine to 60% or more, SMC(s) may apply while the temporary total lasts.', cite: '§ 3.350(i)(1); M21-1 VIII.iv.8.C.3.b' });
     if (q.pathway === 'joint' && out.qualifiesDC) {
       if (q.crutches && valid(q.crutches)) {
@@ -474,7 +474,7 @@ const TT = (() => {
     if (q.pathway !== 'hosp' || q.surgery === 'yes') {
       const p = q.scarPainful, u = q.scarUnstable;
       if (p === 'yes' || u === 'yes') S.push({ id: 'scar', name: 'Surgical scar', status: 'potential', text: `You reported a ${[p === 'yes' && 'painful', u === 'yes' && 'unstable'].filter(Boolean).join(' and ')} scar. Painful or unstable scars are rated by how many there are (DC 7804). A scar is outside § 4.71a, so Note (1) does not bar it.`, cite: '§ 4.118, DC 7804' });
-      else if (p === 'no' && u === 'no') S.push({ id: 'scar', name: 'Surgical scar', status: 'none', text: 'No pain or instability reported. A large or deep scar, or one that limits motion, can still be rated (DCs 7801, 7802, 7805).', cite: '§ 4.118, DCs 7801-7805' });
+      else if (p === 'no' && u === 'no') S.push({ id: 'scar', name: 'Surgical scar', status: 'none', text: 'No pain or instability reported. A large scar, one with underlying soft tissue damage, or one that limits motion can still be rated (DCs 7801, 7802, 7805).', cite: '§ 4.118, DCs 7801-7805' });
       else S.push({ id: 'scar', name: 'Surgical scar', status: 'review', text: 'Not answered. A blank answer is not a "no." Tell your examiner if the scar hurts, breaks down, or limits motion.', cite: '§ 4.118, DCs 7801-7805' });
     }
     return S;
