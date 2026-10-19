@@ -1,0 +1,321 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="description" content="Free, independent educational guide to what VA's public instructions ask C&amp;P examiners to cover: medication effects on joint exams, rating increases, Gulf War illness patterns, digestive conditions, and changed rating rules. Nothing is saved or sent.">
+<meta name="referrer" content="no-referrer"><meta name="theme-color" content="#1d5a70">
+<link rel="manifest" href="manifest.webmanifest"><link rel="icon" type="image/png" href="icons/favicon-32.png"><link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+<title>What VA Asks Your Examiner</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<style>@font-face{font-family:'Public Sans';font-style:normal;font-weight:400;font-display:swap;src:url(fonts/public-sans-latin-400-normal.woff2) format('woff2')}@font-face{font-family:'Public Sans';font-style:normal;font-weight:500;font-display:swap;src:url(fonts/public-sans-latin-500-normal.woff2) format('woff2')}@font-face{font-family:'Public Sans';font-style:normal;font-weight:600;font-display:swap;src:url(fonts/public-sans-latin-600-normal.woff2) format('woff2')}@font-face{font-family:'Public Sans';font-style:normal;font-weight:700;font-display:swap;src:url(fonts/public-sans-latin-700-normal.woff2) format('woff2')}@font-face{font-family:'Source Serif 4';font-style:normal;font-weight:400;font-display:swap;src:url(fonts/source-serif-4-latin-400-normal.woff2) format('woff2')}@font-face{font-family:'Source Serif 4';font-style:normal;font-weight:600;font-display:swap;src:url(fonts/source-serif-4-latin-600-normal.woff2) format('woff2')}@font-face{font-family:'Source Serif 4';font-style:italic;font-weight:400;font-display:swap;src:url(fonts/source-serif-4-latin-400-italic.woff2) format('woff2')}@font-face{font-family:'Source Serif 4';font-style:italic;font-weight:600;font-display:swap;src:url(fonts/source-serif-4-latin-600-italic.woff2) format('woff2')}@font-face{font-family:'IBM Plex Mono';font-style:normal;font-weight:400;font-display:swap;src:url(fonts/ibm-plex-mono-latin-400-normal.woff2) format('woff2')}@font-face{font-family:'IBM Plex Mono';font-style:normal;font-weight:600;font-display:swap;src:url(fonts/ibm-plex-mono-latin-600-normal.woff2) format('woff2')}</style>
+<style>
+/* Layout: one reading column. Banner, header, a topic chooser, then one section per exam situation, sources, footer. ClaimReady's own tokens (same as temp-100.html). */
+:root {
+  --paper: #f3f5f4; --surface: #ffffff; --sunk: #e9eeec; --ink: #16201d; --muted: #5a6763; --line: #d4dcd9;
+  --accent: #1d5a70; --accent-ink: #ffffff; --accent-soft: #dfecf0;
+  --ok: #2a774b; --ok-soft: #e0f0e6; --wait: #8a560a; --wait-soft: #f7ecd8;
+  --f-ui: "Public Sans", "Segoe UI", system-ui, sans-serif;
+  --f-serif: "Source Serif 4", Georgia, "Times New Roman", serif;
+  --f-mono: "IBM Plex Mono", ui-monospace, Menlo, monospace;
+  --r: 6px;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --paper: #111816; --surface: #19211f; --sunk: #0d1312; --ink: #e4ebe8; --muted: #98a6a1; --line: #2b3633;
+  --accent: #72b6cf; --accent-ink: #0d1a1f; --accent-soft: #1b3038;
+  --ok: #62c189; --ok-soft: #173426; --wait: #e2a849; --wait-soft: #392b12; color-scheme: dark; } }
+:root[data-theme="dark"] {
+  --paper: #111816; --surface: #19211f; --sunk: #0d1312; --ink: #e4ebe8; --muted: #98a6a1; --line: #2b3633;
+  --accent: #72b6cf; --accent-ink: #0d1a1f; --accent-soft: #1b3038;
+  --ok: #62c189; --ok-soft: #173426; --wait: #e2a849; --wait-soft: #392b12; color-scheme: dark; }
+:root { padding-top: env(safe-area-inset-top, 0px); padding-bottom: env(safe-area-inset-bottom, 0px); }
+* { box-sizing: border-box; }
+[hidden] { display: none !important; }
+body { margin: 0; background: var(--paper); color: var(--ink); font-family: var(--f-ui); font-size: 0.95rem; line-height: 1.5; }
+.wrap { max-width: 760px; margin: 0 auto; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+.skip { position: absolute; left: -9999px; } .skip:focus { left: 16px; top: 8px; z-index: 20; background: var(--surface); padding: 8px 12px; border-radius: var(--r); }
+.banner { background: var(--ink); color: var(--paper); font-size: 0.8rem; }
+.banner .wrap { padding-block: 8px; }
+header.top { padding-block: 24px 8px; display: grid; gap: 10px; }
+h1, h2, h3 { font-family: var(--f-serif); font-weight: 600; margin: 0; line-height: 1.2; text-wrap: balance; }
+h1 { font-size: 1.9rem; letter-spacing: -0.01em; }
+h2 { font-size: 1.3rem; }
+h3 { font-size: 1.02rem; }
+p { margin: 0; }
+ul, ol { margin: 0; padding-left: 20px; display: grid; gap: 6px; }
+a { color: var(--accent); }
+.muted { color: var(--muted); }
+.eyebrow { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.09em; text-transform: uppercase; color: var(--muted); }
+.crumbs { display: flex; flex-wrap: wrap; gap: 6px 14px; align-items: baseline; }
+.crumbs a { font-weight: 600; font-size: .9rem; text-decoration: none; }
+.crumbs a:hover { text-decoration: underline; }
+.tag { display: inline-block; font-size: .7rem; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; padding: 1px 7px; border-radius: 4px; border: 1px solid currentColor; white-space: nowrap; }
+.tag.law { color: var(--accent); } .tag.guide { color: var(--wait); }
+.example { display: grid; gap: 4px; background: var(--wait-soft); border: 1px solid var(--line); border-radius: var(--r); padding: 10px 12px; }
+.example b:first-child { font-size: .78rem; letter-spacing: .06em; text-transform: uppercase; }
+button, input { font: inherit; color: inherit; }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.btn { border: 1px solid var(--line); background: var(--surface); border-radius: var(--r); padding: 8px 14px; cursor: pointer; min-height: 44px; }
+.btn.primary { background: var(--accent); color: var(--accent-ink); border-color: var(--accent); font-weight: 600; }
+.btn.link { border: 0; background: none; color: var(--accent); text-decoration: underline; padding: 4px 0; min-height: 0; }
+main { display: grid; gap: 20px; padding-block: 12px 48px; }
+.panel { background: var(--surface); border: 1px solid var(--line); border-radius: var(--r); padding: 18px; display: grid; gap: 14px; min-width: 0; }
+.panel > header { display: grid; gap: 6px; }
+fieldset { border: 0; padding: 0; margin: 0; display: grid; gap: 10px; min-width: 0; }
+legend { font-family: var(--f-serif); font-weight: 600; font-size: 1.15rem; padding: 0; margin-bottom: 4px; }
+.choices { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 8px; }
+.choice { display: flex; gap: 10px; align-items: flex-start; border: 1px solid var(--line); border-radius: var(--r); padding: 10px 12px; cursor: pointer; background: var(--paper); min-height: 44px; }
+.choice:has(input:checked) { border-color: var(--accent); background: var(--accent-soft); }
+.choice input { margin-top: 4px; width: 18px; height: 18px; accent-color: var(--accent); flex: none; }
+.choice small { display: block; color: var(--muted); }
+.row { display: flex; flex-wrap: wrap; gap: 8px 14px; align-items: center; }
+.cols { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 12px; }
+.box { border: 1px solid var(--line); border-radius: var(--r); padding: 12px 14px; display: grid; gap: 8px; align-content: start; background: var(--paper); }
+.box.you { border-left: 4px solid var(--ok); }
+.box.doc { border-left: 4px solid var(--accent); }
+.box h3 { font-family: var(--f-ui); font-size: .82rem; letter-spacing: .06em; text-transform: uppercase; }
+.flow { list-style: none; padding: 0; counter-reset: q; gap: 0; }
+.flow > li { counter-increment: q; display: grid; grid-template-columns: 30px 1fr; gap: 10px; padding-bottom: 14px; position: relative; }
+.flow > li::before { content: counter(q); width: 26px; height: 26px; border-radius: 50%; background: var(--accent); color: var(--accent-ink); font-family: var(--f-mono); font-size: .8rem; display: grid; place-items: center; }
+.flow > li::after { content: ""; position: absolute; left: 12px; top: 28px; bottom: 2px; width: 2px; background: var(--line); }
+.flow > li:last-child::after { display: none; }
+.flow .stop { display: block; font-size: .85rem; color: var(--muted); margin-top: 2px; }
+.flow ul { margin-top: 6px; }
+.quote { font-family: var(--f-serif); border-left: 3px solid var(--line); padding: 2px 0 2px 12px; color: var(--ink); }
+.pills { list-style: none; padding: 0; display: flex; flex-wrap: wrap; gap: 6px; }
+.pills li { border: 1px solid var(--line); border-radius: 999px; padding: 2px 10px; font-size: .85rem; background: var(--paper); }
+.patterns { list-style: none; padding: 0; display: grid; gap: 8px; counter-reset: p; }
+.patterns li { counter-increment: p; display: grid; grid-template-columns: 30px 1fr; gap: 10px; align-items: start; border: 1px solid var(--line); border-radius: var(--r); padding: 10px 12px; }
+.patterns li::before { content: counter(p); font-family: var(--f-mono); font-weight: 600; font-size: 1rem; }
+.patterns li.yes { background: var(--ok-soft); }
+.patterns small { display: block; color: var(--muted); }
+.cite { font-size: 0.8rem; color: var(--muted); display: flex; flex-wrap: wrap; gap: 6px 10px; align-items: center; border-top: 1px dashed var(--line); padding-top: 10px; }
+table { border-collapse: collapse; width: 100%; font-size: 0.88rem; }
+th, td { text-align: left; padding: 7px 8px; border-bottom: 1px solid var(--line); vertical-align: top; }
+th { font-weight: 600; color: var(--muted); font-size: 0.76rem; letter-spacing: 0.04em; text-transform: uppercase; }
+.tscroll { overflow-x: auto; }
+.num { font-family: var(--f-mono); font-variant-numeric: tabular-nums; font-size: .86em; white-space: nowrap; }
+details { border: 1px solid var(--line); border-radius: var(--r); background: var(--paper); padding: 10px 12px; }
+summary { cursor: pointer; font-weight: 600; min-height: 24px; }
+details > :not(summary) { margin-top: 10px; }
+footer { font-size: 0.82rem; color: var(--muted); display: grid; gap: 8px; padding-block: 0 40px; }
+@media (max-width: 520px) { h1 { font-size: 1.55rem; } .panel { padding: 14px; } }
+@media print {
+  .banner { background: none; color: #000; border-bottom: 1px solid #000; }
+  .noprint, .skip { display: none !important; }
+  body { background: #fff; color: #000; font-size: 10.5pt; }
+  .panel, .box, details { border-color: #999; break-inside: avoid-page; }
+  details > :not(summary) { display: block !important; }
+  a { color: #000; }
+}
+</style>
+</head><body>
+<a class="skip" href="#main">Skip to the guide</a>
+<div class="banner" role="note"><div class="wrap">Independent educational tool. Not affiliated with or endorsed by the U.S. Department of Veterans Affairs. Not legal or medical advice. VA decides every claim.</div></div>
+<div class="wrap">
+  <header class="top">
+    <div class="crumbs noprint"><a href="./#doctors">← Guide for your doctor</a><span class="eyebrow"><span aria-hidden="true">★</span> Flagship · Guide for your doctor · Examinations</span></div>
+    <h1>What VA asks your examiner</h1>
+    <p>For some kinds of claims, VA adds extra questions to the exam request it sends to the examiner. VA publishes that wording. This guide explains it in plain English, so you know what the examiner is asked to cover, what to bring, and what to look for in the report. You can also share it with your own doctor.</p>
+    <p class="muted" style="font-size:.86rem">Based on public VA guidance: the <b>Supplemental Language Matrix</b> (KnowVA, updated <span class="num" data-src="554400000105052">Apr 9, 2026</span>) and <b>M21-1, Part IV, Subpart i, Chapter 2, Section A</b> (updated <span class="num" data-src="554400000180498">Aug 18, 2026</span>). ClaimReady checks both for changes every week. <a href="#sources">Sources and dates</a></p>
+    <div class="row noprint"><button class="btn" type="button" id="printBtn">Print or save for your doctor</button></div>
+  </header>
+
+  <main id="main" tabindex="-1">
+    <section class="panel noprint" aria-labelledby="pick-h">
+      <fieldset>
+        <legend id="pick-h">What is your exam about?</legend>
+        <p class="muted" style="font-size:.88rem">Pick any that fit to see only those parts. Leave all unchecked to see everything. Nothing you pick is saved.</p>
+        <div class="choices">
+          <label class="choice"><input type="checkbox" value="meds"><span><b>Joints, spine, muscles, or jaw</b><small>And you take medicine for it</small></span></label>
+          <label class="choice"><input type="checkbox" value="increase"><span><b>A rating that may be too low</b><small>A claim for increase</small></span></label>
+          <label class="choice"><input type="checkbox" value="gulf"><span><b>Gulf War or Southwest Asia service</b><small>Symptoms without a clear cause</small></span></label>
+          <label class="choice"><input type="checkbox" value="digest"><span><b>Stomach or digestive problems</b><small>IBS, reflux, bowel problems</small></span></label>
+          <label class="choice"><input type="checkbox" value="revised"><span><b>Rating rules changed during my claim</b><small>VA updated the criteria while it was pending</small></span></label>
+        </div>
+      </fieldset>
+      <p id="pickNote" class="muted" aria-live="polite" style="font-size:.88rem">Showing all five topics.</p>
+    </section>
+
+    <section class="panel" id="basics" aria-labelledby="basics-h">
+      <header><span class="eyebrow">Every exam</span><h2 id="basics-h">Three things to know first</h2></header>
+      <ul>
+        <li><b>The exam gathers evidence. It is not treatment.</b> VA also does not order an exam just to make a diagnosis that would need sedation or an invasive procedure, such as a biopsy. If that kind of diagnosis is needed, records from your own treatment matter.</li>
+        <li><b>Who examines you depends on the condition.</b> Hearing, vision, dental, and psychiatric exams must be done by a specialist. Most other exams are done by a clinician who is not a specialist, using the form (DBQ) for the claimed condition.</li>
+        <li><b>You have no legal right</b> to bring a lawyer into the exam or to record it.</li>
+      </ul>
+      <p class="muted" style="font-size:.88rem">For your rights, exam day, and what a complete report needs, see <a href="./#educ.exams">C&amp;P exams: the complete guide</a>.</p>
+      <p class="cite"><span class="tag guide">VA guidance</span> M21-1 IV.i.2.A.1.d–h</p>
+    </section>
+
+    <section class="panel topic" id="meds" data-topic="meds" aria-labelledby="meds-h">
+      <header><span class="eyebrow">Joints, spine, muscles, and jaw</span><h2 id="meds-h">If medicine helps: how bad is it without it?</h2>
+        <p>When you take medicine for a joint, spine, muscle, bone, or jaw condition, VA asks the examiner to estimate how severe the condition would be <b>without</b> the medicine (VA calls this the "unmedicated state"), when that can be done without guessing.</p></header>
+      <details><summary>Which exam forms this covers (16)</summary>
+        <ul class="pills" aria-label="Disability Benefits Questionnaires covered">
+          <li>Amputations</li><li>Ankle</li><li>Non-degenerative arthritis and decompression illness</li><li>Back (thoracolumbar spine)</li><li>Bones and other skeletal conditions</li><li>Elbow and forearm</li><li>Foot, including flatfoot</li><li>Hand and fingers</li><li>Hip and thigh</li><li>Knee and lower leg</li><li>Muscle injuries</li><li>Neck (cervical spine)</li><li>Osteomyelitis</li><li>Shoulder and arm</li><li>Jaw (TMD)</li><li>Wrist</li>
+        </ul>
+      </details>
+      <div>
+        <h3 style="margin-bottom:10px">The questions the examiner is asked</h3>
+        <ol class="flow">
+          <li><span><b>Do you take any medicine for this condition?</b> Prescription or over the counter.<span class="stop">If no, the questions stop here.</span></span></li>
+          <li><span><b>Does it relieve or reduce your symptoms?</b><span class="stop">If no, the questions stop here.</span></span></li>
+          <li><span><b>Can the examiner estimate the severity as if you were not taking it, without resorting to mere speculation?</b><span class="stop">If no, the examiner must explain why in the report. VA's wording says the reason should not be the examiner's own shortcomings or a general reluctance to estimate something not seen in the room.</span></span></li>
+          <li><span><b>If yes, which kinds of functional loss would be worse, and by how much?</b> The examiner checks each that applies and estimates the added loss, ideally as added loss of motion in degrees:
+            <ul class="pills" style="margin-top:8px" aria-label="Kinds of functional loss">
+              <li>Pain</li><li>Active range of motion</li><li>Passive range of motion</li><li>Repetitive use</li><li>Repeated use over time</li><li>Flare-ups</li><li>Ankylosis (a joint fixed in place)</li><li>Flail joints</li><li>Other factors, such as trouble standing or sitting, walking problems, weakness, instability, swelling, deformity, or muscle wasting from disuse</li>
+            </ul></span></li>
+        </ol>
+        <p class="muted" style="font-size:.88rem"><b>Nerve symptoms from the spine are different.</b> VA is not required to consider nerve problems from the spine, such as radiculopathy, in an unmedicated state, so the examiner skips these questions for them on the neck and back forms.</p>
+      </div>
+      <div class="example" role="note"><b>Fictional example</b><span>Dana takes a daily prescription anti-inflammatory for a service-connected knee. At the exam, Dana explains that it takes the edge off the pain, and that on days a dose was missed, Dana could not kneel or handle stairs. That history gives the examiner something concrete to base an estimate on, or to explain why an estimate is not possible. This is an illustration, not a VA decision.</span></div>
+      <div class="cols">
+        <div class="box you"><h3>Before your exam</h3><ul>
+          <li>Bring a list of every medicine you take for the condition, prescription and over the counter, with the dose and how often.</li>
+          <li>Be ready to say how much each one helps, and what the condition is like when a dose wears off or is missed.</li>
+          <li><b>Do not stop or change a medicine for an exam.</b> Talk to the doctor who prescribed it about any change.</li>
+          <li>Afterward, check the report. If you said a medicine helps, look for an estimate or an explanation of why one was not possible.</li>
+        </ul></div>
+        <div class="box doc"><h3>For your own doctor</h3><ul>
+          <li>If you complete one of these forms for the veteran, the same four questions apply.</li>
+          <li>Give the estimate as added loss of motion in degrees where you can, with your reasoning.</li>
+          <li>If an estimate is not possible, explain why in a way tied to the facts, not a general reluctance.</li>
+        </ul></div>
+      </div>
+      <p class="cite"><span class="tag guide">VA guidance</span> Supplemental Language Matrix, musculoskeletal DBQs <span class="tag law">Law</span> 38 C.F.R. §§ 4.40, 4.45 (functional loss) · <a href="./#educ.painmotion">Painful motion and flare-ups</a></p>
+    </section>
+
+    <section class="panel topic" id="increase" data-topic="increase" aria-labelledby="inc-h">
+      <header><span class="eyebrow">Claims for increase</span><h2 id="inc-h">If your condition got worse, or got a new name</h2>
+        <p>For an increase, the examiner is asked to evaluate how severe your service-connected condition is <b>now</b>.</p></header>
+      <p>Sometimes the examiner's diagnosis is different from the one VA service connected. VA's wording then asks the examiner to say which of these is true:</p>
+      <ul class="patterns" aria-label="When the diagnosis changed">
+        <li><span><b>The new diagnosis is a progression</b> of the service-connected condition.<small>For example, a condition that developed or changed over time.</small></span></li>
+        <li><span><b>The original diagnosis was in error.</b><small>Only with a rationale, supported by the clinical evidence in the record, that refutes the earlier exam or exams that made the diagnosis.</small></span></li>
+      </ul>
+      <p class="quote">"If the diagnosis was in error, please provide a rationale supported by the clinical evidence of record that refutes the previous exam(s) which diagnosed the condition."</p>
+      <div class="cols">
+        <div class="box you"><h3>Before your exam</h3><ul>
+          <li>Be ready to describe what has changed since your last rating: new symptoms, more frequent flare-ups, more treatment, work or daily tasks you can no longer do.</li>
+          <li>Bring or submit recent treatment records, especially any that use a different name for the condition.</li>
+          <li>If the report calls the old diagnosis an error, check that it explains why, using the record.</li>
+        </ul></div>
+        <div class="box doc"><h3>For your own doctor</h3><ul>
+          <li>Describe current severity in the terms of the matching exam form.</li>
+          <li>If your diagnosis differs from the rated one, say whether it is a progression of that condition, and why.</li>
+        </ul></div>
+      </div>
+      <p class="cite"><span class="tag guide">VA guidance</span> Supplemental Language Matrix, examination for increase</p>
+    </section>
+
+    <section class="panel topic" id="gulf" data-topic="gulf" aria-labelledby="gulf-h">
+      <header><span class="eyebrow">Gulf War and Southwest Asia service</span><h2 id="gulf-h">Symptoms without a clear cause</h2>
+        <p>VA's laws allow service connection for certain chronic disability patterns linked to environmental hazards in Southwest Asia. VA gives the examiner definitions so the report can say which pattern fits.</p></header>
+      <details><summary>Hazards VA's wording names</summary>
+        <ul><li>Smoke and particles from oil well fires</li><li>Pesticides and insecticides</li><li>Infectious diseases found in the region</li><li>Solvent and fuel fumes</li><li>Pyridostigmine bromide tablets, taken as a nerve gas antidote</li><li>The combined effect of multiple vaccines given at deployment</li><li>Very fine sand particles</li><li>Smoke and particles from burn pits</li></ul>
+      </details>
+      <div>
+        <h3 style="margin-bottom:8px">The four patterns</h3>
+        <ol class="patterns" aria-label="Disability patterns">
+          <li class="yes"><span><b>Undiagnosed illness.</b> Findings that cannot be attributed to a known, clearly defined diagnosis after likely diagnoses have been ruled out.</span></li>
+          <li class="yes"><span><b>Diagnosed but medically unexplained chronic multisymptom illness (MUCMI).</b> A diagnosis with no conclusive cause or mechanism, with overlapping symptoms such as fatigue, pain, disability out of proportion to physical findings, and inconsistent lab results.<small>Examples include chronic fatigue syndrome, fibromyalgia, and irritable bowel syndrome.</small></span></li>
+          <li><span><b>Chronic multisymptom illness with a partially explained cause.</b><small>VA's examples: diabetes and multiple sclerosis. These are not MUCMIs.</small></span></li>
+          <li><span><b>A disease with a clear and specific cause and diagnosis.</b></span></li>
+        </ol>
+        <p class="muted" style="font-size:.88rem">Patterns 1 and 2 (shaded) are the ones the Gulf War presumption covers. Patterns 3 and 4 can still be service connected in other ways, such as direct service connection or another presumption. VA decides which pattern applies based on the whole record.</p>
+      </div>
+      <div class="cols">
+        <div class="box"><h3>Chronic means</h3><p>Lasting <b>6 months or more</b>, or coming and going over a 6-month period. The 6 months count from the earliest date the evidence shows the symptoms began.</p></div>
+        <div class="box"><h3>Objective indications</h3><p>Signs an examiner can observe, and also non-medical indicators that can be independently verified.</p></div>
+      </div>
+      <div>
+        <h3 style="margin-bottom:8px">Signs and symptoms that may qualify</h3>
+        <ul class="pills" aria-label="Signs and symptoms"><li>Fatigue</li><li>Skin</li><li>Headache</li><li>Muscle pain</li><li>Joint pain</li><li>Neurological</li><li>Neuropsychological</li><li>Upper or lower respiratory</li><li>Sleep disturbances</li><li>Gastrointestinal</li><li>Cardiovascular</li><li>Abnormal weight loss</li><li>Menstrual disorders</li></ul>
+      </div>
+      <p><b>Still in service?</b> For claims filed before discharge (Benefits Delivery at Discharge or the Integrated Disability Evaluation System), VA's wording asks the examiner for a medical statement, with rationale, placing the disability pattern in one of the four groups. For pattern 1 or 2, the examiner identifies which signs and symptoms belong to each illness. For pattern 3 or 4, no further opinion is requested.</p>
+      <div class="cols">
+        <div class="box you"><h3>Before your exam</h3><ul>
+          <li>List every symptom, when it started, how often it happens, and how long it lasts.</li>
+          <li>Note any tests or treatment that did not find a cause.</li>
+          <li>Statements from people who saw your symptoms over time can help show they are chronic.</li>
+        </ul></div>
+        <div class="box doc"><h3>For your own doctor</h3><ul>
+          <li>Say which of the four patterns fits, with your reasoning.</li>
+          <li>If a diagnosis is on record, say whether it explains all of the symptoms, and name any it does not.</li>
+          <li>Note when symptoms began and whether they have lasted 6 months.</li>
+        </ul></div>
+      </div>
+      <p class="cite"><span class="tag guide">VA guidance</span> Supplemental Language Matrix, Gulf War rows; M21-1 VIII.ii.1.B.2 <span class="tag law">Law</span> 38 U.S.C. § 1117; 38 C.F.R. § 3.317 · <a href="./#educ.gulf">Gulf War illness</a></p>
+    </section>
+
+    <section class="panel topic" id="digest" data-topic="digest" aria-labelledby="dig-h">
+      <header><span class="eyebrow">Digestive conditions</span><h2 id="dig-h">Functional or structural?</h2>
+        <p>VA asks examiners to tell apart two kinds of digestive conditions. For Gulf War claims, it matters because functional disorders can be MUCMIs and structural diseases cannot.</p></header>
+      <div class="cols">
+        <div class="box"><h3>Functional</h3><p>Chronic or recurring symptoms that are <b>not explained</b> by structural, endoscopic, lab, or other objective signs of injury or disease.</p><p class="muted" style="font-size:.88rem">Examples: irritable bowel syndrome, functional dyspepsia, functional vomiting, functional constipation, functional bloating, functional abdominal pain syndrome, and functional dysphagia.</p></div>
+        <div class="box"><h3>Structural</h3><p>A disease that testing <b>does show</b>, for example on imaging, endoscopy, or lab work.</p><p class="muted" style="font-size:.88rem">VA's Gulf War guidance names GERD, ulcerative colitis, and Crohn's disease as structural (M21-1 VIII.ii.1.A.1.h).</p></div>
+      </div>
+      <p><b>Common symptoms</b> of functional disorders include abdominal pain, burning or pain behind the breastbone, nausea, vomiting, diarrhea or constipation, indigestion, bloating, feeling full after eating, and painful or difficult swallowing. Diagnosis generally requires symptoms that began at least <b>6 months</b> before diagnosis and were enough to diagnose the disorder at least <b>3 months</b> before.</p>
+      <p>When a digestive disorder is found in a pre-discharge Gulf War exam, the examiner is asked to explain whether it is functional or structural, and to discuss the testing used to identify it.</p>
+      <div class="cols">
+        <div class="box you"><h3>Before your exam</h3><ul>
+          <li>Write down when your symptoms started and how often they happen.</li>
+          <li>Bring results of any scopes, imaging, or lab work, including tests that came back normal.</li>
+        </ul></div>
+        <div class="box doc"><h3>For your own doctor</h3><ul>
+          <li>Say whether the disorder is functional or structural, and which tests support that.</li>
+        </ul></div>
+      </div>
+      <p class="muted" style="font-size:.86rem">VA also has separate added wording for every digestive system exam form, published as an attachment to the matrix. This guide does not cover that attachment yet.</p>
+      <p class="cite"><span class="tag guide">VA guidance</span> Supplemental Language Matrix, Gulf War definitions and pre-discharge row <span class="tag law">Law</span> 38 C.F.R. § 3.317 · <a href="./#educ.digest">Digestive conditions</a></p>
+    </section>
+
+    <section class="panel topic" id="revised" data-topic="revised" aria-labelledby="rev-h">
+      <header><span class="eyebrow">Changed rating rules</span><h2 id="rev-h">If VA changed the rating criteria while your claim was pending</h2>
+        <p>VA sometimes rewrites the criteria for a group of conditions. When that happens while an initial or increased rating claim is pending, VA's guidance says the exam request for affected conditions should include wording for the <b>old (historical) criteria</b> too, and VA must consider the old criteria and the related exam results when it decides.</p></header>
+      <ul>
+        <li>This also applies when the claim came in after the change, but an <b>intent to file</b> submitted before the change was still active.</li>
+        <li>Check your exam report: it should give the findings each version of the criteria needs.</li>
+        <li>Example: knee and hip replacement ratings changed on February 7, 2021. The <a href="temp-100.html">Temporary 100% Timeline</a> shows both versions.</li>
+      </ul>
+      <p class="cite"><span class="tag guide">VA guidance</span> M21-1 IV.i.2.A.1.j · <a href="./#educ.evaluate">How VA assigns a rating</a></p>
+    </section>
+
+    <section class="panel" id="sources" aria-labelledby="src-h">
+      <header><h2 id="src-h">Sources and dates</h2>
+        <p class="muted" style="font-size:.88rem"><span class="tag law">Law</span> statutes and regulations VA must follow. <span class="tag guide">VA guidance</span> VA's procedures manual and instructions, which explain how VA applies the law but are not law.</p></header>
+      <div class="tscroll"><table>
+        <thead><tr><th scope="col">Source</th><th scope="col">Type</th><th scope="col">Version used</th></tr></thead>
+        <tbody>
+          <tr><td><a href="https://www.knowva.ebenefits.va.gov/system/templates/selfservice/va_ssnew/help/customer/locale/en-US/portal/554400000001018/content/554400000105052/" target="_blank" rel="noopener">Supplemental Language Matrix</a> (KnowVA article 554400000105052)</td><td><span class="tag guide">VA guidance</span></td><td class="num" data-src="554400000105052">Apr 9, 2026</td></tr>
+          <tr><td><a href="https://www.knowva.ebenefits.va.gov/system/templates/selfservice/va_ssnew/help/customer/locale/en-US/portal/554400000001018/content/554400000180498/" target="_blank" rel="noopener">M21-1 IV.i.2.A, Examination Requests Overview</a></td><td><span class="tag guide">VA guidance</span></td><td class="num" data-src="554400000180498">Aug 18, 2026</td></tr>
+          <tr><td><a href="https://www.ecfr.gov/current/title-38/section-3.317" target="_blank" rel="noopener">38 C.F.R. § 3.317</a>; 38 U.S.C. § 1117</td><td><span class="tag law">Law</span></td><td>Current eCFR</td></tr>
+          <tr><td><a href="https://www.ecfr.gov/current/title-38/chapter-I/part-4" target="_blank" rel="noopener">38 C.F.R. §§ 4.40, 4.45</a></td><td><span class="tag law">Law</span></td><td>Current eCFR</td></tr>
+        </tbody>
+      </table></div>
+      <p class="muted" style="font-size:.86rem">Public exam forms (DBQs) your own doctor can use are on <a href="https://www.benefits.va.gov/compensation/dbq_publicdbqs.asp" target="_blank" rel="noopener">VA's public DBQ page</a>. Content reviewed <span class="num">Oct 19, 2026</span>. When VA updates a source, ClaimReady's weekly monitor flags it for review before this page changes.</p>
+    </section>
+  </main>
+
+  <footer>
+    <p>This guide explains VA's public instructions to examiners. It does not predict what an examiner will find or what VA will decide, and it is not medical advice. Ask your own doctor about your treatment.</p>
+    <p>ClaimReady is independent and educational. It is not VA and is not a substitute for an accredited representative, who can help at no cost. Nothing on this page is saved or sent. <a href="./#about">About ClaimReady and full disclaimer</a></p>
+  </footer>
+</div>
+<script>
+(() => {
+  const boxes = [...document.querySelectorAll('.choices input')];
+  const topics = [...document.querySelectorAll('.topic')];
+  const note = document.getElementById('pickNote');
+  const names = { meds: 'medicine and joints', increase: 'increase', gulf: 'Gulf War', digest: 'digestive', revised: 'changed rules' };
+  function apply() {
+    const on = boxes.filter(b => b.checked).map(b => b.value);
+    topics.forEach(t => { t.hidden = on.length > 0 && !on.includes(t.dataset.topic); });
+    note.textContent = on.length ? `Showing ${on.length} of 5 topics: ${on.map(v => names[v]).join(', ')}.` : 'Showing all five topics.';
+  }
+  boxes.forEach(b => b.addEventListener('change', apply));
+  // A link such as doctor-guide.html#gulf opens with that topic picked.
+  const h = location.hash.slice(1);
+  if (names[h]) { boxes.find(b => b.value === h).checked = true; apply(); }
+  document.getElementById('printBtn').addEventListener('click', () => window.print());
+})();
+</script>
+</body></html>

@@ -65,6 +65,11 @@
    "name": "Aid and Attendance (A&A) Status for Beneficiaries Who Are Patients in",
    "updated": "2025-05-28"
   },
+  "554400000105052": {
+   "cite": "Supplemental Language Matrix",
+   "name": "Supplemental Language Matrix (exam request language)",
+   "updated": "2026-04-09"
+  },
   "554400000141004": {
    "cite": "M21-5, Ch. 5",
    "name": "Higher-Level Review Procedures",
@@ -762,6 +767,10 @@
   }
  },
  "topics": {
+  "doctorguide": [
+   "554400000105052",
+   "554400000180498"
+  ],
   "ptsd": [
    "554400000177468",
    "554400000177469",
@@ -1100,6 +1109,10 @@
   }
  ],
  "ecfrTopics": {
+  "doctorguide": [
+   "3",
+   "4"
+  ],
   "decqual": [
    "3",
    "4"
