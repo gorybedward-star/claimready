@@ -737,6 +737,8 @@ li.chg { background: var(--ok-soft); box-shadow: inset 4px 0 0 var(--ok); paddin
 .sub-groups { display: flex; flex-wrap: wrap; gap: 8px 14px; align-items: flex-end; margin: 4px 0 18px; padding: 10px 12px; border: 1px solid var(--line); border-radius: 12px; background: var(--surface); }
 .sub-groups button { border: 1px solid transparent; background: transparent; color: var(--ink); font: inherit; font-size: .88rem; font-weight: 600; padding: 6px 10px; border-radius: 999px; cursor: pointer; }
 .sub-groups button:hover { background: var(--sunk); }
+.sub-groups a.sg-page { display: inline-block; color: var(--accent); font-size: .88rem; font-weight: 700; padding: 6px 10px; border-radius: 999px; border: 1px solid var(--accent); }
+.sub-groups a.sg-page:hover { background: var(--accent-soft, var(--sunk)); }
 .sub-groups button[aria-current="page"] { background: var(--accent); color: var(--accent-ink); }
 .sub-groups .sg-home { border-color: var(--line); }
 .sg { display: inline-flex; flex-wrap: wrap; align-items: center; gap: 2px; padding-left: 12px; border-left: 1px solid var(--line); }
@@ -748,6 +750,9 @@ li.chg { background: var(--ok-soft); box-shadow: inset 4px 0 0 var(--ok); paddin
 .tool-card { text-align: left; display: flex; flex-direction: column; gap: 3px; padding: 12px 14px; border: 1px solid var(--line); border-radius: 10px; background: var(--paper); color: var(--ink); font: inherit; cursor: pointer; }
 .tool-card:hover, .tool-card:focus-visible { border-color: var(--accent); }
 .tool-card span { color: var(--muted); font-size: .88rem; }
+a.tool-card, a.learn-row, a.sg-page { text-decoration: none; }
+.tool-card.flagship { border: 2px solid var(--accent); background: var(--accent-soft, var(--paper)); }
+.flagship-hero .btn { text-decoration: none; }
 .qs-link { border: 2px solid var(--accent); }
 .del-cell { width: 1%; white-space: nowrap; }
 .del-cell .confirm { white-space: normal; display: flex; flex-wrap: wrap; gap: 6px; align-items: center; max-width: 320px; }
@@ -4632,7 +4637,8 @@ window.VCI_UPDATES = [
       ['smccheck', 'Tool', 'SMC checklist', 'Special monthly compensation levels, and what the exam should document.']]],
   ];
   const TOP_TOPICS = ['programs', 'decqual', 'exams', 'teraexam', 'smccheck', 'itf', 'ratingdec', 'issues', 'supp', 'evidence', 'effdate'];
-  const TOP_TOOLS = ['checklist', 'smccheck', 'quick', 'tdiu', 'opinions'];
+  const TOP_TOOLS = ['temp-100.html', 'checklist', 'smccheck', 'quick', 'tdiu', 'opinions'];
+  const isPage = r => /\.html$/.test(r);
   const topFlag = () => '<span class="top-flag"><span aria-hidden="true">★</span> Top pick</span>';
   const mustReadLink = () => '<p class="must-read-link"><span class="top-flag"><span aria-hidden="true">★</span> Must read</span> <button class="btn link" data-go="educ.decqual">Does your rating decision cover everything? Nine questions to ask</button></p>';
   function whereState() { if (!UI.where) { try { UI.where = localStorage.getItem('vci.where') || 'start'; } catch (e) { UI.where = 'start'; } } return WHERE.find(w => w[0] === UI.where) ? UI.where : 'start'; }
@@ -4649,17 +4655,17 @@ window.VCI_UPDATES = [
   const TOOL_GROUPS = [
     ['Checklists', [['checklist', 'Claim checklist', 'Every step and benefit to consider before you file, with a few questions to fit it to you.'], ['smccheck', 'SMC checklist', 'Which special monthly compensation levels may fit, and what an exam should document.']]],
     ['For your doctor', [['quick', 'Quick sheet', 'A one-page sheet of what VA needs in an exam or opinion, for your claim type and conditions.'], ['doctors', 'Doctor guide', 'The full guide for a provider writing a VA medical opinion or DBQ.'], ['opinions', 'Check an exam opinion', 'Paste a C&P exam opinion to spot common problems VA should fix.']]],
-    ['Ratings and dates', [['tdiu', 'TDIU calculator', 'Check whether your ratings and work situation fit Individual Unemployability (paid at the 100% rate).'], ['explain', 'Rating-criteria explainer', 'Each level of the criteria, quoted from 38 C.F.R. Part 4, and where a measurement falls.'], ['rating', 'Estimate a rating', 'Match your symptoms to VA\'s rating criteria.'], ['combine', 'Combine ratings', 'VA math: how separate ratings combine, including the bilateral factor.'], ['effcheck', 'Effective date check', 'Compare the date VA picked with the rules.']]],
+    ['Ratings and dates', [['temp-100.html', 'Temporary 100% Timeline', 'Joint replacement, surgery recovery, or a hospital stay over 21 days: the months at 100%, when pay can start, and what comes after.'], ['tdiu', 'TDIU calculator', 'Check whether your ratings and work situation fit Individual Unemployability (paid at the 100% rate).'], ['explain', 'Rating-criteria explainer', 'Each level of the criteria, quoted from 38 C.F.R. Part 4, and where a measurement falls.'], ['rating', 'Estimate a rating', 'Match your symptoms to VA\'s rating criteria.'], ['combine', 'Combine ratings', 'VA math: how separate ratings combine, including the bilateral factor.'], ['effcheck', 'Effective date check', 'Compare the date VA picked with the rules.']]],
     ['Learn', [['learn', 'Learn by Exams, Benefits, Ratings', 'Every guide sorted into the three parts of a claim, with search.'], ['educ', 'Provider education', 'Plain-language guides to VA\'s manual, by topic, with search.'], ['training', 'Knowledge checks', 'Scenario questions for trainers and service officers.']]],
   ];
   function subnav(cur) {
-    return `<nav class="sub-groups" aria-label="Tools"><button class="sg-home" data-go="tools" ${cur === 'tools' ? 'aria-current="page"' : ''}>All tools</button>${TOOL_GROUPS.map(([g, items]) => `<span class="sg"><span class="sg-lbl">${g}</span>${items.map(([r, l]) => `<button data-go="${r}" ${cur === r ? 'aria-current="page"' : ''}>${TOP_TOOLS.includes(r) ? '<span class="sg-star" aria-hidden="true">★</span>' : ''}${l}</button>`).join('')}</span>`).join('')}</nav>`;
+    return `<nav class="sub-groups" aria-label="Tools"><button class="sg-home" data-go="tools" ${cur === 'tools' ? 'aria-current="page"' : ''}>All tools</button>${TOOL_GROUPS.map(([g, items]) => `<span class="sg"><span class="sg-lbl">${g}</span>${items.map(([r, l]) => isPage(r) ? `<a class="sg-page" href="${r}"><span class="sg-star" aria-hidden="true">★</span>${l}</a>` : `<button data-go="${r}" ${cur === r ? 'aria-current="page"' : ''}>${TOP_TOOLS.includes(r) ? '<span class="sg-star" aria-hidden="true">★</span>' : ''}${l}</button>`).join('')}</span>`).join('')}</nav>`;
   }
   function toolsPage() {
     return `<div class="page"><div class="page-head"><h1>Tools</h1><p>Everything you need to prepare, file, and follow up, grouped by what you are trying to do.</p></div>
       ${subnav('tools')}
       ${wayfinderHTML()}
-      <div class="tool-groups">${TOOL_GROUPS.map(([g, items]) => `<section class="panel tool-group" aria-labelledby="tg-${g.replace(/\W/g, '')}"><h2 id="tg-${g.replace(/\W/g, '')}">${g}</h2><div class="tool-cards">${items.map(([r, l, d]) => `<button class="tool-card${TOP_TOOLS.includes(r) ? ' top' : ''}" data-go="${r}">${TOP_TOOLS.includes(r) ? topFlag() : ''}<b>${l}</b><span>${d}</span></button>`).join('')}</div></section>`).join('')}
+      <div class="tool-groups">${TOOL_GROUPS.map(([g, items]) => `<section class="panel tool-group" aria-labelledby="tg-${g.replace(/\W/g, '')}"><h2 id="tg-${g.replace(/\W/g, '')}">${g}</h2><div class="tool-cards">${items.map(([r, l, d]) => isPage(r) ? `<a class="tool-card top flagship" href="${r}"><span class="top-flag"><span aria-hidden="true">★</span> Flagship · New</span><b>${l}</b><span>${d}</span></a>` : `<button class="tool-card${TOP_TOOLS.includes(r) ? ' top' : ''}" data-go="${r}">${TOP_TOOLS.includes(r) ? topFlag() : ''}<b>${l}</b><span>${d}</span></button>`).join('')}</div></section>`).join('')}
         <section class="panel tool-group" aria-labelledby="tg-more"><h2 id="tg-more">Also useful</h2><div class="tool-cards"><button class="tool-card" data-go="add"><b>Add a condition or paste a decision</b><span>Record a grant, denial, or pending claim, or paste your rating decision.</span></button><button class="tool-card" data-go="benefits"><b>Find benefits</b><span>Presumptive conditions guide and special benefits to ask about.</span></button></div></section></div></div>`;
   }
   function raterField(f, vals) {
@@ -6320,6 +6326,7 @@ ${topics.length ? `<h2>5. For these conditions</h2><ul>${topics.map(t => `<li><b
         <div class="insuf-grid">${cardsHTML(PAIRED, [1])}</div></section>`;
       case 'temp': return `<section class="panel temp-ed" id="ed-temp"><div class="panel-head"><h2>Temporary 100% ratings</h2><span class="muted num">M21-1 VIII.iv.8</span></div>
         <p class="muted" style="font-size:.88rem">What a discharge summary, surgery note, or work excuse should say so VA can pay a temporary total rating.</p>
+        <p class="must-read-link"><span class="top-flag"><span aria-hidden="true">★</span> Flagship tool</span><a class="btn small" href="temp-100.html">See your dates in the Temporary 100% Timeline</a></p>
         <div class="insuf-grid">${cardsHTML(TEMP, [1, 2])}
           <div class="insuf-card vet"><h3 class="edu-h">For veterans</h3><ul class="plain-list"><li>Before you leave the hospital or surgery center, ask that your discharge note state how long you will need to recover and any limits, such as no weight bearing.</li><li>Send VA the discharge summary, or a work excuse that ties your time off to the surgery or cast. You do not need the full surgical report if other records show the dates and the procedure.</li><li>If recovery takes longer, send updated notes before the temporary rating ends.</li></ul></div></div></section>`;
       case 'aa': return `<section class="panel temp-ed" id="ed-aa"><div class="panel-head"><h2>Aid and attendance and housebound</h2><span class="muted num">M21-1 IX.ii.1.A–B</span></div>
@@ -6857,9 +6864,10 @@ ${quickPanelHTML(sel)}
       ['Start here', ['decqual', 'evaluate', 'part4']],
       ['Reading and questioning a rating', ['ratingdec', 'painmotion', 'reduce']],
       ['How VA rates specific conditions', ['msk', 'arthritis', 'nerves', 'tbir', 'neuro', 'mentalr', 'eyes', 'ears', 'infect', 'resp', 'heart', 'digest', 'gu', 'blood', 'skin', 'endo', 'dental', 'gyn']]],
-      [['explain', 'Rating-criteria explainer', 'See each level of the criteria, quoted from 38 C.F.R. Part 4, and where a measurement falls.'], ['combine', 'Combine ratings', 'VA math: how separate ratings combine, including the bilateral factor.'], ['rating', 'Estimate a rating', 'Match your symptoms to VA\'s rating criteria.']]],
+      [['temp-100.html', 'Temporary 100% Timeline', 'Joint replacement, surgery recovery, or a long hospital stay: the months at 100% and what comes after.'], ['explain', 'Rating-criteria explainer', 'See each level of the criteria, quoted from 38 C.F.R. Part 4, and where a measurement falls.'], ['combine', 'Combine ratings', 'VA math: how separate ratings combine, including the bilateral factor.'], ['rating', 'Estimate a rating', 'Match your symptoms to VA\'s rating criteria.']]],
   ];
   const pillarOf = id => PILLARS.find(p => p[0] === id) || PILLARS[0];
+  const TT_FLAGSHIP = `<section class="panel start-hero flagship-hero" aria-labelledby="tt-h"><span class="eyebrow"><span aria-hidden="true">★</span> Flagship tool · New</span><h2 id="tt-h" style="margin:2px 0 6px">Temporary 100% Timeline</h2><p style="margin:0 0 10px">Had a joint replacement, surgery that needed a month or more of recovery, or a hospital stay over 21 days? See the months a temporary 100% rating can cover under 38 C.F.R. §§ 4.29, 4.30, and 4.71a, when it can start, when payment can start, the rating that comes after, and benefits worth asking about. Nothing you enter leaves your device.</p><a class="btn primary" href="temp-100.html">Open the Temporary 100% Timeline</a></section>`;
   const frameNote = extra => `<p class="frame-note" role="note"><b>${EDU_FRAME}</b> ${extra || 'Not official VA material. VA decides every claim.'}</p>`;
   function learnPage(pid) {
     const [id, name, h, lead, groups, tools] = pillarOf(pid);
@@ -6870,9 +6878,10 @@ ${quickPanelHTML(sel)}
         <div id="edu-results" aria-live="polite">${eduResultsHTML(UI.eduQ)}</div></section>
       <nav class="pillars" aria-label="Choose a part of the process">${PILLARS.map(p => `<button class="pillar-tab" data-go="learn.${p[0]}" aria-pressed="${p[0] === id}">${p[1]}</button>`).join('')}</nav>
       <section class="panel start-hero must-read" aria-labelledby="mr-h"><span class="eyebrow"><span aria-hidden="true">★</span> Must read · when your rating decision arrives</span><h2 id="mr-h" style="margin:2px 0 6px">Does your rating decision cover everything?</h2><p style="margin:0 0 10px">Nine questions, drawn from VA's public quality review guidance and the law, to check that your decision decided every claim and related issue, used the right exams, ratings, and effective dates, and addressed every theory you raised.</p><button class="btn primary" data-go="educ.decqual">Read the nine questions</button></section>
+      ${id === 'ratings' ? TT_FLAGSHIP : ''}
       <section class="panel pillar-body" aria-labelledby="pl-h"><h2 id="pl-h">${h}</h2><p class="muted" style="margin:0">${lead}</p>
         ${groups.map(([g, ids]) => `<div class="edu-group"><span class="eyebrow">${g}</span><ul class="learn-list">${ids.map(t => topic(t)).filter(Boolean).map(([t, title, sub]) => `<li><button class="learn-row" data-act="eduTopic" data-id="${t}"><span class="lr-text"><b>${title}</b>${updBadge(t)}<span>${sub}</span></span><span class="lr-go" aria-hidden="true">›</span></button></li>`).join('')}</ul></div>`).join('')}
-        <div class="edu-group"><span class="eyebrow">Interactive tools</span><ul class="learn-list">${tools.map(([r, title, sub]) => `<li><button class="learn-row${r === 'explain' ? ' featured' : ''}" data-go="${r}"><span class="lr-text">${r === 'explain' ? '<span class="pill t-info">New</span>' : ''}<b>${title}</b><span>${sub}</span></span><span class="lr-go" aria-hidden="true">›</span></button></li>`).join('')}</ul></div></section>
+        <div class="edu-group"><span class="eyebrow">Interactive tools</span><ul class="learn-list">${tools.map(([r, title, sub]) => isPage(r) ? `<li><a class="learn-row featured" href="${r}"><span class="lr-text"><span class="pill t-info">Flagship</span><b>${title}</b><span>${sub}</span></span><span class="lr-go" aria-hidden="true">›</span></a></li>` : `<li><button class="learn-row${r === 'explain' ? ' featured' : ''}" data-go="${r}"><span class="lr-text">${r === 'explain' ? '<span class="pill t-info">New</span>' : ''}<b>${title}</b><span>${sub}</span></span><span class="lr-go" aria-hidden="true">›</span></button></li>`).join('')}</ul></div></section>
       <section class="panel"><div class="spread"><div><span class="eyebrow">For trainers and service officers</span><h2 style="margin:2px 0 4px">Knowledge checks</h2><p class="muted" style="margin:0;font-size:.9rem">Short scenario questions on exams, benefits, and ratings, with the rule behind each answer. ${EDU_FRAME}</p></div><button class="btn" data-go="training">Open knowledge checks</button></div></section>
       <p class="muted" style="font-size:.86rem">Looking for the full list as VA's manual organizes it? <button class="btn link" data-go="educ">Provider education index</button></p>
       ${notice}</div>`;

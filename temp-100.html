@@ -1,0 +1,748 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="description" content="Free, independent educational timeline for VA temporary 100% ratings after a joint replacement, surgery, or a long hospital stay. Nothing you enter leaves your device.">
+<meta name="referrer" content="no-referrer"><meta name="theme-color" content="#1d5a70">
+<link rel="manifest" href="manifest.webmanifest"><link rel="icon" type="image/png" href="icons/favicon-32.png"><link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+<style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}[hidden]{display:none!important}img{max-width:100%}</style>
+<title>Temporary 100% Timeline</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<style>@font-face{font-family:'Public Sans';font-style:normal;font-weight:400;font-display:swap;src:url(fonts/public-sans-latin-400-normal.woff2) format('woff2')}@font-face{font-family:'Public Sans';font-style:normal;font-weight:500;font-display:swap;src:url(fonts/public-sans-latin-500-normal.woff2) format('woff2')}@font-face{font-family:'Public Sans';font-style:normal;font-weight:600;font-display:swap;src:url(fonts/public-sans-latin-600-normal.woff2) format('woff2')}@font-face{font-family:'Public Sans';font-style:normal;font-weight:700;font-display:swap;src:url(fonts/public-sans-latin-700-normal.woff2) format('woff2')}@font-face{font-family:'Source Serif 4';font-style:normal;font-weight:400;font-display:swap;src:url(fonts/source-serif-4-latin-400-normal.woff2) format('woff2')}@font-face{font-family:'Source Serif 4';font-style:normal;font-weight:600;font-display:swap;src:url(fonts/source-serif-4-latin-600-normal.woff2) format('woff2')}@font-face{font-family:'Source Serif 4';font-style:italic;font-weight:400;font-display:swap;src:url(fonts/source-serif-4-latin-400-italic.woff2) format('woff2')}@font-face{font-family:'Source Serif 4';font-style:italic;font-weight:600;font-display:swap;src:url(fonts/source-serif-4-latin-600-italic.woff2) format('woff2')}@font-face{font-family:'IBM Plex Mono';font-style:normal;font-weight:400;font-display:swap;src:url(fonts/ibm-plex-mono-latin-400-normal.woff2) format('woff2')}@font-face{font-family:'IBM Plex Mono';font-style:normal;font-weight:600;font-display:swap;src:url(fonts/ibm-plex-mono-latin-600-normal.woff2) format('woff2')}</style>
+<style>
+/* Layout: one reading column. Banner, header, three-step form, then a results sheet with a month-scaled timeline. ClaimReady's own tokens. */
+:root {
+  --paper: #f3f5f4; --surface: #ffffff; --sunk: #e9eeec; --ink: #16201d; --muted: #5a6763; --line: #d4dcd9;
+  --accent: #1d5a70; --accent-ink: #ffffff; --accent-soft: #dfecf0;
+  --ok: #2a774b; --ok-soft: #e0f0e6; --wait: #8a560a; --wait-soft: #f7ecd8; --bad: #b0352f; --bad-soft: #f8e2df;
+  --seg-conv: #327a90; --seg-dc: #1d5a70; --seg-hosp: #6f4a9e; --seg-res: #c9d3d0;
+  --f-ui: "Public Sans", "Segoe UI", system-ui, sans-serif;
+  --f-serif: "Source Serif 4", Georgia, "Times New Roman", serif;
+  --f-mono: "IBM Plex Mono", ui-monospace, Menlo, monospace;
+  --r: 6px;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --paper: #111816; --surface: #19211f; --sunk: #0d1312; --ink: #e4ebe8; --muted: #98a6a1; --line: #2b3633;
+  --accent: #72b6cf; --accent-ink: #0d1a1f; --accent-soft: #1b3038;
+  --ok: #62c189; --ok-soft: #173426; --wait: #e2a849; --wait-soft: #392b12; --bad: #ee7b72; --bad-soft: #3c1d1b;
+  --seg-conv: #2f7d98; --seg-dc: #1d5a70; --seg-hosp: #6f4a9e; --seg-res: #3a4743; color-scheme: dark; } }
+:root[data-theme="dark"] {
+  --paper: #111816; --surface: #19211f; --sunk: #0d1312; --ink: #e4ebe8; --muted: #98a6a1; --line: #2b3633;
+  --accent: #72b6cf; --accent-ink: #0d1a1f; --accent-soft: #1b3038;
+  --ok: #62c189; --ok-soft: #173426; --wait: #e2a849; --wait-soft: #392b12; --bad: #ee7b72; --bad-soft: #3c1d1b;
+  --seg-conv: #2f7d98; --seg-dc: #1d5a70; --seg-hosp: #6f4a9e; --seg-res: #3a4743; color-scheme: dark; }
+* { box-sizing: border-box; }
+[hidden] { display: none !important; }
+body { background: var(--paper); color: var(--ink); font-family: var(--f-ui); font-size: 0.95rem; line-height: 1.5; }
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 10; background: var(--ink); }
+.wrap { max-width: 760px; margin: 0 auto; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+.banner { background: var(--ink); color: var(--paper); font-size: 0.8rem; }
+.banner .wrap { padding-block: 8px; }
+header.top { padding-block: 24px 8px; display: grid; gap: 8px; }
+h1, h2, h3 { font-family: var(--f-serif); font-weight: 600; margin: 0; line-height: 1.2; text-wrap: balance; }
+h1 { font-size: 1.9rem; letter-spacing: -0.01em; }
+h2 { font-size: 1.3rem; }
+h3 { font-size: 1.02rem; }
+p { margin: 0; }
+a { color: var(--accent); }
+.muted { color: var(--muted); }
+.mono, .num { font-family: var(--f-mono); font-variant-numeric: tabular-nums; font-size: 0.88em; }
+.eyebrow { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.09em; text-transform: uppercase; color: var(--muted); }
+.crumbs { display: flex; flex-wrap: wrap; gap: 6px 14px; align-items: baseline; }
+.crumbs a { font-weight: 600; font-size: .9rem; text-decoration: none; }
+.crumbs a:hover { text-decoration: underline; }
+.notes { display: grid; gap: 14px; }
+.notes section { display: grid; gap: 8px; border-top: 1px solid var(--line); padding-top: 12px; }
+.notes section:first-of-type { border-top: 0; padding-top: 0; }
+.notes ol, .notes ul { margin: 0; padding-left: 0; list-style: none; display: grid; gap: 8px; }
+.notes li { font-family: var(--f-serif); font-size: .98rem; line-height: 1.55; }
+.notes li b { font-family: var(--f-ui); font-size: .82rem; letter-spacing: .02em; }
+.tag { display: inline-block; font-size: .7rem; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; padding: 1px 7px; border-radius: 4px; border: 1px solid currentColor; }
+.tag.law { color: var(--accent); } .tag.guide { color: var(--wait); }
+.example { display: flex; flex-wrap: wrap; gap: 8px 12px; align-items: center; background: var(--wait-soft); border: 1px solid var(--line); border-radius: var(--r); padding: 10px 12px; }
+.example b { font-weight: 600; }
+button, input, select { font: inherit; color: inherit; }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.btn { border: 1px solid var(--line); background: var(--surface); border-radius: var(--r); padding: 8px 14px; cursor: pointer; min-height: 44px; }
+.btn.primary { background: var(--accent); color: var(--accent-ink); border-color: var(--accent); font-weight: 600; }
+.btn.link { border: 0; background: none; color: var(--accent); text-decoration: underline; padding: 4px 0; min-height: 0; }
+main { display: grid; gap: 20px; padding-block: 16px 48px; }
+.steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; list-style: none; padding: 0; margin: 0; counter-reset: s; }
+.steps button { width: 100%; text-align: left; border: 0; border-top: 3px solid var(--line); background: none; padding: 8px 2px 0; cursor: pointer; color: var(--muted); font-size: 0.86rem; min-height: 44px; }
+.steps button[aria-current="step"] { border-top-color: var(--accent); color: var(--ink); font-weight: 600; }
+.steps .k { display: block; font-family: var(--f-mono); font-size: 0.75rem; }
+.panel { background: var(--surface); border: 1px solid var(--line); border-radius: var(--r); padding: 18px; display: grid; gap: 16px; min-width: 0; }
+fieldset { border: 0; padding: 0; margin: 0; display: grid; gap: 10px; min-width: 0; }
+legend { font-weight: 600; padding: 0; margin-bottom: 6px; }
+.grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px 16px; }
+.field { display: grid; gap: 4px; min-width: 0; }
+.field label { font-weight: 500; font-size: 0.9rem; }
+.field .hint { font-size: 0.8rem; color: var(--muted); }
+input[type="date"], input[type="number"], select { width: 100%; border: 1px solid var(--line); border-radius: var(--r); background: var(--paper); padding: 9px 10px; min-height: 44px; }
+.choices { display: grid; gap: 8px; }
+.choice { display: flex; gap: 10px; align-items: flex-start; border: 1px solid var(--line); border-radius: var(--r); padding: 10px 12px; cursor: pointer; background: var(--paper); }
+.choice:has(input:checked) { border-color: var(--accent); background: var(--accent-soft); }
+.choice input { margin-top: 4px; accent-color: var(--accent); }
+.choice small { display: block; color: var(--muted); }
+.nav { display: flex; gap: 10px; justify-content: space-between; flex-wrap: wrap; }
+table { border-collapse: collapse; width: 100%; font-size: 0.9rem; }
+th, td { text-align: left; padding: 7px 8px; border-bottom: 1px solid var(--line); vertical-align: top; }
+th { font-weight: 600; color: var(--muted); font-size: 0.78rem; letter-spacing: 0.04em; text-transform: uppercase; }
+.tscroll { overflow-x: auto; }
+.issues { display: grid; gap: 8px; list-style: none; padding: 0; margin: 0; }
+.issues li { border-left: 4px solid var(--line); background: var(--sunk); padding: 8px 10px; border-radius: 0 var(--r) var(--r) 0; }
+.issues li.stop { border-color: var(--bad); background: var(--bad-soft); }
+.issues li.review { border-color: var(--wait); background: var(--wait-soft); }
+.issues li.info { border-color: var(--accent); background: var(--accent-soft); }
+.confirm { display: flex; gap: 10px; align-items: flex-start; border: 2px solid var(--accent); border-radius: var(--r); padding: 12px; background: var(--accent-soft); font-weight: 500; }
+.confirm input { width: 20px; height: 20px; margin-top: 2px; accent-color: var(--accent); flex: none; }
+.important { border: 1px solid var(--line); border-radius: var(--r); padding: 12px; background: var(--sunk); font-size: 0.88rem; }
+.verdict { display: grid; gap: 6px; padding: 14px; border-radius: var(--r); border: 1px solid var(--line); }
+.verdict.ok { background: var(--ok-soft); } .verdict.review { background: var(--wait-soft); } .verdict.stop { background: var(--bad-soft); }
+.bar { display: flex; height: 34px; border-radius: var(--r); overflow: hidden; border: 1px solid var(--line); }
+.bar span { display: flex; align-items: center; justify-content: center; color: #fff; font-size: 0.72rem; font-weight: 600; white-space: nowrap; overflow: hidden; min-width: 0; }
+.bar .c30 { background: var(--seg-conv); } .bar .dc { background: var(--seg-dc); } .bar .hosp { background: var(--seg-hosp); } .bar .res { background: var(--seg-res); color: var(--ink); }
+.months { display: flex; justify-content: space-between; font-family: var(--f-mono); font-size: 0.72rem; color: var(--muted); margin-top: 4px; }
+.tl { list-style: none; padding: 0; margin: 0; display: grid; }
+.tl li { display: grid; grid-template-columns: 14px 1fr; gap: 12px; padding-bottom: 14px; position: relative; }
+.tl li::before { content: ""; position: absolute; left: 6px; top: 16px; bottom: 0; width: 2px; background: var(--line); }
+.tl li:last-child::before { display: none; }
+.tl .dot { width: 14px; height: 14px; border-radius: 50%; margin-top: 4px; background: var(--seg-res); border: 2px solid var(--surface); box-shadow: 0 0 0 1px var(--line); }
+.tl .dot.c30 { background: var(--seg-conv); } .tl .dot.dc { background: var(--seg-dc); } .tl .dot.hosp { background: var(--seg-hosp); } .tl .dot.fact { background: var(--surface); }
+.tl .when { font-family: var(--f-mono); font-size: 0.82rem; color: var(--muted); }
+.periods { display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 10px; }
+.period { border: 1px solid var(--line); border-radius: var(--r); padding: 12px; display: grid; gap: 4px; align-content: start; background: var(--paper); }
+.period .d { font-family: var(--f-mono); font-size: 0.9rem; font-variant-numeric: tabular-nums; }
+.chip { display: inline-block; font-size: 0.74rem; font-weight: 600; padding: 2px 8px; border-radius: 999px; border: 1px solid currentColor; white-space: nowrap; }
+.chip.confirmed, .chip.pass { color: var(--ok); } .chip.potential { color: var(--accent); } .chip.review { color: var(--wait); } .chip.none, .chip.fail { color: var(--muted); } .chip.failbad { color: var(--bad); }
+.screens { display: grid; gap: 10px; }
+.screen { border: 1px solid var(--line); border-radius: var(--r); padding: 12px; display: grid; gap: 6px; }
+.screen .h { display: flex; justify-content: space-between; gap: 8px; flex-wrap: wrap; align-items: baseline; }
+.cite { font-size: 0.8rem; color: var(--muted); }
+ol.calc { margin: 0; padding-left: 20px; display: grid; gap: 6px; }
+.qc { list-style: none; padding: 0; margin: 0; display: grid; gap: 4px; }
+.qc li { display: flex; justify-content: space-between; gap: 10px; border-bottom: 1px dashed var(--line); padding: 4px 0; }
+details { border: 1px solid var(--line); border-radius: var(--r); background: var(--surface); padding: 12px 14px; }
+summary { cursor: pointer; font-weight: 600; }
+details > div { margin-top: 12px; display: grid; gap: 10px; }
+footer { font-size: 0.82rem; color: var(--muted); display: grid; gap: 8px; padding-block: 0 40px; }
+@media (max-width: 520px) { h1 { font-size: 1.55rem; } .panel { padding: 14px; } }
+@media (prefers-reduced-motion: reduce) { * { scroll-behavior: auto !important; } }
+</style>
+
+</head><body><noscript>The Temporary 100% Timeline needs JavaScript turned on.</noscript>
+<div class="banner" role="note"><div class="wrap" id="banner">Independent educational tool. Not affiliated with or endorsed by the U.S. Department of Veterans Affairs. Not legal or medical advice. VA decides every claim.</div></div>
+
+<div class="wrap">
+  <header class="top">
+    <div class="crumbs"><a href="./#learn.ratings" id="backLink">← ClaimReady</a><span class="eyebrow"><span aria-hidden="true">★</span> Flagship tool · Ratings · Testing release</span></div>
+    <h1>Temporary 100% Timeline</h1>
+    <p class="muted">See how a joint replacement, a surgery recovery, or a hospital stay of more than 21 days can lead to a temporary 100% rating under public VA regulations: the months it covers, when it can start, when payment can start, and what comes after. It explains the rules; it does not decide anything.</p>
+    <div class="example" id="example"><span><b>You are looking at a fictional example.</b> Dana had a knee replacement in March 2025.</span><button class="btn link" type="button" id="clearBtn">Clear and enter your own</button></div>
+  </header>
+
+  <main>
+    <ol class="steps" aria-label="Steps">
+      <li><button type="button" data-go="1"><span class="k">Step 1</span>Treatment</button></li>
+      <li><button type="button" data-go="2"><span class="k">Step 2</span>Dates and claim</button></li>
+      <li><button type="button" data-go="3"><span class="k">Step 3</span>Review and results</button></li>
+    </ol>
+
+    <form id="f" novalidate>
+      <section class="panel" data-step="1" aria-labelledby="s1h">
+        <h2 id="s1h">What kind of treatment?</h2>
+        <fieldset>
+          <legend class="sr">Treatment type</legend>
+          <div class="choices">
+            <label class="choice"><input type="radio" name="pathway" id="pw-joint" value="joint"><span><b>Joint replacement or resurfacing</b><small>Shoulder, elbow, wrist, hip, knee, or ankle (38 C.F.R. § 4.71a, DCs 5051-5056)</small></span></label>
+            <label class="choice"><input type="radio" name="pathway" id="pw-conv" value="conv"><span><b>Recovery after surgery or a cast</b><small>Surgery needing at least a month of recovery, or a cast on a major joint (§ 4.30)</small></span></label>
+            <label class="choice"><input type="radio" name="pathway" id="pw-hosp" value="hosp"><span><b>Hospital stay of more than 21 days</b><small>For a service-connected condition, or one paid under 38 U.S.C. 1151 or 1160 (§ 4.29). Not used for joint replacement.</small></span></label>
+          </div>
+        </fieldset>
+        <div id="jointBox" class="grid">
+          <div class="field"><label for="dc">Joint</label><select id="dc" name="dc"><option value="">Choose</option><option value="5051">Shoulder (DC 5051)</option><option value="5052">Elbow (DC 5052)</option><option value="5053">Wrist (DC 5053)</option><option value="5054">Hip (DC 5054)</option><option value="5055">Knee (DC 5055)</option><option value="5056">Ankle (DC 5056)</option></select></div>
+          <div class="field" id="sideField"><label for="side">Arm</label><select id="side" name="side"><option value="major">Dominant (major)</option><option value="minor">Non-dominant (minor)</option></select><span class="hint">Arm ratings differ by side.</span></div>
+          <div class="field"><label for="procedure">Procedure</label><select id="procedure" name="procedure"><option value="">Choose</option><option value="total">Total replacement</option><option value="femhead">Hip: femoral head only</option><option value="acetab">Hip: acetabulum only</option><option value="resurfacing">Resurfacing (hip or knee)</option><option value="partial">Partial replacement (for example, one side of the knee)</option><option value="revision_all">Revision: all original parts replaced</option><option value="revision_partial">Revision: some parts replaced</option></select><span class="hint">Check the surgery report. The kind of procedure decides which rule applies.</span></div>
+        </div>
+        <div id="convBox" class="grid">
+          <div class="field"><label for="basis">Why recovery was needed</label><select id="basis" name="basis"><option value="a1">Surgery needing at least 1 month of recovery</option><option value="a2">Surgery with severe residuals (open wound, no weight bearing, house bound, wheelchair or crutches)</option><option value="a3">Cast on a major joint, no surgery</option><option value="none">None of these</option></select></div>
+        </div>
+        <div id="hospBox" class="grid">
+          <div class="field"><label for="alreadyTotal">Is this condition already rated 100%?</label><select id="alreadyTotal" name="alreadyTotal"><option value="no">No</option><option value="yes">Yes</option></select></div>
+          <div class="field"><label for="scTreatStart">Admitted for something else? Date treatment for the service-connected condition began</label><input type="date" id="scTreatStart" name="scTreatStart"><span class="hint">Leave blank if admitted for the service-connected condition.</span></div>
+        </div>
+        <div class="nav"><span></span><button type="button" class="btn primary" data-go="2">Next: dates and claim</button></div>
+      </section>
+
+      <section class="panel" data-step="2" aria-labelledby="s2h">
+        <h2 id="s2h">Dates and claim</h2>
+        <fieldset><legend>Treatment</legend>
+          <div class="grid">
+            <div class="field"><label for="admit" id="admitLabel">Admission or surgery date</label><input type="date" id="admit" name="admit"></div>
+            <div class="field"><label for="discharge">Discharge or release date</label><input type="date" id="discharge" name="discharge"><span class="hint">Outpatient: the day you were released.</span></div>
+            <div class="field"><label for="convMonths" id="convLabel">Months of recovery the discharge note documents</label><select id="convMonths" name="convMonths"><option value="0">Not stated</option><option value="1">1</option><option value="2">2</option><option value="3">3</option></select><span class="hint" id="convHint"></span></div>
+            <div class="field" id="ext1Field"><label for="ext1">Extension months approved (b)(1)</label><select id="ext1" name="ext1"><option value="0">None</option><option value="1">1</option><option value="2">2</option><option value="3">3</option></select></div>
+            <div class="field" id="ext2Field"><label for="ext2">Further extension beyond 6 months (b)(2)</label><select id="ext2" name="ext2"><option value="0">None</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option></select></div>
+          </div>
+        </fieldset>
+        <fieldset><legend>Your claim</legend>
+          <div class="grid">
+            <div class="field"><label for="sc">Was the condition service connected?</label><select id="sc" name="sc"><option value="unknown">Not sure</option><option value="yes">Yes, before the treatment</option><option value="original">Claim for service connection was pending</option><option value="no">No</option></select></div>
+            <div class="field" id="pendingField"><label for="pending">Was a claim for this condition already pending when you were treated?</label><select id="pending" name="pending"><option value="no">No</option><option value="yes">Yes</option><option value="unknown">Not sure</option></select></div>
+            <div class="field" id="scEffField"><label for="scEff">Service connection effective date (or original claim date)</label><input type="date" id="scEff" name="scEff"></div>
+            <div class="field"><label for="itf">Intent to file date, if any</label><input type="date" id="itf" name="itf"></div>
+            <div class="field"><label for="claim">Date VA received the claim</label><input type="date" id="claim" name="claim"></div>
+            <div class="field"><label for="priorRating">Rating before the treatment, if any (%)</label><input type="number" id="priorRating" name="priorRating" min="0" max="100" step="10" inputmode="numeric"></div>
+          </div>
+        </fieldset>
+        <fieldset><legend>Other benefits to check</legend>
+          <div class="grid">
+            <div class="field"><label for="other60">Do your other service-connected conditions combine to 60% or more?</label><select id="other60" name="other60"><option value="">Not sure</option><option value="yes">Yes</option><option value="no">No</option></select></div>
+            <div class="field" id="crutchField"><label for="crutches">Date a doctor said you need crutches permanently, if any</label><input type="date" id="crutches" name="crutches"></div>
+            <div class="field" id="surgeryField"><label for="surgery">Was there surgery during the stay?</label><select id="surgery" name="surgery"><option value="no">No</option><option value="yes">Yes</option></select></div>
+            <div class="field scarField"><label for="scarPainful">Is the surgical scar painful?</label><select id="scarPainful" name="scarPainful"><option value="">Not sure</option><option value="yes">Yes</option><option value="no">No</option></select></div>
+            <div class="field scarField"><label for="scarUnstable">Does the scar break open or lose skin covering?</label><select id="scarUnstable" name="scarUnstable"><option value="">Not sure</option><option value="yes">Yes</option><option value="no">No</option></select></div>
+          </div>
+        </fieldset>
+        <div class="nav"><button type="button" class="btn" data-go="1">Back</button><button type="button" class="btn primary" data-go="3">Next: review</button></div>
+      </section>
+
+      <section class="panel" data-step="3" aria-labelledby="s3h">
+        <h2 id="s3h">Review what you entered</h2>
+        <div class="tscroll"><table id="facts"><thead><tr><th scope="col">User-entered fact</th><th scope="col">Value</th></tr></thead><tbody></tbody></table></div>
+        <div id="issuesBox"></div>
+        <label class="confirm" for="ack"><input type="checkbox" id="ack" name="ack">I have reviewed the information entered and understand that I am responsible for verifying its accuracy.</label>
+        <div class="nav"><button type="button" class="btn" data-go="2">Edit dates</button><button type="button" class="btn" data-go="1">Edit treatment</button></div>
+      </section>
+    </form>
+
+    <section id="results" aria-live="polite" class="panel" hidden></section>
+
+    <details id="scen">
+      <summary>Validation scenarios (for reviewers)</summary>
+      <div><p class="muted">30 fictional scenarios with results worked out by hand before the code was written. Expected results were worked out by hand before the code. Some reflect answers from an experienced claims representative (October 2026); the rest still await review. A pass here is a software check, not legal validation.</p><div class="tscroll"><table id="scenTable"><thead><tr><th scope="col">#</th><th scope="col">Scenario</th><th scope="col">Result</th></tr></thead><tbody></tbody></table></div></div>
+    </details>
+
+    <section class="panel notes" aria-labelledby="notesH" id="notes">
+      <div><span class="eyebrow">Reference</span><h2 id="notesH">Rating schedule notes</h2><p class="muted" style="font-size:.88rem">The notes that are easiest to overlook, quoted from public sources.</p></div>
+      <section aria-labelledby="n1"><h3 id="n1">Prosthetic implants and resurfacing, DCs 5051-5056: current notes</h3><p><span class="tag law">Law</span> <span class="cite">38 C.F.R. § 4.71a, eCFR text as of Feb 27, 2026. These notes took effect Feb 7, 2021 (85 FR 76453).</span></p>
+        <ol>
+          <li><b>Note (1):</b> When an evaluation is assigned for joint resurfacing or the prosthetic replacement of a joint under diagnostic codes 5051-5056, an additional rating under <a href="https://www.ecfr.gov/current/title-38/section-4.71a" target="_blank" rel="noopener">§ 4.71a</a> may not also be assigned for that joint, unless otherwise directed.</li>
+          <li><b>Note (2):</b> Only evaluate a revision procedure in the same manner as the original procedure under diagnostic codes 5051-5056 if all the original components are replaced.</li>
+          <li><b>Note (3):</b> The term “prosthetic replacement” in diagnostic codes 5051-5053 and 5055-5056 means a total replacement of the named joint. However, in DC 5054, “prosthetic replacement” means a total replacement of the head of the femur or of the acetabulum.</li>
+          <li><b>Note (4):</b> The 100 percent rating for 1 year following implantation of prosthesis will commence after initial grant of the 1-month total rating assigned under <a href="https://www.ecfr.gov/current/title-38/section-4.30" target="_blank" rel="noopener">§ 4.30</a> following hospital discharge.</li>
+          <li><b>Note (5):</b> The 100 percent rating for 4 months following implantation of prosthesis or resurfacing under DCs 5054 and 5055 will commence after initial grant of the 1-month total rating assigned under <a href="https://www.ecfr.gov/current/title-38/section-4.30" target="_blank" rel="noopener">§ 4.30</a> following hospital discharge.</li>
+          <li><b>Note (6):</b> Special monthly compensation is assignable during the 100 percent rating period the earliest date permanent use of crutches is established.</li>
+        </ol></section>
+      <section aria-labelledby="n2"><h3 id="n2">DC 5054, hip resurfacing or replacement</h3><p><span class="tag law">Law</span> <span class="cite">38 C.F.R. § 4.71a, DC 5054</span></p>
+        <ul><li><b>Note:</b> At the conclusion of the 100 percent evaluation period, evaluate resurfacing under diagnostic codes 5250 through 5255; there is no minimum evaluation for resurfacing.</li></ul></section>
+      <section aria-labelledby="n3"><h3 id="n3">Prosthetic implants: notes before Feb 7, 2021</h3><p><span class="tag law">Law</span> <span class="cite">38 C.F.R. § 4.71a, eCFR text as of Feb 4, 2021. Surgeries before Feb 7, 2021 are governed by this version.</span></p>
+        <ol>
+          <li><b>Note (1):</b> The 100 pct rating for 1 year following implantation of prosthesis will commence after initial grant of the 1-month total rating assigned under <a href="https://www.ecfr.gov/on/2021-02-04/title-38/section-4.30" target="_blank" rel="noopener">§ 4.30</a> following hospital discharge.</li>
+          <li><b>Note (2):</b> Special monthly compensation is assignable during the 100 pct rating period the earliest date permanent use of crutches is established.</li>
+        </ol></section>
+      <section aria-labelledby="n4"><h3 id="n4">Hospital stays over 21 days, § 4.29</h3><p><span class="tag guide">VA guidance</span> <span class="cite">M21-1 VIII.iv.8.B.1.a, public VA manual, not binding law</span></p>
+        <ul>
+          <li>Provided a total, 100-percent rating cannot be assigned under other provisions of the rating schedule, assign a temporary 100-percent evaluation under <a href="https://www.ecfr.gov/current/title-38/section-4.29" target="_blank" rel="noopener">38 CFR 4.29</a> for periods of hospitalization at a Department of Veterans Affairs (VA) or an approved hospital or hospital observation at VA expense in excess of 21 days for medical treatment of a service-connected (SC) disability, or a disability requiring hospitalization in excess of 21 days for medical treatment for which compensation is payable under either <a href="https://www.law.cornell.edu/uscode/text/38/1151" target="_blank" rel="noopener">38 U.S.C. 1151</a> or <a href="https://www.law.cornell.edu/uscode/text/38/1160" target="_blank" rel="noopener">38 U.S.C. 1160</a>.</li>
+          <li><b>Note:</b> Competency must be addressed when assigning a temporary 100-percent evaluation for a mental disorder under <a href="https://www.ecfr.gov/current/title-38/section-4.29" target="_blank" rel="noopener">38 CFR 4.29</a>.</li>
+          <li><b>Note:</b> Hospitalization in a uniformed services facility (also known as military treatment facility) is considered an approved hospitalization for the purpose of determining entitlement to a temporary evaluation under <a href="https://www.ecfr.gov/current/title-38/section-4.29" target="_blank" rel="noopener">38 CFR 4.29</a>.</li>
+        </ul></section>
+    </section>
+  </main>
+
+  <footer>
+    <p><b>Important:</b> This summary is based on information you entered and calculations generated by ClaimReady. You are responsible for verifying that all facts, dates, and information are accurate. ClaimReady may contain errors, omissions, or incorrect calculations. This tool is for educational purposes only and does not replace an official VA determination.</p>
+    <p>ClaimReady is independent and educational. It is not VA and is not a substitute for an accredited representative, who can help at no cost. Everything you enter stays in this page and is never saved or sent; reloading or "Clear" erases it.</p>
+    <p id="rulesLine"></p>
+  </footer>
+</div>
+
+<script>/* Versioned rules. Changed only by hand after owner review. Checked against eCFR (up to date as of Oct 15, 2026) on Oct 19, 2026. */
+const TT_RULES = (() => {
+  const cur = {
+    '5051': { name: 'Shoulder', months: 12, minimum: [30, 20], residual: [['Severe painful motion or weakness', '60 / 50'], ['Intermediate weakness, pain or limited motion', 'by analogy to DCs 5200 and 5203'], ['Minimum', '30 / 20']] },
+    '5052': { name: 'Elbow', months: 12, minimum: [30, 20], residual: [['Severe painful motion or weakness', '50 / 40'], ['Intermediate weakness, pain or limited motion', 'by analogy to DCs 5205-5208'], ['Minimum', '30 / 20']] },
+    '5053': { name: 'Wrist', months: 12, minimum: [20, 20], residual: [['Severe painful motion or weakness', '40 / 30'], ['Intermediate weakness, pain or limited motion', 'by analogy to DC 5214'], ['Minimum', '20 / 20']] },
+    '5054': { name: 'Hip', months: 4, minimum: [30, 30], minTotalOnly: true, resurfacing: 'DCs 5250-5255', residual: [['Painful motion or weakness requiring crutches', '90 (SMC footnote)'], ['Markedly severe weakness, pain or limited motion', '70'], ['Moderately severe weakness, pain or limited motion', '50'], ['Minimum, total replacement only', '30']] },
+    '5055': { name: 'Knee', months: 4, minimum: [30, 30], minTotalOnly: true, resurfacing: 'DCs 5256-5262', residual: [['Severe painful motion or weakness', '60'], ['Intermediate weakness, pain or limited motion', 'by analogy to DCs 5256, 5261, or 5262'], ['Minimum, total replacement only', '30']] },
+    '5056': { name: 'Ankle', months: 12, minimum: [20, 20], residual: [['Severe painful motion or weakness', '40'], ['Intermediate weakness, pain or limited motion', 'by analogy to DCs 5270 or 5271'], ['Minimum', '20']] },
+  };
+  const prior = JSON.parse(JSON.stringify(cur));
+  ['5054', '5055'].forEach(k => { prior[k].months = 12; delete prior[k].resurfacing; delete prior[k].minTotalOnly; prior[k].residual = prior[k].residual.map(r => [r[0].replace(', total replacement only', ''), r[1]]); });
+  return {
+    checked: '2026-10-19',
+    versions: {
+      current: { id: 'current', label: 'Criteria effective Feb 7, 2021 and later', source: '85 FR 76453 (Nov 30, 2020)', joints: cur },
+      pre2021: { id: 'pre2021', label: 'Criteria in effect before Feb 7, 2021', source: '§ 4.71a as in effect Feb 4, 2021', joints: prior },
+    },
+    links: {
+      part4: 'https://www.ecfr.gov/current/title-38/chapter-I/part-4',
+      p331: 'https://www.ecfr.gov/current/title-38/chapter-I/part-3/section-3.31',
+      p3400: 'https://www.ecfr.gov/current/title-38/chapter-I/part-3/section-3.400',
+      p3401: 'https://www.ecfr.gov/current/title-38/chapter-I/part-3/section-3.401',
+      fr: 'https://regulations.justia.com/regulations/fedreg/2020/11/30/2020-25450.html',
+    },
+  };
+})();
+
+</script>
+<script>/* Temporary 100% engine. Pure functions, no DOM. Rules come only from TT_RULES; nothing is fetched. */
+const TT = (() => {
+  // ---------- Calendar dates (UTC, ISO yyyy-mm-dd) ----------
+  const parseD = s => { const [y, m, d] = s.split('-').map(Number); return new Date(Date.UTC(y, m - 1, d)); };
+  const iso = dt => dt.toISOString().slice(0, 10);
+  const valid = s => typeof s === 'string' && /^\d{4}-\d{2}-\d{2}$/.test(s) && iso(parseD(s)) === s;
+  const addDays = (s, n) => iso(new Date(parseD(s).getTime() + n * 86400000));
+  const daysBetween = (a, b) => Math.round((parseD(b) - parseD(a)) / 86400000);
+  const firstOfMonth = s => s.slice(0, 8) + '01';
+  const endOfMonth = s => { const d = parseD(s); return iso(new Date(Date.UTC(d.getUTCFullYear(), d.getUTCMonth() + 1, 0))); };
+  const firstOfNextMonth = s => addDays(endOfMonth(s), 1);
+  const addMonths = (s, n) => { const d = parseD(firstOfMonth(s)); return iso(new Date(Date.UTC(d.getUTCFullYear(), d.getUTCMonth() + n, 1))); };
+  // Last day of the Nth whole calendar month starting on the first-of-month `start`.
+  const endAfterMonths = (start, n) => endOfMonth(addMonths(start, n - 1));
+  const addYears = (s, n) => { const d = parseD(s); let r = new Date(Date.UTC(d.getUTCFullYear() + n, d.getUTCMonth(), d.getUTCDate())); if (r.getUTCMonth() !== d.getUTCMonth()) r = new Date(Date.UTC(d.getUTCFullYear() + n, d.getUTCMonth() + 1, 0)); return iso(r); };
+  const MON = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+  const fmt = s => { if (!s) return '—'; const d = parseD(s); return `${MON[d.getUTCMonth()]} ${d.getUTCDate()}, ${d.getUTCFullYear()}`; };
+  const sameMonth = (a, b) => a.slice(0, 7) === b.slice(0, 7);
+
+  const STATUS = { confirmed: 'Confirmed by Entered Facts', potential: 'Potentially Eligible', review: 'Requires Further Review', none: 'Not Indicated by Entered Facts' };
+  const CUTOVER = '2021-02-07';
+
+  function rulesFor(dc, surgery) {
+    const R = TT_RULES;
+    const ver = surgery < CUTOVER ? R.versions.pre2021 : R.versions.current;
+    return { ver, j: ver.joints[dc] };
+  }
+
+  // ---------- 1. Qualifying medical period ----------
+  function medical(q, out) {
+    const segs = [], notes = out.notes, issues = out.issues, cites = out.cites;
+    if (q.pathway === 'joint') {
+      const { ver, j } = rulesFor(q.dc, q.admit);
+      out.version = ver; out.joint = j;
+      cites.add('§ 4.71a, DC ' + q.dc); cites.add('§ 4.30'); cites.add('§ 3.401(h)(2)');
+      const proc = q.procedure;
+      let qualifies = false, why = '';
+      if (proc === 'total') { qualifies = true; why = 'a total replacement of the joint'; }
+      else if (proc === 'femhead' || proc === 'acetab') { qualifies = q.dc === '5054'; why = qualifies ? `a total replacement of the ${proc === 'femhead' ? 'head of the femur' : 'acetabulum'}, which counts as "prosthetic replacement" for the hip (Note 3)` : 'not a hip procedure'; }
+      else if (proc === 'resurfacing') { qualifies = !!j.resurfacing; why = qualifies ? 'resurfacing, which this DC covers' : (ver.id === 'pre2021' ? 'resurfacing, which the rating schedule did not cover before Feb 7, 2021' : 'resurfacing, which only the hip and knee codes cover'); }
+      else if (proc === 'revision_all') { qualifies = true; why = 'a revision that replaced all original components, rated like the original (Note 2)'; }
+      else if (proc === 'revision_partial') { why = 'a revision that did not replace all original components (Note 2)'; }
+      else if (proc === 'partial') { why = 'a partial replacement, which is not "prosthetic replacement" under Note 3'; }
+      out.qualifiesDC = qualifies;
+      notes.push(`Procedure: ${why}.`);
+      // § 4.30 month: admission through the end of one whole month counted from the first of the month after discharge.
+      const c30Start = q.admit, c30End = endAfterMonths(firstOfNextMonth(q.discharge), 1);
+      if (!qualifies) {
+        out.fallback = true;
+        notes.push(`It does not get the DC ${q.dc} 100% period. It may still qualify for a convalescent rating under § 4.30 if the records show at least one month of recovery. That rating is assigned under the diagnostic code already used for the joint (for a knee, usually DC 5260 or 5261).`);
+        return convalescence(q, out, segs);
+      }
+      segs.push({ kind: 'c30', label: '§ 4.30 convalescent rating', start: c30Start, end: c30End, pct: 100, cite: '§ 4.30; § 4.71a ' + (j.months === 12 ? 'Note (4)' : 'Note (5)') });
+      notes.push(`§ 4.30 starts on the admission date, ${fmt(c30Start)}, and runs through one whole month counted from the first of the month after discharge: ${fmt(c30End)}.`);
+      if (q.convMonths > 1) issues.push({ level: 'info', text: `You entered ${q.convMonths} months of recovery. For a qualifying replacement, § 4.30 is assigned for 1 month, and the DC ${q.dc} period starts right after it (Note ${j.months === 12 ? '(4)' : '(5)'}). The longer recovery is covered by the DC period.` });
+      if (daysBetween(q.admit, q.discharge) > 21) issues.push({ level: 'info', text: 'The stay ran more than 21 days. A joint replacement is rated under § 4.30 and the diagnostic code, not under § 4.29.' });
+      const dcStart = addDays(c30End, 1), dcEnd = endAfterMonths(dcStart, j.months);
+      segs.push({ kind: 'dc', label: `DC ${q.dc} 100% (${j.months === 12 ? '1 year' : '4 months'})`, start: dcStart, end: dcEnd, pct: 100, cite: `§ 4.71a, DC ${q.dc}` });
+      notes.push(`The DC ${q.dc} 100% period starts the next day, ${fmt(dcStart)}, and runs ${j.months === 12 ? '1 year' : '4 whole months'}, through ${fmt(dcEnd)}.`);
+      if (ver.id === 'pre2021') notes.push(`The surgery was before Feb 7, 2021, so the rating schedule in effect before that date governs, including its ${j.months === 12 ? '1-year' : j.months + '-month'} period, even where the period runs past Feb 7, 2021.`);
+      const resStart = addDays(dcEnd, 1);
+      let minimum = j.minimum ? j.minimum[q.side === 'minor' ? 1 : 0] : null;
+      let minNote = '';
+      if (proc === 'resurfacing') { minimum = null; minNote = `Resurfacing: rated under ${j.resurfacing}, with no minimum.`; }
+      else if (proc === 'femhead' || proc === 'acetab') minNote = 'Under Note (3), replacing the head of the femur or the acetabulum is a "prosthetic replacement" of the hip, so the 30% minimum for replacement applies.';
+      segs.push({ kind: 'res', label: 'Residual evaluation', start: resStart, end: null, pct: null, cite: `§ 4.71a, DC ${q.dc}` });
+      out.residual = { start: resStart, minimum, minNote, levels: j.residual, side: q.side, dc: q.dc, prior: q.priorRating };
+      out.dcStart = dcStart; out.dcEnd = dcEnd;
+      return segs;
+    }
+    if (q.pathway === 'conv') { cites.add('§ 4.30'); cites.add('§ 3.401(h)(2)'); return convalescence(q, out, segs); }
+    if (q.pathway === 'hosp') return hospital(q, out, segs);
+    return segs;
+  }
+
+  function convalescence(q, out, segs) {
+    const issues = out.issues, notes = out.notes;
+    out.cites.add('§ 4.30');
+    const base = +q.convMonths || 0, e1 = +q.ext1 || 0, e2 = +q.ext2 || 0;
+    if (!base) { issues.push({ level: 'stop', text: 'Enter how many months of recovery the discharge or release note documents (1, 2, or 3). The tool does not assume a number.' }); return segs; }
+    if (q.basis === 'none') { issues.push({ level: 'stop', text: '§ 4.30 needs surgery requiring at least a month of recovery, surgery with severe residuals, or a cast on a major joint. None was selected.' }); return segs; }
+    if (base > 3) issues.push({ level: 'stop', text: 'The first § 4.30 grant is 1, 2, or 3 months.' });
+    if (e1 > 3) issues.push({ level: 'stop', text: 'Extensions under § 4.30(b)(1) are 1, 2, or 3 months beyond the first 3.' });
+    if (e1 && base < 3) issues.push({ level: 'review', text: 'An extension under (b)(1) comes after the first 3 months. With fewer than 3 months first, VA would usually extend the initial grant instead. The dates are the same.' });
+    if (e2) {
+      if (q.basis === 'a1') issues.push({ level: 'stop', text: 'Extensions beyond 6 months are allowed only under § 4.30(a)(2) or (a)(3), not (a)(1).' });
+      if (base + e1 < 6) issues.push({ level: 'review', text: 'An extension under (b)(2) applies beyond the first 6 months.' });
+      if (e2 > 6) issues.push({ level: 'stop', text: 'Extensions under (b)(2) are up to 6 months.' });
+      issues.push({ level: 'info', text: 'Extensions under (b)(2) need approval by the Veterans Service Center Manager.' });
+    }
+    const total = base + e1 + e2;
+    const start = q.admit, end = endAfterMonths(firstOfNextMonth(q.discharge), total);
+    segs.push({ kind: 'c30', label: `§ 4.30 convalescent rating (${total} month${total > 1 ? 's' : ''})`, start, end, pct: 100, cite: '§ 4.30' + (e1 || e2 ? '(b)' : '(a)') });
+    notes.push(`§ 4.30 starts on the admission or treatment date, ${fmt(start)}, and runs ${total} whole month${total > 1 ? 's' : ''} from the first of the month after discharge or release, through ${fmt(end)}.`);
+    segs.push({ kind: 'res', label: 'Schedular evaluation resumes', start: addDays(end, 1), end: null, pct: null, cite: '§ 4.30' });
+    out.residual = { start: addDays(end, 1), prior: q.priorRating };
+    return segs;
+  }
+
+  function hospital(q, out, segs) {
+    const issues = out.issues, notes = out.notes;
+    out.cites.add('§ 4.29'); out.cites.add('§ 3.401(h)(1)');
+    const start = q.scTreatStart && valid(q.scTreatStart) ? q.scTreatStart : q.admit;
+    if (q.scTreatStart && (q.scTreatStart < q.admit || q.scTreatStart > q.discharge)) issues.push({ level: 'stop', text: 'The date service-connected treatment began is outside the hospital stay.' });
+    const days = daysBetween(start, q.discharge);
+    out.hospDays = days;
+    if (q.alreadyTotal === 'yes') { issues.push({ level: 'stop', text: '§ 4.29 does not apply when the disability is already rated 100% (M21-1 VIII.iv.8.B.1.c).' }); return segs; }
+    if (days <= 21) {
+      out.hospShort = true;
+      issues.push({ level: days >= 20 ? 'review' : 'info', text: `The stay counts ${days} days from ${q.scTreatStart ? 'the start of service-connected treatment' : 'admission'} to discharge. § 4.29 needs more than 21. ${days >= 20 ? 'This is close; check how the days were counted. ' : ''}A surgery during the stay may qualify under § 4.30 instead.` });
+      return segs;
+    }
+    const e = +q.convMonths || 0, f = +q.ext1 || 0;
+    if (e > 3) issues.push({ level: 'stop', text: 'Convalescence under § 4.29(e) is 1, 2, or 3 months.' });
+    if (f > 3) issues.push({ level: 'stop', text: 'Extensions under § 4.29(f) are 1, 2, or 3 months beyond the first 3.' });
+    if (f) issues.push({ level: 'info', text: 'Extensions under § 4.29(f) need approval by the Veterans Service Center Manager.' });
+    const hEnd = endOfMonth(q.discharge);
+    segs.push({ kind: 'hosp', label: '§ 4.29 hospital rating', start, end: hEnd, pct: 100, cite: '§ 4.29(a)' });
+    notes.push(`The stay ran ${days} days, more than 21. § 4.29 starts ${q.scTreatStart ? 'the first day of service-connected treatment' : 'on the admission date'}, ${fmt(start)}, and ends the last day of the discharge month, ${fmt(hEnd)}.`);
+    let end = hEnd;
+    if (e + f) { const cs = addDays(hEnd, 1); end = endAfterMonths(cs, e + f); segs.push({ kind: 'c30', label: `§ 4.29(e) convalescence (${e + f} month${e + f > 1 ? 's' : ''})`, start: cs, end, pct: 100, cite: '§ 4.29(e)' + (f ? ', (f)' : '') }); notes.push(`Convalescence continues the 100% for ${e + f} more month${e + f > 1 ? 's' : ''}, through ${fmt(end)}.`); }
+    segs.push({ kind: 'res', label: 'Schedular evaluation resumes', start: addDays(end, 1), end: null, pct: null, cite: '§ 4.29' });
+    out.residual = { start: addDays(end, 1), prior: q.priorRating };
+    return segs;
+  }
+
+  // ---------- 2. Potential legal entitlement period ----------
+  function entitlement(q, out, ttStart, ttEnd) {
+    const issues = out.issues, notes = out.notes; out.cites.add('§ 3.400(o)(2)');
+    const lines = out.edSteps = [];
+    let doc = null;
+    if (q.itf && q.claim && q.itf > q.claim) issues.push({ level: 'review', text: `The intent to file (${fmt(q.itf)}) is after the claim (${fmt(q.claim)}). Check both dates.` });
+    if (q.claim) {
+      doc = q.claim;
+      if (q.itf && q.itf <= q.claim && q.claim <= addYears(q.itf, 1)) { doc = q.itf; out.cites.add('§ 3.155(b)'); lines.push(`The claim arrived within 1 year of the intent to file, so the date of claim is ${fmt(q.itf)}.`); }
+      else if (q.itf && q.itf <= q.claim) lines.push(`The intent to file (${fmt(q.itf)}) expired more than a year before the claim, so it does not set the date.`);
+    }
+    out.doc = doc;
+    if (q.sc === 'unknown' || !q.sc) { issues.push({ level: 'review', text: 'Service connection status was not entered. A temporary total applies only to a service-connected disability.' }); return { status: 'review' }; }
+    if (q.sc === 'no') { lines.push('A temporary total rating applies only to a service-connected disability. With no service connection and no pending claim, there is nothing to apply it to.'); return { status: 'none' }; }
+    if (q.sc === 'original') {
+      if (!q.scEff) { issues.push({ level: 'review', text: 'For an original claim, enter the effective date of service connection (or the date of the original claim if not decided yet).' }); return { status: 'review' }; }
+      out.cites.add('§ 3.400');
+      const s = q.scEff > ttStart ? q.scEff : ttStart;
+      lines.push(q.scEff > ttStart ? `Service connection starts ${fmt(q.scEff)}, after the period began, so only the part from then counts.` : `The period falls after the service connection effective date (${fmt(q.scEff)}). It is staged inside the original award, so ending it is not a reduction (Tatum v. Shinseki).`);
+      if (s > ttEnd) { lines.push('Service connection starts after the period ended.'); return { status: 'none' }; }
+      return { status: 'ok', start: s, end: ttEnd };
+    }
+    // Already service connected
+    if (q.pending === 'yes') { lines.push('A claim for this disability was already pending when the treatment happened, so the temporary total falls within it (M21-1 VIII.iv.8.C.1.e). Continuous pursuit keeps the original claim date (§ 3.2500(h)).'); return { status: 'ok', start: ttStart, end: ttEnd }; }
+    if (!doc) { issues.push({ level: 'review', text: 'Enter the date VA received the claim (or a report of hospitalization) so the effective date can be checked.' }); return { status: 'review' }; }
+    if (doc <= ttStart) { lines.push(`The date of claim (${fmt(doc)}) is on or before the treatment, so the full period is within the claim.`); return { status: 'ok', start: ttStart, end: ttEnd }; }
+    if (doc <= addYears(ttStart, 1)) { lines.push(`The date of claim (${fmt(doc)}) is within 1 year after the ${q.pathway === 'hosp' ? 'admission' : 'surgery or treatment'} (${fmt(ttStart)}), so the effective date can reach back to it (§ 3.400(o)(2)). A claim for a temporary total is a claim for increase.`); return { status: 'ok', start: ttStart, end: ttEnd }; }
+    lines.push(`The date of claim (${fmt(doc)}) is more than 1 year after the ${q.pathway === 'hosp' ? 'admission' : 'surgery or treatment'} (${fmt(ttStart)}), the event that starts the 1-year clock, so the date of claim controls (§ 3.400(o)(2)). A claim for a temporary total is a claim for increase.`);
+    if (doc > ttEnd) { lines.push(`The temporary 100% period ended ${fmt(ttEnd)}, before that date. It is not restarted by a later claim.`); return { status: 'none' }; }
+    return { status: 'ok', start: doc, end: ttEnd };
+  }
+
+  // ---------- 3. Potential payable period ----------
+  function payable(q, out, ent) {
+    out.cites.add('§ 3.31');
+    if (!ent.start) return null;
+    if (q.pathway === 'hosp' && sameMonth(ent.start, ent.end) && !out.segs.some(s => s.kind === 'c30')) {
+      out.cites.add('§ 3.31(c)(5)');
+      return { start: firstOfMonth(ent.start), end: ent.end, why: 'The whole § 4.29 period starts and ends in one calendar month, so payment starts the first of that month (§ 3.31(c)(5)).' };
+    }
+    const s = firstOfNextMonth(ent.start);
+    const why = `Payment starts the first of the month after the effective date (§ 3.31).` + (q.pathway === 'hosp' ? ' VA guidance (M21-1 VIII.iv.8.B.2.a) describes paying § 4.29 from the first of the month the stay began; the regulation allows that only when the whole period falls in one month.' : '');
+    if (s > ent.end) return { start: null, end: null, why: why + ' That date is after the period ended, so no month is payable at 100%.' };
+    return { start: s, end: ent.end, why };
+  }
+
+  // ---------- Screens ----------
+  function screens(q, out, ent) {
+    const S = [];
+    const win = ent.start ? `${fmt(ent.start)} to ${fmt(ent.end)}` : 'the temporary total period';
+    // SMC(s)
+    if (q.other60 === 'yes') S.push({ id: 'smcs', name: 'SMC(s), statutory housebound', status: ent.start ? 'confirmed' : 'review', text: `A temporary total plus other service-connected disabilities combining to 60% or more meets the housebound-rate screen during ${win}. Payable months follow § 3.31.`, cite: '38 U.S.C. 1114(s); § 3.350(i)(1); M21-1 VIII.iv.8.B.1.c' });
+    else if (q.other60 === 'no') S.push({ id: 'smcs', name: 'SMC(s), statutory housebound', status: 'none', text: 'The other ratings you entered do not combine to 60%. Housebound in fact (§ 3.350(i)(2)) needs a permanent 100%, which a temporary total is not.', cite: '§ 3.350(i)' });
+    else S.push({ id: 'smcs', name: 'SMC(s), statutory housebound', status: 'review', text: 'Not answered. If your other service-connected disabilities combine to 60% or more, SMC(s) may apply while the temporary total lasts.', cite: '§ 3.350(i)(1); M21-1 VIII.iv.8.C.3.b' });
+    if (q.pathway === 'joint' && out.qualifiesDC) {
+      if (q.crutches && valid(q.crutches)) {
+        const inside = out.dcStart && q.crutches >= q.admit && q.crutches <= out.dcEnd;
+        S.push({ id: 'crutch', name: 'SMC during the 100% period (crutches)', status: inside ? 'potential' : 'review', text: inside ? `Permanent crutch use from ${fmt(q.crutches)}, during the 100% period. Note (6) allows SMC from the earliest date that is established.${q.dc === '5054' ? ' After the hip period, the 90% level (crutches required) carries an SMC footnote.' : ''}` : 'The crutch date you entered is outside the 100% period. Check it.', cite: '§ 4.71a Note (6)' + (q.dc === '5054' ? '; DC 5054 footnote' : '') });
+      } else S.push({ id: 'crutch', name: 'SMC during the 100% period (crutches)', status: 'review', text: 'Not answered. If a doctor says you will need crutches permanently, Note (6) allows SMC from the earliest date that is established.', cite: '§ 4.71a Note (6)' });
+    }
+    // Scar
+    if (q.pathway !== 'hosp' || q.surgery === 'yes') {
+      const p = q.scarPainful, u = q.scarUnstable;
+      if (p === 'yes' || u === 'yes') S.push({ id: 'scar', name: 'Surgical scar', status: 'potential', text: `You reported a ${[p === 'yes' && 'painful', u === 'yes' && 'unstable'].filter(Boolean).join(' and ')} scar. Painful or unstable scars are rated by how many there are (DC 7804). A scar is outside § 4.71a, so Note (1) does not bar it.`, cite: '§ 4.118, DC 7804' });
+      else if (p === 'no' && u === 'no') S.push({ id: 'scar', name: 'Surgical scar', status: 'none', text: 'No pain or instability reported. A large or deep scar, or one that limits motion, can still be rated (DCs 7801, 7802, 7805).', cite: '§ 4.118, DCs 7801-7805' });
+      else S.push({ id: 'scar', name: 'Surgical scar', status: 'review', text: 'Not answered. A blank answer is not a "no." Tell your examiner if the scar hurts, breaks down, or limits motion.', cite: '§ 4.118, DCs 7801-7805' });
+    }
+    return S;
+  }
+
+  // ---------- Timeline checks ----------
+  function checkDates(q, issues) {
+    const need = [['admit', q.pathway === 'conv' ? 'surgery or treatment date' : 'admission or surgery date'], ['discharge', 'discharge or release date']];
+    need.forEach(([k, l]) => { if (!q[k]) issues.push({ level: 'stop', text: `Enter the ${l}.` }); else if (!valid(q[k])) issues.push({ level: 'stop', text: `The ${l} is not a real date.` }); });
+    ['claim', 'itf', 'scEff', 'crutches', 'scTreatStart'].forEach(k => { if (q[k] && !valid(q[k])) issues.push({ level: 'stop', text: `One of the dates (${k}) is not a real date.` }); });
+    if (valid(q.admit) && valid(q.discharge) && q.discharge < q.admit) issues.push({ level: 'stop', text: `The discharge date (${fmt(q.discharge)}) is before the admission date (${fmt(q.admit)}). Check both.` });
+    if (q.pathway === 'joint' && !q.dc) issues.push({ level: 'stop', text: 'Choose the joint.' });
+    if (q.pathway === 'joint' && !q.procedure) issues.push({ level: 'stop', text: 'Choose the kind of procedure.' });
+  }
+
+  // ---------- Run ----------
+  function run(q, today) {
+    const out = { notes: [], issues: [], cites: new Set(), segs: [] };
+    checkDates(q, out.issues);
+    if (out.issues.some(i => i.level === 'stop')) return finish(out, q);
+    if (today && q.discharge > today) out.issues.push({ level: 'info', text: 'The discharge date is in the future. The dates below are a projection.' });
+    out.segs = medical(q, out);
+    const tt = out.segs.filter(s => s.pct === 100);
+    if (!tt.length || out.issues.some(i => i.level === 'stop')) return finish(out, q);
+    const ttStart = tt[0].start, ttEnd = tt[tt.length - 1].end;
+    out.medical = { start: ttStart, end: ttEnd };
+    out.ent = entitlement(q, out, ttStart, ttEnd);
+    out.pay = out.ent.start ? payable(q, out, out.ent) : null;
+    out.screens = screens(q, out, out.ent);
+    return finish(out, q);
+  }
+
+  function finish(out, q) {
+    const stop = out.issues.some(i => i.level === 'stop');
+    const review = out.issues.some(i => i.level === 'review') || (out.ent && out.ent.status === 'review');
+    out.overall = stop ? 'stop' : review ? 'review' : 'ok';
+    out.qc = qc(out, q);
+    out.cites = [...out.cites];
+    return out;
+  }
+
+  function qc(out, q) {
+    const has = !!out.medical, c = (t, ok) => ({ t, s: ok === null ? 'review' : ok ? 'pass' : 'fail' });
+    return [
+      c('Regulation and diagnostic code selected', has || out.fallback ? true : false),
+      c('Regulatory version matched to the treatment date', has ? !(out.issues.some(i => /Feb 7, 2021/.test(i.text))) || null : false),
+      c('Procedure fits a supported pathway', has),
+      c('Start and end dates use whole calendar months', has),
+      c('Claim and intent-to-file dates considered', out.ent ? (out.ent.status === 'review' ? null : true) : false),
+      c('Payment start kept separate from the effective date', !!out.pay || (out.ent && out.ent.status === 'none')),
+      c('Date the next evaluation begins identified', !!out.residual),
+      c('SMC screened', !!out.screens),
+      c('Surgical scar screened', !!out.screens && (q.pathway === 'hosp' || out.screens.some(s => s.id === 'scar'))),
+      c('Missing or conflicting facts listed', true),
+    ];
+  }
+
+  return { run, fmt, addDays, daysBetween, endOfMonth, firstOfNextMonth, valid, STATUS };
+})();
+
+</script>
+<script>/* Validation library. Expected results were worked out by hand from the Phase 1 decision table, before the code.
+   They are proposals until the owner marks them right. Never edit an expected value to make a test pass. */
+const TT_SCENARIOS = (() => {
+  const K = { pathway: 'joint', dc: '5055', side: 'major', procedure: 'total', admit: '2025-03-10', discharge: '2025-03-13', convMonths: 1, sc: 'yes', pending: 'no', claim: '2025-04-01' };
+  const J = o => Object.assign({}, K, o);
+  return [
+    { n: 1, name: 'Knee replacement (M21-1 example 1)', q: J({}), exp: { c30: ['2025-03-10', '2025-04-30'], dc: ['2025-05-01', '2025-08-31'], res: '2025-09-01', pay: '2025-04-01', min: 30 } },
+    { n: 2, name: 'Knee, discharge in the next month (M21-1 example 2)', q: J({ admit: '2025-03-30', discharge: '2025-04-02' }), exp: { c30: ['2025-03-30', '2025-05-31'], dc: ['2025-06-01', '2025-09-30'], res: '2025-10-01', pay: '2025-04-01' } },
+    { n: 3, name: 'Shoulder, major arm', q: J({ dc: '5051', admit: '2025-06-16', discharge: '2025-06-18', claim: '2025-07-01' }), exp: { c30: ['2025-06-16', '2025-07-31'], dc: ['2025-08-01', '2026-07-31'], res: '2026-08-01', pay: '2025-07-01', min: 30 } },
+    { n: 4, name: 'Hip, December to January', q: J({ dc: '5054', admit: '2025-12-29', discharge: '2026-01-02', claim: '2026-01-15' }), exp: { c30: ['2025-12-29', '2026-02-28'], dc: ['2026-03-01', '2026-06-30'], res: '2026-07-01', pay: '2026-01-01' } },
+    { n: 5, name: 'Hip, leap year', q: J({ dc: '5054', admit: '2027-12-28', discharge: '2027-12-31', claim: '2028-01-05' }), exp: { c30: ['2027-12-28', '2028-01-31'], dc: ['2028-02-01', '2028-05-31'], res: '2028-06-01', pay: '2028-01-01' } },
+    { n: 6, name: 'Ankle, same-month discharge', q: J({ dc: '5056', admit: '2025-02-03', discharge: '2025-02-05', claim: '2025-02-20' }), exp: { c30: ['2025-02-03', '2025-03-31'], dc: ['2025-04-01', '2026-03-31'], res: '2026-04-01', pay: '2025-03-01', min: 20 } },
+    { n: 7, name: 'Wrist, minor arm, outpatient, month-end', q: J({ dc: '5053', side: 'minor', admit: '2025-08-29', discharge: '2025-08-29', claim: '2025-09-02' }), exp: { c30: ['2025-08-29', '2025-09-30'], dc: ['2025-10-01', '2026-09-30'], pay: '2025-09-01', min: 20 } },
+    { n: 8, name: 'Elbow, minor arm', q: J({ dc: '5052', side: 'minor', admit: '2026-01-14', discharge: '2026-01-16', claim: '2026-01-20' }), exp: { c30: ['2026-01-14', '2026-02-28'], dc: ['2026-03-01', '2027-02-28'], min: 20 } },
+    { n: 9, name: 'Knee resurfacing', q: J({ procedure: 'resurfacing', admit: '2025-05-05', discharge: '2025-05-07', claim: '2025-05-20' }), exp: { c30: ['2025-05-05', '2025-06-30'], dc: ['2025-07-01', '2025-10-31'], res: '2025-11-01', min: null } },
+    { n: 10, name: 'Full knee revision, all parts replaced', q: J({ procedure: 'revision_all' }), exp: { c30: ['2025-03-10', '2025-04-30'], dc: ['2025-05-01', '2025-08-31'] } },
+    { n: 11, name: 'Partial knee revision, liner only', q: J({ procedure: 'revision_partial' }), exp: { dc: null, c30: ['2025-03-10', '2025-04-30'] } },
+    { n: 12, name: 'Partial (unicompartmental) knee', q: J({ procedure: 'partial' }), exp: { dc: null, c30: ['2025-03-10', '2025-04-30'] } },
+    { n: 13, name: 'Hip, femoral head only', q: J({ dc: '5054', procedure: 'femhead' }), exp: { dc: ['2025-05-01', '2025-08-31'], min: 30, overall: 'ok' } },
+    { n: 14, name: 'Knee before the 2021 rule', q: J({ admit: '2020-10-05', discharge: '2020-10-08', claim: '2020-10-20' }), exp: { dc: ['2020-12-01', '2021-11-30'], res: '2021-12-01', overall: 'ok' } },
+    { n: 15, name: 'Increase claim within a year after surgery', q: J({ claim: '2026-02-15' }), exp: { ent: ['2025-03-10', '2025-08-31'], pay: '2025-04-01' } },
+    { n: 16, name: 'Claim more than a year after surgery', q: J({ claim: '2026-06-01' }), exp: { entStatus: 'none', pay: null } },
+    { n: 17, name: 'Intent to file sets the date', q: J({ itf: '2026-01-10', claim: '2026-09-01' }), exp: { ent: ['2025-03-10', '2025-08-31'] } },
+    { n: 18, name: 'Shoulder, late claim during the DC period', q: J({ dc: '5051', admit: '2025-06-16', discharge: '2025-06-18', claim: '2026-07-10' }), exp: { ent: ['2026-07-10', '2026-07-31'], pay: null, overall: 'ok' } },
+    { n: 19, name: 'Increase claim already pending at surgery', q: J({ pending: 'yes', claim: '2025-01-15' }), exp: { ent: ['2025-03-10', '2025-08-31'] } },
+    { n: 20, name: 'Original claim pending; surgery during it', q: J({ sc: 'original', scEff: '2024-11-01', claim: '2024-11-01' }), exp: { ent: ['2025-03-10', '2025-08-31'] } },
+    { n: 21, name: '§ 4.30 outpatient, 2 months documented', q: { pathway: 'conv', basis: 'a1', admit: '2025-05-20', discharge: '2025-05-20', convMonths: 2, sc: 'yes', pending: 'no', claim: '2025-06-10' }, exp: { c30: ['2025-05-20', '2025-07-31'], res: '2025-08-01', pay: '2025-06-01' } },
+    { n: 22, name: '§ 4.30 with extension', q: { pathway: 'conv', basis: 'a1', admit: '2025-01-08', discharge: '2025-01-10', convMonths: 3, ext1: 2, sc: 'yes', pending: 'no', claim: '2025-01-20' }, exp: { c30: ['2025-01-08', '2025-06-30'] } },
+    { n: 23, name: '§ 4.29 across months', q: { pathway: 'hosp', admit: '2025-04-10', discharge: '2025-05-20', convMonths: 0, sc: 'yes', pending: 'no', claim: '2025-05-25' }, exp: { hosp: ['2025-04-10', '2025-05-31'], res: '2025-06-01', pay: '2025-05-01' } },
+    { n: 24, name: '§ 4.29 within one month (M21-1 example)', q: { pathway: 'hosp', admit: '2014-03-04', discharge: '2014-03-28', convMonths: 0, sc: 'yes', pending: 'no', claim: '2014-03-04' }, exp: { hosp: ['2014-03-04', '2014-03-31'], res: '2014-04-01', pay: '2014-03-01' } },
+    { n: 25, name: '§ 4.29 exactly 21 days', q: { pathway: 'hosp', admit: '2025-04-01', discharge: '2025-04-22', convMonths: 0, sc: 'yes', pending: 'no', claim: '2025-04-25' }, exp: { hosp: null, overall: 'review' } },
+    { n: 26, name: 'Knee replacement with a 36-day stay (§ 4.29 not used)', q: J({ discharge: '2025-04-15' }), exp: { c30: ['2025-03-10', '2025-05-31'], dc: ['2025-06-01', '2025-09-30'], hosp: null, overall: 'ok' } },
+    { n: 31, name: 'Knee replacement, 3 months of recovery documented', q: J({ convMonths: 3 }), exp: { c30: ['2025-03-10', '2025-04-30'], dc: ['2025-05-01', '2025-08-31'], overall: 'ok' } },
+    { n: 27, name: 'SMC(s)', q: J({ other60: 'yes' }), exp: { screen: ['smcs', 'confirmed'] } },
+    { n: 28, name: 'Crutches, hip', q: J({ dc: '5054', admit: '2025-12-29', discharge: '2026-01-02', claim: '2026-01-15', crutches: '2026-04-15' }), exp: { screen: ['crutch', 'potential'] } },
+    { n: 29, name: 'Painful scar; unstable left blank', q: J({ scarPainful: 'yes' }), exp: { screen: ['scar', 'potential'] } },
+    { n: 30, name: 'Bad dates', q: J({ admit: '2025-03-13', discharge: '2025-03-10' }), exp: { overall: 'stop' } },
+  ];
+})();
+
+function ttRunScenarios(TT, S) {
+  return S.map(sc => {
+    const r = TT.run(sc.q), e = sc.exp, fails = [];
+    const seg = k => { const s = r.segs.find(x => x.kind === k); return s ? [s.start, s.end] : null; };
+    const eq = (label, a, b) => { if (JSON.stringify(a) !== JSON.stringify(b)) fails.push(`${label}: expected ${JSON.stringify(b)}, got ${JSON.stringify(a)}`); };
+    if ('c30' in e) eq('§ 4.30', seg('c30'), e.c30);
+    if ('dc' in e) eq('DC period', seg('dc'), e.dc);
+    if ('hosp' in e) eq('§ 4.29', seg('hosp'), e.hosp);
+    if ('res' in e) eq('Next evaluation', (r.residual || {}).start || null, e.res);
+    if ('pay' in e) eq('Payment start', r.pay ? r.pay.start : null, e.pay);
+    if ('min' in e) eq('Minimum', r.residual ? (r.residual.minimum ?? null) : undefined, e.min);
+    if ('ent' in e) eq('Entitlement', r.ent && r.ent.start ? [r.ent.start, r.ent.end] : null, e.ent);
+    if ('entStatus' in e) eq('Entitlement status', r.ent && r.ent.status, e.entStatus);
+    if ('overall' in e) eq('Overall', r.overall, e.overall);
+    if ('screen' in e) { const s = (r.screens || []).find(x => x.id === e.screen[0]); eq(e.screen[0], s && s.status, e.screen[1]); }
+    return { n: sc.n, name: sc.name, pass: !fails.length, fails };
+  });
+}
+
+</script>
+<script>
+(() => {
+  const f = document.getElementById('f'), $ = id => document.getElementById(id);
+  const DANA = { pathway: 'joint', dc: '5055', side: 'major', procedure: 'total', admit: '2025-03-10', discharge: '2025-03-13', convMonths: '1', sc: 'yes', pending: 'no', claim: '2026-02-15', priorRating: '20', other60: '', scarPainful: 'yes', scarUnstable: '', basis: 'a1', alreadyTotal: 'no', surgery: 'no', ext1: '0', ext2: '0' };
+  let step = 3;
+  const esc = s => String(s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' })[c]);
+  const fmt = TT.fmt;
+
+  function fill(o) {
+    f.reset();
+    Object.entries(o).forEach(([k, v]) => { const el = f.elements[k]; if (!el) return; if (el instanceof RadioNodeList) { [...el].forEach(r => r.checked = r.value === v); } else el.value = v; });
+  }
+  function read() {
+    const q = {}; [...f.elements].forEach(el => { if (!el.name || el.name === 'ack') return; if (el.type === 'radio') { if (el.checked) q[el.name] = el.value; } else q[el.name] = el.value; });
+    ['convMonths', 'ext1', 'ext2'].forEach(k => q[k] = +q[k] || 0);
+    q.priorRating = q.priorRating === '' ? null : +q.priorRating;
+    if (q.pathway !== 'hosp') q.scTreatStart = '';
+    return q;
+  }
+  function show(id, on) { const el = $(id); if (el) el.hidden = !on; }
+  function sync() {
+    const q = read(), p = q.pathway;
+    show('jointBox', p === 'joint'); show('convBox', p === 'conv'); show('hospBox', p === 'hosp');
+    show('sideField', ['5051', '5052', '5053'].includes(q.dc));
+    show('ext1Field', p !== 'joint'); show('ext2Field', p === 'conv');
+    show('crutchField', p === 'joint'); show('surgeryField', p === 'hosp');
+    document.querySelectorAll('.scarField').forEach(e => e.hidden = p === 'hosp' && q.surgery !== 'yes');
+    show('pendingField', q.sc === 'yes'); show('scEffField', q.sc === 'original');
+    $('admitLabel').textContent = p === 'conv' ? 'Surgery or treatment date' : p === 'hosp' ? 'Admission date' : 'Admission or surgery date';
+    $('convHint').textContent = p === 'joint' ? 'For a qualifying replacement, § 4.30 is 1 month and the DC period follows. This matters only if the procedure does not qualify.' : '';
+    $('convLabel').textContent = p === 'hosp' ? 'Months of convalescence after discharge (§ 4.29(e))' : p === 'joint' ? 'Months of recovery the discharge note documents' : 'Months of recovery the discharge note documents';
+    document.querySelector('label[for="ext1"]').textContent = p === 'hosp' ? 'Extension months approved (§ 4.29(f))' : 'Extension months approved (§ 4.30(b)(1))';
+  }
+  function go(n) {
+    step = n;
+    document.querySelectorAll('[data-step]').forEach(s => s.hidden = +s.dataset.step !== n);
+    document.querySelectorAll('.steps button').forEach(b => b.toggleAttribute('aria-current', +b.dataset.go === n) || (+b.dataset.go === n && b.setAttribute('aria-current', 'step')));
+    document.querySelectorAll('.steps button').forEach(b => { if (+b.dataset.go === n) b.setAttribute('aria-current', 'step'); else b.removeAttribute('aria-current'); });
+    render();
+  }
+
+  const PLAB = { joint: 'Joint replacement or resurfacing', conv: 'Recovery after surgery or a cast (§ 4.30)', hosp: 'Hospital stay over 21 days (§ 4.29)' };
+  const PROC = { total: 'Total replacement', femhead: 'Hip: femoral head only', acetab: 'Hip: acetabulum only', resurfacing: 'Resurfacing', partial: 'Partial replacement', revision_all: 'Revision, all parts replaced', revision_partial: 'Revision, some parts replaced' };
+  const SC = { unknown: 'Not sure', yes: 'Yes, before the treatment', original: 'Claim for service connection was pending', no: 'No' };
+  const YN = v => v === 'yes' ? 'Yes' : v === 'no' ? 'No' : 'Not answered';
+
+  function factRows(q) {
+    const R = [['Treatment', PLAB[q.pathway] || 'Not chosen']];
+    if (q.pathway === 'joint') { R.push(['Joint', q.dc ? `${TT_RULES.versions.current.joints[q.dc].name} (DC ${q.dc})${['5051', '5052', '5053'].includes(q.dc) ? ', ' + (q.side === 'minor' ? 'non-dominant arm' : 'dominant arm') : ''}` : 'Not chosen']); R.push(['Procedure', PROC[q.procedure] || 'Not chosen']); }
+    if (q.pathway === 'hosp' && q.scTreatStart) R.push(['Service-connected treatment began', fmt(q.scTreatStart)]);
+    R.push([q.pathway === 'hosp' ? 'Admission' : 'Admission or surgery', fmt(q.admit)], ['Discharge or release', fmt(q.discharge)]);
+    R.push(['Recovery months documented', q.convMonths ? String(q.convMonths) : 'Not stated']);
+    if (q.ext1) R.push(['Extension months', String(q.ext1)]); if (q.ext2) R.push(['Further extension months', String(q.ext2)]);
+    R.push(['Service connected', SC[q.sc]]);
+    if (q.sc === 'yes') R.push(['Claim already pending at treatment', YN(q.pending)]);
+    if (q.sc === 'original') R.push(['Service connection effective date', fmt(q.scEff)]);
+    R.push(['Intent to file', q.itf ? fmt(q.itf) : 'None entered'], ['Claim received', q.claim ? fmt(q.claim) : 'Not entered'], ['Rating before treatment', q.priorRating == null ? 'Not entered' : q.priorRating + '%']);
+    R.push(['Other conditions combine to 60%+', YN(q.other60)]);
+    if (q.pathway === 'joint') R.push(['Permanent crutches from', q.crutches ? fmt(q.crutches) : 'Not entered']);
+    if (q.pathway !== 'hosp' || q.surgery === 'yes') R.push(['Scar painful', YN(q.scarPainful)], ['Scar unstable', YN(q.scarUnstable)]);
+    return R;
+  }
+
+  function issueList(list) {
+    if (!list.length) return '<p class="muted">No missing or conflicting dates found.</p>';
+    const L = { stop: 'Fix before results', review: 'Needs review', info: 'Note' };
+    return `<h3>Potential issues</h3><ul class="issues">${list.map(i => `<li class="${i.level}"><span class="eyebrow">${L[i.level]}</span><br>${esc(i.text)}</li>`).join('')}</ul>`;
+  }
+
+  function bar(segs) {
+    const end = segs.filter(s => s.end).slice(-1)[0];
+    if (!end) return '';
+    const start = segs[0].start, tail = TT.endOfMonth(TT.addDays(end.end, 40));
+    const total = TT.daysBetween(start, tail) + 1;
+    const parts = segs.map(s => { const e = s.end || tail; const d = TT.daysBetween(s.start, e) + 1; const short = { c30: '§ 4.30', dc: '100%', hosp: '§ 4.29', res: 'After' }[s.kind]; return `<span class="${s.kind}" style="flex:${d}" title="${esc(s.label)}">${d / total > 0.08 ? short : ''}</span>`; }).join('');
+    return `<div aria-hidden="true"><div class="bar">${parts}</div><div class="months"><span>${fmt(start)}</span><span>${fmt(end.end)}</span></div></div>`;
+  }
+
+  function timeline(q, r) {
+    const ev = [];
+    if (q.itf) ev.push({ d: q.itf, k: 'fact', t: 'Intent to file', s: 'You entered' });
+    if (q.claim) ev.push({ d: q.claim, k: 'fact', t: 'Claim received', s: 'You entered' });
+    ev.push({ d: q.admit, k: 'fact', t: q.pathway === 'hosp' ? 'Admitted' : 'Admitted or surgery', s: 'You entered' });
+    ev.push({ d: q.discharge, k: 'fact', t: 'Discharged or released', s: 'You entered' });
+    r.segs.forEach(s => ev.push({ d: s.start, k: s.kind, t: s.pct ? `${s.label} begins` : s.label + (s.kind === 'res' ? ' begins' : ''), s: (s.end ? `through ${fmt(s.end)} · ` : '') + 'Calculated · ' + s.cite }));
+    if (r.pay && r.pay.start) ev.push({ d: r.pay.start, k: 'fact', t: 'Payment at 100% can start', s: 'Calculated · § 3.31' });
+    ev.sort((a, b) => a.d < b.d ? -1 : a.d > b.d ? 1 : 0);
+    return `<ol class="tl">${ev.map(e => `<li><span class="dot ${e.k}"></span><div><div class="when">${fmt(e.d)}</div><div><b>${esc(e.t)}</b></div><div class="cite">${esc(e.s)}</div></div></li>`).join('')}</ol>`;
+  }
+
+  function residual(q, r) {
+    const R = r.residual; if (!R) return '';
+    let h = `<h3>After the temporary 100%</h3><p>The next evaluation begins <b>${fmt(R.start)}</b>.`;
+    if (R.levels) {
+      h += ` VA rates what remains under DC ${R.dc} using the evidence, including pain, weakness, and limited motion.</p><div class="tscroll"><table><thead><tr><th scope="col">Residuals</th><th scope="col">Rating${['5051', '5052', '5053'].includes(R.dc) ? ' (major / minor)' : ''}</th></tr></thead><tbody>${R.levels.map(l => `<tr><td>${esc(l[0])}</td><td class="num">${esc(l[1])}</td></tr>`).join('')}</tbody></table></div>`;
+      if (R.minNote) h += `<p class="muted">${esc(R.minNote)}</p>`;
+      h += `<p class="muted">VA guidance (M21-1 VIII.iv.8.D.1.d) says the evaluation after the 100% period is the greater of the rating before surgery${R.minimum != null ? `, the ${R.minimum}% minimum` : ''}, or what the evidence shows.${R.prior != null ? ` You entered ${R.prior}% before surgery.` : ''} A later cut below the rating you had before needs advance notice (§ 3.105(e)).</p>`;
+    } else h += ` VA assigns the schedular rating the evidence supports. Without new evidence, VA guidance says the rating in effect before is continued (M21-1 VIII.iv.8.B.1.b, C.1.e).</p>`;
+    return h;
+  }
+
+  function results(q, r) {
+    const head = { ok: ['ok', 'Timeline worked out from the facts you entered'], review: ['review', 'Some of this needs further review'], stop: ['stop', 'No result yet'] }[r.overall];
+    let h = `<div class="verdict ${head[0]}"><span class="eyebrow">Results</span><h2>${head[1]}</h2>`;
+    if (r.overall === 'stop') return h + `<p>Fix the items marked "Fix before results" above, then come back to this step.</p></div>`;
+    if (r.version && q.pathway === 'joint') h += `<p class="muted">Rules used: ${esc(r.version.label)} (${esc(r.version.source)}).</p>`;
+    h += `</div>`;
+    if (r.segs.length) h += bar(r.segs);
+    const P = (t, s, e, note) => `<div class="period"><span class="eyebrow">${t}</span><span class="d">${s ? `${fmt(s)} to ${fmt(e)}` : 'None'}</span><span class="cite">${note}</span></div>`;
+    if (r.medical) {
+      const ent = r.ent || {}; const entNote = ent.status === 'review' ? 'Needs review; see below' : ent.status === 'none' ? 'Not indicated by entered facts' : 'Effective-date rules applied';
+      h += `<div class="periods">${P('1. Qualifying medical period', r.medical.start, r.medical.end, 'If the medical facts are confirmed')}${P('2. Potential entitlement', ent.start, ent.end, entNote)}${P('3. Potential payable months', r.pay && r.pay.start, r.pay && r.pay.end, 'Payment rules (§ 3.31)')}</div>`;
+      if (ent.alt) h += `<p class="muted">Other reading: ${fmt(ent.alt.start)} to ${fmt(ent.alt.end)}.</p>`;
+    }
+    h += `<h3>Timeline</h3>${timeline(q, r)}`;
+    h += residual(q, r);
+    if (r.screens) h += `<h3>Other benefits worth asking about</h3><div class="screens">${r.screens.map(s => `<div class="screen"><div class="h"><b>${esc(s.name)}</b><span class="chip ${s.status}">${TT.STATUS[s.status]}</span></div><p>${esc(s.text)}</p><span class="cite">${esc(s.cite)}</span></div>`).join('')}</div>`;
+    h += `<details open><summary>How ClaimReady calculated this</summary><div><ol class="calc">${r.notes.map(n => `<li>${esc(n)}</li>`).join('')}${(r.edSteps || []).map(n => `<li>${esc(n)}</li>`).join('')}${r.pay ? `<li>${esc(r.pay.why)}</li>` : ''}</ol>
+      <p class="cite">Sources: ${r.cites.map(esc).join('; ')}. Read them on <a href="${TT_RULES.links.part4}" target="_blank" rel="noopener">eCFR Part 4</a>, <a href="${TT_RULES.links.p3400}" target="_blank" rel="noopener">§ 3.400</a>, <a href="${TT_RULES.links.p3401}" target="_blank" rel="noopener">§ 3.401</a>, and <a href="${TT_RULES.links.p331}" target="_blank" rel="noopener">§ 3.31</a>. M21-1 is VA guidance, not binding law.</p></div></details>`;
+    h += `<details><summary>Quality checks</summary><div><ul class="qc">${r.qc.map(c => `<li><span>${esc(c.t)}</span><span class="chip ${c.s === 'fail' ? 'failbad' : c.s}">${c.s === 'pass' ? 'Done' : c.s === 'review' ? 'Review' : 'Not done'}</span></li>`).join('')}</ul></div></details>`;
+    h += `<p class="important"><b>Important:</b> This summary is based on information you entered and calculations generated by ClaimReady. You are responsible for verifying that all facts, dates, and information are accurate. ClaimReady may contain errors, omissions, or incorrect calculations. This tool is for educational purposes only and does not replace an official VA determination.</p>`;
+    return h;
+  }
+
+  function render() {
+    sync();
+    const q = read(), r = TT.run(q, new Date().toISOString().slice(0, 10));
+    $('facts').tBodies[0].innerHTML = factRows(q).map(([k, v]) => `<tr><th scope="row" style="text-transform:none;letter-spacing:0;font-size:.88rem">${esc(k)}</th><td>${esc(v)}</td></tr>`).join('');
+    $('issuesBox').innerHTML = issueList(r.issues);
+    const res = $('results');
+    res.hidden = !(step === 3 && $('ack').checked);
+    if (!res.hidden) res.innerHTML = results(q, r);
+  }
+
+  f.addEventListener('input', () => { $('example').hidden = true; render(); });
+  f.addEventListener('change', e => { if (e.target.id !== 'ack') { $('ack').checked = false; } render(); });
+  f.addEventListener('submit', e => e.preventDefault());
+  document.addEventListener('click', e => { const b = e.target.closest('[data-go]'); if (b) { go(+b.dataset.go); document.querySelector('.steps').scrollIntoView({ block: 'nearest' }); } });
+  $('clearBtn').addEventListener('click', () => { fill({ pathway: 'joint', convMonths: '1', sc: 'unknown' }); $('ack').checked = false; $('example').hidden = true; go(1); });
+
+  $('rulesLine').innerHTML = `Rules checked against <a href="${TT_RULES.links.part4}" target="_blank" rel="noopener">eCFR</a> on ${fmt(TT_RULES.checked)}. Joint criteria from <a href="${TT_RULES.links.fr}" target="_blank" rel="noopener">85 FR 76453</a>, effective Feb 7, 2021; earlier surgeries use the prior version. Rules change only after human review. Testing release.`;
+  const S = ttRunScenarios(TT, TT_SCENARIOS.slice().sort((a, b) => a.n - b.n));
+  $('scenTable').tBodies[0].innerHTML = S.map(s => `<tr><td class="num">${s.n}</td><td>${esc(s.name)}${s.fails.length ? `<div class="cite">${esc(s.fails.join('; '))}</div>` : ''}</td><td><span class="chip ${s.pass ? 'pass' : 'failbad'}">${s.pass ? 'Pass' : 'Fail'}</span></td></tr>`).join('');
+  $('scen').querySelector('summary').textContent = `Validation scenarios: ${S.filter(s => s.pass).length} of ${S.length} pass (for reviewers)`;
+
+  fill(DANA); $('ack').checked = true; go(3);
+})();
+</script>
+
+</body></html>
