@@ -2550,6 +2550,7 @@ if (typeof module !== 'undefined') module.exports = vciTests;
    VCI_SOURCES: the M21-1 (KnowVA) articles, eCFR parts, and web pages each Education topic is built from,
    with the "Updated" date of the version VCI was written from. The update monitor (tools/check-sources.mjs) reads the same data.
    Topic "ptsdstressor" is the standalone page ptsd-stressor.html (Featured article: how VA accepts a PTSD stressor).
+   Topic "doctorguide" is the standalone page public-src/doctor-guide.html; build.sh checks that its stated dates match.
    VCI_UPDATES: the change log shown in "What's changed", topic badges, and the box at the top of each topic.
    To record a change: add an entry. kind is 'new' (new topic), 'updated' (VCI revised the topic), or 'pending'
    (VA changed a source and VCI has not reviewed it yet). marks: short phrases whose list items are highlighted in the topic. */
@@ -2619,6 +2620,11 @@ window.VCI_SOURCES = {
    "cite": "M21-1 IX.ii.1.B",
    "name": "Aid and Attendance (A&A) Status for Beneficiaries Who Are Patients in",
    "updated": "2025-05-28"
+  },
+  "554400000105052": {
+   "cite": "Supplemental Language Matrix",
+   "name": "Supplemental Language Matrix (exam request language)",
+   "updated": "2026-04-09"
   },
   "554400000141004": {
    "cite": "M21-5, Ch. 5",
@@ -3317,6 +3323,10 @@ window.VCI_SOURCES = {
   }
  },
  "topics": {
+  "doctorguide": [
+   "554400000105052",
+   "554400000180498"
+  ],
   "ptsdstressor": [
    "554400000177468",
    "554400000177469"
@@ -3659,6 +3669,10 @@ window.VCI_SOURCES = {
   }
  ],
  "ecfrTopics": {
+  "doctorguide": [
+   "3",
+   "4"
+  ],
   "ptsdstressor": [
    "3"
   ],
@@ -4670,7 +4684,7 @@ window.VCI_UPDATES = [
   }
   const TOOL_GROUPS = [
     ['Checklists', [['checklist', 'Claim checklist', 'Every step and benefit to consider before you file, with a few questions to fit it to you.'], ['smccheck', 'SMC checklist', 'Which special monthly compensation levels may fit, and what an exam should document.']]],
-    ['For your doctor', [['quick', 'Quick sheet', 'A one-page sheet of what VA needs in an exam or opinion, for your claim type and conditions.'], ['doctors', 'Doctor guide', 'The full guide for a provider writing a VA medical opinion or DBQ.'], ['opinions', 'Check an exam opinion', 'Paste a C&P exam opinion to spot common problems VA should fix.']]],
+    ['For your doctor', [['doctor-guide.html', 'What VA asks your examiner', 'The extra questions VA adds for joint exams when medicine helps, increases, Gulf War illness, digestive conditions, and changed rating rules.'], ['quick', 'Quick sheet', 'A one-page sheet of what VA needs in an exam or opinion, for your claim type and conditions.'], ['doctors', 'Doctor guide', 'The full guide for a provider writing a VA medical opinion or DBQ.'], ['opinions', 'Check an exam opinion', 'Paste a C&P exam opinion to spot common problems VA should fix.']]],
     ['Ratings and dates', [['temp-100.html', 'Temporary 100% Timeline', 'Joint replacement, surgery recovery, or a hospital stay over 21 days: the months at 100%, when pay can start, and what comes after.'], ['tdiu', 'TDIU calculator', 'Check whether your ratings and work situation fit Individual Unemployability (paid at the 100% rate).'], ['explain', 'Rating-criteria explainer', 'Each level of the criteria, quoted from 38 C.F.R. Part 4, and where a measurement falls.'], ['rating', 'Estimate a rating', 'Match your symptoms to VA\'s rating criteria.'], ['combine', 'Combine ratings', 'VA math: how separate ratings combine, including the bilateral factor.'], ['effcheck', 'Effective date check', 'Compare the date VA picked with the rules.']]],
     ['Learn', [['learn', 'Learn by Exams, Benefits, Ratings', 'Every guide sorted into the three parts of a claim, with search.'], ['educ', 'Provider education', 'Plain-language guides to VA\'s manual, by topic, with search.'], ['training', 'Knowledge checks', 'Scenario questions for trainers and service officers.']]],
   ];
@@ -4930,6 +4944,7 @@ ${r.flags.length ? `<h2>Needs a closer look</h2><ul>${r.flags.map(f => `<li>${es
       ${g.lead ? `<p>${g.lead}</p>` : ''}<ul class="${g.id === 'sign' ? 'doc-check-list' : 'plain-list'}">${g.items.map(i => `<li>${i}</li>`).join('')}</ul>${g.after.map(t => `<p class="muted" style="font-size:.88rem">${t}</p>`).join('')}</section>`;
     return `<div class="page"><div class="spread"><div class="page-head"><h1>Guide for your doctor</h1><p>Key principles from VA's own manual for doctors and other providers who complete a Disability Benefits Questionnaire (DBQ) or write a medical opinion for you. Share it before your appointment.</p></div><div class="row" style="gap:8px"><button class="btn primary" data-act="downloadQuick">Quick sheet (1 page)</button><button class="btn" data-act="downloadDocGuide">Full reference</button></div></div>
       ${subnav('doctors')}
+      <p class="must-read-link"><span class="top-flag"><span aria-hidden="true">★</span> Flagship</span><a class="btn small" href="doctor-guide.html">What VA asks your examiner: the extra questions for medicine, increases, Gulf War illness, and more</a></p>
       ${nonPublicNote('np-dbq-g')}
       <nav class="jump" aria-label="On this page">${DOC_GUIDE.map(g => `<button class="chip" data-act="jump" data-to="dg-${g.id}">${g.title}</button>`).join('')}<button class="chip" data-act="jump" data-to="dg-opinion">Writing the opinion</button></nav>
       ${DOC_GUIDE.map(sec).join('')}
@@ -6529,7 +6544,7 @@ ${topics.length ? `<h2>5. For these conditions</h2><ul>${topics.map(t => `<li><b
         ${stage(2, 'order', 'How VA orders the exam', `<div class="insuf-grid">${cardsHTML(EXAM_ORDER, [3])}</div>`)}
         ${stage(3, 'day', 'Exam day', `<div class="insuf-grid">${cardsHTML(EXAM_DAY)}<div class="insuf-card vet"><h3 class="edu-h">Your exam-day checklist</h3><ul class="exam-check">${EXAM_VET.map(x => `<li>${x}</li>`).join('')}</ul><p style="margin:8px 0 0"><button class="btn small" data-go="quick">Make a quick sheet</button> <button class="btn small" data-go="doctors">Guide for your doctor</button></p></div></div>`)}
         ${stage(4, 'report', 'Is the report good enough?', `<div class="insuf-grid">${cardsHTML(EXAM_REPORT, [0, 2])}</div>
-          <p style="margin:10px 0 0">Go deeper: <button class="btn link" data-go="educ.insuf">What VA sends back</button> · <button class="btn link" data-go="educ.conds">Requirements by condition</button> · <button class="btn link" data-go="doctors">Guide for your doctor</button> · <button class="btn link" data-go="opinions">Check an exam opinion</button></p>`)}
+          <p style="margin:10px 0 0">Go deeper: <a href="doctor-guide.html">What VA asks your examiner</a> · <button class="btn link" data-go="educ.insuf">What VA sends back</button> · <button class="btn link" data-go="educ.conds">Requirements by condition</button> · <button class="btn link" data-go="doctors">Guide for your doctor</button> · <button class="btn link" data-go="opinions">Check an exam opinion</button></p>`)}
         ${stage(5, 'missed', 'Missed or flawed exams', `<div class="aa-callout" role="note" style="margin-bottom:10px"><b>Can't make it?</b> Call before the appointment and give a reason. VA accepts almost any reason given before it decides the claim.</div><div class="insuf-grid">${cardsHTML(EXAM_MISSED, [0])}</div>`)}
         </section>`;
       }
@@ -6866,7 +6881,7 @@ ${quickPanelHTML(sel)}
       ['What the exam report must contain', ['conds', 'dx', 'insuf']],
       ['Toxic exposure exams', ['teraexam']],
       ['How VA weighs exam findings', ['evidence']]],
-      [['quick', 'Quick sheet for your doctor', 'One page of what VA needs in an exam or opinion, for your claim type and conditions.'], ['doctors', 'Guide for your doctor', 'What a provider writing a DBQ or medical opinion needs to know.'], ['opinions', 'Check an exam opinion', 'Spot common problems in an opinion that VA should fix.']]],
+      [['doctor-guide.html', 'What VA asks your examiner', 'The extra questions VA adds for joint exams when medicine helps, increases, Gulf War illness, digestive conditions, and changed rating rules.'], ['quick', 'Quick sheet for your doctor', 'One page of what VA needs in an exam or opinion, for your claim type and conditions.'], ['doctors', 'Guide for your doctor', 'What a provider writing a DBQ or medical opinion needs to know.'], ['opinions', 'Check an exam opinion', 'Spot common problems in an opinion that VA should fix.']]],
     ['benefits', 'Benefits', 'Benefits: understand potential entitlements', 'How service connection works, when payments start, special monthly compensation, and other benefits worth asking about.', [
       ['Start here', ['programs']],
       ['How service connection works', ['direct', 'secondary', 'presume', 'preagg', 'obesity', 'congenital', 'chronic']],
