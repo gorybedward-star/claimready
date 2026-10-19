@@ -2549,6 +2549,7 @@ if (typeof module !== 'undefined') module.exports = vciTests;
 /* VCI source registry and update log.
    VCI_SOURCES: the M21-1 (KnowVA) articles, eCFR parts, and web pages each Education topic is built from,
    with the "Updated" date of the version VCI was written from. The update monitor (tools/check-sources.mjs) reads the same data.
+   Topic "ptsdstressor" is the standalone page ptsd-stressor.html (Featured article: how VA accepts a PTSD stressor).
    VCI_UPDATES: the change log shown in "What's changed", topic badges, and the box at the top of each topic.
    To record a change: add an entry. kind is 'new' (new topic), 'updated' (VCI revised the topic), or 'pending'
    (VA changed a source and VCI has not reviewed it yet). marks: short phrases whose list items are highlighted in the topic. */
@@ -3316,6 +3317,10 @@ window.VCI_SOURCES = {
   }
  },
  "topics": {
+  "ptsdstressor": [
+   "554400000177468",
+   "554400000177469"
+  ],
   "ptsd": [
    "554400000177468",
    "554400000177469",
@@ -3654,6 +3659,9 @@ window.VCI_SOURCES = {
   }
  ],
  "ecfrTopics": {
+  "ptsdstressor": [
+   "3"
+  ],
   "decqual": [
    "3",
    "4"
@@ -3695,6 +3703,14 @@ window.VCI_SOURCES = {
  }
 };
 window.VCI_UPDATES = [
+ {
+  "date": "2026-10-19",
+  "topic": "ptsd",
+  "kind": "updated",
+  "title": "Featured: how VA accepts your PTSD stressor",
+  "summary": "A new featured article on conceding an in-service stressor (38 C.F.R. § 3.304(f); M21-1 VIII.iv.1.A.3): when your own statement can be enough, combat and fear-based stressors, drone crews, credible supporting evidence, and the details to give VA.",
+  "marks": []
+ },
  {
   "date": "2026-10-18",
   "topic": "decqual",
@@ -6294,6 +6310,7 @@ ${topics.length ? `<h2>5. For these conditions</h2><ul>${topics.map(t => `<li><b
   function eduPanel(id, sel) {
     switch (id) {
       case 'ptsd': return `<section class="panel ptsd-ed" id="ed-ptsd"><div class="panel-head"><h2>PTSD and military sexual trauma</h2><span class="muted num">M21-1 VIII.iv.1</span></div>
+        <p class="must-read-link"><span class="top-flag"><span aria-hidden="true">★</span> Featured</span><a class="btn small" href="ptsd-stressor.html">Your PTSD stressor: how VA accepts that it happened</a></p>
         <p class="muted" style="font-size:.88rem">For PTSD claims, including combat, fear of hostile activity, and personal trauma such as MST. Included in the full reference.</p>
         <div class="insuf-grid">${PTSD.map(([h, items], i) => `<div class="insuf-card${i === 0 || i === 2 ? ' must' : ''}"><h3 class="edu-h">${h}</h3><ul class="plain-list">${items.map(x => `<li>${x}</li>`).join('')}</ul></div>`).join('')}
           <div class="insuf-card"><h3 class="edu-h">Wording in VA's terms</h3><p class="muted" style="font-size:.84rem;margin:0 0 4px">State whatever conclusion your findings support.</p><ul class="plain-list">${PTSD_WORDING.map(x => `<li>${x}</li>`).join('')}</ul></div>
@@ -6868,6 +6885,7 @@ ${quickPanelHTML(sel)}
   ];
   const pillarOf = id => PILLARS.find(p => p[0] === id) || PILLARS[0];
   const TT_FLAGSHIP = `<section class="panel start-hero flagship-hero" aria-labelledby="tt-h"><span class="eyebrow"><span aria-hidden="true">★</span> Flagship tool · New</span><h2 id="tt-h" style="margin:2px 0 6px">Temporary 100% Timeline</h2><p style="margin:0 0 10px">Had a joint replacement, surgery that needed a month or more of recovery, or a hospital stay over 21 days? See the months a temporary 100% rating can cover under 38 C.F.R. §§ 4.29, 4.30, and 4.71a, when it can start, when payment can start, the rating that comes after, and benefits worth asking about. Nothing you enter leaves your device.</p><a class="btn primary" href="temp-100.html">Open the Temporary 100% Timeline</a></section>`;
+  const PS_FLAGSHIP = `<section class="panel start-hero flagship-hero" aria-labelledby="ps-h"><span class="eyebrow"><span aria-hidden="true">★</span> Featured article · New</span><h2 id="ps-h" style="margin:2px 0 6px">Your PTSD stressor: how VA accepts that it happened</h2><p style="margin:0 0 10px">When your own statement can be enough under 38 C.F.R. § 3.304(f), what counts as combat or fear of hostile activity, what credible supporting evidence means, and the four details that let VA look up your event.</p><a class="btn primary" href="ptsd-stressor.html">Read the stressor article</a></section>`;
   const frameNote = extra => `<p class="frame-note" role="note"><b>${EDU_FRAME}</b> ${extra || 'Not official VA material. VA decides every claim.'}</p>`;
   function learnPage(pid) {
     const [id, name, h, lead, groups, tools] = pillarOf(pid);
@@ -6879,6 +6897,7 @@ ${quickPanelHTML(sel)}
       <nav class="pillars" aria-label="Choose a part of the process">${PILLARS.map(p => `<button class="pillar-tab" data-go="learn.${p[0]}" aria-pressed="${p[0] === id}">${p[1]}</button>`).join('')}</nav>
       <section class="panel start-hero must-read" aria-labelledby="mr-h"><span class="eyebrow"><span aria-hidden="true">★</span> Must read · when your rating decision arrives</span><h2 id="mr-h" style="margin:2px 0 6px">Does your rating decision cover everything?</h2><p style="margin:0 0 10px">Nine questions, drawn from VA's public quality review guidance and the law, to check that your decision decided every claim and related issue, used the right exams, ratings, and effective dates, and addressed every theory you raised.</p><button class="btn primary" data-go="educ.decqual">Read the nine questions</button></section>
       ${id === 'ratings' ? TT_FLAGSHIP : ''}
+      ${id === 'benefits' ? PS_FLAGSHIP : ''}
       <section class="panel pillar-body" aria-labelledby="pl-h"><h2 id="pl-h">${h}</h2><p class="muted" style="margin:0">${lead}</p>
         ${groups.map(([g, ids]) => `<div class="edu-group"><span class="eyebrow">${g}</span><ul class="learn-list">${ids.map(t => topic(t)).filter(Boolean).map(([t, title, sub]) => `<li><button class="learn-row" data-act="eduTopic" data-id="${t}"><span class="lr-text"><b>${title}</b>${updBadge(t)}<span>${sub}</span></span><span class="lr-go" aria-hidden="true">›</span></button></li>`).join('')}</ul></div>`).join('')}
         <div class="edu-group"><span class="eyebrow">Interactive tools</span><ul class="learn-list">${tools.map(([r, title, sub]) => isPage(r) ? `<li><a class="learn-row featured" href="${r}"><span class="lr-text"><span class="pill t-info">Flagship</span><b>${title}</b><span>${sub}</span></span><span class="lr-go" aria-hidden="true">›</span></a></li>` : `<li><button class="learn-row${r === 'explain' ? ' featured' : ''}" data-go="${r}"><span class="lr-text">${r === 'explain' ? '<span class="pill t-info">New</span>' : ''}<b>${title}</b><span>${sub}</span></span><span class="lr-go" aria-hidden="true">›</span></button></li>`).join('')}</ul></div></section>
