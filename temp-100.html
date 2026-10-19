@@ -218,7 +218,7 @@ footer { font-size: 0.82rem; color: var(--muted); display: grid; gap: 8px; paddi
 
     <details id="scen">
       <summary>Validation scenarios (for reviewers)</summary>
-      <div><p class="muted">30 fictional scenarios with results worked out by hand before the code was written. Expected results were worked out by hand before the code. Some reflect answers from an experienced claims representative (October 2026); the rest still await review. A pass here is a software check, not legal validation.</p><div class="tscroll"><table id="scenTable"><thead><tr><th scope="col">#</th><th scope="col">Scenario</th><th scope="col">Result</th></tr></thead><tbody></tbody></table></div></div>
+      <div><p class="muted">31 fictional scenarios. Expected results were worked out by hand before the code was written, and an experienced claims representative reviewed and confirmed all 31 in October 2026. A pass here is a software check, not legal validation.</p><div class="tscroll"><table id="scenTable"><thead><tr><th scope="col">#</th><th scope="col">Scenario</th><th scope="col">Result</th></tr></thead><tbody></tbody></table></div></div>
     </details>
 
     <section class="panel notes" aria-labelledby="notesH" id="notes">
@@ -537,7 +537,7 @@ const TT = (() => {
 
 </script>
 <script>/* Validation library. Expected results were worked out by hand from the Phase 1 decision table, before the code.
-   They are proposals until the owner marks them right. Never edit an expected value to make a test pass. */
+   The owner reviewed and confirmed all 31 on Oct 19, 2026. Never edit an expected value to make a test pass. */
 const TT_SCENARIOS = (() => {
   const K = { pathway: 'joint', dc: '5055', side: 'major', procedure: 'total', admit: '2025-03-10', discharge: '2025-03-13', convMonths: 1, sc: 'yes', pending: 'no', claim: '2025-04-01' };
   const J = o => Object.assign({}, K, o);
