@@ -1,6 +1,6 @@
 /* Offline support for VA Claims Intelligence. It caches only the app's own files, never veterans' data. */
-const VERSION = 'vci-20261020011500';
-const CORE = ['./', './index.html', './temp-100.html', './ptsd-stressor.html', './doctor-guide.html', './site-config.js', './manifest.webmanifest', './icons/icon-192.png', './icons/icon-512.png', './icons/apple-touch-icon.png',
+const VERSION = 'vci-20261020094320';
+const CORE = ['./', './index.html', './temp-100.html', './ptsd-stressor.html', './doctor-guide.html', './supplemental-claims.html', './medical-opinions.html', './site-config.js', './manifest.webmanifest', './icons/icon-192.png', './icons/icon-512.png', './icons/apple-touch-icon.png',
   './fonts/public-sans-latin-400-normal.woff2', './fonts/public-sans-latin-500-normal.woff2', './fonts/public-sans-latin-600-normal.woff2', './fonts/public-sans-latin-700-normal.woff2',
   './fonts/source-serif-4-latin-400-normal.woff2', './fonts/source-serif-4-latin-600-normal.woff2', './fonts/source-serif-4-latin-400-italic.woff2', './fonts/source-serif-4-latin-600-italic.woff2',
   './fonts/ibm-plex-mono-latin-400-normal.woff2', './fonts/ibm-plex-mono-latin-600-normal.woff2'];

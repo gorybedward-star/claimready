@@ -2551,6 +2551,8 @@ if (typeof module !== 'undefined') module.exports = vciTests;
    with the "Updated" date of the version VCI was written from. The update monitor (tools/check-sources.mjs) reads the same data.
    Topic "ptsdstressor" is the standalone page ptsd-stressor.html (Featured article: how VA accepts a PTSD stressor).
    Topic "doctorguide" is the standalone page public-src/doctor-guide.html; build.sh checks that its stated dates match.
+   Topics "supplemental" and "medicalopinions" are the standalone pages supplemental-claims.html and medical-opinions.html (Featured articles);
+   build.sh checks the stated dates of every standalone page (doctor guide, PTSD stressor, both of these).
    VCI_UPDATES: the change log shown in "What's changed", topic badges, and the box at the top of each topic.
    To record a change: add an entry. kind is 'new' (new topic), 'updated' (VCI revised the topic), or 'pending'
    (VA changed a source and VCI has not reviewed it yet). marks: short phrases whose list items are highlighted in the topic. */
@@ -3323,6 +3325,17 @@ window.VCI_SOURCES = {
   }
  },
  "topics": {
+  "supplemental": [
+   "554400000174874",
+   "554400000177963",
+   "554400000180495",
+   "554400000180508"
+  ],
+  "medicalopinions": [
+   "554400000014383",
+   "554400000014389",
+   "554400000180514"
+  ],
   "doctorguide": [
    "554400000105052",
    "554400000180498"
@@ -3669,6 +3682,12 @@ window.VCI_SOURCES = {
   }
  ],
  "ecfrTopics": {
+  "supplemental": [
+   "3"
+  ],
+  "medicalopinions": [
+   "3"
+  ],
   "doctorguide": [
    "3",
    "4"
@@ -3717,6 +3736,22 @@ window.VCI_SOURCES = {
  }
 };
 window.VCI_UPDATES = [
+ {
+  "date": "2026-10-20",
+  "topic": "supp",
+  "kind": "updated",
+  "title": "Featured: Supplemental Claims and new exams",
+  "summary": "A new featured article on Supplemental Claims (38 C.F.R. §§ 3.2501, 3.159(c)(4)): what new and relevant evidence means, matching evidence to the reason for a denial, when VA orders a new exam, and keeping your effective date.",
+  "marks": []
+ },
+ {
+  "date": "2026-10-20",
+  "topic": "evidence",
+  "kind": "updated",
+  "title": "Featured: what makes a medical opinion count",
+  "summary": "A new featured article for veterans, doctors, lawyers, and VSOs on how VA and the courts weigh medical opinions (M21-1 V.ii.1.A): rationale, adequacy, lay statements, speculation, and common problems.",
+  "marks": []
+ },
  {
   "date": "2026-10-19",
   "topic": "ptsd",
@@ -4668,7 +4703,7 @@ window.VCI_UPDATES = [
   ];
   const TOP_TOPICS = ['programs', 'decqual', 'exams', 'teraexam', 'smccheck', 'itf', 'ratingdec', 'issues', 'supp', 'evidence', 'effdate'];
   const TOP_TOOLS = ['temp-100.html', 'checklist', 'smccheck', 'quick', 'tdiu', 'opinions'];
-  const isPage = r => /\.html$/.test(r);
+  const isPage = r => /\.html(#|$)/.test(r);
   const topFlag = () => '<span class="top-flag"><span aria-hidden="true">★</span> Top pick</span>';
   const mustReadLink = () => '<p class="must-read-link"><span class="top-flag"><span aria-hidden="true">★</span> Must read</span> <button class="btn link" data-go="educ.decqual">Does your rating decision cover everything? Nine questions to ask</button></p>';
   function whereState() { if (!UI.where) { try { UI.where = localStorage.getItem('vci.where') || 'start'; } catch (e) { UI.where = 'start'; } } return WHERE.find(w => w[0] === UI.where) ? UI.where : 'start'; }
@@ -4684,7 +4719,7 @@ window.VCI_UPDATES = [
   }
   const TOOL_GROUPS = [
     ['Checklists', [['checklist', 'Claim checklist', 'Every step and benefit to consider before you file, with a few questions to fit it to you.'], ['smccheck', 'SMC checklist', 'Which special monthly compensation levels may fit, and what an exam should document.']]],
-    ['For your doctor', [['doctor-guide.html', 'What VA asks your examiner', 'The extra questions VA adds for joint exams when medicine helps, increases, Gulf War illness, digestive conditions, and changed rating rules.'], ['quick', 'Quick sheet', 'A one-page sheet of what VA needs in an exam or opinion, for your claim type and conditions.'], ['doctors', 'Doctor guide', 'The full guide for a provider writing a VA medical opinion or DBQ.'], ['opinions', 'Check an exam opinion', 'Paste a C&P exam opinion to spot common problems VA should fix.']]],
+    ['For your doctor', [['doctor-guide.html', 'What VA asks your examiner', 'The extra questions VA adds for joint exams when medicine helps, increases, Gulf War illness, digestive conditions, and changed rating rules.'], ['medical-opinions.html#doc', 'What makes a medical opinion count', 'For doctors, lawyers, and VSOs: rationale, adequacy, lay statements, speculation, and a checklist before signing.'], ['quick', 'Quick sheet', 'A one-page sheet of what VA needs in an exam or opinion, for your claim type and conditions.'], ['doctors', 'Doctor guide', 'The full guide for a provider writing a VA medical opinion or DBQ.'], ['opinions', 'Check an exam opinion', 'Paste a C&P exam opinion to spot common problems VA should fix.']]],
     ['Ratings and dates', [['temp-100.html', 'Temporary 100% Timeline', 'Joint replacement, surgery recovery, or a hospital stay over 21 days: the months at 100%, when pay can start, and what comes after.'], ['tdiu', 'TDIU calculator', 'Check whether your ratings and work situation fit Individual Unemployability (paid at the 100% rate).'], ['explain', 'Rating-criteria explainer', 'Each level of the criteria, quoted from 38 C.F.R. Part 4, and where a measurement falls.'], ['rating', 'Estimate a rating', 'Match your symptoms to VA\'s rating criteria.'], ['combine', 'Combine ratings', 'VA math: how separate ratings combine, including the bilateral factor.'], ['effcheck', 'Effective date check', 'Compare the date VA picked with the rules.']]],
     ['Learn', [['learn', 'Learn by Exams, Benefits, Ratings', 'Every guide sorted into the three parts of a claim, with search.'], ['educ', 'Provider education', 'Plain-language guides to VA\'s manual, by topic, with search.'], ['training', 'Knowledge checks', 'Scenario questions for trainers and service officers.']]],
   ];
@@ -6516,6 +6551,7 @@ ${topics.length ? `<h2>5. For these conditions</h2><ul>${topics.map(t => `<li><b
         <h3 class="edu-h" style="margin-top:14px">Other key sections</h3><p class="muted" style="font-size:.86rem;margin:0 0 6px">Short summaries. Read the full section on eCFR.</p>
         <div class="insuf-grid">${P3_KEY.map(k => `<div class="insuf-card"><h3 class="edu-h">${k[1]} <span class="muted num" style="font-weight:400">§ ${k[0]}</span></h3><ul class="plain-list">${k[3].map(b => `<li>${b}</li>`).join('')}</ul><p style="margin:8px 0 0"><a class="btn small" href="${p3Sec(k[0].split('–')[0])}" target="_blank" rel="noopener">Read § ${k[0]}</a> <button class="btn small" data-go="educ.${k[2]}">Topic: ${(EDU_GROUPS.flatMap(g => g[1]).find(t => t[0] === k[2]) || [0, 'Related'])[1]}</button></p></div>`).join('')}</div></section>`;
       case 'evidence': return `<section class="panel temp-ed" id="ed-evidence"><div class="panel-head"><h2>How VA weighs evidence, and lay statements</h2><span class="muted num">M21-1 V.ii.1.A–B</span></div>
+        <p class="must-read-link"><span class="top-flag"><span aria-hidden="true">★</span> Featured</span><a class="btn small" href="medical-opinions.html">What makes a medical opinion count in a VA claim</a></p>
         <div class="aa-callout" role="note"><b>The tie goes to the veteran.</b> Each fact only has to be at least as likely as not. VA's system is non-adversarial, missing records are not proof against you, and your own description of your symptoms is evidence.</div>
         <div class="insuf-grid">${cardsHTML(EVID, [1, 4, 6])}
           <div class="insuf-card vet"><h3 class="edu-h">For veterans</h3><ul class="plain-list">${EVID_VET.map(x => `<li>${x}</li>`).join('')}<li>Also see <button class="btn link" data-go="opinions">Check an exam opinion</button>.</li></ul></div></div></section>`;
@@ -6645,7 +6681,7 @@ ${topics.length ? `<h2>5. For these conditions</h2><ul>${topics.map(t => `<li><b
         <h3 class="edu-h" style="margin-top:18px">If you find a gap</h3>
         <p class="muted" style="font-size:.88rem;margin:0 0 8px">A question here is not proof of an error. Each option has its own rules.</p>
         <div class="insuf-grid">${cardsHTML(DQ_GAP, [3])}</div>
-        <p style="margin:8px 0 0">${go([['educ.supp', 'Supplemental Claims'], ['educ.hlr', 'Higher-Level Review'], ['educ.board', 'Board appeal']])}</p>
+        <p style="margin:8px 0 0">${go([['educ.supp', 'Supplemental Claims'], ['educ.hlr', 'Higher-Level Review'], ['educ.board', 'Board appeal']])} <a class="btn small" href="supplemental-claims.html">Featured: Supplemental Claims and new exams</a> <a class="btn small" href="medical-opinions.html#problems">Featured: problems in medical opinions</a></p>
         <fieldset class="src-box" style="margin-top:18px"><legend><b>Your checklist</b> <span class="muted" style="font-weight:400">(not saved; print this page to keep it)</span></legend>
           ${DQ_CHECK.map((x, i) => `<label style="display:flex;gap:8px;align-items:flex-start;margin:6px 0"><input type="checkbox" id="dq-ck-${i}"> <span>${x}</span></label>`).join('')}</fieldset>
         <p class="muted" style="font-size:.82rem;margin:12px 0 0">Sources: ${DQ_GUIDE} VA M21-4 Manual, Section 6.B, rating quality review instructions and elements, change date August 20, 2026, published on KnowVA (link to be added). VA's internal procedures and employee scoring are left out. ${DQ_LAW} 38 U.S.C. §§ 1114(s), 1168, 1710(e)(4), 5103A, 5104(b), 5104A, 5110, 5904; 38 C.F.R. §§ 3.103, 3.104(c), 3.105, 3.155, 3.159, 3.303, 3.307, 3.309, 3.310, 3.327, 3.350(i), 3.353, 3.400, 3.2500, 3.2601(g), 4.14, 4.71a, 4.119; and the court decisions named above. VCI checked these October 18, 2026. Examples are general and are not real VA decisions.</p></section>`;
@@ -6669,6 +6705,7 @@ ${topics.length ? `<h2>5. For these conditions</h2><ul>${topics.map(t => `<li><b
           <div class="insuf-card vet"><h3 class="edu-h">Checklist</h3><ul class="plain-list"><li>File an ITF today if you plan to claim compensation, then file the full claim within a year.</li><li>Choose the right benefit: compensation, pension, or both.</li><li>Keep VA's confirmation letter and record the date in My info so VCI can remind you before it expires.</li><li>After you file a claim, file a new ITF if you plan to add more conditions later.</li></ul></div></div></section>`;
       case 'supp': return `<section class="panel" id="ed-supp"><div class="panel-head"><h2>Supplemental Claims</h2><span class="muted num">M21-1 II.iii.2.B; X.ii.2.A</span></div>
         ${mustReadLink()}
+        <p class="must-read-link"><span class="top-flag"><span aria-hidden="true">★</span> Featured</span><a class="btn small" href="supplemental-claims.html">Supplemental Claims: what new evidence does, and when VA orders a new exam</a></p>
         <p class="muted" style="font-size:.88rem">Asking VA to decide again with new and relevant evidence. <button class="btn small" data-go="effcheck">Check an effective date</button></p>
         <div class="insuf-grid">${cardsHTML(SUPP, [1, 4])}
           <div class="insuf-card vet"><h3 class="edu-h">Before you file</h3><ul class="plain-list"><li>Find the element the denial says was not met, and the favorable findings already in your favor.</li><li>Gather evidence aimed at that element, or a new theory, such as secondary.</li><li>File within one year of the decision to keep your original date, or file an intent to file within the year.</li><li>List all records VA should get on the form; VA must help obtain them.</li><li>Record the review in your folder's Decision history to track continuous pursuit.</li></ul></div></div></section>`;
@@ -6881,7 +6918,7 @@ ${quickPanelHTML(sel)}
       ['What the exam report must contain', ['conds', 'dx', 'insuf']],
       ['Toxic exposure exams', ['teraexam']],
       ['How VA weighs exam findings', ['evidence']]],
-      [['doctor-guide.html', 'What VA asks your examiner', 'The extra questions VA adds for joint exams when medicine helps, increases, Gulf War illness, digestive conditions, and changed rating rules.'], ['quick', 'Quick sheet for your doctor', 'One page of what VA needs in an exam or opinion, for your claim type and conditions.'], ['doctors', 'Guide for your doctor', 'What a provider writing a DBQ or medical opinion needs to know.'], ['opinions', 'Check an exam opinion', 'Spot common problems in an opinion that VA should fix.']]],
+      [['doctor-guide.html', 'What VA asks your examiner', 'The extra questions VA adds for joint exams when medicine helps, increases, Gulf War illness, digestive conditions, and changed rating rules.'], ['medical-opinions.html#doc', 'What makes a medical opinion count', 'Send this to your doctor: what VA and the courts look for in an opinion, with a checklist before signing.'], ['quick', 'Quick sheet for your doctor', 'One page of what VA needs in an exam or opinion, for your claim type and conditions.'], ['doctors', 'Guide for your doctor', 'What a provider writing a DBQ or medical opinion needs to know.'], ['opinions', 'Check an exam opinion', 'Spot common problems in an opinion that VA should fix.']]],
     ['benefits', 'Benefits', 'Benefits: understand potential entitlements', 'How service connection works, when payments start, special monthly compensation, and other benefits worth asking about.', [
       ['Start here', ['programs']],
       ['How service connection works', ['direct', 'secondary', 'presume', 'preagg', 'obesity', 'congenital', 'chronic']],
