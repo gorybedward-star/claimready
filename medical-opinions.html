@@ -1,0 +1,360 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="description" content="Free, independent educational guide to what makes a medical opinion count in a VA claim, for veterans, doctors, lawyers, agents, and VSOs: rationale, adequacy, lay statements, speculation, and common problems. Nothing is saved or sent.">
+<meta name="referrer" content="no-referrer"><meta name="theme-color" content="#1d5a70">
+<link rel="manifest" href="manifest.webmanifest"><link rel="icon" type="image/png" href="icons/favicon-32.png"><link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+<title>Medical Opinions Guide</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<style>@font-face{font-family:'Public Sans';font-style:normal;font-weight:400;font-display:swap;src:url(fonts/public-sans-latin-400-normal.woff2) format('woff2')}@font-face{font-family:'Public Sans';font-style:normal;font-weight:500;font-display:swap;src:url(fonts/public-sans-latin-500-normal.woff2) format('woff2')}@font-face{font-family:'Public Sans';font-style:normal;font-weight:600;font-display:swap;src:url(fonts/public-sans-latin-600-normal.woff2) format('woff2')}@font-face{font-family:'Public Sans';font-style:normal;font-weight:700;font-display:swap;src:url(fonts/public-sans-latin-700-normal.woff2) format('woff2')}@font-face{font-family:'Source Serif 4';font-style:normal;font-weight:400;font-display:swap;src:url(fonts/source-serif-4-latin-400-normal.woff2) format('woff2')}@font-face{font-family:'Source Serif 4';font-style:normal;font-weight:600;font-display:swap;src:url(fonts/source-serif-4-latin-600-normal.woff2) format('woff2')}@font-face{font-family:'Source Serif 4';font-style:italic;font-weight:400;font-display:swap;src:url(fonts/source-serif-4-latin-400-italic.woff2) format('woff2')}@font-face{font-family:'Source Serif 4';font-style:italic;font-weight:600;font-display:swap;src:url(fonts/source-serif-4-latin-600-italic.woff2) format('woff2')}@font-face{font-family:'IBM Plex Mono';font-style:normal;font-weight:400;font-display:swap;src:url(fonts/ibm-plex-mono-latin-400-normal.woff2) format('woff2')}@font-face{font-family:'IBM Plex Mono';font-style:normal;font-weight:600;font-display:swap;src:url(fonts/ibm-plex-mono-latin-600-normal.woff2) format('woff2')}</style>
+<style>
+/* Layout: one reading column. Banner, header, basics, a stressor-type chooser, one section per stressor type, evidence, details checklist, steps, example, myths, sources, footer. ClaimReady's own tokens (same as temp-100.html). */
+:root {
+  --paper: #f3f5f4; --surface: #ffffff; --sunk: #e9eeec; --ink: #16201d; --muted: #5a6763; --line: #d4dcd9;
+  --accent: #1d5a70; --accent-ink: #ffffff; --accent-soft: #dfecf0;
+  --ok: #2a774b; --ok-soft: #e0f0e6; --wait: #8a560a; --wait-soft: #f7ecd8;
+  --f-ui: "Public Sans", "Segoe UI", system-ui, sans-serif;
+  --f-serif: "Source Serif 4", Georgia, "Times New Roman", serif;
+  --f-mono: "IBM Plex Mono", ui-monospace, Menlo, monospace;
+  --r: 6px;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --paper: #111816; --surface: #19211f; --sunk: #0d1312; --ink: #e4ebe8; --muted: #98a6a1; --line: #2b3633;
+  --accent: #72b6cf; --accent-ink: #0d1a1f; --accent-soft: #1b3038;
+  --ok: #62c189; --ok-soft: #173426; --wait: #e2a849; --wait-soft: #392b12; color-scheme: dark; } }
+:root[data-theme="dark"] {
+  --paper: #111816; --surface: #19211f; --sunk: #0d1312; --ink: #e4ebe8; --muted: #98a6a1; --line: #2b3633;
+  --accent: #72b6cf; --accent-ink: #0d1a1f; --accent-soft: #1b3038;
+  --ok: #62c189; --ok-soft: #173426; --wait: #e2a849; --wait-soft: #392b12; color-scheme: dark; }
+:root { padding-top: env(safe-area-inset-top, 0px); padding-bottom: env(safe-area-inset-bottom, 0px); }
+* { box-sizing: border-box; }
+[hidden] { display: none !important; }
+body { margin: 0; background: var(--paper); color: var(--ink); font-family: var(--f-ui); font-size: 0.95rem; line-height: 1.5; }
+.wrap { max-width: 760px; margin: 0 auto; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+.skip { position: absolute; left: -9999px; } .skip:focus { left: 16px; top: 8px; z-index: 20; background: var(--surface); padding: 8px 12px; border-radius: var(--r); }
+.banner { background: var(--ink); color: var(--paper); font-size: 0.8rem; }
+.banner .wrap { padding-block: 8px; }
+header.top { padding-block: 24px 8px; display: grid; gap: 10px; }
+h1, h2, h3 { font-family: var(--f-serif); font-weight: 600; margin: 0; line-height: 1.2; text-wrap: balance; }
+h1 { font-size: 1.9rem; letter-spacing: -0.01em; }
+h2 { font-size: 1.3rem; }
+h3 { font-size: 1.02rem; }
+p { margin: 0; }
+ul, ol { margin: 0; padding-left: 20px; display: grid; gap: 6px; }
+a { color: var(--accent); }
+.muted { color: var(--muted); }
+.eyebrow { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.09em; text-transform: uppercase; color: var(--muted); }
+.crumbs { display: flex; flex-wrap: wrap; gap: 6px 14px; align-items: baseline; }
+.crumbs a { font-weight: 600; font-size: .9rem; text-decoration: none; }
+.crumbs a:hover { text-decoration: underline; }
+.tag { display: inline-block; font-size: .7rem; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; padding: 1px 7px; border-radius: 4px; border: 1px solid currentColor; white-space: nowrap; }
+.tag.law { color: var(--accent); } .tag.guide { color: var(--wait); } .tag.court { color: var(--ok); }
+.example { display: grid; gap: 4px; background: var(--wait-soft); border: 1px solid var(--line); border-radius: var(--r); padding: 10px 12px; }
+.example b:first-child { font-size: .78rem; letter-spacing: .06em; text-transform: uppercase; }
+button, input { font: inherit; color: inherit; }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.btn { border: 1px solid var(--line); background: var(--surface); border-radius: var(--r); padding: 8px 14px; cursor: pointer; min-height: 44px; }
+.btn.primary { background: var(--accent); color: var(--accent-ink); border-color: var(--accent); font-weight: 600; }
+.btn.link { border: 0; background: none; color: var(--accent); text-decoration: underline; padding: 4px 0; min-height: 0; }
+main { display: grid; gap: 20px; padding-block: 12px 48px; }
+.panel { background: var(--surface); border: 1px solid var(--line); border-radius: var(--r); padding: 18px; display: grid; gap: 14px; min-width: 0; }
+.panel > header { display: grid; gap: 6px; }
+fieldset { border: 0; padding: 0; margin: 0; display: grid; gap: 10px; min-width: 0; }
+legend { font-family: var(--f-serif); font-weight: 600; font-size: 1.15rem; padding: 0; margin-bottom: 4px; }
+.choices { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 8px; }
+.choice { display: flex; gap: 10px; align-items: flex-start; border: 1px solid var(--line); border-radius: var(--r); padding: 10px 12px; cursor: pointer; background: var(--paper); min-height: 44px; }
+.choice:has(input:checked) { border-color: var(--accent); background: var(--accent-soft); }
+.choice input { margin-top: 4px; width: 18px; height: 18px; accent-color: var(--accent); flex: none; }
+.choice small { display: block; color: var(--muted); }
+.row { display: flex; flex-wrap: wrap; gap: 8px 14px; align-items: center; }
+.cols { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 12px; }
+.box { border: 1px solid var(--line); border-radius: var(--r); padding: 12px 14px; display: grid; gap: 8px; align-content: start; background: var(--paper); }
+.box.you { border-left: 4px solid var(--ok); }
+.box.doc { border-left: 4px solid var(--accent); }
+.box h3 { font-family: var(--f-ui); font-size: .82rem; letter-spacing: .06em; text-transform: uppercase; }
+.flow { list-style: none; padding: 0; counter-reset: q; gap: 0; }
+.flow > li { counter-increment: q; display: grid; grid-template-columns: 30px 1fr; gap: 10px; padding-bottom: 14px; position: relative; }
+.flow > li::before { content: counter(q); width: 26px; height: 26px; border-radius: 50%; background: var(--accent); color: var(--accent-ink); font-family: var(--f-mono); font-size: .8rem; display: grid; place-items: center; }
+.flow > li::after { content: ""; position: absolute; left: 12px; top: 28px; bottom: 2px; width: 2px; background: var(--line); }
+.flow > li:last-child::after { display: none; }
+.flow .stop { display: block; font-size: .85rem; color: var(--muted); margin-top: 2px; }
+.flow ul { margin-top: 6px; }
+.quote { font-family: var(--f-serif); border-left: 3px solid var(--line); padding: 2px 0 2px 12px; color: var(--ink); }
+.pills { list-style: none; padding: 0; display: flex; flex-wrap: wrap; gap: 6px; }
+.pills li { border: 1px solid var(--line); border-radius: 999px; padding: 2px 10px; font-size: .85rem; background: var(--paper); }
+.patterns { list-style: none; padding: 0; display: grid; gap: 8px; counter-reset: p; }
+.patterns li { counter-increment: p; display: grid; grid-template-columns: 30px 1fr; gap: 10px; align-items: start; border: 1px solid var(--line); border-radius: var(--r); padding: 10px 12px; }
+.patterns li::before { content: counter(p); font-family: var(--f-mono); font-weight: 600; font-size: 1rem; }
+.patterns li.yes { background: var(--ok-soft); }
+.patterns small { display: block; color: var(--muted); }
+.cite { font-size: 0.8rem; color: var(--muted); display: flex; flex-wrap: wrap; gap: 6px 10px; align-items: center; border-top: 1px dashed var(--line); padding-top: 10px; }
+table { border-collapse: collapse; width: 100%; font-size: 0.88rem; }
+th, td { text-align: left; padding: 7px 8px; border-bottom: 1px solid var(--line); vertical-align: top; }
+th { font-weight: 600; color: var(--muted); font-size: 0.76rem; letter-spacing: 0.04em; text-transform: uppercase; }
+.tscroll { overflow-x: auto; }
+.num { font-family: var(--f-mono); font-variant-numeric: tabular-nums; font-size: .86em; white-space: nowrap; }
+details { border: 1px solid var(--line); border-radius: var(--r); background: var(--paper); padding: 10px 12px; }
+summary { cursor: pointer; font-weight: 600; min-height: 24px; }
+details > :not(summary) { margin-top: 10px; }
+footer { font-size: 0.82rem; color: var(--muted); display: grid; gap: 8px; padding-block: 0 40px; }
+@media (max-width: 520px) { h1 { font-size: 1.55rem; } .panel { padding: 14px; } }
+@media print {
+  .banner { background: none; color: #000; border-bottom: 1px solid #000; }
+  .noprint, .skip { display: none !important; }
+  body { background: #fff; color: #000; font-size: 10.5pt; }
+  .panel, .box, details { border-color: #999; break-inside: avoid-page; }
+  details > :not(summary) { display: block !important; }
+  a { color: #000; }
+}
+
+.sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+tr.dim td { opacity: .45; }
+.checklist { gap: 8px; }
+.myths { margin: 0; display: grid; gap: 4px 0; }
+.myths dt { font-weight: 600; margin-top: 8px; }
+.myths dt:first-child { margin-top: 0; }
+.myths dd { margin: 0; color: var(--ink); }
+@media (max-width: 520px) { table.stack thead { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); } table.stack, table.stack tbody, table.stack tr, table.stack td { display: block; } table.stack tr { border-bottom: 1px solid var(--line); padding: 8px 0; } table.stack td { border: 0; padding: 2px 0; } table.stack td:first-child { font-weight: 600; } table.stack td:last-child { font-size: .8rem; color: var(--muted); } }
+@media print { tr.dim td { opacity: 1; } .topic[hidden] { display: grid !important; } }
+</style>
+
+</head><body>
+<a class="skip" href="#main">Skip to the article</a>
+<div class="banner" role="note"><div class="wrap">Independent educational tool. Not affiliated with or endorsed by the U.S. Department of Veterans Affairs. Not legal or medical advice. VA decides every claim.</div></div>
+<div class="wrap">
+  <header class="top">
+    <div class="crumbs noprint"><a href="./#educ.evidence">← How VA weighs evidence</a><span class="eyebrow"><span aria-hidden="true">★</span> Featured · Examinations</span></div>
+    <h1>What makes a medical opinion count in a VA claim</h1>
+    <p>Many VA claims turn on a medical opinion: is a condition at least as likely as not related to service? VA does not count opinions; it <b>weighs</b> them, and most of an opinion's weight comes from its <b>reasoning</b>. This article explains what VA and the courts look for, for veterans reading an exam report, doctors writing an opinion, and lawyers, agents, and service officers reviewing one.</p>
+    <p class="muted" style="font-size:.86rem">Based on public VA information: the law at <b>38 U.S.C. §§ 5103A and 5107(b)</b> and <b>38 C.F.R. §§ 3.102 and 3.159</b>, VA's procedures manual (<b>M21-1, Part V, Subpart ii, Chapter 1</b>), and published court decisions. For education only. <a href="#sources">Sources and dates</a></p>
+    <div class="row noprint"><button class="btn" type="button" id="printBtn">Print or save this article</button></div>
+  </header>
+
+  <main id="main" tabindex="-1">
+
+    <section class="panel noprint" aria-labelledby="aud-h">
+      <fieldset>
+        <legend id="aud-h">Who are you reading as?</legend>
+        <p class="muted" style="font-size:.88rem">Pick one to see the tips written for you. The rest of the article stays the same. Nothing you pick is saved.</p>
+        <div class="choices">
+          <label class="choice"><input type="radio" name="aud" value="all" checked><span><b>Show all</b><small>Every audience</small></span></label>
+          <label class="choice"><input type="radio" name="aud" value="vet"><span><b>Veteran or family</b><small>Reading an exam or a decision</small></span></label>
+          <label class="choice"><input type="radio" name="aud" value="doc"><span><b>Doctor or clinician</b><small>Writing an opinion or a DBQ</small></span></label>
+          <label class="choice"><input type="radio" name="aud" value="rep"><span><b>Lawyer, agent, or VSO</b><small>Reviewing an opinion for a client</small></span></label>
+        </div>
+      </fieldset>
+      <p id="audNote" class="muted" aria-live="polite" style="font-size:.88rem">Showing tips for everyone.</p>
+    </section>
+
+    <section class="panel" id="basics" aria-labelledby="basics-h">
+      <header><span class="eyebrow">Start here</span><h2 id="basics-h">What a medical opinion does</h2></header>
+      <ul>
+        <li>Service connection needs <b>a current disability</b>, <b>something in service</b>, and <b>a link</b> between them. A medical opinion most often speaks to the link. It can also speak to a diagnosis, when a condition began, whether it got worse, or how severe it is.</li>
+        <li><b>The doctor gives medical facts and reasons. VA makes the legal decision.</b> An opinion should not say a condition "is service connected"; it should say whether it was caused or worsened by something, and why.</li>
+        <li><b>The standard is "at least as likely as not."</b> That means a 50 percent or greater probability. When the evidence for and against is about evenly balanced, the law gives the benefit of the doubt to the veteran.</li>
+      </ul>
+      <div class="tscroll"><table class="stack">
+        <thead><tr><th scope="col">Phrase</th><th scope="col">What it means to VA</th></tr></thead>
+        <tbody>
+          <tr><td>"Is due to," "caused by," "more likely than not"</td><td>Supports a link, above 50 percent.</td></tr>
+          <tr><td>"At least as likely as not"</td><td>Supports a link, 50 percent or more. This meets the legal standard.</td></tr>
+          <tr><td>"Less likely than not"</td><td>Against a link, below 50 percent.</td></tr>
+          <tr><td>"Cannot be resolved without resorting to mere speculation"</td><td>Neither for nor against. Usable only if the examiner explains why, and what is missing.</td></tr>
+          <tr><td>"Could," "may," "possibly," with no reasons</td><td>Usually given little weight on its own. ClaimReady note, from general knowledge of court decisions.</td></tr>
+        </tbody>
+      </table></div>
+      <p class="cite"><span class="tag law">Law</span> 38 U.S.C. § 5107(b); 38 C.F.R. §§ 3.102, 3.303 <span class="tag guide">VA guidance</span> M21-1 V.ii.1.A.1; IV.i.2.A.7</p>
+    </section>
+
+    <section class="panel" id="anatomy" aria-labelledby="an-h">
+      <header><span class="eyebrow">The parts</span><h2 id="an-h">What a well-supported opinion includes</h2>
+        <p>VA's guidance says a rationale should cite the medical principles used, identify the evidence in the case it relied on, and show how the conclusion was reached. Courts treat an opinion like expert testimony: it should rest on enough facts, use reliable methods, and apply them to this person.</p></header>
+      <ol class="flow">
+        <li><div><b>Who is giving it.</b><span class="stop">Credentials, specialty, and relationship to the patient. Treating doctors get no automatic extra weight, but knowing the history can add weight.</span></div></li>
+        <li><div><b>What was reviewed.</b><span class="stop">Records, tests, and literature. A private doctor does not have to review the VA claims file if the opinion rests on accurate, enough facts.</span></div></li>
+        <li><div><b>The history, including the veteran's own account.</b><span class="stop">What happened in service, symptoms since, and later events. An opinion based on the veteran's history is credible unless that history is shown to be wrong.</span></div></li>
+        <li><div><b>The opinion, in VA's terms.</b><span class="stop">One clear sentence using "at least as likely as not" or "less likely than not," for each theory asked: caused by, and, if raised, made worse by.</span></div></li>
+        <li><div><b>The reasons.</b><span class="stop">The medical principles and how they apply to these facts. This is where most of the weight comes from.</span></div></li>
+        <li><div><b>The other side.</b><span class="stop">Why contrary evidence, other causes, or an earlier opinion does or does not change the conclusion.</span></div></li>
+      </ol>
+      <p class="cite"><span class="tag guide">VA guidance</span> M21-1 V.ii.1.A.3 <span class="tag court">Court</span> <i>Nieves-Rodriguez v. Peake</i>, 22 Vet. App. 295 (2008); <i>Stefl v. Nicholson</i>, 21 Vet. App. 120 (2007); <i>Kowalski v. Nicholson</i>, 19 Vet. App. 171 (2005)</p>
+    </section>
+
+    <section class="panel" id="weigh" aria-labelledby="wg-h">
+      <header><span class="eyebrow">How VA decides</span><h2 id="wg-h">How VA weighs an opinion</h2></header>
+      <div class="tscroll"><table class="stack">
+        <thead><tr><th scope="col">Rule</th><th scope="col">In plain words</th><th scope="col">Source</th></tr></thead>
+        <tbody>
+          <tr><td>Reasons, not conclusions</td><td>A bare conclusion is not enough. The opinion must give an analysis VA can weigh against other opinions.</td><td><span class="tag court">Court</span> <i>Stefl</i>; <i>Nieves-Rodriguez</i></td></tr>
+          <tr><td>Correct facts</td><td>An opinion based on an inaccurate factual premise has no weight.</td><td><span class="tag court">Court</span> <i>Reonal v. Brown</i>, 5 Vet. App. 458 (1993)</td></tr>
+          <tr><td>Read as a whole</td><td>A report is read in full. It does not have to discuss every record, and missing magic words alone do not sink it.</td><td><span class="tag court">Court</span> <i>Monzingo v. Shinseki</i>, 26 Vet. App. 97 (2012)</td></tr>
+          <tr><td>Not ambiguous</td><td>VA's guidance asks for opinions that are clear and detailed enough to decide the issue. VA asks for clarification of ambiguous findings.</td><td><span class="tag guide">VA guidance</span> M21-1 V.ii.1.A.3; IV.i.3.C</td></tr>
+          <tr><td>No medical judgment from the decision maker</td><td>VA decision makers cannot reject an opinion based on their own medical view. They must point to medical evidence.</td><td><span class="tag court">Court</span> <i>Colvin v. Derwinski</i>, 1 Vet. App. 171 (1991); <i>Kahana v. Shinseki</i>, 24 Vet. App. 428 (2011)</td></tr>
+          <tr><td>Private equals VA</td><td>Private evidence is not worth less than VA evidence because of where it came from.</td><td><span class="tag guide">VA guidance</span> M21-1 V.ii.1.A.3</td></tr>
+          <tr><td>An adequate exam once given</td><td>If VA provides an exam, it must be adequate, even if VA did not have to provide one.</td><td><span class="tag court">Court</span> <i>Barr v. Nicholson</i>, 21 Vet. App. 303 (2007)</td></tr>
+        </tbody>
+      </table></div>
+    </section>
+
+    <section class="panel" id="lay" aria-labelledby="lay-h">
+      <header><span class="eyebrow">The veteran's own account</span><h2 id="lay-h">Lay statements and missing records</h2></header>
+      <ul>
+        <li>A veteran or witness is competent to describe what they <b>saw, heard, or felt</b>, including their own symptoms. VA must consider these statements.</li>
+        <li>A statement is <b>not unbelievable just because no medical record backs it up</b>.</li>
+        <li>An opinion that rests only on the <b>absence of a record in service</b>, and ignores the veteran's account of an injury, is inadequate. Absence of a record counts against a claim only if the fact would ordinarily have been recorded.</li>
+      </ul>
+      <p class="cite"><span class="tag guide">VA guidance</span> M21-1 V.ii.1.A.2; V.ii.1.B.2 <span class="tag court">Court</span> <i>Buchanan v. Nicholson</i>, 451 F.3d 1331 (Fed. Cir. 2006); <i>Dalton v. Nicholson</i>, 21 Vet. App. 23 (2007)</p>
+    </section>
+
+    <section class="panel" id="spec" aria-labelledby="sp-h">
+      <header><span class="eyebrow">"Without speculation"</span><h2 id="sp-h">When an examiner says it can't be answered</h2></header>
+      <ul>
+        <li>The phrase "cannot be resolved without resorting to mere speculation" is <b>not a conclusion against the claim</b>. It is no evidence either way.</li>
+        <li>VA can rely on it only if the examiner <b>explains why</b>, or the reason is clear from the record: for example, that medicine cannot answer it, or that specific facts are missing.</li>
+        <li>The examiner should show that all procurable, relevant information was considered. If a missing record or test is the problem, VA may be able to get it.</li>
+      </ul>
+      <p class="cite"><span class="tag guide">VA guidance</span> M21-1 V.ii.1.A.5; IV.i.3.A <span class="tag court">Court</span> <i>Jones v. Shinseki</i>, 23 Vet. App. 382 (2010)</p>
+    </section>
+
+    <section class="panel" id="problems" aria-labelledby="pb-h">
+      <header><span class="eyebrow">Spot the gaps</span><h2 id="pb-h">Common problems in medical opinions</h2></header>
+      <div class="tscroll"><table class="stack">
+        <thead><tr><th scope="col">Problem</th><th scope="col">Why it matters</th><th scope="col">Source</th></tr></thead>
+        <tbody>
+          <tr><td>A conclusion with no reasons</td><td>Nothing for VA to weigh.</td><td><i>Stefl</i></td></tr>
+          <tr><td>"No record in service" as the only reason</td><td>Ignores the veteran's account.</td><td><i>Dalton</i>; <i>Buchanan</i></td></tr>
+          <tr><td>Wrong dates, wrong history, or the wrong condition</td><td>An inaccurate premise has no weight.</td><td><i>Reonal</i></td></tr>
+          <tr><td>Answers "caused by" but not "made worse by" when aggravation was raised</td><td>Secondary service connection includes both.</td><td>§ 3.310(b); <i>El-Amin v. Shinseki</i>, 26 Vet. App. 136 (2013)</td></tr>
+          <tr><td>Normal hearing at separation as the only reason against hearing loss</td><td>VA's exam guidance says this alone is not enough.</td><td>M21-1 IV.i.3.B</td></tr>
+          <tr><td>"Speculation" with no explanation</td><td>Cannot be relied on.</td><td><i>Jones</i></td></tr>
+          <tr><td>Answers a legal question, such as whether a stressor is verified</td><td>That is VA's job, not the examiner's.</td><td><i>Sizemore v. Principi</i>, 18 Vet. App. 264 (2004); M21-1 IV.i.2.A.7</td></tr>
+          <tr><td>A single conclusory sentence that service caused it</td><td>May not even show a possible link for exam purposes.</td><td><i>Waters v. Shinseki</i>, 601 F.3d 1274 (Fed. Cir. 2010)</td></tr>
+        </tbody>
+      </table></div>
+      <p class="muted noprint" style="font-size:.88rem">Have an opinion to check? Try <a href="./#opinions">Check an exam opinion</a>.</p>
+    </section>
+
+    <section class="panel" id="foryou" aria-labelledby="fy-h">
+      <header><span class="eyebrow">What you can do</span><h2 id="fy-h">Tips for each reader</h2></header>
+      <div class="cols">
+        <div class="box you aud" data-aud="vet"><h3>Veterans and families</h3><ul>
+          <li>Download your exam report on VA.gov and read the opinion and rationale.</li>
+          <li>Compare it to the problems table. Note page numbers.</li>
+          <li>Write a statement with the facts the examiner missed, in your own words.</li>
+          <li>If you ask your own doctor for an opinion, share this page and the reason VA denied the claim.</li>
+        </ul></div>
+        <div class="box doc aud" data-aud="doc"><h3>Doctors and clinicians</h3><ul>
+          <li>Say what you reviewed and how you know the patient.</li>
+          <li>Give the opinion in VA's terms, for each theory raised.</li>
+          <li>Explain the medical reasons. Cite literature where it helps.</li>
+          <li>Address the earlier VA opinion's reasoning directly.</li>
+          <li>Describe function and limits; leave legal labels to VA.</li>
+          <li>Many DBQ forms are public. <a href="doctor-guide.html">What VA asks your examiner</a></li>
+        </ul></div>
+        <div class="box aud" data-aud="rep" style="border-left:4px solid var(--wait)"><h3>Lawyers, agents, and VSOs</h3><ul>
+          <li>An inadequate VA exam is a <b>duty to assist</b> issue a Higher-Level Review can send back.</li>
+          <li>A new private opinion goes with a Supplemental Claim.</li>
+          <li>Examiners are presumed competent; a challenge must be raised. You can ask for the examiner's qualifications.</li>
+          <li>In a complex or disputed case, a written request for an independent medical opinion is possible.</li>
+        </ul>
+        <p class="cite" style="border:0;padding:0"><span class="tag law">Law</span> 38 C.F.R. §§ 3.328, 3.2601(g) <span class="tag court">Court</span> <i>Francway v. Wilkie</i>, 940 F.3d 1304 (Fed. Cir. 2019)</p></div>
+      </div>
+    </section>
+
+    <section class="panel" id="doccheck" aria-labelledby="dc-h">
+      <header><span class="eyebrow">For clinicians</span><h2 id="dc-h">Before you sign an opinion</h2></header>
+      <ul class="checklist" style="list-style:none;padding:0">
+        <li><label class="row" style="align-items:flex-start;flex-wrap:nowrap"><input type="checkbox" style="width:18px;height:18px;margin-top:3px"> <span>My credentials and how I know the patient are stated.</span></label></li>
+        <li><label class="row" style="align-items:flex-start;flex-wrap:nowrap"><input type="checkbox" style="width:18px;height:18px;margin-top:3px"> <span>I listed the records and tests I reviewed.</span></label></li>
+        <li><label class="row" style="align-items:flex-start;flex-wrap:nowrap"><input type="checkbox" style="width:18px;height:18px;margin-top:3px"> <span>The history, including the patient's account, is accurate.</span></label></li>
+        <li><label class="row" style="align-items:flex-start;flex-wrap:nowrap"><input type="checkbox" style="width:18px;height:18px;margin-top:3px"> <span>The opinion uses "at least as likely as not" or "less likely than not."</span></label></li>
+        <li><label class="row" style="align-items:flex-start;flex-wrap:nowrap"><input type="checkbox" style="width:18px;height:18px;margin-top:3px"> <span>I explained the medical reasons for these facts.</span></label></li>
+        <li><label class="row" style="align-items:flex-start;flex-wrap:nowrap"><input type="checkbox" style="width:18px;height:18px;margin-top:3px"> <span>I addressed contrary evidence and any earlier opinion.</span></label></li>
+        <li><label class="row" style="align-items:flex-start;flex-wrap:nowrap"><input type="checkbox" style="width:18px;height:18px;margin-top:3px"> <span>If another condition is involved, I addressed both cause and worsening.</span></label></li>
+        <li><label class="row" style="align-items:flex-start;flex-wrap:nowrap"><input type="checkbox" style="width:18px;height:18px;margin-top:3px"> <span>It is signed and dated.</span></label></li>
+      </ul>
+      <p class="muted" style="font-size:.86rem">This checklist is not saved. Print the page to keep it.</p>
+    </section>
+
+    <section class="panel" id="example" aria-labelledby="ex-h">
+      <header><span class="eyebrow">Example</span><h2 id="ex-h">Reading Dana's two exam opinions</h2></header>
+      <div class="example">
+        <b>Fictional example</b>
+        <p><b>Knee opinion:</b> "Service treatment records … show a single sick-call visit in 2007 for a left knee strain, which resolved with rest. There is no documentation of a chronic knee condition in service … The veteran did not seek treatment until 2019."</p>
+        <ul>
+          <li>It rests on the <b>absence of records</b>, and does not mention Dana's account of knee pain that continued after the 2007 injury.</li>
+          <li>It does not explain medically why a 2007 strain could not lead to the current condition.</li>
+        </ul>
+        <p><b>Hearing opinion:</b> "Hearing was within normal limits at separation … Because hearing was normal at discharge, there is no nexus. It is possible that occupational noise after service contributed."</p>
+        <ul>
+          <li>Normal hearing at separation is the <b>only reason</b> given.</li>
+          <li>"It is possible" is a speculative alternative with no reasons.</li>
+        </ul>
+        <p class="muted" style="font-size:.86rem">These opinions were written for teaching. They are not real VA exam reports, and spotting a gap does not predict any outcome.</p>
+      </div>
+    </section>
+
+    <section class="panel" id="myths" aria-labelledby="myth-h">
+      <header><span class="eyebrow">Common misunderstandings</span><h2 id="myth-h">What people often get wrong</h2></header>
+      <dl class="myths">
+        <dt>"Two favorable opinions beat one negative one."</dt><dd>No. VA weighs opinions by their reasoning, not their number.</dd>
+        <dt>"My treating doctor's opinion wins automatically."</dt><dd>No. It gets no automatic extra weight, though knowing your history can help.</dd>
+        <dt>"A private doctor must review my whole VA file."</dt><dd>No. What matters is whether the opinion rests on accurate, enough facts.</dd>
+        <dt>"'Without speculation' means VA said no."</dt><dd>No. It counts neither way, and VA can rely on it only if the examiner explains it.</dd>
+        <dt>"A nexus letter only needs one sentence."</dt><dd>No. A conclusion without reasons carries little weight.</dd>
+      </dl>
+    </section>
+
+    <section class="panel" id="related" aria-labelledby="rel-h">
+      <header><h2 id="rel-h">Related on ClaimReady</h2></header>
+      <ul>
+        <li><a href="supplemental-claims.html">Supplemental Claims: what new evidence does</a></li>
+        <li><a href="doctor-guide.html">What VA asks your examiner</a></li>
+        <li><a href="./#educ.exams">C&amp;P exams: the complete guide</a> and <a href="./#educ.teraexam">Toxic exposure exams (TERA)</a></li>
+        <li><a href="./#educ.evidence">How VA weighs evidence</a></li>
+        <li><a href="./#opinions">Check an exam opinion</a></li>
+      </ul>
+    </section>
+
+    <section class="panel" id="sources" aria-labelledby="src-h">
+      <header><h2 id="src-h">Sources and dates</h2>
+        <p class="muted" style="font-size:.88rem"><span class="tag law">Law</span> statutes and regulations VA must follow. <span class="tag guide">VA guidance</span> VA's procedures manual, which explains how VA applies the law but is not law. <span class="tag court">Court</span> published decisions of the federal courts that review VA, which bind VA.</p></header>
+      <div class="tscroll"><table>
+        <thead><tr><th scope="col">Source</th><th scope="col">Type</th><th scope="col">Version used</th></tr></thead>
+        <tbody>
+          <tr><td>38 U.S.C. §§ 5103A(d), 5107(b)</td><td><span class="tag law">Law</span></td><td>Current U.S. Code</td></tr>
+          <tr><td>38 C.F.R. §§ 3.102, 3.159(c)(4), 3.303, 3.310, 3.328, 3.2601(g)</td><td><span class="tag law">Law</span></td><td>Current eCFR</td></tr>
+          <tr><td>M21-1 V.ii.1.A, Principles of reviewing and weighing evidence</td><td><span class="tag guide">VA guidance</span></td><td class="num" data-src="554400000014383">May 27, 2025</td></tr>
+          <tr><td>M21-1 V.ii.1.B, Testimony and lay evidence</td><td><span class="tag guide">VA guidance</span></td><td class="num" data-src="554400000014389">May 27, 2025</td></tr>
+          <tr><td>M21-1 IV.i.3.A–C, Sufficiency of exam reports</td><td><span class="tag guide">VA guidance</span></td><td class="num" data-src="554400000180514">Jan 12, 2026</td></tr>
+          <tr><td><i>Colvin v. Derwinski</i>, 1 Vet. App. 171 (1991); <i>Reonal v. Brown</i>, 5 Vet. App. 458 (1993); <i>Sizemore v. Principi</i>, 18 Vet. App. 264 (2004); <i>Kowalski v. Nicholson</i>, 19 Vet. App. 171 (2005); <i>Buchanan v. Nicholson</i>, 451 F.3d 1331 (Fed. Cir. 2006); <i>Dalton v. Nicholson</i>, 21 Vet. App. 23 (2007); <i>Stefl v. Nicholson</i>, 21 Vet. App. 120 (2007); <i>Barr v. Nicholson</i>, 21 Vet. App. 303 (2007); <i>Nieves-Rodriguez v. Peake</i>, 22 Vet. App. 295 (2008); <i>Jones v. Shinseki</i>, 23 Vet. App. 382 (2010); <i>Waters v. Shinseki</i>, 601 F.3d 1274 (Fed. Cir. 2010); <i>Kahana v. Shinseki</i>, 24 Vet. App. 428 (2011); <i>Monzingo v. Shinseki</i>, 26 Vet. App. 97 (2012); <i>El-Amin v. Shinseki</i>, 26 Vet. App. 136 (2013); <i>Francway v. Wilkie</i>, 940 F.3d 1304 (Fed. Cir. 2019)</td><td><span class="tag court">Court</span></td><td>As published</td></tr>
+        </tbody>
+      </table></div>
+      <p class="muted" style="font-size:.86rem">Content reviewed <span class="num">Oct 20, 2026</span>. When VA updates a source, ClaimReady's weekly monitor flags it for review before this page changes.</p>
+    </section>
+  </main>
+
+  <footer>
+    <p>This article explains how VA and the courts weigh medical opinions. It does not evaluate any real opinion, predict any outcome, or tell a clinician what to conclude. It is not legal or medical advice.</p>
+    <p>ClaimReady is independent and educational. It is not VA and is not a substitute for an accredited representative, who can help at no cost. Nothing on this page is saved or sent. <a href="./#about">About ClaimReady and full disclaimer</a></p>
+  </footer>
+</div>
+<script>
+(() => {
+  const radios = [...document.querySelectorAll('input[name="aud"]')];
+  const boxes = [...document.querySelectorAll('.aud')];
+  const note = document.getElementById('audNote');
+  const names = { all: 'everyone', vet: 'veterans and families', doc: 'doctors and clinicians', rep: 'lawyers, agents, and VSOs' };
+  function apply() {
+    const k = (radios.find(r => r.checked) || radios[0]).value;
+    boxes.forEach(b => { b.hidden = k !== 'all' && b.dataset.aud !== k; });
+    document.getElementById('doccheck').hidden = k !== 'all' && k !== 'doc';
+    note.textContent = `Showing tips for ${names[k]}.`;
+  }
+  radios.forEach(r => r.addEventListener('change', apply));
+  // A link such as medical-opinions.html#doc opens with that audience picked.
+  const h = location.hash.slice(1);
+  if (names[h]) { radios.find(r => r.value === h).checked = true; apply(); }
+  document.getElementById('printBtn').addEventListener('click', () => window.print());
+})();
+</script>
+</body></html>
