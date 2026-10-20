@@ -924,6 +924,18 @@ a.tool-card, a.learn-row, a.sg-page { text-decoration: none; }
 .quiz-fb.wrong { background: var(--bad-soft); }
 .quiz-src { margin: 6px 0 0; font-size: .84rem; }
 .disclaimer-full p { margin: 0; max-width: 75ch; }
+
+/* Rating estimator: result leads with the matched criteria wording */
+.rate-match { display: flex; flex-direction: column; gap: 8px; padding: 14px 16px; border: 2px solid var(--accent); border-radius: var(--r); background: var(--accent-soft); }
+.crit-quote { margin: 0; padding: 0 0 0 12px; border-left: 3px solid var(--accent); font-family: 'Source Serif 4', Georgia, serif; font-size: 1.08rem; line-height: 1.45; color: var(--ink); overflow-wrap: anywhere; }
+.crit-pct { margin: 0; color: var(--ink); }
+.crit-pct .num { font-size: 1.05rem; }
+.whole-record { margin: 12px 0 0; padding: 10px 12px; border: 1px solid var(--line); border-radius: var(--r); background: var(--surface); }
+.crit-all { margin-top: 12px; }
+.crit-all summary { cursor: pointer; padding: 10px 0; }
+.crit-head-line { margin: 12px 0 6px; font-weight: 600; color: var(--ink); }
+.crit-all .ex-level { align-items: flex-start; }
+.crit-all .ex-level > .stack { overflow-wrap: anywhere; }
 </style>
 <script src="site-config.js"></script>
 <script>
@@ -1836,7 +1848,7 @@ if (typeof module !== 'undefined') module.exports = VCI;
 </script>
 <script>
 /* Rating estimator: matches symptoms a veteran reports to 38 C.F.R. Part 4 criteria.
-   A guide only. VA assigns the official evaluation. Criteria checked October 16, 2026. */
+   A guide only. VA assigns the official evaluation. Criteria wording checked against eCFR on October 20, 2026 (eCFR current as of October 16, 2026). */
 const VCI_RATERS = (() => {
   const n = v => (v === '' || v == null || isNaN(Number(v))) ? null : Number(v);
   const mk = (rating, why, extra) => Object.assign({ rating, why, notes: [], approx: false }, extra || {});
@@ -1884,7 +1896,7 @@ const VCI_RATERS = (() => {
       let ivdsR = 0;
       if (wk != null && wk > 0) { ivdsR = wk >= 6 ? 60 : wk >= 4 ? 40 : wk >= 2 ? 20 : wk >= 1 ? 10 : 0;
         if (ivdsR) why.push(`${ivdsR}%: disc disease with ${wk} week${wk === 1 ? '' : 's'} of incapacitating episodes in the past 12 months (IVDS formula)`); }
-      const out = mk(Math.max(r, ivdsR), why.length ? why : ['None of the spine criteria are met by what you entered.']);
+      const out = mk(Math.max(r, ivdsR), why.length ? why : ['None of the spine criteria are met by what you entered.'], { ivds: ivdsR > r });
       if (ivdsR > r) out.notes.push('The disc disease (IVDS) formula gives the higher result. VA uses whichever method results in the higher evaluation.');
       out.notes.push('Nerve symptoms down an arm or leg (radiculopathy) are rated separately and added on top.');
       out.notes.push('VA also considers pain, weakness, fatigue, and flare-ups that further limit motion.');
@@ -1913,7 +1925,7 @@ const VCI_RATERS = (() => {
       let out;
       if (!compensable.length && v.pain) {
         why.push('Painful motion without compensable limitation → one 10% evaluation for the knee under DC 5260/5261 (§ 4.59)');
-        out = mk(10, why, { separate: [{ label: 'DC 5260/5261 (painful motion)', rating: 10 }] });
+        out = mk(10, why, { separate: [{ label: 'DC 5260/5261 (painful motion)', rating: 10 }], p459: true });
         out.notes.push('With pain only, VA awards a single evaluation for DC 5260/5261, not one for each.');
       } else {
         const total = compensable.length > 1 ? Math.round(VCI.combineList(compensable.map(s => s.rating)).value / 10) * 10 : (compensable[0] ? compensable[0].rating : 0);
@@ -2002,8 +2014,8 @@ const VCI_RATERS = (() => {
         if (r) why.push(`Arm raised only to ${d}° (${major ? 'dominant' : 'non-dominant'} arm) → ${r}% under DC 5201`);
         else why.push(`Arm raised to ${d}°, above shoulder level, so DC 5201 does not apply`);
       }
-      const out = mk(r, why.length ? why : ['Enter how high you can raise your arm.']);
-      if (!r && v.pain) { out.rating = 20; out.why.push('Painful motion → 20%, the minimum compensable rating for the shoulder under DC 5201 (§ 4.59)'); out.notes.push('Under § 4.59, a painful joint is entitled to at least the minimum compensable rating for that joint. For the shoulder (DC 5201), that is 20%.'); }
+      const out = mk(r, why.length ? why : ['Enter how high you can raise your arm.'], r ? { levelIndex: d <= 25 ? 0 : d <= 45 ? 1 : 2 } : {});
+      if (!r && v.pain) { out.rating = 20; out.p459 = true; out.why.push('Painful motion → 20%, the minimum compensable rating for the shoulder under DC 5201 (§ 4.59)'); out.notes.push('Under § 4.59, a painful joint is entitled to at least the minimum compensable rating for that joint. For the shoulder (DC 5201), that is 20%.'); }
       out.notes.push('Thresholds: shoulder level (90°) = 20%; midway (45°) = 30% dominant, 20% non-dominant; 25° from the side = 40% dominant, 30% non-dominant.');
       return out;
     },
@@ -2023,10 +2035,8 @@ const VCI_RATERS = (() => {
       let r = 0;
       if ((d != null && d < 5) || (p != null && p < 10)) { r = 20; why.push('Marked limitation of motion → 20%'); }
       else if ((d != null && d < 15) || (p != null && p < 30)) { r = 10; why.push('Moderate limitation of motion → 10%'); }
-      if (!r && v.pain) { r = 10; why.push('Painful motion → 10%, the minimum for a painful joint (§ 4.59)'); }
-      const out = mk(r, why.length ? why : ['Enter your ankle range of motion.'], { approx: true });
-      out.notes.push('The regulation says "moderate" and "marked" without numbers. This estimate uses VA\'s usual guide: moderate is less than 15° up or less than 30° down; marked is less than 5° up or less than 10° down.');
-      return out;
+      const p459 = !r && !!v.pain; if (p459) { r = 10; why.push('Painful motion → 10%, the minimum for a painful joint (§ 4.59)'); }
+      return mk(r, why.length ? why : ['Enter your ankle range of motion.'], { p459 });
     },
   };
 
@@ -2042,7 +2052,7 @@ const VCI_RATERS = (() => {
     rate(v) {
       if (v.lou) return mk(40, ['Actual loss of use of the foot → 40%']);
       if (v.relief === 'none') return v.side === 'both' ? mk(30, ['Both feet, no relief from both non-surgical and surgical treatment → 30%']) : mk(20, ['One foot, no relief from both non-surgical and surgical treatment → 20%']);
-      return mk(10, ['Plantar fasciitis in one or both feet, other cases → 10%']);
+      return mk(10, ['Plantar fasciitis in one or both feet, other cases → 10%'], { notes: ['Note (2) of DC 5269: if surgery has been recommended but you are not a surgical candidate, VA evaluates under the 20% or 30% criteria, whichever applies.'] });
     },
   };
 
@@ -2179,6 +2189,89 @@ const VCI_RATERS = (() => {
     rate(v) { return { polyp: mk(30, ['With polyps → 30%']), obs: mk(10, ['Greater than 50% obstruction on both sides, or complete obstruction on one side, without polyps → 10%']), none: mk(0, ['Does not meet the 10% obstruction level → 0%']) }[v.f || 'none']; },
   };
 
+  // ---------- Criteria wording, quoted from 38 C.F.R. Part 4 on eCFR ----------
+  const CHECKED = 'October 20, 2026'; const ECFR_ASOF = 'October 16, 2026';
+  const LEVELS = {};
+  LEVELS.spine = [
+    ['General Rating Formula for Diseases and Injuries of the Spine', 'general', [
+      [100, 'Unfavorable ankylosis of the entire spine'],
+      [50, 'Unfavorable ankylosis of the entire thoracolumbar spine'],
+      [40, 'Unfavorable ankylosis of the entire cervical spine; or, forward flexion of the thoracolumbar spine 30 degrees or less; or, favorable ankylosis of the entire thoracolumbar spine'],
+      [30, 'Forward flexion of the cervical spine 15 degrees or less; or, favorable ankylosis of the entire cervical spine'],
+      [20, 'Forward flexion of the thoracolumbar spine greater than 30 degrees but not greater than 60 degrees; or, forward flexion of the cervical spine greater than 15 degrees but not greater than 30 degrees; or, the combined range of motion of the thoracolumbar spine not greater than 120 degrees; or, the combined range of motion of the cervical spine not greater than 170 degrees; or, muscle spasm or guarding severe enough to result in an abnormal gait or abnormal spinal contour such as scoliosis, reversed lordosis, or abnormal kyphosis'],
+      [10, 'Forward flexion of the thoracolumbar spine greater than 60 degrees but not greater than 85 degrees; or, forward flexion of the cervical spine greater than 30 degrees but not greater than 40 degrees; or, combined range of motion of the thoracolumbar spine greater than 120 degrees but not greater than 235 degrees; or, combined range of motion of the cervical spine greater than 170 degrees but not greater than 335 degrees; or, muscle spasm, guarding, or localized tenderness not resulting in abnormal gait or abnormal spinal contour; or, vertebral body fracture with loss of 50 percent or more of the height']]],
+    ['Formula for Rating Intervertebral Disc Syndrome Based on Incapacitating Episodes', 'ivds', [
+      [60, 'With incapacitating episodes having a total duration of at least 6 weeks during the past 12 months'],
+      [40, 'With incapacitating episodes having a total duration of at least 4 weeks but less than 6 weeks during the past 12 months'],
+      [20, 'With incapacitating episodes having a total duration of at least 2 weeks but less than 4 weeks during the past 12 months'],
+      [10, 'With incapacitating episodes having a total duration of at least one week but less than 2 weeks during the past 12 months']]],
+  ];
+  LEVELS.shoulder = [['DC 5201, Arm, limitation of motion of (major arm % / minor arm %)', 'main', [
+    [{ major: 40, minor: 30 }, 'Flexion and/or abduction limited to 25° from side'],
+    [{ major: 30, minor: 20 }, 'Midway between side and shoulder level (flexion and/or abduction limited to 45°)'],
+    [{ major: 20, minor: 20 }, 'At shoulder level (flexion and/or abduction limited to 90°)']]]];
+  LEVELS.ankle = [['DC 5271, Ankle, limited motion of', 'main', [
+    [20, 'Marked (less than 5 degrees dorsiflexion or less than 10 degrees plantar flexion)'],
+    [10, 'Moderate (less than 15 degrees dorsiflexion or less than 30 degrees plantar flexion)']]]];
+  LEVELS.plantar = [['DC 5269, Plantar fasciitis', 'main', [
+    [40, 'Note (1): With actual loss of use of the foot, rate 40 percent'],
+    [30, 'No relief from both non-surgical and surgical treatment, bilateral'],
+    [20, 'No relief from both non-surgical and surgical treatment, unilateral'],
+    [10, 'Otherwise, unilateral or bilateral']]]];
+  LEVELS.mental = [['General Rating Formula for Mental Disorders', 'main', [
+    [100, 'Total occupational and social impairment, due to such symptoms as: gross impairment in thought processes or communication; persistent delusions or hallucinations; grossly inappropriate behavior; persistent danger of hurting self or others; intermittent inability to perform activities of daily living (including maintenance of minimal personal hygiene); disorientation to time or place; memory loss for names of close relatives, own occupation, or own name.'],
+    [70, 'Occupational and social impairment, with deficiencies in most areas, such as work, school, family relations, judgment, thinking, or mood, due to such symptoms as: suicidal ideation; obsessional rituals which interfere with routine activities; speech intermittently illogical, obscure, or irrelevant; near-continuous panic or depression affecting the ability to function independently, appropriately and effectively; impaired impulse control (such as unprovoked irritability with periods of violence); spatial disorientation; neglect of personal appearance and hygiene; difficulty in adapting to stressful circumstances (including work or a worklike setting); inability to establish and maintain effective relationships.'],
+    [50, 'Occupational and social impairment with reduced reliability and productivity due to such symptoms as: flattened affect; circumstantial, circumlocutory, or stereotyped speech; panic attacks more than once a week; difficulty in understanding complex commands; impairment of short- and long-term memory (e.g., retention of only highly learned material, forgetting to complete tasks); impaired judgment; impaired abstract thinking; disturbances of motivation and mood; difficulty in establishing and maintaining effective work and social relationships.']]]];
+  LEVELS.mental[0][2].push(
+    [30, 'Occupational and social impairment with occasional decrease in work efficiency and intermittent periods of inability to perform occupational tasks (although generally functioning satisfactorily, with routine behavior, self-care, and conversation normal), due to such symptoms as: depressed mood, anxiety, suspiciousness, panic attacks (weekly or less often), chronic sleep impairment, mild memory loss (such as forgetting names, directions, recent events).'],
+    [10, 'Occupational and social impairment due to mild or transient symptoms which decrease work efficiency and ability to perform occupational tasks only during periods of significant stress, or symptoms controlled by continuous medication.'],
+    [0, 'A mental condition has been formally diagnosed, but symptoms are not severe enough either to interfere with occupational and social functioning or to require continuous medication.']);
+  LEVELS.migraine = [['DC 8100, Migraine', 'main', [
+    [50, 'With very frequent completely prostrating and prolonged attacks productive of severe economic inadaptability'],
+    [30, 'With characteristic prostrating attacks occurring on an average once a month over last several months'],
+    [10, 'With characteristic prostrating attacks averaging one in 2 months over last several months'],
+    [0, 'With less frequent attacks']]]];
+  LEVELS.apnea = [['DC 6847, Sleep Apnea Syndromes (Obstructive, Central, Mixed)', 'main', [
+    [100, 'Chronic respiratory failure with carbon dioxide retention or cor pulmonale, or; requires tracheostomy'],
+    [50, 'Requires use of breathing assistance device such as continuous airway pressure (CPAP) machine'],
+    [30, 'Persistent day-time hypersomnolence'],
+    [0, 'Asymptomatic but with documented sleep disorder breathing']]]];
+  LEVELS.tinnitus = [['DC 6260', 'main', [[10, 'Tinnitus, recurrent']]]];
+  LEVELS.htn = [['DC 7101, Hypertensive vascular disease', 'main', [
+    [60, 'Diastolic pressure predominantly 130 or more'],
+    [40, 'Diastolic pressure predominantly 120 or more'],
+    [20, 'Diastolic pressure predominantly 110 or more, or; systolic pressure predominantly 200 or more'],
+    [10, 'Diastolic pressure predominantly 100 or more, or; systolic pressure predominantly 160 or more, or; minimum evaluation for an individual with a history of diastolic pressure predominantly 100 or more who requires continuous medication for control']]]];
+  LEVELS.diabetes = [['DC 7913, Diabetes mellitus', 'main', [
+    [100, 'Requiring more than one daily injection of insulin, restricted diet, and regulation of activities (avoidance of strenuous occupational and recreational activities) with episodes of ketoacidosis or hypoglycemic reactions requiring at least three hospitalizations per year or weekly visits to a diabetic care provider, plus either progressive loss of weight and strength or complications that would be compensable if separately evaluated'],
+    [60, 'Requiring one or more daily injection of insulin, restricted diet, and regulation of activities with episodes of ketoacidosis or hypoglycemic reactions requiring one or two hospitalizations per year or twice a month visits to a diabetic care provider, plus complications that would not be compensable if separately evaluated'],
+    [40, 'Requiring one or more daily injection of insulin, restricted diet, and regulation of activities'],
+    [20, 'Requiring one or more daily injection of insulin and restricted diet, or; oral hypoglycemic agent and restricted diet'],
+    [10, 'Manageable by restricted diet only']]]];
+  LEVELS.sinus = [['General Rating Formula for Sinusitis (DCs 6510 through 6514)', 'main', [
+    [50, 'Following radical surgery with chronic osteomyelitis, or; near constant sinusitis characterized by headaches, pain and tenderness of affected sinus, and purulent discharge or crusting after repeated surgeries'],
+    [30, 'Three or more incapacitating episodes per year of sinusitis requiring prolonged (lasting four to six weeks) antibiotic treatment, or; more than six non-incapacitating episodes per year of sinusitis characterized by headaches, pain, and purulent discharge or crusting'],
+    [10, 'One or two incapacitating episodes per year of sinusitis requiring prolonged (lasting four to six weeks) antibiotic treatment, or; three to six non-incapacitating episodes per year of sinusitis characterized by headaches, pain, and purulent discharge or crusting'],
+    [0, 'Detected by X-ray only']]]];
+  LEVELS.rhinitis = [['DC 6522, Allergic or vasomotor rhinitis', 'main', [
+    [30, 'With polyps'],
+    [10, 'Without polyps, but with greater than 50-percent obstruction of nasal passage on both sides or complete obstruction on one side']]]];
+  // All levels of a rater's criteria, grouped by formula or diagnostic code.
+  function criteria(id, vals) {
+    const r = R[id]; if (!r) return []; vals = vals || {};
+    const pctOf = p => typeof p === 'object' && p ? p[vals.arm === 'minor' ? 'minor' : 'major'] : p;
+    if (LEVELS[id]) return LEVELS[id].map(([head, key, rows]) => ({ head, key, rows: rows.map(([p, text]) => ({ pct: pctOf(p), text })) }));
+    return r.fields.filter(f => f.type === 'radio').map(f => ({ head: f.label, key: f.key, rows: f.groups.flatMap(([gh, list]) => list.filter(o => o[2]).map(([k, t, p]) => ({ key: k, pct: /\d/.test(p) ? Number(p) : null, text: (gh ? gh + ' ' : '') + t }))) }));
+  }
+  // The criteria wording the answers match. p459: the painful-motion minimum under § 4.59 applied instead of a listed level.
+  function matched(id, vals, est) {
+    vals = vals || {}; if (!est) est = estimate(id, vals); const parts = criteria(id, vals); const out = { rows: [], p459: est && est.p459 ? est.rating : null };
+    if (!est || est.none || out.p459 != null) return out;
+    if (!LEVELS[id]) { parts.forEach(p => p.rows.forEach(row => { if (row.key && vals[p.key] === row.key) out.rows.push(Object.assign({ head: p.head }, row)); })); return out; }
+    const part = parts.find(p => p.key === (est.ivds ? 'ivds' : parts[0].key));
+    part.rows.filter((row, i) => est.levelIndex != null ? i === est.levelIndex : row.pct === est.rating).forEach(row => out.rows.push(Object.assign({ head: part.head }, row)));
+    return out;
+  }
   function guess(c) {
     if (!c) return '';
     const dc = String(c.dc || '').trim(); const name = c.name || '';
@@ -2188,7 +2281,7 @@ const VCI_RATERS = (() => {
     return '';
   }
   function estimate(id, values) { const r = R[id]; if (!r) return null; return Object.assign({ rater: id, dcs: r.dcs, cite: r.cite }, r.rate(values || {})); }
-  return { R, guess, estimate, MENTAL };
+  return { R, guess, estimate, MENTAL, LEVELS, criteria, matched, CHECKED, ECFR_ASOF };
 })();
 if (typeof module !== 'undefined') module.exports = VCI_RATERS;
 </script>
@@ -2541,6 +2634,18 @@ function vciTests(VCI, vciExample) {
     const f = VCI_RATERS.R.knee.fields; const pick = k => f.find(x => x.key === k).groups[0][1].filter(o => o[2]).map(o => [o[1], Number(o[2])]);
     eq(pick('flex'), VCI.CRITERIA.kneeflex.levels.map(l => [l.text, l.pct])); eq(pick('ext'), VCI.CRITERIA.kneeext.levels.map(l => [l.text, l.pct]));
   });
+  if (typeof VCI_RATERS !== 'undefined') {
+    const RT = VCI_RATERS; const pcts = (id, v) => { const e = RT.estimate(id, v); const m = RT.matched(id, v, e); return [e.rating, m.rows.map(r => r.pct), m.p459]; };
+    t('Estimator: every rater lists quoted criteria levels', () => Object.keys(RT.R).forEach(id => ok(RT.criteria(id, {}).some(p => p.rows.length), id + ' has no criteria')));
+    t('Estimator: the matched wording carries the same percentage as the estimate', () => {
+      eq(pcts('spine', { region: 'tl', ff: '55' }), [20, [20], null]); eq(pcts('spine', { region: 'tl', ff: '80', ivds: '5' }), [40, [40], null]);
+      eq(pcts('ankle', { dors: '4' }), [20, [20], null]); eq(pcts('ankle', { dors: '12' }), [10, [10], null]); eq(pcts('ankle', { dors: '20', plant: '45', pain: true }), [10, [], 10]);
+      eq(pcts('shoulder', { arm: 'minor', deg: '40' }), [20, [20], null]); eq(pcts('shoulder', { arm: 'major', deg: '40' }), [30, [30], null]);
+      eq(pcts('mental', { level: '50' }), [50, [50], null]); eq(pcts('htn', { dia: '112' }), [20, [20], null]); eq(pcts('diabetes', { m: '40' }), [40, [40], null]);
+      eq(pcts('knee', { flex: 'f10' }), [10, [10], null]); eq(pcts('knee', { pain: true }), [10, [], 10]); eq(pcts('rhinitis', { f: 'none' }), [0, [], null]);
+    });
+    t('Estimator: ankle levels use the numbers now written in DC 5271', () => ok(RT.criteria('ankle', {})[0].rows[0].text.includes('less than 5 degrees dorsiflexion')));
+  }
   return T.map(x => { try { x.fn(); return { name: x.name, pass: true }; } catch (e) { return { name: x.name, pass: false, error: e.message }; } });
 }
 if (typeof module !== 'undefined') module.exports = vciTests;
@@ -4372,9 +4477,9 @@ window.VCI_UPDATES = [
       ${(() => { const tx = S.profile.toxic.exposures.filter(x => x.conditionIds.includes(id)); return tx.length ? `<p class="tx-line"><b>Linked toxic exposure:</b> ${tx.map(x => `<span class="pill t-mixed plain">${esc(x.type)}${x.location ? ', ' + esc(x.location) : ''}</span>`).join(' ')} <button class="btn link" data-go="info">Details</button></p>` : ''; })()}
       ${(() => { const list = c.estimates || []; if (!list.length) return `<p class="est-line row" style="gap:8px"><button class="btn small" data-act="estimateFor" data-cond="${id}">Estimate a rating from my symptoms</button></p>`;
         const cur = s.status === 'sc' ? s.rating : null; const top = list.length > 1 ? Math.round(VCI.combineList(list.map(e => e.rating)).value / 10) * 10 : list[0].rating;
-        return `<div class="est-line panel"><div class="spread"><span class="eyebrow">Your symptom estimates (not official)</span><span class="row" style="gap:8px"><button class="btn small" data-act="estimateFor" data-cond="${id}">Update or add an estimate</button></span></div>
-          <ul class="plain-list">${list.map(e => `<li><b class="num">${e.separate && e.separate.length > 1 ? e.separate.map(s => s.rating + '%').join(' + ') : e.rating == null ? 'By analogy' : e.rating + '%'}</b>${e.approx ? ' <span class="pill t-wait plain">approximate</span>' : ''} <span class="muted">${esc((VCI_RATERS.R[e.rater] || {}).name || e.dcs)} · ${esc(e.dcs)} · ${VCI.fmt(e.date)}</span> <button class="btn link" data-act="openEstimate" data-cond="${id}" data-rater="${e.rater}">Open</button></li>`).join('')}</ul>
-          ${list.length > 1 ? `<p class="muted" style="font-size:.86rem">Together these combine to about <b>${top}%</b> using VA's combined ratings math.</p>` : ''}
+        return `<div class="est-line panel"><div class="spread"><span class="eyebrow">Your self-estimates, not VA ratings</span><span class="row" style="gap:8px"><button class="btn small" data-act="estimateFor" data-cond="${id}">Update or add an estimate</button></span></div>
+          <ul class="plain-list">${list.map(e => `<li><span class="pill plain">Self-estimate</span> <b class="num">${e.separate && e.separate.length > 1 ? e.separate.map(s => s.rating + '%').join(' + ') : e.rating == null ? 'By analogy' : e.rating + '%'}</b>${e.approx ? ' <span class="pill t-wait plain">approximate</span>' : ''} <span class="muted">${esc((VCI_RATERS.R[e.rater] || {}).name || e.dcs)} · ${esc(e.dcs)} · ${VCI.fmt(e.date)}</span> <button class="btn link" data-act="openEstimate" data-cond="${id}" data-rater="${e.rater}">Open</button></li>`).join('')}</ul>
+          ${list.length > 1 ? `<p class="muted" style="font-size:.86rem">Together these self-estimates combine to about <b>${top}%</b> using VA's combined ratings math. They are not VA ratings.</p>` : ''}
           ${cur != null && top > cur ? `<p class="next">Your current rating is ${cur}%. If your symptoms have worsened, a claim for an increase may be worth discussing with an accredited representative.</p>` : ''}</div>`; })()}
       ${c.nextStep || c.followUp ? `<p class="next"><b>Next step:</b> ${esc(c.nextStep || 'Follow up')}${c.followUp ? ` · <span class="num">${VCI.fmt(c.followUp)}</span>` : ''}</p>` : ''}
 
@@ -4710,18 +4815,27 @@ window.VCI_UPDATES = [
   function rateResult() {
     const R = UI.rate; const est = VCI_RATERS.estimate(R.rater, R.vals); if (!est) return '';
     const c = R.cond && byId(S.conditions, R.cond); const s = c && VCI.conditionState(c);
-    return `<div class="rate-big"><span class="eyebrow">${est.separate && est.separate.length > 1 ? 'Suggested evaluations (separate)' : 'Suggested evaluation'}</span>${est.separate && est.separate.length > 1 ? `<div class="sep-list">${est.separate.map(s => `<div class="sep"><span class="pct num">${s.rating}%</span><span class="muted">${esc(s.label)}</span></div>`).join('')}</div>` : est.separate && est.separate.length === 1 ? `<div class="sep"><span class="pct num">${est.separate[0].rating}%</span><span class="muted">${esc(est.separate[0].label)}</span></div>` : `<span class="pct num">${est.rating == null ? (est.analogy ? 'By analogy' : '—') : est.rating + '%'}</span>`}${est.approx ? '<span class="pill t-wait">Approximate</span>' : ''}</div>
-      <p class="muted" style="font-size:.86rem">${esc(est.dcs)} · ${esc(est.cite)}</p>
-      <div class="stack" style="gap:4px"><b>How this was matched</b><ul class="plain-list">${est.why.map(w => `<li>${esc(w)}</li>`).join('')}</ul></div>
+    const m = VCI_RATERS.matched(R.rater, R.vals, est); const parts = VCI_RATERS.criteria(R.rater, R.vals);
+    const hit = row => m.rows.some(y => y.text === row.text);
+    const quote = row => `<blockquote class="crit-quote">“${esc(row.text)}”</blockquote><p class="crit-pct">VA's schedule lists this level at <b class="num">${row.pct == null ? 'by analogy' : row.pct + '%'}</b> · <span class="muted">${esc(row.head)}</span></p>`;
+    const top = est.none ? `<p class="muted" style="margin:0">${esc(est.why[0])}</p>`
+      : m.p459 != null ? `<p style="margin:0"><b>Painful motion (38 C.F.R. § 4.59).</b> None of the listed levels of limited motion is met, but VA recognizes an actually painful joint as entitled to at least the minimum compensable rating for that joint: <b class="num">${m.p459}%</b> under this code.</p>`
+      : m.rows.length ? m.rows.map(quote).join('') : `<p style="margin:0">Your answers do not match any level listed in these criteria.${est.rating === 0 ? ' When a code lists no 0% level and the requirements for a compensable rating are not met, 38 C.F.R. § 4.31 assigns 0%.' : ''}</p>`;
+    return `<div class="rate-match"><span class="eyebrow">${m.rows.length > 1 ? 'The criteria your answers match' : 'The criteria wording your answers match'}</span>${top}</div>
+      <p class="whole-record" role="note"><b>Your self-estimate, not a VA rating.</b> VA decides the rating from the whole record, including flare-ups, repeated use, other diagnostic codes, and the rules in 38 C.F.R. §§ 4.40, 4.45, 4.59, and 4.7.</p>
+      ${est.separate && est.separate.length > 1 ? `<p class="muted" style="font-size:.88rem;margin:0">Listed percentages: ${est.separate.map(x => `${esc(x.label)} ${x.rating}%`).join(' · ')}.</p>` : ''}
+      <details class="crit-all"><summary><b>All levels of these criteria</b></summary>${parts.map(p => `<p class="crit-head-line">${esc(p.head)}</p><ol class="ex-levels">${p.rows.map(row => `<li class="ex-level${hit(row) ? ' here' : ''}"><span class="stack" style="gap:1px;min-width:0"><span>“${esc(row.text)}”</span>${hit(row) ? '<span class="ex-note">Your answers match this wording</span>' : ''}</span><span class="num ex-pct">${row.pct == null ? '—' : row.pct + '%'}</span></li>`).join('')}</ol>`).join('')}
+        <p class="muted" style="font-size:.82rem;margin:6px 0 0"><span class="rule-tag law">Law</span> ${esc(est.cite)}. Quoted from eCFR (current as of ${VCI_RATERS.ECFR_ASOF}; checked ${VCI_RATERS.CHECKED}).</p></details>
+      <div class="stack" style="gap:4px"><b>How your answers were matched</b><ul class="plain-list">${est.why.map(w => `<li>${esc(w)}</li>`).join('')}</ul>${R.rater === 'mental' ? '<p class="muted" style="font-size:.84rem;margin:0">VCI suggests a level when at least two of your symptoms are listed there or higher. That counting rule is VCI\'s, not VA\'s: VA looks at how often and how severely symptoms affect work and relationships.</p>' : ''}</div>
       ${est.notes.length ? `<div class="stack" style="gap:4px"><b>Good to know</b><ul class="plain-list muted">${est.notes.map(w => `<li>${esc(w)}</li>`).join('')}</ul></div>` : ''}
-      ${c && s.status === 'sc' && s.rating != null ? `<p class="${est.rating > s.rating ? 'next' : 'ok-note'}">Your current rating for ${esc(c.name)} is ${s.rating}%.${est.rating > s.rating ? ' Your reported symptoms match a higher level. If they have worsened, a claim for an increase may be worth discussing with an accredited representative.' : ''}</p>` : ''}
+      ${c && s.status === 'sc' && s.rating != null ? `<p class="${est.rating > s.rating ? 'next' : 'ok-note'}">Your current VA rating for ${esc(c.name)} is ${s.rating}%.${est.rating > s.rating ? ' The criteria your answers match are listed at a higher level. If your symptoms have worsened, a claim for an increase may be worth discussing with an accredited representative.' : ''}</p>` : ''}
       <div class="disclaimer small" role="note">${RATE_DISCLAIMER}</div>
-      ${c && est.rating != null ? `<div><button class="btn primary" data-act="saveEstimate">Save this estimate to ${esc(c.name)}</button></div>` : '<p class="muted" style="font-size:.86rem">Choose a condition from your folder above to save this estimate with it.</p>'}`;
+      ${c && est.rating != null ? `<div><button class="btn primary" data-act="saveEstimate">Save as my self-estimate for ${esc(c.name)}</button></div>` : '<p class="muted" style="font-size:.86rem">Choose a condition from your folder above to save this as a self-estimate.</p>'}`;
   }
   function ratingPage() {
     const R = UI.rate; const rt = VCI_RATERS.R[R.rater] || VCI_RATERS.R.spine;
     const groups = {}; Object.entries(VCI_RATERS.R).forEach(([id, r]) => { (groups[r.group] = groups[r.group] || []).push([id, r]); });
-    return `<div class="page"><div class="page-head"><h1>Estimate a rating</h1><p>Enter your current symptoms and measurements. VCI matches them to the rating criteria in 38 C.F.R. Part 4 and suggests the evaluation they most closely fit.</p></div>
+    return `<div class="page"><div class="page-head"><h1>Estimate a rating</h1><p>Enter your current symptoms and measurements. VCI shows which level of the rating criteria in 38 C.F.R. Part 4 your answers match, in the regulation's own words. This is your self-estimate, not a VA rating.</p></div>
       ${subnav('rating')}
       <div class="disclaimer" role="note"><b>Important:</b> ${RATE_DISCLAIMER}</div>
       <section class="panel"><div class="fields">
@@ -7522,7 +7636,7 @@ ${p.toxic.answer || p.toxic.exposures.length ? sec('Toxic exposure', `<p>Believe
       UI.rate = { rater: prev ? prev.rater : (VCI_RATERS.guess(c) || 'spine'), cond: c.id, vals: prev ? Object.assign({}, prev.vals) : {} }; go('rating'); },
     saveEstimate: () => { const c = byId(S.conditions, UI.rate.cond); if (!c) return; const est = VCI_RATERS.estimate(UI.rate.rater, UI.rate.vals);
       c.estimates = (c.estimates || []).filter(x => x.rater !== UI.rate.rater); c.estimates.push({ rater: UI.rate.rater, rating: est.rating, separate: est.separate || null, approx: est.approx, dcs: est.dcs, date: TODAY, vals: JSON.parse(JSON.stringify(UI.rate.vals)) });
-      save(); toast(`Estimate saved to ${c.name}`); go('cond.' + c.id); },
+      save(); toast(`Self-estimate saved to ${c.name}`); go('cond.' + c.id); },
     checkFor: el => { UI.opCond = el.dataset.cond; go('opinions'); setTimeout(() => { const t = $('#no-t'); if (t) t.focus(); }, 0); },
     fixStance: el => setStance(el.dataset.op, el.dataset.to),
     skip: () => { const m = $('#main'); if (m) m.focus(); },
