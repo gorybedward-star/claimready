@@ -936,6 +936,13 @@ a.tool-card, a.learn-row, a.sg-page { text-decoration: none; }
 .crit-head-line { margin: 12px 0 6px; font-weight: 600; color: var(--ink); }
 .crit-all .ex-level { align-items: flex-start; }
 .crit-all .ex-level > .stack { overflow-wrap: anywhere; }
+/* Knee: notes shown with every knee card */
+.knee-pointer { margin: 0 0 8px; font-size: .9rem; border-left: 4px solid var(--accent); background: var(--accent-soft); padding: 8px 12px; border-radius: 0 var(--r) var(--r) 0; }
+.crit-callout { margin: 0 0 10px; font-size: .92rem; border: 2px solid var(--accent); border-radius: var(--r); padding: 10px 12px; background: var(--paper); }
+.knee-notes .panel-head { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+.knee-ex > summary { cursor: pointer; }
+.knee-ex-list { padding-left: 1.2em; display: flex; flex-direction: column; gap: 8px; }
+.knee-ex-list li { list-style: decimal; }
 </style>
 <script src="site-config.js"></script>
 <script>
@@ -1904,12 +1911,14 @@ const VCI_RATERS = (() => {
     },
   };
 
+  // Knee criteria (DCs 5055, 5256-5263) rechecked against eCFR separately from the rest of the schedule.
+  const KNEE_CHECKED = ['October 21, 2026', 'October 19, 2026']; // [date checked, eCFR current as of]
   // ---------- Knee motion: DCs 5260, 5261 (criteria text kept exactly as written) ----------
   const F5260 = [['f30', 'Flexion limited to 15°', 30], ['f20', 'Flexion limited to 30°', 20], ['f10', 'Flexion limited to 45°', 10], ['f0', 'Flexion limited to 60°', 0]];
   const E5261 = [['e50', 'Extension limited to 45°', 50], ['e40', 'Extension limited to 30°', 40], ['e30', 'Extension limited to 20°', 30], ['e20', 'Extension limited to 15°', 20], ['e10', 'Extension limited to 10°', 10], ['e0', 'Extension limited to 5°', 0]];
   R.knee = {
-    name: 'Knee: range of motion', group: 'Knee', dcs: 'DCs 5260, 5261', cite: '38 C.F.R. § 4.71a, DCs 5260 and 5261; § 4.59',
-    match: /knee|patell|menisc|chondromalacia/i, dcMatch: /^52(5[89]|6[0-3])|^5299-526/,
+    name: 'Knee: range of motion', group: 'Knee', checked: KNEE_CHECKED, dcs: 'DCs 5260, 5261', cite: '38 C.F.R. § 4.71a, DCs 5260 and 5261; § 4.59',
+    match: /knee|patell|menisc|chondromalacia/i, dcMatch: /^526[0-2]|^5299-526/,
     fields: [
       { key: 'flex', type: 'radio', label: '5260 Leg, limitation of flexion of:', groups: [[null, F5260.map(([k, t, p]) => [k, t, String(p)]).concat([['fn', 'My flexion is better than 60°', '']])]] },
       { key: 'ext', type: 'radio', label: '5261 Leg, limitation of extension of:', groups: [[null, E5261.map(([k, t, p]) => [k, t, String(p)]).concat([['en', 'My extension is better than 5° (straightens fully)', '']])]] },
@@ -1952,9 +1961,10 @@ const VCI_RATERS = (() => {
     n2: 'Note (2): A surgical procedure that does not involve repair of one or more patellofemoral components that contribute to the underlying instability shall not qualify as surgical repair for patellar instability (including, but not limited to, arthroscopy to remove loose bodies and joint aspiration).',
   };
   R.kneeInst = {
-    name: 'Knee: instability', group: 'Knee', dcs: 'DC 5257', cite: '38 C.F.R. § 4.71a, DC 5257',
+    name: 'Knee: instability', group: 'Knee', checked: KNEE_CHECKED, dcs: 'DC 5257', cite: '38 C.F.R. § 4.71a, DC 5257',
     match: /instabil|sublux|ligament|acl\b|mcl\b|lcl\b|pcl\b/i, dcMatch: /^5257/,
     intro: T5257.head,
+    callout: 'Only one DC 5257 evaluation is assigned. It is based on either the "Recurrent subluxation or instability" criteria OR the "Patellar instability" criteria, not both. Which one applies depends on what causes the instability (see "Important knee notes" below).',
     fields: [
       { key: 'rec', type: 'radio', label: T5257.rec, groups: [[null, [['r30', T5257.r30, '30'], ['r20', T5257.r20, '20'], ['r10', T5257.r10, '10'], ['none', 'Does not apply to me', '']]]] },
       { key: 'pat', type: 'radio', label: T5257.pat, groups: [[null, [['p30', T5257.p30, '30'], ['p20', T5257.p20, '20'], ['p10', T5257.p10, '10'], ['none', 'Does not apply to me', '']]]], after: [T5257.n1, T5257.n2] },
@@ -1965,8 +1975,8 @@ const VCI_RATERS = (() => {
       if (!recP && !patP) return mk(null, ['Select the rating criteria that match your knee.'], { none: true });
       const why = []; if (recP) why.push(`${T5257.rec} ${recP[1]} → ${recP[0]}%`); if (patP) why.push(`${T5257.pat} ${patP[1]} → ${patP[0]}%`);
       const out = mk(Math.max(recP ? recP[0] : 0, patP ? patP[0] : 0), why);
-      if (recP && patP) out.notes.push('You selected both parts. VA does not rate the same symptoms twice (38 C.F.R. § 4.14), so the estimate shows the higher one. A representative can tell you whether both can be rated separately.');
-      out.notes.push('This rating can be assigned in addition to ratings for limited flexion (DC 5260) and extension (DC 5261).');
+      if (recP && patP) out.notes.push('You selected both parts, but only one DC 5257 evaluation is assigned: either "Recurrent subluxation or instability" or "Patellar instability," depending on what causes the instability. The estimate shows the higher level you selected. VA decides which part applies.');
+      out.notes.push('This rating can be assigned in addition to ratings for limited flexion (DC 5260) and extension (DC 5261) (VAOPGCPREC 23-97; 9-98).');
       return out;
     },
   };
@@ -1981,7 +1991,7 @@ const VCI_RATERS = (() => {
     min: 'Minimum evaluation, total replacement only',
   };
   R.kneeRepl = {
-    name: 'Knee: replacement or resurfacing', group: 'Knee', dcs: 'DC 5055', cite: '38 C.F.R. § 4.71a, DC 5055',
+    name: 'Knee: replacement or resurfacing', group: 'Knee', checked: KNEE_CHECKED, dcs: 'DC 5055', cite: '38 C.F.R. § 4.71a, DC 5055',
     match: /replacement|arthroplasty|prosthe|resurfac|\btka\b|\btkr\b/i, dcMatch: /^5055/,
     fields: [
       { key: 'c', type: 'radio', label: T5055.head, groups: [
@@ -1992,10 +2002,47 @@ const VCI_RATERS = (() => {
     rate(v) {
       const pick = { p100: [100, T5055.p100], p60: [60, `${T5055.sub} ${T5055.p60}`], inter: [null, T5055.inter], min: [30, T5055.min] }[v.c];
       if (!pick) return mk(null, ['Select the criteria that match your knee.'], { none: true });
-      if (pick[0] == null) return mk(null, [pick[1]], { analogy: true, notes: ['Use "Knee: range of motion" to estimate a rating by analogy to limited extension (DC 5261).'] });
+      if (pick[0] == null) return mk(null, [pick[1]], { analogy: true, notes: ['Use "Knee: range of motion" to see the limited extension criteria (DC 5261), or "Knee: ankylosis" for DC 5256.'] });
       return mk(pick[0], [`${pick[1]} → ${pick[0]}%`]);
     },
   };
+
+  // ---------- Other knee codes: DCs 5256, 5258, 5259, 5263 (criteria text kept exactly as written; eCFR checked Oct 21, 2026) ----------
+  // One radio field per code; "Does not apply" gives no estimate so a 0% is never implied for a code that does not fit.
+  const kneeCode = (cfg) => ({
+    name: cfg.name, group: 'Knee', dcs: 'DC ' + cfg.dc, cite: '38 C.F.R. § 4.71a, DC ' + cfg.dc, match: cfg.match, dcMatch: new RegExp('^' + cfg.dc), intro: cfg.intro, callout: cfg.callout, checked: KNEE_CHECKED,
+    fields: [{ key: 'c', type: 'radio', label: cfg.head, groups: [[null, cfg.rows.map(([k, t, p]) => [k, t, String(p)]).concat([['none', 'Does not apply to me', '']])]], after: cfg.after }],
+    rate(v) {
+      if (!v.c) return mk(null, ['Select the criteria that match your knee.'], { none: true });
+      const row = cfg.rows.find(x => x[0] === v.c);
+      if (!row) return mk(null, ['You marked that these criteria do not apply. Another knee code may describe your knee better. Try the other knee choices.'], { none: true });
+      return mk(row[2], [`${cfg.head} ${row[1]} → ${row[2]}%`], { notes: cfg.notes.slice() });
+    },
+  });
+  R.kneeAnk = kneeCode({
+    name: 'Knee: ankylosis (frozen or fused)', dc: '5256', head: '5256 Knee, ankylosis of:', match: /knee.*(ankylos|fus(ed|ion))|(ankylos|fus(ed|ion)).*knee/i,
+    intro: 'Ankylosis means the joint is frozen or fused and cannot move. The angle is how bent the knee is held.',
+    rows: [['a60', 'Extremely unfavorable, in flexion at an angle of 45° or more', 60], ['a50', 'In flexion between 20° and 45°', 50], ['a40', 'In flexion between 10° and 20°', 40], ['a30', 'Favorable angle in full extension, or in slight flexion between 0° and 10°', 30]],
+    notes: ['Motion so limited by pain or flare-ups that the knee works like a frozen joint can also be considered under this code. VA decides from the exam and the whole record.', 'Service-connected ankylosis of a knee is also one of the conditions that can qualify for VA help with adaptive equipment for a vehicle (38 C.F.R. § 3.808).'],
+  });
+  R.kneeMenDis = kneeCode({
+    name: 'Knee: meniscus, dislocated cartilage', dc: '5258', head: 'DC 5258:', match: /semilunar|dislocated (meniscus|cartilage)|meniscus.*dislocat/i,
+    intro: 'Semilunar cartilage is the meniscus, the C-shaped cushion inside the knee. Effusion means fluid or swelling in the joint.',
+    rows: [['m20', 'Cartilage, semilunar, dislocated, with frequent episodes of “locking,” pain, and effusion into the joint', 20]],
+    notes: ['This can be rated separately from instability (DC 5257) or limited motion (DCs 5260, 5261) only when its symptoms were not already used for those ratings (38 C.F.R. § 4.14; Lyles v. Shulkin). See "Important knee notes."'],
+  });
+  R.kneeMenRem = kneeCode({
+    name: 'Knee: meniscus removed', dc: '5259', head: 'DC 5259:', match: /meniscectomy|removal of (the )?(meniscus|cartilage)/i,
+    intro: 'This code is for a knee where the meniscus (semilunar cartilage) was removed and symptoms remain.',
+    rows: [['m10', 'Cartilage, semilunar, removal of, symptomatic', 10]],
+    notes: ['A repaired meniscus tear (for example, a partial meniscectomy) is not an exact match for DC 5258 or 5259. VA rates it by analogy to whichever code is closest to the current symptoms.', 'This can be rated separately from instability or limited motion only when its symptoms were not already used for those ratings (38 C.F.R. § 4.14; Lyles v. Shulkin). See "Important knee notes."'],
+  });
+  R.kneeRecurv = kneeCode({
+    name: 'Knee: hyperextension (genu recurvatum)', dc: '5263', head: 'DC 5263:', match: /recurvatum|hyperexten/i,
+    intro: 'Genu recurvatum means the knee bends backward past straight (hyperextension). "Objectively demonstrated" means the weakness and insecurity are found on exam, not only described.',
+    rows: [['g10', 'Genu recurvatum (acquired, traumatic, with weakness and insecurity in weight-bearing objectively demonstrated)', 10]],
+    notes: ['Not also rated under limited extension (DC 5261) or instability (DC 5257). If genu recurvatum causes instability, VA uses whichever criteria give the higher evaluation.', 'Other symptoms that do not overlap, such as limited bending (flexion, DC 5260), can be rated separately.'],
+  });
 
   // ---------- Shoulder: DC 5201 ----------
   R.shoulder = {
@@ -2275,12 +2322,13 @@ const VCI_RATERS = (() => {
   function guess(c) {
     if (!c) return '';
     const dc = String(c.dc || '').trim(); const name = c.name || '';
-    const order = ['kneeRepl', 'kneeInst'].concat(Object.keys(R).filter(k => k !== 'kneeRepl' && k !== 'kneeInst')); // specific before general
+    const first = ['kneeRepl', 'kneeInst', 'kneeAnk', 'kneeRecurv', 'kneeMenRem', 'kneeMenDis'];
+    const order = first.concat(Object.keys(R).filter(k => !first.includes(k))); // specific before general
     for (const id of order) if (dc && R[id].dcMatch && R[id].dcMatch.test(dc)) return id;
     for (const id of order) if (R[id].match && R[id].match.test(name)) return id;
     return '';
   }
-  function estimate(id, values) { const r = R[id]; if (!r) return null; return Object.assign({ rater: id, dcs: r.dcs, cite: r.cite }, r.rate(values || {})); }
+  function estimate(id, values) { const r = R[id]; if (!r) return null; return Object.assign({ rater: id, dcs: r.dcs, cite: r.cite, checked: r.checked || [CHECKED, ECFR_ASOF] }, r.rate(values || {})); }
   return { R, guess, estimate, MENTAL, LEVELS, criteria, matched, CHECKED, ECFR_ASOF };
 })();
 if (typeof module !== 'undefined') module.exports = VCI_RATERS;
@@ -2560,6 +2608,16 @@ function vciTests(VCI, vciExample) {
     });
     t('Estimator, knee instability (DC 5257): exact selections; the higher of the two parts', () => { eq(est('kneeInst', { rec: 'r20' }), 20); eq(est('kneeInst', { pat: 'p30' }), 30); eq(est('kneeInst', { rec: 'r10', pat: 'p20' }), 20); });
     t('Estimator, knee replacement (DC 5055): 100, 60, minimum 30, intermediate is by analogy', () => { eq(est('kneeRepl', { c: 'p100' }), 100); eq(est('kneeRepl', { c: 'p60' }), 60); eq(est('kneeRepl', { c: 'min' }), 30); eq(est('kneeRepl', { c: 'inter' }), null); });
+    t('Estimator, knee instability (DC 5257): choosing both parts explains only one evaluation is assigned', () => { const r = RT.estimate('kneeInst', { rec: 'r10', pat: 'p20' }); ok(r.notes.some(x => /only one DC 5257 evaluation/.test(x))); ok(/Only one DC 5257 evaluation/.test(RT.R.kneeInst.callout)); });
+    t('Estimator, knee ankylosis (DC 5256): 60, 50, 40, 30; "does not apply" gives no estimate', () => { eq(['a60', 'a50', 'a40', 'a30'].map(c => est('kneeAnk', { c })), [60, 50, 40, 30]); eq(est('kneeAnk', { c: 'none' }), null); eq(est('kneeAnk', {}), null); });
+    t('Estimator, meniscus (DCs 5258, 5259) and genu recurvatum (DC 5263): 20, 10, 10', () => { eq(est('kneeMenDis', { c: 'm20' }), 20); eq(est('kneeMenRem', { c: 'm10' }), 10); eq(est('kneeRecurv', { c: 'g10' }), 10); eq(est('kneeRecurv', { c: 'none' }), null); });
+    t('Estimator, new knee codes quote the regulation text exactly', () => {
+      eq(RT.criteria('kneeAnk')[0].rows.map(r => r.text), ['Extremely unfavorable, in flexion at an angle of 45° or more', 'In flexion between 20° and 45°', 'In flexion between 10° and 20°', 'Favorable angle in full extension, or in slight flexion between 0° and 10°']);
+      eq(RT.criteria('kneeMenRem')[0].rows[0].text, 'Cartilage, semilunar, removal of, symptomatic');
+      eq(RT.matched('kneeMenDis', { c: 'm20' }).rows.length, 1);
+    });
+    t('Estimator, knee codes are matched by diagnostic code', () => eq(['5256', '5257', '5258', '5259', '5260', '5261', '5262', '5263', '5055'].map(dc => RT.guess({ name: '', dc })), ['kneeAnk', 'kneeInst', 'kneeMenDis', 'kneeMenRem', 'knee', 'knee', 'knee', 'kneeRecurv', 'kneeRepl']));
+    t('Estimator, all knee cards are in the Knee group with the knee check date', () => { const k = Object.entries(RT.R).filter(([, r]) => r.group === 'Knee'); eq(k.map(([id]) => id), ['knee', 'kneeInst', 'kneeRepl', 'kneeAnk', 'kneeMenDis', 'kneeMenRem', 'kneeRecurv']); ok(k.every(([id]) => RT.estimate(id, {}).checked[0] === 'October 21, 2026')); eq(RT.estimate('spine', {}).checked, [RT.CHECKED, RT.ECFR_ASOF]); });
     t('Estimator, an ACL tear is matched to knee instability', () => eq(RT.guess({ name: 'ACL tear, right knee' }), 'kneeInst'));
     t('Estimator, shoulder: 45° dominant is 30%, non-dominant 20%', () => { eq(est('shoulder', { arm: 'major', deg: 45 }), 30); eq(est('shoulder', { arm: 'minor', deg: 45 }), 20); });
     t('Estimator, migraine: monthly prostrating attacks suggest 30%', () => eq(est('migraine', { freq: 'month' }), 30));
@@ -4860,7 +4918,7 @@ window.VCI_UPDATES = [
       <p class="whole-record" role="note"><b>Your self-estimate, not a VA rating.</b> VA decides the rating from the whole record, including flare-ups, repeated use, other diagnostic codes, and the rules in 38 C.F.R. §§ 4.40, 4.45, 4.59, and 4.7.</p>
       ${est.separate && est.separate.length > 1 ? `<p class="muted" style="font-size:.88rem;margin:0">Listed percentages: ${est.separate.map(x => `${esc(x.label)} ${x.rating}%`).join(' · ')}.</p>` : ''}
       <details class="crit-all"><summary><b>All levels of these criteria</b></summary>${parts.map(p => `<p class="crit-head-line">${esc(p.head)}</p><ol class="ex-levels">${p.rows.map(row => `<li class="ex-level${hit(row) ? ' here' : ''}"><span class="stack" style="gap:1px;min-width:0"><span>“${esc(row.text)}”</span>${hit(row) ? '<span class="ex-note">Your answers match this wording</span>' : ''}</span><span class="num ex-pct">${row.pct == null ? '—' : row.pct + '%'}</span></li>`).join('')}</ol>`).join('')}
-        <p class="muted" style="font-size:.82rem;margin:6px 0 0"><span class="rule-tag law">Law</span> ${esc(est.cite)}. Quoted from eCFR (current as of ${VCI_RATERS.ECFR_ASOF}; checked ${VCI_RATERS.CHECKED}).</p></details>
+        <p class="muted" style="font-size:.82rem;margin:6px 0 0"><span class="rule-tag law">Law</span> ${esc(est.cite)}. Quoted from eCFR (current as of ${est.checked[1]}; checked ${est.checked[0]}).</p></details>
       <div class="stack" style="gap:4px"><b>How your answers were matched</b><ul class="plain-list">${est.why.map(w => `<li>${esc(w)}</li>`).join('')}</ul>${R.rater === 'mental' ? '<p class="muted" style="font-size:.84rem;margin:0">VCI suggests a level when at least two of your symptoms are listed there or higher. That counting rule is VCI\'s, not VA\'s: VA looks at how often and how severely symptoms affect work and relationships.</p>' : ''}</div>
       ${est.notes.length ? `<div class="stack" style="gap:4px"><b>Good to know</b><ul class="plain-list muted">${est.notes.map(w => `<li>${esc(w)}</li>`).join('')}</ul></div>` : ''}
       ${c && s.status === 'sc' && s.rating != null ? `<p class="${est.rating > s.rating ? 'next' : 'ok-note'}">Your current VA rating for ${esc(c.name)} is ${s.rating}%.${est.rating > s.rating ? ' The criteria your answers match are listed at a higher level. If your symptoms have worsened, a claim for an increase may be worth discussing with an accredited representative.' : ''}</p>` : ''}
@@ -4879,10 +4937,13 @@ window.VCI_UPDATES = [
       </div></section>
       <div class="rate-grid">
         <section class="panel"><h2>${esc(rt.name)}</h2><p class="muted" style="font-size:.86rem">${rt.fields.some(f => f.type === 'radio') ? 'Select the rating criteria that match your condition.' : 'Use numbers from your most recent exam or doctor\'s visit when you have them.'}</p>
+          ${rt.group === 'Knee' ? `<p class="knee-pointer" role="note"><b>Important knee notes</b> apply to every knee code. <button class="btn link" data-act="jump" data-to="knee-notes">Read them below</button>.</p>` : ''}
+          ${rt.callout ? `<div class="crit-callout" role="note"><b>Only one evaluation.</b> ${esc(rt.callout).replace(/^Only one DC 5257 evaluation is assigned\. /, '')}</div>` : ''}
           ${rt.intro ? `<p class="crit-intro"><b>${esc(rt.intro)}</b></p>` : ''}<form class="fields" data-rater="${R.rater}">${rt.fields.map(f => raterField(f, R.vals)).join('')}</form>
           ${rt.criteria ? `<details class="criteria" open><summary><b>Rating criteria</b> <span class="muted">${esc(rt.cite)}</span></summary><div class="tablewrap"><table><thead><tr><th>Criteria</th><th>Rating</th></tr></thead><tbody>${rt.criteria.map(([txt, pct]) => `<tr${!pct && /:$/.test(txt) ? ' class="crit-head"' : ''}><td>${esc(txt)}</td><td class="num">${pct ? pct + '%' : (/:$/.test(txt) ? '' : 'by analogy')}</td></tr>`).join('')}</tbody></table></div></details>` : ''}</section>
         <section class="panel rate-out" id="rate-result" aria-live="polite">${rateResult()}</section>
       </div>
+      ${rt.group === 'Knee' ? kneeNotesHTML() : ''}
       ${p4PanelHTML(R.rater, rt.name)}
       <p class="muted" style="font-size:.84rem">Covers ${Object.keys(VCI_RATERS.R).length} commonly claimed conditions. Hearing loss needs audiogram tables and is not included yet. For other conditions, see the full rating schedule at <a href="https://www.ecfr.gov/current/title-38/chapter-I/part-4" target="_blank" rel="noopener">ecfr.gov, 38 C.F.R. Part 4</a>.</p>
       ${notice}</div>`;
@@ -5885,7 +5946,38 @@ ${topics.length ? `<h1 style="margin-top:28px">Condition-specific requirements</
     ['nerves', 'Seizures and peripheral nerves', '§ 4.121; § 4.124a', ['<b>Epilepsy:</b> seizures must be witnessed or verified by a physician at some point; how often they happen can be shown by consistent lay statements describing the seizures and what follows. Frequency is judged under ordinary conditions of life.', '<b>Peripheral nerves:</b> "incomplete paralysis" means substantially less than complete. When involvement is <b>only sensory</b>, the rating is mild or at most moderate.', 'Nerve ratings are for one side; when both sides are affected, they are combined with the <b>bilateral factor</b>.']],
     ['mental', 'Mental disorders', '§ 4.125', ['A diagnosis that does not follow <b>DSM-5</b> or is not supported by the exam findings is returned to the examiner.', 'If the diagnosis changes, VA decides whether it is progression, correction of an error, or a new and separate condition, and asks the examiner if it is unclear.']],
   ];
-  const RATER_P4 = { spine: ['g14', 'g7'], knee: ['g14', 'g7'], kneeInst: ['g14', 'g7'], kneeRepl: ['joints', 'g14'], shoulder: ['g14', 'g7'], ankle: ['g14', 'g7'], plantar: ['g14', 'g7'], mental: ['mental', 'g2'], migraine: ['nerves', 'g7'], apnea: ['resp'], sinus: ['resp'], rhinitis: ['resp'], htn: ['heart'], diabetes: ['g7', 'g13'], tinnitus: ['g13'] };
+  const RATER_P4 = { spine: ['g14', 'g7'], knee: ['g14', 'g7'], kneeInst: ['g14', 'g7'], kneeRepl: ['joints', 'g14'], kneeAnk: ['g14', 'g7'], kneeMenDis: ['g7', 'g14'], kneeMenRem: ['g7', 'g14'], kneeRecurv: ['g7', 'g14'], shoulder: ['g14', 'g7'], ankle: ['g14', 'g7'], plantar: ['g14', 'g7'], mental: ['mental', 'g2'], migraine: ['nerves', 'g7'], apnea: ['resp'], sinus: ['resp'], rhinitis: ['resp'], htn: ['heart'], diabetes: ['g7', 'g13'], tinnitus: ['g13'] };
+  // ---- Important knee notes: shown with every knee card in Estimate a rating ----
+  // Plain-language summary of M21-1 V.iii.1.B.4.a–g (text supplied by the owner from KnowVA, October 21, 2026). VA guidance, not binding law.
+  const KNEE_NOTES_ART = '554400000014410';
+  const KNEE_NOTES = [
+    ['Only one instability rating (DC 5257)', '4.b–c', ['<b>Instability</b> includes the kneecap slipping or dislocating (patellar instability), and looseness of the ligaments that hold the knee steady, such as the collateral or cruciate ligaments (ACL, PCL, MCL, LCL).', '<b>Subluxation</b> means a partial dislocation: of the knee joint itself, or of the kneecap sliding out of its track.', 'VA assigns <b>one</b> DC 5257 evaluation, under <b>either</b> the "Recurrent subluxation or instability" criteria (a sprain or ligament tear) <b>or</b> the "Patellar instability" criteria (a condition of the kneecap and its tendons).', 'If the exam shows persistent instability but does not tie it to a ligament problem or a kneecap condition (for example, instability from arthritis), VA uses the <b>patellar instability</b> criteria.', 'Persistent instability is enough to meet the "recurrent" requirement for the 10% level.']],
+    ['A brace or cane must be prescribed', '4.b', ['A brace, cane, crutch, or walker counts toward a DC 5257 level only if a <b>medical provider prescribed</b> it and the record shows the prescription.', 'A device you bought on your own, without a prescription in the record, does not meet these criteria.']],
+    ['Instability and limited motion are rated separately', '4.d', ['A DC 5257 instability rating can be assigned <b>in addition to</b> ratings for limited bending (DC 5260) or straightening (DC 5261).', 'VA\'s General Counsel has held this is not rating the same thing twice (pyramiding): <b>VAOPGCPREC 23-97</b> and <b>VAOPGCPREC 9-98</b>.']],
+    ['A meniscus can have its own rating', '4.e', ['Ratings under DC 5257, 5260, or 5261 do not by themselves rule out a separate meniscus rating under <b>DC 5258</b> (dislocated cartilage) or <b>DC 5259</b> (cartilage removed, with symptoms).', 'The key question is whether the meniscus symptoms were <b>already used</b> for another knee rating. The same symptom cannot count twice (<b>38 C.F.R. § 4.14</b>). If pain, swelling, locking, or popping from the meniscus raised the motion rating through flare-ups or repeated use (<b>§§ 4.40, 4.45</b>; <b>DeLuca v. Brown</b>, 8 Vet. App. 202 (1995)), those symptoms cannot also support DC 5258 or 5259.', 'A repaired tear (for example, a partial meniscectomy) is not an exact match for DC 5258 or 5259. VA rates it by analogy to whichever code is closest to the current symptoms.', 'This follows <b>Lyles v. Shulkin</b>, 29 Vet. App. 107 (2017), effective November 29, 2017. Before Lyles, VA did not allow these separate meniscus ratings. VA does not treat this as a liberalizing change.']],
+    ['Hyperextension (genu recurvatum, DC 5263)', '4.g', ['A knee rated for bending backward past straight (DC 5263) is <b>not</b> also rated for limited extension (DC 5261) or instability (DC 5257).', 'If genu recurvatum causes instability, VA uses whichever criteria give the <b>higher</b> evaluation.', 'Symptoms that do not overlap, such as limited bending (DC 5260), can be rated separately.']],
+    ['A knee condition with no listed level', '4.a', ['When a knee condition has <b>no arthritis</b>, does not meet even the 0% level for limited bending or straightening (DC 5260 or 5261), and does not fit DC 5258, 5259, 5262, or 5263, VA rates it by analogy to <b>DC 5257</b>.', 'Rating by analogy: <b>38 C.F.R. § 4.20</b>. When a 0% evaluation is assigned: <b>§ 4.31</b>.']],
+  ];
+  // VA's own examples from M21-1 V.iii.1.B.4.f, shortened. Teaching examples, not real decisions.
+  const KNEE_EXAMPLES = [
+    ['Meniscus symptoms not used for the motion rating', 'A left knee is rated 30% for limited extension (DC 5261). The meniscus also causes pain, swelling, popping, locking, and grinding. Those symptoms were considered and did <b>not</b> raise the extension rating, so they <b>may</b> be considered for a separate DC 5258 or 5259 rating.'],
+    ['Same facts, but the symptoms raised the rating', 'The examiner finds that those same meniscus symptoms limit extension to 30 degrees during flare-ups or repeated use, which raises the rating to 40%. A separate DC 5258 or 5259 rating would count the same symptoms twice, so it is <b>not</b> assigned.'],
+    ['Pain alone raised the rating', 'Pain from the meniscus limits extension to 30 degrees on repeated use and in flare-ups, raising 30% to 40%. Because the pain was already used, a separate DC 5258 or 5259 rating is <b>not</b> assigned.'],
+    ['Some symptoms used, others not', 'A right knee with arthritis and a meniscus condition is rated 20% for extension; pain on repeated motion raises it to 30%. Swelling, popping, locking, and grinding were <b>not</b> used for that increase, so a separate meniscus rating <b>may</b> be awarded.'],
+    ['Instability plus meniscectomy', 'An unrepaired incomplete ligament tear causes persistent instability, and a physician prescribed a brace and a cane. A past meniscectomy leaves stiffness, crepitus (grinding), and pain. Motion is full. The symptoms do not overlap, so VA\'s example assigns <b>20% under DC 5257</b> and a <b>separate 10% under DC 5259</b>.'],
+  ];
+  function kneeNotesHTML() {
+    return `<section class="panel knee-notes" id="knee-notes" aria-labelledby="kn-h"><div class="panel-head"><h2 id="kn-h">Important knee notes</h2><span class="rule-tag guide">VA guidance</span></div>
+      <p class="muted" style="font-size:.88rem;margin:0 0 10px">These apply to every knee code. They summarize how VA's adjudication manual tells raters to handle knee ratings. The manual is <b>VA administrative guidance</b>; the rating criteria themselves are law in <b>38 C.F.R. § 4.71a</b>. VA decides every rating from the whole record.</p>
+      <div class="insuf-grid">${KNEE_NOTES.map(([t, ref, body]) => p4Card(t, 'M21-1 V.iii.1.B.' + ref, body, 'must')).join('')}</div>
+      <details class="knee-ex" style="margin-top:12px"><summary><b>VA's examples: when a meniscus gets a separate rating</b> <span class="muted">(M21-1 V.iii.1.B.4.f)</span></summary>
+        <p class="muted" style="font-size:.86rem;margin:8px 0">Shortened from the examples in VA's manual. These are teaching examples, not real VA decisions, and your facts may differ.</p>
+        <ol class="plain-list knee-ex-list">${KNEE_EXAMPLES.map(([t, b], i) => `<li><b>Example ${i + 1}: ${t}.</b> ${b}</li>`).join('')}</ol></details>
+      <ul class="plain-list muted" style="font-size:.82rem;margin:10px 0 0">
+        <li><span class="rule-tag guide">VA guidance</span> <a href="${KNOWVA_URL(KNEE_NOTES_ART)}" target="_blank" rel="noopener">M21-1, Part V, Subpart iii, 1.B.4.a–g</a> (KnowVA), Knee conditions. Summary written October 21, 2026.</li>
+        <li><span class="rule-tag law">Law</span> <a href="https://www.ecfr.gov/current/title-38/section-4.71a" target="_blank" rel="noopener">38 C.F.R. § 4.71a</a>, DCs 5055 and 5256–5263; §§ 4.14, 4.20, 4.31, 4.40, 4.45 (eCFR current as of October 19, 2026; checked October 21, 2026).</li>
+        <li><span class="rule-tag law">Law</span> VA General Counsel precedent opinions VAOPGCPREC 23-97 and 9-98 (binding on VA officials, 38 C.F.R. § 14.507); court decisions <i>Lyles v. Shulkin</i>, 29 Vet. App. 107 (2017), and <i>DeLuca v. Brown</i>, 8 Vet. App. 202 (1995). Cited as listed in the M21-1 text.</li></ul></section>`;
+  }
   const p4Card = (t, c, body, cls) => `<div class="insuf-card${cls ? ' ' + cls : ''}"><h3 class="edu-h">${t} <span class="muted num" style="font-weight:400">${c}</span></h3>${Array.isArray(body) ? `<ul class="plain-list">${body.map(b => `<li>${b}</li>`).join('')}</ul>` : `<p style="margin:0">${body}</p>`}</div>`;
   function p4ById(id) { const g = P4_GEN.find(x => x[0] === id); if (g) return p4Card(g[1], g[2], g[3], 'must'); const y = P4_SYS.find(x => x[0] === id); return y ? p4Card(y[1], y[2], y[3], 'must') : ''; }
   function p4PanelHTML(rid, rname) {
