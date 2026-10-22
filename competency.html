@@ -1,0 +1,391 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="description" content="Free, independent educational guide to VA competency decisions: what competency means, the presumption of competency, notice and hearing rights, 100% mental health ratings, court guardianships, and restoring competency. Nothing is saved or sent.">
+<meta name="referrer" content="no-referrer"><meta name="theme-color" content="#1d5a70">
+<link rel="manifest" href="manifest.webmanifest"><link rel="icon" type="image/png" href="icons/favicon-32.png"><link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+<title>VA Competency Guide</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<style>@font-face{font-family:'Public Sans';font-style:normal;font-weight:400;font-display:swap;src:url(fonts/public-sans-latin-400-normal.woff2) format('woff2')}@font-face{font-family:'Public Sans';font-style:normal;font-weight:500;font-display:swap;src:url(fonts/public-sans-latin-500-normal.woff2) format('woff2')}@font-face{font-family:'Public Sans';font-style:normal;font-weight:600;font-display:swap;src:url(fonts/public-sans-latin-600-normal.woff2) format('woff2')}@font-face{font-family:'Public Sans';font-style:normal;font-weight:700;font-display:swap;src:url(fonts/public-sans-latin-700-normal.woff2) format('woff2')}@font-face{font-family:'Source Serif 4';font-style:normal;font-weight:400;font-display:swap;src:url(fonts/source-serif-4-latin-400-normal.woff2) format('woff2')}@font-face{font-family:'Source Serif 4';font-style:normal;font-weight:600;font-display:swap;src:url(fonts/source-serif-4-latin-600-normal.woff2) format('woff2')}@font-face{font-family:'Source Serif 4';font-style:italic;font-weight:400;font-display:swap;src:url(fonts/source-serif-4-latin-400-italic.woff2) format('woff2')}@font-face{font-family:'Source Serif 4';font-style:italic;font-weight:600;font-display:swap;src:url(fonts/source-serif-4-latin-600-italic.woff2) format('woff2')}@font-face{font-family:'IBM Plex Mono';font-style:normal;font-weight:400;font-display:swap;src:url(fonts/ibm-plex-mono-latin-400-normal.woff2) format('woff2')}@font-face{font-family:'IBM Plex Mono';font-style:normal;font-weight:600;font-display:swap;src:url(fonts/ibm-plex-mono-latin-600-normal.woff2) format('woff2')}</style>
+<style>
+/* Layout: one reading column. Banner, header, basics, definition, standard, a situation chooser, one section per situation, review, checklist, example, myths, sources, footer. ClaimReady's own tokens (same as temp-100.html). */
+:root {
+  --paper: #f3f5f4; --surface: #ffffff; --sunk: #e9eeec; --ink: #16201d; --muted: #5a6763; --line: #d4dcd9;
+  --accent: #1d5a70; --accent-ink: #ffffff; --accent-soft: #dfecf0;
+  --ok: #2a774b; --ok-soft: #e0f0e6; --wait: #8a560a; --wait-soft: #f7ecd8;
+  --f-ui: "Public Sans", "Segoe UI", system-ui, sans-serif;
+  --f-serif: "Source Serif 4", Georgia, "Times New Roman", serif;
+  --f-mono: "IBM Plex Mono", ui-monospace, Menlo, monospace;
+  --r: 6px;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --paper: #111816; --surface: #19211f; --sunk: #0d1312; --ink: #e4ebe8; --muted: #98a6a1; --line: #2b3633;
+  --accent: #72b6cf; --accent-ink: #0d1a1f; --accent-soft: #1b3038;
+  --ok: #62c189; --ok-soft: #173426; --wait: #e2a849; --wait-soft: #392b12; color-scheme: dark; } }
+:root[data-theme="dark"] {
+  --paper: #111816; --surface: #19211f; --sunk: #0d1312; --ink: #e4ebe8; --muted: #98a6a1; --line: #2b3633;
+  --accent: #72b6cf; --accent-ink: #0d1a1f; --accent-soft: #1b3038;
+  --ok: #62c189; --ok-soft: #173426; --wait: #e2a849; --wait-soft: #392b12; color-scheme: dark; }
+:root { padding-top: env(safe-area-inset-top, 0px); padding-bottom: env(safe-area-inset-bottom, 0px); }
+* { box-sizing: border-box; }
+[hidden] { display: none !important; }
+body { margin: 0; background: var(--paper); color: var(--ink); font-family: var(--f-ui); font-size: 0.95rem; line-height: 1.5; }
+.wrap { max-width: 760px; margin: 0 auto; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+.skip { position: absolute; left: -9999px; } .skip:focus { left: 16px; top: 8px; z-index: 20; background: var(--surface); padding: 8px 12px; border-radius: var(--r); }
+.banner { background: var(--ink); color: var(--paper); font-size: 0.8rem; }
+.banner .wrap { padding-block: 8px; }
+header.top { padding-block: 24px 8px; display: grid; gap: 10px; }
+h1, h2, h3 { font-family: var(--f-serif); font-weight: 600; margin: 0; line-height: 1.2; text-wrap: balance; }
+h1 { font-size: 1.9rem; letter-spacing: -0.01em; }
+h2 { font-size: 1.3rem; }
+h3 { font-size: 1.02rem; }
+p { margin: 0; }
+ul, ol { margin: 0; padding-left: 20px; display: grid; gap: 6px; }
+a { color: var(--accent); }
+.muted { color: var(--muted); }
+.eyebrow { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.09em; text-transform: uppercase; color: var(--muted); }
+.crumbs { display: flex; flex-wrap: wrap; gap: 6px 14px; align-items: baseline; }
+.crumbs a { font-weight: 600; font-size: .9rem; text-decoration: none; }
+.crumbs a:hover { text-decoration: underline; }
+.tag { display: inline-block; font-size: .7rem; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; padding: 1px 7px; border-radius: 4px; border: 1px solid currentColor; white-space: nowrap; }
+.tag.law { color: var(--accent); } .tag.guide { color: var(--wait); } .tag.court { color: var(--ok); }
+.example { display: grid; gap: 4px; background: var(--wait-soft); border: 1px solid var(--line); border-radius: var(--r); padding: 10px 12px; }
+.example b:first-child { font-size: .78rem; letter-spacing: .06em; text-transform: uppercase; }
+button, input { font: inherit; color: inherit; }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.btn { border: 1px solid var(--line); background: var(--surface); border-radius: var(--r); padding: 8px 14px; cursor: pointer; min-height: 44px; }
+.btn.primary { background: var(--accent); color: var(--accent-ink); border-color: var(--accent); font-weight: 600; }
+.btn.link { border: 0; background: none; color: var(--accent); text-decoration: underline; padding: 4px 0; min-height: 0; }
+main { display: grid; gap: 20px; padding-block: 12px 48px; }
+.panel { background: var(--surface); border: 1px solid var(--line); border-radius: var(--r); padding: 18px; display: grid; gap: 14px; min-width: 0; }
+.panel > header { display: grid; gap: 6px; }
+fieldset { border: 0; padding: 0; margin: 0; display: grid; gap: 10px; min-width: 0; }
+legend { font-family: var(--f-serif); font-weight: 600; font-size: 1.15rem; padding: 0; margin-bottom: 4px; }
+.choices { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 8px; }
+.choice { display: flex; gap: 10px; align-items: flex-start; border: 1px solid var(--line); border-radius: var(--r); padding: 10px 12px; cursor: pointer; background: var(--paper); min-height: 44px; }
+.choice:has(input:checked) { border-color: var(--accent); background: var(--accent-soft); }
+.choice input { margin-top: 4px; width: 18px; height: 18px; accent-color: var(--accent); flex: none; }
+.choice small { display: block; color: var(--muted); }
+.row { display: flex; flex-wrap: wrap; gap: 8px 14px; align-items: center; }
+.cols { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 12px; }
+.box { border: 1px solid var(--line); border-radius: var(--r); padding: 12px 14px; display: grid; gap: 8px; align-content: start; background: var(--paper); }
+.box.you { border-left: 4px solid var(--ok); }
+.box.doc { border-left: 4px solid var(--accent); }
+.box h3 { font-family: var(--f-ui); font-size: .82rem; letter-spacing: .06em; text-transform: uppercase; }
+.flow { list-style: none; padding: 0; counter-reset: q; gap: 0; }
+.flow > li { counter-increment: q; display: grid; grid-template-columns: 30px 1fr; gap: 10px; padding-bottom: 14px; position: relative; }
+.flow > li::before { content: counter(q); width: 26px; height: 26px; border-radius: 50%; background: var(--accent); color: var(--accent-ink); font-family: var(--f-mono); font-size: .8rem; display: grid; place-items: center; }
+.flow > li::after { content: ""; position: absolute; left: 12px; top: 28px; bottom: 2px; width: 2px; background: var(--line); }
+.flow > li:last-child::after { display: none; }
+.flow .stop { display: block; font-size: .85rem; color: var(--muted); margin-top: 2px; }
+.flow ul { margin-top: 6px; }
+.quote { font-family: var(--f-serif); border-left: 3px solid var(--line); padding: 2px 0 2px 12px; color: var(--ink); }
+.pills { list-style: none; padding: 0; display: flex; flex-wrap: wrap; gap: 6px; }
+.pills li { border: 1px solid var(--line); border-radius: 999px; padding: 2px 10px; font-size: .85rem; background: var(--paper); }
+.patterns { list-style: none; padding: 0; display: grid; gap: 8px; counter-reset: p; }
+.patterns li { counter-increment: p; display: grid; grid-template-columns: 30px 1fr; gap: 10px; align-items: start; border: 1px solid var(--line); border-radius: var(--r); padding: 10px 12px; }
+.patterns li::before { content: counter(p); font-family: var(--f-mono); font-weight: 600; font-size: 1rem; }
+.patterns li.yes { background: var(--ok-soft); }
+.patterns small { display: block; color: var(--muted); }
+.cite { font-size: 0.8rem; color: var(--muted); display: flex; flex-wrap: wrap; gap: 6px 10px; align-items: center; border-top: 1px dashed var(--line); padding-top: 10px; }
+table { border-collapse: collapse; width: 100%; font-size: 0.88rem; }
+th, td { text-align: left; padding: 7px 8px; border-bottom: 1px solid var(--line); vertical-align: top; }
+th { font-weight: 600; color: var(--muted); font-size: 0.76rem; letter-spacing: 0.04em; text-transform: uppercase; }
+.tscroll { overflow-x: auto; }
+.num { font-family: var(--f-mono); font-variant-numeric: tabular-nums; font-size: .86em; white-space: nowrap; }
+details { border: 1px solid var(--line); border-radius: var(--r); background: var(--paper); padding: 10px 12px; }
+summary { cursor: pointer; font-weight: 600; min-height: 24px; }
+details > :not(summary) { margin-top: 10px; }
+footer { font-size: 0.82rem; color: var(--muted); display: grid; gap: 8px; padding-block: 0 40px; }
+@media (max-width: 520px) { h1 { font-size: 1.55rem; } .panel { padding: 14px; } }
+@media print {
+  .banner { background: none; color: #000; border-bottom: 1px solid #000; }
+  .noprint, .skip { display: none !important; }
+  body { background: #fff; color: #000; font-size: 10.5pt; }
+  .panel, .box, details { border-color: #999; break-inside: avoid-page; }
+  details > :not(summary) { display: block !important; }
+  a { color: #000; }
+}
+
+.sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+tr.dim td { opacity: .45; }
+.checklist { gap: 8px; }
+.myths { margin: 0; display: grid; gap: 4px 0; }
+.myths dt { font-weight: 600; margin-top: 8px; }
+.myths dt:first-child { margin-top: 0; }
+.myths dd { margin: 0; color: var(--ink); }
+@media (max-width: 520px) { table.stack thead { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); } table.stack, table.stack tbody, table.stack tr, table.stack td { display: block; } table.stack tr { border-bottom: 1px solid var(--line); padding: 8px 0; } table.stack td { border: 0; padding: 2px 0; } table.stack td:first-child { font-weight: 600; } table.stack td:last-child { font-size: .8rem; color: var(--muted); } }
+@media print { tr.dim td { opacity: 1; } .topic[hidden] { display: grid !important; } }
+</style>
+
+</head><body>
+<a class="skip" href="#main">Skip to the article</a>
+<div class="banner" role="note"><div class="wrap">Independent educational tool. Not affiliated with or endorsed by the U.S. Department of Veterans Affairs. Not legal or medical advice. VA decides every claim.</div></div>
+<div class="wrap">
+  <header class="top">
+    <div class="crumbs noprint"><a href="./#educ.competency">← Competency and fiduciaries</a><span class="eyebrow"><span aria-hidden="true">★</span> Featured · Ratings · Benefits</span></div>
+    <h1>VA competency decisions: who manages your VA payments, and how to keep or get back that right</h1>
+    <p>When VA decides a claim, it may also decide whether you can manage your own VA benefit payments. This is called a <b>competency</b> decision. VA starts from the presumption that you can. This article explains what competency means, the evidence VA needs before finding otherwise, your right to notice and a hearing, why a 100% mental health rating does not by itself mean you are incompetent, and how to get competency restored.</p>
+    <p class="muted" style="font-size:.86rem">Based on public VA information: the regulation at <b>38 C.F.R. § 3.353</b>, VA's due process rules at <b>38 C.F.R. § 3.103</b>, VA's procedures manual (<b>M21-1</b>), VA's public Fiduciary Program page, and a published court decision. For education only. ClaimReady checks these sources for changes every week. <a href="#sources">Sources and dates</a></p>
+    <div class="row noprint"><button class="btn" type="button" id="printBtn">Print or save this article</button></div>
+  </header>
+
+  <main id="main" tabindex="-1">
+
+    <section class="panel" id="basics" aria-labelledby="basics-h">
+      <header><span class="eyebrow">Start here</span><h2 id="basics-h">Competency in six points</h2></header>
+      <ul>
+        <li><b>It is about money.</b> Competency means having the mental capacity to contract or to manage your own affairs, including spending your benefit payments without limits.</li>
+        <li><b>You are presumed competent.</b> VA may find you incompetent only on <b>clear and convincing</b> evidence. Reasonable doubt is resolved in favor of competency.</li>
+        <li><b>A doctor's clear statement is normally needed.</b> Unless the medical evidence leaves no doubt, VA needs a definite statement from a responsible medical authority.</li>
+        <li><b>You get notice and a chance to be heard first.</b> VA must propose the finding, tell you why, give you time to send evidence, and hold a hearing before deciding if you ask for one.</li>
+        <li><b>A 100% rating is not the same thing.</b> A total rating for a mental condition does not automatically mean you cannot manage your payments.</li>
+        <li><b>It can be restored.</b> Credible medical or other evidence can restore competency, and restoring it does not by itself lower your rating.</li>
+      </ul>
+      <p class="cite"><span class="tag law">Law</span> 38 C.F.R. § 3.353(a), (c)–(e); § 3.103(b)(2) <span class="tag guide">VA guidance</span> M21-1 X.ii.6.A.1–4</p>
+    </section>
+
+    <section class="panel" id="meaning" aria-labelledby="mean-h">
+      <header><span class="eyebrow">The definition</span><h2 id="mean-h">What "incompetent" means to VA</h2></header>
+      <p class="quote">VA's rule says a person is mentally incompetent when, because of injury or disease, they lack the mental capacity to contract or to manage their own affairs, including spending funds without limitation.</p>
+      <div class="cols">
+        <div class="box you"><h3>What it covers</h3><ul>
+          <li>Whether you can handle your <b>VA benefit payments</b>: paying bills, meeting basic needs, and not losing the money to poor judgment or to people who take advantage.</li>
+          <li>It must come from an <b>injury or disease</b>, not from disagreements about how you choose to spend.</li>
+        </ul></div>
+        <div class="box doc"><h3>What it does not cover</h3><ul>
+          <li>VA's Fiduciary Program page says a VA fiduciary manages <b>VA benefits only</b>. It says your non-VA finances, your right to vote, and your ability to sign legal documents are not affected.</li>
+          <li>It is not a diagnosis, and it is not a disability rating.</li>
+        </ul></div>
+      </div>
+      <p class="muted" style="font-size:.88rem">If VA finds a veteran incompetent, it appoints a <b>fiduciary</b>, often a family member or other trusted person, to receive and manage the VA payments. VA's page says it considers your preference when possible, and that a spouse, dependent, or relative serving as fiduciary cannot be paid a fee.</p>
+      <p class="cite"><span class="tag law">Law</span> 38 C.F.R. § 3.353(a); Part 13 (fiduciary rules) <span class="tag guide">VA guidance</span> VA.gov, VA Fiduciary Program</p>
+    </section>
+
+    <section class="panel" id="standard" aria-labelledby="std-h">
+      <header><span class="eyebrow">The standard</span><h2 id="std-h">How strong the evidence must be</h2>
+        <p>Most VA decisions turn on whether the evidence is at least evenly balanced. A finding of incompetency needs much more.</p></header>
+      <div class="tscroll"><table class="stack">
+        <thead><tr><th scope="col">If the evidence</th><th scope="col">VA's guidance says</th></tr></thead>
+        <tbody>
+          <tr><td>Raises a question, but is not clear and convincing</td><td>VA does <b>not</b> propose incompetency. The decision should say there was no clear and convincing evidence of incompetency.</td></tr>
+          <tr><td>Is close, so reasonable doubt exists</td><td>The doubt goes <b>in your favor</b>. You stay competent.</td></tr>
+          <tr><td>Clearly and convincingly shows you cannot manage your payments without limits</td><td>VA <b>proposes</b> a finding of incompetency and gives you notice. It does not make a final finding yet.</td></tr>
+        </tbody>
+      </table></div>
+      <ul>
+        <li>VA must look at <b>all the evidence</b>, not one exam.</li>
+        <li>The rule says the percentage of disability, facts about hospitalization or commitment, and the competency finding should be <b>consistent with each other</b>. A finding that does not fit the rest of the record deserves a hard look.</li>
+        <li>Unless the medical evidence leaves no doubt, VA needs a <b>definite expression</b> from a responsible medical authority. A vague note that you "may have trouble with finances" is not that.</li>
+      </ul>
+      <p class="cite"><span class="tag law">Law</span> 38 C.F.R. §§ 3.102, 3.353(c)–(d) <span class="tag guide">VA guidance</span> M21-1 X.ii.6.A.1.c–d; 6.A.2.a–b</p>
+    </section>
+
+    <section class="panel noprint" aria-labelledby="pick-h">
+      <fieldset>
+        <legend id="pick-h">What brings you here?</legend>
+        <p class="muted" style="font-size:.88rem">Pick the one that fits to see only that part. The general sections stay visible. Nothing you pick is saved.</p>
+        <div class="choices">
+          <label class="choice"><input type="radio" name="why" value="all" checked><span><b>Show all</b><small>Every situation</small></span></label>
+          <label class="choice"><input type="radio" name="why" value="total"><span><b>I'm rated 100% for mental health</b><small>Or IU or a temporary 100% for a mental condition</small></span></label>
+          <label class="choice"><input type="radio" name="why" value="proposal"><span><b>VA proposed finding me incompetent</b><small>I got a proposal letter</small></span></label>
+          <label class="choice"><input type="radio" name="why" value="family"><span><b>I'm worried about a family member</b><small>Or I want help managing my own payments</small></span></label>
+          <label class="choice"><input type="radio" name="why" value="court"><span><b>A court appointed a guardian</b><small>Or a court found someone incompetent</small></span></label>
+          <label class="choice"><input type="radio" name="why" value="restore"><span><b>I want my competency back</b><small>I was found incompetent before</small></span></label>
+        </div>
+      </fieldset>
+      <p id="pickNote" class="muted" aria-live="polite" style="font-size:.88rem">Showing every situation.</p>
+    </section>
+
+    <section class="panel topic" data-topic="total" id="total" aria-labelledby="tot-h">
+      <header><span class="eyebrow">100% for a mental condition</span><h2 id="tot-h">Why your decision may mention competency</h2>
+        <p>VA's guidance tells decision makers to address competency whenever a mental condition is rated 100%, or a 100% rating is continued. That is a routine check, not a sign VA thinks something is wrong.</p></header>
+      <div class="cols">
+        <div class="box you"><h3>When VA addresses it</h3><ul>
+          <li>A mental condition rated or continued at <b>100%</b>.</li>
+          <li><b>Individual unemployability</b> granted or continued based on a single mental health condition.</li>
+          <li>A <b>temporary 100%</b> rating for a hospital stay for a mental disorder (38 C.F.R. § 4.29).</li>
+        </ul></div>
+        <div class="box doc"><h3>What VA must weigh</h3><ul>
+          <li>VA's guidance says a total rating <b>does not automatically</b> mean you cannot manage your benefits, even though many symptoms behind a 100% rating could affect it.</li>
+          <li>VA must look at the facts of your case against the clear and convincing standard.</li>
+        </ul></div>
+      </div>
+      <p>If VA finds you competent, your decision letter may include a sentence like this one:</p>
+      <p class="quote">There is no evidence of record that shows that you are unable to manage your financial affairs. (38 CFR 3.353)</p>
+      <p class="muted" style="font-size:.88rem">That sentence means VA considered competency and found no reason to question it. Nothing more is needed from you.</p>
+      <p class="cite"><span class="tag law">Law</span> 38 C.F.R. §§ 3.353, 4.29 <span class="tag guide">VA guidance</span> M21-1 X.ii.6.A.2.a</p>
+    </section>
+
+    <section class="panel topic" data-topic="proposal" id="proposal" aria-labelledby="pro-h">
+      <header><span class="eyebrow">A proposal letter</span><h2 id="pro-h">When VA proposes finding you incompetent</h2>
+        <p>A proposal is not a final decision. It is VA's notice that it intends to make the finding, and your chance to respond first.</p></header>
+      <ol class="flow">
+        <li><div><b>VA sends the proposal.</b><span class="stop">It should explain the facts and reasons, and tell you about your right to a hearing. Your representative, if you have one, is notified too.</span></div></li>
+        <li><div><b>You have 60 days to send evidence.</b><span class="stop">VA's due process rule gives you 60 days to show why the action should not be taken. Check the letter for your exact dates.</span></div></li>
+        <li><div><b>You can ask for a hearing.</b><span class="stop">If you ask, the hearing must be held before VA makes a final finding. Hearings on proposed adverse actions are held before VA employees who did not take part in the proposal.</span></div></li>
+        <li><div><b>VA decides on all the evidence.</b><span class="stop">If you do not respond or do not take part in a hearing after proper notice, VA can decide on the evidence it has.</span></div></li>
+        <li><div><b>If VA makes the finding, a fiduciary follows.</b><span class="stop">VA's Fiduciary Program page says VA waits 60 days after the decision letter before notifying the Fiduciary Program, to give time to ask for a hearing or send more evidence. You can also ask for a decision review within one year.</span></div></li>
+      </ol>
+      <h3>Evidence that can speak to it</h3>
+      <ul>
+        <li>A statement from a <b>treating doctor or psychologist</b> who knows you, saying whether you can manage your payments and <b>why</b>, with examples.</li>
+        <li>Facts about how you actually handle money: bills paid on time, a budget, autopay, no unpaid rent or utility shutoffs.</li>
+        <li>Statements from family or others who see how you manage day to day, with how they know.</li>
+        <li>Evidence that a hospitalization or crisis behind the proposal has passed, if that is the case.</li>
+      </ul>
+      <p class="muted" style="font-size:.88rem">ClaimReady note, an educational tip rather than a rule: the strongest responses speak to <b>money management itself</b>, not just to diagnosis or symptoms, because that is what the definition asks.</p>
+      <p class="cite"><span class="tag law">Law</span> 38 C.F.R. § 3.103(b)(2), (d); § 3.353(e) <span class="tag guide">VA guidance</span> M21-1 X.ii.6.A.3.a; VA.gov, VA Fiduciary Program</p>
+    </section>
+
+    <section class="panel topic" data-topic="family" id="family" aria-labelledby="fam-h">
+      <header><span class="eyebrow">Family members and requests</span><h2 id="fam-h">When someone asks VA to look at competency</h2></header>
+      <div class="cols">
+        <div class="box you"><h3>A veteran asking for help</h3><ul>
+          <li>A veteran or other beneficiary can ask VA to be rated incompetent or to have a fiduciary appointed, even without medical or court records.</li>
+          <li>VA reviews its treatment records and may order an exam if the request and the record call for one.</li>
+          <li>VA's guidance says a request like this is <b>not automatically</b> a claim for a higher mental health rating, though VA looks at whether the facts raise one.</li>
+        </ul></div>
+        <div class="box doc"><h3>A family member or other person asking</h3><ul>
+          <li>With <b>medical or court evidence</b>, VA treats it as evidence and can act on it. No special form is required.</li>
+          <li>Without that evidence, VA checks its own treatment records. If they show nothing about competency, VA does not start a determination.</li>
+          <li>VA's reply to someone else <b>will not include</b> the veteran's personal information.</li>
+        </ul></div>
+      </div>
+      <p>Competency decisions are <b>not claims for benefits</b>, though they often come up while a claim is being decided. The same rules apply to surviving spouses, parents, VA insurance beneficiaries, and adult children who became permanently unable to support themselves before 18.</p>
+      <p class="cite"><span class="tag law">Law</span> 38 C.F.R. §§ 3.353(b), 3.356 <span class="tag guide">VA guidance</span> M21-1 X.ii.6.A.1.a, f; 6.A.2.c–d</p>
+    </section>
+
+    <section class="panel topic" data-topic="court" id="court" aria-labelledby="crt-h">
+      <header><span class="eyebrow">Court decisions</span><h2 id="crt-h">When a court has found someone incompetent</h2></header>
+      <ul>
+        <li><b>It counts as notice and hearing.</b> If a court found the person incompetent, or appointed a guardian because of incompetency, VA does not have to send its own proposal first.</li>
+        <li><b>It is not binding on VA.</b> VA still makes its own decision. Its guidance says to give the court decree <b>great weight</b>, and still to require clear and convincing evidence.</li>
+        <li><b>VA may not need more.</b> Exams or field visits are not routine when a court finding is in the record. VA develops more only if the record raises doubt.</li>
+        <li><b>A temporary appointment is different.</b> Without a court finding of incompetency, VA must propose a finding and give the usual notice if it has enough evidence, or tell the sender what more it needs.</li>
+        <li>If VA finds the person competent anyway, the decision should say whether the court decided the same way or differently.</li>
+      </ul>
+      <p class="cite"><span class="tag law">Law</span> 38 C.F.R. § 3.353(e) <span class="tag guide">VA guidance</span> M21-1 X.ii.6.A.1.a–b; 6.A.5.a–b</p>
+    </section>
+
+    <section class="panel topic" data-topic="restore" id="restore" aria-labelledby="res-h">
+      <header><span class="eyebrow">Restoring competency</span><h2 id="res-h">Getting control of your payments back</h2></header>
+      <div class="cols">
+        <div class="box you"><h3>What you can send</h3><ul>
+          <li><b>Credible medical or other evidence</b> that you can now manage your payments, such as a doctor's report.</li>
+          <li>VA's Fiduciary Program page says to send a written request with supporting medical evidence to the Fiduciary Intake Center, PO Box 5211, Janesville, WI 53547-5211.</li>
+          <li>A <b>court decree restoring competency</b> is also evidence VA must process.</li>
+        </ul></div>
+        <div class="box doc"><h3>How VA decides</h3><ul>
+          <li>The decision rests with VA's <b>rating decision makers</b>, not with a doctor. VA's manual cites <i>Sims v. Nicholson</i> on that authority.</li>
+          <li>Reasonable doubt favors competency here too.</li>
+          <li>VA should <b>not routinely</b> require a psychiatric exam or field exam first, though it can ask for one if needed.</li>
+          <li>VA should also look at restoring competency on its own when a hospital summary, discharge from care, a field examiner's report, or another real change suggests it.</li>
+        </ul></div>
+      </div>
+      <p><b>Restoring competency does not by itself lower your rating.</b> It also does not, on its own, show that a parent or surviving spouse no longer needs aid and attendance. Each of those is a separate question with its own rules.</p>
+      <p class="cite"><span class="tag law">Law</span> 38 C.F.R. § 3.353(b)(3), (d) <span class="tag guide">VA guidance</span> M21-1 X.ii.6.A.4.b–d; 6.A.5.c; VA.gov, VA Fiduciary Program <span class="tag court">Court</span> <i>Sims v. Nicholson</i>, 19 Vet. App. 453 (2006)</p>
+    </section>
+
+    <section class="panel" id="review" aria-labelledby="rev-h">
+      <header><span class="eyebrow">If you disagree</span><h2 id="rev-h">Asking VA to look again</h2></header>
+      <ul>
+        <li>A final competency finding can be reviewed like other decisions: a <a href="./#educ.hlr">Higher-Level Review</a> (no new evidence), a <a href="supplemental-claims.html">Supplemental Claim</a> (new and relevant evidence), or a <a href="./#educ.board">Board appeal</a>.</li>
+        <li>Disagreeing with <b>who</b> VA picked as fiduciary is a separate decision, and can be reviewed too. VA's page says to ask within <b>one year</b> of the decision letter.</li>
+        <li>You can also ask for restoration at any time by sending new evidence, as described above.</li>
+      </ul>
+      <p class="cite"><span class="tag guide">VA guidance</span> M21-1 X.ii.6.A.1.a; VA.gov, VA Fiduciary Program</p>
+    </section>
+
+    <section class="panel" id="prepare" aria-labelledby="pr-h">
+      <header><span class="eyebrow">What you can do</span><h2 id="pr-h">If you received a proposal</h2></header>
+      <ul class="checklist" style="list-style:none;padding:0">
+        <li><label class="row" style="align-items:flex-start;flex-wrap:nowrap"><input type="checkbox" style="width:18px;height:18px;margin-top:3px"> <span>Mark the <b>60-day date</b> from the proposal letter.</span></label></li>
+        <li><label class="row" style="align-items:flex-start;flex-wrap:nowrap"><input type="checkbox" style="width:18px;height:18px;margin-top:3px"> <span>Read the <b>reasons</b> VA gives. Note which records VA relied on.</span></label></li>
+        <li><label class="row" style="align-items:flex-start;flex-wrap:nowrap"><input type="checkbox" style="width:18px;height:18px;margin-top:3px"> <span>Decide whether to <b>ask for a hearing</b>, and ask in writing.</span></label></li>
+        <li><label class="row" style="align-items:flex-start;flex-wrap:nowrap"><input type="checkbox" style="width:18px;height:18px;margin-top:3px"> <span>Ask a treating provider for a statement about <b>managing money</b>, with reasons.</span></label></li>
+        <li><label class="row" style="align-items:flex-start;flex-wrap:nowrap"><input type="checkbox" style="width:18px;height:18px;margin-top:3px"> <span>Gather everyday proof: paid bills, a budget, statements from people who see you manage.</span></label></li>
+        <li><label class="row" style="align-items:flex-start;flex-wrap:nowrap"><input type="checkbox" style="width:18px;height:18px;margin-top:3px"> <span>Contact a free <b>accredited representative</b>. They can help you respond.</span></label></li>
+      </ul>
+      <p class="muted" style="font-size:.86rem">This checklist is not saved. Print the page to keep it.</p>
+    </section>
+
+    <section class="panel" id="example" aria-labelledby="ex-h">
+      <header><span class="eyebrow">Example</span><h2 id="ex-h">How this might look for Dana</h2></header>
+      <div class="example">
+        <b>Fictional example</b>
+        <p>Dana is rated 100% for PTSD. Each decision so far has said there is no evidence Dana cannot manage financial affairs. After a two-week hospital stay, a discharge note says Dana "should have help with finances." VA sends a proposal to find Dana incompetent.</p>
+        <ul>
+          <li><b>Is the note enough?</b> It is a medical statement, but VA must weigh whether it is a definite expression, whether it fits the rest of the record, and whether any reasonable doubt remains.</li>
+          <li><b>Dana's response:</b> within 60 days, Dana asks for a hearing and sends a letter from the outpatient psychiatrist who has treated Dana for three years, explaining with examples that Dana pays rent and bills on autopay and has not missed payments. Dana's spouse writes a statement too.</li>
+          <li><b>What VA does:</b> VA holds the hearing before deciding, and decides on all the evidence.</li>
+          <li><b>Dana's rating:</b> the competency question does not change the 100% rating either way.</li>
+        </ul>
+        <p class="muted" style="font-size:.86rem">This is a made-up example to show how the rules fit together. It is not a real VA decision and does not predict any outcome.</p>
+      </div>
+    </section>
+
+    <section class="panel" id="myths" aria-labelledby="myth-h">
+      <header><span class="eyebrow">Common misunderstandings</span><h2 id="myth-h">What people often get wrong</h2></header>
+      <dl class="myths">
+        <dt>"A 100% mental health rating means VA will take over my money."</dt><dd>No. VA must address competency at 100%, but a total rating does not automatically mean incompetency.</dd>
+        <dt>"My family can call VA and have a fiduciary appointed."</dt><dd>Not on a call alone. Without medical or court evidence, VA checks its records and does not start a determination if they show nothing.</dd>
+        <dt>"A proposal means it's already decided."</dt><dd>No. A proposal comes before the decision, with time to send evidence and the right to a hearing.</dd>
+        <dt>"If I get my competency back, VA will cut my rating."</dt><dd>No. Restored competency does not by itself justify lowering a rating.</dd>
+        <dt>"A court guardianship means VA has to agree."</dt><dd>No. VA gives it great weight but makes its own decision.</dd>
+        <dt>"Being found incompetent means I lose control of everything."</dt><dd>VA's page says a VA fiduciary manages VA benefits only. Other effects, such as under federal firearms law, are outside VA benefits; ask an accredited representative or attorney about them.</dd>
+      </dl>
+    </section>
+
+    <section class="panel" id="related" aria-labelledby="rel-h">
+      <header><h2 id="rel-h">Related on ClaimReady</h2></header>
+      <ul>
+        <li><a href="./#educ.competency">Competency and fiduciaries</a>, the short version</li>
+        <li><a href="./#educ.reduce">Proposed reductions</a>, how due process works when VA proposes an adverse change</li>
+        <li><a href="./#educ.iu">Individual unemployability</a> and <a href="./#educ.temp">temporary 100% ratings</a></li>
+        <li><a href="supplemental-claims.html">Supplemental Claims</a>, <a href="./#educ.hlr">Higher-Level Review</a>, and <a href="./#educ.board">Board appeals</a></li>
+        <li><a href="medical-opinions.html">What makes a medical opinion count</a></li>
+      </ul>
+    </section>
+
+    <section class="panel" id="sources" aria-labelledby="src-h">
+      <header><h2 id="src-h">Sources and dates</h2>
+        <p class="muted" style="font-size:.88rem"><span class="tag law">Law</span> statutes and regulations VA must follow. <span class="tag guide">VA guidance</span> VA's procedures manual and public pages, which explain how VA applies the law but are not law. <span class="tag court">Court</span> published decisions of the federal courts that review VA.</p></header>
+      <div class="tscroll"><table>
+        <thead><tr><th scope="col">Source</th><th scope="col">Type</th><th scope="col">Version used</th></tr></thead>
+        <tbody>
+          <tr><td><a href="https://www.ecfr.gov/current/title-38/chapter-I/part-3/subpart-A/subject-group-ECFR6477ad08d327384/section-3.353" target="_blank" rel="noopener">38 C.F.R. § 3.353</a> (Determinations of incompetency and competency)</td><td><span class="tag law">Law</span></td><td>Current eCFR (last amended 83 FR 32738, Jul 13, 2018)</td></tr>
+          <tr><td><a href="https://www.ecfr.gov/current/title-38/chapter-I/part-3/subpart-A/subject-group-ECFR63da83ba671b92b/section-3.103" target="_blank" rel="noopener">38 C.F.R. § 3.103</a> (Notice, 60 days, hearings)</td><td><span class="tag law">Law</span></td><td>Current eCFR</td></tr>
+          <tr><td>38 C.F.R. §§ 3.102, 3.356, 4.29; Part 13 (fiduciaries)</td><td><span class="tag law">Law</span></td><td>Current eCFR</td></tr>
+          <tr><td>M21-1 X.ii.6.A, Evaluating and Rating Competency</td><td><span class="tag guide">VA guidance</span></td><td class="num" data-src="554400000177974">Mar 4, 2026</td></tr>
+          <tr><td><a href="https://www.va.gov/resources/fiduciary-program/" target="_blank" rel="noopener">VA Fiduciary Program</a>, VA.gov</td><td><span class="tag guide">VA guidance</span></td><td class="num">Oct 16, 2026</td></tr>
+          <tr><td><i>Sims v. Nicholson</i>, 19 Vet. App. 453 (2006)</td><td><span class="tag court">Court</span></td><td>As published</td></tr>
+        </tbody>
+      </table></div>
+      <p class="muted" style="font-size:.86rem">Content reviewed <span class="num">Oct 22, 2026</span>. When VA updates a source, ClaimReady's weekly monitor flags it for review before this page changes.</p>
+    </section>
+  </main>
+
+  <footer>
+    <p>This article explains public VA rules about competency. It does not predict whether VA will find anyone competent or incompetent, and it is not legal or medical advice.</p>
+    <p>ClaimReady is independent and educational. It is not VA and is not a substitute for an accredited representative, who can help at no cost. Nothing on this page is saved or sent. <a href="./#about">About ClaimReady and full disclaimer</a></p>
+  </footer>
+</div>
+<script>
+(() => {
+  const radios = [...document.querySelectorAll('input[name="why"]')];
+  const topics = [...document.querySelectorAll('.topic')];
+  const note = document.getElementById('pickNote');
+  const names = { all: 'every situation', total: 'a 100% mental health rating', proposal: 'a proposal letter', family: 'requests from family or the veteran', court: 'a court finding', restore: 'restoring competency' };
+  function apply() {
+    const k = (radios.find(r => r.checked) || radios[0]).value;
+    topics.forEach(t => { t.hidden = k !== 'all' && t.dataset.topic !== k; });
+    note.textContent = k === 'all' ? 'Showing every situation.' : `Showing ${names[k]}. The general sections stay visible.`;
+  }
+  radios.forEach(r => r.addEventListener('change', apply));
+  // A link such as competency.html#restore opens with that situation picked.
+  const h = location.hash.slice(1);
+  if (names[h]) { radios.find(r => r.value === h).checked = true; apply(); }
+  document.getElementById('printBtn').addEventListener('click', () => window.print());
+})();
+</script>
+</body></html>
