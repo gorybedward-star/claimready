@@ -2730,6 +2730,7 @@ if (typeof module !== 'undefined') module.exports = vciTests;
    Topic "ptsdstressor" is the standalone page ptsd-stressor.html (Featured article: how VA accepts a PTSD stressor).
    Topic "doctorguide" is the standalone page public-src/doctor-guide.html; build.sh checks that its stated dates match.
    Topic "vietnamservice" is the standalone page vietnam-service.html (Featured article: proving Vietnam service; build.sh checks its stated dates).
+   Topic "herbicidenoassoc" is the standalone page herbicide-no-association.html (Featured article: conditions with no positive association with herbicides; build.sh checks its stated dates).
    Topics "supplemental" and "medicalopinions" are the standalone pages supplemental-claims.html and medical-opinions.html (Featured articles);
    build.sh checks the stated dates of every standalone page (doctor guide, PTSD stressor, both of these).
    VCI_UPDATES: the change log shown in "What's changed", topic badges, and the box at the top of each topic.
@@ -3523,6 +3524,9 @@ window.VCI_SOURCES = {
    "554400000177468",
    "554400000177469"
   ],
+  "herbicidenoassoc": [
+   "554400000177423"
+  ],
   "vietnamservice": [
    "554400000177422",
    "554400000177423",
@@ -3882,6 +3886,9 @@ window.VCI_SOURCES = {
    "3"
   ],
   "vietnamservice": [
+   "3"
+  ],
+  "herbicidenoassoc": [
    "3"
   ],
   "decqual": [
@@ -6868,7 +6875,7 @@ ${topics.length ? `<h2>5. For these conditions</h2><ul>${topics.map(t => `<li><b
         <div class="insuf-grid">${cardsHTML(CBRNE, [1])}</div></section>`;
       case 'ao': return `<section class="panel gulf-ed" id="ed-ao"><div class="panel-head"><h2>Agent Orange and herbicides</h2><span class="muted num">M21-1 VIII.i.1</span></div>
         <p class="muted" style="font-size:.88rem">Presumed exposure, presumptive conditions, and special effective date rules. <button class="btn small" data-go="educ.pact">PACT Act overview</button> <button class="btn small" data-go="effcheck">Check an effective date</button></p>
-        <p class="must-read-link"><span class="top-flag"><span aria-hidden="true">★</span> Featured</span><a class="btn small" href="vietnam-service.html">Proving Vietnam service: medals, Haas, and the Blue Water Navy law</a></p>
+        <p class="must-read-link"><span class="top-flag"><span aria-hidden="true">★</span> Featured</span><a class="btn small" href="vietnam-service.html">Proving Vietnam service: medals, Haas, and the Blue Water Navy law</a> <a class="btn small" href="herbicide-no-association.html">Not on the Agent Orange list? What "no positive association" means</a></p>
         <div class="insuf-grid">${cardsHTML(AO, [0, 5])}
           <div class="insuf-card vet"><h3 class="edu-h">For veterans</h3><ul class="plain-list"><li>Name the condition and the place, with approximate dates. For ships, give the ship's name and dates aboard.</li><li>Gather orders, travel vouchers, performance reports, and letters or photos that place you there.</li><li>If you were denied before, check whether a law change, the Blue Water Navy law, or new service records could reopen it from the old date.</li><li>Keep the date of your diagnosis; it can matter for your effective date.</li></ul></div></div></section>`;
       case 'nehmer': return `<section class="panel gulf-ed" id="ed-nehmer"><div class="panel-head"><h2>Nehmer: earlier dates for Vietnam veterans</h2><span class="muted num">M21-1 VIII.i.2</span></div>
