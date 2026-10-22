@@ -1,0 +1,438 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="description" content="Free, independent educational guide to how VA concedes Vietnam service: why medals alone do not prove it, Haas v. Peake, Procopio and the Blue Water Navy law, APO numbers, and effective dates for older denials. Nothing is saved or sent.">
+<meta name="referrer" content="no-referrer"><meta name="theme-color" content="#1d5a70">
+<link rel="manifest" href="manifest.webmanifest"><link rel="icon" type="image/png" href="icons/favicon-32.png"><link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+<title>Proving Vietnam Service</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<style>@font-face{font-family:'Public Sans';font-style:normal;font-weight:400;font-display:swap;src:url(fonts/public-sans-latin-400-normal.woff2) format('woff2')}@font-face{font-family:'Public Sans';font-style:normal;font-weight:500;font-display:swap;src:url(fonts/public-sans-latin-500-normal.woff2) format('woff2')}@font-face{font-family:'Public Sans';font-style:normal;font-weight:600;font-display:swap;src:url(fonts/public-sans-latin-600-normal.woff2) format('woff2')}@font-face{font-family:'Public Sans';font-style:normal;font-weight:700;font-display:swap;src:url(fonts/public-sans-latin-700-normal.woff2) format('woff2')}@font-face{font-family:'Source Serif 4';font-style:normal;font-weight:400;font-display:swap;src:url(fonts/source-serif-4-latin-400-normal.woff2) format('woff2')}@font-face{font-family:'Source Serif 4';font-style:normal;font-weight:600;font-display:swap;src:url(fonts/source-serif-4-latin-600-normal.woff2) format('woff2')}@font-face{font-family:'Source Serif 4';font-style:italic;font-weight:400;font-display:swap;src:url(fonts/source-serif-4-latin-400-italic.woff2) format('woff2')}@font-face{font-family:'Source Serif 4';font-style:italic;font-weight:600;font-display:swap;src:url(fonts/source-serif-4-latin-600-italic.woff2) format('woff2')}@font-face{font-family:'IBM Plex Mono';font-style:normal;font-weight:400;font-display:swap;src:url(fonts/ibm-plex-mono-latin-400-normal.woff2) format('woff2')}@font-face{font-family:'IBM Plex Mono';font-style:normal;font-weight:600;font-display:swap;src:url(fonts/ibm-plex-mono-latin-600-normal.woff2) format('woff2')}</style>
+<style>
+/* Layout: one reading column. Banner, header, medal warning, a situation chooser, three-questions explainer, timeline, Haas, Procopio and Blue Water Navy, APO numbers, § 3.313, records, decision outcomes, older denials, example, myths, sources, footer. ClaimReady tokens (same as ptsd-stressor.html). */
+:root {
+  --paper: #f3f5f4; --surface: #ffffff; --sunk: #e9eeec; --ink: #16201d; --muted: #5a6763; --line: #d4dcd9;
+  --accent: #1d5a70; --accent-ink: #ffffff; --accent-soft: #dfecf0;
+  --ok: #2a774b; --ok-soft: #e0f0e6; --wait: #8a560a; --wait-soft: #f7ecd8;
+  --f-ui: "Public Sans", "Segoe UI", system-ui, sans-serif;
+  --f-serif: "Source Serif 4", Georgia, "Times New Roman", serif;
+  --f-mono: "IBM Plex Mono", ui-monospace, Menlo, monospace;
+  --r: 6px;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --paper: #111816; --surface: #19211f; --sunk: #0d1312; --ink: #e4ebe8; --muted: #98a6a1; --line: #2b3633;
+  --accent: #72b6cf; --accent-ink: #0d1a1f; --accent-soft: #1b3038;
+  --ok: #62c189; --ok-soft: #173426; --wait: #e2a849; --wait-soft: #392b12; color-scheme: dark; } }
+:root[data-theme="dark"] {
+  --paper: #111816; --surface: #19211f; --sunk: #0d1312; --ink: #e4ebe8; --muted: #98a6a1; --line: #2b3633;
+  --accent: #72b6cf; --accent-ink: #0d1a1f; --accent-soft: #1b3038;
+  --ok: #62c189; --ok-soft: #173426; --wait: #e2a849; --wait-soft: #392b12; color-scheme: dark; }
+:root { padding-top: env(safe-area-inset-top, 0px); padding-bottom: env(safe-area-inset-bottom, 0px); }
+* { box-sizing: border-box; }
+[hidden] { display: none !important; }
+body { margin: 0; background: var(--paper); color: var(--ink); font-family: var(--f-ui); font-size: 0.95rem; line-height: 1.5; }
+.wrap { max-width: 760px; margin: 0 auto; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+.skip { position: absolute; left: -9999px; } .skip:focus { left: 16px; top: 8px; z-index: 20; background: var(--surface); padding: 8px 12px; border-radius: var(--r); }
+.banner { background: var(--ink); color: var(--paper); font-size: 0.8rem; }
+.banner .wrap { padding-block: 8px; }
+header.top { padding-block: 24px 8px; display: grid; gap: 10px; }
+h1, h2, h3 { font-family: var(--f-serif); font-weight: 600; margin: 0; line-height: 1.2; text-wrap: balance; }
+h1 { font-size: 1.9rem; letter-spacing: -0.01em; }
+h2 { font-size: 1.3rem; }
+h3 { font-size: 1.02rem; }
+p { margin: 0; }
+ul, ol { margin: 0; padding-left: 20px; display: grid; gap: 6px; }
+a { color: var(--accent); }
+.muted { color: var(--muted); }
+.eyebrow { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.09em; text-transform: uppercase; color: var(--muted); }
+.crumbs { display: flex; flex-wrap: wrap; gap: 6px 14px; align-items: baseline; }
+.crumbs a { font-weight: 600; font-size: .9rem; text-decoration: none; }
+.crumbs a:hover { text-decoration: underline; }
+.tag { display: inline-block; font-size: .7rem; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; padding: 1px 7px; border-radius: 4px; border: 1px solid currentColor; white-space: nowrap; }
+.tag.law { color: var(--accent); } .tag.guide { color: var(--wait); } .tag.court { color: var(--ok); }
+.example { display: grid; gap: 4px; background: var(--wait-soft); border: 1px solid var(--line); border-radius: var(--r); padding: 10px 12px; }
+.example b:first-child { font-size: .78rem; letter-spacing: .06em; text-transform: uppercase; }
+button, input { font: inherit; color: inherit; }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.btn { border: 1px solid var(--line); background: var(--surface); border-radius: var(--r); padding: 8px 14px; cursor: pointer; min-height: 44px; }
+.btn.primary { background: var(--accent); color: var(--accent-ink); border-color: var(--accent); font-weight: 600; }
+.btn.link { border: 0; background: none; color: var(--accent); text-decoration: underline; padding: 4px 0; min-height: 0; }
+main { display: grid; gap: 20px; padding-block: 12px 48px; }
+.panel { background: var(--surface); border: 1px solid var(--line); border-radius: var(--r); padding: 18px; display: grid; gap: 14px; min-width: 0; }
+.panel > header { display: grid; gap: 6px; }
+fieldset { border: 0; padding: 0; margin: 0; display: grid; gap: 10px; min-width: 0; }
+legend { font-family: var(--f-serif); font-weight: 600; font-size: 1.15rem; padding: 0; margin-bottom: 4px; }
+.choices { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 8px; }
+.choice { display: flex; gap: 10px; align-items: flex-start; border: 1px solid var(--line); border-radius: var(--r); padding: 10px 12px; cursor: pointer; background: var(--paper); min-height: 44px; }
+.choice:has(input:checked) { border-color: var(--accent); background: var(--accent-soft); }
+.choice input { margin-top: 4px; width: 18px; height: 18px; accent-color: var(--accent); flex: none; }
+.choice small { display: block; color: var(--muted); }
+.row { display: flex; flex-wrap: wrap; gap: 8px 14px; align-items: center; }
+.cols { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 12px; }
+.box { border: 1px solid var(--line); border-radius: var(--r); padding: 12px 14px; display: grid; gap: 8px; align-content: start; background: var(--paper); }
+.box.you { border-left: 4px solid var(--ok); }
+.box.doc { border-left: 4px solid var(--accent); }
+.box h3 { font-family: var(--f-ui); font-size: .82rem; letter-spacing: .06em; text-transform: uppercase; }
+.flow { list-style: none; padding: 0; counter-reset: q; gap: 0; }
+.flow > li { counter-increment: q; display: grid; grid-template-columns: 30px 1fr; gap: 10px; padding-bottom: 14px; position: relative; }
+.flow > li::before { content: counter(q); width: 26px; height: 26px; border-radius: 50%; background: var(--accent); color: var(--accent-ink); font-family: var(--f-mono); font-size: .8rem; display: grid; place-items: center; }
+.flow > li::after { content: ""; position: absolute; left: 12px; top: 28px; bottom: 2px; width: 2px; background: var(--line); }
+.flow > li:last-child::after { display: none; }
+.flow .stop { display: block; font-size: .85rem; color: var(--muted); margin-top: 2px; }
+.flow ul { margin-top: 6px; }
+.quote { font-family: var(--f-serif); border-left: 3px solid var(--line); padding: 2px 0 2px 12px; color: var(--ink); }
+.pills { list-style: none; padding: 0; display: flex; flex-wrap: wrap; gap: 6px; }
+.pills li { border: 1px solid var(--line); border-radius: 999px; padding: 2px 10px; font-size: .85rem; background: var(--paper); }
+.patterns { list-style: none; padding: 0; display: grid; gap: 8px; counter-reset: p; }
+.patterns li { counter-increment: p; display: grid; grid-template-columns: 30px 1fr; gap: 10px; align-items: start; border: 1px solid var(--line); border-radius: var(--r); padding: 10px 12px; }
+.patterns li::before { content: counter(p); font-family: var(--f-mono); font-weight: 600; font-size: 1rem; }
+.patterns li.yes { background: var(--ok-soft); }
+.patterns small { display: block; color: var(--muted); }
+.cite { font-size: 0.8rem; color: var(--muted); display: flex; flex-wrap: wrap; gap: 6px 10px; align-items: center; border-top: 1px dashed var(--line); padding-top: 10px; }
+table { border-collapse: collapse; width: 100%; font-size: 0.88rem; }
+th, td { text-align: left; padding: 7px 8px; border-bottom: 1px solid var(--line); vertical-align: top; }
+th { font-weight: 600; color: var(--muted); font-size: 0.76rem; letter-spacing: 0.04em; text-transform: uppercase; }
+.tscroll { overflow-x: auto; }
+.num { font-family: var(--f-mono); font-variant-numeric: tabular-nums; font-size: .86em; white-space: nowrap; }
+details { border: 1px solid var(--line); border-radius: var(--r); background: var(--paper); padding: 10px 12px; }
+summary { cursor: pointer; font-weight: 600; min-height: 24px; }
+details > :not(summary) { margin-top: 10px; }
+footer { font-size: 0.82rem; color: var(--muted); display: grid; gap: 8px; padding-block: 0 40px; }
+@media (max-width: 520px) { h1 { font-size: 1.55rem; } .panel { padding: 14px; } }
+@media print {
+  .banner { background: none; color: #000; border-bottom: 1px solid #000; }
+  .noprint, .skip { display: none !important; }
+  body { background: #fff; color: #000; font-size: 10.5pt; }
+  .panel, .box, details { border-color: #999; break-inside: avoid-page; }
+  details > :not(summary) { display: block !important; }
+  a { color: #000; }
+}
+
+.sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+tr.dim td { opacity: .45; }
+.checklist { gap: 8px; }
+.myths { margin: 0; display: grid; gap: 4px 0; }
+.myths dt { font-weight: 600; margin-top: 8px; }
+.myths dt:first-child { margin-top: 0; }
+.myths dd { margin: 0; color: var(--ink); }
+@media (max-width: 520px) { table.stack thead { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); } table.stack, table.stack tbody, table.stack tr, table.stack td { display: block; } table.stack tr { border-bottom: 1px solid var(--line); padding: 8px 0; } table.stack td { border: 0; padding: 2px 0; } table.stack td:first-child { font-weight: 600; } table.stack td:last-child { font-size: .8rem; color: var(--muted); } }
+@media print { tr.dim td { opacity: 1; } .topic[hidden] { display: grid !important; } }
+.tag.bg { color: var(--muted); }
+.cite { display: block; line-height: 1.9; } .cite .tag { margin-right: 4px; } .cite .tag:not(:first-child) { margin-left: 6px; }
+@media (max-width: 520px) { table.stack.keep td:last-child { font-size: inherit; color: var(--ink); } }
+.alert { border: 1px solid var(--wait); border-left: 6px solid var(--wait); background: var(--wait-soft); border-radius: var(--r); padding: 14px 16px; display: grid; gap: 8px; }
+.alert p.big { font-family: var(--f-serif); font-size: 1.12rem; font-weight: 600; line-height: 1.35; }
+.no { font-weight: 700; color: var(--wait); white-space: nowrap; }
+.three { list-style: none; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 8px; counter-reset: t; }
+.three li { counter-increment: t; border: 1px solid var(--line); border-radius: var(--r); padding: 10px 12px; background: var(--paper); display: grid; gap: 4px; align-content: start; }
+.three li::before { content: "Question " counter(t); font-size: .72rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+.timeline { list-style: none; padding: 0; margin: 0; display: grid; gap: 0; }
+.timeline > li { display: grid; grid-template-columns: 64px 1fr; gap: 12px; position: relative; padding-bottom: 16px; }
+.timeline > li::after { content: ""; position: absolute; left: 31px; top: 30px; bottom: 0; width: 2px; background: var(--line); }
+.timeline > li:last-child::after { display: none; }
+.timeline .yr { font-family: var(--f-mono); font-weight: 600; font-size: .85rem; background: var(--sunk); border: 1px solid var(--line); border-radius: 999px; height: 28px; display: grid; place-items: center; position: relative; z-index: 1; }
+.timeline .key .yr { background: var(--accent); color: var(--accent-ink); border-color: var(--accent); }
+.timeline .ev { display: grid; gap: 2px; padding-top: 3px; }
+.timeline .ev b { font-size: .98rem; }
+.timeline .ev small { color: var(--muted); font-size: .84rem; }
+.dir { font-size: .72rem; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; padding: 1px 7px; border-radius: 4px; justify-self: start; }
+.dir.narrow { background: var(--wait-soft); color: var(--wait); }
+.dir.wide { background: var(--ok-soft); color: var(--ok); }
+.answer { border: 1px solid var(--accent); background: var(--accent-soft); border-radius: var(--r); padding: 12px 14px; display: grid; gap: 8px; }
+.outcomes { display: grid; gap: 8px; }
+.outcomes .box h3 { font-family: var(--f-serif); font-size: 1rem; letter-spacing: 0; text-transform: none; }
+@media print { .answer[hidden] { display: none !important; } }
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to the article</a>
+<div class="banner" role="note"><div class="wrap">Independent educational tool. Not affiliated with or endorsed by the U.S. Department of Veterans Affairs. Not legal or medical advice. VA decides every claim.</div></div>
+<div class="wrap">
+  <header class="top">
+    <div class="crumbs noprint"><a href="./#educ.ao">← Agent Orange and herbicides</a><span class="eyebrow"><span aria-hidden="true">★</span> Featured · Benefits</span></div>
+    <h1>Proving Vietnam service: medals, Haas, and the Blue Water Navy law</h1>
+    <p>Many Agent Orange claims turn on one question that comes before any medical issue: <b>did you serve in a place where the law presumes herbicide exposure?</b> When VA accepts that you did, it <b>concedes</b> your Vietnam service. This article explains why a Vietnam medal is not proof by itself, how the courts and Congress changed the rules for Navy veterans offshore, how APO numbers fit in, and why some older denials may deserve a second look.</p>
+    <p class="muted" style="font-size:.86rem">Based on public sources: the statutes <b>38 U.S.C. §§ 1116 and 1116A</b>, the regulations <b>38 C.F.R. §§ 3.307, 3.309, and 3.313</b>, published court decisions, and VA's procedures manual, <b>M21-1, Part VIII, Subpart i, Chapter 1</b> (version used <span class="num" data-src="554400000177423">Jul 16, 2026</span>). For education only. ClaimReady checks these sources for changes every week. <a href="#sources">Sources and dates</a></p>
+    <div class="row noprint"><button class="btn" type="button" id="printBtn">Print or save this article</button></div>
+  </header>
+
+  <main id="main" tabindex="-1">
+
+    <section class="panel" id="medals" aria-labelledby="medals-h">
+      <header><span class="eyebrow">Start here</span><h2 id="medals-h">A Vietnam medal is not, by itself, proof you served in Vietnam</h2></header>
+      <div class="alert" role="note">
+        <p class="big">A Vietnam-related medal tells VA to look closer. It does not, standing alone, prove you were in a place where VA presumes herbicide exposure.</p>
+        <p>The reverse is also true: <b>not having one of these medals does not mean you were never there.</b> VA decides from all of your records.</p>
+      </div>
+      <p class="quote">"There are no recognized medals whose receipt alone connotes service in a recognized herbicide presumptive location."</p>
+      <p class="muted" style="font-size:.88rem">VA's procedures manual, M21-1 VIII.i.1.B.2.d. When a veteran has a medal such as the Vietnam Service Medal, the manual tells VA to look carefully through the records for travel or temporary duty (TDY) orders to a qualifying place.</p>
+      <p>Many of these awards could be earned on a ship offshore, on flights, or in support roles outside Vietnam. So a medal shows you took part in or supported the war, but not exactly <b>where</b> you were.</p>
+      <div class="tscroll"><table class="stack keep">
+        <thead><tr><th scope="col">Medal</th><th scope="col">Proves qualifying Vietnam service by itself?</th><th scope="col">Why not</th></tr></thead>
+        <tbody>
+          <tr><td>Vietnam Service Medal</td><td><span class="no">No</span></td><td>Awarded for service in Vietnam <b>or its contiguous waters or airspace</b>, and for some service in Thailand, Laos, or Cambodia supporting the war (July 3, 1965 to March 28, 1973). One day aboard a ship supporting operations, or one flight, could qualify.</td></tr>
+          <tr><td>Republic of Vietnam Campaign Medal</td><td><span class="no">No</span></td><td>VA's manual says no medal alone shows service in a presumptive place. VA looks for orders or other records that place you there.</td></tr>
+          <tr><td>Armed Forces Expeditionary Medal</td><td><span class="no">No</span></td><td>Covers many operations worldwide. For Vietnam it was given for service from July 1, 1958 to July 3, 1965, before the Vietnam Service Medal existed. If you have it, your orders and duty assignments show where you actually were.</td></tr>
+          <tr><td>Republic of Vietnam Gallantry Cross (unit citation)</td><td><span class="no">No</span></td><td>Same rule: no medal alone is enough. Your own orders, assignments, and records show where you were.</td></tr>
+        </tbody>
+      </table></div>
+      <p class="muted" style="font-size:.88rem">VA used to accept the Vietnam Service Medal as proof. That changed in 2002, and the courts upheld the change in <i>Haas v. Peake</i> (2008). Grants VA made under the older medal rule are <b>not taken away</b>. <a href="#haas">How this happened</a></p>
+      <p class="cite"><span class="tag guide">VA guidance</span> M21-1 VIII.i.1.A; 1.B.2.d <span class="tag court">Court</span> <i>Haas v. Peake</i>, 525 F.3d 1168 (Fed. Cir. 2008) <span class="tag bg">Background</span> Vietnam Service Medal and Expeditionary Medal rules: 32 C.F.R. § 578.26 (2008); Navy History and Heritage Command</p>
+    </section>
+
+    <section class="panel noprint" aria-labelledby="pick-h">
+      <fieldset>
+        <legend id="pick-h">Where did you serve?</legend>
+        <p class="muted" style="font-size:.88rem">Pick the one that fits best to see which parts of this article matter most for you. Nothing you pick is saved. This does not tell you whether VA will concede your service.</p>
+        <div class="choices">
+          <label class="choice"><input type="radio" name="where" value="land"><span><b>On land in Vietnam</b><small>Including rivers and inland waterways</small></span></label>
+          <label class="choice"><input type="radio" name="where" value="ship"><span><b>On a ship off the coast</b><small>Navy, Coast Guard, or any branch aboard</small></span></label>
+          <label class="choice"><input type="radio" name="where" value="air"><span><b>In the air</b><small>Flights over Vietnam, or crews based elsewhere</small></span></label>
+          <label class="choice"><input type="radio" name="where" value="other"><span><b>Somewhere else in the region</b><small>Thailand, Laos, Cambodia, Guam, Okinawa, and others</small></span></label>
+          <label class="choice"><input type="radio" name="where" value="denied"><span><b>I was denied before</b><small>An older Agent Orange denial</small></span></label>
+        </div>
+      </fieldset>
+      <div class="answer" id="ans-land" hidden aria-labelledby="pick-h"><p><b>On land, or on rivers and inland waterways,</b> between January 9, 1962 and May 7, 1975, VA presumes herbicide exposure. This was the rule even before the Blue Water Navy law. The question is proof: records that place you in Vietnam, not a medal alone.</p><p>Read next: <a href="#apo">APO numbers</a> and <a href="#records">Records that can place you there</a>.</p></div>
+      <div class="answer" id="ans-ship" hidden><p><b>On a ship within 12 nautical miles of Vietnam's coast</b> (inside the line the law describes), between January 9, 1962 and May 7, 1975, the Blue Water Navy law presumes exposure, even if you never went ashore. VA checks where your ship was, using sources such as deck logs. Ships further out do not qualify for the presumption.</p><p>Read next: <a href="#procopio">Procopio and the Blue Water Navy law</a> and <a href="#older">Older denials and your effective date</a>.</p></div>
+      <div class="answer" id="ans-air" hidden><p><b>Flights over Vietnam alone</b>, such as high-altitude missions, do not count as service in Vietnam for the herbicide presumption. Landing in Vietnam, even briefly, can count if records show it. Air Force and Air Force Reserve members who regularly flew, maintained, or served aboard the <b>C-123 spray aircraft</b> have their own presumption.</p><p>Read next: <a href="#records">Records that can place you there</a> and <a href="#s3313">The special rule for non-Hodgkin's lymphoma</a>.</p></div>
+      <div class="answer" id="ans-other" hidden><p><b>Other places have their own presumptions</b>, with their own dates: Thailand bases, Laos, parts of Cambodia, Guam and American Samoa, Johnston Atoll, and certain units near the Korean DMZ. Okinawa, Japan, and the Philippines are not on the list, so exposure there must be shown with evidence. An APO number from a Pacific base is not proof of Vietnam service.</p><p>Read next: <a href="#apo">APO numbers</a> and ClaimReady's <a href="./#educ.ao">Agent Orange and herbicides</a> topic.</p></div>
+      <div class="answer" id="ans-denied" hidden><p><b>If VA denied you because you never set foot in Vietnam</b>, the law has changed since then. Offshore service can now qualify, and some older claims can be paid from the date of the old claim.</p><p>Read next: <a href="#older">Older denials and your effective date</a> and <a href="#timeline">How the law changed</a>.</p></div>
+      <p id="pickNote" class="sr" aria-live="polite"></p>
+    </section>
+
+    <section class="panel" id="three" aria-labelledby="three-h">
+      <header><span class="eyebrow">The big picture</span><h2 id="three-h">Three separate questions</h2>
+        <p>People often blend these together. VA answers them one at a time.</p></header>
+      <ol class="three">
+        <li><b>Where did you serve?</b><span>Did you serve in Vietnam, its inland waters, or its qualifying offshore waters, during January 9, 1962 to May 7, 1975? This article is mostly about this question.</span></li>
+        <li><b>Is exposure presumed?</b><span>If yes to question 1, the law presumes you were exposed to herbicides, unless there is affirmative evidence you were not.</span></li>
+        <li><b>Is the condition presumed?</b><span>If your condition is on the herbicide list (such as type 2 diabetes, ischemic heart disease, or prostate cancer) and meets any time or severity rules, VA presumes the link to service.</span></li>
+      </ol>
+      <p>If any answer is no, the claim is not over. You can still try to show exposure or a link to service with evidence, called <b>direct service connection</b>. A presumption is an extra route, not the only one.</p>
+      <p class="cite"><span class="tag law">Law</span> 38 U.S.C. §§ 1116, 1116A; 38 C.F.R. §§ 3.307(a)(6), 3.309(e) <span class="tag guide">VA guidance</span> M21-1 VIII.i.1.A; 1.C</p>
+    </section>
+
+    <section class="panel" id="timeline" aria-labelledby="tl-h">
+      <header><span class="eyebrow">Timeline</span><h2 id="tl-h">How the law changed</h2>
+        <p>The rules for offshore veterans moved back and forth for nearly 30 years. Knowing which rule applied when explains many older decisions.</p></header>
+      <ol class="timeline">
+        <li><span class="yr">1991</span><div class="ev"><b>VA's manual accepts the Vietnam Service Medal</b><span>Without contrary evidence, VA conceded Vietnam service if records showed the medal.</span></div></li>
+        <li><span class="yr">1997</span><div class="ev"><span class="dir narrow">Narrower</span><b>VA General Counsel opinion 27&#8209;97</b><span>Service on a deep-water ship off the coast, without duty or a visit in Vietnam, is not "service in the Republic of Vietnam" for the definition of the Vietnam era.</span></div></li>
+        <li><span class="yr">2002</span><div class="ev"><span class="dir narrow">Narrower</span><b>VA's manual requires service on land</b><span>The manual now said the medal does not prove you were "in country." VA had stated the land requirement in a 2001 rule on diabetes.</span></div></li>
+        <li class="key"><span class="yr">2006</span><div class="ev"><span class="dir wide">Wider</span><b><i>Haas v. Nicholson</i>, Veterans Court</b><span>Ruled for the veteran: VA could not apply the land requirement to him, and the older medal rule controlled his case.</span></div></li>
+        <li class="key"><span class="yr">2008</span><div class="ev"><span class="dir narrow">Narrower</span><b><i>Haas v. Peake</i>, Federal Circuit</b><span>Reversed. VA's land requirement was a reasonable reading of the law, and the medal rule was manual guidance VA could change.</span></div></li>
+        <li class="key"><span class="yr">2019</span><div class="ev"><span class="dir wide">Wider</span><b><i>Procopio v. Wilkie</i>, Federal Circuit (full court)</b><span>January 29: "served in the Republic of Vietnam" includes Vietnam's 12-mile territorial sea. <i>Haas</i> is overruled. Congress passed the Blue Water Navy law on June 25.</span></div></li>
+        <li class="key"><span class="yr">2020</span><div class="ev"><span class="dir wide">Wider</span><b>Blue Water Navy law takes effect</b><span>January 1: 38 U.S.C. § 1116A presumes exposure for qualifying offshore service, with a special effective date rule for older denials.</span></div></li>
+        <li class="key"><span class="yr">2022</span><div class="ev"><span class="dir wide">Wider</span><b>PACT Act</b><span>August 10: added herbicide presumptions for Thailand, Laos, Cambodia, Guam, American Samoa, and Johnston Atoll, and added high blood pressure and MGUS to the list of conditions.</span></div></li>
+      </ol>
+      <p class="cite"><span class="tag court">Court</span> <i>Haas v. Nicholson</i>, 20 Vet. App. 257 (2006); <i>Haas v. Peake</i>, 525 F.3d 1168 (Fed. Cir. 2008); <i>Procopio v. Wilkie</i>, 913 F.3d 1371 (Fed. Cir. 2019) (en banc) <span class="tag law">Law</span> Pub. L. 116-23; Pub. L. 117-168; VAOPGCPREC 27-97</p>
+    </section>
+
+    <section class="panel topic" data-topic="denied ship" id="haas" aria-labelledby="haas-h">
+      <header><span class="eyebrow">History</span><h2 id="haas-h"><i>Haas v. Peake</i>: why the medal stopped counting</h2></header>
+      <p><b>The facts.</b> Jonathan Haas served in the Navy from 1967 to 1969 aboard the <b>USS Mount Katmai</b>, an ammunition ship operating off the coast of Vietnam. Because of its explosive cargo, the ship did not dock in Vietnamese ports, and he never went ashore. In 2001 he claimed diabetes and other conditions from Agent Orange. VA denied the presumption because he had not served on land.</p>
+      <div class="cols">
+        <div class="box"><h3>2006: the Veterans Court</h3><ul>
+          <li>Held that the regulation was unclear and declined to accept VA's land-only reading.</li>
+          <li>Treated the old manual rule (the medal concedes Vietnam service) as a binding rule that VA could not drop without public notice and comment, and that could not be applied against his earlier claim.</li>
+        </ul></div>
+        <div class="box"><h3>2008: the Federal Circuit</h3><ul>
+          <li>Reversed. The words "served in the Republic of Vietnam" were ambiguous, and VA's requirement of service on land was a reasonable reading that courts must respect.</li>
+          <li>The manual's medal rule was <b>guidance to VA staff</b>, not a rule with the force of law, so VA could change it without notice and comment.</li>
+          <li>Haas could still try to prove actual exposure, but he did not get the presumption.</li>
+        </ul></div>
+      </div>
+      <ul>
+        <li><b>What still holds from <i>Haas</i>:</b> a medal alone is not proof of where you served.</li>
+        <li><b>What no longer holds:</b> the rule that you had to set foot on land. <i>Procopio</i> overruled <i>Haas</i> on that point in 2019.</li>
+      </ul>
+      <p class="cite"><span class="tag court">Court</span> <i>Haas v. Nicholson</i>, 20 Vet. App. 257 (2006); <i>Haas v. Peake</i>, 525 F.3d 1168 (Fed. Cir. 2008), reh'g denied, 544 F.3d 1306</p>
+    </section>
+
+    <section class="panel topic" data-topic="ship denied" id="procopio" aria-labelledby="pro-h">
+      <header><span class="eyebrow">What changed</span><h2 id="pro-h"><i>Procopio</i> and the Blue Water Navy law</h2></header>
+      <div class="cols">
+        <div class="box doc"><h3>The court: <i>Procopio v. Wilkie</i> (2019)</h3><ul>
+          <li>Alfred Procopio Jr. served aboard the <b>USS Intrepid</b>, which operated in Vietnam's territorial sea in 1966. He claimed diabetes and prostate cancer.</li>
+          <li>The full Federal Circuit held that "served in the Republic of Vietnam" in § 1116 clearly includes Vietnam's <b>12-nautical-mile territorial sea</b>, and said "Haas is overruled."</li>
+        </ul></div>
+        <div class="box doc"><h3>Congress: 38 U.S.C. § 1116A (2020)</h3><ul>
+          <li>Passed as Public Law 116-23 on June 25, 2019. In effect <b>January 1, 2020</b>.</li>
+          <li>Presumes herbicide exposure for service <b>offshore of Vietnam</b> from <b>January 9, 1962 to May 7, 1975</b>, unless affirmative evidence shows no exposure.</li>
+          <li>"Offshore" means no more than <b>12 nautical miles</b> seaward of a line the law draws along Vietnam's coast by map coordinates, from the Cambodian border to Con Co Island.</li>
+        </ul></div>
+      </div>
+      <ul>
+        <li><b>You do not need to have stepped on land</b> if your ship was inside that line during the period.</li>
+        <li><b>You still need proof of where your ship was, and when you were aboard.</b> A medal does not show this. VA checks ship records such as deck logs.</li>
+        <li>VA's guidance says service in any branch aboard a qualifying ship counts, as can service with a Navy air squadron or a Marine unit assigned to the ship.</li>
+      </ul>
+      <p class="cite"><span class="tag court">Court</span> <i>Procopio v. Wilkie</i>, 913 F.3d 1371 (Fed. Cir. 2019) (en banc) <span class="tag law">Law</span> 38 U.S.C. § 1116A(a), (b), (d); Pub. L. 116-23, § 2 <span class="tag guide">VA guidance</span> M21-1 VIII.i.1.B; 1.D</p>
+    </section>
+
+    <section class="panel topic" data-topic="land other air" id="apo" aria-labelledby="apo-h">
+      <header><span class="eyebrow">Records</span><h2 id="apo-h">APO and FPO numbers</h2>
+        <p>An APO (Army or Air Force Post Office) or FPO (Fleet Post Office) number is a military mailing address. It can appear on medical and dental records, orders, and letters. VA's guidance tells reviewers to pay particular attention to APO and FPO numbers in service treatment and dental records, because a number <b>may be associated</b> with a place where the herbicide presumption applies. VA matches numbers against a historical list of Vietnam-era Pacific APO and FPO addresses.</p></header>
+      <ul>
+        <li><b>An APO number alone does not always prove Vietnam service.</b> The Pacific APO numbers of that era served bases in many countries, including Thailand, Japan, Okinawa, the Philippines, Taiwan, and Guam, as well as Vietnam.</li>
+        <li>What helps is an APO number that matches a <b>specific installation in Vietnam</b> at the time, on a record that ties it to <b>you</b>.</li>
+        <li>A number that only shows mail was routed to Vietnam, or that belonged to a unit with people in several countries, may need more proof.</li>
+      </ul>
+      <h3>How to check an APO number on your records</h3>
+      <ol class="flow">
+        <li><div><b>Find it.</b> Note the document (for example, a dental record or orders), the date, and your name on it.<span class="stop">A number on a record that is yours and dated during the period carries more weight.</span></div></li>
+        <li><div><b>Match it to a place and time.</b> APO numbers were reassigned over the years, so the date matters.</div></li>
+        <li><div><b>Tie it to you.</b> Does the record show you were at that installation, not just your unit's mailing address?</div></li>
+        <li><div><b>Check the region.</b> Is it a Vietnam installation, or another Pacific location such as Thailand or Okinawa? Thailand has its own presumption with different rules.</div></li>
+        <li><div><b>Tell VA what you found.</b> Send copies, with your approximate dates and places. If something is unclear, say so; VA can request more records.</div></li>
+      </ol>
+      <p class="cite"><span class="tag guide">VA guidance</span> M21-1 VIII.i.1.B.2.d <span class="tag bg">Background</span> Which places Pacific APO numbers served is general historical information, not from a VA source</p>
+    </section>
+
+    <section class="panel topic" data-topic="air ship" id="s3313" aria-labelledby="s3313-h">
+      <header><span class="eyebrow">A separate rule</span><h2 id="s3313-h">The special rule for non-Hodgkin's lymphoma (38 C.F.R. § 3.313)</h2></header>
+      <ul>
+        <li>§ 3.313 is a separate regulation from 1990 for <b>one disease: non-Hodgkin's lymphoma</b>. If you served in Vietnam during the Vietnam era and later developed it, that service is enough for service connection.</li>
+        <li>Its definition of service in Vietnam <b>includes the waters offshore</b>, and other places if your duty involved duty or a visit in Vietnam. VA's general counsel later read it as not covering high-altitude flights over Vietnam.</li>
+        <li>It does not depend on herbicide exposure. That is why offshore veterans could use it even when the herbicide presumption required land service. <i>Haas</i> found the difference reasonable for that reason.</li>
+        <li><b>Do not borrow § 3.313's definition for other conditions.</b> For the herbicide list, the rules in §§ 1116 and 1116A and § 3.307 apply.</li>
+      </ul>
+      <details><summary>What about VA General Counsel opinion 27-97?</summary>
+        <p>This 1997 opinion concluded that service on a deep-water ship off Vietnam, without duty or a visit in Vietnam, was not "service in the Republic of Vietnam" for the definition of the <b>Vietnam era</b> in 38 U.S.C. § 101(29)(A). That definition gives an earlier start date (now November 1, 1955) to veterans who served in Vietnam. <i>Haas</i> relied on it. Read it in that context: it was not written about the Blue Water Navy law, which came later. If the start of your Vietnam era matters to your claim, ask an accredited representative how current law applies.</p>
+      </details>
+      <p class="cite"><span class="tag law">Law</span> 38 C.F.R. § 3.313; 38 U.S.C. § 101(29); VAOPGCPREC 7-93; VAOPGCPREC 27-97 <span class="tag court">Court</span> <i>Haas v. Peake</i></p>
+    </section>
+
+    <section class="panel" id="records" aria-labelledby="rec-h">
+      <header><span class="eyebrow">What VA reviews</span><h2 id="rec-h">Records that can place you there</h2>
+        <p>A Vietnam medal should start a closer look at your records, not end it. These are the kinds of records VA looks at.</p></header>
+      <div class="cols">
+        <div class="box doc"><h3>What VA's guidance says to review</h3><ul>
+          <li><b>Every certified DD Form 214:</b> Foreign Service in the qualifying place, or a separating station or last duty assignment there</li>
+          <li><b>Military personnel records</b>, including the DA Form 20 (Enlisted Qualification Record): service locations</li>
+          <li><b>Travel or flight orders, TDY orders</b>, and statements in performance evaluations about travel or flights</li>
+          <li><b>Service treatment and dental records:</b> treatment in the qualifying place, and APO or FPO numbers</li>
+          <li><b>For ships:</b> VA uses a separate process that checks where the ship was, such as deck logs, against your dates aboard</li>
+        </ul></div>
+        <div class="box you"><h3>What you can add</h3><ul>
+          <li>Approximate dates and places, and what you were doing</li>
+          <li>The ship's name and your dates aboard</li>
+          <li>Letters, photos, or orders you kept that place you there</li>
+          <li>Statements from people who served with you</li>
+        </ul></div>
+      </div>
+      <h3>How VA checks your service, in plain steps</h3>
+      <ol class="flow">
+        <li><div><b>VA reviews the records it has.</b> If they show service in a qualifying place, VA documents it and moves on to your condition.</div></li>
+        <li><div><b>If not, VA gets the rest of your records.</b> That means your DD 214, service treatment records, and your entire personnel file, or a note that they are unavailable.<span class="stop">VA's guidance says not to deny for lack of proof before this step is done.</span></div></li>
+        <li><div><b>If you described your service only in general terms, VA sends a letter</b> asking for specific dates and places. You have <b>30 days</b> to answer.<span class="stop">If you don't give details, VA's guidance says it will not establish herbicide exposure and will continue with the claim.</span></div></li>
+        <li><div><b>If you gave specific dates and places</b> (including dates of temporary duty) that your records don't confirm, VA can ask for research into unit and service records.</div></li>
+        <li><div><b>Some situations have their own process:</b> service only on a ship (VA verifies where the ship was), C-123 aircraft contact, the Korean DMZ, and places or circumstances not on any presumptive list.</div></li>
+      </ol>
+      <p class="muted" style="font-size:.88rem">The details you give matter most at step 3. Specific dates, places, unit or ship names, and orders let VA look for proof; a general statement that you served "in Vietnam" may not be enough.</p>
+      <p class="cite"><span class="tag guide">VA guidance</span> M21-1 VIII.i.1.B.1.c; 1.B.2.b, d; 1.D</p>
+    </section>
+
+    <section class="panel" id="outcomes" aria-labelledby="out-h">
+      <header><span class="eyebrow">Reading a decision</span><h2 id="out-h">Four ways a decision may describe your service</h2>
+        <p>A rating decision usually explains whether VA conceded your service and why. Here is what each kind of finding generally means, and what you can do.</p></header>
+      <div class="outcomes">
+        <div class="box"><h3>"Service in Vietnam is established"</h3><p>VA accepted that records place you in Vietnam or its inland waters during the period. Herbicide exposure is presumed. <b>Check:</b> which records VA relied on, and that the dates are right.</p></div>
+        <div class="box"><h3>"Qualifying offshore service is established"</h3><p>VA accepted that your ship was within the offshore line under § 1116A. Herbicide exposure is presumed. <b>Check:</b> if you were denied for the same condition before 2020, whether the older claim date applies (see below).</p></div>
+        <div class="box"><h3>"More verification is needed"</h3><p>Your records hint at Vietnam service, such as a medal, but do not show where you were. <b>What helps:</b> the specific dates, places, ship, unit, or orders VA asks for.</p></div>
+        <div class="box"><h3>"Qualifying service is not established"</h3><p>VA found the evidence does not show qualifying service. <b>Still possible:</b> another place's presumption (such as Thailand), proof of actual exposure, or direct service connection. New records showing qualifying service can support a Supplemental Claim.</p></div>
+      </div>
+      <p class="muted" style="font-size:.86rem">These are general descriptions to help you read a decision. They are not VA's wording and do not predict any outcome.</p>
+    </section>
+
+    <section class="panel topic" data-topic="denied ship" id="older" aria-labelledby="old-h">
+      <header><span class="eyebrow">Effective dates</span><h2 id="old-h">Older denials and your effective date</h2>
+        <p>If VA denied an Agent Orange claim years ago because you never set foot in Vietnam, look closely at the reason for that denial. The effective date of a new grant is <b>not automatically</b> the date of your new claim, or January 1, 2020.</p></header>
+      <ul>
+        <li><b>The Blue Water Navy rule.</b> If you filed a compensation claim for a covered disease between <b>September 25, 1985 and January 1, 2020</b>, it was denied because service connection was not established, and you file again for the <b>same condition</b> on or after January 1, 2020 and are granted under § 1116A, VA uses the date of the <b>earlier claim</b>. A survivor can also qualify.</li>
+        <li><b>Nehmer.</b> A court order with its own effective date rules for Vietnam veterans and survivors, including qualifying offshore service. It does not apply to service only outside Vietnam, such as Thailand. VA's guidance says to screen for it even when your exposure was already conceded and you claim a new condition on the list. See ClaimReady's <a href="./#educ.nehmer">Nehmer</a> topic.</li>
+        <li><b>If you were denied for no qualifying service,</b> VA's guidance says to make sure all your service records are in the file and to check them for possible offshore service.</li>
+        <li><b>New service records.</b> If service records that existed then, but were not in your file, now prove qualifying service, VA can reconsider the old claim from its original date (38 C.F.R. § 3.156(c)).</li>
+        <li><b>A law change alone</b> can allow payment up to one year before your claim (38 C.F.R. § 3.114).</li>
+        <li><b>Grants under the old medal rule are not taken away.</b> They still support increases and secondary claims.</li>
+      </ul>
+      <p><b>What to gather:</b> the dates of every earlier claim, each decision and the reason given, the conditions you claimed, and your ship or unit records. Effective date rules are technical, so an accredited representative can help at no cost.</p>
+      <p class="cite"><span class="tag law">Law</span> 38 U.S.C. § 1116A(c); 38 C.F.R. §§ 3.114, 3.156(c), 3.816 <span class="tag guide">VA guidance</span> M21-1 VIII.i.1.A; 1.B.2.b; 1.C; 2.B</p>
+    </section>
+
+    <section class="panel" id="example" aria-labelledby="ex-h">
+      <header><span class="eyebrow">Example</span><h2 id="ex-h">How this might look</h2></header>
+      <div class="example">
+        <b>Fictional example</b>
+        <p>A Navy veteran served aboard a destroyer from 1968 to 1969 and received the Vietnam Service Medal. In 2008, VA denied a claim for ischemic heart disease because the veteran never went ashore. The veteran files again in 2024.</p>
+        <ul>
+          <li><b>The medal</b> alone does not show the ship was inside the 12-mile offshore line. VA checks the ship's deck logs for the dates the veteran was aboard.</li>
+          <li><b>If the logs place the ship inside the line</b> while the veteran was aboard, exposure is presumed under § 1116A, and ischemic heart disease is on the herbicide list.</li>
+          <li><b>The 2008 claim</b> was for the same condition, filed in the 1985 to 2020 window, and denied for lack of service connection. So VA would look at whether the 2008 claim date applies.</li>
+        </ul>
+        <p class="muted" style="font-size:.86rem">This is a made-up example to show how the rules fit together. It is not a real VA decision and does not predict any outcome.</p>
+      </div>
+    </section>
+
+    <section class="panel" id="myths" aria-labelledby="myth-h">
+      <header><span class="eyebrow">Common misunderstandings</span><h2 id="myth-h">What people often get wrong</h2></header>
+      <dl class="myths">
+        <dt>"My Vietnam Service Medal proves I was in Vietnam."</dt><dd>Not by itself. It could be earned offshore, in the air, or in nearby countries. VA looks at your records to see where you were.</dd>
+        <dt>"No medal means I can't prove Vietnam service."</dt><dd>No. Orders, personnel and medical records, ship records, and other evidence can place you there.</dd>
+        <dt>"Navy veterans who stayed on the ship can't get the presumption."</dt><dd>That was the old rule. Since January 1, 2020, service within the 12-mile offshore line qualifies.</dd>
+        <dt>"Any ship that supported the war counts."</dt><dd>No. The ship must have been inside the offshore line while you were aboard, during January 9, 1962 to May 7, 1975.</dd>
+        <dt>"An APO number on my records settles it."</dt><dd>Not always. The same series of numbers served bases across the Pacific. It helps when the number matches a Vietnam installation and a record ties it to you.</dd>
+        <dt>"If I'm granted now, I'm paid only from my new claim."</dt><dd>Not necessarily. The Blue Water Navy rule, Nehmer, and new service records can each allow an earlier date.</dd>
+      </dl>
+    </section>
+
+    <section class="panel" id="sources" aria-labelledby="src-h">
+      <header><h2 id="src-h">Sources and dates</h2>
+        <p class="muted" style="font-size:.88rem"><span class="tag law">Law</span> statutes, regulations, and General Counsel precedent opinions VA must follow. <span class="tag court">Court</span> published court decisions. <span class="tag guide">VA guidance</span> VA's procedures manual, which explains how VA applies the law but is not law. <span class="tag bg">Background</span> general information from other public sources.</p></header>
+      <div class="tscroll"><table>
+        <thead><tr><th scope="col">Source</th><th scope="col">Type</th><th scope="col">Version used</th></tr></thead>
+        <tbody>
+          <tr><td><a href="https://www.govinfo.gov/link/uscode/38/1116" target="_blank" rel="noopener">38 U.S.C. § 1116</a> (herbicide presumptions, covered locations)</td><td><span class="tag law">Law</span></td><td>Current, as amended by Pub. L. 117-168 (2022)</td></tr>
+          <tr><td><a href="https://www.govinfo.gov/link/uscode/38/1116A" target="_blank" rel="noopener">38 U.S.C. § 1116A</a> (offshore of Vietnam)</td><td><span class="tag law">Law</span></td><td>Pub. L. 116-23, § 2 (Jun 25, 2019; effective Jan 1, 2020)</td></tr>
+          <tr><td><a href="https://www.govinfo.gov/link/uscode/38/101" target="_blank" rel="noopener">38 U.S.C. § 101(29)</a> (Vietnam era)</td><td><span class="tag law">Law</span></td><td>Current</td></tr>
+          <tr><td><a href="https://www.ecfr.gov/current/title-38/chapter-I/part-3/subpart-A/subject-group-ECFR39056aee4e9ff13/section-3.307" target="_blank" rel="noopener">38 C.F.R. § 3.307(a)(6)</a></td><td><span class="tag law">Law</span></td><td>Current eCFR</td></tr>
+          <tr><td><a href="https://www.ecfr.gov/current/title-38/chapter-I/part-3/subpart-A/subject-group-ECFR39056aee4e9ff13/section-3.313" target="_blank" rel="noopener">38 C.F.R. § 3.313</a></td><td><span class="tag law">Law</span></td><td>Current eCFR (55 FR 43124, Oct 26, 1990)</td></tr>
+          <tr><td>38 C.F.R. §§ 3.114, 3.156(c), 3.309(e), 3.816</td><td><span class="tag law">Law</span></td><td>Current eCFR</td></tr>
+          <tr><td>VAOPGCPREC 7-93 and 27-97</td><td><span class="tag law">Binding on VA</span></td><td>Aug 12, 1993; Jul 23, 1997</td></tr>
+          <tr><td><i>Haas v. Nicholson</i>, 20 Vet. App. 257</td><td><span class="tag court">Court</span></td><td>2006; reversed</td></tr>
+          <tr><td><a href="https://www.courtlistener.com/opinion/1316725/haas-v-peake/" target="_blank" rel="noopener"><i>Haas v. Peake</i>, 525 F.3d 1168</a></td><td><span class="tag court">Court</span></td><td>May 8, 2008; overruled in part by <i>Procopio</i></td></tr>
+          <tr><td><i>Procopio v. Wilkie</i>, 913 F.3d 1371 (en banc)</td><td><span class="tag court">Court</span></td><td>Jan 29, 2019</td></tr>
+          <tr><td><a href="https://www.knowva.ebenefits.va.gov/system/templates/selfservice/va_ssnew/help/customer/locale/en-US/portal/554400000001018/content/554400000177422/" target="_blank" rel="noopener">M21-1 VIII.i.1.A, general information on herbicide claims</a></td><td><span class="tag guide">VA guidance</span></td><td class="num" data-src="554400000177422">Dec 29, 2025</td></tr>
+          <tr><td><a href="https://www.knowva.ebenefits.va.gov/system/templates/selfservice/va_ssnew/help/customer/locale/en-US/portal/554400000001018/content/554400000177423/" target="_blank" rel="noopener">M21-1 VIII.i.1.B, developing herbicide claims</a></td><td><span class="tag guide">VA guidance</span></td><td class="num" data-src="554400000177423">Jul 16, 2026</td></tr>
+          <tr><td><a href="https://www.knowva.ebenefits.va.gov/system/templates/selfservice/va_ssnew/help/customer/locale/en-US/portal/554400000001018/content/554400000308860/" target="_blank" rel="noopener">M21-1 VIII.i.1.C, ratings for herbicide conditions</a></td><td><span class="tag guide">VA guidance</span></td><td class="num" data-src="554400000308860">Sep 15, 2025</td></tr>
+          <tr><td><a href="https://www.knowva.ebenefits.va.gov/system/templates/selfservice/va_ssnew/help/customer/locale/en-US/portal/554400000001018/content/554400000308863/" target="_blank" rel="noopener">M21-1 VIII.i.1.D, nautical herbicide exposure</a></td><td><span class="tag guide">VA guidance</span></td><td class="num" data-src="554400000308863">Sep 17, 2025</td></tr>
+          <tr><td><a href="https://www.knowva.ebenefits.va.gov/system/templates/selfservice/va_ssnew/help/customer/locale/en-US/portal/554400000001018/content/554400000177426/" target="_blank" rel="noopener">M21-1 VIII.i.2.B, Nehmer</a></td><td><span class="tag guide">VA guidance</span></td><td class="num" data-src="554400000177426">Sep 9, 2026</td></tr>
+          <tr><td><a href="https://www.history.navy.mil/browse-by-topic/heritage/awards/service-campaign/vietnam-service-medal.html" target="_blank" rel="noopener">Vietnam Service Medal criteria</a> (Navy History and Heritage Command; 32 C.F.R. § 578.26, 2008 ed.)</td><td><span class="tag bg">Background</span></td><td>Accessed Oct 22, 2026</td></tr>
+        </tbody>
+      </table></div>
+      <p class="muted" style="font-size:.86rem">Content reviewed <span class="num">Oct 22, 2026</span>. When VA updates a source, ClaimReady's weekly monitor flags it for review before this page changes.</p>
+    </section>
+  </main>
+
+  <footer>
+    <p>This article explains public law and VA guidance about proving Vietnam service. It does not decide whether VA will concede your service or grant a claim, and it is not legal or medical advice.</p>
+    <p>ClaimReady is independent and educational. It is not VA and is not a substitute for an accredited representative, who can help at no cost. Nothing on this page is saved or sent. <a href="./#about">About ClaimReady and full disclaimer</a></p>
+  </footer>
+</div>
+<script>
+(() => {
+  const radios = [...document.querySelectorAll('input[name="where"]')];
+  const answers = [...document.querySelectorAll('.answer')];
+  const note = document.getElementById('pickNote');
+  const names = { land: 'on land in Vietnam', ship: 'on a ship off the coast', air: 'in the air', other: 'somewhere else in the region', denied: 'denied before' };
+  function apply() {
+    const r = radios.find(x => x.checked); if (!r) return;
+    answers.forEach(a => { a.hidden = a.id !== 'ans-' + r.value; });
+    note.textContent = `Showing what matters most if you served ${names[r.value]}.`.replace('served denied before', 'were denied before');
+  }
+  radios.forEach(r => r.addEventListener('change', apply));
+  // A link such as vietnam-service.html#ship opens with that answer picked.
+  const h = location.hash.slice(1);
+  if (names[h]) { radios.find(r => r.value === h).checked = true; apply(); }
+  document.getElementById('printBtn').addEventListener('click', () => window.print());
+})();
+</script>
+</body></html>
