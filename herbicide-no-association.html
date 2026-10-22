@@ -1,0 +1,417 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="description" content="Free, independent educational guide to the conditions VA says have no positive association with herbicide exposure such as Agent Orange: what that means, look-alike conditions, toxic exposure exams, and how direct service connection still works. Nothing is saved or sent.">
+<meta name="referrer" content="no-referrer"><meta name="theme-color" content="#1d5a70">
+<link rel="manifest" href="manifest.webmanifest"><link rel="icon" type="image/png" href="icons/favicon-32.png"><link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+<title>Herbicides: No Positive Association</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<style>@font-face{font-family:'Public Sans';font-style:normal;font-weight:400;font-display:swap;src:url(fonts/public-sans-latin-400-normal.woff2) format('woff2')}@font-face{font-family:'Public Sans';font-style:normal;font-weight:500;font-display:swap;src:url(fonts/public-sans-latin-500-normal.woff2) format('woff2')}@font-face{font-family:'Public Sans';font-style:normal;font-weight:600;font-display:swap;src:url(fonts/public-sans-latin-600-normal.woff2) format('woff2')}@font-face{font-family:'Public Sans';font-style:normal;font-weight:700;font-display:swap;src:url(fonts/public-sans-latin-700-normal.woff2) format('woff2')}@font-face{font-family:'Source Serif 4';font-style:normal;font-weight:400;font-display:swap;src:url(fonts/source-serif-4-latin-400-normal.woff2) format('woff2')}@font-face{font-family:'Source Serif 4';font-style:normal;font-weight:600;font-display:swap;src:url(fonts/source-serif-4-latin-600-normal.woff2) format('woff2')}@font-face{font-family:'Source Serif 4';font-style:italic;font-weight:400;font-display:swap;src:url(fonts/source-serif-4-latin-400-italic.woff2) format('woff2')}@font-face{font-family:'Source Serif 4';font-style:italic;font-weight:600;font-display:swap;src:url(fonts/source-serif-4-latin-600-italic.woff2) format('woff2')}@font-face{font-family:'IBM Plex Mono';font-style:normal;font-weight:400;font-display:swap;src:url(fonts/ibm-plex-mono-latin-400-normal.woff2) format('woff2')}@font-face{font-family:'IBM Plex Mono';font-style:normal;font-weight:600;font-display:swap;src:url(fonts/ibm-plex-mono-latin-600-normal.woff2) format('woff2')}</style>
+<style>
+/* Layout: one reading column. Banner, header, no-presumption explainer, situation chooser, what the phrase means, the list with search, look-alikes, direct claim steps, TERA exams, denials, example, myths, sources, footer. ClaimReady tokens (same as ptsd-stressor.html). */
+:root {
+  --paper: #f3f5f4; --surface: #ffffff; --sunk: #e9eeec; --ink: #16201d; --muted: #5a6763; --line: #d4dcd9;
+  --accent: #1d5a70; --accent-ink: #ffffff; --accent-soft: #dfecf0;
+  --ok: #2a774b; --ok-soft: #e0f0e6; --wait: #8a560a; --wait-soft: #f7ecd8;
+  --f-ui: "Public Sans", "Segoe UI", system-ui, sans-serif;
+  --f-serif: "Source Serif 4", Georgia, "Times New Roman", serif;
+  --f-mono: "IBM Plex Mono", ui-monospace, Menlo, monospace;
+  --r: 6px;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --paper: #111816; --surface: #19211f; --sunk: #0d1312; --ink: #e4ebe8; --muted: #98a6a1; --line: #2b3633;
+  --accent: #72b6cf; --accent-ink: #0d1a1f; --accent-soft: #1b3038;
+  --ok: #62c189; --ok-soft: #173426; --wait: #e2a849; --wait-soft: #392b12; color-scheme: dark; } }
+:root[data-theme="dark"] {
+  --paper: #111816; --surface: #19211f; --sunk: #0d1312; --ink: #e4ebe8; --muted: #98a6a1; --line: #2b3633;
+  --accent: #72b6cf; --accent-ink: #0d1a1f; --accent-soft: #1b3038;
+  --ok: #62c189; --ok-soft: #173426; --wait: #e2a849; --wait-soft: #392b12; color-scheme: dark; }
+:root { padding-top: env(safe-area-inset-top, 0px); padding-bottom: env(safe-area-inset-bottom, 0px); }
+* { box-sizing: border-box; }
+[hidden] { display: none !important; }
+body { margin: 0; background: var(--paper); color: var(--ink); font-family: var(--f-ui); font-size: 0.95rem; line-height: 1.5; }
+.wrap { max-width: 760px; margin: 0 auto; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+.skip { position: absolute; left: -9999px; } .skip:focus { left: 16px; top: 8px; z-index: 20; background: var(--surface); padding: 8px 12px; border-radius: var(--r); }
+.banner { background: var(--ink); color: var(--paper); font-size: 0.8rem; }
+.banner .wrap { padding-block: 8px; }
+header.top { padding-block: 24px 8px; display: grid; gap: 10px; }
+h1, h2, h3 { font-family: var(--f-serif); font-weight: 600; margin: 0; line-height: 1.2; text-wrap: balance; }
+h1 { font-size: 1.9rem; letter-spacing: -0.01em; }
+h2 { font-size: 1.3rem; }
+h3 { font-size: 1.02rem; }
+p { margin: 0; }
+ul, ol { margin: 0; padding-left: 20px; display: grid; gap: 6px; }
+a { color: var(--accent); }
+.muted { color: var(--muted); }
+.eyebrow { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.09em; text-transform: uppercase; color: var(--muted); }
+.crumbs { display: flex; flex-wrap: wrap; gap: 6px 14px; align-items: baseline; }
+.crumbs a { font-weight: 600; font-size: .9rem; text-decoration: none; }
+.crumbs a:hover { text-decoration: underline; }
+.tag { display: inline-block; font-size: .7rem; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; padding: 1px 7px; border-radius: 4px; border: 1px solid currentColor; white-space: nowrap; }
+.tag.law { color: var(--accent); } .tag.guide { color: var(--wait); } .tag.court { color: var(--ok); }
+.example { display: grid; gap: 4px; background: var(--wait-soft); border: 1px solid var(--line); border-radius: var(--r); padding: 10px 12px; }
+.example b:first-child { font-size: .78rem; letter-spacing: .06em; text-transform: uppercase; }
+button, input { font: inherit; color: inherit; }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.btn { border: 1px solid var(--line); background: var(--surface); border-radius: var(--r); padding: 8px 14px; cursor: pointer; min-height: 44px; }
+.btn.primary { background: var(--accent); color: var(--accent-ink); border-color: var(--accent); font-weight: 600; }
+.btn.link { border: 0; background: none; color: var(--accent); text-decoration: underline; padding: 4px 0; min-height: 0; }
+main { display: grid; gap: 20px; padding-block: 12px 48px; }
+.panel { background: var(--surface); border: 1px solid var(--line); border-radius: var(--r); padding: 18px; display: grid; gap: 14px; min-width: 0; }
+.panel > header { display: grid; gap: 6px; }
+fieldset { border: 0; padding: 0; margin: 0; display: grid; gap: 10px; min-width: 0; }
+legend { font-family: var(--f-serif); font-weight: 600; font-size: 1.15rem; padding: 0; margin-bottom: 4px; }
+.choices { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 8px; }
+.choice { display: flex; gap: 10px; align-items: flex-start; border: 1px solid var(--line); border-radius: var(--r); padding: 10px 12px; cursor: pointer; background: var(--paper); min-height: 44px; }
+.choice:has(input:checked) { border-color: var(--accent); background: var(--accent-soft); }
+.choice input { margin-top: 4px; width: 18px; height: 18px; accent-color: var(--accent); flex: none; }
+.choice small { display: block; color: var(--muted); }
+.row { display: flex; flex-wrap: wrap; gap: 8px 14px; align-items: center; }
+.cols { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 12px; }
+.box { border: 1px solid var(--line); border-radius: var(--r); padding: 12px 14px; display: grid; gap: 8px; align-content: start; background: var(--paper); }
+.box.you { border-left: 4px solid var(--ok); }
+.box.doc { border-left: 4px solid var(--accent); }
+.box h3 { font-family: var(--f-ui); font-size: .82rem; letter-spacing: .06em; text-transform: uppercase; }
+.flow { list-style: none; padding: 0; counter-reset: q; gap: 0; }
+.flow > li { counter-increment: q; display: grid; grid-template-columns: 30px 1fr; gap: 10px; padding-bottom: 14px; position: relative; }
+.flow > li::before { content: counter(q); width: 26px; height: 26px; border-radius: 50%; background: var(--accent); color: var(--accent-ink); font-family: var(--f-mono); font-size: .8rem; display: grid; place-items: center; }
+.flow > li::after { content: ""; position: absolute; left: 12px; top: 28px; bottom: 2px; width: 2px; background: var(--line); }
+.flow > li:last-child::after { display: none; }
+.flow .stop { display: block; font-size: .85rem; color: var(--muted); margin-top: 2px; }
+.flow ul { margin-top: 6px; }
+.quote { font-family: var(--f-serif); border-left: 3px solid var(--line); padding: 2px 0 2px 12px; color: var(--ink); }
+.pills { list-style: none; padding: 0; display: flex; flex-wrap: wrap; gap: 6px; }
+.pills li { border: 1px solid var(--line); border-radius: 999px; padding: 2px 10px; font-size: .85rem; background: var(--paper); }
+.patterns { list-style: none; padding: 0; display: grid; gap: 8px; counter-reset: p; }
+.patterns li { counter-increment: p; display: grid; grid-template-columns: 30px 1fr; gap: 10px; align-items: start; border: 1px solid var(--line); border-radius: var(--r); padding: 10px 12px; }
+.patterns li::before { content: counter(p); font-family: var(--f-mono); font-weight: 600; font-size: 1rem; }
+.patterns li.yes { background: var(--ok-soft); }
+.patterns small { display: block; color: var(--muted); }
+.cite { font-size: 0.8rem; color: var(--muted); display: flex; flex-wrap: wrap; gap: 6px 10px; align-items: center; border-top: 1px dashed var(--line); padding-top: 10px; }
+table { border-collapse: collapse; width: 100%; font-size: 0.88rem; }
+th, td { text-align: left; padding: 7px 8px; border-bottom: 1px solid var(--line); vertical-align: top; }
+th { font-weight: 600; color: var(--muted); font-size: 0.76rem; letter-spacing: 0.04em; text-transform: uppercase; }
+.tscroll { overflow-x: auto; }
+.num { font-family: var(--f-mono); font-variant-numeric: tabular-nums; font-size: .86em; white-space: nowrap; }
+details { border: 1px solid var(--line); border-radius: var(--r); background: var(--paper); padding: 10px 12px; }
+summary { cursor: pointer; font-weight: 600; min-height: 24px; }
+details > :not(summary) { margin-top: 10px; }
+footer { font-size: 0.82rem; color: var(--muted); display: grid; gap: 8px; padding-block: 0 40px; }
+@media (max-width: 520px) { h1 { font-size: 1.55rem; } .panel { padding: 14px; } }
+@media print {
+  .banner { background: none; color: #000; border-bottom: 1px solid #000; }
+  .noprint, .skip { display: none !important; }
+  body { background: #fff; color: #000; font-size: 10.5pt; }
+  .panel, .box, details { border-color: #999; break-inside: avoid-page; }
+  details > :not(summary) { display: block !important; }
+  a { color: #000; }
+}
+
+.sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+tr.dim td { opacity: .45; }
+.checklist { gap: 8px; }
+.myths { margin: 0; display: grid; gap: 4px 0; }
+.myths dt { font-weight: 600; margin-top: 8px; }
+.myths dt:first-child { margin-top: 0; }
+.myths dd { margin: 0; color: var(--ink); }
+@media (max-width: 520px) { table.stack thead { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); } table.stack, table.stack tbody, table.stack tr, table.stack td { display: block; } table.stack tr { border-bottom: 1px solid var(--line); padding: 8px 0; } table.stack td { border: 0; padding: 2px 0; } table.stack td:first-child { font-weight: 600; } table.stack td:last-child { font-size: .8rem; color: var(--muted); } }
+@media print { tr.dim td { opacity: 1; } .topic[hidden] { display: grid !important; } }
+.tag.bg { color: var(--muted); }
+.cite { display: block; line-height: 1.9; } .cite .tag { margin-right: 4px; } .cite .tag:not(:first-child) { margin-left: 6px; }
+@media (max-width: 520px) { table.stack.keep td:last-child { font-size: inherit; color: var(--ink); } }
+.alert { border: 1px solid var(--wait); border-left: 6px solid var(--wait); background: var(--wait-soft); border-radius: var(--r); padding: 14px 16px; display: grid; gap: 8px; }
+.alert p.big { font-family: var(--f-serif); font-size: 1.12rem; font-weight: 600; line-height: 1.35; }
+.no { font-weight: 700; color: var(--wait); white-space: nowrap; }
+.three { list-style: none; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 8px; counter-reset: t; }
+.three li { counter-increment: t; border: 1px solid var(--line); border-radius: var(--r); padding: 10px 12px; background: var(--paper); display: grid; gap: 4px; align-content: start; }
+.three li::before { content: "Question " counter(t); font-size: .72rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+.timeline { list-style: none; padding: 0; margin: 0; display: grid; gap: 0; }
+.timeline > li { display: grid; grid-template-columns: 64px 1fr; gap: 12px; position: relative; padding-bottom: 16px; }
+.timeline > li::after { content: ""; position: absolute; left: 31px; top: 30px; bottom: 0; width: 2px; background: var(--line); }
+.timeline > li:last-child::after { display: none; }
+.timeline .yr { font-family: var(--f-mono); font-weight: 600; font-size: .85rem; background: var(--sunk); border: 1px solid var(--line); border-radius: 999px; height: 28px; display: grid; place-items: center; position: relative; z-index: 1; }
+.timeline .key .yr { background: var(--accent); color: var(--accent-ink); border-color: var(--accent); }
+.timeline .ev { display: grid; gap: 2px; padding-top: 3px; }
+.timeline .ev b { font-size: .98rem; }
+.timeline .ev small { color: var(--muted); font-size: .84rem; }
+.dir { font-size: .72rem; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; padding: 1px 7px; border-radius: 4px; justify-self: start; }
+.dir.narrow { background: var(--wait-soft); color: var(--wait); }
+.dir.wide { background: var(--ok-soft); color: var(--ok); }
+.answer { border: 1px solid var(--accent); background: var(--accent-soft); border-radius: var(--r); padding: 12px 14px; display: grid; gap: 8px; }
+.outcomes { display: grid; gap: 8px; }
+.outcomes .box h3 { font-family: var(--f-serif); font-size: 1rem; letter-spacing: 0; text-transform: none; }
+@media print { .answer[hidden] { display: none !important; } }
+.three li::before { content: "Point " counter(t); }
+.filter { display: grid; gap: 6px; }
+.filter input { border: 1px solid var(--line); border-radius: var(--r); background: var(--paper); padding: 10px 12px; min-height: 44px; width: 100%; }
+.nl li.dim { opacity: .55; }
+.nl li.hit { background: var(--accent-soft); border-radius: 4px; padding: 0 4px; margin-left: -4px; }
+.exc { color: var(--wait); font-weight: 600; }
+@media print { .nl li.dim { opacity: 1; } }
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to the article</a>
+<div class="banner" role="note"><div class="wrap">Independent educational tool. Not affiliated with or endorsed by the U.S. Department of Veterans Affairs. Not legal or medical advice. VA decides every claim.</div></div>
+<div class="wrap">
+  <header class="top">
+    <div class="crumbs noprint"><a href="./#educ.ao">← Agent Orange and herbicides</a><span class="eyebrow"><span aria-hidden="true">★</span> Featured · Benefits</span></div>
+    <h1>Not on the Agent Orange list? What "no positive association" really means</h1>
+    <p>VA keeps a list of conditions it <b>presumes</b> were caused by herbicides such as Agent Orange. It also keeps a second, less known list: conditions the Secretary of Veterans Affairs looked at and decided <b>do not get a presumption</b>. If your condition is on that second list, your claim is <b>not over</b>. It means you need a different route, called direct service connection. This article explains both lists, what "no positive association" means in plain English, and what can help a direct claim.</p>
+    <p class="muted" style="font-size:.86rem">Based on public sources: <b>38 U.S.C. §§ 1113, 1116, 1168, and 1174</b>, <b>38 C.F.R. §§ 3.303, 3.307, and 3.309(e)</b>, the Secretary's notices in the <b>Federal Register</b>, published court decisions, and VA's procedures manual, <b>M21-1, Part VIII, Subpart i, Chapter 1, Section B, Topic 1.g</b>. For education only. ClaimReady checks these sources for changes every week. <a href="#sources">Sources and dates</a></p>
+    <div class="row noprint"><button class="btn" type="button" id="printBtn">Print or save this article</button></div>
+  </header>
+
+  <main id="main" tabindex="-1">
+
+    <section class="panel" id="start" aria-labelledby="start-h">
+      <header><span class="eyebrow">Start here</span><h2 id="start-h">No presumption is not the same as no claim</h2></header>
+      <div class="alert" role="note">
+        <p class="big">If VA says there is "no positive association" between herbicides and your condition, that only takes away the <b>shortcut</b>. You can still show, with evidence, that your condition is related to your service.</p>
+        <p>Congress wrote this into the law: nothing in the presumption statutes, including the Agent Orange law, "shall be construed to prevent the granting of service-connection for any disease or disorder otherwise shown by sound judgment to have been incurred in or aggravated by" service.</p>
+      </div>
+      <div class="cols">
+        <div class="box doc"><h3>With a presumption</h3><ul>
+          <li>VA presumes the link between your exposure and your condition.</li>
+          <li>You need a qualifying place and dates of service, and a diagnosis (plus any time or severity rule).</li>
+          <li>You usually do not need a doctor to explain the link.</li>
+        </ul></div>
+        <div class="box you"><h3>Without a presumption (direct)</h3><ul>
+          <li>You need the same three things as any direct claim: a current condition, an event or exposure in service, and a medical link between them.</li>
+          <li>If VA concedes herbicide exposure, the second element is usually met already.</li>
+          <li>The key evidence is a <b>medical opinion about you</b>, explaining why your exposure is at least as likely as not a cause.</li>
+        </ul></div>
+      </div>
+      <p class="cite"><span class="tag law">Law</span> 38 U.S.C. § 1113(b); 38 C.F.R. § 3.303(d) <span class="tag court">Court</span> <i>Combee v. Brown</i>, 34 F.3d 1039, 1043-44 (Fed. Cir. 1994); <i>Holton v. Shinseki</i>, 557 F.3d 1363, 1366 (Fed. Cir. 2009)</p>
+    </section>
+
+    <section class="panel noprint" aria-labelledby="pick-h">
+      <fieldset>
+        <legend id="pick-h">What brings you here?</legend>
+        <p class="muted" style="font-size:.88rem">Pick the one that fits best to see which parts of this article matter most. Nothing you pick is saved. This does not tell you whether VA will grant a claim.</p>
+        <div class="choices">
+          <label class="choice"><input type="radio" name="why" value="onlist"><span><b>My condition is on the "no association" list</b><small>For example COPD, colon cancer, or hearing loss</small></span></label>
+          <label class="choice"><input type="radio" name="why" value="unsure"><span><b>I'm not sure which list it's on</b><small>Some conditions have look-alikes</small></span></label>
+          <label class="choice"><input type="radio" name="why" value="denied"><span><b>VA denied me: "not presumptive"</b><small>Or the exam said "not on VA's list"</small></span></label>
+          <label class="choice"><input type="radio" name="why" value="other"><span><b>I had other exposures too</b><small>Burn pits, fuels, solvents, or others</small></span></label>
+        </div>
+      </fieldset>
+      <div class="answer" id="ans-onlist" hidden><p><b>Being on this list means no presumption, not no benefits.</b> Your claim is decided on a direct basis. The most important evidence is usually a medical opinion that looks at your own history, not just the general science.</p><p>Read next: <a href="#direct">What can help a direct claim</a> and <a href="#exam">Will VA order an exam?</a></p></div>
+      <div class="answer" id="ans-unsure" hidden><p><b>Check the exact diagnosis.</b> Several conditions sit on opposite lists even though they sound alike, such as thyroid cancer and hypothyroidism, or chronic lymphocytic leukemia and other leukemias. For a cancer, what matters is where it started (the primary site).</p><p>Read next: <a href="#lookalikes">Look-alikes on opposite lists</a> and <a href="#list">The full list</a>.</p></div>
+      <div class="answer" id="ans-denied" hidden><p><b>A denial that only says your condition is not presumptive may not have addressed direct service connection.</b> Courts have held that VA must still consider a direct link, and that a medical opinion resting only on "VA doesn't recognize it" is not adequate.</p><p>Read next: <a href="#denied">If you were denied</a> and <a href="#direct">What can help a direct claim</a>.</p></div>
+      <div class="answer" id="ans-other" hidden><p><b>This list is about herbicides only.</b> If you also had another toxic exposure in service, VA must consider that exposure too. A condition with no herbicide presumption may have a presumption or an exam duty tied to a different exposure.</p><p>Read next: <a href="#exam">Will VA order an exam?</a> and ClaimReady's <a href="./#educ.teraexam">Toxic exposure exams (TERA)</a> topic.</p></div>
+      <p id="pickNote" class="sr" aria-live="polite"></p>
+    </section>
+
+    <section class="panel" id="meaning" aria-labelledby="mean-h">
+      <header><span class="eyebrow">Plain English</span><h2 id="mean-h">What "no positive association" means</h2></header>
+      <p>The law used a specific test. A link between a disease and herbicide exposure counted as a <b>positive association</b> if "the credible evidence for the association is equal to or outweighs the credible evidence against the association." VA's manual states the reverse: <b>no positive association</b> means the evidence for a link does <b>not</b> equal or outweigh the evidence against it.</p>
+      <ol class="three">
+        <li><b>It is about groups of people.</b><span>The finding comes from scientific studies of large populations, reviewed by the National Academy of Sciences (now the National Academies) since 1993.</span></li>
+        <li><b>It is mostly "not enough evidence."</b><span>In the 2014 notice, most of these conditions were in the category "inadequate or insufficient evidence to determine an association." That is different from proof that herbicides cannot cause them.</span></li>
+        <li><b>It is not a finding about you.</b><span>The notice itself says the determination "does not in any way preclude VA from granting service connection for any disease."</span></li>
+      </ol>
+      <details><summary>Where these decisions come from, and why the lists change</summary>
+        <ul>
+          <li>The <b>Agent Orange Act of 1991</b> had the Secretary review each National Academy of Sciences report and decide, for each condition, whether a presumption was warranted. When the answer was no, the Secretary published a notice in the Federal Register explaining the science. Notices like this appeared from <b>1994 through 2014</b>.</li>
+          <li>That part of the law expired on September 30, 2015. The <b>PACT Act</b> (2022) replaced it with a general process for all toxic exposures. Under it, when the Secretary decides a new presumption is <b>not</b> warranted, the Secretary must still publish a notice in the Federal Register with the reasons.</li>
+          <li><b>Lists change.</b> Conditions once listed as having no positive association have later been added as presumptions. Bladder cancer and hypothyroidism were added by Congress in 2021, and high blood pressure (hypertension) in 2022. Prostate cancer was denied a presumption in 1994, a decision a federal court upheld in 1995, and VA added it later.</li>
+        </ul>
+      </details>
+      <p class="cite"><span class="tag law">Law</span> Former 38 U.S.C. § 1116(b)(3) (Agent Orange Act of 1991, Pub. L. 102-4); 38 U.S.C. §§ 1116(b), 1173, 1174; Pub. L. 117-168, § 202 <span class="tag law">Federal Register</span> 59 FR 341 (Jan 4, 1994); 79 FR 20308 (Apr 11, 2014) <span class="tag court">Court</span> <i>LeFevre v. Brown</i>, 66 F.3d 1191 (Fed. Cir. 1995) <span class="tag guide">VA guidance</span> M21-1 VIII.i.1.B.1.g</p>
+    </section>
+
+    <section class="panel" id="list" aria-labelledby="list-h">
+      <header><span class="eyebrow">The list</span><h2 id="list-h">Conditions VA says have no positive association with herbicides</h2>
+        <p>This is the list in VA's current manual, which draws on the Secretary's determinations. Watch the words <b>"excluding"</b>: they point to conditions that are handled differently, usually because they are on the presumptive list.</p></header>
+      <div class="noprint filter">
+        <label for="q"><b>Search the list</b> <small class="muted">for a word such as colon, skin, lung, or thyroid</small></label>
+        <input id="q" type="search" autocomplete="off" spellcheck="false" inputmode="search">
+        <p id="qNote" class="muted" aria-live="polite" style="font-size:.86rem"></p>
+      </div>
+      <div class="cols">
+        <div class="box"><h3>Cancers</h3><ul class="nl" id="nlCancers">
+          <li data-k="bone joint sarcoma osteosarcoma chondrosarcoma">Bone and connective tissue</li>
+          <li data-k="brain nervous glioma glioblastoma eye ocular">Brain and nervous system (including eye)</li>
+          <li data-k="digestive esophagus esophageal stomach gastric colon colorectal rectal rectum bowel intestine anus anal">Digestive: esophageal, stomach, and colorectal (including small intestine and anus)</li>
+          <li data-k="endocrine thyroid thymus">Endocrine (including thyroid and thymus)</li>
+          <li data-k="liver hepatobiliary gallbladder bile pancreas pancreatic">Hepatobiliary (liver, gallbladder, and bile ducts) and pancreatic</li>
+          <li data-k="leukemia leukaemia aml cml all blood">Leukemia, <span class="exc">excluding all chronic B-cell leukemias, including chronic lymphocytic leukemia (CLL) and hairy cell</span></li>
+          <li data-k="nasal nose ear sinus sinuses">Nasal cavity (including ears and sinuses)</li>
+          <li data-k="oral mouth lip lips tongue">Oral cavity (including lips and tongue)</li>
+          <li data-k="pharynx throat tonsil tonsils">Pharynx (including tonsils)</li>
+          <li data-k="pleura mesothelioma mediastinum respiratory chest intrathoracic lung">Pleura, mediastinum, and other unspecified sites within the respiratory system and intrathoracic organs</li>
+          <li data-k="skin melanoma basal squamous nonmelanoma">Skin (including melanoma and nonmelanoma: basal cell and squamous cell)</li>
+          <li data-k="reproductive cervix cervical uterus uterine ovary ovarian testes testicular breast penis penile prostate">Reproductive (including the cervix, uterus, ovary, testes, breast, and penis), <span class="exc">excluding prostate</span></li>
+        </ul></div>
+        <div class="box"><h3>Other conditions</h3><ul class="nl" id="nlOther">
+          <li data-k="asthma breathing lung">Asthma</li>
+          <li data-k="copd emphysema bronchitis lung breathing">Chronic obstructive pulmonary disease (COPD)</li>
+          <li data-k="circulatory heart blood pressure hypertension stroke vascular ischemic">Circulatory disorders, <span class="exc">excluding hypertension, ischemic heart disease (IHD), and stroke</span></li>
+          <li data-k="endometriosis">Endometriosis</li>
+          <li data-k="eye vision cataract glaucoma macular">Eye diseases</li>
+          <li data-k="farmer farmers lung hypersensitivity pneumonitis">Farmer's lung</li>
+          <li data-k="gastrointestinal stomach digestive metabolic gerd liver">Gastrointestinal, metabolic, and digestive disorders</li>
+          <li data-k="hearing ear deaf">Hearing loss</li>
+          <li data-k="immune allergy allergies autoimmune lupus">Immune system disorders (immune suppression, allergy, and autoimmunity)</li>
+          <li data-k="neurobehavioral cognitive neuropsychiatric memory dementia">Neurobehavioral (cognitive and neuropsychiatric) disorders</li>
+          <li data-k="neurodegenerative als lou gehrig parkinson parkinsonism alzheimer">Neurodegenerative diseases (including ALS), <span class="exc">excluding Parkinson's disease and parkinsonism</span></li>
+          <li data-k="osteoporosis bone">Osteoporosis</li>
+          <li data-k="peripheral neuropathy nerve nerves numbness">Chronic peripheral nervous system disorders, <span class="exc">excluding early-onset peripheral neuropathy</span></li>
+        </ul></div>
+      </div>
+      <p class="muted" style="font-size:.86rem"><b>Excluded does not always mean presumed.</b> Most of the conditions after "excluding" are on the presumptive list. Stroke is the exception: it is <b>not</b> presumptive for herbicides, but it is also not on this list, so it is not treated as a "no association" condition.</p>
+      <p class="cite"><span class="tag guide">VA guidance</span> M21-1 VIII.i.1.B.1.g (wording lightly edited for reading; categories unchanged) <span class="tag law">Law</span> 38 C.F.R. § 3.309(e); 79 FR 20308 (2014)</p>
+    </section>
+
+    <section class="panel" id="lookalikes" aria-labelledby="la-h">
+      <header><span class="eyebrow">Check the exact diagnosis</span><h2 id="la-h">Look-alikes on opposite lists</h2>
+        <p>These pairs are easy to mix up. The exact diagnosis in your medical records decides which list applies.</p></header>
+      <div class="tscroll"><table class="stack">
+        <thead><tr><th scope="col">Presumed for herbicide exposure</th><th scope="col">No positive association</th><th scope="col">Why it matters</th></tr></thead>
+        <tbody>
+          <tr><td>Hypothyroidism</td><td>Thyroid cancer</td><td>One is an underactive thyroid; the other is a cancer of the gland.</td></tr>
+          <tr><td>Chronic B-cell leukemias, such as CLL and hairy cell leukemia</td><td>Other leukemias, such as acute myeloid leukemia</td><td>The leukemia type on the pathology report decides it.</td></tr>
+          <tr><td>Prostate cancer</td><td>Other reproductive cancers, such as testicular or breast</td><td>Prostate is the one reproductive cancer on the presumptive list.</td></tr>
+          <tr><td>Lung, bronchus, larynx, and trachea cancers</td><td>Pleura, mediastinum, and other respiratory sites</td><td>Where the cancer started matters. A cancer that spread to the lung from somewhere else is not a lung cancer for this purpose.</td></tr>
+          <tr><td>Soft-tissue sarcomas</td><td>Bone and connective tissue cancers; the presumption excludes osteosarcoma, chondrosarcoma, Kaposi's sarcoma, and mesothelioma</td><td>The sarcoma type matters.</td></tr>
+          <tr><td>Parkinson's disease and parkinsonism</td><td>Other neurodegenerative diseases, including ALS</td><td>ALS has its own presumption based on any active service, not herbicides.</td></tr>
+          <tr><td>Early-onset peripheral neuropathy</td><td>Chronic peripheral nervous system disorders</td><td>Early-onset neuropathy must reach 10% within one year of your last exposure. Later neuropathy can still be claimed directly or as secondary, for example to diabetes.</td></tr>
+          <tr><td>Hypertension and ischemic heart disease</td><td>Other circulatory disorders</td><td>Stroke is on neither list.</td></tr>
+        </tbody>
+      </table></div>
+      <p class="cite"><span class="tag law">Law</span> 38 U.S.C. § 1116(a)(2); 38 C.F.R. §§ 3.307(a)(6)(ii), 3.309(e), 3.318 (ALS) <span class="tag guide">VA guidance</span> M21-1 VIII.i.1.B.1.g; 1.C</p>
+    </section>
+
+    <section class="panel" id="direct" aria-labelledby="dir-h">
+      <header><span class="eyebrow">Building the claim</span><h2 id="dir-h">What can help a direct claim</h2>
+        <p>VA weighs all of the evidence, and when it is evenly balanced, the doubt goes to you. These are the pieces VA looks for.</p></header>
+      <ol class="flow">
+        <li><div><b>A current diagnosis, with its date.</b> For a cancer, the <b>primary site</b> (where it started) and the type, from a pathology report if you have one.</div></li>
+        <li><div><b>Your exposure.</b> Proof of service in a place where VA presumes herbicide exposure, or other evidence that you were exposed. Describe your duties if they involved spraying, handling drums, or clearing vegetation.<span class="stop">See <a href="vietnam-service.html">Proving Vietnam service</a> for how VA decides where you served.</span></div></li>
+        <li><div><b>A medical opinion about you.</b> The strongest opinions explain, in the doctor's own reasoning, why your exposure is "at least as likely as not" a cause, and they address your own history:
+          <ul>
+            <li>when and how the condition appeared;</li>
+            <li>other risk factors, such as smoking, family history, sun exposure, or work after service, and why they do or do not explain it better;</li>
+            <li>medical or scientific literature, including studies newer than the government's reviews.</li>
+          </ul></div></li>
+        <li><div><b>Everything else that fits.</b> Treatment records, your own statement of symptoms and when they began, and statements from people who knew you.</div></li>
+      </ol>
+      <p class="muted" style="font-size:.88rem">A general article or study by itself is usually given less weight than an opinion that applies it to your facts. See ClaimReady's guides to <a href="medical-opinions.html">medical opinions</a> and <a href="doctor-guide.html">talking with your doctor</a>.</p>
+      <p class="cite"><span class="tag law">Law</span> 38 U.S.C. § 5107(b); 38 C.F.R. §§ 3.102, 3.303(a), (d), 3.307(a)(6)(iii) <span class="tag court">Court</span> <i>Holton v. Shinseki</i>, 557 F.3d 1363 (Fed. Cir. 2009)</p>
+    </section>
+
+    <section class="panel" id="exam" aria-labelledby="exam-h">
+      <header><span class="eyebrow">Examinations</span><h2 id="exam-h">Will VA order an exam?</h2>
+        <p>Since the PACT Act, VA generally must give you a toxic exposure exam and medical opinion when you have a disability, evidence of a <b>toxic exposure risk activity (TERA)</b> in service, and not enough evidence yet to grant. The law has one exception: VA does not have to when it finds <b>"no indication of an association"</b> between the disability and the exposure.</p></header>
+      <ul>
+        <li><span class="tag guide">VA guidance</span> VA treats this list as one of those exceptions, but only when <b>herbicides are your only established toxic exposure</b>. So VA may decide a claim for a listed condition without ordering a toxic exposure opinion.</li>
+        <li><b>Your evidence can change that.</b> VA's guidance says VA still considers an opinion when you submit competent medical or scientific evidence that suggests a link in your case, such as a doctor's letter.</li>
+        <li><b>Other exposures count.</b> If you also had another TERA, such as burn pits or jet fuel, the herbicide exception does not cover that exposure.</li>
+        <li>VA's general duty to get an exam still applies whenever the evidence <b>indicates</b> your condition may be related to service. Courts have called that a low threshold.</li>
+      </ul>
+      <p>Either way, if VA denies the claim, the decision must say which element was not met. If an exam was skipped because of an exception, the decision should say so.</p>
+      <p class="cite"><span class="tag law">Law</span> 38 U.S.C. §§ 1168(a)-(c), 1710(e)(4), 5103A(d), 5104(b) <span class="tag court">Court</span> <i>McLendon v. Nicholson</i>, 20 Vet. App. 79 (2006) <span class="tag guide">VA guidance</span> M21-1 VIII.i.1.B.1.g; VA's PACT Act claims guidance <a href="./#educ.teraexam">More on TERA exams</a></p>
+    </section>
+
+    <section class="panel topic" id="denied" aria-labelledby="den-h">
+      <header><span class="eyebrow">Reading a decision</span><h2 id="den-h">If you were denied</h2>
+        <p>Look closely at the reasons. Two problems come up often with conditions on this list.</p></header>
+      <div class="cols">
+        <div class="box"><h3>Only the presumption was addressed</h3><p>If the decision explains why the condition is not presumptive but never discusses a <b>direct</b> link, it may not have done the full analysis. The Federal Circuit held that when a presumption does not apply, VA must still review the claim on a direct basis.</p></div>
+        <div class="box"><h3>The opinion says "not on VA's list"</h3><p>The Veterans Court has found opinions inadequate when they rest only on the fact that VA does not presume the link, or only on the condition's category in the national science reviews, without looking at the veteran's own risk factors and history.</p></div>
+      </div>
+      <p><b>Your options</b> include a Higher-Level Review, a Supplemental Claim with new and relevant evidence (such as a new medical opinion), or an appeal to the Board. Deadlines apply. See <a href="supplemental-claims.html">Supplemental Claims</a>, and talk with an accredited representative, who can help at no cost.</p>
+      <p class="cite"><span class="tag court">Court</span> <i>Combee v. Brown</i>, 34 F.3d 1039, 1043-44 (Fed. Cir. 1994); <i>Stefl v. Nicholson</i>, 21 Vet. App. 120, 123-24 (2007); <i>Polovick v. Shinseki</i>, 23 Vet. App. 48, 52-55 (2009) <span class="tag law">Law</span> 38 U.S.C. §§ 5104B, 5108, 7105</p>
+    </section>
+
+    <section class="panel" id="example" aria-labelledby="ex-h">
+      <header><span class="eyebrow">Example</span><h2 id="ex-h">How this might look</h2></header>
+      <div class="example">
+        <b>Fictional example</b>
+        <p>An Army veteran served in Vietnam in 1969 and was diagnosed with colon cancer in 2021. The veteran never smoked and has no family history of colon cancer.</p>
+        <ul>
+          <li><b>Exposure:</b> service in Vietnam is shown in the records, so herbicide exposure is presumed.</li>
+          <li><b>The presumption:</b> colorectal cancer is on the "no positive association" list, so VA does not presume the link.</li>
+          <li><b>The exam:</b> herbicides are the veteran's only established exposure, so VA might not order a toxic exposure opinion on its own.</li>
+          <li><b>What could help:</b> the veteran's oncologist writes a letter that reviews the veteran's history and risk factors, cites the literature, and explains the doctor's reasoning on whether the cancer is at least as likely as not related to the exposure. VA then weighs that letter with the rest of the record, and could order its own opinion.</li>
+        </ul>
+        <p class="muted" style="font-size:.86rem">This is a made-up example to show how the rules fit together. It is not a real VA decision and does not predict any outcome.</p>
+      </div>
+    </section>
+
+    <section class="panel" id="myths" aria-labelledby="myth-h">
+      <header><span class="eyebrow">Common misunderstandings</span><h2 id="myth-h">What people often get wrong</h2></header>
+      <dl class="myths">
+        <dt>"VA says Agent Orange doesn't cause my condition."</dt><dd>Not quite. The finding is that the evidence across large groups of people was not strong enough for a presumption. For most of these conditions, the science reviews called the evidence inadequate or insufficient, not proof of no link.</dd>
+        <dt>"If it's not presumptive, there's no point filing."</dt><dd>The law says presumptions do not prevent service connection shown by the evidence. Your claim is decided on a direct basis.</dd>
+        <dt>"VA has to give me an exam for every condition."</dt><dd>Not always. For a condition on this list, with herbicides as your only exposure, VA's guidance may not require a toxic exposure opinion. Submitting your own medical evidence can change that.</dd>
+        <dt>"A study online proves my case."</dt><dd>A study can help, but VA usually gives more weight to a doctor who applies the research to your own history.</dd>
+        <dt>"My cancer spread to my lungs, so it's presumed."</dt><dd>Not if it started somewhere else. VA looks at the primary site.</dd>
+        <dt>"The list will never change."</dt><dd>It has changed many times. Bladder cancer, hypothyroidism, and high blood pressure were all once on the "no association" side.</dd>
+      </dl>
+    </section>
+
+    <section class="panel" id="sources" aria-labelledby="src-h">
+      <header><h2 id="src-h">Sources and dates</h2>
+        <p class="muted" style="font-size:.88rem"><span class="tag law">Law</span> statutes, regulations, and the Secretary's published determinations. <span class="tag court">Court</span> published court decisions. <span class="tag guide">VA guidance</span> VA's procedures manual, which explains how VA applies the law but is not law. </p></header>
+      <div class="tscroll"><table>
+        <thead><tr><th scope="col">Source</th><th scope="col">Type</th><th scope="col">Version used</th></tr></thead>
+        <tbody>
+          <tr><td><a href="https://www.govinfo.gov/link/uscode/38/1113" target="_blank" rel="noopener">38 U.S.C. § 1113(b)</a> (presumptions do not bar other service connection)</td><td><span class="tag law">Law</span></td><td>Current</td></tr>
+          <tr><td><a href="https://www.govinfo.gov/link/uscode/38/1116" target="_blank" rel="noopener">38 U.S.C. § 1116</a> (herbicide presumptions)</td><td><span class="tag law">Law</span></td><td>Current, as amended by Pub. L. 117-168 (Aug 10, 2022). Former (b)-(d) expired Sep 30, 2015</td></tr>
+          <tr><td><a href="https://www.govinfo.gov/link/uscode/38/1168" target="_blank" rel="noopener">38 U.S.C. § 1168</a> (toxic exposure exams)</td><td><span class="tag law">Law</span></td><td>Pub. L. 117-168, § 303 (Aug 10, 2022)</td></tr>
+          <tr><td><a href="https://www.govinfo.gov/link/uscode/38/1174" target="_blank" rel="noopener">38 U.S.C. §§ 1173-1174</a> (new presumption process; notice when not warranted)</td><td><span class="tag law">Law</span></td><td>Pub. L. 117-168, § 202 (Aug 10, 2022)</td></tr>
+          <tr><td><a href="https://www.ecfr.gov/current/title-38/chapter-I/part-3/subpart-A/subject-group-ECFR39056aee4e9ff13/section-3.307" target="_blank" rel="noopener">38 C.F.R. § 3.307</a></td><td><span class="tag law">Law</span></td><td>Current eCFR</td></tr>
+          <tr><td>38 C.F.R. §§ 3.102, 3.303, 3.309(e), 3.318</td><td><span class="tag law">Law</span></td><td>Current eCFR</td></tr>
+          <tr><td><a href="https://www.govinfo.gov/content/pkg/FR-2014-04-11/html/2014-07950.htm" target="_blank" rel="noopener">79 FR 20308</a>, Determinations Concerning Illnesses Discussed in NAS Report: <i>Veterans and Agent Orange: Update 2012</i></td><td><span class="tag law">Federal Register</span></td><td>Apr 11, 2014 (most recent notice under the Agent Orange Act)</td></tr>
+          <tr><td><a href="https://www.govinfo.gov/content/pkg/FR-1994-01-04/html/94-73.htm" target="_blank" rel="noopener">59 FR 341</a>, first determinations under the Agent Orange Act</td><td><span class="tag law">Federal Register</span></td><td>Jan 4, 1994</td></tr>
+          <tr><td><i>Combee v. Brown</i>, 34 F.3d 1039 (Fed. Cir.)</td><td><span class="tag court">Court</span></td><td>1994</td></tr>
+          <tr><td><i>LeFevre v. Brown</i>, 66 F.3d 1191 (Fed. Cir.)</td><td><span class="tag court">Court</span></td><td>Sep 15, 1995</td></tr>
+          <tr><td><i>McLendon v. Nicholson</i>, 20 Vet. App. 79</td><td><span class="tag court">Court</span></td><td>2006</td></tr>
+          <tr><td><i>Stefl v. Nicholson</i>, 21 Vet. App. 120</td><td><span class="tag court">Court</span></td><td>2007</td></tr>
+          <tr><td><i>Holton v. Shinseki</i>, 557 F.3d 1363 (Fed. Cir.)</td><td><span class="tag court">Court</span></td><td>2009</td></tr>
+          <tr><td><i>Polovick v. Shinseki</i>, 23 Vet. App. 48</td><td><span class="tag court">Court</span></td><td>2009</td></tr>
+          <tr><td><a href="https://www.knowva.ebenefits.va.gov/system/templates/selfservice/va_ssnew/help/customer/locale/en-US/portal/554400000001018/content/554400000177423/" target="_blank" rel="noopener">M21-1 VIII.i.1.B.1.g, conditions with no positive association</a></td><td><span class="tag guide">VA guidance</span></td><td class="num" data-src="554400000177423">Jul 16, 2026</td></tr>
+        </tbody>
+      </table></div>
+      <p class="muted" style="font-size:.86rem">Content reviewed <span class="num">Oct 22, 2026</span>. When VA updates a source, ClaimReady's weekly monitor flags it for review before this page changes.</p>
+    </section>
+  </main>
+
+  <footer>
+    <p>This article explains public law and VA guidance about herbicide exposure claims for conditions without a presumption. It does not decide whether VA will grant a claim, and it is not legal or medical advice.</p>
+    <p>ClaimReady is independent and educational. It is not VA and is not a substitute for an accredited representative, who can help at no cost. Nothing on this page is saved or sent. <a href="./#about">About ClaimReady and full disclaimer</a></p>
+  </footer>
+</div>
+<script>
+(() => {
+  const radios = [...document.querySelectorAll('input[name="why"]')];
+  const answers = [...document.querySelectorAll('.answer')];
+  const note = document.getElementById('pickNote');
+  const names = { onlist: 'your condition is on the list', unsure: 'you are not sure which list', denied: 'you were denied', other: 'you had other exposures' };
+  function apply() {
+    const r = radios.find(x => x.checked); if (!r) return;
+    answers.forEach(a => { a.hidden = a.id !== 'ans-' + r.value; });
+    note.textContent = `Showing what matters most if ${names[r.value]}.`;
+  }
+  radios.forEach(r => r.addEventListener('change', apply));
+  // A link such as herbicide-no-association.html#denied opens with that answer picked.
+  const h = location.hash.slice(1);
+  if (names[h]) { radios.find(r => r.value === h).checked = true; apply(); }
+
+  // Search the list: matches visible text and keywords, then dims the rest.
+  const items = [...document.querySelectorAll('.nl li')];
+  const q = document.getElementById('q'), qNote = document.getElementById('qNote');
+  q.addEventListener('input', () => {
+    const t = q.value.trim().toLowerCase();
+    let n = 0;
+    items.forEach(li => {
+      const hit = !t || (li.textContent + ' ' + li.dataset.k).toLowerCase().includes(t);
+      li.classList.toggle('dim', !hit); li.classList.toggle('hit', !!t && hit); if (t && hit) n++;
+    });
+    qNote.textContent = !t ? '' : n ? `${n} ${n === 1 ? 'entry mentions' : 'entries mention'} "${q.value.trim()}". Check any "excluding" words, and the look-alikes below.` : `No entry mentions "${q.value.trim()}". It may be on the presumptive list, or on neither list. See the look-alikes below.`;
+  });
+  document.getElementById('printBtn').addEventListener('click', () => window.print());
+})();
+</script>
+</body></html>
