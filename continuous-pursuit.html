@@ -212,7 +212,7 @@ footer.site { font-size: var(--s1); color: var(--muted); display: grid; gap: .5r
    Primary sources checked Oct 22, 2026: eCFR Title 38 (up to date as of Oct 21, 2026) and 38 U.S.C. (LII).
    verified: 'source' = read in the primary source on the checked date; 'knowledge' = from Claude's own knowledge, needs owner review. */
 const CP_RULES = {
-  version: '0.2.1',
+  version: '0.2.2',
   // Owner review Oct 23, 2026: open questions 1, 3-14 answered; see the results doc.
   ownerReviewed: '2026-10-23',
   checked: '2026-10-22',
@@ -252,7 +252,7 @@ const CP_RULES = {
       initial: { allowed: ['board', 'optin'], window: 'legacy_nod', note: 'Under the legacy system, the next step was a Notice of Disagreement (VA Form 21-0958) within one year.' },
       soc:     { allowed: ['form9', 'optin'], window: 'legacy_form9', note: 'After a Statement of the Case, the next step was a Substantive Appeal (VA Form 9), or an election into the modernized system within the same period.' },
       ssoc:    { allowed: ['form9', 'optin'], window: 'legacy_form9' },
-      board:   { allowed: ['court', 'supplemental'], window: 'after_board', byType: { court: 'cavc' }, verify: ['supplemental'], note: 'After a legacy Board decision, the options are an appeal to the Court of Appeals for Veterans Claims or, for decisions on or after Feb 19, 2019, a supplemental claim within one year (owner reading, to verify).' },
+      board:   { allowed: ['court', 'supplemental'], window: 'after_board', byType: { court: 'cavc' }, note: 'After a legacy Board decision, the options are an appeal to the Court of Appeals for Veterans Claims or, for decisions on or after Feb 19, 2019, a supplemental claim within one year.' },
       court:   { allowed: ['supplemental'], window: 'after_court' },
     },
   },
@@ -610,8 +610,7 @@ const CP = (() => {
         const rdl = lane.byType && lane.byType[r.type] ? deadline(lane.byType[r.type], cur, null) : dl;
         if (rdl !== dl) cite(...rdl.win.cites);
         const t = timely(r, rdl, r.type === 'board' || r.type === 'form9');
-        if (lane.verify && lane.verify.includes(r.type)) exc('legacyBoardSC', 'Supplemental claim after a legacy Board decision', 'A supplemental claim filed within one year of a legacy Board decision is treated here as continuing the claim. This reading should be verified by further review.', ['5110a2', '3.2400'], null);
-        if (cur.outcome === 'granted' || cur.outcome === 'partial') exc('afterGrant', 'Review of a grant', 'A timely review of a grant (for example, of the effective date or rating assigned) is treated here as continuing the claim. This reading should be verified by further review.', ['5110a2', '3.2500c'], null);
+        // Owner decisions (Oct 23, 2026): a timely review of a grant, and a supplemental claim within one year of a legacy Board decision, continue the claim.
         const rr = { req: r, allowed, t, withdrawn: withdrawn.has(r.id), concurrent: false, dl: rdl };
         // No concurrent review of the same issue (38 U.S.C. 5104C(a)(2)(A); 3.2500(b)).
         const prior = reqs.slice(0, i).find(p => !withdrawn.has(p.id) && p.type !== r.type && !decs.some(d => d.id !== cur.id && known(decWhen(d)) && known(p.date) && decWhen(d).lo >= p.date.lo && known(r.date) && decWhen(d).lo <= r.date.lo));
