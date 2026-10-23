@@ -212,7 +212,7 @@ footer.site { font-size: var(--s1); color: var(--muted); display: grid; gap: .5r
    Primary sources checked Oct 22, 2026: eCFR Title 38 (up to date as of Oct 21, 2026) and 38 U.S.C. (LII).
    verified: 'source' = read in the primary source on the checked date; 'knowledge' = from Claude's own knowledge, needs owner review. */
 const CP_RULES = {
-  version: '0.2.0',
+  version: '0.2.1',
   // Owner review Oct 23, 2026: open questions 1, 3-14 answered; see the results doc.
   ownerReviewed: '2026-10-23',
   checked: '2026-10-22',
@@ -306,8 +306,8 @@ const CP = (() => {
   const iso = dt => dt.toISOString().slice(0, 10);
   const addDays = (s, n) => iso(new Date(parseD(s).getTime() + n * 86400000));
   const daysBetween = (a, b) => Math.round((parseD(b) - parseD(a)) / 86400000);
-  // Same calendar date one or more years later; Feb 29 falls back to Feb 28 (see open question on leap days).
-  const addYears = (s, n) => { const d = parseD(s); let r = new Date(Date.UTC(d.getUTCFullYear() + n, d.getUTCMonth(), d.getUTCDate())); if (r.getUTCMonth() !== d.getUTCMonth()) r = new Date(Date.UTC(d.getUTCFullYear() + n, d.getUTCMonth() + 1, 0)); return iso(r); };
+  // Same calendar date one or more years later. Owner decision (Oct 23, 2026): one year from Feb 29 ends Mar 1, so the veteran is not shorted a day.
+  const addYears = (s, n) => { const d = parseD(s); return iso(new Date(Date.UTC(d.getUTCFullYear() + n, d.getUTCMonth(), d.getUTCDate()))); };
   const MON = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
   const MONTH = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
   const DOW = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
@@ -599,7 +599,7 @@ const CP = (() => {
 
       const dl = deadline(lane.window, cur, framework === 'legacy' && (level === 'soc' || level === 'ssoc') ? legacyRoot : null);
       step.deadline = dl; cite(...dl.win.cites); cite('3.110');
-      if (dl.leap) out.notes.push('The notice is dated February 29. One year from it is counted to February 28 (owner reading, to verify).');
+      if (dl.leap) out.notes.push('The notice is dated February 29. One year from it is counted to March 1, so the full year is allowed.');
       if (dl.win.notOneYear) out.notes.push(`Not a one-year period: after a ${label({ type: 'decision', level })}, the deadline is ${dl.win.label}.`);
 
       const reqs = chrono(evs.filter(e => isReq(e) && e.challenges === cur.id));
