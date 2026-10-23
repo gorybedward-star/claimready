@@ -212,7 +212,9 @@ footer.site { font-size: var(--s1); color: var(--muted); display: grid; gap: .5r
    Primary sources checked Oct 22, 2026: eCFR Title 38 (up to date as of Oct 21, 2026) and 38 U.S.C. (LII).
    verified: 'source' = read in the primary source on the checked date; 'knowledge' = from Claude's own knowledge, needs owner review. */
 const CP_RULES = {
-  version: '0.1.0',
+  version: '0.2.0',
+  // Owner review Oct 23, 2026: open questions 1, 3-14 answered; see the results doc.
+  ownerReviewed: '2026-10-23',
   checked: '2026-10-22',
   sourceAsOf: 'eCFR Title 38 up to date as of Oct 21, 2026; 38 U.S.C. via Cornell LII',
 
@@ -243,14 +245,14 @@ const CP_RULES = {
       initial:      { allowed: ['supplemental', 'hlr', 'board'], window: 'ama_review' },
       supplemental: { allowed: ['supplemental', 'hlr', 'board'], window: 'ama_review' },
       hlr:          { allowed: ['supplemental', 'board'], window: 'ama_review', note: 'A Higher-Level Review is not available after a Higher-Level Review decision.' },
-      board:        { allowed: ['supplemental', 'court'], window: 'after_board', note: 'After a Board decision the options are a supplemental claim or an appeal to the Court of Appeals for Veterans Claims.' },
+      board:        { allowed: ['supplemental', 'court'], window: 'after_board', byType: { court: 'cavc' }, note: 'After a Board decision the options are a supplemental claim or an appeal to the Court of Appeals for Veterans Claims.' },
       court:        { allowed: ['supplemental'], window: 'after_court', note: 'After a court decision the option is a supplemental claim.' },
     },
     legacy: {
       initial: { allowed: ['board', 'optin'], window: 'legacy_nod', note: 'Under the legacy system, the next step was a Notice of Disagreement (VA Form 21-0958) within one year.' },
       soc:     { allowed: ['form9', 'optin'], window: 'legacy_form9', note: 'After a Statement of the Case, the next step was a Substantive Appeal (VA Form 9), or an election into the modernized system within the same period.' },
       ssoc:    { allowed: ['form9', 'optin'], window: 'legacy_form9' },
-      board:   { allowed: ['court'], window: 'cavc', note: 'After a legacy Board decision the next step was an appeal to the Court of Appeals for Veterans Claims.' },
+      board:   { allowed: ['court', 'supplemental'], window: 'after_board', byType: { court: 'cavc' }, verify: ['supplemental'], note: 'After a legacy Board decision, the options are an appeal to the Court of Appeals for Veterans Claims or, for decisions on or after Feb 19, 2019, a supplemental claim within one year (owner reading, to verify).' },
       court:   { allowed: ['supplemental'], window: 'after_court' },
     },
   },
@@ -266,7 +268,7 @@ const CP_RULES = {
     '5110a2':  { cite: '38 U.S.C. § 5110(a)(2)', what: 'A claim is "continuously pursued" when a review request is filed within one year of each decision; the original filing date is kept.', url: 'https://www.law.cornell.edu/uscode/text/38/5110', kind: 'Statute', verified: 'source' },
     '5110a3':  { cite: '38 U.S.C. § 5110(a)(3)', what: 'A supplemental claim filed more than one year after a decision gets an effective date no earlier than its receipt.', url: 'https://www.law.cornell.edu/uscode/text/38/5110', kind: 'Statute', verified: 'source' },
     '5110b1':  { cite: '38 U.S.C. § 5110(b)(1)', what: 'Day after separation, if the claim is received within one year of separation.', url: 'https://www.law.cornell.edu/uscode/text/38/5110', kind: 'Statute', verified: 'source' },
-    '7266':    { cite: '38 U.S.C. § 7266(a)', what: 'Notice of appeal to the Court of Appeals for Veterans Claims within 120 days after the Board decision is mailed.', url: 'https://www.law.cornell.edu/uscode/text/38/7266', kind: 'Statute', verified: 'knowledge' },
+    '7266':    { cite: '38 U.S.C. § 7266(a)', what: 'Notice of appeal to the Court of Appeals for Veterans Claims within 120 days after the Board decision is mailed.', url: 'https://www.law.cornell.edu/uscode/text/38/7266', kind: 'Statute', verified: 'owner' },
     '3.2500a': { cite: '38 C.F.R. § 3.2500(a)-(b)', what: 'Higher-Level Review or Board appeal within one year of notice; supplemental claim at any time; no concurrent review of the same issue.', url: 'https://www.ecfr.gov/current/title-38/chapter-I/part-3/subpart-D/section-3.2500', kind: 'Regulation', verified: 'source' },
     '3.2500c': { cite: '38 C.F.R. § 3.2500(c)', what: 'Which review options can follow each type of decision to continuously pursue an issue.', url: 'https://www.ecfr.gov/current/title-38/chapter-I/part-3/subpart-D/section-3.2500', kind: 'Regulation', verified: 'source' },
     '3.2500e': { cite: '38 C.F.R. § 3.2500(e)', what: 'Switching options after withdrawal; after one year only a supplemental claim, and continuous pursuit is broken unless a good-cause extension applies.', url: 'https://www.ecfr.gov/current/title-38/chapter-I/part-3/subpart-D/section-3.2500', kind: 'Regulation', verified: 'source' },
@@ -397,12 +399,13 @@ const CP = (() => {
     else if (known(dec.date)) { basis = dec.date; if (useNotice) floorOnly = true; }
     else if (known(dec.notice)) basis = dec.notice;
     if (!basis) return { win: W, key: winKey, known: false };
+    const leap = /-02-29$/.test(basis.lo) || /-02-29$/.test(basis.hi);
     const rootLo = root && root.lo, rootHi = root && root.hi;
     const a = (() => { const n = W.years ? addYears(basis.lo, W.years) : addDays(basis.lo, W.days); return rollForward(W.orRestOfYear && rootLo ? max(n, addYears(rootLo, 1)) : n); })();
     lo = a;
     if (floorOnly) { hi = null; openEnded = true; }
     else { const n = W.years ? addYears(basis.hi, W.years) : addDays(basis.hi, W.days); hi = rollForward(W.orRestOfYear && rootHi ? max(n, addYears(rootHi, 1)) : n); }
-    return { win: W, key: winKey, known: true, basis, floorOnly, lo, hi, openEnded };
+    return { win: W, key: winKey, known: true, basis, floorOnly, lo, hi, openEnded, leap };
   }
   function dlText(dl) {
     if (!dl.known) return 'cannot be calculated without the decision or notice date';
@@ -513,7 +516,7 @@ const CP = (() => {
       const a = preClaims[0], b = origin;
       const gap = known(a.date) && known(b.date) ? daysBetween(a.date.hi, b.date.lo) : 0;
       if (a.pending || gap > 366) {
-        exc('pending', 'An earlier claim may still be pending', `You described a claim filed ${fmtVal(a.date)} that may never have been decided. A claim stays pending until it is finally adjudicated. If VA never decided it, it could support an earlier effective date than the later claim. VA may also find that a later decision on the same issue resolved it, which needs review of the full record.`, ['3.160d'], a.date);
+        exc('pending', 'An earlier claim may still be pending', `You described a claim filed ${fmtVal(a.date)} that may never have been decided. A claim stays pending until it is finally adjudicated. If VA never adjudicated it, it remains pending and could support an earlier effective date than the later claim. Confirm in the claims file that VA never decided it.`, ['3.160d'], a.date);
         out.notes.push(`The analysis follows the claim filed ${fmtVal(b.date)}, which the first decision appears to answer.`);
       } else {
         out.conflicts.push({ eventId: b.id, kind: 'dates', text: `Two different original claim dates were given (${fmtVal(a.date)} and ${fmtVal(b.date)}). Check which date VA received the claim.` });
@@ -596,6 +599,7 @@ const CP = (() => {
 
       const dl = deadline(lane.window, cur, framework === 'legacy' && (level === 'soc' || level === 'ssoc') ? legacyRoot : null);
       step.deadline = dl; cite(...dl.win.cites); cite('3.110');
+      if (dl.leap) out.notes.push('The notice is dated February 29. One year from it is counted to February 28 (owner reading, to verify).');
       if (dl.win.notOneYear) out.notes.push(`Not a one-year period: after a ${label({ type: 'decision', level })}, the deadline is ${dl.win.label}.`);
 
       const reqs = chrono(evs.filter(e => isReq(e) && e.challenges === cur.id));
@@ -603,8 +607,12 @@ const CP = (() => {
       let carrying = null, carryingMaybe = null, lateOrBad = [];
       reqs.forEach((r, i) => {
         const allowed = lane.allowed.includes(r.type);
-        const t = timely(r, dl, r.type === 'board' || r.type === 'form9');
-        const rr = { req: r, allowed, t, withdrawn: withdrawn.has(r.id), concurrent: false };
+        const rdl = lane.byType && lane.byType[r.type] ? deadline(lane.byType[r.type], cur, null) : dl;
+        if (rdl !== dl) cite(...rdl.win.cites);
+        const t = timely(r, rdl, r.type === 'board' || r.type === 'form9');
+        if (lane.verify && lane.verify.includes(r.type)) exc('legacyBoardSC', 'Supplemental claim after a legacy Board decision', 'A supplemental claim filed within one year of a legacy Board decision is treated here as continuing the claim. This reading should be verified by further review.', ['5110a2', '3.2400'], null);
+        if (cur.outcome === 'granted' || cur.outcome === 'partial') exc('afterGrant', 'Review of a grant', 'A timely review of a grant (for example, of the effective date or rating assigned) is treated here as continuing the claim. This reading should be verified by further review.', ['5110a2', '3.2500c'], null);
+        const rr = { req: r, allowed, t, withdrawn: withdrawn.has(r.id), concurrent: false, dl: rdl };
         // No concurrent review of the same issue (38 U.S.C. 5104C(a)(2)(A); 3.2500(b)).
         const prior = reqs.slice(0, i).find(p => !withdrawn.has(p.id) && p.type !== r.type && !decs.some(d => d.id !== cur.id && known(decWhen(d)) && known(p.date) && decWhen(d).lo >= p.date.lo && known(r.date) && decWhen(d).lo <= r.date.lo));
         if (prior) { rr.concurrent = true; cite('3.2500a'); }
@@ -622,13 +630,20 @@ const CP = (() => {
       step.text.push(`Deadline (${dl.win.label}): ${dlText(dl)}.`);
       step.requests.forEach(rr => {
         const r = rr.req, nm = TYPE_LABEL[r.type];
+        if (rr.dl !== dl) step.text.push(`Deadline for a ${label(r).replace(/^Appeal/, 'appeal')} (${rr.dl.win.label}): ${dlText(rr.dl)}. Not a one-year period.`);
         if (rr.withdrawn) { step.text.push(`${nm} received ${fmtVal(r.date)} was withdrawn, so it does not carry the claim forward.`); cite('3.2500e'); return; }
         if (rr.concurrent) { step.text.push(`${nm} received ${fmtVal(r.date)} was filed while another review of the same decision was still pending. Only one review of the same issue can be pending at a time, so this filing does not count unless the first was withdrawn.`); return; }
         if (!rr.allowed) {
-          const legacyToAma = framework === 'legacy' && r.type === 'supplemental';
-          step.text.push(legacyToAma ? `${nm} received ${fmtVal(r.date)}: this decision was under the legacy system, where the review step was a Notice of Disagreement. Whether a modernized-system filing preserves the legacy claim is an open question that needs review.` : `${nm} received ${fmtVal(r.date)}: this option is not available after a ${label({ type: 'decision', level })}. ${lane.note || ''}`.trim());
+          const legacyToAma = framework === 'legacy' && (r.type === 'supplemental' || r.type === 'hlr');
+          step.text.push(legacyToAma ? `${nm} received ${fmtVal(r.date)}: this decision was under the legacy system, where the review step was a Notice of Disagreement.` : `${nm} received ${fmtVal(r.date)}: this option is not available after a ${label({ type: 'decision', level })}. ${lane.note || ''}`.trim());
           if (legacyToAma && rr.t.v === 'late') { rr.allowed = true; step.text[step.text.length - 1] = `${nm} received ${fmtVal(r.date)}: more than one year after the legacy decision notice, so it is treated as a new filing, not a continuation.`; return; }
-          if (legacyToAma) { rr.t = { v: 'maybe', why: 'legacy decision with a modernized-system filing' }; if (!carrying && !carryingMaybe) { carryingMaybe = rr; lateOrBad = lateOrBad.filter(x => x !== rr); } }
+          // Owner decision (Oct 23, 2026): a timely filing that disagreed with a legacy decision continued the claim, even on a modernized-system form; flagged for verification.
+          if (legacyToAma) {
+            rr.allowed = true; lateOrBad = lateOrBad.filter(x => x !== rr);
+            step.text.push(rr.t.v === 'timely' ? `It was filed within one year of the legacy decision notice, so it is treated as continuing the claim. Because a legacy decision did not offer this option, this step should be verified by further review of the claims file.` : `Whether it was within one year of the legacy decision notice cannot be told yet, because ${rr.t.why}.`);
+            exc('legacyForm', 'Legacy decision answered with a modernized-system form', 'A legacy decision offered a Notice of Disagreement, not a supplemental claim or Higher-Level Review. A timely filing that disagreed with the decision is treated here as continuing the claim, but how VA handled that filing should be verified in the claims file.', ['3.2400', '19.52'], null);
+            if (rr.t.v === 'timely' && !carrying) carrying = rr; else if (rr.t.v !== 'timely' && !carrying && !carryingMaybe) carryingMaybe = rr;
+          }
           return;
         }
         if (rr.t.v === 'timely') step.text.push(exact(r.date) && !dl.floorOnly ? `${nm} received ${fmtVal(r.date)}: on time, ${rr.t.margin} day${rr.t.margin === 1 ? '' : 's'} before the deadline.` : `${nm} received ${fmtVal(r.date)}: on time, even counting the latest possible filing date and the earliest possible deadline.`);
@@ -1114,7 +1129,7 @@ const CPX = (() => {
 
     // References
     html.push(`<section class="card" aria-labelledby="ref-h"><p class="eyebrow">Legal references</p><h2 id="ref-h">Authorities applied</h2>
-      <div class="refs">${r.cites.map(k => { const c = CP_RULES.citations[k]; return `<div><a href="${esc(c.url)}" target="_blank" rel="noopener">${esc(c.cite)}</a> · ${esc(c.what)} <span class="k">${c.kind}${c.verified === 'source' ? ` · checked in source ${CP_RULES.checked}` : ' · from general knowledge, pending expert review'}</span></div>`; }).join('')}</div>
+      <div class="refs">${r.cites.map(k => { const c = CP_RULES.citations[k]; return `<div><a href="${esc(c.url)}" target="_blank" rel="noopener">${esc(c.cite)}</a> · ${esc(c.what)} <span class="k">${c.kind}${c.verified === 'source' ? ` · checked in source ${CP_RULES.checked}` : c.verified === 'owner' ? ' · from general knowledge, confirmed in expert review' : ' · from general knowledge, pending expert review'}</span></div>`; }).join('')}</div>
       <p class="note">Rules version ${esc(CP_RULES.version)} · sources: ${esc(CP_RULES.sourceAsOf)} · weekend and federal holiday deadlines follow 38 C.F.R. § 3.110 and § 20.110.</p>
     </section>`);
 
@@ -1248,7 +1263,7 @@ const CPX = (() => {
     line('MISSING INFORMATION AND UNVERIFIED ASSUMPTIONS'); [].concat(r.conflicts.map(c => 'Conflict: ' + c.text), r.missing.map(m => 'Missing: ' + m.text), r.verify.map(v => 'Unverified: ' + v.text)).forEach(t => line('- ' + t)); line('');
     if (r.exceptions.length) { line('EXCEPTIONS TO REVIEW'); r.exceptions.forEach(x => line(`- ${x.title}: ${x.text}`)); line(''); }
     line('RECOMMENDED VERIFICATION'); r.recommend.forEach((t, i) => line(`${i + 1}. ${t}`)); line('');
-    line('LEGAL REFERENCES'); r.cites.forEach(k => { const c = CP_RULES.citations[k]; line(`- ${c.cite}: ${c.what}${c.verified === 'source' ? '' : ' (from general knowledge, pending expert review)'}`); }); line('');
+    line('LEGAL REFERENCES'); r.cites.forEach(k => { const c = CP_RULES.citations[k]; line(`- ${c.cite}: ${c.what}${c.verified === 'source' ? '' : c.verified === 'owner' ? ' (from general knowledge, confirmed in expert review)' : ' (from general knowledge, pending expert review)'}`); }); line('');
     line('DISCLAIMER'); line(DISCLAIMER);
     return L.join('\n');
   }
