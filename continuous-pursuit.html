@@ -1,0 +1,1269 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="description" content="Free, independent educational tool (beta): describe your VA claim history in your own words and see whether each review was filed in time to keep your original claim date. Nothing is saved or sent.">
+<meta name="referrer" content="no-referrer"><meta name="theme-color" content="#1d5a70">
+<link rel="manifest" href="manifest.webmanifest"><link rel="icon" type="image/png" href="icons/favicon-32.png"><link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+<title>Continuous Pursuit Review</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<style>@font-face{font-family:'Public Sans';font-style:normal;font-weight:400;font-display:swap;src:url(fonts/public-sans-latin-400-normal.woff2) format('woff2')}@font-face{font-family:'Public Sans';font-style:normal;font-weight:500;font-display:swap;src:url(fonts/public-sans-latin-500-normal.woff2) format('woff2')}@font-face{font-family:'Public Sans';font-style:normal;font-weight:600;font-display:swap;src:url(fonts/public-sans-latin-600-normal.woff2) format('woff2')}@font-face{font-family:'Public Sans';font-style:normal;font-weight:700;font-display:swap;src:url(fonts/public-sans-latin-700-normal.woff2) format('woff2')}@font-face{font-family:'Source Serif 4';font-style:normal;font-weight:400;font-display:swap;src:url(fonts/source-serif-4-latin-400-normal.woff2) format('woff2')}@font-face{font-family:'Source Serif 4';font-style:normal;font-weight:600;font-display:swap;src:url(fonts/source-serif-4-latin-600-normal.woff2) format('woff2')}@font-face{font-family:'Source Serif 4';font-style:italic;font-weight:400;font-display:swap;src:url(fonts/source-serif-4-latin-400-italic.woff2) format('woff2')}@font-face{font-family:'Source Serif 4';font-style:italic;font-weight:600;font-display:swap;src:url(fonts/source-serif-4-latin-600-italic.woff2) format('woff2')}@font-face{font-family:'IBM Plex Mono';font-style:normal;font-weight:400;font-display:swap;src:url(fonts/ibm-plex-mono-latin-400-normal.woff2) format('woff2')}@font-face{font-family:'IBM Plex Mono';font-style:normal;font-weight:600;font-display:swap;src:url(fonts/ibm-plex-mono-latin-600-normal.woff2) format('woff2')}</style>
+<style>
+/* Layout: one reading column, a docket-style timeline with a fixed date rail, results stacked below it. */
+:root {
+  --paper: #f3f5f4; --surface: #ffffff; --ink: #16201d; --muted: #5a6763; --rule: #d4dcd9;
+  --accent: #1d5a70; --accent-ink: #ffffff; --accent-soft: #dfecf0;
+  --ok: #2a774b; --ok-soft: #e0f0e6; --warn: #8a560a; --warn-soft: #f7ecd8; --stop: #a3392a; --stop-soft: #f6e1dc;
+  --focus: #8a560a;
+  --display: "Source Serif 4", Georgia, "Times New Roman", serif;
+  --body: "Public Sans", "Segoe UI", system-ui, sans-serif;
+  --mono: "IBM Plex Mono", ui-monospace, Menlo, monospace;
+  --s1: .875rem; --s2: 1rem; --s3: 1.125rem; --s4: 1.5rem; --s5: 2.1rem;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --paper: #111816; --surface: #19211f; --ink: #e4ebe8; --muted: #98a6a1; --rule: #2b3633;
+  --accent: #72b6cf; --accent-ink: #0d1a1f; --accent-soft: #1b3038;
+  --ok: #62c189; --ok-soft: #173426; --warn: #e2a849; --warn-soft: #392b12; --stop: #f0998c; --stop-soft: #3a1a15; --focus: #e2a849; color-scheme: dark; } }
+:root[data-theme="dark"] {
+  --paper: #111816; --surface: #19211f; --ink: #e4ebe8; --muted: #98a6a1; --rule: #2b3633;
+  --accent: #72b6cf; --accent-ink: #0d1a1f; --accent-soft: #1b3038;
+  --ok: #62c189; --ok-soft: #173426; --warn: #e2a849; --warn-soft: #392b12; --stop: #f0998c; --stop-soft: #3a1a15; --focus: #e2a849; color-scheme: dark; }
+* { box-sizing: border-box; }
+body { background: var(--paper); color: var(--ink); font: 400 var(--s2)/1.6 var(--body); margin: 0; }
+.wrap { max-width: 46rem; margin: 0 auto; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); padding-block: 1.25rem 4rem; display: grid; gap: 1.5rem; }
+h1, h2, h3 { font-family: var(--display); font-weight: 650; line-height: 1.2; text-wrap: balance; margin: 0; }
+h1 { font-size: var(--s5); letter-spacing: -.01em; }
+h2 { font-size: var(--s4); }
+h3 { font-size: var(--s3); font-family: var(--body); font-weight: 700; }
+p { margin: 0; }
+a { color: var(--accent); }
+:focus-visible { outline: 3px solid var(--focus); outline-offset: 2px; }
+.eyebrow { font: 600 .75rem/1.2 var(--mono); letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+.indep { font-size: var(--s1); color: var(--muted); border-bottom: 1px solid var(--rule); padding-bottom: .75rem; }
+header { display: grid; gap: .6rem; }
+.lede { font-size: var(--s3); max-width: 60ch; }
+.card { background: var(--surface); border: 1px solid var(--rule); border-radius: 10px; padding: 1.1rem; display: grid; gap: .8rem; min-width: 0; }
+.note { font-size: var(--s1); color: var(--muted); }
+.privacy { display: grid; gap: .3rem; font-size: var(--s1); background: var(--accent-soft); border-radius: 8px; padding: .75rem .9rem; }
+label.big { font-weight: 700; }
+textarea { width: 100%; min-height: 11rem; resize: vertical; font: 400 var(--s2)/1.55 var(--body); color: var(--ink); background: var(--surface); border: 2px solid var(--rule); border-radius: 8px; padding: .8rem; }
+textarea:focus { border-color: var(--accent); }
+.row { display: flex; flex-wrap: wrap; gap: .6rem; align-items: center; }
+button { font: 700 var(--s2)/1 var(--body); min-height: 44px; padding: .7rem 1.1rem; border-radius: 8px; border: 2px solid var(--accent); background: transparent; color: var(--accent); cursor: pointer; }
+button.primary { background: var(--accent); color: var(--accent-ink); font-size: var(--s3); padding: .8rem 1.4rem; }
+button.small { min-height: 36px; padding: .4rem .7rem; font-size: var(--s1); }
+button.quiet { border-color: var(--rule); color: var(--ink); }
+button:disabled { opacity: .55; cursor: not-allowed; }
+details > summary { cursor: pointer; font-weight: 700; color: var(--accent); min-height: 44px; display: flex; align-items: center; }
+.example { white-space: pre-wrap; font-size: var(--s1); background: var(--paper); border-left: 3px solid var(--rule); padding: .6rem .8rem; }
+.howto { display: grid; grid-template-columns: repeat(auto-fit, minmax(12rem, 1fr)); gap: .8rem; counter-reset: s; }
+.howto div { border-top: 2px solid var(--accent); padding-top: .5rem; font-size: var(--s1); }
+.howto b { display: block; font-size: var(--s2); }
+.callout { border-radius: 10px; padding: 1rem 1.1rem; display: grid; gap: .45rem; border: 2px solid var(--accent); background: var(--accent-soft); }
+.callout.issue h2 { font-size: var(--s3); font-family: var(--body); font-weight: 700; }
+.picker { display: flex; flex-wrap: wrap; gap: .5rem; align-items: center; }
+select, input[type=text] { font: 400 var(--s2)/1.3 var(--body); color: var(--ink); background: var(--surface); border: 1.5px solid var(--rule); border-radius: 6px; min-height: 44px; padding: .45rem .6rem; max-width: 100%; }
+input[type=text] { width: 100%; }
+.q { display: grid; gap: .4rem; border-left: 4px solid var(--warn); background: var(--warn-soft); padding: .75rem .9rem; border-radius: 0 8px 8px 0; }
+.q .row input { flex: 1 1 12rem; }
+
+/* Timeline: date rail on the left, events on the right; collapses to one column on phones. */
+.tl { list-style: none; margin: 0; padding: 0; display: grid; gap: 0; }
+.ev { display: grid; grid-template-columns: 8.5rem 1fr; gap: .9rem; padding: .85rem 0; border-top: 1px solid var(--rule); }
+.ev:first-child { border-top: 0; }
+.ev .when { font: 600 var(--s1)/1.35 var(--mono); font-variant-numeric: tabular-nums; color: var(--ink); }
+.ev .when small { display: block; font-weight: 400; color: var(--muted); }
+.ev .body { display: grid; gap: .4rem; min-width: 0; }
+.ev .kind { font-weight: 700; }
+.ev.decision .kind::before { content: ""; display: inline-block; width: .6rem; height: .6rem; background: var(--ink); margin-right: .45rem; vertical-align: .05rem; }
+.ev.filing .kind::before { content: ""; display: inline-block; width: .6rem; height: .6rem; border: 2px solid var(--accent); border-radius: 50%; margin-right: .45rem; vertical-align: .05rem; }
+.quote { font-size: var(--s1); color: var(--muted); font-style: italic; overflow-wrap: anywhere; }
+.chips { display: flex; flex-wrap: wrap; gap: .35rem; }
+.chip { font: 600 .72rem/1 var(--mono); letter-spacing: .03em; padding: .32rem .45rem; border-radius: 4px; border: 1px solid var(--rule); color: var(--muted); }
+.chip.warn { border-color: var(--warn); color: var(--warn); }
+.chip.ok { border-color: var(--ok); color: var(--ok); }
+.chip.stop { border-color: var(--stop); color: var(--stop); }
+.clock { grid-column: 2; font: 400 var(--s1)/1.4 var(--mono); color: var(--muted); border-left: 2px dashed var(--rule); padding-left: .6rem; }
+.clock.late { color: var(--stop); border-color: var(--stop); } .clock.ontime { color: var(--ok); border-color: var(--ok); } .clock.unsure { color: var(--warn); border-color: var(--warn); }
+.edit { display: grid; gap: .6rem; background: var(--paper); border-radius: 8px; padding: .8rem; }
+.edit .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(13rem, 1fr)); gap: .6rem; }
+.edit label { display: grid; gap: .25rem; font-size: var(--s1); font-weight: 700; }
+.edit .read { font-weight: 400; color: var(--muted); font-size: .8rem; }
+.check { display: flex; gap: .5rem; align-items: center; font-size: var(--s1); min-height: 44px; }
+.check input { width: 1.25rem; height: 1.25rem; }
+.excluded { font-size: var(--s1); color: var(--muted); }
+
+/* Results */
+.status { border-radius: 10px; padding: 1.1rem; display: grid; gap: .4rem; border: 2px solid; }
+.status .label { font: 650 var(--s5)/1.1 var(--display); }
+.status.maintained { border-color: var(--ok); background: var(--ok-soft); } .status.maintained .label { color: var(--ok); }
+.status.break { border-color: var(--stop); background: var(--stop-soft); } .status.break .label { color: var(--stop); }
+.status.unable { border-color: var(--warn); background: var(--warn-soft); } .status.unable .label { color: var(--warn); }
+ol.steps { margin: 0; padding-left: 1.3rem; display: grid; gap: .9rem; }
+ol.steps li { padding-left: .2rem; }
+ol.steps li p + p { margin-top: .3rem; }
+.res-tag { font: 600 .72rem/1 var(--mono); text-transform: uppercase; letter-spacing: .06em; margin-left: .3rem; }
+.res-tag.timely, .res-tag.granted, .res-tag.open, .res-tag.continues, .res-tag.pending { color: var(--ok); } .res-tag.break { color: var(--stop); } .res-tag.uncertain { color: var(--warn); }
+.eff { font: 600 var(--s4)/1.2 var(--mono); font-variant-numeric: tabular-nums; }
+ul.plain { margin: 0; padding-left: 1.15rem; display: grid; gap: .45rem; }
+.disclaimer { font-size: var(--s1); border: 1px solid var(--rule); border-radius: 8px; padding: .85rem; background: var(--surface); }
+.refs { font-size: var(--s1); display: grid; gap: .5rem; }
+.refs .k { font-family: var(--mono); font-size: .72rem; color: var(--muted); }
+.legend { font-size: var(--s1); display: grid; gap: .25rem; }
+.legend b { font-family: var(--mono); font-size: .75rem; }
+.toast { position: fixed; left: 50%; transform: translateX(-50%); bottom: calc(1rem + env(safe-area-inset-bottom, 0px)); background: var(--ink); color: var(--paper); padding: .6rem 1rem; border-radius: 8px; font-size: var(--s1); }
+.print-only { display: none; }
+@media (max-width: 34rem) {
+  .ev { grid-template-columns: 1fr; gap: .35rem; }
+  .clock { grid-column: 1; }
+  h1 { font-size: 1.75rem; }
+}
+@media (prefers-reduced-motion: no-preference) { .fade { animation: fade .25s ease-out; } @keyframes fade { from { opacity: .4; } to { opacity: 1; } } }
+@media print {
+  :root { --paper: #fff; --surface: #fff; --ink: #000; --muted: #333; --rule: #999; }
+  body { background: #fff; color: #000; font-size: 11pt; }
+  .no-print, button, details, .edit, textarea, .q .row { display: none !important; }
+  .print-only { display: block; }
+  .card, .status, .callout { break-inside: avoid; border-color: #999; background: #fff; }
+}
+.banner { background: var(--ink); color: var(--paper); font-size: .8rem; }
+.banner .inner { max-width: 46rem; margin: 0 auto; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); padding-block: 8px; }
+.crumbs { display: flex; flex-wrap: wrap; gap: .4rem 1rem; align-items: center; font-size: var(--s1); }
+.beta { font: 600 .72rem/1 var(--mono); letter-spacing: .06em; text-transform: uppercase; color: var(--warn); border: 1.5px solid var(--warn); border-radius: 4px; padding: .3rem .45rem; }
+.fb fieldset { border: 0; padding: 0; margin: 0; display: grid; gap: .35rem; }
+.fb legend { font-weight: 700; margin-bottom: .2rem; }
+.fb .opts { display: flex; flex-wrap: wrap; gap: .3rem 1rem; }
+.fb label.o { display: flex; gap: .4rem; align-items: center; min-height: 40px; }
+.fb pre { white-space: pre-wrap; font: 400 var(--s1)/1.5 var(--mono); background: var(--paper); border: 1px solid var(--rule); border-radius: 6px; padding: .7rem; margin: 0; }
+footer.site { font-size: var(--s1); color: var(--muted); display: grid; gap: .5rem; border-top: 1px solid var(--rule); padding-top: 1rem; }
+</style>
+</head><body>
+<a class="skip" href="#story" style="position:absolute;left:-9999px">Skip to the claim history box</a>
+<div class="banner" role="note"><div class="inner">Independent educational tool. Not affiliated with or endorsed by the U.S. Department of Veterans Affairs. Not legal or medical advice. VA decides every claim.</div></div>
+
+<div class="wrap">
+  <header>
+    <div class="crumbs no-print"><a href="./#learn.benefits">← Learn: Benefits</a><span class="beta">Beta · pilot testing</span></div>
+    <p class="eyebrow">Effective dates · 38 U.S.C. § 5110(a)(2)</p>
+    <h1>VA Continuous Pursuit Review</h1>
+    <p class="lede">Describe your claim history in your own words. The tool rebuilds the timeline, checks each review deadline, and explains whether continuous pursuit appears to have been kept.</p>
+  </header>
+
+  <section class="card no-print" aria-labelledby="in-h">
+    <h2 id="in-h" class="eyebrow" style="font-family:var(--mono)">Your claim history</h2>
+    <label class="big" for="story">Tell us the history of your VA disability claim. Include when you originally filed, when VA made its decisions, when VA notified you, and when you submitted any supplemental claims or appeals. Include as many decisions as necessary.</label>
+    <p class="note">For each filing, say what kind it was: supplemental claim, Higher-Level Review, Board appeal, or court appeal. Approximate or missing dates are fine, but they may need to be verified, and they can change the result.</p>
+    <textarea id="story" placeholder="Example: I filed my claim for my left knee on March 4, 2020. VA denied it on August 14, 2020, and the letter was dated August 19, 2020. I filed a Higher-Level Review on July 30, 2021…"></textarea>
+    <div class="privacy" role="note">
+      <b>Do not include personal identifiers.</b>
+      <span>Leave out your Social Security number, VA file or claim number, date of birth, and address. They are not needed.</span>
+      <span>What you type stays in this browser. This version reads your history with on-device rules and does not send it to any AI service or server, and nothing is saved after you close the page.</span>
+    </div>
+    <div class="row">
+      <button class="primary" id="go" type="button">Analyze Claim History</button>
+      <button class="quiet" id="clear" type="button">Start over</button>
+    </div>
+    <details id="exwrap">
+      <summary>View an example history</summary>
+      <div style="display:grid;gap:.6rem">
+        <p class="note">Fictional example, for illustration only.</p>
+        <p class="example" id="extext"></p>
+        <div><button class="small" id="useex" type="button">Use this example</button></div>
+      </div>
+    </details>
+  </section>
+
+  <section id="intro" class="card no-print" aria-label="How it works">
+    <div class="howto">
+      <div><b>1. Read</b>Dates and events are pulled from your words, in any order.</div>
+      <div><b>2. Check</b>You confirm or correct the timeline. Nothing is assumed silently.</div>
+      <div><b>3. Explain</b>Each review deadline is checked under fixed, cited rules, with the reasoning shown.</div>
+    </div>
+  </section>
+
+  <div id="out" aria-live="polite"></div>
+
+  <section class="card fb no-print" id="feedback" aria-labelledby="fb-h">
+    <p class="eyebrow">Pilot feedback</p>
+    <h2 id="fb-h">Help improve this beta</h2>
+    <p class="note">This tool is being tested. Your answers below build a short note you can copy and send to whoever shared this tool with you. The note never includes your claim history, dates, or conditions, and nothing is sent automatically.</p>
+    <fieldset><legend>Did the timeline match what you wrote?</legend><div class="opts">
+      <label class="o"><input type="radio" name="fb1" value="Yes, all of it"> Yes, all of it</label><label class="o"><input type="radio" name="fb1" value="Mostly, I fixed a few things"> Mostly, I fixed a few things</label><label class="o"><input type="radio" name="fb1" value="No, it missed or misread a lot"> No, it missed or misread a lot</label></div></fieldset>
+    <fieldset><legend>Was the explanation easy to understand?</legend><div class="opts">
+      <label class="o"><input type="radio" name="fb2" value="Yes"> Yes</label><label class="o"><input type="radio" name="fb2" value="Partly"> Partly</label><label class="o"><input type="radio" name="fb2" value="No"> No</label></div></fieldset>
+    <fieldset><legend>Who are you testing as?</legend><div class="opts">
+      <label class="o"><input type="radio" name="fb3" value="Veteran or family member"> Veteran or family member</label><label class="o"><input type="radio" name="fb3" value="VSO or advocate"> VSO or advocate</label><label class="o"><input type="radio" name="fb3" value="Other"> Other</label></div></fieldset>
+    <label for="fb4"><b>What was confusing or wrong?</b> <span class="note">Please do not include names, numbers, or medical details.</span></label>
+    <textarea id="fb4" style="min-height:5rem"></textarea>
+    <div class="row"><button class="small" id="fbcopy" type="button">Copy feedback note</button></div>
+    <pre id="fbnote" aria-live="polite"></pre>
+    <p class="note" id="fbcontact" hidden></p>
+  </section>
+
+  <footer class="site">
+    <p>This tool explains public VA rules about effective dates and continuous pursuit. It does not decide or predict an effective date, and it is not legal advice.</p>
+    <p>ClaimReady is independent and educational. It is not VA and is not a substitute for an accredited representative, who can help at no cost. Nothing on this page is saved or sent. <a href="./#about">About ClaimReady and full disclaimer</a></p>
+  </footer>
+</div>
+<div id="toast" class="toast" role="status" hidden></div>
+
+<script src="site-config.js"></script>
+<script>
+/* Versioned legal framework for the Continuous Pursuit Review prototype.
+   Changed only by hand after owner review. Nothing here is fetched at run time.
+   Primary sources checked Oct 22, 2026: eCFR Title 38 (up to date as of Oct 21, 2026) and 38 U.S.C. (LII).
+   verified: 'source' = read in the primary source on the checked date; 'knowledge' = from Claude's own knowledge, needs owner review. */
+const CP_RULES = {
+  version: '0.1.0',
+  checked: '2026-10-22',
+  sourceAsOf: 'eCFR Title 38 up to date as of Oct 21, 2026; 38 U.S.C. via Cornell LII',
+
+  // Modernized review system (AMA) effective date. 38 CFR 19.2(a).
+  amaEffective: '2019-02-19',
+  // RAMP opt-in opened Nov 1, 2017 (38 CFR 3.2400(c)(1)). RAMP closing date (Feb 15, 2019) is from knowledge.
+  rampStart: '2017-11-01',
+  rampEnd: '2019-02-15',
+
+  /* Deadline windows. `from` names the date the clock runs from.
+     Gory's standing direction (Oct 22, 2026): calculations use the one-year review period.
+     Windows that are not one year by law are marked notOneYear and listed for owner review. */
+  windows: {
+    ama_review:   { years: 1, from: 'notice', label: 'one year from the date VA issued notice of the decision', cites: ['5104C', '3.2500a', '3.2601', '20.203'], verified: 'source' },
+    after_board:  { years: 1, from: 'notice', label: 'one year from the Board decision', cites: ['5110a2', '3.2500c'], verified: 'source' },
+    after_court:  { years: 1, from: 'decision', label: 'one year from the court decision', cites: ['5110a2', '3.2500c'], verified: 'source', open: 'court_date' },
+    cavc:         { days: 120, from: 'notice', label: '120 days from the date the Board decision was mailed', cites: ['7266'], verified: 'knowledge', notOneYear: true },
+    legacy_nod:   { years: 1, from: 'notice', label: 'one year from the date of the notice letter', cites: ['19.52', '3.160d'], verified: 'source' },
+    legacy_form9: { days: 60, orRestOfYear: true, from: 'notice', label: '60 days from the Statement of the Case, or the rest of the one-year period from the original notice, whichever ends later', cites: ['19.52', '3.2400'], verified: 'source', notOneYear: true },
+    itf:          { years: 1, from: 'filed', label: 'one year from the intent to file', cites: ['3.155b'], verified: 'source' },
+    incomplete:   { years: 1, from: 'filed', label: 'one year from the incomplete application', cites: ['3.155c'], verified: 'source' },
+    separation:   { years: 1, from: 'filed', label: 'one year from separation', cites: ['5110b1', '3.400b2'], verified: 'source' },
+  },
+
+  /* Review lanes that are legally available after each kind of decision. 38 CFR 3.2500(c); 38 U.S.C. 5104C. */
+  lanes: {
+    ama: {
+      initial:      { allowed: ['supplemental', 'hlr', 'board'], window: 'ama_review' },
+      supplemental: { allowed: ['supplemental', 'hlr', 'board'], window: 'ama_review' },
+      hlr:          { allowed: ['supplemental', 'board'], window: 'ama_review', note: 'A Higher-Level Review is not available after a Higher-Level Review decision.' },
+      board:        { allowed: ['supplemental', 'court'], window: 'after_board', note: 'After a Board decision the options are a supplemental claim or an appeal to the Court of Appeals for Veterans Claims.' },
+      court:        { allowed: ['supplemental'], window: 'after_court', note: 'After a court decision the option is a supplemental claim.' },
+    },
+    legacy: {
+      initial: { allowed: ['board', 'optin'], window: 'legacy_nod', note: 'Under the legacy system, the next step was a Notice of Disagreement (VA Form 21-0958) within one year.' },
+      soc:     { allowed: ['form9', 'optin'], window: 'legacy_form9', note: 'After a Statement of the Case, the next step was a Substantive Appeal (VA Form 9), or an election into the modernized system within the same period.' },
+      ssoc:    { allowed: ['form9', 'optin'], window: 'legacy_form9' },
+      board:   { allowed: ['court'], window: 'cavc', note: 'After a legacy Board decision the next step was an appeal to the Court of Appeals for Veterans Claims.' },
+      court:   { allowed: ['supplemental'], window: 'after_court' },
+    },
+  },
+
+  // Board filings: a postmark before the deadline counts (38 CFR 20.110). VA filings (HLR, supplemental) count when VA receives them (3.2601, 3.2501, 3.155).
+  boardPostmarkGraceDays: 10,
+
+  // Federal holidays under 5 U.S.C. 6103, with Saturday/Sunday observance. Juneteenth from 2021. Inauguration Day and one-off closures are not included.
+  holidays: { juneteenthFrom: 2021 },
+
+  citations: {
+    '5104C':   { cite: '38 U.S.C. § 5104C', what: 'Review options within one year of a decision; no concurrent elections on the same issue; only a supplemental claim after one year.', url: 'https://www.law.cornell.edu/uscode/text/38/5104C', kind: 'Statute', verified: 'source' },
+    '5110a2':  { cite: '38 U.S.C. § 5110(a)(2)', what: 'A claim is "continuously pursued" when a review request is filed within one year of each decision; the original filing date is kept.', url: 'https://www.law.cornell.edu/uscode/text/38/5110', kind: 'Statute', verified: 'source' },
+    '5110a3':  { cite: '38 U.S.C. § 5110(a)(3)', what: 'A supplemental claim filed more than one year after a decision gets an effective date no earlier than its receipt.', url: 'https://www.law.cornell.edu/uscode/text/38/5110', kind: 'Statute', verified: 'source' },
+    '5110b1':  { cite: '38 U.S.C. § 5110(b)(1)', what: 'Day after separation, if the claim is received within one year of separation.', url: 'https://www.law.cornell.edu/uscode/text/38/5110', kind: 'Statute', verified: 'source' },
+    '7266':    { cite: '38 U.S.C. § 7266(a)', what: 'Notice of appeal to the Court of Appeals for Veterans Claims within 120 days after the Board decision is mailed.', url: 'https://www.law.cornell.edu/uscode/text/38/7266', kind: 'Statute', verified: 'knowledge' },
+    '3.2500a': { cite: '38 C.F.R. § 3.2500(a)-(b)', what: 'Higher-Level Review or Board appeal within one year of notice; supplemental claim at any time; no concurrent review of the same issue.', url: 'https://www.ecfr.gov/current/title-38/chapter-I/part-3/subpart-D/section-3.2500', kind: 'Regulation', verified: 'source' },
+    '3.2500c': { cite: '38 C.F.R. § 3.2500(c)', what: 'Which review options can follow each type of decision to continuously pursue an issue.', url: 'https://www.ecfr.gov/current/title-38/chapter-I/part-3/subpart-D/section-3.2500', kind: 'Regulation', verified: 'source' },
+    '3.2500e': { cite: '38 C.F.R. § 3.2500(e)', what: 'Switching options after withdrawal; after one year only a supplemental claim, and continuous pursuit is broken unless a good-cause extension applies.', url: 'https://www.ecfr.gov/current/title-38/chapter-I/part-3/subpart-D/section-3.2500', kind: 'Regulation', verified: 'source' },
+    '3.2500h': { cite: '38 C.F.R. § 3.2500(h)', what: 'Effective dates for continuously pursued claims, and for supplemental claims filed after one year.', url: 'https://www.ecfr.gov/current/title-38/chapter-I/part-3/subpart-D/section-3.2500', kind: 'Regulation', verified: 'source' },
+    '3.2501':  { cite: '38 C.F.R. § 3.2501', what: 'Supplemental claims: may be filed any time after notice of a decision; need new and relevant evidence.', url: 'https://www.ecfr.gov/current/title-38/chapter-I/part-3/subpart-D/section-3.2501', kind: 'Regulation', verified: 'source' },
+    '3.2601':  { cite: '38 C.F.R. § 3.2601', what: 'Higher-Level Review must be received within one year of notice of the decision.', url: 'https://www.ecfr.gov/current/title-38/chapter-I/part-3/subpart-D/section-3.2601', kind: 'Regulation', verified: 'source' },
+    '3.2400':  { cite: '38 C.F.R. § 3.2400', what: 'Which claims fall under the modernized system; legacy claims; opting in through RAMP or after a Statement of the Case.', url: 'https://www.ecfr.gov/current/title-38/chapter-I/part-3/subpart-D/section-3.2400', kind: 'Regulation', verified: 'source' },
+    '19.2':    { cite: '38 C.F.R. § 19.2', what: 'The modernized review system took effect February 19, 2019.', url: 'https://www.ecfr.gov/current/title-38/chapter-I/part-19/subpart-A/section-19.2', kind: 'Regulation', verified: 'source' },
+    '19.52':   { cite: '38 C.F.R. § 19.52', what: 'Legacy appeals: Notice of Disagreement within one year; Substantive Appeal within 60 days of the SOC or the rest of the year.', url: 'https://www.ecfr.gov/current/title-38/chapter-I/part-19/subpart-C/section-19.52', kind: 'Regulation', verified: 'source' },
+    '20.203':  { cite: '38 C.F.R. § 20.203', what: 'Board appeal (Notice of Disagreement) within one year of the mailing of notice; good-cause extensions.', url: 'https://www.ecfr.gov/current/title-38/chapter-I/part-20/subpart-D/section-20.203', kind: 'Regulation', verified: 'source' },
+    '20.110':  { cite: '38 C.F.R. § 20.110', what: 'Board time limits: first day excluded, weekend or holiday deadlines move to the next workday, postmark rule.', url: 'https://www.ecfr.gov/current/title-38/chapter-I/part-20/subpart-B/section-20.110', kind: 'Regulation', verified: 'source' },
+    '3.110':   { cite: '38 C.F.R. § 3.110', what: 'VA time limits: first day excluded, last day included; a Saturday, Sunday, or holiday deadline moves to the next workday; the letter date is the mailing date.', url: 'https://www.ecfr.gov/current/title-38/chapter-I/part-3/subpart-A/subject-group-ECFR27a7fd2c1ec1b0a/section-3.110', kind: 'Regulation', verified: 'source' },
+    '3.109b':  { cite: '38 C.F.R. § 3.109(b)', what: 'Time limits can be extended for good cause.', url: 'https://www.ecfr.gov/current/title-38/chapter-I/part-3/subpart-A/subject-group-ECFR27a7fd2c1ec1b0a/section-3.109', kind: 'Regulation', verified: 'source' },
+    '3.155b':  { cite: '38 C.F.R. § 3.155(b)', what: 'Intent to file: a complete claim within one year keeps the intent-to-file date. Does not apply to supplemental claims.', url: 'https://www.ecfr.gov/current/title-38/chapter-I/part-3/subpart-A/subject-group-ECFR7629a1b1e9bf6f8/section-3.155', kind: 'Regulation', verified: 'source' },
+    '3.155c':  { cite: '38 C.F.R. § 3.155(c)', what: 'Incomplete application: a complete claim within one year keeps the incomplete application date.', url: 'https://www.ecfr.gov/current/title-38/chapter-I/part-3/subpart-A/subject-group-ECFR7629a1b1e9bf6f8/section-3.155', kind: 'Regulation', verified: 'source' },
+    '3.156b':  { cite: '38 C.F.R. § 3.156(b)', what: 'Legacy claims only: new and material evidence received within the appeal period is treated as filed with the pending claim.', url: 'https://www.ecfr.gov/current/title-38/chapter-I/part-3/subpart-A/subject-group-ECFR7629a1b1e9bf6f8/section-3.156', kind: 'Regulation', verified: 'source' },
+    '3.156c':  { cite: '38 C.F.R. § 3.156(c)', what: 'Relevant official service department records that existed but were not considered: VA reconsiders, and an award can reach back to the original claim date.', url: 'https://www.ecfr.gov/current/title-38/chapter-I/part-3/subpart-A/subject-group-ECFR7629a1b1e9bf6f8/section-3.156', kind: 'Regulation', verified: 'source' },
+    '3.160d':  { cite: '38 C.F.R. § 3.160(c)-(d)', what: 'A claim is pending until finally adjudicated; when legacy and modernized decisions become final.', url: 'https://www.ecfr.gov/current/title-38/chapter-I/part-3/subpart-A/subject-group-ECFR7629a1b1e9bf6f8/section-3.160', kind: 'Regulation', verified: 'source' },
+    '3.400':   { cite: '38 C.F.R. § 3.400', what: 'General rule: the later of the date of claim or the date entitlement arose.', url: 'https://www.ecfr.gov/current/title-38/chapter-I/part-3/subpart-A/subject-group-ECFR4bb02cc4a3e1f88/section-3.400', kind: 'Regulation', verified: 'source' },
+    '3.400b2': { cite: '38 C.F.R. § 3.400(b)(2)(i)', what: 'Day after separation, if the claim is received within one year of separation.', url: 'https://www.ecfr.gov/current/title-38/chapter-I/part-3/subpart-A/subject-group-ECFR4bb02cc4a3e1f88/section-3.400', kind: 'Regulation', verified: 'source' },
+    '3.400o2': { cite: '38 C.F.R. § 3.400(o)(2)', what: 'Increase: earliest date the increase is factually ascertainable, if the claim is received within one year of that date.', url: 'https://www.ecfr.gov/current/title-38/chapter-I/part-3/subpart-A/subject-group-ECFR4bb02cc4a3e1f88/section-3.400', kind: 'Regulation', verified: 'source' },
+    '3.114':   { cite: '38 C.F.R. § 3.114(a)', what: 'Liberalizing law: up to one year of benefits before the request, or from the law\'s effective date if requested within one year.', url: 'https://www.ecfr.gov/current/title-38/chapter-I/part-3/subpart-A/subject-group-ECFR27a7fd2c1ec1b0a/section-3.114', kind: 'Regulation', verified: 'source' },
+    '3.105a':  { cite: '38 C.F.R. § 3.105(a)', what: 'A final decision can be revised for clear and unmistakable error, with the same effect as if the corrected decision had been made on the date of the reversed decision.', url: 'https://www.ecfr.gov/current/title-38/chapter-I/part-3/subpart-A/subject-group-ECFR27a7fd2c1ec1b0a/section-3.105', kind: 'Regulation', verified: 'source' },
+  },
+};
+
+
+/* Continuous pursuit rules engine. Pure functions, no DOM, no network.
+   Legal values come only from CP_RULES. The engine never fills in a missing date. */
+const CP = (() => {
+  const RULES = () => (typeof CP_RULES !== 'undefined' ? CP_RULES : global.CP_RULES);
+
+  // ---------- Calendar dates (UTC, ISO yyyy-mm-dd) ----------
+  const parseD = s => { const [y, m, d] = s.split('-').map(Number); return new Date(Date.UTC(y, m - 1, d)); };
+  const iso = dt => dt.toISOString().slice(0, 10);
+  const addDays = (s, n) => iso(new Date(parseD(s).getTime() + n * 86400000));
+  const daysBetween = (a, b) => Math.round((parseD(b) - parseD(a)) / 86400000);
+  // Same calendar date one or more years later; Feb 29 falls back to Feb 28 (see open question on leap days).
+  const addYears = (s, n) => { const d = parseD(s); let r = new Date(Date.UTC(d.getUTCFullYear() + n, d.getUTCMonth(), d.getUTCDate())); if (r.getUTCMonth() !== d.getUTCMonth()) r = new Date(Date.UTC(d.getUTCFullYear() + n, d.getUTCMonth() + 1, 0)); return iso(r); };
+  const MON = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+  const MONTH = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+  const DOW = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+  const fmt = s => { if (!s) return 'unknown'; const d = parseD(s); return `${MON[d.getUTCMonth()]} ${d.getUTCDate()}, ${d.getUTCFullYear()}`; };
+  const max = (a, b) => (a > b ? a : b);
+
+  // A date value keeps the user's words and a range: exact dates have lo === hi.
+  const known = dv => !!(dv && dv.lo);
+  const exact = dv => known(dv) && dv.lo === dv.hi && !dv.approx;
+  function fmtVal(dv) {
+    if (!known(dv)) return dv && dv.text ? `unknown ("${dv.text}")` : 'unknown';
+    let s;
+    if (dv.precision === 'day') s = fmt(dv.lo);
+    else if (dv.precision === 'month') { const d = parseD(dv.lo); s = `${MONTH[d.getUTCMonth()]} ${d.getUTCFullYear()}`; }
+    else if (dv.precision === 'year') s = dv.lo.slice(0, 4);
+    else s = `between ${fmt(dv.lo)} and ${fmt(dv.hi)}`;
+    if (dv.approx || dv.precision === 'range') s = (dv.precision === 'range' ? '' : 'about ') + s;
+    return s.trim();
+  }
+  const dayVal = s => ({ text: s, lo: s, hi: s, precision: 'day', approx: false, how: 'explicit' });
+
+  // ---------- Federal holidays, 5 U.S.C. 6103, with weekend observance ----------
+  const nth = (y, m, wd, n) => { const first = new Date(Date.UTC(y, m, 1)).getUTCDay(); return iso(new Date(Date.UTC(y, m, 1 + ((wd - first + 7) % 7) + 7 * (n - 1)))); };
+  const lastWd = (y, m, wd) => { const last = new Date(Date.UTC(y, m + 1, 0)); return iso(new Date(Date.UTC(y, m, last.getUTCDate() - ((last.getUTCDay() - wd + 7) % 7)))); };
+  const observed = s => { const w = parseD(s).getUTCDay(); return w === 6 ? addDays(s, -1) : w === 0 ? addDays(s, 1) : s; };
+  const hCache = {};
+  function holidays(y) {
+    if (hCache[y]) return hCache[y];
+    const p = n => String(n).padStart(2, '0');
+    const fixed = [[1, 1, "New Year's Day"], [7, 4, 'Independence Day'], [11, 11, 'Veterans Day'], [12, 25, 'Christmas Day']];
+    if (y >= RULES().holidays.juneteenthFrom) fixed.push([6, 19, 'Juneteenth']);
+    const list = fixed.map(([m, d, n]) => [observed(`${y}-${p(m)}-${p(d)}`), n]);
+    list.push([nth(y, 0, 1, 3), 'Martin Luther King Jr. Day'], [nth(y, 1, 1, 3), "Washington's Birthday"], [lastWd(y, 4, 1), 'Memorial Day'],
+      [nth(y, 8, 1, 1), 'Labor Day'], [nth(y, 9, 1, 2), 'Columbus Day'], [nth(y, 10, 4, 4), 'Thanksgiving Day']);
+    return (hCache[y] = new Map(list));
+  }
+  function nonWorkday(s) {
+    const w = parseD(s).getUTCDay();
+    if (w === 0 || w === 6) return DOW[w];
+    const y = +s.slice(0, 4);
+    for (const yy of [y, y + 1]) { const h = holidays(yy).get(s); if (h) return h; }
+    return null;
+  }
+  // 38 CFR 3.110(a) and 20.110: a deadline that falls on a Saturday, Sunday, or holiday moves to the next workday.
+  function rollForward(s) {
+    let d = s; const why = [];
+    for (let i = 0; i < 10; i++) { const n = nonWorkday(d); if (!n) break; why.push(`${fmt(d)} is ${/day$/.test(n) && DOW.includes(n) ? 'a ' + n : n}`); d = addDays(d, 1); }
+    return { date: d, moved: d !== s, nominal: s, why };
+  }
+
+  // ---------- Event helpers ----------
+  const REQUEST_TYPES = ['supplemental', 'hlr', 'board', 'court', 'form9', 'optin'];
+  const TYPE_LABEL = {
+    separation: 'Separation from service', itf: 'Intent to file', incomplete: 'Incomplete application', claim: 'Claim filed',
+    decision: 'VA decision', supplemental: 'Supplemental claim', hlr: 'Higher-Level Review request', board: 'Board appeal (Notice of Disagreement)',
+    court: 'Appeal to the Court of Appeals for Veterans Claims', form9: 'Substantive Appeal (VA Form 9)', optin: 'Election into the modernized system (RAMP or opt-in)',
+    cue: 'Clear and unmistakable error (CUE) request', evidence: 'Evidence submitted', records: 'Service department records found', withdrawal: 'Withdrawal of a review request', other: 'Other event',
+  };
+  const LEVEL_LABEL = { initial: 'Initial decision', supplemental: 'Supplemental claim decision', hlr: 'Higher-Level Review decision', board: 'Board decision', court: 'Court decision', soc: 'Statement of the Case (legacy)', ssoc: 'Supplemental Statement of the Case (legacy)', auto: 'Decision (type not stated)' };
+  const isReq = e => REQUEST_TYPES.includes(e.type);
+  const isDec = e => e.type === 'decision';
+  // When a decision was made: decision date if given, otherwise the notice date.
+  const decWhen = e => (known(e.date) ? e.date : e.notice);
+  const when = e => (isDec(e) ? decWhen(e) : e.date);
+  const sortKey = e => { const w = when(e); return known(w) ? w.lo : '9999-99-99'; };
+  const chrono = evs => evs.slice().sort((a, b) => (sortKey(a) < sortKey(b) ? -1 : sortKey(a) > sortKey(b) ? 1 : (a.seq || 0) - (b.seq || 0)));
+  const issueKey = s => (s || '').toLowerCase().replace(/[^a-z0-9 ]/g, ' ').replace(/\s+/g, ' ').trim();
+  const onIssue = (e, key) => !e.issues || !e.issues.length || e.issues.some(i => issueKey(i) === key);
+  const short = dv => (known(dv) ? fmtVal(dv) : 'undated');
+  const label = e => (isDec(e) ? LEVEL_LABEL[e.level || 'auto'] : TYPE_LABEL[e.type] || e.type).replace(/^(Initial|Supplemental|Claim|Incomplete|Intent|Evidence|Separation|Withdrawal|Other|Decision|Election|Service|Substantive|Appeal)\b/, m => m.toLowerCase());
+  const describe = e => isDec(e) ? `${LEVEL_LABEL[e.level || 'auto']} (${short(decWhen(e))})` : `${TYPE_LABEL[e.type] || e.type} (${short(e.date)})`;
+  const monthYear = dv => { if (!known(dv)) return 'undated'; const d = parseD(dv.lo); return dv.precision === 'year' ? dv.lo.slice(0, 4) : `${MONTH[d.getUTCMonth()]} ${d.getUTCFullYear()}`; };
+
+  // Interval comparison: is a (range) on or before b (range)?
+  function before(a, bLo, bHi) {
+    if (!known(a) || !bLo) return 'unknown';
+    if (a.hi <= bLo) return 'yes';
+    if (bHi && a.lo > bHi) return 'no';
+    return 'maybe';
+  }
+
+  // ---------- Deadline for a review step ----------
+  // startDv: notice of the decision (or the decision date as a floor when the notice is unknown).
+  function deadline(winKey, dec, root) {
+    const W = RULES().windows[winKey];
+    let basis, lo, hi, openEnded = false, floorOnly = false;
+    const useNotice = W.from !== 'decision';
+    if (useNotice && known(dec.notice)) { basis = dec.notice; }
+    else if (known(dec.date)) { basis = dec.date; if (useNotice) floorOnly = true; }
+    else if (known(dec.notice)) basis = dec.notice;
+    if (!basis) return { win: W, key: winKey, known: false };
+    const rootLo = root && root.lo, rootHi = root && root.hi;
+    const a = (() => { const n = W.years ? addYears(basis.lo, W.years) : addDays(basis.lo, W.days); return rollForward(W.orRestOfYear && rootLo ? max(n, addYears(rootLo, 1)) : n); })();
+    lo = a;
+    if (floorOnly) { hi = null; openEnded = true; }
+    else { const n = W.years ? addYears(basis.hi, W.years) : addDays(basis.hi, W.days); hi = rollForward(W.orRestOfYear && rootHi ? max(n, addYears(rootHi, 1)) : n); }
+    return { win: W, key: winKey, known: true, basis, floorOnly, lo, hi, openEnded };
+  }
+  function dlText(dl) {
+    if (!dl.known) return 'cannot be calculated without the decision or notice date';
+    const part = r => `${fmt(r.date)}${r.moved ? ` (moved from ${fmt(r.nominal)} because ${r.why.join(' and ')})` : ''}`;
+    if (dl.floorOnly) return `no earlier than ${part(dl.lo)}; the exact deadline depends on the notice letter date`;
+    if (dl.lo.date === dl.hi.date) return part(dl.lo);
+    return `between ${fmt(dl.lo.date)} and ${fmt(dl.hi.date)}, depending on the exact notice date`;
+  }
+  function timely(req, dl, isBoard) {
+    if (!known(req.date)) return { v: 'unknown', why: 'the filing date is unknown' };
+    if (!dl.known) return { v: 'unknown', why: 'the decision and notice dates are unknown' };
+    const r = req.date;
+    if (r.hi <= dl.lo.date) return { v: 'timely', margin: daysBetween(r.hi, dl.lo.date) };
+    if (dl.hi && r.lo > dl.hi.date) {
+      const late = daysBetween(dl.hi.date, r.lo);
+      if (isBoard && late <= RULES().boardPostmarkGraceDays) return { v: 'maybe', why: `it was received ${late} day${late === 1 ? '' : 's'} after the deadline, and a Board filing postmarked by the deadline counts as timely (38 C.F.R. § 20.110)`, late, postmark: true };
+      return { v: 'late', late };
+    }
+    const side = dl.floorOnly ? 'notice' : !exact(dl.basis) ? 'notice' : 'receipt';
+    const why = dl.floorOnly ? 'the notice letter date is not known' : side === 'notice' ? 'the notice date is approximate or conflicting' : 'the filing date is approximate';
+    return { v: 'maybe', why, side };
+  }
+
+  // ---------- Linking review requests to the decisions they challenge ----------
+  function link(evs) {
+    const decs = chrono(evs.filter(isDec));
+    evs.filter(e => isReq(e) || e.type === 'withdrawal' || e.type === 'cue').forEach(r => {
+      if (r.type === 'withdrawal') {
+        if (r.target && evs.some(x => x.id === r.target)) return;
+        const prior = chrono(evs.filter(isReq)).filter(x => known(x.date) && known(r.date) && x.date.lo <= r.date.lo && !(x.issues && r.issues && r.issues.length && x.issues.length && !x.issues.some(i => r.issues.map(issueKey).includes(issueKey(i)))));
+        r.target = prior.length ? prior[prior.length - 1].id : null; r.targetInferred = true; return;
+      }
+      if (r.challenges && decs.some(d => d.id === r.challenges)) return;
+      if (!known(r.date)) { r.challenges = null; return; }
+      const cands = decs.filter(d => known(decWhen(d)) && decWhen(d).lo <= r.date.lo && overlapIssues(d, r));
+      r.challenges = cands.length ? cands[cands.length - 1].id : null;
+      r.linkInferred = true;
+    });
+  }
+  const overlapIssues = (a, b) => !a.issues || !b.issues || !a.issues.length || !b.issues.length || a.issues.some(i => b.issues.map(issueKey).includes(issueKey(i)));
+
+  // Which decision answered a request: the first later decision of a matching kind.
+  const ANSWER = { supplemental: ['supplemental', 'initial'], hlr: ['hlr'], board: ['board', 'soc', 'initial'], court: ['court'], form9: ['board', 'ssoc'], optin: ['initial', 'supplemental', 'hlr', 'board'] };
+  function answerTo(req, decs, used) {
+    if (!known(req.date)) return null;
+    const ok = ANSWER[req.type] || [];
+    const later = decs.filter(d => !used.has(d.id) && known(decWhen(d)) && decWhen(d).hi >= req.date.lo && d !== req);
+    const pick = later.find(d => (d.level || 'auto') === 'auto' || ok.includes(d.level)) || null;
+    if (pick && (pick.level || 'auto') === 'auto') { pick.levelInferred = true; pick.level = req.type === 'form9' ? 'board' : req.type === 'optin' ? (req.lane || 'initial') : req.type === 'court' ? 'court' : req.type; }
+    return pick;
+  }
+
+  // ---------- Main analysis ----------
+  function analyze(input) {
+    const R = RULES();
+    const asOf = input.asOf || iso(new Date());
+    const key = issueKey(input.issue);
+    const all = (input.events || []).map(e => Object.assign({}, e, { date: e.date && Object.assign({}, e.date), notice: e.notice && Object.assign({}, e.notice) }));
+    // Conflicting dates are kept as a range covering both, so a finding is made only if it holds either way.
+    all.forEach(e => {
+      if (!e.conflict || e.conflict.filter(known).length < 2) return;
+      const lo = e.conflict.map(c => c.lo).sort()[0], hi = e.conflict.map(c => c.hi).sort().pop();
+      const field = isDec(e) && known(e.notice) && e.conflict.some(c => c.lo === e.notice.lo) ? 'notice' : 'date';
+      e[field] = { text: e.conflict.map(c => c.text).join(' or '), lo, hi, precision: 'range', approx: true, how: 'conflicting' };
+      e.conflictField = field;
+    });
+    const evs = chrono(all.filter(e => onIssue(e, key)));
+    const other = all.filter(e => !onIssue(e, key));
+    link(evs);
+    const out = { issue: input.issue, asOf, rulesVersion: R.version, status: null, steps: [], segments: [], missing: [], exceptions: [], questions: [], conflicts: [], notes: [], verify: [], cites: new Set(), timeline: evs, otherIssues: [], effective: null };
+    const cite = (...k) => k.forEach(x => out.cites.add(x));
+    const ask = (ev, field, text, critical) => { if (!out.questions.some(q => q.text === text)) out.questions.push({ eventId: ev && ev.id, field, text, critical: !!critical }); };
+    const miss = (text, critical, ev) => { if (!out.missing.some(m => m.text === text)) out.missing.push({ text, critical: !!critical, eventId: ev && ev.id }); };
+    const exc = (id, title, text, cites, date) => { if (!out.exceptions.some(x => x.id === id)) { out.exceptions.push({ id, title, text, cites, date }); cite(...cites); } };
+    let breaks = 0, uncertain = 0;
+
+    // Other issues are listed, never analyzed together.
+    const otherKeys = [...new Set(other.flatMap(e => e.issues || []))];
+    out.otherIssues = otherKeys;
+
+    // ---- Basic consistency checks ----
+    evs.forEach(e => {
+      if (e.conflict) { out.conflicts.push({ eventId: e.id, kind: 'dates', text: `Two different ${e.conflictField === 'notice' ? 'notice dates' : 'dates'} were given for the ${label(e)}: ${e.conflict.map(fmtVal).join(' and ')}.` }); }
+      if (isDec(e)) {
+        if (known(e.date) && known(e.notice) && e.notice.hi < e.date.lo) out.conflicts.push({ eventId: e.id, kind: 'order', text: `The notice date (${fmtVal(e.notice)}) is earlier than the decision date (${fmtVal(e.date)}). A notice cannot come before the decision.` });
+        if (!known(e.date) && !known(e.notice)) miss(`The date of the ${label(e)} is missing.`, true, e);
+        if (!e.outcome || e.outcome === 'unknown') miss(`The outcome of the ${label(e)} (${short(decWhen(e))}) is not stated (granted, denied, partly granted, or remanded).`, false, e);
+      }
+      if ((isReq(e) || e.type === 'claim') && !known(e.date)) miss(`The date VA received the ${label(e)} is missing.`, true, e);
+      if (e.approx || (e.date && e.date.approx) || (e.date && known(e.date) && e.date.precision !== 'day')) out.verify.push({ eventId: e.id, text: `${describe(e)}: the date is approximate. Check the exact date in your records.` });
+      if (e.issueInferred) out.verify.push({ eventId: e.id, text: `${describe(e)}: the condition was not named in this part of your history. Confirm it concerns ${input.issue}.` });
+    });
+    evs.filter(isReq).forEach(r => {
+      const d = evs.find(x => x.id === r.challenges);
+      if (d && known(r.date) && known(decWhen(d)) && r.date.hi < decWhen(d).lo) out.conflicts.push({ eventId: r.id, kind: 'order', text: `The ${label(r)} (${fmtVal(r.date)}) is dated before the decision it challenges (${fmtVal(decWhen(d))}).` });
+      if (r.linkInferred && d) out.verify.push({ eventId: r.id, text: `${describe(r)}: the tool assumed it challenged the ${label(d)} (${short(decWhen(d))}). Confirm which decision it challenged.` });
+      if (!d && known(r.date)) miss(`No earlier decision was found for the ${label(r)} (${short(r.date)}). Which decision did it challenge?`, true, r);
+    });
+    const critConflicts = out.conflicts.filter(c => c.kind === 'order').length;
+
+    // ---- Where the claim starts ----
+    const decs = chrono(evs.filter(isDec));
+    const claims = chrono(evs.filter(e => e.type === 'claim'));
+    const firstDec = decs[0];
+    const preClaims = claims.filter(c => !firstDec || !known(decWhen(firstDec)) || (known(c.date) && c.date.lo <= decWhen(firstDec).hi));
+    let origin = preClaims.length ? preClaims[preClaims.length - 1] : null;
+    if (preClaims.length > 1) {
+      const a = preClaims[0], b = origin;
+      const gap = known(a.date) && known(b.date) ? daysBetween(a.date.hi, b.date.lo) : 0;
+      if (a.pending || gap > 366) {
+        exc('pending', 'An earlier claim may still be pending', `You described a claim filed ${fmtVal(a.date)} that may never have been decided. A claim stays pending until it is finally adjudicated. If VA never decided it, it could support an earlier effective date than the later claim. VA may also find that a later decision on the same issue resolved it, which needs review of the full record.`, ['3.160d'], a.date);
+        out.notes.push(`The analysis follows the claim filed ${fmtVal(b.date)}, which the first decision appears to answer.`);
+      } else {
+        out.conflicts.push({ eventId: b.id, kind: 'dates', text: `Two different original claim dates were given (${fmtVal(a.date)} and ${fmtVal(b.date)}). Check which date VA received the claim.` });
+        origin = a;
+      }
+    }
+    if (!origin && firstDec) { miss('The date you first filed the claim is missing. Without it, the date that continuous pursuit would protect is unknown.', true); ask(null, 'claim', `When did VA receive your original claim for ${input.issue}?`, true); uncertain++; }
+    if (origin && origin.pending && !firstDec) exc('pending', 'Your claim may still be pending', 'No decision on this claim is described. A claim stays pending until VA finally decides it.', ['3.160d'], origin.date);
+    if (origin && origin.claimKind === 'increase') exc('increase', 'Claim for an increase', 'For an increased rating, the effective date can be up to one year before the claim, if the records show the increase within that year.', ['3.400o2'], origin.date);
+
+    // Protected start date: ITF, incomplete application, and separation.
+    let start = origin ? { dv: origin.date, label: 'original claim', ev: origin, cites: ['5110a2', '3.400'] } : null;
+    const within = (laterDv, earlierDv, winKey) => { if (!known(laterDv) || !known(earlierDv)) return 'unknown'; const W = R.windows[winKey]; const lo = rollForward(addYears(earlierDv.lo, W.years)).date, hi = rollForward(addYears(earlierDv.hi, W.years)).date; return earlierDv.lo > laterDv.hi ? 'no' : before(laterDv, lo, hi); };
+    if (start) {
+      const itfs = evs.filter(e => e.type === 'itf' && known(e.date) && e.date.lo <= start.dv.hi);
+      for (const itf of itfs) {
+        const w = within(start.dv, itf.date, 'itf');
+        if (w === 'yes') { start = { dv: itf.date, label: 'intent to file', ev: itf, cites: ['3.155b', '5110a2'] }; out.notes.push(`Your claim was received within one year of your intent to file (${fmtVal(itf.date)}), so the intent-to-file date is treated as the claim date.`); cite('3.155b'); break; }
+        if (w === 'maybe') { uncertain++; ask(itf, 'date', `What exact date did VA receive your intent to file, and your completed claim?`, true); out.notes.push('It is unclear whether the completed claim came within one year of the intent to file.'); }
+        if (w === 'no') out.notes.push(`The intent to file (${fmtVal(itf.date)}) expired before the complete claim was received, so it does not set the claim date.`);
+      }
+      const incs = evs.filter(e => e.type === 'incomplete' && known(e.date) && e.date.lo <= start.dv.hi);
+      for (const inc of incs) {
+        const w = within(origin.date, inc.date, 'incomplete');
+        if (w === 'yes' && inc.date.lo < start.dv.lo) { start = { dv: inc.date, label: 'incomplete application', ev: inc, cites: ['3.155c', '5110a2'] }; exc('incomplete', 'Incomplete application', `An incomplete application (${fmtVal(inc.date)}) was followed by a complete claim within one year, so the earlier date can count as the claim date.`, ['3.155c'], inc.date); }
+        if (w === 'maybe') { uncertain++; ask(inc, 'date', 'What exact dates did VA receive your incomplete application and your completed claim?', true); }
+      }
+      const sep = evs.find(e => e.type === 'separation' && known(e.date));
+      if (sep) {
+        const w = within(start.dv, sep.date, 'separation');
+        const dayAfter = known(sep.date) ? { text: 'day after separation', lo: addDays(sep.date.lo, 1), hi: addDays(sep.date.hi, 1), precision: sep.date.precision === 'day' ? 'day' : 'range', approx: sep.date.approx } : null;
+        if (w === 'yes') { start = { dv: dayAfter, label: 'day after separation', ev: sep, cites: ['5110b1', '3.400b2'] }; exc('separation', 'Claim within one year of separation', `The claim was received within one year after separation (${fmtVal(sep.date)}), so the effective date can be the day after separation, if entitlement existed then.`, ['5110b1', '3.400b2'], dayAfter); }
+        if (w === 'maybe') { exc('separation', 'Claim may be within one year of separation', `The claim may have been received within one year after separation (${fmtVal(sep.date)}). If so, the day after separation could be the effective date.`, ['5110b1', '3.400b2'], dayAfter); ask(sep, 'date', 'What is your exact separation date on your DD-214, and the date VA received your claim?', false); }
+      }
+    }
+
+    // ---- Walk the chain of decisions and review requests ----
+    const used = new Set();
+    let cur = firstDec, framework = null, legacyRoot = null, seg = start ? { start: start.dv, label: start.label, cites: start.cites, broken: false } : null;
+    if (seg) out.segments.push(seg);
+    const frameworkOf = d => { const w = known(d.notice) ? d.notice : decWhen(d); if (!known(w)) return 'unknown'; if (w.hi < R.amaEffective) return 'legacy'; if (w.lo >= R.amaEffective) return 'ama'; return 'unknown'; };
+    let guard = 0;
+    const restart = (afterDate, reason) => {
+      // After a break, a later supplemental claim or new claim on the same issue starts a new period.
+      const next = chrono(evs.filter(e => (e.type === 'supplemental' || e.type === 'claim') && known(e.date) && e.date.lo > afterDate));
+      if (!next.length) return null;
+      const n = next[0];
+      seg = { start: n.date, label: n.type === 'supplemental' ? 'supplemental claim filed after the break' : 'new claim filed after the break', cites: ['5110a3', '3.2500h'], broken: false, reason };
+      out.segments.push(seg); cite('5110a3', '3.2500h');
+      return n;
+    };
+
+    while (cur && guard++ < 60) {
+      used.add(cur.id);
+      if (!framework || framework === 'unknown') framework = frameworkOf(cur);
+      if (framework === 'unknown') { uncertain++; ask(cur, 'notice', `What date was on the notification letter for your ${monthYear(decWhen(cur))} decision? It decides whether the legacy or the modernized appeal rules apply.`, true); framework = 'ama'; out.notes.push('Whether this decision falls under the legacy or modernized system is unclear; the modernized rules were applied provisionally.'); }
+      cite(framework === 'legacy' ? '3.2400' : '5104C', '19.2');
+      if (!cur.level || cur.level === 'auto') { cur.level = 'initial'; cur.levelInferred = true; }
+      let level = cur.level;
+      if (framework === 'ama' && (level === 'soc' || level === 'ssoc')) level = 'initial';
+      if (level === 'soc' || level === 'ssoc') legacyRoot = legacyRoot || null;
+      if (framework === 'legacy' && level === 'initial') legacyRoot = cur.notice && known(cur.notice) ? cur.notice : cur.date;
+      if (framework === 'legacy' && level === 'supplemental') level = 'initial';
+      if (framework === 'legacy' && level === 'hlr') level = 'initial';
+      const lane = R.lanes[framework][level] || R.lanes[framework].initial;
+      const step = { decision: cur, framework, level, lane, requests: [], result: null, text: [] };
+      out.steps.push(step);
+
+      if (!known(cur.notice) && cur.outcome !== 'granted') miss(`The notification letter date for the ${label(cur)} (${short(decWhen(cur))}) is missing. Decision date and notice date are often different.`, false, cur);
+
+      // Remands keep the claim open; the next decision continues the same chain.
+      if (cur.outcome === 'remanded' || cur.outcome === 'returned') {
+        step.result = 'continues';
+        step.text.push(cur.outcome === 'remanded' ? 'A remand sends the issue back for more work. It is not a final decision, so the claim stays open and no new filing is needed.' : 'The Higher-Level Review returned the claim to correct a duty-to-assist error. The claim stays open while VA readjudicates it.');
+        const nxt = decs.find(d => !used.has(d.id) && known(decWhen(d)) && known(decWhen(cur)) && decWhen(d).lo >= decWhen(cur).lo);
+        if (!nxt) { step.text.push('No later decision is described, so the claim appears to still be pending.'); step.result = 'pending'; break; }
+        if ((nxt.level || 'auto') === 'auto') { nxt.level = cur.level === 'court' ? 'board' : 'initial'; nxt.levelInferred = true; }
+        cur = nxt; continue;
+      }
+
+      const dl = deadline(lane.window, cur, framework === 'legacy' && (level === 'soc' || level === 'ssoc') ? legacyRoot : null);
+      step.deadline = dl; cite(...dl.win.cites); cite('3.110');
+      if (dl.win.notOneYear) out.notes.push(`Not a one-year period: after a ${label({ type: 'decision', level })}, the deadline is ${dl.win.label}.`);
+
+      const reqs = chrono(evs.filter(e => isReq(e) && e.challenges === cur.id));
+      const withdrawn = new Set(evs.filter(e => e.type === 'withdrawal' && e.target).map(e => e.target));
+      let carrying = null, carryingMaybe = null, lateOrBad = [];
+      reqs.forEach((r, i) => {
+        const allowed = lane.allowed.includes(r.type);
+        const t = timely(r, dl, r.type === 'board' || r.type === 'form9');
+        const rr = { req: r, allowed, t, withdrawn: withdrawn.has(r.id), concurrent: false };
+        // No concurrent review of the same issue (38 U.S.C. 5104C(a)(2)(A); 3.2500(b)).
+        const prior = reqs.slice(0, i).find(p => !withdrawn.has(p.id) && p.type !== r.type && !decs.some(d => d.id !== cur.id && known(decWhen(d)) && known(p.date) && decWhen(d).lo >= p.date.lo && known(r.date) && decWhen(d).lo <= r.date.lo));
+        if (prior) { rr.concurrent = true; cite('3.2500a'); }
+        step.requests.push(rr);
+        if (rr.withdrawn || rr.concurrent) return;
+        if (!allowed) { lateOrBad.push(rr); return; }
+        if (t.v === 'timely' && !carrying) carrying = rr;
+        else if ((t.v === 'maybe' || t.v === 'unknown') && !carrying && !carryingMaybe) carryingMaybe = rr;
+        else if (t.v === 'late') lateOrBad.push(rr);
+      });
+
+      const kindLabel = LEVEL_LABEL[level];
+      step.text.push(`${kindLabel}${cur.levelInferred ? ' (type assumed from the filing before it; please confirm)' : ''}: decided ${fmtVal(cur.date)}, notice dated ${fmtVal(cur.notice)}${cur.outcome && cur.outcome !== 'unknown' ? `, outcome: ${cur.outcome}` : ''}${cur.percent ? ` (${cur.percent}%)` : ''}.`);
+      step.text.push(`Next steps available under the ${framework === 'legacy' ? 'legacy' : 'modernized (AMA)'} system: ${lane.allowed.map(t => label({ type: t })).join(', or ')}. ${lane.note || ''}`.trim());
+      step.text.push(`Deadline (${dl.win.label}): ${dlText(dl)}.`);
+      step.requests.forEach(rr => {
+        const r = rr.req, nm = TYPE_LABEL[r.type];
+        if (rr.withdrawn) { step.text.push(`${nm} received ${fmtVal(r.date)} was withdrawn, so it does not carry the claim forward.`); cite('3.2500e'); return; }
+        if (rr.concurrent) { step.text.push(`${nm} received ${fmtVal(r.date)} was filed while another review of the same decision was still pending. Only one review of the same issue can be pending at a time, so this filing does not count unless the first was withdrawn.`); return; }
+        if (!rr.allowed) {
+          const legacyToAma = framework === 'legacy' && r.type === 'supplemental';
+          step.text.push(legacyToAma ? `${nm} received ${fmtVal(r.date)}: this decision was under the legacy system, where the review step was a Notice of Disagreement. Whether a modernized-system filing preserves the legacy claim is an open question that needs review.` : `${nm} received ${fmtVal(r.date)}: this option is not available after a ${label({ type: 'decision', level })}. ${lane.note || ''}`.trim());
+          if (legacyToAma && rr.t.v === 'late') { rr.allowed = true; step.text[step.text.length - 1] = `${nm} received ${fmtVal(r.date)}: more than one year after the legacy decision notice, so it is treated as a new filing, not a continuation.`; return; }
+          if (legacyToAma) { rr.t = { v: 'maybe', why: 'legacy decision with a modernized-system filing' }; if (!carrying && !carryingMaybe) { carryingMaybe = rr; lateOrBad = lateOrBad.filter(x => x !== rr); } }
+          return;
+        }
+        if (rr.t.v === 'timely') step.text.push(exact(r.date) && !dl.floorOnly ? `${nm} received ${fmtVal(r.date)}: on time, ${rr.t.margin} day${rr.t.margin === 1 ? '' : 's'} before the deadline.` : `${nm} received ${fmtVal(r.date)}: on time, even counting the latest possible filing date and the earliest possible deadline.`);
+        else if (rr.t.v === 'late') step.text.push(`${nm} received ${fmtVal(r.date)}: about ${rr.t.late} day${rr.t.late === 1 ? '' : 's'} after the deadline. It does not appear to be on time.`);
+        else step.text.push(`${nm} received ${fmtVal(r.date)}: cannot tell whether it was on time, because ${rr.t.why}.`);
+      });
+
+      if (carrying || carryingMaybe) {
+        const rr = carrying || carryingMaybe;
+        if (!carrying) {
+          uncertain++;
+          rr.t.side === 'notice' ? ask(cur, 'notice', `What date was on the notification letter for your ${monthYear(decWhen(cur))} decision?`, true)
+            : rr.t.postmark ? ask(rr.req, 'date', `What was the postmark or submission date of your Board appeal (${monthYear(rr.req.date)})?`, true)
+            : rr.t.why === 'legacy decision with a modernized-system filing' ? null
+            : ask(rr.req, 'date', `What exact date did VA receive your ${label(rr.req)} (${monthYear(rr.req.date)})?`, true);
+          step.result = 'uncertain';
+          step.text.push('Until that is confirmed, continuous pursuit at this step cannot be determined. The rest of the history was reviewed as if this filing was on time.');
+        } else {
+          step.result = 'timely';
+          step.text.push(`Because the ${label(rr.req)} was filed on time, the claim stays continuously pursued at this step.`);
+          if (rr.req.type === 'optin') { framework = 'ama'; cite('3.2400'); step.text.push('The election moved the claim into the modernized system.'); exc('transition', 'Legacy to modernized transition', 'The claim moved from the legacy appeal system into the modernized system. The election had to be made within the time allowed, and the original claim date carries over when it was.', ['3.2400', '19.52'], null); }
+        }
+        if (rr.req.type === 'optin') framework = 'ama';
+        if (rr.req.type === 'form9' || (framework === 'legacy' && rr.req.type === 'board')) cite('19.52');
+        const nxt = answerTo(rr.req, decs, used);
+        if (!nxt) { step.pending = rr.req; step.text.push(`No decision on the ${label(rr.req)} is described, so it appears to still be pending.`); break; }
+        if (rr.req.type === 'board' && framework === 'legacy' && (nxt.level === 'board')) { step.text.push('After a legacy Notice of Disagreement, VA normally issued a Statement of the Case before the Board stage. None is described.'); miss('A legacy Statement of the Case and Substantive Appeal (VA Form 9) are not described.', false); }
+        cur = nxt; continue;
+      }
+
+      // No timely filing.
+      if (lateOrBad.length) {
+        const first = lateOrBad[0];
+        breaks++; step.result = 'break';
+        if (seg) seg.broken = true;
+        step.text.push(first.allowed
+          ? `No review request was filed on time, so this decision appears to have become final. Continuous pursuit appears broken here.`
+          : `The filing used a review option that is not available at this stage, and no available option was filed on time. Continuous pursuit may be broken here.`);
+        if (first.req.type === 'supplemental') step.text.push('A supplemental claim filed after the one-year period starts a new effective-date period: the effective date can be no earlier than the date VA received it.');
+        else step.text.push('A late Higher-Level Review or Board appeal does not preserve the claim date, unless VA or the Board grants an extension for good cause.');
+        exc('goodcause', 'Extension for good cause', 'Deadlines can be extended for good cause. A request for an extension is a separate issue, and it must explain why the filing could not be made on time.', ['3.109b', '20.203'], null);
+        if (!known(decWhen(cur))) break;
+        const n = first.req.type === 'supplemental' ? first.req : restart(first.req.date && known(first.req.date) ? first.req.date.lo : decWhen(cur).lo, 'late filing');
+        if (n === first.req) { seg = { start: n.date, label: 'supplemental claim filed after the one-year period', cites: ['5110a3', '3.2500h'], broken: false }; out.segments.push(seg); cite('5110a3', '3.2500h'); }
+        if (!n) break;
+        const nxt = n.type === 'claim' ? decs.find(d => !used.has(d.id) && known(decWhen(d)) && decWhen(d).lo >= n.date.lo) : answerTo(n, decs, used);
+        if (!nxt) { step.text.push('No decision on that later filing is described.'); break; }
+        framework = null; cur = nxt; continue;
+      }
+
+      // Nothing filed against this decision.
+      if (cur.outcome === 'granted') {
+        step.result = 'granted';
+        step.text.push('The issue was granted and no review was filed. A grant carries the claim date forward. If you disagree with the effective date or rating assigned, the same review deadline applies.');
+        const open = dl.known && asOf <= dl.lo.date;
+        if (open) step.text.push(`The review period for this decision appears to still be open, through ${fmt(dl.lo.date)}.`);
+        break;
+      }
+      if (dl.known && asOf <= dl.lo.date) { step.result = 'open'; step.text.push(`No review is described yet, and the deadline has not passed. Filing a review option by ${fmt(dl.lo.date)} would keep the claim continuously pursued.`); break; }
+      if (!dl.known || (dl.floorOnly && asOf <= addYears(dl.lo.date, 1))) { uncertain++; step.result = 'uncertain'; ask(cur, 'notice', `What date was on the notification letter for your ${monthYear(decWhen(cur))} decision?`, true); step.text.push('Without the notice date, the tool cannot tell whether the review period has ended.'); break; }
+      // Legacy: evidence within the appeal period keeps the claim pending (3.156(b)).
+      const ev156 = framework === 'legacy' && evs.find(e => e.type === 'evidence' && known(e.date) && known(decWhen(cur)) && e.date.lo >= decWhen(cur).lo && e.date.hi <= dl.lo.date);
+      if (ev156) {
+        uncertain++; step.result = 'uncertain';
+        step.text.push(`No Notice of Disagreement was filed, but evidence was submitted ${fmtVal(ev156.date)}, within the one-year appeal period. For legacy claims, new and material evidence received in that period is treated as part of the pending claim, which can keep it open.`);
+        exc('3156b', 'Evidence within the legacy appeal period', 'Evidence submitted within one year of a legacy decision may have kept that claim pending, if it was new and material and VA never addressed it.', ['3.156b'], start && start.dv);
+        break;
+      }
+      breaks++; step.result = 'break'; if (seg) seg.broken = true;
+      step.text.push(`No review request on this issue was filed by the deadline, so the decision appears to have become final. Continuous pursuit appears broken here.`);
+      if (dl.floorOnly) { step.text.push('The notice date is unknown, but more than two years have passed since the decision, so the review period has ended unless the notice was delayed by more than a year.'); ask(cur, 'notice', `What date was on the notification letter for your ${monthYear(decWhen(cur))} decision?`, false); }
+      cite('3.160d');
+      const n = restart(dl.hi ? dl.hi.date : dl.lo.date, 'no filing');
+      if (!n) break;
+      const nxt = n.type === 'claim' ? decs.find(d => !used.has(d.id) && known(decWhen(d)) && decWhen(d).lo >= n.date.lo) : answerTo(n, decs, used);
+      if (!nxt) { step.text.push(`A ${label(n)} was filed ${fmtVal(n.date)}; no decision on it is described.`); break; }
+      framework = null; cur = nxt;
+    }
+    if (!firstDec && origin) out.notes.push('No decision is described yet, so there is nothing to review for continuous pursuit. The claim appears to be pending.');
+
+    // ---- Exceptions and alternative effective-date rules from the events ----
+    evs.forEach(e => {
+      if (e.type === 'records') exc('3156c', 'Service department records', `You mentioned service department records found or added ${fmtVal(e.date)}. If they existed but were not considered when VA first decided the claim, VA reconsiders it, and an award can reach back to the original claim date even if continuous pursuit was broken.`, ['3.156c'], origin && origin.date);
+      if (e.type === 'cue') exc('cue', 'Clear and unmistakable error (CUE)', 'A CUE request asks VA to revise a final decision. It is separate from continuous pursuit. If granted, the decision is corrected as if made correctly on the original date. A supplemental claim cannot be filed on a decision denying CUE.', ['3.105a', '3.2500c'], origin && origin.date);
+      if (e.liberalizing) exc('3114', 'Liberalizing law', 'You mentioned a change in law (for example, a new presumptive condition). Benefits under a liberalizing law can reach back to the law\'s effective date if requested within one year of it, or up to one year before the request.', ['3.114'], null);
+      if (e.pending && e !== origin && e.type !== 'claim') exc('pendingReq', 'A filing may still be pending', `${describe(e)} may never have been decided. A pending filing keeps the claim open.`, ['3.160d'], null);
+    });
+    if (out.steps.some(s => s.framework === 'legacy') && (out.steps.some(s => s.framework === 'ama') || evs.some(e => e.type === 'optin'))) exc('transition', 'Legacy to modernized transition', 'This history includes decisions under both the legacy and the modernized appeal systems. Which rules applied to each step depends on the decision notice dates and any election into the new system.', ['3.2400', '19.2'], null);
+    if (otherKeys.length) out.notes.push(`Filings for other conditions (${otherKeys.join(', ')}) were not counted. A filing on a different issue does not continue this claim.`);
+
+    // ---- Overall finding ----
+    if (!origin && !firstDec) { out.status = 'unable'; miss('No claim or decision for this condition was found in the history.', true); }
+    else if (breaks) out.status = 'break';
+    else if (uncertain || critConflicts || out.missing.some(m => m.critical)) out.status = 'unable';
+    else out.status = 'maintained';
+
+    // ---- Potential effective date to investigate ----
+    const first = out.segments[0], last = out.segments[out.segments.length - 1];
+    const eff = { primary: null, label: '', why: [], alternatives: [] };
+    if (out.status === 'maintained' && first) { eff.primary = first.start; eff.label = first.label === 'day after separation' ? 'Day after separation' : `Date of ${first.label}`; eff.why.push(`Each decision was followed by a timely review, so the date of the ${first.label} (${fmtVal(first.start)}) may be preserved.`); cite(...first.cites); }
+    else if (out.status === 'break' && last) {
+      eff.primary = last === first && first.broken ? null : last.start; eff.label = eff.primary ? `Date of ${last.label}` : '';
+      if (eff.primary) eff.why.push(`Because continuous pursuit appears broken, the date that may apply is the ${last.label}, ${fmtVal(last.start)}. A supplemental claim filed more than one year after a decision gets an effective date no earlier than its receipt.`);
+      else eff.why.push('Continuous pursuit appears broken, and no later claim on this issue is described. Any later grant would depend on a new filing.');
+      if (first && first !== last) eff.alternatives.push({ dv: first.start, label: `Original ${first.label} date`, why: 'Reachable only through an exception listed below, such as CUE or service department records.' });
+    } else {
+      eff.why.push('There is not enough information to identify one date. These dates need investigation:');
+      out.segments.forEach(s => eff.alternatives.push({ dv: s.start, label: `Date of ${s.label}`, why: s === first ? 'Applies if every review was timely.' : 'Applies if continuous pursuit was broken before it.' }));
+    }
+    out.exceptions.filter(x => x.date && known(x.date) && ['pending', '3156c', 'cue', '3156b'].includes(x.id)).forEach(x => { if (!eff.alternatives.some(a => a.dv && a.dv.lo === x.date.lo) && !(eff.primary && eff.primary.lo === x.date.lo)) eff.alternatives.push({ dv: x.date, label: x.title, why: 'Possible only if this exception applies.' }); });
+    eff.why.push('VA uses the later of the claim date or the date entitlement arose (for example, when the condition was diagnosed or got worse). That needs separate analysis of the medical evidence.');
+    cite('3.400');
+    out.effective = eff;
+
+    // ---- Recommended verification, most important first ----
+    const rec = [];
+    out.questions.filter(q => q.critical).forEach(q => rec.push(q.text));
+    out.conflicts.forEach(c => rec.push(c.text));
+    out.missing.filter(m => m.critical).forEach(m => rec.push(m.text));
+    if (out.status !== 'unable') rec.push('Compare each date here with the date on the VA letter itself, and with the date VA received each form (shown on VA.gov or in your claims file).');
+    out.recommend = [...new Set(rec)].slice(0, 6);
+    out.cites = [...out.cites].filter(k => R.citations[k]);
+    return out;
+  }
+
+  return { analyze, fmt, fmtVal, addDays, addYears, rollForward, nonWorkday, holidays, known, chrono, TYPE_LABEL, LEVEL_LABEL, REQUEST_TYPES, issueKey, describe, dayVal };
+})();
+
+
+/* On-device narrative reader. Rule-based: no AI service, no network.
+   Turns a free-text claim history into provisional events that the person confirms or corrects.
+   It keeps the person's words, keeps approximate dates approximate, and never fills in a missing date. */
+const CPX = (() => {
+  const MI = { jan: 0, feb: 1, mar: 2, apr: 3, may: 4, jun: 5, jul: 6, aug: 7, sep: 8, oct: 9, nov: 10, dec: 11 };
+  const M = '(jan(?:uary)?|feb(?:ruary)?|mar(?:ch)?|apr(?:il)?|may|june?|july?|aug(?:ust)?|sept?(?:ember)?|oct(?:ober)?|nov(?:ember)?|dec(?:ember)?)';
+  const p2 = n => String(n).padStart(2, '0');
+  const lastDay = (y, m) => new Date(Date.UTC(y, m + 1, 0)).getUTCDate();
+  const ymd = (y, m, d) => `${y}-${p2(m + 1)}-${p2(d)}`;
+  const mon = s => MI[s.slice(0, 3).toLowerCase()];
+  const yr = s => { const n = +s; return s.length === 2 ? (n >= 50 ? 1900 + n : 2000 + n) : n; };
+  const okDay = (y, m, d) => m >= 0 && m < 12 && d >= 1 && d <= lastDay(y, m) && y >= 1940 && y <= 2100;
+  const APPROX_BEFORE = /(around|about|approximately|approx\.?|roughly|sometime|some time|i think|i believe|maybe|probably|circa|not sure|i guess|if i remember)\W*(?:\w+\W+){0,3}$/i;
+  const APPROX_AFTER = /^\W*(or so|-?ish|i think|i believe|maybe)/i;
+
+  // Date patterns, most specific first. Each returns { lo, hi, precision } or null.
+  const PATTERNS = [
+    [/\b(\d{4})-(\d{1,2})-(\d{1,2})\b/gi, m => { const y = +m[1], mo = +m[2] - 1, d = +m[3]; return okDay(y, mo, d) && { lo: ymd(y, mo, d), hi: ymd(y, mo, d), precision: 'day' }; }],
+    [/\b(\d{1,2})\/(\d{1,2})\/(\d{4}|\d{2})\b/gi, m => { const y = yr(m[3]), mo = +m[1] - 1, d = +m[2]; return okDay(y, mo, d) && { lo: ymd(y, mo, d), hi: ymd(y, mo, d), precision: 'day' }; }],
+    [new RegExp(`\\b${M}\\.?\\s+(\\d{1,2})(?:st|nd|rd|th)?,?\\s+(\\d{4})\\b`, 'gi'), m => { const y = +m[3], mo = mon(m[1]), d = +m[2]; return okDay(y, mo, d) && { lo: ymd(y, mo, d), hi: ymd(y, mo, d), precision: 'day' }; }],
+    [new RegExp(`\\b(\\d{1,2})(?:st|nd|rd|th)?\\s+(?:of\\s+)?${M}\\.?,?\\s+(\\d{4})\\b`, 'gi'), m => { const y = +m[3], mo = mon(m[2]), d = +m[1]; return okDay(y, mo, d) && { lo: ymd(y, mo, d), hi: ymd(y, mo, d), precision: 'day' }; }],
+    [new RegExp(`\\b(early|mid|middle of|late|end of|beginning of)[\\s-]+${M}\\.?,?\\s+(?:of\\s+)?(\\d{4})\\b`, 'gi'), m => { const y = +m[3], mo = mon(m[2]), L = lastDay(y, mo), part = m[1].toLowerCase(); const [a, b] = /early|beginning/.test(part) ? [1, 10] : /mid/.test(part) ? [10, 20] : [20, L]; return { lo: ymd(y, mo, a), hi: ymd(y, mo, b), precision: 'range', approx: true }; }],
+    [/\b(early|mid|middle of|late|end of|beginning of|spring|summer|fall|autumn|winter)(?:\s+of)?(?:\s+the\s+year)?\s+(\d{4})\b/gi, m => { const y = +m[2], part = m[1].toLowerCase(); const r = /early|beginning/.test(part) ? ['01-01', '04-30'] : /mid/.test(part) ? ['05-01', '08-31'] : /late|end/.test(part) ? ['09-01', '12-31'] : part === 'spring' ? ['03-01', '05-31'] : part === 'summer' ? ['06-01', '08-31'] : part === 'winter' ? ['01-01', '03-20'] : ['09-01', '11-30']; return { lo: `${y}-${r[0]}`, hi: part === 'winter' ? `${y + 1}-02-28` : `${y}-${r[1]}`, precision: 'range', approx: true }; }],
+    [new RegExp(`\\b${M}\\.?,?\\s+(?:of\\s+)?(\\d{4})\\b`, 'gi'), m => { const y = +m[2], mo = mon(m[1]); return { lo: ymd(y, mo, 1), hi: ymd(y, mo, lastDay(y, mo)), precision: 'month' }; }],
+    [/\b(\d{1,2})\/(\d{4})\b/gi, m => { const y = +m[2], mo = +m[1] - 1; return mo >= 0 && mo < 12 && { lo: ymd(y, mo, 1), hi: ymd(y, mo, lastDay(y, mo)), precision: 'month' }; }],
+    [new RegExp(`\\b${M}\\.?\\s+(\\d{1,2})(?:st|nd|rd|th)?\\b(?!\\s*,?\\s*\\d{4})`, 'gi'), () => ({ lo: null, hi: null, precision: 'unknown', noYear: true })],
+    [/\b(19[4-9]\d|20[0-9]\d)\b/g, m => ({ lo: `${m[1]}-01-01`, hi: `${m[1]}-12-31`, precision: 'year' })],
+  ];
+  function findDates(s) {
+    const taken = [], found = [];
+    for (const [re, fn] of PATTERNS) {
+      re.lastIndex = 0; let m;
+      while ((m = re.exec(s))) {
+        const a = m.index, b = a + m[0].length;
+        if (taken.some(([x, y]) => a < y && b > x)) continue;
+        if (/^may$/i.test(m[1] || '') && !/\d/.test(m[0])) continue;
+        const v = fn(m); if (!v) continue;
+        taken.push([a, b]);
+        const approx = !!v.approx || APPROX_BEFORE.test(s.slice(Math.max(0, a - 40), a)) || APPROX_AFTER.test(s.slice(b, b + 14));
+        found.push({ start: a, end: b, text: m[0], lo: v.lo, hi: v.hi, precision: v.precision, approx, how: approx ? 'approximate' : v.lo ? 'explicit' : 'unknown', noYear: !!v.noYear });
+      }
+    }
+    return found.sort((x, y) => x.start - y.start);
+  }
+  const dv = d => d && { text: d.text, lo: d.lo, hi: d.hi, precision: d.precision, approx: d.approx, how: d.how };
+
+  // ---------- Conditions ----------
+  const JOINTS = [['knee', 'knees?'], ['shoulder', 'shoulders?'], ['hip', 'hips?'], ['ankle', 'ankles?'], ['wrist', 'wrists?'], ['elbow', 'elbows?'], ['foot', 'foot|feet']];
+  const CONDS = [
+    [/\btinnitus\b|ringing in (?:my )?ears/i, 'tinnitus'], [/\bhearing loss\b|\bhearing\b/i, 'hearing loss'], [/\bptsd\b|post[- ]traumatic/i, 'PTSD'],
+    [/\b(?:depression|anxiety|mental health|major depressive|adjustment disorder|bipolar)\b/i, 'mental health'], [/\bsleep apnea\b|\bosa\b/i, 'sleep apnea'],
+    [/\b(?:lower|low|lumbar|upper|mid)\s+back\b|\b(?:my|his|her|a)\s+back\b(?!\s+(?:then|to|and forth|pay))|\bback\s+(?:condition|injury|pain|disability|claim|problems?|strain)\b|\blumbar\b|\blumbosacral\b|\bdegenerative disc\b/i, 'back'],
+    [/\bneck\b|\bcervical\b/i, 'neck'], [/\bmigraines?\b|\bheadaches?\b/i, 'migraines'], [/\bhypertension\b|high blood pressure/i, 'hypertension'], [/\bdiabetes\b/i, 'diabetes'],
+    [/\bradiculopathy\b|\bsciatica\b/i, 'radiculopathy'], [/\bgerd\b|acid reflux/i, 'GERD'], [/\bibs\b|irritable bowel/i, 'IBS'], [/\basthma\b/i, 'asthma'], [/\bsinusitis\b/i, 'sinusitis'], [/\brhinitis\b/i, 'rhinitis'],
+    [/\btbi\b|traumatic brain/i, 'TBI'], [/\bischemic heart\b|\bheart (?:condition|disease)\b/i, 'heart disease'], [/\bprostate cancer\b/i, 'prostate cancer'], [/\berectile dysfunction\b|\bED\b/, 'erectile dysfunction'],
+    [/\bscars?\b/i, 'scars'], [/\beczema\b|\bpsoriasis\b|\bdermatitis\b/i, 'skin condition'], [/\btdiu\b|unemployability/i, 'TDIU'], [/\bplantar fasciitis\b/i, 'plantar fasciitis'], [/\bflat feet\b|\bpes planus\b/i, 'flat feet'], [/\bcarpal tunnel\b/i, 'carpal tunnel'],
+  ];
+  function conditions(s) {
+    const out = [];
+    const add = (name, idx) => { if (!out.some(o => o.name === name)) out.push({ name, idx }); };
+    for (const [re, name] of CONDS) { const m = s.match(re); if (m) add(name, m.index); }
+    for (const [j, rx] of JOINTS) {
+      if (out.some(o => o.name === 'plantar fasciitis' || o.name === 'flat feet') && j === 'foot') continue;
+      const sided = new RegExp(`\\b(left|right|bilateral|both)\\s+(?:${rx})\\b`, 'gi'); let m, any = false;
+      while ((m = sided.exec(s))) { any = true; const side = m[1].toLowerCase(); add(`${side === 'both' ? 'bilateral' : side} ${j}`, m.index); }
+      if (!any) { const m2 = s.match(new RegExp(`\\b(?:${rx})\\b`, 'i')); if (m2) add(j, m2.index); }
+    }
+    return out.sort((a, b) => a.idx - b.idx);
+  }
+
+  // ---------- Clause classification ----------
+  const K = {
+    withdraw: /\bwithdr[ae]w\b|\bwithdrawn\b|\bwithdrawal\b/i,
+    cue: /clear and unmistakable|\bCUE\b/,
+    records: /\b(?:service|personnel|military|unit|deck|ship|service treatment|STRs?)\b[^.]{0,30}\brecords?\b[^.]{0,40}\b(?:found|located|turned up|discovered|declassified)\b|\b(?:found|located|discovered|declassified|turned up|finally (?:got|received|obtained)|later (?:got|received|obtained))\b[^.]{0,40}\b(?:service|personnel|military|unit|deck|ship|service treatment)\s+(?:treatment\s+)?records?\b/i,
+    optin: /\bRAMP\b|\bopt(?:ed)?[\s-]?in(?:to)?\b|\belected?\s+(?:into|the)\s+(?:new|modernized|AMA)|\bchose the (?:new|modernized|AMA)/i,
+    form9: /\bform 9\b|\bsubstantive appeal\b|\bVA form 9\b/i,
+    ssoc: /\bSSOC\b|supplemental statement of the case/i,
+    soc: /\bSOC\b|\bstatement of the case\b/i,
+    court: /\bCAVC\b|court of appeals|veterans court|\bcourt\b|\bjoint motion\b|\bJMR\b/i,
+    board: /\bboard\b|\bBVA\b|notice of disagreement|\bNOD\b|10182|21-0958|veterans law judge|\bVLJ\b/i,
+    hlr: /higher[\s-]?level review|\bHLR\b|\b(?:20-)?0?996\b/i,
+    supplemental: /\bsupplemental\b|\b(?:20-)?0?995\b/i,
+    itf: /intent to file|\bITF\b|21-0966/i,
+    incomplete: /\bincomplete\b|missing (?:a |my |the )?signature|\bunsigned\b|(?:was ?n[o']t|not) complete/i,
+    separation: /\b(?:separated|discharged|released from active|got out of|left (?:the )?(?:army|navy|air force|marines?|marine corps|coast guard|military|service|active duty))\b|\bETS\b|\bretired from (?:the )?(?:army|navy|air force|marines?|military|service)\b|\bDD[- ]?214\b/i,
+    evidence: /\b(?:sent|submitted|turned in|provided|gave|uploaded|mailed)\b[^.]{0,40}\b(?:evidence|records|nexus|buddy statements?|lay statements?|medical opinion|doctor'?s? (?:letter|opinion)|statements?)\b/i,
+    decision: /\b(?:denied|denial|granted|awarded|approved|rated|service[- ]connected|decided|decision|ruled|remanded|vacated|affirmed|upheld|confirmed|continued|increased|returned|came back|disallowed|gave me)\b/i,
+    filing: /\b(?:filed|file|submitted|submit|sent in|applied|requested|asked for|appealed|put in|turned in|started|VA received|received my|signed)\b/i,
+    notice: /\bletter\b|\bnotif|\bnotice\b(?! of disagreement)|\bmailed\b|\bin the mail\b|\bgot word\b|\bheard back\b/i,
+    claim: /\bclaim(?:ed)?\b|\bfiled\b|\bapplied\b|\bapplication\b|\breopen/i,
+    liberalizing: /\bPACT\b|\bpresumptive\b|liberaliz|\bnew law\b|law changed|agent orange|burn pits?|camp lejeune/i,
+    pending: /never heard back|never (?:got|received) (?:a|any) (?:decision|answer|response)|never decided|still (?:pending|waiting)|\bno decision\b|nothing (?:ever )?happened|never acted|never processed/i,
+  };
+  const OUT = [
+    [/\bremand(?:ed)?\b|\bvacated\b|joint motion|\bJMR\b|sent (?:it )?back/i, 'remanded'],
+    [/returned[^.]{0,40}duty to assist|duty[- ]to[- ]assist error|\bDTA\b/i, 'returned'],
+    [/\bpartial(?:ly)?\b|\bin part\b|some but not/i, 'partial'],
+  ];
+  const DENY = /\b(?:denied|denial|disallowed|not service[- ]connected|upheld|affirmed|confirmed the denial|continued the denial|no change|kept the denial)\b/i;
+  const GRANT = /\b(?:granted|awarded|approved|increased|rated (?:at|me)|gave me \d|service[- ]connected)\b/i;
+  function outcomeOf(s) {
+    for (const [re, o] of OUT) if (re.test(s)) return o;
+    const d = DENY.test(s), g = GRANT.test(s.replace(/not service[- ]connected/ig, ''));
+    return d && g ? 'partial' : d ? 'denied' : g ? 'granted' : 'unknown';
+  }
+  function verbOrder(s) { const d = s.search(K.decision), f = s.search(K.filing); return { d, f, isDecision: d >= 0 && (f < 0 || d < f) }; }
+
+  const NEG = /\b(?:did ?n[o']t|didn't|never|not|no)\s+(?:\w+\s+)?(?:file|filed|appeal|appealed|submit|submitted|request|requested|anything)\b/i;
+  function classify(s) {
+    if (NEG.test(s) && !K.pending.test(s) && !/\b(?:denied|granted|decided|remanded)\b/i.test(s)) return null;
+    if (K.withdraw.test(s)) return { type: 'withdrawal' };
+    if (K.cue.test(s) && !/\bdenied my cue|cue was denied/i.test(s)) return { type: 'cue' };
+    if (K.records.test(s)) return { type: 'records' };
+    if (K.optin.test(s)) return { type: 'optin', lane: K.hlr.test(s) ? 'hlr' : K.board.test(s) ? 'board' : 'supplemental' };
+    if (K.form9.test(s)) return { type: 'form9' };
+    if (K.ssoc.test(s)) return { type: 'decision', level: 'ssoc' };
+    if (K.soc.test(s)) return { type: 'decision', level: 'soc' };
+    const v = verbOrder(s);
+    for (const lane of ['court', 'board', 'hlr', 'supplemental']) {
+      if (K[lane].test(s)) {
+        if (lane === 'court' && /\b(?:joint motion|JMR)\b/i.test(s)) return { type: 'decision', level: 'court' };
+        return v.isDecision ? { type: 'decision', level: lane } : { type: lane };
+      }
+    }
+    if (K.itf.test(s)) return { type: 'itf' };
+    if (K.incomplete.test(s) && K.claim.test(s)) return { type: 'incomplete' };
+    if (K.separation.test(s) && !/hospital/i.test(s)) return { type: 'separation' };
+    if (v.isDecision) return { type: 'decision', level: 'auto' };
+    if (K.evidence.test(s) && !/\bclaim\b/i.test(s)) return { type: 'evidence' };
+    if (NEG.test(s) && !K.pending.test(s)) return null;
+    if (!(K.filing.test(s) && K.claim.test(s)) && K.notice.test(s)) return { type: 'notice' };
+    if (K.claim.test(s) || K.filing.test(s)) return { type: 'claim', claimKind: /increase|higher rating|got worse|worsen|re-?evaluat/i.test(s) ? 'increase' : 'original' };
+    if (K.liberalizing.test(s) || K.pending.test(s)) return { type: 'other' };
+    return null;
+  }
+
+  // Which dates in a decision clause are the decision date and which the notice date.
+  const NOTICE_WORDS = /\bletter\b|\bnotif\w*|\bnotice\b(?! of disagreement)|\bmailed\b|\bin the mail\b|\bsent (?:me|out|it)\b|\bgot (?:it|the|a|my|their)\b|\breceived (?:it|the|a|my|their)\b|\bheard back\b/gi;
+  const DECISION_WORDS = /\bdeni\w*|\bgrant\w*|\bdecid\w*|\bdecision\b|\brated\b|\bawarded\b|\bremand\w*|\bupheld\b|\baffirmed\b|\bvacated\b|\bruled\b|\bapproved\b/gi;
+  const lastIdx = (re, s) => { re.lastIndex = 0; let m, i = -1; while ((m = re.exec(s))) i = m.index; return i; };
+  function roles(clause, dates) {
+    let prevEnd = 0; const res = [];
+    dates.forEach((d, i) => {
+      const pre = clause.slice(prevEnd, d.start), alt = i > 0 && /^\s*,?\s*or\s+(?:maybe\s+|possibly\s+)?(?:on\s+)?$/i.test(clause.slice(dates[i - 1].end, d.start));
+      if (alt) { res.push({ d, role: 'alt' }); prevEnd = d.end; return; }
+      const n = lastIdx(NOTICE_WORDS, pre), k = lastIdx(DECISION_WORDS, pre);
+      let role = n > k ? 'notice' : k > n ? 'decision' : null;
+      if (!role) { const post = clause.slice(d.end, d.end + 40); role = /^\W*(?:letter|notice)/i.test(post) ? 'notice' : res.some(r => r.role === 'decision') ? 'notice' : 'decision'; }
+      res.push({ d, role }); prevEnd = d.end;
+    });
+    return res;
+  }
+
+  // ---------- Narrative to clauses ----------
+  function clauses(text) {
+    const t = text.replace(/\r/g, '').replace(/\b(Jan|Feb|Mar|Apr|Jun|Jul|Aug|Sep|Sept|Oct|Nov|Dec)\./g, '$1').replace(/\bU\.S\./g, 'US').replace(/\be\.g\./gi, 'eg').replace(/\bi\.e\./gi, 'ie').replace(/\bNo\.\s/g, 'No ');
+    const sentences = t.split(/\n+|(?<=[.!?])\s+(?=[A-Z0-9"'(])/).map(s => s.trim()).filter(Boolean);
+    const SPLIT = /\s*;\s*|,?\s+(?:and\s+)?then\s+|,?\s+after that,?\s+|,\s*(?:but|so)\s+|\s+but\s+(?=(?:VA|the VA|they|it|I)\b)|,?\s+and\s+(?=(?:I|I've|I'd|VA|they|it|the VA|the Board|the board|the court|the HLR|the decision|the letter|later|on|in|a year|about|around)\b)|,\s*which\s+(?=was|were|got|VA|the)|\s+that\s+(?=was|were|got)\b|\s+which\s+(?=was|were)\b/i;
+    const out = [];
+    sentences.forEach((s, si) => s.split(SPLIT).map(c => c && c.trim()).filter(c => c && c.length > 2).forEach(c => out.push({ text: c, sentence: si })));
+    return out;
+  }
+
+  function extract(text) {
+    const cls = clauses(text || '');
+    const events = []; let seq = 0, lastIssues = [], lastDecision = null, lastReq = null, flags = { liberalizing: false, pending: false };
+    const mk = o => { const e = Object.assign({ id: 'e' + (++seq), seq, verified: false, confirmedType: false }, o); events.push(e); return e; };
+    cls.forEach(c => {
+      const s = c.text;
+      let cond = conditions(s);
+      let issues = cond.map(x => x.name), issueInferred = false;
+      if (!issues.length && lastIssues.length) { issues = lastIssues.slice(); issueInferred = true; }
+      if (cond.length) lastIssues = issues.slice();
+      const k = classify(s);
+      const dates = findDates(s);
+      const lib = K.liberalizing.test(s), pend = K.pending.test(s);
+      if (lib) flags.liberalizing = true; if (pend) flags.pending = true;
+      if (!k) return;
+      const firstDate = dates.find(d => d.lo) || dates[0] || null;
+      const noYear = dates.filter(d => d.noYear);
+      const base = { issues, issueInferred, source: s, liberalizing: lib, pending: pend };
+      if (noYear.length) base.dateNote = `"${noYear.map(d => d.text).join('", "')}" has no year, so it was not used.`;
+
+      if (k.type === 'notice') {
+        // A clause about the letter: the notice date of the most recent decision.
+        const d = dates.find(x => x.lo);
+        if (lastDecision && d) {
+          if (lastDecision.notice && lastDecision.notice.lo && lastDecision.notice.lo !== d.lo) lastDecision.conflict = [lastDecision.notice, dv(d)];
+          else lastDecision.notice = dv(d);
+          lastDecision.source += ' … ' + s;
+        } else if (d) mk(Object.assign({}, base, { type: 'decision', level: 'auto', outcome: outcomeOf(s), date: null, notice: dv(d) }));
+        return;
+      }
+      if (k.type === 'decision') {
+        const r = roles(s, dates.filter(d => d.lo));
+        // "...the decision letter was dated X" with no outcome: the notice date of the decision already described.
+        if (lastDecision && k.level === 'auto' && r.length && r.every(x => x.role === 'notice') && outcomeOf(s) === 'unknown') {
+          const d = r[0].d;
+          if (lastDecision.notice && lastDecision.notice.lo && lastDecision.notice.lo !== d.lo) lastDecision.conflict = [lastDecision.notice, dv(d)];
+          else lastDecision.notice = dv(d);
+          lastDecision.source += ' … ' + s;
+          return;
+        }
+        const dec = r.find(x => x.role === 'decision'), note = r.find(x => x.role === 'notice'), alt = r.find(x => x.role === 'alt');
+        const pct = (s.match(/(\d{1,3})\s?(?:%|percent)/i) || [])[1];
+        const one = (iss, outcome) => {
+          const e = mk(Object.assign({}, base, { type: 'decision', level: k.level, issues: iss, outcome, percent: pct ? +pct : null, date: dec ? dv(dec.d) : null, notice: note ? dv(note.d) : null }));
+          if (alt) { const prev = r[r.indexOf(alt) - 1]; e.conflict = [dv(prev.d), dv(alt.d)]; }
+          return e;
+        };
+        // One decision can grant one condition and deny another.
+        if (cond.length > 1 && DENY.test(s) && GRANT.test(s)) {
+          const words = []; let m; const re = new RegExp(`${DENY.source}|${GRANT.source}`, 'gi');
+          while ((m = re.exec(s))) words.push({ i: m.index, o: DENY.test(m[0]) ? 'denied' : 'granted' });
+          cond.forEach(cn => { const near = words.reduce((b, w) => (Math.abs(w.i - cn.idx) < Math.abs(b.i - cn.idx) ? w : b), words[0]); lastDecision = one([cn.name], near.o); });
+        } else lastDecision = one(issues, outcomeOf(s));
+        return;
+      }
+      // Filings and other events: the first date is the filing date; a second date after "received" is the receipt date.
+      let date = firstDate && firstDate.lo ? dv(firstDate) : null, conflict = null;
+      const known = dates.filter(d => d.lo);
+      if (known.length > 1) {
+        const r = roles(s, known);
+        const alt = r.find(x => x.role === 'alt');
+        if (alt) conflict = [dv(known[0]), dv(alt.d)];
+        const rec = known.find((d, i) => i > 0 && /\b(?:received|receipt|got it|date stamp)\b/i.test(s.slice(known[i - 1].end, d.start)));
+        if (rec) date = dv(rec);
+      }
+      const e = mk(Object.assign({}, base, { type: k.type, date, conflict }, k.lane ? { lane: k.lane } : {}, k.claimKind ? { claimKind: k.claimKind } : {}));
+      if (e.type === 'other') e.note = lib ? 'Mentions a change in law.' : 'Mentions a filing that may still be pending.';
+      if (e.type === 'claim' && pend) e.pending = true;
+      if (['supplemental', 'hlr', 'board', 'court', 'form9', 'optin'].includes(e.type)) lastReq = e;
+    });
+    // A bare joint name ("knee") that matches exactly one sided version ("left knee") is the same condition.
+    const names = [...new Set(events.flatMap(e => e.issues))];
+    const sided = n => names.filter(x => x !== n && x.endsWith(' ' + n));
+    events.forEach(e => { e.issues = [...new Set(e.issues.map(n => (sided(n).length === 1 ? sided(n)[0] : n)))]; });
+    // Default condition: the one with the most events, ties to the first mentioned.
+    const counts = {};
+    events.forEach(e => e.issues.forEach(n => { counts[n] = (counts[n] || 0) + (e.issueInferred ? 0.5 : 1); }));
+    const issues = Object.keys(counts).map(n => ({ name: n, count: counts[n] })).sort((a, b) => b.count - a.count);
+    return { events, issues, defaultIssue: issues.length ? issues[0].name : '', flags, clauses: cls.length };
+  }
+
+  // Parse a single date typed into the timeline editor.
+  function parseOne(s) { if (!s || !s.trim()) return null; const d = findDates(s.trim())[0]; return d ? dv(d) : { text: s.trim(), lo: null, hi: null, precision: 'unknown', approx: false, how: 'unknown' }; }
+
+  return { extract, findDates, conditions, classify, parseOne, clauses };
+})();
+
+
+(() => {
+  const $ = s => document.querySelector(s);
+  const esc = s => String(s == null ? '' : s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+  const EXAMPLE = 'I got out of the Army on June 30, 2019. I filed my claim for my left knee on March 4, 2020. VA denied it on August 14, 2020, and the letter was dated August 19, 2020. I filed a Higher-Level Review on July 30, 2021. The HLR decision on November 2, 2021 kept the denial. I filed a supplemental claim with a doctor\'s opinion in October 2022. VA granted my left knee at 10% on April 5, 2023, letter dated April 10, 2023.';
+  const DISCLAIMER = 'This tool provides educational information and preliminary issue identification only. VA effective-date determinations depend on the complete claims record, applicable law, and individual circumstances. Continuous pursuit is not the only potential basis for an earlier effective date. This tool may not address every exception or unique situation. AI-generated timelines and analyses may contain errors. Users are responsible for verifying all dates, decisions, and information against official records. This tool is not affiliated with or endorsed by the Department of Veterans Affairs.';
+  const STATUS = {
+    maintained: ['Appears Maintained', 'The available dates and procedural history support a preliminary finding of continuous pursuit.'],
+    break: ['Potential Break Identified', 'One or more procedural events may have interrupted continuous pursuit.'],
+    unable: ['Unable to Determine', 'Essential information is missing, contradictory, or legally uncertain.'],
+  };
+  const FILING_TYPES = [['supplemental', 'Supplemental claim'], ['hlr', 'Higher-Level Review'], ['board', 'Board appeal / Notice of Disagreement'], ['court', 'Court appeal (CAVC)'], ['form9', 'Substantive Appeal (VA Form 9, legacy)'], ['optin', 'Election into the modernized system (RAMP or opt-in)']];
+  const OTHER_TYPES = [['decision', 'VA or Board decision'], ['claim', 'Claim filed'], ['itf', 'Intent to file'], ['incomplete', 'Incomplete application'], ['separation', 'Separation from service'], ['evidence', 'Evidence submitted'], ['records', 'Service department records found'], ['cue', 'CUE request'], ['withdrawal', 'Withdrawal of a review request'], ['other', 'Other event']];
+  const LEVELS = [['initial', 'Initial decision on a claim'], ['supplemental', 'Decision on a supplemental claim'], ['hlr', 'Higher-Level Review decision'], ['board', 'Board decision'], ['court', 'Court decision'], ['soc', 'Statement of the Case (legacy)'], ['ssoc', 'Supplemental Statement of the Case (legacy)'], ['auto', 'Not sure']];
+  const OUTCOMES = [['unknown', 'Not stated'], ['granted', 'Granted'], ['partial', 'Partly granted'], ['denied', 'Denied'], ['remanded', 'Remanded or vacated'], ['returned', 'Returned for a duty-to-assist error']];
+  let VIEW = [];
+  const S = { story: '', events: [], issue: '', issues: [], editing: null, ran: false, seq: 1000 };
+
+  $('#extext').textContent = EXAMPLE;
+  $('#useex').onclick = () => { $('#story').value = EXAMPLE; $('#exwrap').open = false; run(true); };
+  $('#go').onclick = () => run(true);
+  $('#clear').onclick = () => { $('#story').value = ''; S.events = []; S.ran = false; $('#out').innerHTML = ''; $('#intro').hidden = false; $('#story').focus(); };
+  const grow = () => { const t = $('#story'); t.style.height = 'auto'; t.style.height = Math.min(Math.max(t.scrollHeight + 4, 176), 640) + 'px'; };
+  $('#story').addEventListener('input', grow);
+
+  function run(fresh) {
+    S.story = $('#story').value.trim();
+    if (!S.story) { toast('Type or paste your claim history first.'); $('#story').focus(); return; }
+    const x = CPX.extract(S.story);
+    S.events = x.events; S.issues = x.issues.map(i => i.name); S.issue = x.defaultIssue; S.ran = true; S.editing = null;
+    $('#intro').hidden = true;
+    render(fresh);
+  }
+
+  const allIssues = () => [...new Set([].concat(S.issues, S.events.flatMap(e => e.issues || [])))].filter(Boolean);
+  const dateCell = dv => dv && dv.lo ? CP.fmtVal(dv) : (dv && dv.text ? 'No date' : 'No date');
+
+  function analyze() { return CP.analyze({ events: S.events, issue: S.issue || '', asOf: undefined }); }
+
+  function render(scroll) {
+    if (!S.ran) return;
+    const r = analyze();
+    const issues = allIssues();
+    const html = [];
+    // Issue and basis notices
+    html.push(`<section class="callout issue fade" aria-labelledby="iss-h">
+      <h2 id="iss-h">This review covers one issue at a time${S.issue ? `: <span style="font-family:var(--display)">${esc(S.issue)}</span>` : ''}</h2>
+      <p>Continuous pursuit only protects a claim when each filing concerns <b>the same issue VA decided</b>. A filing for a different condition, or for a different question about the same condition (for example, a higher rating instead of service connection), does not continue this claim. Check that every filing below is about the same issue.</p>
+      ${issues.length > 1 ? `<div class="picker no-print"><label for="issue">Condition to analyze</label><select id="issue">${issues.map(i => `<option${i === S.issue ? ' selected' : ''}>${esc(i)}</option>`).join('')}</select></div>` : ''}
+      ${r.otherIssues.length ? `<p class="note">Also in your history: ${r.otherIssues.map(esc).join(', ')}. Those filings are not counted here. Choose each one above to analyze it separately.</p>` : ''}
+      <p class="note">Results are based only on the dates you provided. Deadlines are calculated using the one-year review period; a step that uses a different period by law is labelled.</p>
+    </section>`);
+
+    // Follow-up questions
+    if (r.questions.length) html.push(`<section class="card no-print" aria-labelledby="q-h"><h2 id="q-h">${r.questions.length === 1 ? 'One question' : 'A few questions'} that could change the result</h2>
+      ${r.questions.map((q, i) => `<div class="q"><label for="qa${i}"><b>${esc(q.text)}</b></label>${q.eventId ? `<div class="row"><input type="text" id="qa${i}" data-ev="${esc(q.eventId)}" data-field="${esc(q.field)}" placeholder="e.g. 9/16/2021 or September 16, 2021"><button class="small" data-answer="${i}" type="button">Update</button></div>` : `<p class="note">Add it to the timeline below with “Add a missing event.”</p>`}</div>`).join('')}</section>`);
+
+    // Timeline
+    const tl = CP.chrono(S.events.map(e => r.timeline.find(t => t.id === e.id) || e)); VIEW = tl;
+    const inIssue = e => !e.issues || !e.issues.length || e.issues.some(i => CP.issueKey(i) === CP.issueKey(S.issue));
+    const stepByDec = {}; r.steps.forEach(s => { stepByDec[s.decision.id] = s; });
+    const reqResult = {}; r.steps.forEach(s => s.requests.forEach(rr => { reqResult[rr.req.id] = { rr, step: s }; }));
+    html.push(`<section class="card" aria-labelledby="tl-h"><div class="row" style="justify-content:space-between"><h2 id="tl-h">Timeline</h2><span class="note">${tl.length} event${tl.length === 1 ? '' : 's'} found · sorted by date</span></div>
+      <p class="note no-print">Provisional. Check each event against your VA letters. Use Edit to correct a date, the type of filing, or which decision it challenged.</p>
+      <ol class="tl">${tl.map(e => evRow(e, inIssue(e), reqResult[e.id], r)).join('')}</ol>
+      <div class="row no-print"><button class="small" id="add" type="button">Add a missing event</button></div>
+      <div class="legend print-only"><p><b>User-reported:</b> dates and events in the timeline. <b>Calculated:</b> deadlines and findings below. <b>Unverified:</b> anything not marked confirmed.</p></div>
+    </section>`);
+
+    // A. Assessment
+    const [lab, def] = STATUS[r.status];
+    html.push(`<section class="status ${r.status} fade" aria-labelledby="st-h"><p class="eyebrow">A · Continuous pursuit assessment · preliminary</p><p class="label" id="st-h">${lab}</p><p>${def}</p></section>`);
+
+    // B. Reasoning
+    html.push(`<section class="card" aria-labelledby="why-h"><p class="eyebrow">B · Explanation and reasoning</p><h2 id="why-h">Why</h2>
+      ${r.steps.length ? `<ol class="steps">${r.steps.map(s => `<li><p><b>${esc(CP.LEVEL_LABEL[s.level] || 'Decision')}</b><span class="res-tag ${s.result}">${esc(resLabel(s.result))}</span></p>${s.text.map(t => `<p>${esc(t)}</p>`).join('')}</li>`).join('')}</ol>` : '<p>No decision on this issue was found in your history, so there is no review deadline to check yet.</p>'}
+      ${r.notes.length ? `<ul class="plain note">${r.notes.map(n => `<li>${esc(n)}</li>`).join('')}</ul>` : ''}
+    </section>`);
+
+    // C. Effective date
+    const ef = r.effective;
+    html.push(`<section class="card" aria-labelledby="eff-h"><p class="eyebrow">C · Potential effective date to investigate</p><h2 id="eff-h">Date to investigate</h2>
+      ${ef.primary ? `<p class="eff">${esc(CP.fmtVal(ef.primary))}</p><p class="note">${esc(ef.label)}. Not a determination: VA decides the effective date from the full record.</p>` : '<p><b>No single date can be identified from the information given.</b></p>'}
+      <ul class="plain">${ef.why.map(w => `<li>${esc(w)}</li>`).join('')}</ul>
+      ${ef.alternatives.length ? `<h3>Other dates that may matter</h3><ul class="plain">${ef.alternatives.map(a => `<li><b>${esc(CP.fmtVal(a.dv))}</b> · ${esc(a.label)}. ${esc(a.why)}</li>`).join('')}</ul>` : ''}
+    </section>`);
+
+    // D. Missing information and exceptions
+    const dItems = [].concat(r.conflicts.map(c => ['Conflicting dates', c.text]), r.missing.map(m => [m.critical ? 'Missing, affects the result' : 'Missing', m.text]), r.verify.map(v => ['Needs verification', v.text]));
+    html.push(`<section class="card" aria-labelledby="miss-h"><p class="eyebrow">D · Missing information and exceptions</p><h2 id="miss-h">What is missing or unusual</h2>
+      ${dItems.length ? `<ul class="plain">${dItems.map(([k, t]) => `<li><b>${esc(k)}:</b> ${esc(t)}</li>`).join('')}</ul>` : '<p>No missing or conflicting dates were found in what you entered.</p>'}
+      ${r.exceptions.length ? `<h3>Exceptions and other effective-date rules to look at</h3><ul class="plain">${r.exceptions.map(x => `<li><b>${esc(x.title)}.</b> ${esc(x.text)} <span class="refs k">${x.cites.map(k => esc(CP_RULES.citations[k] ? CP_RULES.citations[k].cite : k)).join('; ')}</span></li>`).join('')}</ul>` : ''}
+      <p class="note">Not checked automatically: pending claims VA never addressed, incomplete applications, CUE, service department records, liberalizing laws, and legacy-to-modernized transitions are flagged only when your history mentions them.</p>
+    </section>`);
+
+    // E. Verification
+    html.push(`<section class="card" aria-labelledby="ver-h"><p class="eyebrow">E · Recommended verification</p><h2 id="ver-h">What to check next</h2>
+      <ol class="steps">${r.recommend.map(t => `<li>${esc(t)}</li>`).join('')}</ol>
+      <p class="note">Your VA decision letters show the notice date. VA.gov claim status and your claims file show when VA received each form. An accredited representative (VSO, attorney, or claims agent) can help review the full record. Accredited VSO representatives help at no cost.</p>
+    </section>`);
+
+    html.push(`<section class="disclaimer" aria-label="Disclaimer"><p><b>Disclaimer.</b> ${esc(DISCLAIMER)}</p><p style="margin-top:.5rem">In this version, the timeline is built by on-device rules rather than AI, and those rules can also misread dates or events.</p></section>`);
+
+    // References
+    html.push(`<section class="card" aria-labelledby="ref-h"><p class="eyebrow">Legal references</p><h2 id="ref-h">Authorities applied</h2>
+      <div class="refs">${r.cites.map(k => { const c = CP_RULES.citations[k]; return `<div><a href="${esc(c.url)}" target="_blank" rel="noopener">${esc(c.cite)}</a> · ${esc(c.what)} <span class="k">${c.kind}${c.verified === 'source' ? ` · checked in source ${CP_RULES.checked}` : ' · from general knowledge, pending expert review'}</span></div>`; }).join('')}</div>
+      <p class="note">Rules version ${esc(CP_RULES.version)} · sources: ${esc(CP_RULES.sourceAsOf)} · weekend and federal holiday deadlines follow 38 C.F.R. § 3.110 and § 20.110.</p>
+    </section>`);
+
+    html.push(`<section class="card no-print" aria-labelledby="sum-h"><h2 id="sum-h">Keep a summary</h2>
+      <p class="note">The summary lists your claimed condition, your history as you wrote it, the timeline, the deadlines, the finding and reasoning, missing information, the legal references, and the disclaimer. It labels what you reported, what was calculated, and what is unverified.</p>
+      <div class="row"><button class="small" id="copy" type="button">Copy summary</button>${canPrint() ? '<button class="small" id="print" type="button">Print or save as PDF</button>' : ''}</div>
+      ${canPrint() ? '' : '<p class="note">Printing is not available in this preview window. Copy the summary, or open the standalone copy of this tool to print or save a PDF.</p>'}
+    </section>`);
+
+    html.push(`<section class="print-only"><h2>Your claim history, as you wrote it</h2><p style="white-space:pre-wrap">${esc(S.story)}</p></section>`);
+
+    $('#out').innerHTML = html.join('');
+    wire(r);
+    if (scroll) $('#out').scrollIntoView({ behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth', block: 'start' });
+  }
+
+  const resLabel = r => ({ timely: 'on time', break: 'possible break', uncertain: 'cannot tell yet', granted: 'granted', open: 'window open', continues: 'still open', pending: 'pending' }[r] || '');
+  const canPrint = () => { try { return window.self === window.top; } catch (e) { return false; } };
+
+  function evRow(e, included, rq, r) {
+    const isDec = e.type === 'decision', isFiling = CP.REQUEST_TYPES.includes(e.type);
+    const kind = isDec ? CP.LEVEL_LABEL[e.level || 'auto'] : CP.TYPE_LABEL[e.type] || e.type;
+    const chips = [];
+    chips.push(e.verified ? '<span class="chip ok">Confirmed</span>' : '<span class="chip">Unverified</span>');
+    const approx = dv => dv && dv.lo && (dv.approx || dv.precision !== 'day');
+    if (approx(e.date) || approx(e.notice)) chips.push('<span class="chip warn">Approximate date</span>');
+    if (e.conflict) chips.push('<span class="chip stop">Conflicting dates</span>');
+    if (isDec && !(e.notice && e.notice.lo)) chips.push('<span class="chip warn">No notice date</span>');
+    if (isDec && (e.levelInferred || (e.level || 'auto') === 'auto')) chips.push('<span class="chip warn">Decision type assumed</span>');
+    if (isFiling && !e.confirmedType) chips.push('<span class="chip warn">Confirm filing type</span>');
+    if (e.issueInferred) chips.push('<span class="chip warn">Condition assumed</span>');
+    if (!included) chips.push('<span class="chip">Different issue · not counted</span>');
+    const dec = isFiling && e.challenges ? VIEW.find(d => d.id === e.challenges) : null;
+    const when = isDec
+      ? `${esc(dateCell(e.date))}<small>decided</small>${esc(dateCell(e.notice))}<small>notice letter</small>`
+      : `${esc(dateCell(e.date))}<small>${isFiling || e.type === 'claim' ? 'received' : ''}</small>`;
+    let clock = '';
+    if (rq && included) {
+      const dl = rq.step.deadline, t = rq.rr.t;
+      const cls = !rq.rr.allowed || rq.rr.concurrent ? 'late' : t.v === 'timely' ? 'ontime' : t.v === 'late' ? 'late' : 'unsure';
+      const txt = !rq.rr.allowed ? 'This option is not available after that decision' : rq.rr.concurrent ? 'Filed while another review was pending' : rq.rr.withdrawn ? 'Withdrawn' : dl && dl.known ? `Deadline ${dl.floorOnly ? 'no earlier than ' : ''}${CP.fmt(dl.lo.date)} · ${t.v === 'timely' ? 'on time' : t.v === 'late' ? 'late' : 'cannot tell'}${dl.win.notOneYear ? ' · not a one-year period' : ''}` : 'Deadline unknown';
+      clock = `<div class="clock ${cls}">${esc(txt)}</div>`;
+    }
+    const editing = S.editing === e.id;
+    return `<li class="ev ${isDec ? 'decision' : isFiling ? 'filing' : 'other'}" id="row-${esc(e.id)}"${included ? '' : ' style="opacity:.6"'}>
+      <div class="when">${when}</div>
+      <div class="body">
+        <span class="kind">${esc(kind)}${isDec && e.outcome && e.outcome !== 'unknown' ? ` · ${esc(e.outcome)}${e.percent ? ` ${e.percent}%` : ''}` : ''}</span>
+        ${e.issues && e.issues.length ? `<span class="note">Condition: ${e.issues.map(esc).join(', ')}</span>` : '<span class="note">Condition: not stated</span>'}
+        ${dec ? `<span class="note">Challenges: ${esc(CP.describe(dec))}${e.linkInferred ? ' (assumed)' : ''}</span>` : ''}
+        ${e.source ? `<span class="quote">Your words: “${esc(e.source)}”</span>` : '<span class="quote">Added by you</span>'}
+        ${e.dateNote ? `<span class="note">${esc(e.dateNote)}</span>` : ''}
+        <div class="chips">${chips.join('')}</div>
+        <div class="row no-print"><button class="small quiet" data-edit="${esc(e.id)}" type="button" aria-expanded="${editing}">${editing ? 'Close' : 'Edit'}</button>
+          <label class="check"><input type="checkbox" data-verify="${esc(e.id)}"${e.verified ? ' checked' : ''}> Checked against my records</label></div>
+        ${editing ? editForm(e) : ''}
+      </div>
+      ${clock}
+    </li>`;
+  }
+
+  function opts(list, v) { return list.map(([k, l]) => `<option value="${k}"${k === v ? ' selected' : ''}>${esc(l)}</option>`).join(''); }
+  function editForm(e) {
+    const isDec = e.type === 'decision', isFiling = CP.REQUEST_TYPES.includes(e.type);
+    const decs = VIEW.filter(d => d.type === 'decision');
+    const id = e.id;
+    const dtxt = dv => dv ? (dv.text || '') : '';
+    return `<div class="edit">
+      <div class="grid">
+        <label>What happened<select data-f="type" data-id="${id}"><optgroup label="Review filings">${opts(FILING_TYPES, e.type)}</optgroup><optgroup label="Other events">${opts(OTHER_TYPES, e.type)}</optgroup></select></label>
+        ${isDec ? `<label>Type of decision<select data-f="level" data-id="${id}">${opts(LEVELS, e.level || 'auto')}</select></label>
+          <label>Outcome<select data-f="outcome" data-id="${id}">${opts(OUTCOMES, e.outcome || 'unknown')}</select></label>` : ''}
+        <label>${isDec ? 'Decision date' : 'Date VA received it'}<input type="text" data-f="date" data-id="${id}" value="${esc(dtxt(e.date))}" placeholder="e.g. June 9, 2021"><span class="read">${esc(readAs(e.date))}</span></label>
+        ${isDec ? `<label>Notification letter date<input type="text" data-f="notice" data-id="${id}" value="${esc(dtxt(e.notice))}" placeholder="the date printed on the letter"><span class="read">${esc(readAs(e.notice))}</span></label>` : ''}
+        ${isFiling ? `<label>Which decision did it challenge?<select data-f="challenges" data-id="${id}"><option value="">Not sure</option>${decs.map(d => `<option value="${d.id}"${d.id === e.challenges ? ' selected' : ''}>${esc(CP.describe(d))}</option>`).join('')}</select></label>` : ''}
+        <label>Condition or issue<input type="text" data-f="issues" data-id="${id}" value="${esc((e.issues || []).join(', '))}" placeholder="e.g. left knee"></label>
+      </div>
+      ${isFiling ? `<label class="check"><input type="checkbox" data-f="confirmedType" data-id="${id}"${e.confirmedType ? ' checked' : ''}> I confirm this filing type</label>` : ''}
+      <div class="row"><button class="small" data-done="${id}" type="button">Done</button><button class="small quiet" data-remove="${id}" type="button">Remove this event</button></div>
+    </div>`;
+  }
+  const readAs = dv => !dv ? 'No date entered' : dv.lo ? `Read as: ${CP.fmtVal(dv)}${dv.approx || dv.precision !== 'day' ? ' (approximate)' : ''}` : 'Date not recognized. Try a format like June 9, 2021.';
+
+  function find(id) { return S.events.find(e => e.id === id); }
+  function wire(r) {
+    const sel = $('#issue'); if (sel) sel.onchange = () => { S.issue = sel.value; render(); };
+    document.querySelectorAll('[data-edit]').forEach(b => b.onclick = () => { S.editing = S.editing === b.dataset.edit ? null : b.dataset.edit; render(); focusRow(b.dataset.edit); });
+    document.querySelectorAll('[data-done]').forEach(b => b.onclick = () => { const id = b.dataset.done; S.editing = null; render(); focusRow(id); });
+    document.querySelectorAll('[data-verify]').forEach(c => c.onchange = () => { find(c.dataset.verify).verified = c.checked; render(); });
+    document.querySelectorAll('[data-remove]').forEach(b => b.onclick = () => { S.events = S.events.filter(e => e.id !== b.dataset.remove); S.events.forEach(e => { if (e.challenges === b.dataset.remove) e.challenges = null; }); S.editing = null; render(); toast('Event removed. Analysis updated.'); });
+    document.querySelectorAll('[data-f]').forEach(inp => {
+      const ev = () => {
+        const e = find(inp.dataset.id); if (!e) return; const f = inp.dataset.f;
+        if (f === 'date' || f === 'notice') { e[f] = CPX.parseOne(inp.value); e.conflict = null; e.verified = false; }
+        else if (f === 'issues') { e.issues = inp.value.split(',').map(s => s.trim()).filter(Boolean); e.issueInferred = false; }
+        else if (f === 'challenges') { e.challenges = inp.value || null; e.linkInferred = false; }
+        else if (f === 'confirmedType') e.confirmedType = inp.checked;
+        else if (f === 'level') { e.level = inp.value; e.levelInferred = false; }
+        else if (f === 'type') { e.type = inp.value; if (e.type === 'decision') { e.level = e.level || 'auto'; e.outcome = e.outcome || 'unknown'; } e.confirmedType = CP.REQUEST_TYPES.includes(e.type); }
+        else e[f] = inp.value;
+        render(); focusField(inp.dataset.id, f);
+      };
+      inp.addEventListener(inp.tagName === 'SELECT' || inp.type === 'checkbox' ? 'change' : 'change', ev);
+    });
+    document.querySelectorAll('[data-answer]').forEach(b => b.onclick = () => {
+      const inp = $('#qa' + b.dataset.answer); const e = find(inp.dataset.ev); const v = CPX.parseOne(inp.value);
+      if (!v || !v.lo) { toast('That date was not recognized. Try a format like September 16, 2021.'); inp.focus(); return; }
+      const f = inp.dataset.field === 'notice' ? 'notice' : 'date'; e[f] = v; e.conflict = null; render(); toast('Updated. Analysis rerun.');
+    });
+    const add = $('#add'); if (add) add.onclick = () => { const e = { id: 'u' + (++S.seq), seq: S.seq, type: 'decision', level: 'auto', outcome: 'unknown', date: null, notice: null, issues: S.issue ? [S.issue] : [], source: '', verified: false, confirmedType: false }; S.events.push(e); S.editing = e.id; render(); focusRow(e.id); };
+    const copy = $('#copy'); if (copy) copy.onclick = () => { const t = summary(r); const done = () => toast('Summary copied.'); try { navigator.clipboard.writeText(t).then(done, () => fallbackCopy(t)); } catch (err) { fallbackCopy(t); } };
+    const pr = $('#print'); if (pr) pr.onclick = () => window.print();
+  }
+  function focusRow(id) { const el = document.querySelector(`#row-${CSS.escape(id)} select, #row-${CSS.escape(id)} input[type=text]`); if (el) el.focus(); }
+  function focusField(id, f) { const el = document.querySelector(`[data-id="${CSS.escape(id)}"][data-f="${f}"]`); if (el) el.focus(); }
+  function fallbackCopy(t) { const ta = document.createElement('textarea'); ta.value = t; ta.style.position = 'fixed'; ta.style.top = '0'; document.body.appendChild(ta); ta.select(); let ok = false; try { ok = document.execCommand('copy'); } catch (e) {} ta.remove(); toast(ok ? 'Summary copied.' : 'Copy was blocked. Select the page text to copy it.'); }
+  let tt; function toast(m) { const el = $('#toast'); el.textContent = m; el.hidden = false; clearTimeout(tt); tt = setTimeout(() => { el.hidden = true; }, 2600); }
+
+  function summary(r) {
+    const L = [], line = s => L.push(s), F = CP.fmtVal;
+    line('VA CONTINUOUS PURSUIT REVIEW · PRELIMINARY SUMMARY'); line(`Prepared ${CP.fmt(r.asOf)} · rules version ${CP_RULES.version}`); line('');
+    line(`Claimed condition analyzed: ${r.issue || 'not stated'} (one issue only; filings on other issues are not counted)`);
+    line('Results are based only on the dates the user provided. Deadlines use the one-year review period unless a different period is labelled.'); line('');
+    line('YOUR HISTORY, AS YOU WROTE IT (user-reported)'); line(S.story); line('');
+    line('TIMELINE (user-reported; [confirmed] or [unverified])');
+    CP.chrono(S.events).forEach(e => { const isDec = e.type === 'decision'; line(`- ${isDec ? `${CP.LEVEL_LABEL[e.level || 'auto']}: decided ${F(e.date)}; notice letter ${F(e.notice)}; outcome ${e.outcome || 'not stated'}` : `${CP.TYPE_LABEL[e.type]}: received ${F(e.date)}`} · condition: ${(e.issues || []).join(', ') || 'not stated'} [${e.verified ? 'confirmed' : 'unverified'}]`); });
+    line('');
+    line(`ASSESSMENT (calculated): ${STATUS[r.status][0]}. ${STATUS[r.status][1]}`); line('');
+    line('REASONING (calculated)'); r.steps.forEach((s, i) => { line(`${i + 1}. ${CP.LEVEL_LABEL[s.level]} [${resLabel(s.result)}]`); s.text.forEach(t => line('   ' + t)); }); r.notes.forEach(n => line('Note: ' + n)); line('');
+    line('POTENTIAL EFFECTIVE DATE TO INVESTIGATE (calculated, not a determination)'); line(r.effective.primary ? `${F(r.effective.primary)} · ${r.effective.label}` : 'No single date identified.'); r.effective.why.forEach(w => line('- ' + w)); r.effective.alternatives.forEach(a => line(`- Also: ${F(a.dv)} · ${a.label}. ${a.why}`)); line('');
+    line('MISSING INFORMATION AND UNVERIFIED ASSUMPTIONS'); [].concat(r.conflicts.map(c => 'Conflict: ' + c.text), r.missing.map(m => 'Missing: ' + m.text), r.verify.map(v => 'Unverified: ' + v.text)).forEach(t => line('- ' + t)); line('');
+    if (r.exceptions.length) { line('EXCEPTIONS TO REVIEW'); r.exceptions.forEach(x => line(`- ${x.title}: ${x.text}`)); line(''); }
+    line('RECOMMENDED VERIFICATION'); r.recommend.forEach((t, i) => line(`${i + 1}. ${t}`)); line('');
+    line('LEGAL REFERENCES'); r.cites.forEach(k => { const c = CP_RULES.citations[k]; line(`- ${c.cite}: ${c.what}${c.verified === 'source' ? '' : ' (from general knowledge, pending expert review)'}`); }); line('');
+    line('DISCLAIMER'); line(DISCLAIMER);
+    return L.join('\n');
+  }
+})();
+</script>
+<script>
+(() => {
+  const note = document.getElementById('fbnote'), $ = id => document.getElementById(id);
+  const pick = n => (document.querySelector('input[name="' + n + '"]:checked') || {}).value || 'not answered';
+  const build = () => { note.textContent = ['Continuous Pursuit Review beta feedback (rules ' + CP_RULES.version + ')', 'Timeline matched: ' + pick('fb1'), 'Explanation clear: ' + pick('fb2'), 'Testing as: ' + pick('fb3'), 'Comments: ' + ($('fb4').value.trim() || 'none')].join('\n'); };
+  document.querySelectorAll('#feedback input, #feedback textarea').forEach(el => el.addEventListener('input', build)); build();
+  $('fbcopy').addEventListener('click', () => { const t = note.textContent; const ok = () => { $('fbcopy').textContent = 'Copied'; setTimeout(() => { $('fbcopy').textContent = 'Copy feedback note'; }, 2000); };
+    try { navigator.clipboard.writeText(t).then(ok, () => { const r = document.createRange(); r.selectNodeContents(note); const s = getSelection(); s.removeAllRanges(); s.addRange(r); }); } catch (e) {} });
+  const c = window.VCI_SITE && window.VCI_SITE.contact;
+  if (c) { const el = $('fbcontact'); el.hidden = false; el.textContent = 'You can also send it to ' + c + '.'; }
+})();
+</script>
+</body></html>
