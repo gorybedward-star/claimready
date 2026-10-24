@@ -1,0 +1,507 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="description" content="Free, independent educational guide to VA hepatitis claims: the blood tests that prove hepatitis B and C, risk factors before, during, and after service, how drug use is handled, medical opinions, and how hepatitis is rated. Nothing is saved or sent.">
+<meta name="referrer" content="no-referrer"><meta name="theme-color" content="#1d5a70">
+<link rel="manifest" href="manifest.webmanifest"><link rel="icon" type="image/png" href="icons/favicon-32.png"><link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+<title>Hepatitis Claims</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<style>@font-face{font-family:'Public Sans';font-style:normal;font-weight:400;font-display:swap;src:url(fonts/public-sans-latin-400-normal.woff2) format('woff2')}@font-face{font-family:'Public Sans';font-style:normal;font-weight:500;font-display:swap;src:url(fonts/public-sans-latin-500-normal.woff2) format('woff2')}@font-face{font-family:'Public Sans';font-style:normal;font-weight:600;font-display:swap;src:url(fonts/public-sans-latin-600-normal.woff2) format('woff2')}@font-face{font-family:'Public Sans';font-style:normal;font-weight:700;font-display:swap;src:url(fonts/public-sans-latin-700-normal.woff2) format('woff2')}@font-face{font-family:'Source Serif 4';font-style:normal;font-weight:400;font-display:swap;src:url(fonts/source-serif-4-latin-400-normal.woff2) format('woff2')}@font-face{font-family:'Source Serif 4';font-style:normal;font-weight:600;font-display:swap;src:url(fonts/source-serif-4-latin-600-normal.woff2) format('woff2')}@font-face{font-family:'Source Serif 4';font-style:italic;font-weight:400;font-display:swap;src:url(fonts/source-serif-4-latin-400-italic.woff2) format('woff2')}@font-face{font-family:'Source Serif 4';font-style:italic;font-weight:600;font-display:swap;src:url(fonts/source-serif-4-latin-600-italic.woff2) format('woff2')}@font-face{font-family:'IBM Plex Mono';font-style:normal;font-weight:400;font-display:swap;src:url(fonts/ibm-plex-mono-latin-400-normal.woff2) format('woff2')}@font-face{font-family:'IBM Plex Mono';font-style:normal;font-weight:600;font-display:swap;src:url(fonts/ibm-plex-mono-latin-600-normal.woff2) format('woff2')}</style>
+<style>
+/* Layout: one reading column. Banner, header, situation chooser, types, tests with lab helper, risk factors, drug use, records, exam, ratings, example, myths, sources, footer. ClaimReady tokens (same as ptsd-stressor.html). */
+:root {
+  --paper: #f3f5f4; --surface: #ffffff; --sunk: #e9eeec; --ink: #16201d; --muted: #5a6763; --line: #d4dcd9;
+  --accent: #1d5a70; --accent-ink: #ffffff; --accent-soft: #dfecf0;
+  --ok: #2a774b; --ok-soft: #e0f0e6; --wait: #8a560a; --wait-soft: #f7ecd8;
+  --f-ui: "Public Sans", "Segoe UI", system-ui, sans-serif;
+  --f-serif: "Source Serif 4", Georgia, "Times New Roman", serif;
+  --f-mono: "IBM Plex Mono", ui-monospace, Menlo, monospace;
+  --r: 6px;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --paper: #111816; --surface: #19211f; --sunk: #0d1312; --ink: #e4ebe8; --muted: #98a6a1; --line: #2b3633;
+  --accent: #72b6cf; --accent-ink: #0d1a1f; --accent-soft: #1b3038;
+  --ok: #62c189; --ok-soft: #173426; --wait: #e2a849; --wait-soft: #392b12; color-scheme: dark; } }
+:root[data-theme="dark"] {
+  --paper: #111816; --surface: #19211f; --sunk: #0d1312; --ink: #e4ebe8; --muted: #98a6a1; --line: #2b3633;
+  --accent: #72b6cf; --accent-ink: #0d1a1f; --accent-soft: #1b3038;
+  --ok: #62c189; --ok-soft: #173426; --wait: #e2a849; --wait-soft: #392b12; color-scheme: dark; }
+:root { padding-top: env(safe-area-inset-top, 0px); padding-bottom: env(safe-area-inset-bottom, 0px); }
+* { box-sizing: border-box; }
+[hidden] { display: none !important; }
+body { margin: 0; background: var(--paper); color: var(--ink); font-family: var(--f-ui); font-size: 0.95rem; line-height: 1.5; }
+.wrap { max-width: 760px; margin: 0 auto; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+.skip { position: absolute; left: -9999px; } .skip:focus { left: 16px; top: 8px; z-index: 20; background: var(--surface); padding: 8px 12px; border-radius: var(--r); }
+.banner { background: var(--ink); color: var(--paper); font-size: 0.8rem; }
+.banner .wrap { padding-block: 8px; }
+header.top { padding-block: 24px 8px; display: grid; gap: 10px; }
+h1, h2, h3 { font-family: var(--f-serif); font-weight: 600; margin: 0; line-height: 1.2; text-wrap: balance; }
+h1 { font-size: 1.9rem; letter-spacing: -0.01em; }
+h2 { font-size: 1.3rem; }
+h3 { font-size: 1.02rem; }
+p { margin: 0; }
+ul, ol { margin: 0; padding-left: 20px; display: grid; gap: 6px; }
+a { color: var(--accent); }
+.muted { color: var(--muted); }
+.eyebrow { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.09em; text-transform: uppercase; color: var(--muted); }
+.crumbs { display: flex; flex-wrap: wrap; gap: 6px 14px; align-items: baseline; }
+.crumbs a { font-weight: 600; font-size: .9rem; text-decoration: none; }
+.crumbs a:hover { text-decoration: underline; }
+.tag { display: inline-block; font-size: .7rem; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; padding: 1px 7px; border-radius: 4px; border: 1px solid currentColor; white-space: nowrap; }
+.tag.law { color: var(--accent); } .tag.guide { color: var(--wait); } .tag.court { color: var(--ok); }
+.example { display: grid; gap: 4px; background: var(--wait-soft); border: 1px solid var(--line); border-radius: var(--r); padding: 10px 12px; }
+.example b:first-child { font-size: .78rem; letter-spacing: .06em; text-transform: uppercase; }
+button, input { font: inherit; color: inherit; }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.btn { border: 1px solid var(--line); background: var(--surface); border-radius: var(--r); padding: 8px 14px; cursor: pointer; min-height: 44px; }
+.btn.primary { background: var(--accent); color: var(--accent-ink); border-color: var(--accent); font-weight: 600; }
+.btn.link { border: 0; background: none; color: var(--accent); text-decoration: underline; padding: 4px 0; min-height: 0; }
+main { display: grid; gap: 20px; padding-block: 12px 48px; }
+.panel { background: var(--surface); border: 1px solid var(--line); border-radius: var(--r); padding: 18px; display: grid; gap: 14px; min-width: 0; }
+.panel > header { display: grid; gap: 6px; }
+fieldset { border: 0; padding: 0; margin: 0; display: grid; gap: 10px; min-width: 0; }
+legend { font-family: var(--f-serif); font-weight: 600; font-size: 1.15rem; padding: 0; margin-bottom: 4px; }
+.choices { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 8px; }
+.choice { display: flex; gap: 10px; align-items: flex-start; border: 1px solid var(--line); border-radius: var(--r); padding: 10px 12px; cursor: pointer; background: var(--paper); min-height: 44px; }
+.choice:has(input:checked) { border-color: var(--accent); background: var(--accent-soft); }
+.choice input { margin-top: 4px; width: 18px; height: 18px; accent-color: var(--accent); flex: none; }
+.choice small { display: block; color: var(--muted); }
+.row { display: flex; flex-wrap: wrap; gap: 8px 14px; align-items: center; }
+.cols { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 12px; }
+.box { border: 1px solid var(--line); border-radius: var(--r); padding: 12px 14px; display: grid; gap: 8px; align-content: start; background: var(--paper); }
+.box.you { border-left: 4px solid var(--ok); }
+.box.doc { border-left: 4px solid var(--accent); }
+.box h3 { font-family: var(--f-ui); font-size: .82rem; letter-spacing: .06em; text-transform: uppercase; }
+.flow { list-style: none; padding: 0; counter-reset: q; gap: 0; }
+.flow > li { counter-increment: q; display: grid; grid-template-columns: 30px 1fr; gap: 10px; padding-bottom: 14px; position: relative; }
+.flow > li::before { content: counter(q); width: 26px; height: 26px; border-radius: 50%; background: var(--accent); color: var(--accent-ink); font-family: var(--f-mono); font-size: .8rem; display: grid; place-items: center; }
+.flow > li::after { content: ""; position: absolute; left: 12px; top: 28px; bottom: 2px; width: 2px; background: var(--line); }
+.flow > li:last-child::after { display: none; }
+.flow .stop { display: block; font-size: .85rem; color: var(--muted); margin-top: 2px; }
+.flow ul { margin-top: 6px; }
+.quote { font-family: var(--f-serif); border-left: 3px solid var(--line); padding: 2px 0 2px 12px; color: var(--ink); }
+.pills { list-style: none; padding: 0; display: flex; flex-wrap: wrap; gap: 6px; }
+.pills li { border: 1px solid var(--line); border-radius: 999px; padding: 2px 10px; font-size: .85rem; background: var(--paper); }
+.patterns { list-style: none; padding: 0; display: grid; gap: 8px; counter-reset: p; }
+.patterns li { counter-increment: p; display: grid; grid-template-columns: 30px 1fr; gap: 10px; align-items: start; border: 1px solid var(--line); border-radius: var(--r); padding: 10px 12px; }
+.patterns li::before { content: counter(p); font-family: var(--f-mono); font-weight: 600; font-size: 1rem; }
+.patterns li.yes { background: var(--ok-soft); }
+.patterns small { display: block; color: var(--muted); }
+.cite { font-size: 0.8rem; color: var(--muted); display: flex; flex-wrap: wrap; gap: 6px 10px; align-items: center; border-top: 1px dashed var(--line); padding-top: 10px; }
+table { border-collapse: collapse; width: 100%; font-size: 0.88rem; }
+th, td { text-align: left; padding: 7px 8px; border-bottom: 1px solid var(--line); vertical-align: top; }
+th { font-weight: 600; color: var(--muted); font-size: 0.76rem; letter-spacing: 0.04em; text-transform: uppercase; }
+.tscroll { overflow-x: auto; }
+.num { font-family: var(--f-mono); font-variant-numeric: tabular-nums; font-size: .86em; white-space: nowrap; }
+details { border: 1px solid var(--line); border-radius: var(--r); background: var(--paper); padding: 10px 12px; }
+summary { cursor: pointer; font-weight: 600; min-height: 24px; }
+details > :not(summary) { margin-top: 10px; }
+footer { font-size: 0.82rem; color: var(--muted); display: grid; gap: 8px; padding-block: 0 40px; }
+@media (max-width: 520px) { h1 { font-size: 1.55rem; } .panel { padding: 14px; } }
+@media print {
+  .banner { background: none; color: #000; border-bottom: 1px solid #000; }
+  .noprint, .skip { display: none !important; }
+  body { background: #fff; color: #000; font-size: 10.5pt; }
+  .panel, .box, details { border-color: #999; break-inside: avoid-page; }
+  details > :not(summary) { display: block !important; }
+  a { color: #000; }
+}
+
+.sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+tr.dim td { opacity: .45; }
+.checklist { gap: 8px; }
+.myths { margin: 0; display: grid; gap: 4px 0; }
+.myths dt { font-weight: 600; margin-top: 8px; }
+.myths dt:first-child { margin-top: 0; }
+.myths dd { margin: 0; color: var(--ink); }
+@media (max-width: 520px) { table.stack thead { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); } table.stack, table.stack tbody, table.stack tr, table.stack td { display: block; } table.stack tr { border-bottom: 1px solid var(--line); padding: 8px 0; } table.stack td { border: 0; padding: 2px 0; } table.stack td:first-child { font-weight: 600; } table.stack td:last-child { font-size: .8rem; color: var(--muted); } }
+@media print { tr.dim td { opacity: 1; } .topic[hidden] { display: grid !important; } }
+.tag.bg { color: var(--muted); }
+.cite { display: block; line-height: 1.9; } .cite .tag { margin-right: 4px; } .cite .tag:not(:first-child) { margin-left: 6px; }
+@media (max-width: 520px) { table.stack.keep td:last-child { font-size: inherit; color: var(--ink); } }
+.alert { border: 1px solid var(--wait); border-left: 6px solid var(--wait); background: var(--wait-soft); border-radius: var(--r); padding: 14px 16px; display: grid; gap: 8px; }
+.alert p.big { font-family: var(--f-serif); font-size: 1.12rem; font-weight: 600; line-height: 1.35; }
+.no { font-weight: 700; color: var(--wait); white-space: nowrap; }
+.three { list-style: none; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 8px; counter-reset: t; }
+.three li { counter-increment: t; border: 1px solid var(--line); border-radius: var(--r); padding: 10px 12px; background: var(--paper); display: grid; gap: 4px; align-content: start; }
+.three li::before { content: "Question " counter(t); font-size: .72rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+.timeline { list-style: none; padding: 0; margin: 0; display: grid; gap: 0; }
+.timeline > li { display: grid; grid-template-columns: 64px 1fr; gap: 12px; position: relative; padding-bottom: 16px; }
+.timeline > li::after { content: ""; position: absolute; left: 31px; top: 30px; bottom: 0; width: 2px; background: var(--line); }
+.timeline > li:last-child::after { display: none; }
+.timeline .yr { font-family: var(--f-mono); font-weight: 600; font-size: .85rem; background: var(--sunk); border: 1px solid var(--line); border-radius: 999px; height: 28px; display: grid; place-items: center; position: relative; z-index: 1; }
+.timeline .key .yr { background: var(--accent); color: var(--accent-ink); border-color: var(--accent); }
+.timeline .ev { display: grid; gap: 2px; padding-top: 3px; }
+.timeline .ev b { font-size: .98rem; }
+.timeline .ev small { color: var(--muted); font-size: .84rem; }
+.dir { font-size: .72rem; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; padding: 1px 7px; border-radius: 4px; justify-self: start; }
+.dir.narrow { background: var(--wait-soft); color: var(--wait); }
+.dir.wide { background: var(--ok-soft); color: var(--ok); }
+.answer { border: 1px solid var(--accent); background: var(--accent-soft); border-radius: var(--r); padding: 12px 14px; display: grid; gap: 8px; }
+.outcomes { display: grid; gap: 8px; }
+.outcomes .box h3 { font-family: var(--f-serif); font-size: 1rem; letter-spacing: 0; text-transform: none; }
+@media print { .answer[hidden] { display: none !important; } }
+.three li::before { content: "Point " counter(t); }
+.filter { display: grid; gap: 6px; }
+.filter input { border: 1px solid var(--line); border-radius: var(--r); background: var(--paper); padding: 10px 12px; min-height: 44px; width: 100%; }
+.nl li.dim { opacity: .55; }
+.nl li.hit { background: var(--accent-soft); border-radius: 4px; padding: 0 4px; margin-left: -4px; }
+.exc { color: var(--wait); font-weight: 600; }
+@media print { .nl li.dim { opacity: 1; } }
+</style>
+<style>
+/* Hepatitis article extras: lab helper and rating ladder. */
+.lab { display: grid; gap: 10px; }
+.lab .sel { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 8px; }
+.lab label { display: grid; gap: 4px; font-weight: 600; font-size: .88rem; }
+.lab select { font: inherit; color: inherit; border: 1px solid var(--line); border-radius: var(--r); background: var(--paper); padding: 8px 10px; min-height: 44px; }
+.ladder { list-style: none; padding: 0; display: grid; gap: 8px; }
+.ladder li { display: grid; grid-template-columns: 64px 1fr; gap: 12px; align-items: start; border: 1px solid var(--line); border-radius: var(--r); padding: 10px 12px; background: var(--paper); }
+.ladder .pct { font-family: var(--f-mono); font-weight: 600; font-size: 1.05rem; background: var(--accent-soft); border-radius: 4px; text-align: center; padding: 2px 0; }
+.medflag { border: 1px dashed var(--muted); border-radius: var(--r); padding: 10px 12px; font-size: .88rem; display: grid; gap: 4px; }
+.medflag b:first-child { font-size: .74rem; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); }
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to the article</a>
+<div class="banner" role="note"><div class="wrap">Independent educational tool. Not affiliated with or endorsed by the U.S. Department of Veterans Affairs. Not legal or medical advice. VA decides every claim.</div></div>
+<div class="wrap">
+  <header class="top">
+    <div class="crumbs noprint"><a href="./#educ.digest">← Digestive conditions and hepatitis</a><span class="eyebrow"><span aria-hidden="true">★</span> Featured · Benefits and ratings</span></div>
+    <h1>Hepatitis claims: blood tests, risk factors, and ratings</h1>
+    <p>Hepatitis claims work differently from most claims. VA needs a <b>blood test</b> that names the type of hepatitis, and it looks at <b>every way you could have been infected</b>, before, during, and after service. This article explains the three types VA rates, the tests that prove a diagnosis, the risk factors VA weighs, how drug use is handled, what a good medical opinion covers, and how hepatitis is rated.</p>
+    <p class="muted" style="font-size:.86rem">Based on public sources: <b>38 U.S.C. §§ 105 and 1110</b>, <b>38 C.F.R. §§ 3.102, 3.159, 3.301, 3.303, 3.957, 4.112, and 4.114</b>, published court decisions, and VA's procedures manual, <b>M21-1, Part V, Subpart iii, Chapter 6, Section 3</b>. Medical background that does not come from VA is marked. For education only. <a href="#sources">Sources and dates</a></p>
+    <div class="row noprint"><button class="btn" type="button" id="printBtn">Print or save this article</button></div>
+  </header>
+
+  <main id="main" tabindex="-1">
+
+    <section class="panel" id="start" aria-labelledby="start-h">
+      <header><span class="eyebrow">Start here</span><h2 id="start-h">Three things decide most hepatitis claims</h2></header>
+      <ol class="three">
+        <li><b>Which type, proven by blood work</b><span>Hepatitis A, B, and C are different diseases. VA needs lab tests that identify the type you have now.</span></li>
+        <li><b>Which risk factor caused it</b><span>VA lists every known risk factor in your life and weighs which one most likely caused the infection.</span></li>
+        <li><b>How it affects you now</b><span>The rating depends on your symptoms, treatment, and any liver damage, not on the diagnosis alone.</span></li>
+      </ol>
+      <fieldset class="noprint">
+        <legend>What brings you here?</legend>
+        <div class="choices">
+          <label class="choice"><input type="radio" name="why" value="new"><span>I'm filing a new claim<small>Or thinking about it</small></span></label>
+          <label class="choice"><input type="radio" name="why" value="str"><span>Hepatitis is in my service records<small>Or I was told I had "hepatitis" in service</small></span></label>
+          <label class="choice"><input type="radio" name="why" value="drug"><span>Drug use is part of my history<small>Now or in the past</small></span></label>
+          <label class="choice"><input type="radio" name="why" value="rated"><span>I'm already service connected<small>And want to understand my rating</small></span></label>
+        </div>
+      </fieldset>
+      <p class="muted noprint" id="pickNote" aria-live="polite" style="font-size:.88rem"></p>
+      <div class="answer" id="ans-new" hidden><p><b>Filing a new claim.</b> Get your confirming blood test results into the record, then think through every risk factor in your life, not only the ones in service. Expect VA to send you questions about risk factors. Answer every one honestly and completely.</p><p><a href="#tests">Blood tests</a> · <a href="#risks">Risk factors</a> · <a href="#asked">The risk factor questions</a></p></div>
+      <div class="answer" id="ans-str" hidden><p><b>Hepatitis in your service records.</b> What it means depends on what the records say. A note of hepatitis A rarely helps on its own, while an old diagnosis of "non-A, non-B hepatitis" can be strong evidence for hepatitis C today.</p><p><a href="#inservice">Hepatitis in your service records</a> · <a href="#tests">Blood tests</a></p></div>
+      <div class="answer" id="ans-drug" hidden><p><b>Drug use in your history.</b> It does not end a claim by itself. VA must look at every other risk factor, and if the evidence is evenly balanced, the tie goes to you. There is also a separate route when drug use was caused by a service-connected condition.</p><p><a href="#drugs">How drug use is handled</a> · <a href="#older">Older awards</a></p></div>
+      <div class="answer" id="ans-rated" hidden><p><b>Already service connected.</b> Hepatitis B and C are rated as chronic liver disease. Symptoms, continuous medication, weight loss, and certain treatments move the rating. Complications like cirrhosis or liver cancer are rated under their own codes.</p><p><a href="#rating">How hepatitis is rated</a> · <a href="#zero">When 0% applies</a> · <a href="#older">Older awards involving drug use</a></p></div>
+    </section>
+
+    <section class="panel" id="types" aria-labelledby="types-h">
+      <header><span class="eyebrow">The basics</span><h2 id="types-h">Three types of viral hepatitis</h2>
+        <p>Hepatitis means inflammation of the liver. VA's manual describes three main viral types for rating purposes. Older records may use the older names shown below.</p></header>
+      <div class="tscroll"><table class="stack keep">
+        <thead><tr><th scope="col">Type</th><th scope="col">How it spreads</th><th scope="col">What usually happens</th></tr></thead>
+        <tbody>
+          <tr><td>Hepatitis A (HAV)<br><small class="muted">once called "infectious hepatitis"</small></td><td>Fecal-oral route, such as contaminated food or water</td><td>A short (acute) illness that seldom leaves lasting damage. Service connection needs evidence of <b>chronic residuals</b>.</td></tr>
+          <tr><td>Hepatitis B (HBV)<br><small class="muted">once called "serum hepatitis"</small></td><td>Blood and blood products; sexual contact</td><td>Usually clears after the acute phase (90 to 95% of cases in VA's manual), though the acute illness can be severe. Becomes chronic in 5 to 10%. Cirrhosis and liver cancer can develop. A vaccine exists.</td></tr>
+          <tr><td>Hepatitis C (HCV)<br><small class="muted">once called "non-A, non-B hepatitis"</small></td><td>Infected blood</td><td>Often no symptoms at first. Becomes chronic in about 80%. It is usually found by chance, many years later.</td></tr>
+        </tbody>
+      </table></div>
+      <p class="muted" style="font-size:.86rem">History note from VA's manual: infectious hepatitis was common in World War II, especially after the 1942 yellow fever vaccine and in the Mediterranean Theater.</p>
+      <p class="cite"><span class="tag guide">VA guidance</span> M21-1 V.iii.6.3.a</p>
+    </section>
+
+    <section class="panel" id="tests" aria-labelledby="tests-h">
+      <header><span class="eyebrow">Proving the diagnosis</span><h2 id="tests-h">VA needs blood tests that name the type</h2>
+        <p>A diagnosis of "hepatitis" alone is not enough. VA's manual calls for <b>serology</b> (blood tests for the virus or the body's antibodies to it) to confirm the type, and <b>liver function tests</b> to show how severe it is. The decision should name the type that is service connected.</p></header>
+      <div class="cols">
+        <div class="box doc"><h3>Hepatitis C</h3><ul>
+          <li>An <b>antibody test</b> (anti-HCV, by EIA or ELISA) is usually first. A positive antibody alone does <b>not</b> prove chronic hepatitis C.</li>
+          <li>A positive <b>HCV RNA</b> test (the virus itself) is enough by itself to confirm hepatitis C.</li>
+          <li>Older records may show a <b>RIBA</b> test used to confirm a positive antibody.</li>
+        </ul></div>
+        <div class="box doc"><h3>Hepatitis B</h3><ul>
+          <li><b>HBsAg</b> (surface antigen) shows active infection. If it lasts more than 6 months, that suggests chronic infection or carrier status.</li>
+          <li>An old "Australia antigen" result is the same marker and is enough to confirm hepatitis B.</li>
+          <li>Antibody tests (anti-HBc, anti-HBs) help show past infection or immunity.</li>
+        </ul></div>
+        <div class="box doc"><h3>Hepatitis A</h3><ul>
+          <li><b>Anti-HAV</b> antibodies appear about a month after the illness and last for life.</li>
+          <li>A positive result shows a <b>past</b> infection, not a current disease.</li>
+        </ul></div>
+      </div>
+      <p>Liver biopsy, ultrasound, and CT scans can show liver damage, but they cannot tell which virus caused it.</p>
+      <div class="medflag"><b>Medical background, not from VA</b><p>Since 2013, the CDC has recommended confirming a positive hepatitis C antibody with an <b>HCV RNA</b> test. The RIBA test VA's manual mentions is no longer available in the U.S. A positive antibody with a negative RNA test usually means a past infection that cleared, or a false positive.</p></div>
+
+      <div class="lab noprint" id="hbvlab">
+        <h3>Reading a hepatitis B panel</h3>
+        <p class="muted" style="font-size:.88rem">Pick what your lab report says. This uses the example patterns in VA's manual. Your doctor reads your actual results, and lab reports vary.</p>
+        <div class="sel">
+          <label>HBsAg<select id="l-sag"><option value="">Not sure</option><option value="n">Negative</option><option value="p">Positive</option></select></label>
+          <label>Anti-HBc (total)<select id="l-hbc"><option value="">Not sure</option><option value="n">Negative</option><option value="p">Positive</option></select></label>
+          <label>IgM anti-HBc<select id="l-igm"><option value="">Not done / not sure</option><option value="n">Negative</option><option value="p">Positive</option></select></label>
+          <label>Anti-HBs<select id="l-hbs"><option value="">Not sure</option><option value="n">Negative</option><option value="p">Positive</option></select></label>
+        </div>
+        <p id="labOut" class="answer" aria-live="polite">Choose results above to see which example pattern matches.</p>
+      </div>
+      <details><summary>The four example patterns in VA's manual</summary>
+        <div class="tscroll"><table>
+          <thead><tr><th scope="col">HBsAg</th><th scope="col">Anti-HBc</th><th scope="col">IgM anti-HBc</th><th scope="col">Anti-HBs</th><th scope="col">Meaning</th></tr></thead>
+          <tbody>
+            <tr><td>Negative</td><td>Negative</td><td></td><td>Negative</td><td>No sign of hepatitis B; can still be infected</td></tr>
+            <tr><td>Negative</td><td>Negative or positive</td><td></td><td>Positive</td><td>Immune</td></tr>
+            <tr><td>Positive</td><td>Positive</td><td>Positive</td><td>Negative</td><td>Acute (new) infection</td></tr>
+            <tr><td>Positive</td><td>Positive</td><td>Negative</td><td>Negative</td><td>Chronic infection</td></tr>
+          </tbody>
+        </table></div>
+        <p class="medflag"><b>Medical background, not from VA</b> In general medical guidance, immunity with a <b>negative</b> anti-HBc usually comes from the vaccine, and immunity with a <b>positive</b> anti-HBc usually comes from a past infection that cleared. Only chronic hepatitis B is a lasting disability.</p>
+      </details>
+      <p class="cite"><span class="tag guide">VA guidance</span> M21-1 V.iii.6.3.b–d <span class="tag bg">Medical</span> CDC, MMWR 62(18), May 10, 2013</p>
+    </section>
+
+    <section class="panel" id="risks" aria-labelledby="risks-h">
+      <header><span class="eyebrow">The heart of the claim</span><h2 id="risks-h">Risk factors: how you might have been infected</h2>
+        <p>Hepatitis B and C share most risk factors. VA's manual lists the ones it treats as medically recognized, along with the kinds of records that can show them. The question is usually not <i>whether</i> you have hepatitis, but <i>which</i> exposure most likely caused it.</p></header>
+      <div class="tscroll"><table class="stack keep">
+        <thead><tr><th scope="col">Risk factor</th><th scope="col">Why it matters</th><th scope="col">Records that can help</th></tr></thead>
+        <tbody>
+          <tr><td>Blood transfusion before 1992 (hepatitis C) or before 1975 (hepatitis B); organ transplant before 1992; kidney dialysis</td><td>Blood screening for hepatitis C did not exist until the virus was identified in 1989 and became much more effective in 1992.</td><td>Hospital records from service, especially surgical reports, anesthesia sheets, and post-operative notes</td></tr>
+          <tr><td>Tattoos, body piercing, or acupuncture with non-sterile needles</td><td>Unsterilized equipment can carry the virus.</td><td>Entry and separation exams that do or do not list tattoos or piercings, which can help show when they happened</td></tr>
+          <tr><td>Accidental blood exposure, such as a needlestick or blood in the eyes or mouth</td><td>Common for health care workers, combat medics, and corpsmen</td><td>Personnel records showing your job, duty assignments, and any exposure reports</td></tr>
+          <tr><td>Sharing razors or toothbrushes</td><td>Direct contact with blood</td><td>Rarely written down. Statements from people who served with you can help, weighed with the rest of the evidence.</td></tr>
+          <tr><td>High-risk sexual activity</td><td>Risk is relatively low but rises with multiple partners.</td><td>Health assessments or treatment records for sexually transmitted infections</td></tr>
+          <tr><td>Injection drug use or intranasal cocaine use</td><td>Shared needles or straws can carry blood.</td><td>Drug treatment records. See <a href="#drugs">how VA handles drug use</a>.</td></tr>
+          <tr><td>Vaccination with a jet air gun injector</td><td>VA's manual notes one documented case of hepatitis B spread this way and says spread of hepatitis C is biologically possible, though not scientifically documented.</td><td>A medical opinion that links hepatitis to an air gun must discuss <b>all</b> possible sources and explain why the air gun is the likely one.</td></tr>
+        </tbody>
+      </table></div>
+      <div class="alert" role="note">
+        <p class="big">If the evidence for a risk factor in service is about as strong as the evidence for one before or after service, the tie goes to you.</p>
+        <p>This is the benefit-of-the-doubt rule. In <i>Andrews v. McDonough</i> (2021), the Veterans Court reversed a hepatitis C denial outright. The veteran described air gun vaccinations and dental work in service, the Board did not dispute them, VA had found no risk factors before or after service, and the evidence was at least evenly balanced.</p>
+      </div>
+      <p class="cite"><span class="tag law">Law</span> 38 C.F.R. § 3.102 <span class="tag court">Court</span> <i>Andrews v. McDonough</i>, 34 Vet. App. 151 (2021) <span class="tag guide">VA guidance</span> M21-1 V.iii.6.3.e</p>
+    </section>
+
+    <section class="panel" id="asked" aria-labelledby="asked-h">
+      <header><span class="eyebrow">What to expect</span><h2 id="asked-h">VA will ask you about risk factors</h2>
+        <p>The standard claim form does not ask about hepatitis risk factors, so VA's manual says to ask in <b>every</b> hepatitis claim, even when hepatitis was diagnosed in service, unless you have already given a complete history. You will likely get a letter or questionnaire asking about risk factors before, during, and after service.</p></header>
+      <ul class="checklist">
+        <li><b>Answer every question</b>, including the ones about life before and after service. VA is required to look at the whole picture, and an unanswered question can slow the claim or lead to a weaker opinion.</li>
+        <li><b>Be honest and specific.</b> Give dates and places where you can. A clear, consistent account is more believable than a vague one.</li>
+        <li><b>Point to records.</b> Tell VA about in-service surgeries, hospital stays, injuries with bleeding, or medical jobs.</li>
+        <li><b>Your own statement is evidence.</b> In <i>Andrews</i>, the court weighed the veteran's statement that he had no risk factors outside service.</li>
+      </ul>
+      <p class="cite"><span class="tag guide">VA guidance</span> M21-1 V.iii.6.3.f <span class="tag court">Court</span> <i>Andrews v. McDonough</i>, 34 Vet. App. 151 (2021)</p>
+    </section>
+
+    <section class="panel" id="drugs" aria-labelledby="drugs-h">
+      <header><span class="eyebrow">A sensitive topic</span><h2 id="drugs-h">How VA handles drug use in a hepatitis claim</h2>
+        <p>Many veterans have drug use somewhere in their history. It matters in a hepatitis claim because of one rule in the law, but it does not end the claim on its own.</p></header>
+      <div class="box doc"><h3>The rule in the law</h3><p>For claims filed after October 31, 1990, VA cannot pay compensation for a disability that results from a veteran's own <b>abuse of drugs</b>. The regulation defines drug abuse to include using illegal drugs, misusing prescription drugs, and using substances to experience their intoxicating effects.</p></div>
+      <h3>The steps in VA's manual when injection drug or intranasal cocaine use is confirmed in service</h3>
+      <ol class="flow">
+        <li><div><b>VA does not assume drug use caused it.</b> It must look for every other risk factor too.</div></li>
+        <li><div><b>If drug use is the only confirmed risk factor in service,</b> VA denies service connection.<span class="stop">This is the rule above at work.</span></div></li>
+        <li><div><b>If there are other confirmed risk factors in service,</b> VA asks a medical examiner which one is at least as likely as not the cause.</div></li>
+        <li><div><b>VA reads the opinion:</b>
+          <ul>
+            <li>Drug use is the cause: denied.</li>
+            <li>Another in-service risk factor carries equal or greater weight: granted, with the doubt resolved in your favor.</li>
+            <li>The examiner cannot say which is more likely: VA weighs all the evidence and applies the benefit of the doubt if it is evenly balanced.</li>
+          </ul></div></li>
+      </ol>
+      <div class="box you"><h3>When drug use was caused by a service-connected condition</h3>
+        <p>The Federal Circuit held in <i>Allen v. Principi</i> (2001) that the drug abuse rule does not bar compensation when the substance use <b>itself results from</b> a service-connected condition, such as PTSD or chronic pain. In that situation, hepatitis from the drug use may be service connected as a <b>secondary</b> condition. The court required clear medical evidence that the service-connected condition caused the substance use.</p>
+        <p><a href="./#educ.lod">Line of duty and substance use</a> · <a href="./#educ.secondary">Secondary service connection</a></p>
+      </div>
+      <details><summary>What about the "infections coinciding with injection" language?</summary>
+        <p>An older part of the regulation says infections that coincide with drug injection are not considered "willful misconduct." That rule is separate. For claims filed after October 31, 1990, the drug abuse bar in the law and in 38 C.F.R. § 3.301(d) still applies, which is why VA's manual denies a claim when drug use is the only in-service risk factor. If this applies to you, talk with an accredited representative.</p>
+      </details>
+      <p class="cite"><span class="tag law">Law</span> 38 U.S.C. §§ 105(a), 1110; 38 C.F.R. §§ 3.102, 3.301(c)(3), (d) <span class="tag court">Court</span> <i>Allen v. Principi</i>, 237 F.3d 1368 (Fed. Cir. 2001) <span class="tag guide">VA guidance</span> M21-1 V.iii.6.3.g</p>
+    </section>
+
+    <section class="panel" id="older" aria-labelledby="older-h">
+      <header><span class="eyebrow">Already service connected</span><h2 id="older-h">Older awards where drug use was the only risk factor</h2>
+        <p>Some veterans were service connected for hepatitis when drug use was the only apparent in-service risk factor. VA's manual has special steps when one of them asks for a higher rating.</p></header>
+      <div class="cols">
+        <div class="box"><h3>Awarded on or before Oct 31, 1990</h3><p>The award was proper under the rules at the time, so service connection continues. But under a VA General Counsel opinion, the rating <b>cannot be increased</b> when the award was based on drug abuse.</p></div>
+        <div class="box"><h3>Awarded after Oct 31, 1990</h3><p>VA may get a medical opinion on whether drug use caused the hepatitis. If the opinion cannot decide, or points to another in-service risk factor, service connection continues and an increase can be granted if the evidence supports it. If the evidence <b>clearly</b> shows drug use was the cause, VA checks whether the award is protected; if it is not, VA may propose to sever it.</p></div>
+      </div>
+      <p><b>Protections that apply:</b> service connection in effect for <b>10 years or more</b> generally cannot be severed except for fraud or a lack of required service. Before that, VA can sever only if the award was "clearly and unmistakably erroneous," VA carries that burden, and you get advance notice and 60 days to send evidence. If you receive a proposal, contact an accredited representative right away.</p>
+      <p class="cite"><span class="tag law">Law</span> Pub. L. 101-508, § 8052; 38 C.F.R. §§ 3.105(d), 3.957; VAOPGCPREC 2-1998 <span class="tag guide">VA guidance</span> M21-1 V.iii.6.3.h</p>
+    </section>
+
+    <section class="panel" id="inservice" aria-labelledby="ins-h">
+      <header><span class="eyebrow">Reading your records</span><h2 id="ins-h">Hepatitis in your service records</h2>
+        <p>VA first checks the basics: a current disability, something in service, and some indication they are related. Then what your service records show shapes what happens next.</p></header>
+      <div class="tscroll"><table class="stack keep">
+        <thead><tr><th scope="col">If service records show</th><th scope="col">What VA's manual says happens</th></tr></thead>
+        <tbody>
+          <tr><td>"Hepatitis" with no type, and you claim it many years later</td><td>VA usually orders an exam with blood tests and an opinion on whether today's hepatitis relates to the episode in service. It may skip the opinion if the diagnosis was clear and symptoms continued since service.</td></tr>
+          <tr><td>Lab tests confirming hepatitis A</td><td>Not service connected by itself, because hepatitis A is short-term.</td></tr>
+          <tr><td>Lab tests confirming hepatitis B</td><td>Possible if chronic hepatitis B is present now and linked to the finding or risk factors in service.</td></tr>
+          <tr><td>Hepatitis A or B in service, and hepatitis C now</td><td>Not automatic. Each type is caught separately. Hepatitis C needs a medical opinion linking it to confirmed in-service findings or risk factors.</td></tr>
+          <tr><td>"Non-A, non-B hepatitis" in service, and hepatitis C now</td><td>Service connection is <b>likely</b>. If symptoms continued since service, it can be granted; if not, VA gets an opinion.</td></tr>
+          <tr><td>"Hepatitis" with no type, and hepatitis C or chronic hepatitis B now</td><td>May be granted with the benefit of the doubt. VA gets an opinion and any needed blood tests.</td></tr>
+          <tr><td>The same, plus a history of hepatitis A</td><td>A medical opinion is needed on whether today's condition comes from the hepatitis in service.</td></tr>
+        </tbody>
+      </table></div>
+      <p class="cite"><span class="tag law">Law</span> 38 C.F.R. §§ 3.159(c)(4), 3.303(b) <span class="tag guide">VA guidance</span> M21-1 V.iii.6.3.i</p>
+    </section>
+
+    <section class="panel" id="exam" aria-labelledby="exam-h">
+      <header><span class="eyebrow">The exam</span><h2 id="exam-h">The exam and the medical opinion</h2>
+        <p>For hepatitis B or C, the examiner usually completes the <b>Hepatitis, Cirrhosis and Other Liver Conditions</b> questionnaire (DBQ) and gives an opinion on which risk factor most likely caused the infection.</p></header>
+      <div class="cols">
+        <div class="box"><h3>What the examiner should consider</h3><ul>
+          <li>All relevant evidence in your file</li>
+          <li>The risk factors you reported</li>
+          <li>Every risk factor the records confirm, whether you named it or not, <b>before, during, and after</b> service</li>
+          <li>For a link to service, only risk factors confirmed by the evidence</li>
+        </ul></div>
+        <div class="box you"><h3>Signs an opinion may be inadequate</h3><ul>
+          <li>No confirming blood test for the diagnosis</li>
+          <li>Incomplete findings or symptoms</li>
+          <li>Does not address every known risk factor</li>
+          <li>Links hepatitis to a risk factor the record does not confirm</li>
+          <li>Links it to something not medically recognized as a way to catch hepatitis</li>
+        </ul></div>
+      </div>
+      <p>If you believe the opinion missed something, you can point it out to VA, send your own doctor's opinion, or ask for a review after a decision. See <a href="medical-opinions.html">Medical opinions</a> and <a href="supplemental-claims.html">Supplemental Claims</a>.</p>
+      <p class="cite"><span class="tag guide">VA guidance</span> M21-1 V.iii.6.3.j–k</p>
+    </section>
+
+    <section class="panel" id="rating" aria-labelledby="rate-h">
+      <header><span class="eyebrow">Ratings</span><h2 id="rate-h">How hepatitis B and C are rated</h2>
+        <p>Hepatitis C is listed under diagnostic code 7354 but rated using the criteria for <b>chronic liver disease without cirrhosis</b> (code 7345). Hepatitis B is rated directly under 7345. These criteria took effect May 19, 2024; older decisions used earlier criteria.</p></header>
+      <ul class="ladder">
+        <li><span class="pct">100%</span><div>Progressive chronic liver disease that requires <b>both</b> parenteral (injected or IV) antiviral therapy and parenteral immune-modulating therapy such as interferon. Continues for 6 months after treatment ends, then VA re-examines.</div></li>
+        <li><span class="pct">60%</span><div>Progressive chronic liver disease that requires continuous medication and causes <b>substantial</b> weight loss, plus at least two of: daily fatigue, malaise, loss of appetite, enlarged liver, itching, joint pain.</div></li>
+        <li><span class="pct">40%</span><div>The same, with <b>minor</b> weight loss.</div></li>
+        <li><span class="pct">20%</span><div>Chronic liver disease with at least one of: intermittent fatigue, malaise, loss of appetite, enlarged liver, or itching.</div></li>
+        <li><span class="pct">0%</span><div>A past history of liver disease, with no current symptoms.</div></li>
+      </ul>
+      <details><summary>What counts as substantial or minor weight loss</summary>
+        <ul>
+          <li><b>Substantial:</b> involuntary loss of more than 20% of your baseline weight for 3 months, with reduced ability to care for yourself or work.</li>
+          <li><b>Minor:</b> involuntary loss of 10% to 20% for 3 months, with digestive symptoms and reduced self-care, work, or food intake.</li>
+          <li><b>Baseline:</b> your documented average weight for the 2 years before the illness began; otherwise your last discharge exam weight; otherwise an ideal body weight using the method most favorable to you.</li>
+        </ul>
+      </details>
+      <ul>
+        <li><b>Complications are rated separately.</b> Cirrhosis, liver cancer, and other effects are rated under their own codes, but the same symptoms cannot be counted twice.</li>
+        <li><b>If doctors recommend the 100% treatments but you cannot have them</b> for medical reasons, VA rates under the cirrhosis code instead.</li>
+        <li>Hepatitis B and other liver conditions under code 7345 cannot be combined with many other digestive ratings; VA rates the main condition and may raise it.</li>
+      </ul>
+      <div class="medflag"><b>Medical background, not from VA</b><p>Most hepatitis C treatment today is taken by mouth, not injected. Whether a particular treatment meets the 100% wording is a question for VA. Ask your doctor what your treatment is and how it is given.</p></div>
+      <p class="cite"><span class="tag law">Law</span> 38 C.F.R. §§ 4.14, 4.112, 4.114 (DCs 7312, 7345, 7354), as amended by 89 FR 19735 (Mar 20, 2024; effective May 19, 2024)</p>
+    </section>
+
+    <section class="panel" id="zero" aria-labelledby="zero-h">
+      <header><span class="eyebrow">Ratings</span><h2 id="zero-h">When 0% applies to hepatitis C, and when it does not</h2>
+        <p>VA's manual says 0% is only for hepatitis C that is <b>without symptoms</b> and has a past history of liver disease.</p></header>
+      <div class="tscroll"><table class="stack keep">
+        <thead><tr><th scope="col">If the medical evidence shows</th><th scope="col">Is 0% right?</th></tr></thead>
+        <tbody>
+          <tr><td>Even mild symptoms from hepatitis C</td><td><span class="no">No.</span> You have symptoms.</td></tr>
+          <tr><td>Liver damage on liver function tests, biopsy, or other testing</td><td><span class="no">No.</span> The infection is not healed.</td></tr>
+          <tr><td>Treatment worked, RNA tests are negative, no symptoms, and no liver damage</td><td>Yes. VA's manual adds that the virus may stay dormant and flare later.</td></tr>
+        </tbody>
+      </table></div>
+      <p><b>What this means for you:</b> tell the examiner about every symptom, even mild or on-and-off ones like fatigue or itching, and make sure recent lab work is in the record.</p>
+      <div class="medflag"><b>Medical background, not from VA</b><p>Current medical guidance generally treats a lasting negative RNA result after modern treatment (a "sustained virologic response") as a cure, though reinfection is possible. VA's manual takes a more cautious view. Either way, the rating follows your symptoms and test results.</p></div>
+      <p class="cite"><span class="tag law">Law</span> 38 C.F.R. § 4.114, DC 7345, 7354 <span class="tag guide">VA guidance</span> M21-1 V.iii.6.3.l</p>
+    </section>
+
+    <section class="panel" id="example" aria-labelledby="ex-h">
+      <header><span class="eyebrow">Example</span><h2 id="ex-h">How this might look</h2></header>
+      <div class="example">
+        <b>Fictional example</b>
+        <p>A Navy veteran served as a corpsman from 1984 to 1988. In 2023 routine screening found a positive hepatitis C antibody, and a follow-up HCV RNA test was positive. The veteran also got a tattoo two years after leaving service.</p>
+        <ul>
+          <li><b>Diagnosis:</b> the positive RNA test confirms hepatitis C.</li>
+          <li><b>In service:</b> personnel records show corpsman duty, and the veteran describes a needlestick while treating a bleeding patient. A shipmate's statement backs that up.</li>
+          <li><b>After service:</b> the tattoo is a post-service risk factor, so VA must weigh it too.</li>
+          <li><b>The opinion:</b> the examiner reviews both and explains which is at least as likely as not the cause. If the evidence for each is evenly balanced, the benefit of the doubt goes to the veteran.</li>
+          <li><b>The rating:</b> treatment cleared the virus, but the veteran still reports intermittent fatigue. VA weighs that symptom and its connection to the liver disease.</li>
+        </ul>
+        <p class="muted" style="font-size:.86rem">This is a made-up example to show how the rules fit together. It is not a real VA decision and does not predict any outcome.</p>
+      </div>
+    </section>
+
+    <section class="panel" id="myths" aria-labelledby="myth-h">
+      <header><span class="eyebrow">Common misunderstandings</span><h2 id="myth-h">What people often get wrong</h2></header>
+      <dl class="myths">
+        <dt>"Any drug use means an automatic denial."</dt><dd>No. VA must look at every other risk factor, and drug use caused by a service-connected condition can be a path to secondary service connection.</dd>
+        <dt>"I had hepatitis in service, so my hepatitis C is automatic."</dt><dd>Not if the earlier finding was hepatitis A or B. Each type is caught separately. An old "non-A, non-B" diagnosis is much stronger evidence.</dd>
+        <dt>"A positive antibody test proves I have hepatitis C."</dt><dd>Not by itself. A positive RNA test is what confirms it.</dd>
+        <dt>"I should leave out risk factors after service."</dt><dd>VA is required to look for them, and leaving them out can hurt your credibility. The benefit of the doubt applies when the evidence is balanced.</dd>
+        <dt>"Air gun vaccinations will get my claim granted."</dt><dd>They can be considered, but an opinion must discuss every possible source and explain why the air gun is the likely one.</dd>
+        <dt>"My hepatitis C was treated, so I'm stuck at 0%."</dt><dd>Only if you have no symptoms and no liver damage. Lingering symptoms or damage can support a higher rating.</dd>
+      </dl>
+    </section>
+
+    <section class="panel" id="sources" aria-labelledby="src-h">
+      <header><h2 id="src-h">Sources and dates</h2>
+        <p class="muted" style="font-size:.88rem"><span class="tag law">Law</span> statutes, regulations, and General Counsel precedent opinions. <span class="tag court">Court</span> published court decisions. <span class="tag guide">VA guidance</span> VA's procedures manual, which explains how VA applies the law but is not law. <span class="tag bg">Medical</span> general medical sources, not VA.</p></header>
+      <div class="tscroll"><table>
+        <thead><tr><th scope="col">Source</th><th scope="col">Type</th><th scope="col">Version used</th></tr></thead>
+        <tbody>
+          <tr><td><a href="https://www.govinfo.gov/link/uscode/38/105" target="_blank" rel="noopener">38 U.S.C. § 105(a)</a> and <a href="https://www.govinfo.gov/link/uscode/38/1110" target="_blank" rel="noopener">§ 1110</a></td><td><span class="tag law">Law</span></td><td>Current</td></tr>
+          <tr><td>Omnibus Budget Reconciliation Act of 1990, Pub. L. 101-508, § 8052</td><td><span class="tag law">Law</span></td><td>Claims filed after Oct 31, 1990</td></tr>
+          <tr><td>38 C.F.R. §§ 3.102, 3.105(d), 3.159(c)(4), 3.301, 3.303(b), 3.957</td><td><span class="tag law">Law</span></td><td>Current eCFR</td></tr>
+          <tr><td><a href="https://www.ecfr.gov/current/title-38/chapter-I/part-4/subpart-B/subject-group-ECFR0e2d4c1bb8b8b5a/section-4.114" target="_blank" rel="noopener">38 C.F.R. § 4.114</a> (DCs 7312, 7345, 7354) and § 4.112</td><td><span class="tag law">Law</span></td><td>Current eCFR; 89 FR 19735 (Mar 20, 2024), effective May 19, 2024</td></tr>
+          <tr><td>VAOPGCPREC 2-1998</td><td><span class="tag law">Law</span></td><td>1998</td></tr>
+          <tr><td><i>Allen v. Principi</i>, 237 F.3d 1368 (Fed. Cir.)</td><td><span class="tag court">Court</span></td><td>2001</td></tr>
+          <tr><td><i>Andrews v. McDonough</i>, 34 Vet. App. 151</td><td><span class="tag court">Court</span></td><td>Jun 22, 2021</td></tr>
+          <tr><td><a href="https://www.knowva.ebenefits.va.gov/system/templates/selfservice/va_ssnew/help/customer/locale/en-US/portal/554400000001018/content/554400000014523/M21-1-Part-V-Subpart-iii-Chapter-6-Digestive-Disabilities#3" target="_blank" rel="noopener">M21-1, Part V, Subpart iii, 6.3, Hepatitis</a> (topic change date Apr 21, 2025; text reviewed Oct 24, 2026)</td><td><span class="tag guide">VA guidance</span></td><td class="num" data-src="554400000014523">May 28, 2025</td></tr>
+          <tr><td><a href="https://www.cdc.gov/mmwr/preview/mmwrhtml/mm6218a5.htm" target="_blank" rel="noopener">CDC, Testing for HCV Infection: An Update of Guidance</a>, MMWR 62(18)</td><td><span class="tag bg">Medical</span></td><td>May 10, 2013</td></tr>
+        </tbody>
+      </table></div>
+      <p class="muted" style="font-size:.86rem">Content reviewed <span class="num">Oct 24, 2026</span>. When VA updates a source, ClaimReady's weekly monitor flags it for review before this page changes.</p>
+    </section>
+  </main>
+
+  <footer>
+    <p>This article explains public law and VA guidance about hepatitis claims. It does not decide whether VA will grant a claim or what rating it will assign, and it is not legal or medical advice. Talk with your doctor about your own test results.</p>
+    <p>ClaimReady is independent and educational. It is not VA and is not a substitute for an accredited representative, who can help at no cost. Nothing on this page is saved or sent. <a href="./#about">About ClaimReady and full disclaimer</a></p>
+  </footer>
+</div>
+<script>
+(() => {
+  const radios = [...document.querySelectorAll('input[name="why"]')];
+  const answers = [...document.querySelectorAll('.answer[id^="ans-"]')];
+  const note = document.getElementById('pickNote');
+  const names = { new: 'you are filing a new claim', str: 'hepatitis is in your service records', drug: 'drug use is part of your history', rated: 'you are already service connected' };
+  function apply() {
+    const r = radios.find(x => x.checked); if (!r) return;
+    answers.forEach(a => { a.hidden = a.id !== 'ans-' + r.value; });
+    note.textContent = `Showing what matters most if ${names[r.value]}.`;
+  }
+  radios.forEach(r => r.addEventListener('change', apply));
+  // A link such as hepatitis.html#drug opens with that answer picked.
+  const h = location.hash.slice(1);
+  if (names[h]) { radios.find(r => r.value === h).checked = true; apply(); }
+
+  // Hepatitis B panel: match the four example patterns in M21-1 V.iii.6.3.c.
+  const v = id => document.getElementById(id).value;
+  const out = document.getElementById('labOut');
+  function lab() {
+    const s = v('l-sag'), c = v('l-hbc'), m = v('l-igm'), b = v('l-hbs');
+    let t;
+    if (!s && !c && !m && !b) t = 'Choose results above to see which example pattern matches.';
+    else if (s === 'p' && m === 'p') t = '<b>Looks like an acute (new) infection.</b> Most adults clear it. VA rates hepatitis B only if it becomes chronic, which is usually judged by a positive HBsAg lasting more than six months.';
+    else if (s === 'p' && m === 'n') t = '<b>Looks like a chronic infection.</b> This is the pattern that can support a hepatitis B disability, if it is linked to service.';
+    else if (s === 'p') t = '<b>HBsAg is positive</b>, which means hepatitis B is present now. The IgM anti-HBc result and a repeat test after six months help tell new from chronic infection.';
+    else if (s === 'n' && b === 'p') t = '<b>Looks like immunity.</b> No current infection. Immunity alone is not a disability.';
+    else if (s === 'n' && c === 'n' && b === 'n') t = '<b>No sign of hepatitis B,</b> past or present.';
+    else if (s === 'n' && c === 'p' && b === 'n') t = 'This combination is not one of the four examples in VA\'s manual. It can have several meanings, so ask your doctor to explain it.';
+    else t = 'Not enough results chosen to match an example. HBsAg and anti-HBs are the most useful to start with.';
+    out.innerHTML = t + ' <span class="muted">Educational only; your doctor reads your actual results.</span>';
+  }
+  ['l-sag', 'l-hbc', 'l-igm', 'l-hbs'].forEach(id => document.getElementById(id).addEventListener('change', lab));
+  document.getElementById('printBtn').addEventListener('click', () => window.print());
+})();
+</script>
+</body></html>
