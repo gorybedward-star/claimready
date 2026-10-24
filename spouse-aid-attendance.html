@@ -1,0 +1,322 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="description" content="Free, independent educational guide to extra VA compensation when a veteran rated 30% or more has a spouse who needs aid and attendance: the 30% rule, the three tests, evidence, effective dates, and common mistakes. Nothing is saved or sent.">
+<meta name="referrer" content="no-referrer"><meta name="theme-color" content="#1d5a70">
+<link rel="manifest" href="manifest.webmanifest"><link rel="icon" type="image/png" href="icons/favicon-32.png"><link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+<title>Spouse Aid and Attendance</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<style>@font-face{font-family:'Public Sans';font-style:normal;font-weight:400;font-display:swap;src:url(fonts/public-sans-latin-400-normal.woff2) format('woff2')}@font-face{font-family:'Public Sans';font-style:normal;font-weight:500;font-display:swap;src:url(fonts/public-sans-latin-500-normal.woff2) format('woff2')}@font-face{font-family:'Public Sans';font-style:normal;font-weight:600;font-display:swap;src:url(fonts/public-sans-latin-600-normal.woff2) format('woff2')}@font-face{font-family:'Public Sans';font-style:normal;font-weight:700;font-display:swap;src:url(fonts/public-sans-latin-700-normal.woff2) format('woff2')}@font-face{font-family:'Source Serif 4';font-style:normal;font-weight:400;font-display:swap;src:url(fonts/source-serif-4-latin-400-normal.woff2) format('woff2')}@font-face{font-family:'Source Serif 4';font-style:normal;font-weight:600;font-display:swap;src:url(fonts/source-serif-4-latin-600-normal.woff2) format('woff2')}@font-face{font-family:'Source Serif 4';font-style:italic;font-weight:400;font-display:swap;src:url(fonts/source-serif-4-latin-400-italic.woff2) format('woff2')}@font-face{font-family:'Source Serif 4';font-style:italic;font-weight:600;font-display:swap;src:url(fonts/source-serif-4-latin-600-italic.woff2) format('woff2')}@font-face{font-family:'IBM Plex Mono';font-style:normal;font-weight:400;font-display:swap;src:url(fonts/ibm-plex-mono-latin-400-normal.woff2) format('woff2')}@font-face{font-family:'IBM Plex Mono';font-style:normal;font-weight:600;font-display:swap;src:url(fonts/ibm-plex-mono-latin-600-normal.woff2) format('woff2')}</style>
+<style>
+/* Layout: one reading column. Banner, header, two requirements, situation chooser, 30% rule, three tests, evidence, effective date, amount, myths, sources, footer. ClaimReady tokens (same as ptsd-stressor.html). */
+:root {
+  --paper: #f3f5f4; --surface: #ffffff; --sunk: #e9eeec; --ink: #16201d; --muted: #5a6763; --line: #d4dcd9;
+  --accent: #1d5a70; --accent-ink: #ffffff; --accent-soft: #dfecf0;
+  --ok: #2a774b; --ok-soft: #e0f0e6; --wait: #8a560a; --wait-soft: #f7ecd8;
+  --f-ui: "Public Sans", "Segoe UI", system-ui, sans-serif;
+  --f-serif: "Source Serif 4", Georgia, "Times New Roman", serif;
+  --f-mono: "IBM Plex Mono", ui-monospace, Menlo, monospace;
+  --r: 6px;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --paper: #111816; --surface: #19211f; --sunk: #0d1312; --ink: #e4ebe8; --muted: #98a6a1; --line: #2b3633;
+  --accent: #72b6cf; --accent-ink: #0d1a1f; --accent-soft: #1b3038;
+  --ok: #62c189; --ok-soft: #173426; --wait: #e2a849; --wait-soft: #392b12; color-scheme: dark; } }
+:root[data-theme="dark"] {
+  --paper: #111816; --surface: #19211f; --sunk: #0d1312; --ink: #e4ebe8; --muted: #98a6a1; --line: #2b3633;
+  --accent: #72b6cf; --accent-ink: #0d1a1f; --accent-soft: #1b3038;
+  --ok: #62c189; --ok-soft: #173426; --wait: #e2a849; --wait-soft: #392b12; color-scheme: dark; }
+:root { padding-top: env(safe-area-inset-top, 0px); padding-bottom: env(safe-area-inset-bottom, 0px); }
+* { box-sizing: border-box; }
+[hidden] { display: none !important; }
+body { margin: 0; background: var(--paper); color: var(--ink); font-family: var(--f-ui); font-size: 0.95rem; line-height: 1.5; }
+.wrap { max-width: 760px; margin: 0 auto; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+.skip { position: absolute; left: -9999px; } .skip:focus { left: 16px; top: 8px; z-index: 20; background: var(--surface); padding: 8px 12px; border-radius: var(--r); }
+.banner { background: var(--ink); color: var(--paper); font-size: 0.8rem; }
+.banner .wrap { padding-block: 8px; }
+header.top { padding-block: 24px 8px; display: grid; gap: 10px; }
+h1, h2, h3 { font-family: var(--f-serif); font-weight: 600; margin: 0; line-height: 1.2; text-wrap: balance; }
+h1 { font-size: 1.9rem; letter-spacing: -0.01em; }
+h2 { font-size: 1.3rem; }
+h3 { font-size: 1.02rem; }
+p { margin: 0; }
+ul, ol { margin: 0; padding-left: 20px; display: grid; gap: 6px; }
+a { color: var(--accent); }
+.muted { color: var(--muted); }
+.eyebrow { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.09em; text-transform: uppercase; color: var(--muted); }
+.crumbs { display: flex; flex-wrap: wrap; gap: 6px 14px; align-items: baseline; }
+.crumbs a { font-weight: 600; font-size: .9rem; text-decoration: none; }
+.crumbs a:hover { text-decoration: underline; }
+.tag { display: inline-block; font-size: .7rem; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; padding: 1px 7px; border-radius: 4px; border: 1px solid currentColor; white-space: nowrap; }
+.tag.law { color: var(--accent); } .tag.guide { color: var(--wait); } .tag.court { color: var(--ok); }
+.example { display: grid; gap: 4px; background: var(--wait-soft); border: 1px solid var(--line); border-radius: var(--r); padding: 10px 12px; }
+.example b:first-child { font-size: .78rem; letter-spacing: .06em; text-transform: uppercase; }
+button, input { font: inherit; color: inherit; }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.btn { border: 1px solid var(--line); background: var(--surface); border-radius: var(--r); padding: 8px 14px; cursor: pointer; min-height: 44px; }
+.btn.primary { background: var(--accent); color: var(--accent-ink); border-color: var(--accent); font-weight: 600; }
+.btn.link { border: 0; background: none; color: var(--accent); text-decoration: underline; padding: 4px 0; min-height: 0; }
+main { display: grid; gap: 20px; padding-block: 12px 48px; }
+.panel { background: var(--surface); border: 1px solid var(--line); border-radius: var(--r); padding: 18px; display: grid; gap: 14px; min-width: 0; }
+.panel > header { display: grid; gap: 6px; }
+fieldset { border: 0; padding: 0; margin: 0; display: grid; gap: 10px; min-width: 0; }
+legend { font-family: var(--f-serif); font-weight: 600; font-size: 1.15rem; padding: 0; margin-bottom: 4px; }
+.choices { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 8px; }
+.choice { display: flex; gap: 10px; align-items: flex-start; border: 1px solid var(--line); border-radius: var(--r); padding: 10px 12px; cursor: pointer; background: var(--paper); min-height: 44px; }
+.choice:has(input:checked) { border-color: var(--accent); background: var(--accent-soft); }
+.choice input { margin-top: 4px; width: 18px; height: 18px; accent-color: var(--accent); flex: none; }
+.choice small { display: block; color: var(--muted); }
+.row { display: flex; flex-wrap: wrap; gap: 8px 14px; align-items: center; }
+.cols { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 12px; }
+.box { border: 1px solid var(--line); border-radius: var(--r); padding: 12px 14px; display: grid; gap: 8px; align-content: start; background: var(--paper); }
+.box.you { border-left: 4px solid var(--ok); }
+.box.doc { border-left: 4px solid var(--accent); }
+.box h3 { font-family: var(--f-ui); font-size: .82rem; letter-spacing: .06em; text-transform: uppercase; }
+.flow { list-style: none; padding: 0; counter-reset: q; gap: 0; }
+.flow > li { counter-increment: q; display: grid; grid-template-columns: 30px 1fr; gap: 10px; padding-bottom: 14px; position: relative; }
+.flow > li::before { content: counter(q); width: 26px; height: 26px; border-radius: 50%; background: var(--accent); color: var(--accent-ink); font-family: var(--f-mono); font-size: .8rem; display: grid; place-items: center; }
+.flow > li::after { content: ""; position: absolute; left: 12px; top: 28px; bottom: 2px; width: 2px; background: var(--line); }
+.flow > li:last-child::after { display: none; }
+.flow .stop { display: block; font-size: .85rem; color: var(--muted); margin-top: 2px; }
+.flow ul { margin-top: 6px; }
+.quote { font-family: var(--f-serif); border-left: 3px solid var(--line); padding: 2px 0 2px 12px; color: var(--ink); }
+.pills { list-style: none; padding: 0; display: flex; flex-wrap: wrap; gap: 6px; }
+.pills li { border: 1px solid var(--line); border-radius: 999px; padding: 2px 10px; font-size: .85rem; background: var(--paper); }
+.patterns { list-style: none; padding: 0; display: grid; gap: 8px; counter-reset: p; }
+.patterns li { counter-increment: p; display: grid; grid-template-columns: 30px 1fr; gap: 10px; align-items: start; border: 1px solid var(--line); border-radius: var(--r); padding: 10px 12px; }
+.patterns li::before { content: counter(p); font-family: var(--f-mono); font-weight: 600; font-size: 1rem; }
+.patterns li.yes { background: var(--ok-soft); }
+.patterns small { display: block; color: var(--muted); }
+.cite { font-size: 0.8rem; color: var(--muted); display: flex; flex-wrap: wrap; gap: 6px 10px; align-items: center; border-top: 1px dashed var(--line); padding-top: 10px; }
+table { border-collapse: collapse; width: 100%; font-size: 0.88rem; }
+th, td { text-align: left; padding: 7px 8px; border-bottom: 1px solid var(--line); vertical-align: top; }
+th { font-weight: 600; color: var(--muted); font-size: 0.76rem; letter-spacing: 0.04em; text-transform: uppercase; }
+.tscroll { overflow-x: auto; }
+.num { font-family: var(--f-mono); font-variant-numeric: tabular-nums; font-size: .86em; white-space: nowrap; }
+details { border: 1px solid var(--line); border-radius: var(--r); background: var(--paper); padding: 10px 12px; }
+summary { cursor: pointer; font-weight: 600; min-height: 24px; }
+details > :not(summary) { margin-top: 10px; }
+footer { font-size: 0.82rem; color: var(--muted); display: grid; gap: 8px; padding-block: 0 40px; }
+@media (max-width: 520px) { h1 { font-size: 1.55rem; } .panel { padding: 14px; } }
+@media print {
+  .banner { background: none; color: #000; border-bottom: 1px solid #000; }
+  .noprint, .skip { display: none !important; }
+  body { background: #fff; color: #000; font-size: 10.5pt; }
+  .panel, .box, details { border-color: #999; break-inside: avoid-page; }
+  details > :not(summary) { display: block !important; }
+  a { color: #000; }
+}
+
+.sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+tr.dim td { opacity: .45; }
+.checklist { gap: 8px; }
+.myths { margin: 0; display: grid; gap: 4px 0; }
+.myths dt { font-weight: 600; margin-top: 8px; }
+.myths dt:first-child { margin-top: 0; }
+.myths dd { margin: 0; color: var(--ink); }
+@media (max-width: 520px) { table.stack thead { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); } table.stack, table.stack tbody, table.stack tr, table.stack td { display: block; } table.stack tr { border-bottom: 1px solid var(--line); padding: 8px 0; } table.stack td { border: 0; padding: 2px 0; } table.stack td:first-child { font-weight: 600; } table.stack td:last-child { font-size: .8rem; color: var(--muted); } }
+@media print { tr.dim td { opacity: 1; } .topic[hidden] { display: grid !important; } }
+.tag.bg { color: var(--muted); }
+.cite { display: block; line-height: 1.9; } .cite .tag { margin-right: 4px; } .cite .tag:not(:first-child) { margin-left: 6px; }
+@media (max-width: 520px) { table.stack.keep td:last-child { font-size: inherit; color: var(--ink); } }
+.alert { border: 1px solid var(--wait); border-left: 6px solid var(--wait); background: var(--wait-soft); border-radius: var(--r); padding: 14px 16px; display: grid; gap: 8px; }
+.alert p.big { font-family: var(--f-serif); font-size: 1.12rem; font-weight: 600; line-height: 1.35; }
+.no { font-weight: 700; color: var(--wait); white-space: nowrap; }
+.three { list-style: none; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 8px; counter-reset: t; }
+.three li { counter-increment: t; border: 1px solid var(--line); border-radius: var(--r); padding: 10px 12px; background: var(--paper); display: grid; gap: 4px; align-content: start; }
+.three li::before { content: "Question " counter(t); font-size: .72rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+.timeline { list-style: none; padding: 0; margin: 0; display: grid; gap: 0; }
+.timeline > li { display: grid; grid-template-columns: 64px 1fr; gap: 12px; position: relative; padding-bottom: 16px; }
+.timeline > li::after { content: ""; position: absolute; left: 31px; top: 30px; bottom: 0; width: 2px; background: var(--line); }
+.timeline > li:last-child::after { display: none; }
+.timeline .yr { font-family: var(--f-mono); font-weight: 600; font-size: .85rem; background: var(--sunk); border: 1px solid var(--line); border-radius: 999px; height: 28px; display: grid; place-items: center; position: relative; z-index: 1; }
+.timeline .key .yr { background: var(--accent); color: var(--accent-ink); border-color: var(--accent); }
+.timeline .ev { display: grid; gap: 2px; padding-top: 3px; }
+.timeline .ev b { font-size: .98rem; }
+.timeline .ev small { color: var(--muted); font-size: .84rem; }
+.dir { font-size: .72rem; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; padding: 1px 7px; border-radius: 4px; justify-self: start; }
+.dir.narrow { background: var(--wait-soft); color: var(--wait); }
+.dir.wide { background: var(--ok-soft); color: var(--ok); }
+.answer { border: 1px solid var(--accent); background: var(--accent-soft); border-radius: var(--r); padding: 12px 14px; display: grid; gap: 8px; }
+.outcomes { display: grid; gap: 8px; }
+.outcomes .box h3 { font-family: var(--f-serif); font-size: 1rem; letter-spacing: 0; text-transform: none; }
+@media print { .answer[hidden] { display: none !important; } }
+.three li::before { content: "Requirement " counter(t); }
+.filter { display: grid; gap: 6px; }
+.filter input { border: 1px solid var(--line); border-radius: var(--r); background: var(--paper); padding: 10px 12px; min-height: 44px; width: 100%; }
+.nl li.dim { opacity: .55; }
+.nl li.hit { background: var(--accent-soft); border-radius: 4px; padding: 0 4px; margin-left: -4px; }
+.exc { color: var(--wait); font-weight: 600; }
+@media print { .nl li.dim { opacity: 1; } }
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to the article</a>
+<div class="banner" role="note"><div class="wrap">Independent educational tool. Not affiliated with or endorsed by the U.S. Department of Veterans Affairs. Not legal or medical advice. VA decides every claim.</div></div>
+<div class="wrap">
+  <header class="top">
+    <div class="crumbs noprint"><a href="./#educ.aa">← Aid and attendance and housebound</a><span class="eyebrow"><span aria-hidden="true">★</span> Featured · Benefits</span></div>
+    <h1>When your spouse needs daily help: extra VA compensation for you</h1>
+    <p>If you get VA disability compensation and your <b>spouse</b> needs another person's help with daily life, is nearly blind, or lives in a nursing home, VA can pay <b>you</b> an extra monthly amount. This is often called <b>special monthly spouse's compensation</b>, or spousal aid and attendance (A&amp;A). It is easy to miss because it depends on your spouse's health, not yours. This article explains the two things that must be true, what evidence helps, and when the extra pay can start.</p>
+    <p class="muted" style="font-size:.86rem">Based on public sources: <b>38 U.S.C. § 1115</b>, <b>38 C.F.R. §§ 3.4(b)(2), 3.351, 3.352(a), and 3.401(a)(3)</b>, VA's published rate tables and forms, and VA's procedures manual, <b>M21-1, Part VIII, Subpart iv, Chapter 4, Section A, Topic 12</b>. For education only. ClaimReady checks these sources for changes, but VA decides every claim.</p>
+    <div class="row noprint"><button class="btn" type="button" id="printBtn">Print or save this article</button></div>
+  </header>
+  <main id="main" tabindex="-1">
+    <section class="panel" id="start" aria-labelledby="start-h">
+      <header><span class="eyebrow">Start here</span><h2 id="start-h">Two things must be true</h2></header>
+      <div class="alert" role="note">
+        <p class="big">The extra pay goes to you, the veteran, "by reason of the veteran's spouse being in need of aid and attendance." Your spouse's condition does <b>not</b> have to be related to your service, or to any service.</p>
+      </div>
+      <ol class="three">
+        <li><b>You are rated 30% or more.</b><span>Your combined service-connected rating must be at least 30%. You do not need to be rated 100%. Below 30%, VA does not pay extra for any dependents, including this.</span></li>
+        <li><b>Your spouse meets one of three tests.</b><span>Nearly blind, a patient in a nursing home because of mental or physical incapacity, or a factual need for another person's regular help. <a href="#tests">See the three tests</a>.</span></li>
+      </ol>
+      <p class="muted" style="font-size:.88rem">Your spouse also needs to be on your award as a dependent. If you are already paid at the "with spouse" rate, that part is done.</p>
+      <p class="cite"><span class="tag law">Law</span> 38 U.S.C. § 1115; 38 C.F.R. §§ 3.4(b)(2), 3.351(a)(2) <span class="tag guide">VA guidance</span> M21-1 VIII.iv.4.A.12.a–b</p>
+    </section>
+
+    <section class="panel noprint" aria-labelledby="pick-h">
+      <fieldset>
+        <legend id="pick-h">What brings you here?</legend>
+        <p class="muted" style="font-size:.88rem">Pick the one that fits best to see which parts of this article matter most. Nothing you pick is saved. This does not tell you whether VA will grant a claim.</p>
+        <div class="choices">
+          <label class="choice"><input type="radio" name="why" value="nursing"><span><b>My spouse is in a nursing home</b><small>Or is about to move into one</small></span></label>
+          <label class="choice"><input type="radio" name="why" value="home"><span><b>My spouse needs help at home</b><small>Dressing, bathing, eating, or staying safe</small></span></label>
+          <label class="choice"><input type="radio" name="why" value="vision"><span><b>My spouse has very poor vision</b><small>Even with glasses or contacts</small></span></label>
+          <label class="choice"><input type="radio" name="why" value="under30"><span><b>I'm rated under 30%</b><small>Or I'm not sure of my combined rating</small></span></label>
+        </div>
+      </fieldset>
+      <div class="answer" id="ans-nursing" hidden><p><b>A nursing home stay can be enough on its own.</b> If your spouse is a patient in a nursing home because of mental or physical incapacity, VA considers them in need of aid and attendance. VA mainly needs to confirm the nursing home status; a separate review of each daily task is usually not needed.</p><p>Read next: <a href="#tests">Test 2: nursing home</a> and <a href="#evidence">What evidence helps</a></p></div>
+      <div class="answer" id="ans-home" hidden><p><b>This is the "factual need" test.</b> VA looks at what your spouse cannot do without help, such as dressing, keeping clean, eating, using the bathroom, or staying safe from everyday hazards. Not every item has to apply, and the need has to be regular, not constant.</p><p>Read next: <a href="#tests">Test 3: factual need</a> and <a href="#evidence">What evidence helps</a></p></div>
+      <div class="answer" id="ans-vision" hidden><p><b>Vision is measured with correction.</b> The test is corrected vision of 5/200 or less in <b>both</b> eyes, or a visual field narrowed to 5 degrees or less. If your spouse's vision is poor but above that line, the factual need test may still apply.</p><p>Read next: <a href="#tests">Test 1: vision</a> and <a href="#evidence">What the doctor should include</a></p></div>
+      <div class="answer" id="ans-under30" hidden><p><b>The 30% line comes first.</b> Below a combined 30% rating, VA does not pay extra for a spouse, even one who needs aid and attendance. If your rating later goes up to 30% or more, this benefit becomes possible.</p><p>Read next: <a href="#thirty">The 30% requirement</a> and ClaimReady's <a href="./#educ.aa">Aid and attendance topic</a></p></div>
+      <p id="pickNote" class="sr" aria-live="polite"></p>
+    </section>
+
+    <section class="panel" id="thirty" aria-labelledby="thirty-h">
+      <header><span class="eyebrow">Requirement 1</span><h2 id="thirty-h">The 30% requirement</h2></header>
+      <p>The law allows extra compensation for a spouse, children, or dependent parents only when the veteran is entitled to compensation for disability "evaluated as 30 per centum or more disabling." VA's manual applies the same line to the spouse aid and attendance amount.</p>
+      <div class="cols">
+        <div class="box you"><h3>What counts</h3><ul>
+          <li>Your <b>combined</b> rating for all service-connected conditions, not any single condition.</li>
+          <li>Any rating from 30% to 100%. The added amount is larger at higher ratings.</li>
+        </ul></div>
+        <div class="box doc"><h3>What does not change it</h3><ul>
+          <li>Whether your spouse's condition has anything to do with military service.</li>
+          <li>Whether you already get special monthly compensation for yourself.</li>
+        </ul></div>
+      </div>
+      <p class="cite"><span class="tag law">Law</span> 38 U.S.C. § 1115; 38 C.F.R. § 3.4(b)(2) <span class="tag guide">VA guidance</span> M21-1 VIII.iv.4.A.12.b</p>
+    </section>
+
+    <section class="panel" id="tests" aria-labelledby="tests-h">
+      <header><span class="eyebrow">Requirement 2</span><h2 id="tests-h">The three tests for your spouse</h2>
+        <p>Your spouse needs to meet <b>any one</b> of these. They are the same tests VA uses for a veteran's own aid and attendance.</p></header>
+      <ul class="patterns">
+        <li><div><b>Vision: blind or nearly blind</b><small>Corrected visual acuity of <b>5/200 or less in both eyes</b>, or <b>concentric contraction of the visual field to 5 degrees or less</b>. In plain terms, 5/200 means seeing at 5 feet what a person with normal vision sees at 200 feet, even with glasses. A 5-degree field is a very narrow tunnel of sight.</small></div></li>
+        <li><div><b>Nursing home: a patient because of incapacity</b><small>A patient in a nursing home <b>because of mental or physical incapacity</b>. For VA, a nursing home means a state-licensed facility giving skilled or intermediate nursing care, a nursing home unit in an approved State Veterans Home, or a VA nursing home unit. Assisted living or a group home may not fit this definition; if so, the factual need test can still apply.</small></div></li>
+        <li><div><b>Factual need: regular help from another person</b><small>Disabilities that create an actual need for another person's regular aid and attendance, judged by the factors below.</small></div></li>
+      </ul>
+      <details open><summary>The factual need factors (38 C.F.R. § 3.352(a))</summary>
+        <ul class="checklist">
+          <li>Cannot dress or undress, or keep ordinarily clean and presentable.</li>
+          <li>Often needs help adjusting a prosthetic or orthopedic device that they cannot adjust alone. (Ordinary items like supports, belts, or lacing at the back do not count.)</li>
+          <li>Cannot feed themselves because of lost coordination of the arms or hands, or extreme weakness.</li>
+          <li>Cannot attend to the "wants of nature" (toileting) without help.</li>
+          <li>Needs regular care or help to stay safe from the hazards or dangers of daily life because of a physical or mental condition, such as dementia.</li>
+          <li><b>Bedridden</b>, meaning the condition itself requires staying in bed. Choosing to rest in bed, or bed rest a doctor prescribes to help recovery, does not count.</li>
+        </ul>
+        <p><b>Not every factor has to be present.</b> VA looks at the functions your spouse cannot do along with their whole condition. The need must be <b>regular</b>; it does not have to be constant, around the clock.</p>
+      </details>
+      <p class="cite"><span class="tag law">Law</span> 38 C.F.R. §§ 3.351(b)–(c), 3.352(a), 3.1(z) (nursing home) <span class="tag guide">VA guidance</span> M21-1 VIII.iv.4.A.12.a</p>
+    </section>
+
+    <section class="panel" id="evidence" aria-labelledby="ev-h">
+      <header><span class="eyebrow">Examinations and evidence</span><h2 id="ev-h">What evidence helps</h2>
+        <p>VA decides based on medical evidence about your spouse. Your spouse is not a veteran, so the evidence usually comes from their own doctors.</p></header>
+      <ol class="flow">
+        <li><div><b>Make sure your spouse is on your award.</b> If not, add them as a dependent (VA uses VA Form 21-686c for this).</div></li>
+        <li><div><b>Ask your spouse's provider to complete VA Form 21-2680.</b> It is VA's form for an aid and attendance or housebound exam, and it has a box for a spouse claimant. You fill out the first sections; a medical doctor, doctor of osteopathy, physician assistant, or advanced practice registered nurse fills out the exam sections.</div></li>
+        <li><div><b>If your spouse is in a nursing home,</b> send proof that they are a patient there and why, such as a statement from the facility. VA can grant this once it confirms the nursing home status.</div></li>
+        <li><div><b>VA may ask for more.</b> If the evidence is not enough to decide, VA can request an examination of your spouse.</div></li>
+      </ol>
+      <div class="box doc"><h3>What the doctor should include</h3><ul>
+        <li>Each daily task your spouse needs help with, how often, and why (the diagnosis behind it).</li>
+        <li>Safety: whether your spouse can be left alone, and what hazards they cannot handle, such as the stove, medications, or wandering.</li>
+        <li>For vision: corrected visual acuity in <b>each eye</b>, and visual field results if the field is narrowed.</li>
+        <li>For a nursing home: that your spouse is a patient there because of mental or physical incapacity.</li>
+      </ul></div>
+      <p class="cite"><span class="tag law">Law</span> 38 C.F.R. §§ 3.351(c), 3.352(a) <span class="tag guide">VA forms</span> VA Form 21-2680 (Jun 2026 edition); VA Form 21-686c <span class="tag guide">VA guidance</span> M21-1 VIII.iv.4.A.12.a (note and references)</p>
+    </section>
+
+    <section class="panel" id="when" aria-labelledby="when-h">
+      <header><span class="eyebrow">Effective date</span><h2 id="when-h">When the extra pay can start</h2></header>
+      <p>The general rule is the <b>later</b> of two dates: the date VA receives the claim, or the date your spouse's entitlement arose (when the need for aid and attendance began).</p>
+      <p>There is one helpful exception. If VA grants your own disability compensation back to a date <b>before</b> your claim was received, the spouse amount can also be paid for any part of that earlier period in which your spouse's need for aid and attendance is shown.</p>
+      <div class="example" role="note"><b>Fictional example</b>
+        <span>Dana is rated 50%. Dana's spouse moved into a state-licensed nursing home in March because of advanced Parkinson's disease. Dana files in August with a statement from the facility. Under the general rule, the earliest the extra pay can start is the August date VA received the claim, because that is later than March. Waiting does not change what qualifies, but it can cost months of payments. This is a made-up illustration, not a VA decision.</span></div>
+      <p class="cite"><span class="tag law">Law</span> 38 C.F.R. § 3.401(a)(3) <span class="tag guide">VA guidance</span> M21-1 VIII.iv.4.A.12.a (references)</p>
+    </section>
+
+    <section class="panel" id="amount" aria-labelledby="amt-h">
+      <header><span class="eyebrow">Amount</span><h2 id="amt-h">How it is paid</h2></header>
+      <p>VA's rate tables list "Spouse receiving Aid and Attendance" as an <b>added amount</b> on top of your basic monthly rate with a spouse. It grows with your combined rating. For rates effective <span class="num">December 1, 2025</span>, the added amount ranged from about <span class="num">$61</span> a month at 30% to about <span class="num">$201</span> a month at 100%. Rates change each year, so check VA's <a href="https://www.va.gov/disability/compensation-rates/veteran-rates/" target="_blank" rel="noopener">current compensation rates</a>.</p>
+      <p class="cite"><span class="tag law">Law</span> 38 U.S.C. § 1115(1)(E), (2) <span class="tag guide">VA guidance</span> VA compensation rate tables (effective Dec 1, 2025)</p>
+    </section>
+
+    <section class="panel" id="myths" aria-labelledby="myth-h">
+      <header><span class="eyebrow">Common misunderstandings</span><h2 id="myth-h">What people often get wrong</h2></header>
+      <dl class="myths">
+        <dt>"I have to be rated 100%."</dt><dd>No. Any combined rating of 30% or more can qualify.</dd>
+        <dt>"My spouse's condition has to be from my service."</dt><dd>No. The test is your spouse's need for help, whatever the cause.</dd>
+        <dt>"My spouse has to need care every hour of the day."</dt><dd>No. The need must be regular, not constant, and not every factor has to apply.</dd>
+        <dt>"This is the same as my own SMC."</dt><dd>No. Your own special monthly compensation is based on your service-connected disabilities. This amount is based on your spouse and is paid in addition.</dd>
+        <dt>"VA will add it automatically when my spouse gets sick."</dt><dd>No. VA needs a claim and evidence. Because pay usually starts no earlier than the claim date, it helps to apply once your spouse meets a test.</dd>
+        <dt>"This is for surviving spouses too."</dt><dd>Not this benefit. A surviving spouse who needs aid and attendance may get it with DIC or Survivors Pension, under separate rules. See ClaimReady's <a href="./#educ.aa">Aid and attendance topic</a>.</dd>
+      </dl>
+    </section>
+
+    <section class="panel" id="sources" aria-labelledby="src-h">
+      <header><h2 id="src-h">Sources and dates</h2>
+        <p class="muted" style="font-size:.88rem"><span class="tag law">Law</span> statutes and regulations. <span class="tag guide">VA guidance</span> VA's procedures manual, forms, and rate tables, which explain how VA applies the law but are not law.</p></header>
+      <div class="tscroll"><table>
+        <thead><tr><th scope="col">Source</th><th scope="col">Type</th><th scope="col">Version used</th></tr></thead>
+        <tbody>
+          <tr><td><a href="https://www.govinfo.gov/link/uscode/38/1115" target="_blank" rel="noopener">38 U.S.C. § 1115</a> (additional compensation for dependents; 30% rule; spouse aid and attendance)</td><td><span class="tag law">Law</span></td><td>Current</td></tr>
+          <tr><td><a href="https://www.ecfr.gov/current/title-38/section-3.4" target="_blank" rel="noopener">38 C.F.R. § 3.4(b)(2)</a> (dependents at 30% or more)</td><td><span class="tag law">Law</span></td><td>Current eCFR</td></tr>
+          <tr><td><a href="https://www.ecfr.gov/current/title-38/section-3.351" target="_blank" rel="noopener">38 C.F.R. § 3.351(a)(2), (b), (c)</a> (spouse aid and attendance; the three tests)</td><td><span class="tag law">Law</span></td><td>Current eCFR</td></tr>
+          <tr><td><a href="https://www.ecfr.gov/current/title-38/section-3.352" target="_blank" rel="noopener">38 C.F.R. § 3.352(a)</a> (factual need factors; bedridden)</td><td><span class="tag law">Law</span></td><td>Current eCFR</td></tr>
+          <tr><td><a href="https://www.ecfr.gov/current/title-38/section-3.401" target="_blank" rel="noopener">38 C.F.R. § 3.401(a)(3)</a> (effective date)</td><td><span class="tag law">Law</span></td><td>Current eCFR</td></tr>
+          <tr><td><a href="https://www.ecfr.gov/current/title-38/section-3.1" target="_blank" rel="noopener">38 C.F.R. § 3.1(z)</a> (nursing home definition)</td><td><span class="tag law">Law</span></td><td>Current eCFR</td></tr>
+          <tr><td>M21-1 VIII.iv.4.A.12, Entitlement to Special Monthly Spouse's Compensation</td><td><span class="tag guide">VA guidance</span></td><td class="num">Change date Sep 9, 2019; text as of Oct 24, 2026</td></tr>
+          <tr><td><a href="https://www.vba.va.gov/pubs/forms/vba-21-2680-are.pdf" target="_blank" rel="noopener">VA Form 21-2680</a>, Examination for Housebound Status or Permanent Need for Regular Aid and Attendance</td><td><span class="tag guide">VA form</span></td><td>Jun 2026 edition</td></tr>
+          <tr><td><a href="https://www.va.gov/disability/compensation-rates/veteran-rates/" target="_blank" rel="noopener">VA disability compensation rates</a></td><td><span class="tag guide">VA guidance</span></td><td>Effective Dec 1, 2025</td></tr>
+        </tbody>
+      </table></div>
+      <p class="muted" style="font-size:.86rem">Content reviewed <span class="num">Oct 24, 2026</span>. When VA updates a source, ClaimReady's weekly monitor flags it for review before this page changes.</p>
+    </section>
+  </main>
+
+  <footer>
+    <p>This article explains public law and VA guidance about extra compensation for a veteran whose spouse needs aid and attendance. It does not decide whether VA will grant a claim or how much VA will pay, and it is not legal or medical advice.</p>
+    <p>ClaimReady is independent and educational. It is not VA and is not a substitute for an accredited representative, who can help at no cost. Nothing on this page is saved or sent. <a href="./#about">About ClaimReady and full disclaimer</a></p>
+  </footer>
+</div>
+<script>
+(() => {
+  const radios = [...document.querySelectorAll('input[name="why"]')];
+  const answers = [...document.querySelectorAll('.answer')];
+  const note = document.getElementById('pickNote');
+  const names = { nursing: 'your spouse is in a nursing home', home: 'your spouse needs help at home', vision: 'your spouse has very poor vision', under30: 'you are rated under 30%' };
+  function apply() {
+    const r = radios.find(x => x.checked); if (!r) return;
+    answers.forEach(a => { a.hidden = a.id !== 'ans-' + r.value; });
+    note.textContent = `Showing what matters most if ${names[r.value]}.`;
+  }
+  radios.forEach(r => r.addEventListener('change', apply));
+  // A link such as spouse-aid-attendance.html#nursing opens with that answer picked.
+  const h = location.hash.slice(1);
+  if (names[h]) { radios.find(r => r.value === h).checked = true; apply(); }
+  document.getElementById('printBtn').addEventListener('click', () => window.print());
+})();
+</script>
+</body></html>
