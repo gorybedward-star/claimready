@@ -1,0 +1,390 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="description" content="Section-by-section guide to VA Forms 21-4142 and 21-4142a (AUG 2024): authorizing VA to request private medical records, what each section asks, and the law behind it.">
+<meta name="referrer" content="no-referrer"><meta name="theme-color" content="#1d5a70">
+<link rel="manifest" href="manifest.webmanifest"><link rel="icon" type="image/png" href="icons/favicon-32.png"><link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+<title>Form 21-4142 Guide</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<style>@font-face{font-family:'Public Sans';font-style:normal;font-weight:400;font-display:swap;src:url(fonts/public-sans-latin-400-normal.woff2) format('woff2')}@font-face{font-family:'Public Sans';font-style:normal;font-weight:500;font-display:swap;src:url(fonts/public-sans-latin-500-normal.woff2) format('woff2')}@font-face{font-family:'Public Sans';font-style:normal;font-weight:600;font-display:swap;src:url(fonts/public-sans-latin-600-normal.woff2) format('woff2')}@font-face{font-family:'Public Sans';font-style:normal;font-weight:700;font-display:swap;src:url(fonts/public-sans-latin-700-normal.woff2) format('woff2')}@font-face{font-family:'Source Serif 4';font-style:normal;font-weight:400;font-display:swap;src:url(fonts/source-serif-4-latin-400-normal.woff2) format('woff2')}@font-face{font-family:'Source Serif 4';font-style:normal;font-weight:600;font-display:swap;src:url(fonts/source-serif-4-latin-600-normal.woff2) format('woff2')}@font-face{font-family:'Source Serif 4';font-style:italic;font-weight:400;font-display:swap;src:url(fonts/source-serif-4-latin-400-italic.woff2) format('woff2')}@font-face{font-family:'Source Serif 4';font-style:italic;font-weight:600;font-display:swap;src:url(fonts/source-serif-4-latin-600-italic.woff2) format('woff2')}@font-face{font-family:'IBM Plex Mono';font-style:normal;font-weight:400;font-display:swap;src:url(fonts/ibm-plex-mono-latin-400-normal.woff2) format('woff2')}@font-face{font-family:'IBM Plex Mono';font-style:normal;font-weight:600;font-display:swap;src:url(fonts/ibm-plex-mono-latin-600-normal.woff2) format('woff2')}</style>
+<style>
+/* Layout: Form 21-4142/4142a guide, mobile-first */
+:root {
+  --paper: #f3f5f4; --surface: #ffffff; --sunk: #e9eeec; --ink: #16201d; --muted: #5a6763; --line: #d4dcd9;
+  --accent: #1d5a70; --accent-ink: #ffffff; --accent-soft: #dfecf0;
+  --ok: #2a774b; --ok-soft: #e0f0e6; --wait: #8a560a; --wait-soft: #f7ecd8;
+  --f-ui: "Public Sans", "Segoe UI", system-ui, sans-serif;
+  --f-serif: "Source Serif 4", Georgia, "Times New Roman", serif;
+  --f-mono: "IBM Plex Mono", ui-monospace, Menlo, monospace;
+  --r: 6px;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --paper: #111816; --surface: #19211f; --sunk: #0d1312; --ink: #e4ebe8; --muted: #98a6a1; --line: #2b3633;
+  --accent: #72b6cf; --accent-ink: #0d1a1f; --accent-soft: #1b3038;
+  --ok: #62c189; --ok-soft: #173426; --wait: #e2a849; --wait-soft: #392b12; color-scheme: dark; } }
+:root[data-theme="dark"] {
+  --paper: #111816; --surface: #19211f; --sunk: #0d1312; --ink: #e4ebe8; --muted: #98a6a1; --line: #2b3633;
+  --accent: #72b6cf; --accent-ink: #0d1a1f; --accent-soft: #1b3038;
+  --ok: #62c189; --ok-soft: #173426; --wait: #e2a849; --wait-soft: #392b12; color-scheme: dark; }
+:root { padding-top: env(safe-area-inset-top, 0px); padding-bottom: env(safe-area-inset-bottom, 0px); }
+* { box-sizing: border-box; }
+[hidden] { display: none !important; }
+body { margin: 0; background: var(--paper); color: var(--ink); font-family: var(--f-ui); font-size: 0.95rem; line-height: 1.5; }
+.wrap { max-width: 760px; margin: 0 auto; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+.skip { position: absolute; left: -9999px; } .skip:focus { left: 16px; top: 8px; z-index: 20; background: var(--surface); padding: 8px 12px; border-radius: var(--r); }
+.banner { background: var(--ink); color: var(--paper); font-size: 0.8rem; }
+.banner .wrap { padding-block: 8px; }
+header.top { padding-block: 24px 8px; display: grid; gap: 10px; }
+h1, h2, h3 { font-family: var(--f-serif); font-weight: 600; margin: 0; line-height: 1.2; text-wrap: balance; }
+h1 { font-size: 1.9rem; letter-spacing: -0.01em; }
+h2 { font-size: 1.3rem; }
+h3 { font-size: 1.02rem; }
+p { margin: 0; }
+ul, ol { margin: 0; padding-left: 20px; display: grid; gap: 6px; }
+a { color: var(--accent); }
+.muted { color: var(--muted); }
+.eyebrow { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.09em; text-transform: uppercase; color: var(--muted); }
+.crumbs { display: flex; flex-wrap: wrap; gap: 6px 14px; align-items: baseline; }
+.crumbs a { font-weight: 600; font-size: .9rem; text-decoration: none; }
+.crumbs a:hover { text-decoration: underline; }
+.tag { display: inline-block; font-size: .7rem; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; padding: 1px 7px; border-radius: 4px; border: 1px solid currentColor; white-space: nowrap; }
+.tag.law { color: var(--accent); } .tag.guide { color: var(--wait); } .tag.court { color: var(--ok); }
+.example { display: grid; gap: 4px; background: var(--wait-soft); border: 1px solid var(--line); border-radius: var(--r); padding: 10px 12px; }
+.example b:first-child { font-size: .78rem; letter-spacing: .06em; text-transform: uppercase; }
+button, input { font: inherit; color: inherit; }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.btn { border: 1px solid var(--line); background: var(--surface); border-radius: var(--r); padding: 8px 14px; cursor: pointer; min-height: 44px; }
+.btn.primary { background: var(--accent); color: var(--accent-ink); border-color: var(--accent); font-weight: 600; }
+.btn.link { border: 0; background: none; color: var(--accent); text-decoration: underline; padding: 4px 0; min-height: 0; }
+main { display: grid; gap: 20px; padding-block: 12px 48px; }
+.panel { background: var(--surface); border: 1px solid var(--line); border-radius: var(--r); padding: 18px; display: grid; gap: 14px; min-width: 0; }
+.panel > header { display: grid; gap: 6px; }
+fieldset { border: 0; padding: 0; margin: 0; display: grid; gap: 10px; min-width: 0; }
+legend { font-family: var(--f-serif); font-weight: 600; font-size: 1.15rem; padding: 0; margin-bottom: 4px; }
+.choices { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 8px; }
+.choice { display: flex; gap: 10px; align-items: flex-start; border: 1px solid var(--line); border-radius: var(--r); padding: 10px 12px; cursor: pointer; background: var(--paper); min-height: 44px; }
+.choice:has(input:checked) { border-color: var(--accent); background: var(--accent-soft); }
+.choice input { margin-top: 4px; width: 18px; height: 18px; accent-color: var(--accent); flex: none; }
+.choice small { display: block; color: var(--muted); }
+.row { display: flex; flex-wrap: wrap; gap: 8px 14px; align-items: center; }
+.cols { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 12px; }
+.box { border: 1px solid var(--line); border-radius: var(--r); padding: 12px 14px; display: grid; gap: 8px; align-content: start; background: var(--paper); }
+.box.you { border-left: 4px solid var(--ok); }
+.box.doc { border-left: 4px solid var(--accent); }
+.box h3 { font-family: var(--f-ui); font-size: .82rem; letter-spacing: .06em; text-transform: uppercase; }
+.flow { list-style: none; padding: 0; counter-reset: q; gap: 0; }
+.flow > li { counter-increment: q; display: grid; grid-template-columns: 30px 1fr; gap: 10px; padding-bottom: 14px; position: relative; }
+.flow > li::before { content: counter(q); width: 26px; height: 26px; border-radius: 50%; background: var(--accent); color: var(--accent-ink); font-family: var(--f-mono); font-size: .8rem; display: grid; place-items: center; }
+.flow > li::after { content: ""; position: absolute; left: 12px; top: 28px; bottom: 2px; width: 2px; background: var(--line); }
+.flow > li:last-child::after { display: none; }
+.flow .stop { display: block; font-size: .85rem; color: var(--muted); margin-top: 2px; }
+.flow ul { margin-top: 6px; }
+.quote { font-family: var(--f-serif); border-left: 3px solid var(--line); padding: 2px 0 2px 12px; color: var(--ink); }
+.pills { list-style: none; padding: 0; display: flex; flex-wrap: wrap; gap: 6px; }
+.pills li { border: 1px solid var(--line); border-radius: 999px; padding: 2px 10px; font-size: .85rem; background: var(--paper); }
+.patterns { list-style: none; padding: 0; display: grid; gap: 8px; counter-reset: p; }
+.patterns li { counter-increment: p; display: grid; grid-template-columns: 30px 1fr; gap: 10px; align-items: start; border: 1px solid var(--line); border-radius: var(--r); padding: 10px 12px; }
+.patterns li::before { content: counter(p); font-family: var(--f-mono); font-weight: 600; font-size: 1rem; }
+.patterns li.yes { background: var(--ok-soft); }
+.patterns small { display: block; color: var(--muted); }
+.cite { font-size: 0.8rem; color: var(--muted); display: flex; flex-wrap: wrap; gap: 6px 10px; align-items: center; border-top: 1px dashed var(--line); padding-top: 10px; }
+table { border-collapse: collapse; width: 100%; font-size: 0.88rem; }
+th, td { text-align: left; padding: 7px 8px; border-bottom: 1px solid var(--line); vertical-align: top; }
+th { font-weight: 600; color: var(--muted); font-size: 0.76rem; letter-spacing: 0.04em; text-transform: uppercase; }
+.tscroll { overflow-x: auto; }
+.num { font-family: var(--f-mono); font-variant-numeric: tabular-nums; font-size: .86em; white-space: nowrap; }
+details { border: 1px solid var(--line); border-radius: var(--r); background: var(--paper); padding: 10px 12px; }
+summary { cursor: pointer; font-weight: 600; min-height: 24px; }
+details > :not(summary) { margin-top: 10px; }
+footer { font-size: 0.82rem; color: var(--muted); display: grid; gap: 8px; padding-block: 0 40px; }
+@media (max-width: 520px) { h1 { font-size: 1.55rem; } .panel { padding: 14px; } }
+@media print {
+  .banner { background: none; color: #000; border-bottom: 1px solid #000; }
+  .noprint, .skip { display: none !important; }
+  body { background: #fff; color: #000; font-size: 10.5pt; }
+  .panel, .box, details { border-color: #999; break-inside: avoid-page; }
+  details > :not(summary) { display: block !important; }
+  a { color: #000; }
+}
+
+.sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+tr.dim td { opacity: .45; }
+.checklist { gap: 8px; }
+.myths { margin: 0; display: grid; gap: 4px 0; }
+.myths dt { font-weight: 600; margin-top: 8px; }
+.myths dt:first-child { margin-top: 0; }
+.myths dd { margin: 0; color: var(--ink); }
+@media (max-width: 520px) { table.stack thead { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); } table.stack, table.stack tbody, table.stack tr, table.stack td { display: block; } table.stack tr { border-bottom: 1px solid var(--line); padding: 8px 0; } table.stack td { border: 0; padding: 2px 0; } table.stack td:first-child { font-weight: 600; } table.stack td:last-child { font-size: .8rem; color: var(--muted); } }
+@media print { tr.dim td { opacity: 1; } .topic[hidden] { display: grid !important; } }
+.tag.bg { color: var(--muted); }
+.cite { display: block; line-height: 1.9; } .cite .tag { margin-right: 4px; } .cite .tag:not(:first-child) { margin-left: 6px; }
+@media (max-width: 520px) { table.stack.keep td:last-child { font-size: inherit; color: var(--ink); } }
+.alert { border: 1px solid var(--wait); border-left: 6px solid var(--wait); background: var(--wait-soft); border-radius: var(--r); padding: 14px 16px; display: grid; gap: 8px; }
+.alert p.big { font-family: var(--f-serif); font-size: 1.12rem; font-weight: 600; line-height: 1.35; }
+.no { font-weight: 700; color: var(--wait); white-space: nowrap; }
+.three { list-style: none; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 8px; counter-reset: t; }
+.three li { counter-increment: t; border: 1px solid var(--line); border-radius: var(--r); padding: 10px 12px; background: var(--paper); display: grid; gap: 4px; align-content: start; }
+.three li::before { content: "Question " counter(t); font-size: .72rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+.timeline { list-style: none; padding: 0; margin: 0; display: grid; gap: 0; }
+.timeline > li { display: grid; grid-template-columns: 64px 1fr; gap: 12px; position: relative; padding-bottom: 16px; }
+.timeline > li::after { content: ""; position: absolute; left: 31px; top: 30px; bottom: 0; width: 2px; background: var(--line); }
+.timeline > li:last-child::after { display: none; }
+.timeline .yr { font-family: var(--f-mono); font-weight: 600; font-size: .85rem; background: var(--sunk); border: 1px solid var(--line); border-radius: 999px; height: 28px; display: grid; place-items: center; position: relative; z-index: 1; }
+.timeline .key .yr { background: var(--accent); color: var(--accent-ink); border-color: var(--accent); }
+.timeline .ev { display: grid; gap: 2px; padding-top: 3px; }
+.timeline .ev b { font-size: .98rem; }
+.timeline .ev small { color: var(--muted); font-size: .84rem; }
+.dir { font-size: .72rem; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; padding: 1px 7px; border-radius: 4px; justify-self: start; }
+.dir.narrow { background: var(--wait-soft); color: var(--wait); }
+.dir.wide { background: var(--ok-soft); color: var(--ok); }
+.answer { border: 1px solid var(--accent); background: var(--accent-soft); border-radius: var(--r); padding: 12px 14px; display: grid; gap: 8px; }
+.outcomes { display: grid; gap: 8px; }
+.outcomes .box h3 { font-family: var(--f-serif); font-size: 1rem; letter-spacing: 0; text-transform: none; }
+@media print { .answer[hidden] { display: none !important; } }
+.three li::before { content: "Requirement " counter(t); }
+.filter { display: grid; gap: 6px; }
+.filter input { border: 1px solid var(--line); border-radius: var(--r); background: var(--paper); padding: 10px 12px; min-height: 44px; width: 100%; }
+.nl li.dim { opacity: .55; }
+.nl li.hit { background: var(--accent-soft); border-radius: 4px; padding: 0 4px; margin-left: -4px; }
+.exc { color: var(--wait); font-weight: 600; }
+@media print { .nl li.dim { opacity: 1; } }
+<style>
+.edition { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 8px; }
+.edition div { border: 1px solid var(--line); border-radius: var(--r); background: var(--surface); padding: 8px 12px; display: grid; gap: 2px; }
+.edition small { color: var(--muted); font-size: .75rem; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; }
+.map { list-style: none; padding: 0; display: grid; gap: 6px; }
+.map a { display: grid; grid-template-columns: 54px 1fr; gap: 10px; align-items: baseline; text-decoration: none; color: var(--ink); border: 1px solid var(--line); border-radius: var(--r); padding: 8px 12px; background: var(--paper); min-height: 44px; }
+.map a:hover { border-color: var(--accent); }
+.map .sec { font-family: var(--f-mono); font-weight: 600; font-size: .82rem; color: var(--accent); }
+.map small { color: var(--muted); }
+.formsec { padding: 0; background: var(--surface); }
+.formsec > summary { padding: 12px 14px; display: grid; grid-template-columns: 54px 1fr; gap: 10px; align-items: baseline; }
+.formsec > summary .sec { font-family: var(--f-mono); font-weight: 600; font-size: .82rem; color: var(--accent); }
+.formsec > summary small { display: block; font-weight: 400; color: var(--muted); font-size: .84rem; }
+.formsec > .inner { padding: 0 14px 14px; display: grid; gap: 10px; margin-top: 0; }
+.qa { display: grid; gap: 4px; }
+.qa h3 { font-family: var(--f-ui); font-size: .78rem; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); }
+.warn { border-left: 4px solid var(--wait); background: var(--wait-soft); border-radius: var(--r); padding: 10px 12px; display: grid; gap: 4px; }
+.privacy { border-left: 4px solid var(--ok); background: var(--ok-soft); border-radius: var(--r); padding: 10px 12px; }
+.secgroup { display: grid; gap: 8px; }
+.sumgrid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 10px; }
+.onepage .box h3 { font-size: .78rem; }
+.onepage .box ul { gap: 4px; }
+@media print { .formsec > .inner { display: grid !important; } }
+@media print {
+  body.print-one .banner, body.print-one header.top, body.print-one footer, body.print-one main > :not(#summary) { display: none !important; }
+  body.print-one #summary::before { content: "Independent educational tool. Not affiliated with or endorsed by the U.S. Department of Veterans Affairs. Not legal or medical advice. VA decides every claim."; font-size: 7.5pt; border-bottom: 1px solid #000; padding-bottom: 3pt; }
+  body.print-one main { padding: 0; }
+  body.print-one #summary { border: 0; padding: 0; gap: 5pt; font-size: 7.6pt; line-height: 1.25; }
+  body.print-one #summary h2 { font-size: 12pt; }
+  body.print-one #summary .sumgrid { grid-template-columns: repeat(3, 1fr); gap: 5pt; }
+  body.print-one #summary .cols { grid-template-columns: 1fr 1fr; gap: 5pt; }
+  body.print-one #summary .box { padding: 4pt 6pt; gap: 2pt; }
+  body.print-one #summary th, body.print-one #summary td { padding: 2pt 4pt; }
+  body.print-one #summary table, body.print-one #summary .muted, body.print-one #summary .cite, body.print-one #summary th { font-size: 7.4pt !important; }
+  body.print-one #summary .box h3 { font-size: 7.4pt; }
+  body.print-one #summary .cite { padding-top: 3pt; line-height: 1.4; }
+  @page { margin: 0.4in; }
+}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to the article</a>
+<div class="banner" role="note"><div class="wrap">Independent educational tool. Not affiliated with or endorsed by the U.S. Department of Veterans Affairs. Not legal or medical advice. VA decides every claim.</div></div>
+<div class="wrap">
+  <header class="top">
+    <div class="crumbs noprint"><a href="./">← How to file a claim</a><span class="eyebrow">Guide · Evidence</span></div>
+    <h1>VA Forms 21-4142 and 21-4142a, private records release, section by section</h1>
+    <p>These two forms work together. <b>21-4142</b> is your permission for a private doctor, hospital, or other source to send records to VA. <b>21-4142a</b> tells VA who those providers are and where to find them. This guide explains each section and <b>why it matters</b> under public law. It explains the forms; it does not fill them out, and nothing you do here is saved or sent.</p>
+    <div class="edition" aria-label="Form editions explained here">
+      <div><small>Editions explained</small><b class="num">AUG 2024 (both)</b></div>
+      <div><small>Replaces</small><span class="num">JUL 2021</span></div>
+      <div><small>OMB number</small><span class="num">2900-0858, exp. 08/31/2027</span></div>
+      <div><small>Authorization lasts</small><span>12 months from signing</span></div>
+    </div>
+    <p class="muted" style="font-size:.86rem">VA's form page listed <b>August 2024</b> as the current revision when this guide was checked on <span class="num">Oct 24, 2026</span>. Always get the forms from <a href="https://www.va.gov/find-forms/about-form-21-4142/" target="_blank" rel="noopener">VA's form page</a>.</p>
+    <div class="row noprint"><button class="btn" type="button" id="printBtn">Print or save this guide</button></div>
+  </header>
+  <main id="main" tabindex="-1">
+
+    <section class="panel noprint" aria-labelledby="pick-h">
+      <fieldset>
+        <legend id="pick-h">Do you need these forms?</legend>
+        <p class="muted" style="font-size:.88rem">Pick the records you're thinking about. Nothing you pick is saved.</p>
+        <div class="choices">
+          <label class="choice"><input type="radio" name="why" value="va"><span><b>VA medical center or VA clinic records</b><small>Or a military treatment facility</small></span></label>
+          <label class="choice"><input type="radio" name="why" value="have"><span><b>Private records I already have</b><small>Or can get myself</small></span></label>
+          <label class="choice"><input type="radio" name="why" value="private"><span><b>Private records I want VA to get</b><small>A doctor, hospital, or therapist</small></span></label>
+          <label class="choice"><input type="radio" name="why" value="vetcenter"><span><b>Vet Center counseling records</b></span></label>
+        </div>
+      </fieldset>
+      <div class="answer" id="ans-va" hidden><p><b>No form needed.</b> VA gets its own medical records, and military treatment facility records, without a consent form. List the facility on your claim form so VA knows to look.</p></div>
+      <div class="answer" id="ans-have" hidden><p><b>Skip these forms and send the records.</b> The 21-4142 warns that using it when you already have the records, or plan to get them, makes processing take longer.</p></div>
+      <div class="answer" id="ans-private" hidden><p><b>Use both forms.</b> Sign the 21-4142 and list each provider on the 21-4142a. VA then makes reasonable efforts to get the records.</p></div>
+      <div class="answer" id="ans-vetcenter" hidden><p><b>Use the 21-4142.</b> VA's claim and Supplemental Claim forms both say Vet Center records need it.</p></div>
+      <p id="pickNote" class="sr" aria-live="polite"></p>
+      <p class="cite"><span class="tag guide">VA forms</span> 21-4142 (Aug 2024) instructions; 21-526EZ (Jan 2026) Special Circumstances; 20-0995 (May 2024) Section V</p>
+    </section>
+
+    <section class="panel" id="duty" aria-labelledby="duty-h">
+      <header><span class="eyebrow">Before you start</span><h2 id="duty-h">What VA does with your permission</h2></header>
+      <div class="cols">
+        <div class="box doc"><h3>VA's part</h3><ul>
+          <li>Makes <b>reasonable efforts</b> to get the private records you identify and authorize: generally a first request and at least one follow-up.</li>
+          <li>Doesn't pay a provider's fee for records.</li>
+          <li>Tells you if it can't get a record, what it tried, and what you can do.</li>
+        </ul></div>
+        <div class="box you"><h3>Your part</h3><ul>
+          <li>Give enough information to find the records: provider name, address, conditions, and approximate dates.</li>
+          <li>Sign the authorization.</li>
+          <li>You are ultimately responsible for getting private records to VA, so sending them yourself is often faster.</li>
+        </ul></div>
+      </div>
+      <p class="cite"><span class="tag law">Law</span> 38 C.F.R. § 3.159(c), (c)(1), (e)</p>
+    </section>
+
+    <section class="panel onepage" id="summary" aria-labelledby="sum-h">
+      <header><span class="eyebrow">The forms on one page</span><h2 id="sum-h">What the 21-4142 and 21-4142a say</h2></header>
+      <div class="row noprint"><button class="btn primary" type="button" id="printSum">Print this one-page summary</button></div>
+      <div class="sumgrid">
+        <div class="box"><h3>1. When to use them</h3><ul>
+          <li>To let VA request <b>private</b> records for your claim.</li>
+          <li><b>Not needed</b> for VA medical records, or if you already have the records or will get them yourself.</li></ul></div>
+        <div class="box you"><h3>2. 21-4142: permission</h3><ul>
+          <li>Section I: veteran. Section II: the patient, if not the veteran.</li>
+          <li>Section III: sources it covers, such as doctors, social workers, employers, and insurers.</li>
+          <li>Section IV: what may be released.</li></ul></div>
+        <div class="box"><h3>3. What may be released</h3><ul>
+          <li>All medical records, including mental health (not psychotherapy notes), substance use, HIV/AIDS, sickle cell, and genetic tests, and how the condition affects daily tasks and work.</li>
+          <li>Past records, plus records created in the 12 months after signing.</li></ul></div>
+        <div class="box"><h3>4. Limits, time, revoking</h3><ul>
+          <li>Item 12: write any limit. <b>Blank means no limit.</b></li>
+          <li>Expires <b>12 months</b> after signing.</li>
+          <li>Revoke in writing to VA and to each source. Records already sent can still be used.</li></ul></div>
+        <div class="box doc"><h3>5. 21-4142a: providers</h3><ul>
+          <li>For each provider: name, conditions treated, dates, and full address.</li>
+          <li>Room for several providers on one form.</li></ul></div>
+        <div class="box"><h3>6. Sign and send</h3><ul>
+          <li><b>Items 13 and 14, the signature and date, are required.</b> Someone signing for you completes Item 16.</li>
+          <li>Compensation: Evidence Intake Center, PO Box 4444, Janesville, WI 53547-4444, or upload online.</li></ul></div>
+      </div>
+      <p class="cite"><span class="tag guide">VA forms</span> VA Forms 21-4142 and 21-4142a (Aug 2024), summarized in plain language. The forms' own wording controls.</p>
+    </section>
+
+    <section class="panel" id="check" aria-labelledby="check-h">
+      <header><span class="eyebrow">Before you send it</span><h2 id="check-h">What a reviewer checks first</h2>
+        <p>A gap here means VA can't send the request, or the provider can't find the records.</p></header>
+      <div class="alert" role="note"><p class="big">1. The 21-4142 is signed and dated (Items 13–14).</p><p>Both items are marked required. Without them, the provider has no permission to release anything. <a href="#s5">Section V</a></p></div>
+      <div class="alert" role="note"><p class="big">2. Each provider is fully listed on the 21-4142a.</p><p>Name, conditions treated, dates, and a complete street address for every provider. An incomplete address means the request can't reach them. <a href="#a3">21-4142a Section III</a></p></div>
+      <h3 style="font-family:var(--f-ui);font-size:.82rem;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)">Also check</h3>
+      <ul class="checklist">
+        <li><b>Item 12 doesn't block what VA needs.</b> A limit can keep out the very records that support the claim.</li>
+        <li><b>The authorization hasn't expired.</b> It lasts 12 months. If a claim runs longer and VA still needs records, a new one may be needed.</li>
+        <li><b>VA records aren't listed here.</b> They don't need this form; list them on the claim form instead.</li>
+      </ul>
+      <p class="cite"><span class="tag guide">VA forms</span> 21-4142 Items 12–14; 21-4142a Items 9–13</p>
+    </section>
+
+    <section class="panel" id="map" aria-labelledby="map-h">
+      <header><span class="eyebrow">The forms themselves</span><h2 id="map-h">The sections at a glance</h2></header>
+      <ul class="map">
+        <li><a href="#s1"><span class="sec">4142 I–II</span><span>Veteran and patient identification <small>Items 1–11</small></span></a></li>
+        <li><a href="#s3"><span class="sec">4142 III–IV</span><span>Sources and records covered</span></a></li>
+        <li><a href="#s5"><span class="sec">4142 V</span><span>Authorization, limits, and signature <small>Items 12–16</small></span></a></li>
+        <li><a href="#a3"><span class="sec">4142a</span><span>Medical provider information <small>Items 1–13</small></span></a></li>
+      </ul>
+      <div class="privacy" role="note"><b>ClaimReady never asks for your Social Security number, VA file number, or medical records.</b> Those go only on the forms you send to VA.</div>
+    </section>
+
+    <div class="secgroup" aria-label="Form sections">
+      <details class="formsec" id="s1"><summary><span class="sec">4142 I–II</span><span>Veteran and patient identification<small>Items 1–11</small></span></summary>
+        <div class="inner">
+          <div class="qa"><h3>What it asks</h3><p>The veteran's identification. Section II is only if the records are about someone else, such as a spouse or child, for example for spouse aid and attendance or a helpless child.</p></div>
+          <p class="cite"><span class="tag guide">VA form</span> 21-4142 Sections I–II</p>
+        </div></details>
+
+      <details class="formsec" id="s3"><summary><span class="sec">4142 III–IV</span><span>Sources and records covered</span></summary>
+        <div class="inner">
+          <div class="qa"><h3>Sources (Section III)</h3><p>Medical sources, social workers, examiners VA uses, employers, insurers, and others who know about the condition.</p></div>
+          <div class="qa"><h3>Records (Section IV)</h3><p>All medical records, including information on mental health (except psychotherapy notes), substance use, sickle cell anemia, communicable diseases including HIV/AIDS, and genetic testing, plus how the condition affects daily tasks and work. It covers past records and records created within 12 months after you sign.</p></div>
+          <div class="qa"><h3>Privacy</h3><p>Once a source sends records to VA, they are no longer covered by the HIPAA Privacy Rule but are protected by the federal Privacy Act. A provider can't require you to sign this authorization before treating you.</p></div>
+          <p class="cite"><span class="tag guide">VA form</span> 21-4142 Sections III–IV and authorization text</p>
+        </div></details>
+
+      <details class="formsec" id="s5" open><summary><span class="sec">4142 V</span><span>Authorization, limits, and signature<small>Items 12–16</small></span></summary>
+        <div class="inner">
+          <div class="qa"><h3>Item 12: limits</h3><p>Write any limit on what can be released. <b>If blank, there is no limit.</b> Think twice before limiting: a limit can keep out records that support your claim.</p></div>
+          <div class="qa"><h3>Items 13–16: signing</h3><p>The signature and date are required. If someone else signs, Item 16 asks for their relationship and full name, title, organization, and address; a court appointment needs the docket number, county, and state.</p></div>
+          <div class="qa"><h3>How long it lasts</h3><p>12 months from the date signed, unless you revoke it. To revoke, write to the VA office handling your claim (or the Board, if on appeal) and send a copy to each source. VA can still use records released before you revoked.</p></div>
+          <p class="cite"><span class="tag guide">VA form</span> 21-4142 Section V</p>
+        </div></details>
+
+      <details class="formsec" id="a3" open><summary><span class="sec">4142a</span><span>Medical provider information<small>Items 1–13</small></span></summary>
+        <div class="inner">
+          <div class="qa"><h3>What it asks</h3><p>Your identification (and the patient's, if different), then for each provider: name, conditions you were treated for, dates of treatment, and full address.</p></div>
+          <div class="qa"><h3>Why it matters</h3><p>This is the address list VA uses to send requests. VA must make reasonable efforts to get records you <b>adequately identify</b>, so a complete name and address is what turns your permission into an actual request.</p></div>
+          <p class="cite"><span class="tag law">Law</span> 38 C.F.R. § 3.159(c)(1) <span class="tag guide">VA form</span> 21-4142a Sections I–III</p>
+        </div></details>
+    </div>
+
+    <section class="panel" id="mistakes" aria-labelledby="mis-h">
+      <header><span class="eyebrow">Common mistakes</span><h2 id="mis-h">What often goes wrong</h2></header>
+      <dl class="myths">
+        <dt>Using the 21-4142 for VA records.</dt><dd>VA gets its own records. List VA facilities on your claim form instead.</dd>
+        <dt>Using it when you already have the records.</dt><dd>The form warns this slows processing. Send them.</dd>
+        <dt>Not signing or dating the 21-4142.</dt><dd>Both are required.</dd>
+        <dt>Incomplete provider addresses on the 21-4142a.</dt><dd>VA can't request records it can't route.</dd>
+        <dt>A limit in Item 12 that blocks key records.</dt><dd>Leave it blank unless you have a specific reason.</dd>
+        <dt>Assuming VA will keep trying forever.</dt><dd>For private records, VA generally makes a first request and at least one follow-up, then tells you if it couldn't get them.</dd>
+      </dl>
+    </section>
+
+    <section class="panel" id="sources" aria-labelledby="src-h">
+      <header><h2 id="src-h">Sources and dates</h2>
+        <p class="muted" style="font-size:.88rem"><span class="tag law">Law</span> statutes and regulations. <span class="tag guide">VA guidance</span> VA forms and instructions, which explain how VA applies the law but are not law.</p></header>
+      <div class="tscroll"><table>
+        <thead><tr><th scope="col">Source</th><th scope="col">Type</th><th scope="col">Version used</th></tr></thead>
+        <tbody>
+          <tr><td><a href="https://www.va.gov/find-forms/about-form-21-4142/" target="_blank" rel="noopener">VA Form 21-4142</a>, Authorization to Disclose Information to VA</td><td><span class="tag guide">VA form</span></td><td class="num">AUG 2024 (supersedes JUL 2021)</td></tr>
+          <tr><td>VA Form 21-4142a, General Release for Medical Provider Information</td><td><span class="tag guide">VA form</span></td><td class="num">AUG 2024 (supersedes JUL 2021)</td></tr>
+          <tr><td><a href="https://www.ecfr.gov/current/title-38/section-3.159" target="_blank" rel="noopener">38 C.F.R. § 3.159(c)(1), (e)</a> (duty to assist with private records; notice when records can't be obtained)</td><td><span class="tag law">Law</span></td><td>Current eCFR</td></tr>
+          <tr><td><a href="form-526ez.html">VA Form 21-526EZ</a> and <a href="form-0995.html">VA Form 20-0995</a> (Vet Center records need a 21-4142)</td><td><span class="tag guide">VA forms</span></td><td class="num">JAN 2026; MAY 2024</td></tr>
+        </tbody>
+      </table></div>
+      <p class="muted" style="font-size:.86rem">Content reviewed <span class="num">Oct 24, 2026</span>. When VA updates a source, ClaimReady's weekly monitor flags it for review before this page changes.</p>
+    </section>
+  </main>
+
+  <footer>
+    <p>This guide explains the public VA Forms 21-4142 and 21-4142a and the law behind them. It does not fill out the forms, decide whether VA will grant a claim, or say what rating or payment VA will assign, and it is not legal or medical advice.</p>
+    <p>ClaimReady is independent and educational. It is not VA and is not a substitute for an accredited representative, who can help at no cost. Nothing on this page is saved or sent. <a href="./#about">About ClaimReady and full disclaimer</a></p>
+  </footer>
+</div>
+<script>
+(() => {
+  const radios = [...document.querySelectorAll('input[name="why"]')];
+  const answers = [...document.querySelectorAll('.answer')];
+  const note = document.getElementById('pickNote');
+  const names = { va: 'VA records', have: 'records you already have', private: 'private records for VA to get', vetcenter: 'Vet Center records' };
+  function apply() {
+    const r = radios.find(x => x.checked); if (!r) return;
+    answers.forEach(a => { a.hidden = a.id !== 'ans-' + r.value; });
+    note.textContent = `Showing what applies to ${names[r.value]}.`;
+  }
+  radios.forEach(r => r.addEventListener('change', apply));
+  // Jump links open the form section they point to.
+  function openTarget() {
+    const el = document.getElementById(location.hash.slice(1));
+    if (el && el.tagName === 'DETAILS') el.open = true;
+  }
+  window.addEventListener('hashchange', openTarget);
+  openTarget();
+  const h = location.hash.slice(1);
+  if (names[h]) { radios.find(r => r.value === h).checked = true; apply(); }
+  window.addEventListener('beforeprint', () => document.querySelectorAll('details').forEach(d => d.open = true));
+  document.getElementById('printBtn').addEventListener('click', () => window.print());
+  // Prints only the one-page summary; the class is removed once printing ends.
+  document.getElementById('printSum').addEventListener('click', () => { document.body.classList.add('print-one'); window.print(); });
+  window.addEventListener('afterprint', () => document.body.classList.remove('print-one'));
+})();
+</script>
+</body></html>
