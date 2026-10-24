@@ -1877,22 +1877,27 @@ const VCI_RATERS = (() => {
 
   const R = {};
 
+  // Spine and ankle criteria (DCs 5235-5244, 5270-5274) rechecked against eCFR on their own date, like the knee.
+  const SPINE_CHECKED = ['October 24, 2026', 'October 22, 2026']; // [date checked, eCFR current as of]
+  const ANKLE_CHECKED = SPINE_CHECKED;
+  const r5 = x => x == null ? null : Math.round(x / 5) * 5; // Note (4): round each range of motion measurement to the nearest five degrees
   // ---------- Spine: General Rating Formula (DCs 5235-5243) and IVDS formula ----------
   R.spine = {
-    name: 'Back or neck (spine)', group: 'Joints and spine', dcs: 'DCs 5235–5243', cite: '38 C.F.R. § 4.71a, General Rating Formula for Diseases and Injuries of the Spine',
+    name: 'Back or neck (spine)', group: 'Joints and spine', checked: SPINE_CHECKED, dcs: 'DCs 5235–5243', cite: '38 C.F.R. § 4.71a, General Rating Formula for Diseases and Injuries of the Spine',
     match: /spine|back|lumbar|lumbosacral|thoracolumbar|cervical|neck|disc|ivds|degenerative|spondyl|stenosis/i, dcMatch: /^52(3[5-9]|4[0-3])/,
     fields: [
       { key: 'region', type: 'select', label: 'Which part of the spine?', options: [['tl', 'Lower and mid back (thoracolumbar)'], ['cx', 'Neck (cervical)']] },
       { key: 'ff', type: 'number', label: 'Forward flexion (bending forward), in degrees', unit: '°', help: 'From your exam: how far you bend forward before pain stops you. Normal is 90° for the back, 45° for the neck.' },
       { key: 'combined', type: 'number', label: 'Combined range of motion, in degrees (optional)', unit: '°', help: 'The six motions added together. Normal is 240° for the back, 340° for the neck. Leave blank if you do not know.' },
       { key: 'spasm', type: 'select', label: 'Muscle spasm or guarding', options: [['none', 'None'], ['mild', 'Spasm, guarding, or tenderness, but walking and posture are normal'], ['gait', 'Spasm or guarding that changes how I walk or my spine\'s shape']] },
-      { key: 'ank', type: 'select', label: 'Is the spine fused or frozen (ankylosis)?', options: [['none', 'No'], ['fav', 'Yes, frozen in a neutral position (favorable)'], ['unfav', 'Yes, frozen in a bent or twisted position (unfavorable)'], ['all', 'Yes, the entire spine, unfavorable']] },
+      { key: 'ank', type: 'select', label: 'Is this whole part of the spine fused or frozen (ankylosis)?', options: [['none', 'No, or only part of it is fused'], ['fav', 'Yes, favorable (includes any fixation in a neutral, 0° position)'], ['unfav', 'Yes, unfavorable: fixed bent forward or back, causing a problem listed in Note (5)'], ['all', 'Yes, the entire spine, unfavorable']], help: 'Note (5) problems: difficulty walking because of a limited line of vision; restricted opening of the mouth and chewing; breathing limited to the diaphragm; stomach symptoms from the ribs pressing on the abdomen; shortness of breath or trouble swallowing; subluxation or dislocation at the top of the neck; or nerve symptoms from nerve root stretching. Fusion of only part of the neck or back is rated by motion, not as ankylosis.' },
       { key: 'fx', type: 'check', label: 'A vertebra was fractured and lost 50% or more of its height' },
-      { key: 'ivds', type: 'number', label: 'Disc disease only: weeks of doctor-prescribed bed rest in the past 12 months (optional)', unit: 'weeks', help: 'Counts only bed rest a doctor prescribed for intervertebral disc syndrome.' },
+      { key: 'ivds', type: 'number', label: 'Disc disease (IVDS, DC 5243) only: weeks of incapacitating episodes in the past 12 months (optional)', unit: 'weeks', help: 'Counts only periods that needed bed rest prescribed by a physician and treatment by a physician, shown in your records.' },
     ],
     rate(v) {
-      const tl = v.region !== 'cx'; const ff = n(v.ff), cb = n(v.combined), wk = n(v.ivds);
+      const tl = v.region !== 'cx'; const ff = r5(n(v.ff)), cb = r5(n(v.combined)), wk = n(v.ivds);
       let r = 0; const why = [];
+      [[n(v.ff), ff, 'Forward flexion'], [n(v.combined), cb, 'Combined range of motion']].forEach(([raw, rd, lbl]) => { if (raw != null && raw !== rd) why.push(`${lbl} of ${raw}° is rounded to ${rd}° (Note (4): round each range of motion measurement to the nearest five degrees)`); });
       const hit = (pct, txt) => { if (pct > r) r = pct; why.push(`${pct}%: ${txt}`); };
       if (v.ank === 'all') hit(100, 'unfavorable ankylosis of the entire spine');
       if (tl) {
@@ -1919,8 +1924,9 @@ const VCI_RATERS = (() => {
       if (wk != null && wk > 0) { ivdsR = wk >= 6 ? 60 : wk >= 4 ? 40 : wk >= 2 ? 20 : wk >= 1 ? 10 : 0;
         if (ivdsR) why.push(`${ivdsR}%: disc disease with ${wk} week${wk === 1 ? '' : 's'} of incapacitating episodes in the past 12 months (IVDS formula)`); }
       const out = mk(Math.max(r, ivdsR), why.length ? why : ['None of the spine criteria are met by what you entered.'], { ivds: ivdsR > r });
-      if (ivdsR > r) out.notes.push('The disc disease (IVDS) formula gives the higher result. VA uses whichever method results in the higher evaluation.');
-      out.notes.push('Nerve symptoms down an arm or leg (radiculopathy) are rated separately and added on top.');
+      if (ivdsR) out.notes.push('VA uses whichever method, the General Rating Formula or the incapacitating episodes formula, gives the higher evaluation when all disabilities are combined under § 4.25. Nerve ratings that come with the General Rating Formula count in that comparison, so this side-by-side is only a starting point.');
+      if (ivdsR > r) out.notes.push('If the spine is rated on incapacitating episodes, limited motion and nerve symptoms such as radiculopathy are not rated separately (VA guidance, M21-1 V.iii.1.B.3.a; § 4.14).');
+      else out.notes.push('Nerve symptoms down an arm or leg (radiculopathy), and bowel or bladder problems, are rated separately and combined with the spine rating (Note (1)).');
       out.notes.push('VA also considers pain, weakness, fatigue, and flare-ups that further limit motion.');
       return out;
     },
@@ -2085,8 +2091,9 @@ const VCI_RATERS = (() => {
 
   // ---------- Ankle: DC 5271 ----------
   R.ankle = {
-    name: 'Ankle', group: 'Joints and spine', dcs: 'DC 5271', cite: '38 C.F.R. § 4.71a, DC 5271; § 4.59',
-    match: /ankle/i, dcMatch: /^527[0-4]/,
+    name: 'Ankle: limited motion or instability', group: 'Ankle', checked: ANKLE_CHECKED, dcs: 'DC 5271', cite: '38 C.F.R. § 4.71a, DC 5271; § 4.59',
+    match: /ankle/i, dcMatch: /^5271/,
+    callout: 'Limited motion and instability of the same ankle are not rated separately. DC 5271 rates the ankle as a whole and can also be used for instability, with or without limited motion (see "Important ankle notes" below).',
     fields: [
       { key: 'dors', type: 'number', label: 'Dorsiflexion (toes toward shin), in degrees', unit: '°', help: 'Normal is 20°.' },
       { key: 'plant', type: 'number', label: 'Plantar flexion (point toes down), in degrees', unit: '°', help: 'Normal is 45°.' },
@@ -2098,9 +2105,42 @@ const VCI_RATERS = (() => {
       if ((d != null && d < 5) || (p != null && p < 10)) { r = 20; why.push('Marked limitation of motion → 20%'); }
       else if ((d != null && d < 15) || (p != null && p < 30)) { r = 10; why.push('Moderate limitation of motion → 10%'); }
       const p459 = !r && !!v.pain; if (p459) { r = 10; why.push('Painful motion → 10%, the minimum for a painful joint (§ 4.59)'); }
-      return mk(r, why.length ? why : ['Enter your ankle range of motion.'], { p459 });
+      const out = mk(r, why.length ? why : ['Enter your ankle range of motion.'], { p459 });
+      out.notes.push('An unstable ankle can also be rated under this code, even when motion is normal. The numbers above only show what "marked" and "moderate" mean for motion; VA looks at the ankle disability as a whole.');
+      return out;
     },
   };
+  // Other ankle codes: DCs 5270, 5272, 5273, 5274 (criteria text kept exactly as written; eCFR checked Oct 24, 2026).
+  const ankleCode = (cfg) => Object.assign(kneeCode(cfg), { group: 'Ankle', checked: ANKLE_CHECKED, rate(v) {
+    if (!v.c) return mk(null, ['Select the criteria that match your ankle.'], { none: true });
+    const row = cfg.rows.find(x => x[0] === v.c);
+    if (!row) return mk(null, ['You marked that these criteria do not apply. Another ankle code may describe your ankle better. Try the other ankle choices.'], { none: true });
+    return mk(row[2], [`${cfg.head} ${row[1]} → ${row[2]}%`], { notes: cfg.notes.slice() });
+  } });
+  R.ankleAnk = ankleCode({
+    name: 'Ankle: ankylosis (frozen or fused)', dc: '5270', head: '5270 Ankle, ankylosis of:', match: /ankle.*(ankylos|fus(ed|ion)|arthrodesis)|(ankylos|fus(ed|ion)|arthrodesis).*ankle/i,
+    intro: 'Ankylosis means the joint is frozen or fused and cannot move. Plantar flexion is the foot held pointed down; dorsiflexion is the foot held pulled up toward the shin.',
+    rows: [['a40', 'In plantar flexion at more than 40°, or in dorsiflexion at more than 10° or with abduction, adduction, inversion or eversion deformity', 40], ['a30', 'In plantar flexion, between 30° and 40°, or in dorsiflexion, between 0° and 10°', 30], ['a20', 'In plantar flexion, less than 30°', 20]],
+    notes: ['Abduction, adduction, inversion, and eversion deformity mean the foot is fixed turned out, turned in, tilted in, or tilted out.', 'Motion so limited by pain or flare-ups that the ankle works like a frozen joint can also be considered under this code. VA decides from the exam and the whole record.'],
+  });
+  R.ankleSubtalar = ankleCode({
+    name: 'Ankle: subtalar or tarsal joint ankylosis', dc: '5272', head: '5272 Subastragalar or tarsal joint, ankylosis of:', match: /subtalar|subastragalar|tarsal (joint )?(fusion|ankylos)|triple arthrodesis/i,
+    intro: 'The subastragalar (subtalar) joint sits just below the ankle and lets the foot tilt side to side. The tarsal joints are in the back half of the foot. Ankylosis means the joint is frozen or fused.',
+    rows: [['s20', 'In poor weight-bearing position', 20], ['s10', 'In good weight-bearing position', 10]],
+    notes: ['Whether the fused position is good or poor for weight-bearing is a finding for the examiner, based on how the foot meets the ground when standing and walking.'],
+  });
+  R.ankleMalunion = ankleCode({
+    name: 'Ankle: heel bone or talus healed out of place', dc: '5273', head: '5273 Os calcis or astragalus, malunion of:', match: /os calcis|astragalus|(calcane|talus|talar).*(fractur|malunion)|malunion.*(heel|calcane|talus)/i,
+    intro: 'The os calcis is the heel bone (calcaneus). The astragalus is the talus, the bone that connects the leg to the foot. Malunion means a fracture healed in the wrong position.',
+    rows: [['m20', 'Marked deformity', 20], ['m10', 'Moderate deformity', 10]],
+    notes: ['The rating schedule does not define "marked" or "moderate" for this code. VA weighs the X-ray and exam findings and how the deformity affects the foot and ankle.'],
+  });
+  R.ankleAstrag = ankleCode({
+    name: 'Ankle: talus removed (astragalectomy)', dc: '5274', head: 'DC 5274:', match: /astragalectomy|talectomy/i,
+    intro: 'An astragalectomy is surgery that removes the talus (astragalus), the bone between the leg and the foot.',
+    rows: [['t20', 'Astragalectomy', 20]],
+    notes: ['The rating schedule lists a single 20% level for this code.'],
+  });
 
   // ---------- Plantar fasciitis: DC 5269 ----------
   R.plantar = {
@@ -2337,14 +2377,14 @@ const VCI_RATERS = (() => {
   function guess(c) {
     if (!c) return '';
     const dc = String(c.dc || '').trim(); const name = c.name || '';
-    const first = ['kneeRepl', 'kneeInst', 'kneeAnk', 'kneeRecurv', 'kneeMenRem', 'kneeMenDis'];
+    const first = ['kneeRepl', 'kneeInst', 'kneeAnk', 'kneeRecurv', 'kneeMenRem', 'kneeMenDis', 'ankleAstrag', 'ankleAnk', 'ankleSubtalar', 'ankleMalunion'];
     const order = first.concat(Object.keys(R).filter(k => !first.includes(k))); // specific before general
     for (const id of order) if (dc && R[id].dcMatch && R[id].dcMatch.test(dc)) return id;
     for (const id of order) if (R[id].match && R[id].match.test(name)) return id;
     return '';
   }
   function estimate(id, values) { const r = R[id]; if (!r) return null; return Object.assign({ rater: id, dcs: r.dcs, cite: r.cite, checked: r.checked || [CHECKED, ECFR_ASOF] }, r.rate(values || {})); }
-  return { R, guess, estimate, MENTAL, LEVELS, criteria, matched, CHECKED, ECFR_ASOF };
+  return { R, guess, estimate, MENTAL, LEVELS, criteria, matched, CHECKED, ECFR_ASOF, SPINE_CHECKED };
 })();
 if (typeof module !== 'undefined') module.exports = VCI_RATERS;
 </script>
@@ -2610,7 +2650,7 @@ function vciTests(VCI, vciExample) {
   const est = (id, v) => RT.estimate(id, v).rating;
   if (RT) {
     t('Estimator, spine: forward flexion 55° in the back suggests 20%', () => eq(est('spine', { region: 'tl', ff: 55 }), 20));
-    t('Estimator, spine: flexion 30° or less suggests 40%; 86° with nothing else suggests 0%', () => { eq(est('spine', { region: 'tl', ff: 30 }), 40); eq(est('spine', { region: 'tl', ff: 86 }), 0); });
+    t('Estimator, spine: flexion 30° or less suggests 40%; 88° with nothing else suggests 0% (86° rounds to 85°, which is 10%)', () => { eq(est('spine', { region: 'tl', ff: 30 }), 40); eq(est('spine', { region: 'tl', ff: 88 }), 0); eq(est('spine', { region: 'tl', ff: 86 }), 10); });
     t('Estimator, spine: neck flexion 35° suggests 10%; combined 160° suggests 20%', () => { eq(est('spine', { region: 'cx', ff: 35 }), 10); eq(est('spine', { region: 'cx', ff: 44, combined: 160 }), 20); });
     t('Estimator, spine: 4 weeks of bed rest (disc disease) suggests 40% when higher', () => eq(est('spine', { region: 'tl', ff: 70, ivds: 4 }), 40));
     t('Estimator, knee: flexion and extension that meet the criteria get 2 separate evaluations', () => {
@@ -2632,7 +2672,7 @@ function vciTests(VCI, vciExample) {
       eq(RT.matched('kneeMenDis', { c: 'm20' }).rows.length, 1);
     });
     t('Estimator, knee codes are matched by diagnostic code', () => eq(['5256', '5257', '5258', '5259', '5260', '5261', '5262', '5263', '5055'].map(dc => RT.guess({ name: '', dc })), ['kneeAnk', 'kneeInst', 'kneeMenDis', 'kneeMenRem', 'knee', 'knee', 'knee', 'kneeRecurv', 'kneeRepl']));
-    t('Estimator, all knee cards are in the Knee group with the knee check date', () => { const k = Object.entries(RT.R).filter(([, r]) => r.group === 'Knee'); eq(k.map(([id]) => id), ['knee', 'kneeInst', 'kneeRepl', 'kneeAnk', 'kneeMenDis', 'kneeMenRem', 'kneeRecurv']); ok(k.every(([id]) => RT.estimate(id, {}).checked[0] === 'October 21, 2026')); eq(RT.estimate('spine', {}).checked, [RT.CHECKED, RT.ECFR_ASOF]); });
+    t('Estimator, all knee cards are in the Knee group with the knee check date', () => { const k = Object.entries(RT.R).filter(([, r]) => r.group === 'Knee'); eq(k.map(([id]) => id), ['knee', 'kneeInst', 'kneeRepl', 'kneeAnk', 'kneeMenDis', 'kneeMenRem', 'kneeRecurv']); ok(k.every(([id]) => RT.estimate(id, {}).checked[0] === 'October 21, 2026')); eq(RT.estimate('spine', {}).checked, RT.SPINE_CHECKED); eq(RT.estimate('shoulder', {}).checked, [RT.CHECKED, RT.ECFR_ASOF]); });
     t('Estimator, an ACL tear is matched to knee instability', () => eq(RT.guess({ name: 'ACL tear, right knee' }), 'kneeInst'));
     t('Estimator, shoulder: 45° dominant is 30%, non-dominant 20%', () => { eq(est('shoulder', { arm: 'major', deg: 45 }), 30); eq(est('shoulder', { arm: 'minor', deg: 45 }), 20); });
     t('Estimator, migraine: monthly prostrating attacks suggest 30%', () => eq(est('migraine', { freq: 'month' }), 30));
@@ -2717,6 +2757,28 @@ function vciTests(VCI, vciExample) {
       eq(pcts('mental', { level: '50' }), [50, [50], null]); eq(pcts('htn', { dia: '112' }), [20, [20], null]); eq(pcts('diabetes', { m: '40' }), [40, [40], null]);
       eq(pcts('knee', { flex: 'f10' }), [10, [10], null]); eq(pcts('knee', { pain: true }), [10, [], 10]); eq(pcts('rhinitis', { f: 'none' }), [0, [], null]);
     });
+    t('Estimator, ankle codes 5270-5274 quote the regulation text exactly and sit in the Ankle group', () => {
+      eq(Object.entries(RT.R).filter(([, r]) => r.group === 'Ankle').map(([id]) => id), ['ankle', 'ankleAnk', 'ankleSubtalar', 'ankleMalunion', 'ankleAstrag']);
+      eq(RT.criteria('ankleAnk')[0].rows.map(r => [r.text, r.pct]), [['In plantar flexion at more than 40°, or in dorsiflexion at more than 10° or with abduction, adduction, inversion or eversion deformity', 40], ['In plantar flexion, between 30° and 40°, or in dorsiflexion, between 0° and 10°', 30], ['In plantar flexion, less than 30°', 20]]);
+      eq(RT.criteria('ankleSubtalar')[0].rows.map(r => [r.text, r.pct]), [['In poor weight-bearing position', 20], ['In good weight-bearing position', 10]]);
+      eq(RT.criteria('ankleMalunion')[0].rows.map(r => [r.text, r.pct]), [['Marked deformity', 20], ['Moderate deformity', 10]]);
+      eq(RT.criteria('ankleAstrag')[0].rows.map(r => [r.text, r.pct]), [['Astragalectomy', 20]]);
+      eq([est('ankleAnk', { c: 'a30' }), est('ankleSubtalar', { c: 's10' }), est('ankleMalunion', { c: 'm20' }), est('ankleAstrag', { c: 't20' })], [30, 10, 20, 20]);
+      ok(RT.estimate('ankleAnk', { c: 'none' }).none); ok(RT.estimate('ankleAnk', {}).none);
+      eq(RT.matched('ankleSubtalar', { c: 's20' }).rows.map(r => r.pct), [20]);
+    });
+    t('Estimator, ankle codes are matched by diagnostic code and name', () => {
+      eq(['5270', '5271', '5272', '5273', '5274'].map(dc => RT.guess({ name: '', dc })), ['ankleAnk', 'ankle', 'ankleSubtalar', 'ankleMalunion', 'ankleAstrag']);
+      eq([RT.guess({ name: 'Left ankle sprain' }), RT.guess({ name: 'Right ankle fusion' }), RT.guess({ name: 'Calcaneus fracture, malunion' }), RT.guess({ name: 'Heel spur' })], ['ankle', 'ankleAnk', 'ankleMalunion', '']);
+    });
+    t('Estimator, spine: each measurement is rounded to the nearest 5 degrees (Note (4))', () => {
+      eq([est('spine', { region: 'tl', ff: '62' }), est('spine', { region: 'tl', ff: '63' }), est('spine', { region: 'tl', ff: '88' }), est('spine', { region: 'cx', ff: '32' }), est('spine', { region: 'tl', combined: '122' })], [20, 10, 0, 20, 20]);
+      ok(RT.estimate('spine', { region: 'tl', ff: '62' }).why.some(w => /rounded to 60°/.test(w)));
+    });
+    t('Estimator, spine: IVDS episodes that win note that limited motion and nerves are not rated separately', () => {
+      const e = RT.estimate('spine', { region: 'tl', ff: '55', ivds: '4' }); eq(e.rating, 40); ok(e.notes.some(x => /not rated separately/.test(x)));
+      ok(RT.estimate('spine', { region: 'tl', ff: '55' }).notes.some(x => /rated separately and combined/.test(x)));
+    });
     t('Estimator: ankle levels use the numbers now written in DC 5271', () => ok(RT.criteria('ankle', {})[0].rows[0].text.includes('less than 5 degrees dorsiflexion')));
   }
   return T.map(x => { try { x.fn(); return { name: x.name, pass: true }; } catch (e) { return { name: x.name, pass: false, error: e.message }; } });
@@ -2731,7 +2793,7 @@ if (typeof module !== 'undefined') module.exports = vciTests;
    Topic "doctorguide" is the standalone page public-src/doctor-guide.html; build.sh checks that its stated dates match.
    Topic "vietnamservice" is the standalone page vietnam-service.html (Featured article: proving Vietnam service; build.sh checks its stated dates).
    Topic "herbicidenoassoc" is the standalone page herbicide-no-association.html (Featured article: conditions with no positive association with herbicides; build.sh checks its stated dates).
-   Topic "hepatitis" is the standalone page hepatitis.html (Featured article: hepatitis claims, from M21-1 V.iii.6.3).
+   Topic "hepatitis" is the standalone page hepatitis.html (Featured article: hepatitis claims, from M21-1 V.iii.6.3; build.sh checks its stated dates).
    Topics "supplemental" and "medicalopinions" are the standalone pages supplemental-claims.html and medical-opinions.html (Featured articles);
    build.sh checks the stated dates of every standalone page (doctor guide, PTSD stressor, both of these).
    VCI_UPDATES: the change log shown in "What's changed", topic badges, and the box at the top of each topic.
@@ -4942,7 +5004,7 @@ window.VCI_UPDATES = [
   function raterField(f, vals) {
     const v = vals[f.key];
     if (f.type === 'number') return `<div class="field"><label for="rf-${f.key}">${esc(f.label)}</label><div class="unit-wrap"><input id="rf-${f.key}" type="number" inputmode="decimal" min="0" data-rf="${f.key}" value="${v == null ? '' : esc(v)}">${f.unit ? `<span class="unit">${esc(f.unit)}</span>` : ''}</div>${f.help ? `<span class="hint">${esc(f.help)}</span>` : ''}</div>`;
-    if (f.type === 'select') return `<div class="field wide"><label for="rf-${f.key}">${esc(f.label)}</label><select id="rf-${f.key}" data-rf="${f.key}">${f.options.map(([k, l]) => opt(k, l, v == null ? f.options[0][0] : v)).join('')}</select></div>`;
+    if (f.type === 'select') return `<div class="field wide"><label for="rf-${f.key}">${esc(f.label)}</label><select id="rf-${f.key}" data-rf="${f.key}">${f.options.map(([k, l]) => opt(k, l, v == null ? f.options[0][0] : v)).join('')}</select>${f.help ? `<span class="hint">${esc(f.help)}</span>` : ''}</div>`;
     if (f.type === 'check') return `<div class="field wide"><label class="switch"><input type="checkbox" data-rf="${f.key}" ${v ? 'checked' : ''}> ${esc(f.label)}</label></div>`;
     if (f.type === 'radio') return `<fieldset class="field wide crit-pick"><legend class="lbl-like"><b>${esc(f.label)}</b></legend>${f.groups.map(([head, list]) => `${head ? `<div class="crit-sub">${esc(head)}</div>` : ''}${list.map(([k, txt, pct]) => `<label class="crit-opt"><input type="radio" name="rf-${f.key}" data-rf="${f.key}" value="${k}" ${v === k ? 'checked' : ''}><span>${esc(txt)}</span><b class="num">${/\d/.test(pct) ? pct + '%' : esc(pct)}</b></label>`).join('')}`).join('')}${f.after ? f.after.map(t => `<p class="muted crit-note">${esc(t)}</p>`).join('') : ''}</fieldset>`;
     if (f.type === 'checks') { const sel = v || []; return `<fieldset class="field wide sx"><legend class="lbl-like">${esc(f.label)}</legend>${f.groups.map(([lvl, list]) => `<div class="stack" style="gap:4px"><span class="eyebrow">Listed at ${lvl}%</span><div class="reason-pick">${list.map((t, i) => `<label class="reason-opt soft"><input type="checkbox" data-rf="${f.key}" value="${lvl}:${i}" ${sel.includes(`${lvl}:${i}`) ? 'checked' : ''}> ${esc(t)}</label>`).join('')}</div></div>`).join('')}</fieldset>`; }
@@ -4989,12 +5051,14 @@ window.VCI_UPDATES = [
       <div class="rate-grid">
         <section class="panel"><h2>${esc(rt.name)}</h2><p class="muted" style="font-size:.86rem">${rt.fields.some(f => f.type === 'radio') ? 'Select the rating criteria that match your condition.' : 'Use numbers from your most recent exam or doctor\'s visit when you have them.'}</p>
           ${rt.group === 'Knee' ? `<p class="knee-pointer" role="note"><b>Important knee notes</b> apply to every knee code. <button class="btn link" data-act="jump" data-to="knee-notes">Read them below</button>.</p>` : ''}
+          ${rt.group === 'Ankle' ? `<p class="knee-pointer" role="note"><b>Important ankle notes</b> apply to every ankle code. <button class="btn link" data-act="jump" data-to="ankle-notes">Read them below</button>.</p>` : ''}
+          ${R.rater === 'spine' ? `<p class="knee-pointer" role="note"><b>Important spine notes</b> cover the rating schedule's notes, the diagnostic codes, and disc disease. <button class="btn link" data-act="jump" data-to="spine-notes">Read them below</button>.</p>` : ''}
           ${rt.callout ? `<div class="crit-callout" role="note"><b>Only one evaluation.</b> ${esc(rt.callout).replace(/^Only one DC 5257 evaluation is assigned\. /, '')}</div>` : ''}
           ${rt.intro ? `<p class="crit-intro"><b>${esc(rt.intro)}</b></p>` : ''}<form class="fields" data-rater="${R.rater}">${rt.fields.map(f => raterField(f, R.vals)).join('')}</form>
           ${rt.criteria ? `<details class="criteria" open><summary><b>Rating criteria</b> <span class="muted">${secLinks(esc(rt.cite))}</span></summary><div class="tablewrap"><table><thead><tr><th>Criteria</th><th>Rating</th></tr></thead><tbody>${rt.criteria.map(([txt, pct]) => `<tr${!pct && /:$/.test(txt) ? ' class="crit-head"' : ''}><td>${esc(txt)}</td><td class="num">${pct ? pct + '%' : (/:$/.test(txt) ? '' : 'by analogy')}</td></tr>`).join('')}</tbody></table></div></details>` : ''}</section>
         <section class="panel rate-out" id="rate-result" aria-live="polite">${rateResult()}</section>
       </div>
-      ${rt.group === 'Knee' ? kneeNotesHTML() : ''}
+      ${rt.group === 'Knee' ? kneeNotesHTML() : rt.group === 'Ankle' ? ankleNotesHTML() : R.rater === 'spine' ? spineNotesHTML() : ''}
       ${p4PanelHTML(R.rater, rt.name)}
       <p class="muted" style="font-size:.84rem">Covers ${Object.keys(VCI_RATERS.R).length} commonly claimed conditions. Hearing loss needs audiogram tables and is not included yet. For other conditions, see the full rating schedule at <a href="https://www.ecfr.gov/current/title-38/chapter-I/part-4" target="_blank" rel="noopener">ecfr.gov, 38 C.F.R. Part 4</a>.</p>
       ${notice}</div>`;
@@ -6012,7 +6076,7 @@ ${topics.length ? `<h1 style="margin-top:28px">Condition-specific requirements</
     ['nerves', 'Seizures and peripheral nerves', '§ 4.121; § 4.124a', ['<b>Epilepsy:</b> seizures must be witnessed or verified by a physician at some point; how often they happen can be shown by consistent lay statements describing the seizures and what follows. Frequency is judged under ordinary conditions of life.', '<b>Peripheral nerves:</b> "incomplete paralysis" means substantially less than complete. When involvement is <b>only sensory</b>, the rating is mild or at most moderate.', 'Nerve ratings are for one side; when both sides are affected, they are combined with the <b>bilateral factor</b>.']],
     ['mental', 'Mental disorders', '§ 4.125', ['A diagnosis that does not follow <b>DSM-5</b> or is not supported by the exam findings is returned to the examiner.', 'If the diagnosis changes, VA decides whether it is progression, correction of an error, or a new and separate condition, and asks the examiner if it is unclear.']],
   ];
-  const RATER_P4 = { spine: ['g14', 'g7'], knee: ['g14', 'g7'], kneeInst: ['g14', 'g7'], kneeRepl: ['joints', 'g14'], kneeAnk: ['g14', 'g7'], kneeMenDis: ['g7', 'g14'], kneeMenRem: ['g7', 'g14'], kneeRecurv: ['g7', 'g14'], shoulder: ['g14', 'g7'], ankle: ['g14', 'g7'], plantar: ['g14', 'g7'], mental: ['mental', 'g2'], migraine: ['nerves', 'g7'], apnea: ['resp'], sinus: ['resp'], rhinitis: ['resp'], htn: ['heart'], diabetes: ['g7', 'g13'], tinnitus: ['g13'] };
+  const RATER_P4 = { spine: ['g14', 'g7'], knee: ['g14', 'g7'], kneeInst: ['g14', 'g7'], kneeRepl: ['joints', 'g14'], kneeAnk: ['g14', 'g7'], kneeMenDis: ['g7', 'g14'], kneeMenRem: ['g7', 'g14'], kneeRecurv: ['g7', 'g14'], ankleAnk: ['g14', 'g7'], ankleSubtalar: ['g14', 'g7'], ankleMalunion: ['g14', 'g7'], ankleAstrag: ['g7', 'g14'], shoulder: ['g14', 'g7'], ankle: ['g14', 'g7'], plantar: ['g14', 'g7'], mental: ['mental', 'g2'], migraine: ['nerves', 'g7'], apnea: ['resp'], sinus: ['resp'], rhinitis: ['resp'], htn: ['heart'], diabetes: ['g7', 'g13'], tinnitus: ['g13'] };
   // ---- Important knee notes: shown with every knee card in Estimate a rating ----
   // Plain-language summary of M21-1 V.iii.1.B.4.a–g (text supplied by the owner from KnowVA, October 21, 2026). VA guidance, not binding law.
   const KNEE_NOTES_ART = '554400000014410';
@@ -6046,6 +6110,63 @@ ${topics.length ? `<h1 style="margin-top:28px">Condition-specific requirements</
   }
   // Turns each section number after § or §§ into a link to that section on eCFR (text unchanged).
   const secLinks = html => String(html).replace(/(§§?\s*)(\d+\.\d+[a-z]?(?:(?:,\s*|,?\s+and\s+|\s*[–-]\s*)\d+\.\d+[a-z]?)*)/g, (m, pre, list) => pre + list.replace(/\d+\.\d+[a-z]?/g, n => `<a href="https://www.ecfr.gov/current/title-38/section-${n}" target="_blank" rel="noopener">${n}</a>`));
+  // ---- Important ankle notes: shown with every ankle card in Estimate a rating ----
+  // Plain-language summary of M21-1 V.iii.1.B.4.j (text supplied by the owner from KnowVA, October 24, 2026). VA guidance, not binding law.
+  const ANKLE_NOTES = [
+    ['One rating for limited motion and instability', 'M21-1 V.iii.1.B.4.j', ['VA does <b>not</b> assign separate ratings for limited motion and instability of the same ankle.', 'The ankle codes, including <b>DC 5271</b>, are meant to cover the <b>whole ankle disability</b>, not one kind of symptom.', 'DC 5271 is titled "Ankle, limited motion of" and uses motion measurements to show what "marked" and "moderate" mean, but it <b>can also rate an unstable ankle</b>, with or without limited motion.'], 'guide'],
+    ['A condition the schedule does not list', 'M21-1 V.iii.1.B.4.j; § 4.20', ['When a condition is not listed in the rating schedule, VA rates it <b>by analogy</b> to a listed one (<b>38 C.F.R. § 4.20</b>).', 'VA picks the code that best fits the facts found <b>and</b> gives the highest evaluation.'], 'guide'],
+    ['Which ankle code?', '38 C.F.R. § 4.71a', ['<b>DC 5270</b>: the ankle is frozen or fused (ankylosis). 20% to 40%, by the angle it is fixed at.', '<b>DC 5271</b>: limited motion, or instability. 10% (moderate) or 20% (marked).', '<b>DC 5272</b>: the subtalar (subastragalar) or tarsal joint is frozen or fused. 10% or 20%, by weight-bearing position.', '<b>DC 5273</b>: the heel bone or talus healed out of place (malunion). 10% (moderate) or 20% (marked deformity).', '<b>DC 5274</b>: the talus was surgically removed (astragalectomy). 20%.'], 'law'],
+  ];
+  function ankleNotesHTML() {
+    return `<section class="panel knee-notes" id="ankle-notes" aria-labelledby="an-h"><div class="panel-head"><h2 id="an-h">Important ankle notes</h2></div>
+      <p class="muted" style="font-size:.88rem;margin:0 0 10px">These apply to every ankle code. The first two summarize how VA's adjudication manual tells raters to handle the ankle; the manual is <b>VA administrative guidance</b>. The rating criteria themselves are law in <b>38 C.F.R. § 4.71a</b>. VA decides every rating from the whole record.</p>
+      <div class="insuf-grid">${ANKLE_NOTES.map(([t, ref, body, kind]) => p4Card(`${t} <span class="rule-tag ${kind}">${kind === 'law' ? 'Law' : 'VA guidance'}</span>`, ref, body, 'must')).join('')}</div>
+      <ul class="plain-list muted" style="font-size:.82rem;margin:10px 0 0">
+        <li><span class="rule-tag guide">VA guidance</span> <a href="${KNOWVA_URL(KNEE_NOTES_ART)}" target="_blank" rel="noopener">M21-1, Part V, Subpart iii, 1.B.4.j</a> (KnowVA), Ankle instability. Summary written October 24, 2026.</li>
+        <li><span class="rule-tag law">Law</span> <a href="https://www.ecfr.gov/current/title-38/section-4.71a" target="_blank" rel="noopener">38 C.F.R. § 4.71a</a>, DCs 5270–5274; § 4.20 (eCFR current as of October 22, 2026; checked October 24, 2026).</li></ul></section>`;
+  }
+  // ---- Important spine notes: shown with the spine card in Estimate a rating ----
+  // Law: the notes to the General Rating Formula and the IVDS formula in 38 C.F.R. § 4.71a (eCFR checked October 24, 2026).
+  // Guidance: plain-language summary of M21-1 V.iii.1.B.3.a–h (text supplied by the owner from KnowVA, October 24, 2026), leaving out VA's internal exam-request and system steps.
+  const SPINE_LAW = [
+    ['Normal motion and combined motion', 'Note (2)', ['<b>Neck (cervical):</b> bending forward 0–45°, back 0–45°, side to side 0–45° each way, turning 0–80° each way. Combined normal is <b>340°</b>.', '<b>Back (thoracolumbar):</b> bending forward 0–90°, back 0–30°, side to side 0–30° each way, turning 0–30° each way. Combined normal is <b>240°</b>.', 'Combined range of motion is the six motions added together. A motion above normal counts only up to the normal number.']],
+    ['How measurements are used', 'Notes (3), (4)', ['Each measurement is <b>rounded to the nearest 5 degrees</b>. This tool does that for you.', 'In exceptional cases an examiner may say your motion is <b>normal for you</b> because of age, body build, a neurologic disease, or another cause that is not the spine condition. With an explanation, VA accepts that.']],
+    ['Favorable and unfavorable ankylosis', 'Note (5)', ['<b>Unfavorable</b> means the whole neck, the whole back, or the entire spine is fixed bent forward or back <b>and</b> causes at least one of: difficulty walking because of a limited line of vision; restricted opening of the mouth and chewing; breathing limited to the diaphragm; stomach symptoms from the ribs pressing on the abdomen; shortness of breath or trouble swallowing; subluxation or dislocation at the top of the neck; or nerve symptoms from nerve root stretching.', 'A spine segment fixed in a <b>neutral (0°)</b> position is always <b>favorable</b>.']],
+    ['Neck and back are rated separately', 'Note (6)', ['The neck and the back each get their own rating, except when <b>both</b> have unfavorable ankylosis. Then they are rated as one disability.']],
+    ['Nerve and other problems are rated separately', 'Note (1)', ['Nerve problems that come from the spine, including <b>bowel or bladder</b> problems and nerve pain or numbness down an arm or leg (radiculopathy), are rated separately under their own codes.']],
+    ['Which spine code?', 'DCs 5235–5244', ['5235 vertebral fracture or dislocation; 5236 sacroiliac injury and weakness; 5237 lumbosacral or cervical strain; 5238 spinal stenosis; 5239 spondylolisthesis or segmental instability; 5240 ankylosing spondylitis; 5241 spinal fusion. These are rated under the General Rating Formula.', '<b>5242</b> degenerative arthritis, or degenerative disc disease other than intervertebral disc syndrome (also see DC 5003 or 5010).', '<b>5243</b> intervertebral disc syndrome (IVDS): only when a disc herniation <b>compresses or irritates the nearby nerve root</b>. Other disc diagnoses use 5242.', '<b>5244</b> complete traumatic paralysis: paraplegia is rated under DC 5110; quadriplegia under DCs 5109 and 5110, combined. Paralysis that does not cause loss of use of both hands or both feet is incomplete and is rated under the fitting code, such as the peripheral nerve codes in § 4.124a.']],
+    ['Disc disease (IVDS): two ways to rate', 'DC 5243; IVDS formula', ['IVDS, before or after surgery, is rated under the General Rating Formula <b>or</b> the incapacitating episodes formula, whichever gives the <b>higher evaluation when all disabilities are combined</b> under § 4.25.', 'An <b>incapacitating episode</b> is a period of acute disc symptoms that requires <b>bed rest prescribed by a physician and treatment by a physician</b>.', 'If IVDS affects more than one part of the spine with clearly distinct effects, each part is rated by whichever method gives it the higher evaluation.']],
+  ];
+  const SPINE_GUIDE = [
+    ['Spine and nerve parts are rated separately', '3.a, 3.d', ['VA rates the <b>orthopedic</b> part (for example, painful muscle spasm or limited motion) and any <b>nerve</b> part (for example, footdrop, muscle wasting, or loss of feeling) separately.', 'New nerve problems from a service-connected spine condition are treated as the spine getting worse, so VA handles them as a <b>claim for an increase</b>, not a secondary claim. A spine claim includes any nerve problems from it, and a claim for the nerve problem includes the spine condition causing it.', 'If a back condition causes leg nerve symptoms but the records do not name the nerve root, VA rates the leg under the <b>sciatic nerve, DC 8520</b>.', 'Exams of other body systems may be needed when the nerves, bladder, or bowel control are affected.']],
+    ['When a disc is rated as IVDS', '3.a, 3.b', ['DC 5243 is used only for a disc herniation that compresses or irritates the nearby nerve root. Otherwise VA uses DC 5242.', 'Nerve root irritation shows up as <b>back pain and sciatica</b> (pain along the sciatic nerve) for the low back, or <b>neck and arm or hand pain</b> for the neck.', 'Doctors use many names for IVDS: slipped, herniated, ruptured, prolapsed, bulging, or protruded disc; degenerative disc disease; sciatica; discogenic pain syndrome; herniated nucleus pulposus; and pinched nerve.']],
+    ['Bed rest must be prescribed and in the record', '3.c', ['An incapacitating episode requires <b>bed rest prescribed by a physician</b>. The prescription must be in your file, or reviewed and described by the examiner.', 'If the records do not show prescribed bed rest, VA uses the General Rating Formula and asks you to send medical records showing those periods.']],
+    ['One rating, not three, when episodes are used', '3.a, 3.g', ['If IVDS is rated on incapacitating episodes, VA does <b>not</b> also rate limited motion, radiculopathy, or other nerve problems separately. That would count the same disability twice (§ 4.14).']],
+    ['Partial fusion is not ankylosis', '3.a', ['A spinal fusion is rated as ankylosis only when it fixes the <b>entire</b> neck or the <b>entire</b> back. Fusion of part of a segment is rated on range of motion or IVDS.']],
+    ['No presumption for disc disease alone', '3.a', ['Degenerative disc disease has no presumption of service connection. Disc drying (desiccation) or other degenerative changes without arthritis on X-ray are not arthritis, so the one-year presumption for arthritis (38 C.F.R. § 3.309(a)) does not apply to them.']],
+    ['Ankylosing spondylitis', '3.h', ['<b>Active:</b> rated under DC 5009, using the acute-phase criteria of DC 5002.', '<b>Inactive:</b> rated on the lasting effects on the spine under DC 5003 or DC 5240, with other affected joints or body systems rated separately.']],
+  ];
+  // VA's own examples from M21-1 V.iii.1.B.3.e and 3.g, shortened. Teaching examples, not real decisions.
+  const SPINE_EXAMPLES = [
+    ['IVDS: episodes give the higher rating', 'Limited motion supports 20% under the General Rating Formula, and mild leg radiculopathy supports a separate 10% under DC 8520. The records show four weeks of physician-prescribed bed rest in the past 12 months, which supports 40% under the incapacitating episodes formula. VA assigns <b>40% under DC 5243</b> on incapacitating episodes, and does <b>not</b> rate the limited motion or the radiculopathy separately.'],
+    ['Radiculopathy found during a claim for an increase', 'A veteran asks for an increase for service-connected spinal stenosis, with no intent to file on record. The exam shows unchanged motion and a new diagnosis of radiculopathy in both legs. VA rates the stenosis and grants service connection for the radiculopathy, effective from the date the increase claim was received.'],
+    ['A leg claim that leads back to the spine', 'A veteran claims right leg pain and numbness more than a year after discharge, with no intent to file on record. The exam finds radiculopathy caused by a back injury from service that was never claimed. VA treats the back as part of the claim and grants both, effective from the date the leg claim was received.'],
+  ];
+  function spineNotesHTML() {
+    const tagged = (list, kind, pre) => list.map(([t, ref, body]) => p4Card(t, pre + ref, body, 'must')).join('');
+    return `<section class="panel knee-notes" id="spine-notes" aria-labelledby="sn-h"><div class="panel-head"><h2 id="sn-h">Important spine notes</h2></div>
+      <p class="muted" style="font-size:.88rem;margin:0 0 10px">The first group is from the rating schedule itself, which is <b>law</b> (38 C.F.R. § 4.71a). The second group summarizes how VA's adjudication manual tells raters to apply it, which is <b>VA administrative guidance</b>. VA decides every rating from the whole record.</p>
+      <h3 class="edu-h"><span class="rule-tag law">Law</span> From the rating schedule</h3>
+      <div class="insuf-grid">${tagged(SPINE_LAW, 'law', '')}</div>
+      <h3 class="edu-h" style="margin-top:14px"><span class="rule-tag guide">VA guidance</span> From VA's manual</h3>
+      <div class="insuf-grid">${tagged(SPINE_GUIDE, 'guide', 'M21-1 V.iii.1.B.')}</div>
+      <details class="knee-ex" style="margin-top:12px"><summary><b>VA's examples: IVDS and nerve problems</b> <span class="muted">(M21-1 V.iii.1.B.3.e, 3.g)</span></summary>
+        <p class="muted" style="font-size:.86rem;margin:8px 0">Shortened from the examples in VA's manual. These are teaching examples, not real VA decisions, and your facts may differ.</p>
+        <ol class="plain-list knee-ex-list">${SPINE_EXAMPLES.map(([t, b], i) => `<li><b>Example ${i + 1}: ${t}.</b> ${b}</li>`).join('')}</ol></details>
+      <ul class="plain-list muted" style="font-size:.82rem;margin:10px 0 0">
+        <li><span class="rule-tag law">Law</span> <a href="https://www.ecfr.gov/current/title-38/section-4.71a" target="_blank" rel="noopener">38 C.F.R. § 4.71a</a>, General Rating Formula for Diseases and Injuries of the Spine and its Notes (1)–(6), DCs 5235–5244, and the Formula for Rating Intervertebral Disc Syndrome Based on Incapacitating Episodes and its Notes (1)–(2); §§ 3.309(a), 4.14, 4.25 (eCFR current as of October 22, 2026; checked October 24, 2026).</li>
+        <li><span class="rule-tag guide">VA guidance</span> <a href="${KNOWVA_URL(KNEE_NOTES_ART)}" target="_blank" rel="noopener">M21-1, Part V, Subpart iii, 1.B.3.a–h</a> (KnowVA), Evaluating musculoskeletal disabilities of the spine (topic change date February 27, 2025). Summary written October 24, 2026.</li></ul></section>`;
+  }
   const p4Card = (t, c, body, cls) => `<div class="insuf-card${cls ? ' ' + cls : ''}"><h3 class="edu-h">${t} <span class="muted num" style="font-weight:400">${secLinks(c)}</span></h3>${Array.isArray(body) ? `<ul class="plain-list">${body.map(b => `<li>${b}</li>`).join('')}</ul>` : `<p style="margin:0">${body}</p>`}</div>`;
   function p4ById(id) { const g = P4_GEN.find(x => x[0] === id); if (g) return p4Card(g[1], g[2], g[3], 'must'); const y = P4_SYS.find(x => x[0] === id); return y ? p4Card(y[1], y[2], y[3], 'must') : ''; }
   function p4PanelHTML(rid, rname) {
