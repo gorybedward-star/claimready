@@ -1,0 +1,408 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="description" content="Free, independent educational guide to VA Form 21-2680 (June 2026 edition), the aid and attendance or housebound exam, section by section: who fills which part, what the examiner should document, and common mistakes. Nothing is saved or sent.">
+<meta name="referrer" content="no-referrer"><meta name="theme-color" content="#1d5a70">
+<link rel="manifest" href="manifest.webmanifest"><link rel="icon" type="image/png" href="icons/favicon-32.png"><link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+<title>Form 21-2680 Guide</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<style>@font-face{font-family:'Public Sans';font-style:normal;font-weight:400;font-display:swap;src:url(fonts/public-sans-latin-400-normal.woff2) format('woff2')}@font-face{font-family:'Public Sans';font-style:normal;font-weight:500;font-display:swap;src:url(fonts/public-sans-latin-500-normal.woff2) format('woff2')}@font-face{font-family:'Public Sans';font-style:normal;font-weight:600;font-display:swap;src:url(fonts/public-sans-latin-600-normal.woff2) format('woff2')}@font-face{font-family:'Public Sans';font-style:normal;font-weight:700;font-display:swap;src:url(fonts/public-sans-latin-700-normal.woff2) format('woff2')}@font-face{font-family:'Source Serif 4';font-style:normal;font-weight:400;font-display:swap;src:url(fonts/source-serif-4-latin-400-normal.woff2) format('woff2')}@font-face{font-family:'Source Serif 4';font-style:normal;font-weight:600;font-display:swap;src:url(fonts/source-serif-4-latin-600-normal.woff2) format('woff2')}@font-face{font-family:'Source Serif 4';font-style:italic;font-weight:400;font-display:swap;src:url(fonts/source-serif-4-latin-400-italic.woff2) format('woff2')}@font-face{font-family:'Source Serif 4';font-style:italic;font-weight:600;font-display:swap;src:url(fonts/source-serif-4-latin-600-italic.woff2) format('woff2')}@font-face{font-family:'IBM Plex Mono';font-style:normal;font-weight:400;font-display:swap;src:url(fonts/ibm-plex-mono-latin-400-normal.woff2) format('woff2')}@font-face{font-family:'IBM Plex Mono';font-style:normal;font-weight:600;font-display:swap;src:url(fonts/ibm-plex-mono-latin-600-normal.woff2) format('woff2')}</style>
+<style>
+/* Layout: one reading column. Banner, header with form edition, who-is-it-for chooser, what VA decides, one-page summary, checks, section map, one collapsible block per form section, mistakes, sources, footer. Same tokens and classes as form-526ez.html. */
+:root {
+  --paper: #f3f5f4; --surface: #ffffff; --sunk: #e9eeec; --ink: #16201d; --muted: #5a6763; --line: #d4dcd9;
+  --accent: #1d5a70; --accent-ink: #ffffff; --accent-soft: #dfecf0;
+  --ok: #2a774b; --ok-soft: #e0f0e6; --wait: #8a560a; --wait-soft: #f7ecd8;
+  --f-ui: "Public Sans", "Segoe UI", system-ui, sans-serif;
+  --f-serif: "Source Serif 4", Georgia, "Times New Roman", serif;
+  --f-mono: "IBM Plex Mono", ui-monospace, Menlo, monospace;
+  --r: 6px;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --paper: #111816; --surface: #19211f; --sunk: #0d1312; --ink: #e4ebe8; --muted: #98a6a1; --line: #2b3633;
+  --accent: #72b6cf; --accent-ink: #0d1a1f; --accent-soft: #1b3038;
+  --ok: #62c189; --ok-soft: #173426; --wait: #e2a849; --wait-soft: #392b12; color-scheme: dark; } }
+:root[data-theme="dark"] {
+  --paper: #111816; --surface: #19211f; --sunk: #0d1312; --ink: #e4ebe8; --muted: #98a6a1; --line: #2b3633;
+  --accent: #72b6cf; --accent-ink: #0d1a1f; --accent-soft: #1b3038;
+  --ok: #62c189; --ok-soft: #173426; --wait: #e2a849; --wait-soft: #392b12; color-scheme: dark; }
+:root { padding-top: env(safe-area-inset-top, 0px); padding-bottom: env(safe-area-inset-bottom, 0px); }
+* { box-sizing: border-box; }
+[hidden] { display: none !important; }
+body { margin: 0; background: var(--paper); color: var(--ink); font-family: var(--f-ui); font-size: 0.95rem; line-height: 1.5; }
+.wrap { max-width: 760px; margin: 0 auto; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+.skip { position: absolute; left: -9999px; } .skip:focus { left: 16px; top: 8px; z-index: 20; background: var(--surface); padding: 8px 12px; border-radius: var(--r); }
+.banner { background: var(--ink); color: var(--paper); font-size: 0.8rem; }
+.banner .wrap { padding-block: 8px; }
+header.top { padding-block: 24px 8px; display: grid; gap: 10px; }
+h1, h2, h3 { font-family: var(--f-serif); font-weight: 600; margin: 0; line-height: 1.2; text-wrap: balance; }
+h1 { font-size: 1.9rem; letter-spacing: -0.01em; }
+h2 { font-size: 1.3rem; }
+h3 { font-size: 1.02rem; }
+p { margin: 0; }
+ul, ol { margin: 0; padding-left: 20px; display: grid; gap: 6px; }
+a { color: var(--accent); }
+.muted { color: var(--muted); }
+.eyebrow { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.09em; text-transform: uppercase; color: var(--muted); }
+.crumbs { display: flex; flex-wrap: wrap; gap: 6px 14px; align-items: baseline; }
+.crumbs a { font-weight: 600; font-size: .9rem; text-decoration: none; }
+.crumbs a:hover { text-decoration: underline; }
+.tag { display: inline-block; font-size: .7rem; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; padding: 1px 7px; border-radius: 4px; border: 1px solid currentColor; white-space: nowrap; }
+.tag.law { color: var(--accent); } .tag.guide { color: var(--wait); } .tag.court { color: var(--ok); }
+.example { display: grid; gap: 4px; background: var(--wait-soft); border: 1px solid var(--line); border-radius: var(--r); padding: 10px 12px; }
+.example b:first-child { font-size: .78rem; letter-spacing: .06em; text-transform: uppercase; }
+button, input { font: inherit; color: inherit; }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.btn { border: 1px solid var(--line); background: var(--surface); border-radius: var(--r); padding: 8px 14px; cursor: pointer; min-height: 44px; }
+.btn.primary { background: var(--accent); color: var(--accent-ink); border-color: var(--accent); font-weight: 600; }
+.btn.link { border: 0; background: none; color: var(--accent); text-decoration: underline; padding: 4px 0; min-height: 0; }
+main { display: grid; gap: 20px; padding-block: 12px 48px; }
+.panel { background: var(--surface); border: 1px solid var(--line); border-radius: var(--r); padding: 18px; display: grid; gap: 14px; min-width: 0; }
+.panel > header { display: grid; gap: 6px; }
+fieldset { border: 0; padding: 0; margin: 0; display: grid; gap: 10px; min-width: 0; }
+legend { font-family: var(--f-serif); font-weight: 600; font-size: 1.15rem; padding: 0; margin-bottom: 4px; }
+.choices { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 8px; }
+.choice { display: flex; gap: 10px; align-items: flex-start; border: 1px solid var(--line); border-radius: var(--r); padding: 10px 12px; cursor: pointer; background: var(--paper); min-height: 44px; }
+.choice:has(input:checked) { border-color: var(--accent); background: var(--accent-soft); }
+.choice input { margin-top: 4px; width: 18px; height: 18px; accent-color: var(--accent); flex: none; }
+.choice small { display: block; color: var(--muted); }
+.row { display: flex; flex-wrap: wrap; gap: 8px 14px; align-items: center; }
+.cols { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 12px; }
+.box { border: 1px solid var(--line); border-radius: var(--r); padding: 12px 14px; display: grid; gap: 8px; align-content: start; background: var(--paper); }
+.box.you { border-left: 4px solid var(--ok); }
+.box.doc { border-left: 4px solid var(--accent); }
+.box h3 { font-family: var(--f-ui); font-size: .82rem; letter-spacing: .06em; text-transform: uppercase; }
+.flow { list-style: none; padding: 0; counter-reset: q; gap: 0; }
+.flow > li { counter-increment: q; display: grid; grid-template-columns: 30px 1fr; gap: 10px; padding-bottom: 14px; position: relative; }
+.flow > li::before { content: counter(q); width: 26px; height: 26px; border-radius: 50%; background: var(--accent); color: var(--accent-ink); font-family: var(--f-mono); font-size: .8rem; display: grid; place-items: center; }
+.flow > li::after { content: ""; position: absolute; left: 12px; top: 28px; bottom: 2px; width: 2px; background: var(--line); }
+.flow > li:last-child::after { display: none; }
+.flow .stop { display: block; font-size: .85rem; color: var(--muted); margin-top: 2px; }
+.flow ul { margin-top: 6px; }
+.quote { font-family: var(--f-serif); border-left: 3px solid var(--line); padding: 2px 0 2px 12px; color: var(--ink); }
+.pills { list-style: none; padding: 0; display: flex; flex-wrap: wrap; gap: 6px; }
+.pills li { border: 1px solid var(--line); border-radius: 999px; padding: 2px 10px; font-size: .85rem; background: var(--paper); }
+.patterns { list-style: none; padding: 0; display: grid; gap: 8px; counter-reset: p; }
+.patterns li { counter-increment: p; display: grid; grid-template-columns: 30px 1fr; gap: 10px; align-items: start; border: 1px solid var(--line); border-radius: var(--r); padding: 10px 12px; }
+.patterns li::before { content: counter(p); font-family: var(--f-mono); font-weight: 600; font-size: 1rem; }
+.patterns li.yes { background: var(--ok-soft); }
+.patterns small { display: block; color: var(--muted); }
+.cite { font-size: 0.8rem; color: var(--muted); display: flex; flex-wrap: wrap; gap: 6px 10px; align-items: center; border-top: 1px dashed var(--line); padding-top: 10px; }
+table { border-collapse: collapse; width: 100%; font-size: 0.88rem; }
+th, td { text-align: left; padding: 7px 8px; border-bottom: 1px solid var(--line); vertical-align: top; }
+th { font-weight: 600; color: var(--muted); font-size: 0.76rem; letter-spacing: 0.04em; text-transform: uppercase; }
+.tscroll { overflow-x: auto; }
+.num { font-family: var(--f-mono); font-variant-numeric: tabular-nums; font-size: .86em; white-space: nowrap; }
+details { border: 1px solid var(--line); border-radius: var(--r); background: var(--paper); padding: 10px 12px; }
+summary { cursor: pointer; font-weight: 600; min-height: 24px; }
+details > :not(summary) { margin-top: 10px; }
+footer { font-size: 0.82rem; color: var(--muted); display: grid; gap: 8px; padding-block: 0 40px; }
+@media (max-width: 520px) { h1 { font-size: 1.55rem; } .panel { padding: 14px; } }
+@media print {
+  .banner { background: none; color: #000; border-bottom: 1px solid #000; }
+  .noprint, .skip { display: none !important; }
+  body { background: #fff; color: #000; font-size: 10.5pt; }
+  .panel, .box, details { border-color: #999; break-inside: avoid-page; }
+  details > :not(summary) { display: block !important; }
+  a { color: #000; }
+}
+
+.sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+tr.dim td { opacity: .45; }
+.checklist { gap: 8px; }
+.myths { margin: 0; display: grid; gap: 4px 0; }
+.myths dt { font-weight: 600; margin-top: 8px; }
+.myths dt:first-child { margin-top: 0; }
+.myths dd { margin: 0; color: var(--ink); }
+@media (max-width: 520px) { table.stack thead { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); } table.stack, table.stack tbody, table.stack tr, table.stack td { display: block; } table.stack tr { border-bottom: 1px solid var(--line); padding: 8px 0; } table.stack td { border: 0; padding: 2px 0; } table.stack td:first-child { font-weight: 600; } table.stack td:last-child { font-size: .8rem; color: var(--muted); } }
+@media print { tr.dim td { opacity: 1; } .topic[hidden] { display: grid !important; } }
+.tag.bg { color: var(--muted); }
+.cite { display: block; line-height: 1.9; } .cite .tag { margin-right: 4px; } .cite .tag:not(:first-child) { margin-left: 6px; }
+@media (max-width: 520px) { table.stack.keep td:last-child { font-size: inherit; color: var(--ink); } }
+.alert { border: 1px solid var(--wait); border-left: 6px solid var(--wait); background: var(--wait-soft); border-radius: var(--r); padding: 14px 16px; display: grid; gap: 8px; }
+.alert p.big { font-family: var(--f-serif); font-size: 1.12rem; font-weight: 600; line-height: 1.35; }
+.no { font-weight: 700; color: var(--wait); white-space: nowrap; }
+.three { list-style: none; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 8px; counter-reset: t; }
+.three li { counter-increment: t; border: 1px solid var(--line); border-radius: var(--r); padding: 10px 12px; background: var(--paper); display: grid; gap: 4px; align-content: start; }
+.three li::before { content: "Question " counter(t); font-size: .72rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+.timeline { list-style: none; padding: 0; margin: 0; display: grid; gap: 0; }
+.timeline > li { display: grid; grid-template-columns: 64px 1fr; gap: 12px; position: relative; padding-bottom: 16px; }
+.timeline > li::after { content: ""; position: absolute; left: 31px; top: 30px; bottom: 0; width: 2px; background: var(--line); }
+.timeline > li:last-child::after { display: none; }
+.timeline .yr { font-family: var(--f-mono); font-weight: 600; font-size: .85rem; background: var(--sunk); border: 1px solid var(--line); border-radius: 999px; height: 28px; display: grid; place-items: center; position: relative; z-index: 1; }
+.timeline .key .yr { background: var(--accent); color: var(--accent-ink); border-color: var(--accent); }
+.timeline .ev { display: grid; gap: 2px; padding-top: 3px; }
+.timeline .ev b { font-size: .98rem; }
+.timeline .ev small { color: var(--muted); font-size: .84rem; }
+.dir { font-size: .72rem; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; padding: 1px 7px; border-radius: 4px; justify-self: start; }
+.dir.narrow { background: var(--wait-soft); color: var(--wait); }
+.dir.wide { background: var(--ok-soft); color: var(--ok); }
+.answer { border: 1px solid var(--accent); background: var(--accent-soft); border-radius: var(--r); padding: 12px 14px; display: grid; gap: 8px; }
+.outcomes { display: grid; gap: 8px; }
+.outcomes .box h3 { font-family: var(--f-serif); font-size: 1rem; letter-spacing: 0; text-transform: none; }
+@media print { .answer[hidden] { display: none !important; } }
+.three li::before { content: "Requirement " counter(t); }
+.filter { display: grid; gap: 6px; }
+.filter input { border: 1px solid var(--line); border-radius: var(--r); background: var(--paper); padding: 10px 12px; min-height: 44px; width: 100%; }
+.nl li.dim { opacity: .55; }
+.nl li.hit { background: var(--accent-soft); border-radius: 4px; padding: 0 4px; margin-left: -4px; }
+.exc { color: var(--wait); font-weight: 600; }
+@media print { .nl li.dim { opacity: 1; } }
+<style>
+.edition { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 8px; }
+.edition div { border: 1px solid var(--line); border-radius: var(--r); background: var(--surface); padding: 8px 12px; display: grid; gap: 2px; }
+.edition small { color: var(--muted); font-size: .75rem; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; }
+.map { list-style: none; padding: 0; display: grid; gap: 6px; }
+.map a { display: grid; grid-template-columns: 54px 1fr; gap: 10px; align-items: baseline; text-decoration: none; color: var(--ink); border: 1px solid var(--line); border-radius: var(--r); padding: 8px 12px; background: var(--paper); min-height: 44px; }
+.map a:hover { border-color: var(--accent); }
+.map .sec { font-family: var(--f-mono); font-weight: 600; font-size: .82rem; color: var(--accent); }
+.map small { color: var(--muted); }
+.formsec { padding: 0; background: var(--surface); }
+.formsec > summary { padding: 12px 14px; display: grid; grid-template-columns: 54px 1fr; gap: 10px; align-items: baseline; }
+.formsec > summary .sec { font-family: var(--f-mono); font-weight: 600; font-size: .82rem; color: var(--accent); }
+.formsec > summary small { display: block; font-weight: 400; color: var(--muted); font-size: .84rem; }
+.formsec > .inner { padding: 0 14px 14px; display: grid; gap: 10px; margin-top: 0; }
+.qa { display: grid; gap: 4px; }
+.qa h3 { font-family: var(--f-ui); font-size: .78rem; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); }
+.warn { border-left: 4px solid var(--wait); background: var(--wait-soft); border-radius: var(--r); padding: 10px 12px; display: grid; gap: 4px; }
+.privacy { border-left: 4px solid var(--ok); background: var(--ok-soft); border-radius: var(--r); padding: 10px 12px; }
+.secgroup { display: grid; gap: 8px; }
+.sumgrid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 10px; }
+.onepage .box h3 { font-size: .78rem; }
+.onepage .box ul { gap: 4px; }
+@media print { .formsec > .inner { display: grid !important; } }
+@media print {
+  body.print-one .banner, body.print-one header.top, body.print-one footer, body.print-one main > :not(#summary) { display: none !important; }
+  body.print-one #summary::before { content: "Independent educational tool. Not affiliated with or endorsed by the U.S. Department of Veterans Affairs. Not legal or medical advice. VA decides every claim."; font-size: 7.5pt; border-bottom: 1px solid #000; padding-bottom: 3pt; }
+  body.print-one main { padding: 0; }
+  body.print-one #summary { border: 0; padding: 0; gap: 5pt; font-size: 7.6pt; line-height: 1.25; }
+  body.print-one #summary h2 { font-size: 12pt; }
+  body.print-one #summary .sumgrid { grid-template-columns: repeat(3, 1fr); gap: 5pt; }
+  body.print-one #summary .cols { grid-template-columns: 1fr 1fr; gap: 5pt; }
+  body.print-one #summary .box { padding: 4pt 6pt; gap: 2pt; }
+  body.print-one #summary th, body.print-one #summary td { padding: 2pt 4pt; }
+  body.print-one #summary table, body.print-one #summary .muted, body.print-one #summary .cite, body.print-one #summary th { font-size: 7.4pt !important; }
+  body.print-one #summary .box h3 { font-size: 7.4pt; }
+  body.print-one #summary .cite { padding-top: 3pt; line-height: 1.4; }
+  @page { margin: 0.4in; }
+}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to the article</a>
+<div class="banner" role="note"><div class="wrap">Independent educational tool. Not affiliated with or endorsed by the U.S. Department of Veterans Affairs. Not legal or medical advice. VA decides every claim.</div></div>
+<div class="wrap">
+  <header class="top">
+    <div class="crumbs noprint"><a href="./">← How to file a claim</a><span class="eyebrow">Guide · Examinations</span></div>
+    <h1>VA Form 21-2680, aid and attendance or housebound exam, section by section</h1>
+    <p>VA Form 21-2680 is a medical exam form. You fill out the first sections, and your <b>own doctor or clinician</b> fills out the exam. VA uses it to decide whether someone needs another person's regular help (<b>aid and attendance</b>) or is <b>housebound</b>, for special monthly compensation or special monthly pension. This guide explains each part and <b>why it matters</b>. It explains the form; it does not fill it out, and nothing you do here is saved or sent.</p>
+    <div class="edition" aria-label="Form edition explained here">
+      <div><small>Edition explained</small><b class="num">JUN 2026</b></div>
+      <div><small>Replaces</small><span class="num">FEB 2023</span></div>
+      <div><small>OMB number</small><span class="num">2900-0721, exp. 06/30/2029</span></div>
+      <div><small>Who fills it</small><span>You: Sections I–V. Examiner: VI–VIII</span></div>
+    </div>
+    <p class="muted" style="font-size:.86rem">VA's form page listed <b>June 2026</b> as the current revision when this guide was checked on <span class="num">Oct 24, 2026</span>. Always get the form from <a href="https://www.va.gov/find-forms/about-form-21-2680/" target="_blank" rel="noopener">VA's form page</a>. For a spouse who needs help, also read ClaimReady's <a href="spouse-aid-attendance.html">Spouse aid and attendance</a> article.</p>
+    <div class="row noprint"><button class="btn" type="button" id="printBtn">Print or save this guide</button></div>
+  </header>
+  <main id="main" tabindex="-1">
+
+    <section class="panel noprint" aria-labelledby="pick-h">
+      <fieldset>
+        <legend id="pick-h">Who is the exam for?</legend>
+        <p class="muted" style="font-size:.88rem">The form has boxes for self, spouse, parent, and child, and two benefits to choose from. Pick the one that fits. Nothing you pick is saved.</p>
+        <div class="choices">
+          <label class="choice"><input type="radio" name="why" value="vetsc"><span><b>Me, a veteran with service-connected conditions</b><small>Special monthly compensation (SMC)</small></span></label>
+          <label class="choice"><input type="radio" name="why" value="pension"><span><b>Me, a veteran on VA pension</b><small>Special monthly pension (SMP)</small></span></label>
+          <label class="choice"><input type="radio" name="why" value="spouse"><span><b>My spouse</b><small>I'm a veteran rated 30% or more</small></span></label>
+          <label class="choice"><input type="radio" name="why" value="survivor"><span><b>Me, a surviving spouse</b><small>On DIC or survivors pension</small></span></label>
+        </div>
+      </fieldset>
+      <div class="answer" id="ans-vetsc" hidden><p><b>Check "Self" and "Special Monthly Compensation."</b> The need for help must come from your <b>service-connected</b> conditions. Aid and attendance can support SMC at the (l) level; housebound can support SMC at the (s) level. See <a href="#rules">What VA decides</a>.</p></div>
+      <div class="answer" id="ans-pension" hidden><p><b>Check "Self" and "Special Monthly Pension."</b> For pension, the need for help can come from any condition, not only service-connected ones.</p></div>
+      <div class="answer" id="ans-spouse" hidden><p><b>Check "Spouse" and "Special Monthly Compensation."</b> Extra pay for a spouse who needs aid and attendance goes to a veteran rated 30% or more. Read <a href="spouse-aid-attendance.html">Spouse aid and attendance</a>.</p></div>
+      <div class="answer" id="ans-survivor" hidden><p><b>Check "Self."</b> A surviving spouse can get an added amount for aid and attendance with DIC, or for aid and attendance or housebound status with survivors pension. Choose the benefit that matches what you receive.</p></div>
+      <p id="pickNote" class="sr" aria-live="polite"></p>
+      <p class="cite"><span class="tag law">Law</span> 38 C.F.R. §§ 3.350(b), (i); 3.351(a)(1), (a)(2), (a)(5)–(6) <span class="tag guide">VA form</span> 21-2680 Section II, Item 13</p>
+    </section>
+
+    <section class="panel" id="rules" aria-labelledby="rules-h">
+      <header><span class="eyebrow">Before you start</span><h2 id="rules-h">What VA decides from this exam</h2></header>
+      <div class="cols">
+        <div class="box you"><h3>Aid and attendance</h3><p>Needing another person's regular help with daily life. Any <b>one</b> of these can show it:</p><ul>
+          <li>Corrected vision of 5/200 or less in both eyes, or a visual field of 5 degrees or less.</li>
+          <li>Being a patient in a nursing home because of mental or physical incapacity.</li>
+          <li>A factual need: unable to dress, bathe, feed oneself, use the toilet, or adjust a prosthetic without help; needing protection from everyday hazards; or bedridden because of the condition.</li>
+        </ul><p>Not every factor has to be present, and the need must be regular, not constant.</p></div>
+        <div class="box doc"><h3>Housebound</h3><p>Either a single disability rated 100% plus other disabilities independently rated 60% or more, or <b>permanently housebound</b>: substantially confined to home and its immediate premises because of disability, and reasonably certain to stay that way.</p></div>
+      </div>
+      <p class="cite"><span class="tag law">Law</span> 38 C.F.R. §§ 3.351(b)–(d), 3.352(a), 3.350(b)(3), 3.350(i)</p>
+    </section>
+
+    <section class="panel onepage" id="summary" aria-labelledby="sum-h">
+      <header><span class="eyebrow">The form on one page</span><h2 id="sum-h">What the 21-2680 asks</h2></header>
+      <div class="row noprint"><button class="btn primary" type="button" id="printSum">Print this one-page summary</button></div>
+      <div class="sumgrid">
+        <div class="box you"><h3>1. You (Sections I–V)</h3><ul>
+          <li>Veteran's and claimant's identification, and relationship.</li>
+          <li>Who it's for (self, spouse, parent, child) and <b>one</b> benefit: SMC or SMP.</li>
+          <li>Whether the claimant is in a hospital now, with dates and place.</li>
+          <li><b>Sign and date Item 15</b> (the date is required).</li></ul></div>
+        <div class="box doc"><h3>2. Who can examine</h3><ul>
+          <li>A medical doctor (MD), doctor of osteopathic medicine (DO), physician assistant, or advanced practice registered nurse (APRN).</li>
+          <li>Usually your own provider.</li></ul></div>
+        <div class="box"><h3>3. Diagnoses</h3><ul>
+          <li>Each diagnosis with its most significant symptoms (Item 17). They must <b>match the level of help</b> described later.</li>
+          <li>Which conditions are permanent and totally disabling (Item 18).</li>
+          <li>Which conditions restrict each activity, with the reason (Item 25).</li></ul></div>
+        <div class="box"><h3>4. Daily help</h3><ul>
+          <li>Hours in bed, if confined (Item 26).</li>
+          <li>Help needed, <b>night (9 PM–9 AM) and day (9 AM–9 PM)</b>: bathing, toileting, eating, transfers, medications, hygiene, walking in the home, dressing, other (Item 27).</li></ul></div>
+        <div class="box"><h3>5. Body and safety</h3><ul>
+          <li>Legal blindness and corrected vision, each eye (Item 28).</li>
+          <li>Nursing home care needed (29); ability to manage payments (30).</li>
+          <li>Arms, legs, spine; bowel or bladder, dizziness, memory, balance (31–35).</li></ul></div>
+        <div class="box"><h3>6. Leaving home and signing</h3><ul>
+          <li>How often and under what conditions the claimant leaves home (36); canes, braces, or a person needed, and how far (37).</li>
+          <li><b>Examiner's printed name, title, signature (required), date, NPI, and facility</b> (38–45).</li></ul></div>
+      </div>
+      <p class="cite"><span class="tag guide">VA form</span> VA Form 21-2680 (Jun 2026), summarized in plain language. The form's own wording controls.</p>
+    </section>
+
+    <section class="panel" id="check" aria-labelledby="check-h">
+      <header><span class="eyebrow">Before you send it</span><h2 id="check-h">What a reviewer checks first</h2>
+        <p>Gaps here can mean VA orders its own exam or asks your provider to redo the form.</p></header>
+      <div class="alert" role="note"><p class="big">1. Both parts are signed.</p><p>You sign and date Item 15. The examiner gives a printed name, title, signature, date, and NPI number in Items 38–42. The examiner must be an MD, DO, PA, or APRN. <a href="#s5">Section V</a> · <a href="#s7">Sections VII–VIII</a></p></div>
+      <div class="alert" role="note"><p class="big">2. The diagnoses explain the help described.</p><p>The form says the diagnoses in Item 17 must match the level of help in Items 26–37, and Item 25 asks which condition restricts each activity and why. A checked box with no diagnosis behind it is weak evidence. <a href="#s6">Section VI</a></p></div>
+      <h3 style="font-family:var(--f-ui);font-size:.82rem;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)">Also check</h3>
+      <ul class="checklist">
+        <li><b>One benefit is chosen</b> in Item 13, SMC or SMP, and the right claimant box is checked. <a href="#s2">Section II</a></li>
+        <li><b>Both time periods are covered</b> in Item 27, night and day.</li>
+        <li><b>Corrected vision is given for each eye</b> if vision is the issue (Item 28B).</li>
+        <li><b>Leaving home is described</b> (Item 36) if housebound status is the issue.</li>
+      </ul>
+      <p class="cite"><span class="tag guide">VA form</span> 21-2680 Items 13, 15, 17, 25–42</p>
+    </section>
+
+    <section class="panel" id="map" aria-labelledby="map-h">
+      <header><span class="eyebrow">The form itself</span><h2 id="map-h">The sections at a glance</h2></header>
+      <ul class="map">
+        <li><a href="#s1"><span class="sec">I</span><span>Veteran and claimant identification <small>Items 1–12 · you</small></span></a></li>
+        <li><a href="#s2"><span class="sec">II–III</span><span>Who it's for and which benefit <small>Item 13 · you</small></span></a></li>
+        <li><a href="#s4"><span class="sec">IV</span><span>Hospitalized now? <small>Item 14 · you</small></span></a></li>
+        <li><a href="#s5"><span class="sec">V</span><span>Your certification and signature <small>Item 15 · you</small></span></a></li>
+        <li><a href="#s6"><span class="sec">VI</span><span>Examination <small>Items 16–37 · examiner, the heart of the form</small></span></a></li>
+        <li><a href="#s7"><span class="sec">VII–VIII</span><span>Examiner's signature and information <small>Items 38–45 · examiner</small></span></a></li>
+      </ul>
+      <div class="privacy" role="note"><b>ClaimReady never asks for your Social Security number, VA file number, or medical details.</b> Those go only on the form you send to VA.</div>
+    </section>
+
+    <div class="secgroup" aria-label="Form sections">
+      <details class="formsec" id="s1"><summary><span class="sec">I</span><span>Veteran and claimant identification<small>Items 1–12</small></span></summary>
+        <div class="inner">
+          <div class="qa"><h3>What it asks</h3><p>The veteran's identification, and the claimant's if different, such as a spouse or child, with the relationship and a mailing address. You can agree to email correspondence.</p></div>
+          <p class="cite"><span class="tag guide">VA form</span> 21-2680 Section I</p>
+        </div></details>
+
+      <details class="formsec" id="s2"><summary><span class="sec">II–III</span><span>Who it's for and which benefit<small>Item 13: choose one</small></span></summary>
+        <div class="inner">
+          <div class="qa"><h3>What it asks</h3><p>Whether the exam is for the veteran (self), a spouse, a parent, or a child, and <b>one</b> benefit: Special Monthly Compensation (SMC) or Special Monthly Pension (SMP).</p></div>
+          <div class="qa"><h3>Why it matters</h3><p>SMC is paid with service-connected compensation or DIC; for a veteran's own SMC, the need for help must come from service-connected conditions. SMP is an added amount for people eligible for pension, and any condition can count.</p></div>
+          <p class="cite"><span class="tag law">Law</span> 38 C.F.R. §§ 3.350(b), 3.351(a) <span class="tag guide">VA form</span> 21-2680 Sections II–III</p>
+        </div></details>
+
+      <details class="formsec" id="s4"><summary><span class="sec">IV</span><span>Hospitalized now?<small>Item 14</small></span></summary>
+        <div class="inner">
+          <div class="qa"><h3>Why it matters</h3><p>If the claimant is in a hospital, give the admission date, name, and address so VA knows where the claimant is and can account for the stay. If not, skip to Section V.</p></div>
+          <p class="cite"><span class="tag guide">VA form</span> 21-2680 Section IV</p>
+        </div></details>
+
+      <details class="formsec" id="s5"><summary><span class="sec">V</span><span>Your certification and signature<small>Item 15</small></span></summary>
+        <div class="inner">
+          <div class="qa"><h3>What it asks</h3><p>You certify your statements are true and correct to the best of your knowledge and belief, then sign and date. The form marks the date required.</p></div>
+          <p class="cite"><span class="tag guide">VA form</span> 21-2680 Section V</p>
+        </div></details>
+
+      <details class="formsec" id="s6" open><summary><span class="sec">VI</span><span>Examination<small>Items 16–37: the heart of the form</small></span></summary>
+        <div class="inner">
+          <div class="qa"><h3>Who completes it</h3><p>An MD, DO, physician assistant, or APRN. The form asks for <b>detailed findings</b>: whether the claimant is blind or bedridden, how they walk, where they go, and what they do on a typical day.</p></div>
+          <div class="box doc"><h3>What makes the exam useful</h3><ul>
+            <li><b>Diagnoses tied to function.</b> Each diagnosis with its most significant symptoms (17), which ones are permanent and totally disabling (18), and which condition restricts each activity and why (25).</li>
+            <li><b>Specific help, day and night.</b> Item 27 lists bathing, toileting, eating, transfers, medications, hygiene, walking in the home, dressing, and other tasks, separately for 9 PM–9 AM and 9 AM–9 PM.</li>
+            <li><b>Safety.</b> Memory loss, dizziness, poor balance, and loss of bowel or bladder control (35) bear on whether the claimant needs protection from everyday hazards.</li>
+            <li><b>Vision with correction</b> for each eye (28B), since the test is corrected vision.</li>
+            <li><b>Leaving home.</b> How often and under what conditions (36), and whether a cane, brace, or person is needed and for how far (37). This bears on housebound status.</li>
+            <li><b>Managing money.</b> Item 30 asks whether the claimant can manage benefit payments. See ClaimReady's <a href="competency.html">competency article</a> for what VA does with that.</li>
+          </ul></div>
+          <p class="cite"><span class="tag law">Law</span> 38 C.F.R. §§ 3.351(c), 3.352(a), 3.350(i)(2) <span class="tag guide">VA form</span> 21-2680 Section VI and examiner note</p>
+        </div></details>
+
+      <details class="formsec" id="s7"><summary><span class="sec">VII–VIII</span><span>Examiner's signature and information<small>Items 38–45</small></span></summary>
+        <div class="inner">
+          <div class="qa"><h3>What it asks</h3><p>The examiner's printed name, title, signature (required), date, NPI number, and the medical facility's name, address, and phone. A penalty notice applies to knowingly false statements.</p></div>
+          <div class="qa"><h3>Why it matters</h3><p>VA needs to confirm the examiner is one of the qualified provider types and be able to follow up if something is unclear.</p></div>
+          <p class="cite"><span class="tag guide">VA form</span> 21-2680 Sections VII–VIII</p>
+        </div></details>
+    </div>
+
+    <section class="panel" id="mistakes" aria-labelledby="mis-h">
+      <header><span class="eyebrow">Common mistakes</span><h2 id="mis-h">What often goes wrong</h2></header>
+      <dl class="myths">
+        <dt>Boxes checked with no diagnosis behind them.</dt><dd>The form asks the examiner to tie each restriction to a condition and explain why.</dd>
+        <dt>Only daytime help described.</dt><dd>Item 27 asks about nights too. Night needs, such as toileting or wandering, often matter.</dd>
+        <dt>Vision given without correction.</dt><dd>The test uses corrected vision in both eyes.</dd>
+        <dt>Thinking the need has to be around the clock.</dt><dd>The need must be regular, not constant, and not every factor has to apply.</dd>
+        <dt>Missing examiner signature, title, or NPI.</dt><dd>VA may not be able to use the form without them.</dd>
+        <dt>Choosing both benefits, or the wrong one.</dt><dd>Item 13 takes one: SMC or SMP.</dd>
+      </dl>
+    </section>
+
+    <section class="panel" id="sources" aria-labelledby="src-h">
+      <header><h2 id="src-h">Sources and dates</h2>
+        <p class="muted" style="font-size:.88rem"><span class="tag law">Law</span> statutes and regulations. <span class="tag guide">VA guidance</span> VA forms and instructions, which explain how VA applies the law but are not law.</p></header>
+      <div class="tscroll"><table>
+        <thead><tr><th scope="col">Source</th><th scope="col">Type</th><th scope="col">Version used</th></tr></thead>
+        <tbody>
+          <tr><td><a href="https://www.va.gov/find-forms/about-form-21-2680/" target="_blank" rel="noopener">VA Form 21-2680</a>, Examination for Housebound Status or Permanent Need for Regular Aid and Attendance</td><td><span class="tag guide">VA form</span></td><td class="num">JUN 2026 (supersedes FEB 2023)</td></tr>
+          <tr><td><a href="https://www.ecfr.gov/current/title-38/section-3.350" target="_blank" rel="noopener">38 C.F.R. § 3.350(b), (i)</a> (SMC for aid and attendance; housebound)</td><td><span class="tag law">Law</span></td><td>Current eCFR</td></tr>
+          <tr><td><a href="https://www.ecfr.gov/current/title-38/section-3.351" target="_blank" rel="noopener">38 C.F.R. § 3.351</a> (aid and attendance and housebound for pension, DIC, and spouses)</td><td><span class="tag law">Law</span></td><td>Current eCFR</td></tr>
+          <tr><td><a href="https://www.ecfr.gov/current/title-38/section-3.352" target="_blank" rel="noopener">38 C.F.R. § 3.352(a)</a> (factual need factors; bedridden)</td><td><span class="tag law">Law</span></td><td>Current eCFR</td></tr>
+        </tbody>
+      </table></div>
+      <p class="muted" style="font-size:.86rem">Content reviewed <span class="num">Oct 24, 2026</span>. When VA updates a source, ClaimReady's weekly monitor flags it for review before this page changes.</p>
+    </section>
+  </main>
+
+  <footer>
+    <p>This guide explains the public VA Form 21-2680 and the law behind it. It does not fill out the form, decide whether VA will grant a claim, or say what rating or payment VA will assign, and it is not legal or medical advice.</p>
+    <p>ClaimReady is independent and educational. It is not VA and is not a substitute for an accredited representative, who can help at no cost. Nothing on this page is saved or sent. <a href="./#about">About ClaimReady and full disclaimer</a></p>
+  </footer>
+</div>
+<script>
+(() => {
+  const radios = [...document.querySelectorAll('input[name="why"]')];
+  const answers = [...document.querySelectorAll('.answer')];
+  const note = document.getElementById('pickNote');
+  const names = { vetsc: 'a veteran with service-connected conditions', pension: 'a veteran on pension', spouse: 'a spouse', survivor: 'a surviving spouse' };
+  function apply() {
+    const r = radios.find(x => x.checked); if (!r) return;
+    answers.forEach(a => { a.hidden = a.id !== 'ans-' + r.value; });
+    note.textContent = `Showing what applies to ${names[r.value]}.`;
+  }
+  radios.forEach(r => r.addEventListener('change', apply));
+  // Jump links open the form section they point to.
+  function openTarget() {
+    const el = document.getElementById(location.hash.slice(1));
+    if (el && el.tagName === 'DETAILS') el.open = true;
+  }
+  window.addEventListener('hashchange', openTarget);
+  openTarget();
+  const h = location.hash.slice(1);
+  if (names[h]) { radios.find(r => r.value === h).checked = true; apply(); }
+  window.addEventListener('beforeprint', () => document.querySelectorAll('details').forEach(d => d.open = true));
+  document.getElementById('printBtn').addEventListener('click', () => window.print());
+  // Prints only the one-page summary; the class is removed once printing ends.
+  document.getElementById('printSum').addEventListener('click', () => { document.body.classList.add('print-one'); window.print(); });
+  window.addEventListener('afterprint', () => document.body.classList.remove('print-one'));
+})();
+</script>
+</body></html>
