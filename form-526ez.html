@@ -1,0 +1,547 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="description" content="Free, independent educational guide to VA Form 21-526EZ (Jan 2026 edition), section by section: what each part asks, why it matters under the law, intent to file and effective dates, the duty to assist, secondary conditions, and common mistakes. Nothing is saved or sent.">
+<meta name="referrer" content="no-referrer"><meta name="theme-color" content="#1d5a70">
+<link rel="manifest" href="manifest.webmanifest"><link rel="icon" type="image/png" href="icons/favicon-32.png"><link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+<title>Form 21-526EZ Guide</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<style>@font-face{font-family:'Public Sans';font-style:normal;font-weight:400;font-display:swap;src:url(fonts/public-sans-latin-400-normal.woff2) format('woff2')}@font-face{font-family:'Public Sans';font-style:normal;font-weight:500;font-display:swap;src:url(fonts/public-sans-latin-500-normal.woff2) format('woff2')}@font-face{font-family:'Public Sans';font-style:normal;font-weight:600;font-display:swap;src:url(fonts/public-sans-latin-600-normal.woff2) format('woff2')}@font-face{font-family:'Public Sans';font-style:normal;font-weight:700;font-display:swap;src:url(fonts/public-sans-latin-700-normal.woff2) format('woff2')}@font-face{font-family:'Source Serif 4';font-style:normal;font-weight:400;font-display:swap;src:url(fonts/source-serif-4-latin-400-normal.woff2) format('woff2')}@font-face{font-family:'Source Serif 4';font-style:normal;font-weight:600;font-display:swap;src:url(fonts/source-serif-4-latin-600-normal.woff2) format('woff2')}@font-face{font-family:'Source Serif 4';font-style:italic;font-weight:400;font-display:swap;src:url(fonts/source-serif-4-latin-400-italic.woff2) format('woff2')}@font-face{font-family:'Source Serif 4';font-style:italic;font-weight:600;font-display:swap;src:url(fonts/source-serif-4-latin-600-italic.woff2) format('woff2')}@font-face{font-family:'IBM Plex Mono';font-style:normal;font-weight:400;font-display:swap;src:url(fonts/ibm-plex-mono-latin-400-normal.woff2) format('woff2')}@font-face{font-family:'IBM Plex Mono';font-style:normal;font-weight:600;font-display:swap;src:url(fonts/ibm-plex-mono-latin-600-normal.woff2) format('woff2')}</style>
+<style>
+/* Layout: one reading column. Banner, header with form edition, right-form chooser, dates, notice, Item 1, section map, one collapsible block per form section, mistakes, sources, footer. ClaimReady tokens (same as spouse-aid-attendance.html). */
+:root {
+  --paper: #f3f5f4; --surface: #ffffff; --sunk: #e9eeec; --ink: #16201d; --muted: #5a6763; --line: #d4dcd9;
+  --accent: #1d5a70; --accent-ink: #ffffff; --accent-soft: #dfecf0;
+  --ok: #2a774b; --ok-soft: #e0f0e6; --wait: #8a560a; --wait-soft: #f7ecd8;
+  --f-ui: "Public Sans", "Segoe UI", system-ui, sans-serif;
+  --f-serif: "Source Serif 4", Georgia, "Times New Roman", serif;
+  --f-mono: "IBM Plex Mono", ui-monospace, Menlo, monospace;
+  --r: 6px;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --paper: #111816; --surface: #19211f; --sunk: #0d1312; --ink: #e4ebe8; --muted: #98a6a1; --line: #2b3633;
+  --accent: #72b6cf; --accent-ink: #0d1a1f; --accent-soft: #1b3038;
+  --ok: #62c189; --ok-soft: #173426; --wait: #e2a849; --wait-soft: #392b12; color-scheme: dark; } }
+:root[data-theme="dark"] {
+  --paper: #111816; --surface: #19211f; --sunk: #0d1312; --ink: #e4ebe8; --muted: #98a6a1; --line: #2b3633;
+  --accent: #72b6cf; --accent-ink: #0d1a1f; --accent-soft: #1b3038;
+  --ok: #62c189; --ok-soft: #173426; --wait: #e2a849; --wait-soft: #392b12; color-scheme: dark; }
+:root { padding-top: env(safe-area-inset-top, 0px); padding-bottom: env(safe-area-inset-bottom, 0px); }
+* { box-sizing: border-box; }
+[hidden] { display: none !important; }
+body { margin: 0; background: var(--paper); color: var(--ink); font-family: var(--f-ui); font-size: 0.95rem; line-height: 1.5; }
+.wrap { max-width: 760px; margin: 0 auto; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+.skip { position: absolute; left: -9999px; } .skip:focus { left: 16px; top: 8px; z-index: 20; background: var(--surface); padding: 8px 12px; border-radius: var(--r); }
+.banner { background: var(--ink); color: var(--paper); font-size: 0.8rem; }
+.banner .wrap { padding-block: 8px; }
+header.top { padding-block: 24px 8px; display: grid; gap: 10px; }
+h1, h2, h3 { font-family: var(--f-serif); font-weight: 600; margin: 0; line-height: 1.2; text-wrap: balance; }
+h1 { font-size: 1.9rem; letter-spacing: -0.01em; }
+h2 { font-size: 1.3rem; }
+h3 { font-size: 1.02rem; }
+p { margin: 0; }
+ul, ol { margin: 0; padding-left: 20px; display: grid; gap: 6px; }
+a { color: var(--accent); }
+.muted { color: var(--muted); }
+.eyebrow { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.09em; text-transform: uppercase; color: var(--muted); }
+.crumbs { display: flex; flex-wrap: wrap; gap: 6px 14px; align-items: baseline; }
+.crumbs a { font-weight: 600; font-size: .9rem; text-decoration: none; }
+.crumbs a:hover { text-decoration: underline; }
+.tag { display: inline-block; font-size: .7rem; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; padding: 1px 7px; border-radius: 4px; border: 1px solid currentColor; white-space: nowrap; }
+.tag.law { color: var(--accent); } .tag.guide { color: var(--wait); } .tag.court { color: var(--ok); }
+.example { display: grid; gap: 4px; background: var(--wait-soft); border: 1px solid var(--line); border-radius: var(--r); padding: 10px 12px; }
+.example b:first-child { font-size: .78rem; letter-spacing: .06em; text-transform: uppercase; }
+button, input { font: inherit; color: inherit; }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.btn { border: 1px solid var(--line); background: var(--surface); border-radius: var(--r); padding: 8px 14px; cursor: pointer; min-height: 44px; }
+.btn.primary { background: var(--accent); color: var(--accent-ink); border-color: var(--accent); font-weight: 600; }
+.btn.link { border: 0; background: none; color: var(--accent); text-decoration: underline; padding: 4px 0; min-height: 0; }
+main { display: grid; gap: 20px; padding-block: 12px 48px; }
+.panel { background: var(--surface); border: 1px solid var(--line); border-radius: var(--r); padding: 18px; display: grid; gap: 14px; min-width: 0; }
+.panel > header { display: grid; gap: 6px; }
+fieldset { border: 0; padding: 0; margin: 0; display: grid; gap: 10px; min-width: 0; }
+legend { font-family: var(--f-serif); font-weight: 600; font-size: 1.15rem; padding: 0; margin-bottom: 4px; }
+.choices { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 8px; }
+.choice { display: flex; gap: 10px; align-items: flex-start; border: 1px solid var(--line); border-radius: var(--r); padding: 10px 12px; cursor: pointer; background: var(--paper); min-height: 44px; }
+.choice:has(input:checked) { border-color: var(--accent); background: var(--accent-soft); }
+.choice input { margin-top: 4px; width: 18px; height: 18px; accent-color: var(--accent); flex: none; }
+.choice small { display: block; color: var(--muted); }
+.row { display: flex; flex-wrap: wrap; gap: 8px 14px; align-items: center; }
+.cols { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 12px; }
+.box { border: 1px solid var(--line); border-radius: var(--r); padding: 12px 14px; display: grid; gap: 8px; align-content: start; background: var(--paper); }
+.box.you { border-left: 4px solid var(--ok); }
+.box.doc { border-left: 4px solid var(--accent); }
+.box h3 { font-family: var(--f-ui); font-size: .82rem; letter-spacing: .06em; text-transform: uppercase; }
+.flow { list-style: none; padding: 0; counter-reset: q; gap: 0; }
+.flow > li { counter-increment: q; display: grid; grid-template-columns: 30px 1fr; gap: 10px; padding-bottom: 14px; position: relative; }
+.flow > li::before { content: counter(q); width: 26px; height: 26px; border-radius: 50%; background: var(--accent); color: var(--accent-ink); font-family: var(--f-mono); font-size: .8rem; display: grid; place-items: center; }
+.flow > li::after { content: ""; position: absolute; left: 12px; top: 28px; bottom: 2px; width: 2px; background: var(--line); }
+.flow > li:last-child::after { display: none; }
+.flow .stop { display: block; font-size: .85rem; color: var(--muted); margin-top: 2px; }
+.flow ul { margin-top: 6px; }
+.quote { font-family: var(--f-serif); border-left: 3px solid var(--line); padding: 2px 0 2px 12px; color: var(--ink); }
+.pills { list-style: none; padding: 0; display: flex; flex-wrap: wrap; gap: 6px; }
+.pills li { border: 1px solid var(--line); border-radius: 999px; padding: 2px 10px; font-size: .85rem; background: var(--paper); }
+.patterns { list-style: none; padding: 0; display: grid; gap: 8px; counter-reset: p; }
+.patterns li { counter-increment: p; display: grid; grid-template-columns: 30px 1fr; gap: 10px; align-items: start; border: 1px solid var(--line); border-radius: var(--r); padding: 10px 12px; }
+.patterns li::before { content: counter(p); font-family: var(--f-mono); font-weight: 600; font-size: 1rem; }
+.patterns li.yes { background: var(--ok-soft); }
+.patterns small { display: block; color: var(--muted); }
+.cite { font-size: 0.8rem; color: var(--muted); display: flex; flex-wrap: wrap; gap: 6px 10px; align-items: center; border-top: 1px dashed var(--line); padding-top: 10px; }
+table { border-collapse: collapse; width: 100%; font-size: 0.88rem; }
+th, td { text-align: left; padding: 7px 8px; border-bottom: 1px solid var(--line); vertical-align: top; }
+th { font-weight: 600; color: var(--muted); font-size: 0.76rem; letter-spacing: 0.04em; text-transform: uppercase; }
+.tscroll { overflow-x: auto; }
+.num { font-family: var(--f-mono); font-variant-numeric: tabular-nums; font-size: .86em; white-space: nowrap; }
+details { border: 1px solid var(--line); border-radius: var(--r); background: var(--paper); padding: 10px 12px; }
+summary { cursor: pointer; font-weight: 600; min-height: 24px; }
+details > :not(summary) { margin-top: 10px; }
+footer { font-size: 0.82rem; color: var(--muted); display: grid; gap: 8px; padding-block: 0 40px; }
+@media (max-width: 520px) { h1 { font-size: 1.55rem; } .panel { padding: 14px; } }
+@media print {
+  .banner { background: none; color: #000; border-bottom: 1px solid #000; }
+  .noprint, .skip { display: none !important; }
+  body { background: #fff; color: #000; font-size: 10.5pt; }
+  .panel, .box, details { border-color: #999; break-inside: avoid-page; }
+  details > :not(summary) { display: block !important; }
+  a { color: #000; }
+}
+
+.sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+tr.dim td { opacity: .45; }
+.checklist { gap: 8px; }
+.myths { margin: 0; display: grid; gap: 4px 0; }
+.myths dt { font-weight: 600; margin-top: 8px; }
+.myths dt:first-child { margin-top: 0; }
+.myths dd { margin: 0; color: var(--ink); }
+@media (max-width: 520px) { table.stack thead { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); } table.stack, table.stack tbody, table.stack tr, table.stack td { display: block; } table.stack tr { border-bottom: 1px solid var(--line); padding: 8px 0; } table.stack td { border: 0; padding: 2px 0; } table.stack td:first-child { font-weight: 600; } table.stack td:last-child { font-size: .8rem; color: var(--muted); } }
+@media print { tr.dim td { opacity: 1; } .topic[hidden] { display: grid !important; } }
+.tag.bg { color: var(--muted); }
+.cite { display: block; line-height: 1.9; } .cite .tag { margin-right: 4px; } .cite .tag:not(:first-child) { margin-left: 6px; }
+@media (max-width: 520px) { table.stack.keep td:last-child { font-size: inherit; color: var(--ink); } }
+.alert { border: 1px solid var(--wait); border-left: 6px solid var(--wait); background: var(--wait-soft); border-radius: var(--r); padding: 14px 16px; display: grid; gap: 8px; }
+.alert p.big { font-family: var(--f-serif); font-size: 1.12rem; font-weight: 600; line-height: 1.35; }
+.no { font-weight: 700; color: var(--wait); white-space: nowrap; }
+.three { list-style: none; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 8px; counter-reset: t; }
+.three li { counter-increment: t; border: 1px solid var(--line); border-radius: var(--r); padding: 10px 12px; background: var(--paper); display: grid; gap: 4px; align-content: start; }
+.three li::before { content: "Question " counter(t); font-size: .72rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+.timeline { list-style: none; padding: 0; margin: 0; display: grid; gap: 0; }
+.timeline > li { display: grid; grid-template-columns: 64px 1fr; gap: 12px; position: relative; padding-bottom: 16px; }
+.timeline > li::after { content: ""; position: absolute; left: 31px; top: 30px; bottom: 0; width: 2px; background: var(--line); }
+.timeline > li:last-child::after { display: none; }
+.timeline .yr { font-family: var(--f-mono); font-weight: 600; font-size: .85rem; background: var(--sunk); border: 1px solid var(--line); border-radius: 999px; height: 28px; display: grid; place-items: center; position: relative; z-index: 1; }
+.timeline .key .yr { background: var(--accent); color: var(--accent-ink); border-color: var(--accent); }
+.timeline .ev { display: grid; gap: 2px; padding-top: 3px; }
+.timeline .ev b { font-size: .98rem; }
+.timeline .ev small { color: var(--muted); font-size: .84rem; }
+.dir { font-size: .72rem; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; padding: 1px 7px; border-radius: 4px; justify-self: start; }
+.dir.narrow { background: var(--wait-soft); color: var(--wait); }
+.dir.wide { background: var(--ok-soft); color: var(--ok); }
+.answer { border: 1px solid var(--accent); background: var(--accent-soft); border-radius: var(--r); padding: 12px 14px; display: grid; gap: 8px; }
+.outcomes { display: grid; gap: 8px; }
+.outcomes .box h3 { font-family: var(--f-serif); font-size: 1rem; letter-spacing: 0; text-transform: none; }
+@media print { .answer[hidden] { display: none !important; } }
+.three li::before { content: "Requirement " counter(t); }
+.filter { display: grid; gap: 6px; }
+.filter input { border: 1px solid var(--line); border-radius: var(--r); background: var(--paper); padding: 10px 12px; min-height: 44px; width: 100%; }
+.nl li.dim { opacity: .55; }
+.nl li.hit { background: var(--accent-soft); border-radius: 4px; padding: 0 4px; margin-left: -4px; }
+.exc { color: var(--wait); font-weight: 600; }
+@media print { .nl li.dim { opacity: 1; } }
+<style>
+.edition { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 8px; }
+.edition div { border: 1px solid var(--line); border-radius: var(--r); background: var(--surface); padding: 8px 12px; display: grid; gap: 2px; }
+.edition small { color: var(--muted); font-size: .75rem; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; }
+.map { list-style: none; padding: 0; display: grid; gap: 6px; }
+.map a { display: grid; grid-template-columns: 54px 1fr; gap: 10px; align-items: baseline; text-decoration: none; color: var(--ink); border: 1px solid var(--line); border-radius: var(--r); padding: 8px 12px; background: var(--paper); min-height: 44px; }
+.map a:hover { border-color: var(--accent); }
+.map .sec { font-family: var(--f-mono); font-weight: 600; font-size: .82rem; color: var(--accent); }
+.map small { color: var(--muted); }
+.formsec { padding: 0; background: var(--surface); }
+.formsec > summary { padding: 12px 14px; display: grid; grid-template-columns: 54px 1fr; gap: 10px; align-items: baseline; }
+.formsec > summary .sec { font-family: var(--f-mono); font-weight: 600; font-size: .82rem; color: var(--accent); }
+.formsec > summary small { display: block; font-weight: 400; color: var(--muted); font-size: .84rem; }
+.formsec > .inner { padding: 0 14px 14px; display: grid; gap: 10px; margin-top: 0; }
+.qa { display: grid; gap: 4px; }
+.qa h3 { font-family: var(--f-ui); font-size: .78rem; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); }
+.warn { border-left: 4px solid var(--wait); background: var(--wait-soft); border-radius: var(--r); padding: 10px 12px; display: grid; gap: 4px; }
+.privacy { border-left: 4px solid var(--ok); background: var(--ok-soft); border-radius: var(--r); padding: 10px 12px; }
+.secgroup { display: grid; gap: 8px; }
+.sumgrid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 10px; }
+.onepage .box h3 { font-size: .78rem; }
+.onepage .box ul { gap: 4px; }
+@media print { .formsec > .inner { display: grid !important; } }
+@media print {
+  body.print-one .banner, body.print-one header.top, body.print-one footer, body.print-one main > :not(#summary) { display: none !important; }
+  body.print-one #summary::before { content: "Independent educational tool. Not affiliated with or endorsed by the U.S. Department of Veterans Affairs. Not legal or medical advice. VA decides every claim."; font-size: 7.5pt; border-bottom: 1px solid #000; padding-bottom: 3pt; }
+  body.print-one main { padding: 0; }
+  body.print-one #summary { border: 0; padding: 0; gap: 5pt; font-size: 7.6pt; line-height: 1.25; }
+  body.print-one #summary h2 { font-size: 12pt; }
+  body.print-one #summary .sumgrid { grid-template-columns: repeat(3, 1fr); gap: 5pt; }
+  body.print-one #summary .cols { grid-template-columns: 1fr 1fr; gap: 5pt; }
+  body.print-one #summary .box { padding: 4pt 6pt; gap: 2pt; }
+  body.print-one #summary th, body.print-one #summary td { padding: 2pt 4pt; }
+  body.print-one #summary table, body.print-one #summary .muted, body.print-one #summary .cite, body.print-one #summary th { font-size: 7.4pt !important; }
+  body.print-one #summary .box h3 { font-size: 7.4pt; }
+  body.print-one #summary .cite { padding-top: 3pt; line-height: 1.4; }
+  @page { margin: 0.4in; }
+}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to the article</a>
+<div class="banner" role="note"><div class="wrap">Independent educational tool. Not affiliated with or endorsed by the U.S. Department of Veterans Affairs. Not legal or medical advice. VA decides every claim.</div></div>
+<div class="wrap">
+  <header class="top">
+    <div class="crumbs noprint"><a href="./">← How to file a claim</a><span class="eyebrow">Guide · Benefits</span></div>
+    <h1>VA Form 21-526EZ, section by section</h1>
+    <p>VA Form 21-526EZ is the application for disability compensation. This guide walks through what each section asks for and <b>why it matters</b> under public law, so you know what you are signing and what to have ready. It explains the form; it does not fill it out, and nothing you do here is saved or sent.</p>
+    <div class="edition" aria-label="Form edition explained here">
+      <div><small>Edition explained</small><b class="num">JAN 2026</b></div>
+      <div><small>Replaces</small><span class="num">NOV 2022</span></div>
+      <div><small>OMB number</small><span class="num">2900-0747, exp. 01/31/2029</span></div>
+      <div><small>Length</small><span>15 pages: 8 of notice, 7 of form</span></div>
+    </div>
+    <p class="muted" style="font-size:.86rem">VA's form page listed <b>January 2026</b> as the current revision when this guide was checked on <span class="num">Oct 24, 2026</span>. VA changes forms from time to time; always get the form from <a href="https://www.va.gov/find-forms/about-form-21-526ez/" target="_blank" rel="noopener">VA's form page</a> or file online at VA.gov.</p>
+    <div class="row noprint"><button class="btn" type="button" id="printBtn">Print or save this guide</button></div>
+  </header>
+  <main id="main" tabindex="-1">
+
+    <section class="panel noprint" aria-labelledby="pick-h">
+      <fieldset>
+        <legend id="pick-h">Is this the right form for you?</legend>
+        <p class="muted" style="font-size:.88rem">Pick the one that fits. The answer comes from the form's own "When to Use this Form" instructions. Nothing you pick is saved.</p>
+        <div class="choices">
+          <label class="choice"><input type="radio" name="why" value="new"><span><b>A condition VA has never decided</b><small>Your first claim, or a new condition</small></span></label>
+          <label class="choice"><input type="radio" name="why" value="worse"><span><b>A rated condition got worse</b><small>And the rating was decided over a year ago</small></span></label>
+          <label class="choice"><input type="radio" name="why" value="disagree"><span><b>I disagree with a recent decision</b><small>Decided within the past year</small></span></label>
+          <label class="choice"><input type="radio" name="why" value="denied"><span><b>VA denied it before</b><small>And I have new evidence</small></span></label>
+          <label class="choice"><input type="radio" name="why" value="active"><span><b>I'm still on active duty</b><small>Leaving in the next 6 months</small></span></label>
+          <label class="choice"><input type="radio" name="why" value="other"><span><b>Pension or survivor benefits</b><small>Not disability compensation</small></span></label>
+        </div>
+      </fieldset>
+      <div class="answer" id="ans-new" hidden><p><b>Use VA Form 21-526EZ.</b> This is what it is for. Read <a href="#date">Protect your date first</a> and <a href="#summary">the instructions on one page</a>, then <a href="#s5">Section V</a>, the heart of the form.</p></div>
+      <div class="answer" id="ans-worse" hidden><p><b>Use VA Form 21-526EZ</b> for a claim for increase when the rating was decided more than one year ago. VA needs medical or lay evidence that the condition is worse and how the worsening affects your work. See <a href="#date">the one-year look-back for increases</a>.</p></div>
+      <div class="answer" id="ans-disagree" hidden><p><b>Usually not this form.</b> If you disagree with a decision from the past year, the form points you to a decision review: a Supplemental Claim (VA Form 20-0995) if you have new and relevant evidence, a Higher-Level Review (VA Form 20-0996), or a Board appeal (VA Form 10182). See ClaimReady's <a href="supplemental-claims.html">Supplemental Claims guide</a>.</p></div>
+      <div class="answer" id="ans-denied" hidden><p><b>Use VA Form 20-0995, Supplemental Claim,</b> not this form, when VA already decided the same or a similar benefit and you have new and relevant evidence. "New" means it was not in the record at the last decision; "relevant" means it tends to prove or disprove something at issue. See ClaimReady's <a href="supplemental-claims.html">Supplemental Claims guide</a>.</p></div>
+      <div class="answer" id="ans-active" hidden><p><b>Use VA Form 21-526EZ and look at the BDD program.</b> Benefits Delivery at Discharge lets you file 90 to 180 days before you separate, with exams while you are still serving. See <a href="#item1">Item 1</a> for the BDD requirements.</p></div>
+      <div class="answer" id="ans-other" hidden><p><b>Not this form.</b> The form directs pension claims to VA Form 21P-527EZ and survivor claims (DIC, survivors pension, accrued benefits) to VA Form 21P-534EZ.</p></div>
+      <p id="pickNote" class="sr" aria-live="polite"></p>
+      <p class="cite"><span class="tag guide">VA form</span> VA Form 21-526EZ (Jan 2026), page 1, "When to Use this Form"; page 4, supplemental claims</p>
+    </section>
+
+    <section class="panel" id="date" aria-labelledby="date-h">
+      <header><span class="eyebrow">Before you start</span><h2 id="date-h">Protect your date first</h2>
+        <p>The date VA receives your claim usually controls how far back payments can go. Two rules can give you an earlier date, but only if you act in time.</p></header>
+      <div class="cols">
+        <div class="box doc"><h3>Intent to file</h3>
+          <p>An intent to file holds your date for <b>one year</b>. If VA receives a complete claim within that year, VA treats the claim as filed on the date it received the intent to file. You can submit one by starting the online application (a saved online application counts), by sending the intent-to-file form, or by telling VA orally. It does not need to name your conditions.</p>
+          <p><a href="./#educ.itf">ClaimReady: Intent to file</a></p></div>
+        <div class="box you"><h3>The one-year window after service</h3>
+          <p>If VA receives your claim <b>within one year after you separate</b>, payments for a condition granted on a direct basis can start the <b>day after separation</b> (or when entitlement arose). After that year, the date is generally the later of the date VA got the claim or the date entitlement arose.</p></div>
+      </div>
+      <div class="box"><h3>Claims for increase</h3><p>For a rated condition that got worse, VA can go back to the date the worsening is "factually ascertainable" from the evidence, but only if the claim or intent to file arrives within one year of that date.</p></div>
+      <div class="box"><h3>If the form was incomplete</h3><p>If VA receives an incomplete application, such as one without a signature, the date is protected only if you send a complete claim within one year.</p></div>
+      <div class="example" role="note"><b>Fictional example</b>
+        <span>Dana separates in June 2025 and starts the online application in March 2026, which saves an intent to file. Dana finishes and submits the claim in August 2026. Because the claim arrived within a year of the intent to file, VA treats it as filed in March 2026, and because March 2026 is within a year of separation, a granted direct claim could reach back to the day after Dana's separation. This is a made-up illustration, not a VA decision.</span></div>
+      <p class="cite"><span class="tag law">Law</span> 38 C.F.R. §§ 3.155(b)–(c), 3.400 (general rule), 3.400(b)(2)(i), 3.400(o)(2) <span class="tag guide">VA form</span> 21-526EZ page 7, "How VA Determines the Effective Date"</p>
+    </section>
+
+    <section class="panel onepage" id="summary" aria-labelledby="sum-h">
+      <header><span class="eyebrow">Pages 1 to 8 on one page</span><h2 id="sum-h">The instructions most people skip</h2>
+        <p>The first eight pages of the 21-526EZ are VA's notice of what evidence your claim needs, what you must do, and what VA will do. The law requires this notice, and because it comes with the form, VA <b>does not send a separate first letter</b> after you file. When you sign, you certify you received it. Here it is in one page.</p></header>
+      <div class="row noprint"><button class="btn primary" type="button" id="printSum">Print this one-page summary</button></div>
+      <div class="sumgrid">
+        <div class="box"><h3>1. Right form?</h3><ul>
+          <li><b>New claim</b>, or an increase for a rating decided over a year ago: <b>21-526EZ</b>.</li>
+          <li><b>Decided before</b> and you have new and relevant evidence, or you disagree with a decision from the past year: <b>20-0995</b> Supplemental Claim, <b>20-0996</b> Higher-Level Review, or <b>10182</b> Board appeal.</li>
+          <li>Pension: <b>21P-527EZ</b>. Survivors: <b>21P-534EZ</b>.</li></ul></div>
+        <div class="box"><h3>2. How and where to send it</h3><ul>
+          <li>Online at <b>VA.gov</b> (parts can prefill; you can upload evidence and track status).</li>
+          <li>Mail: Department of Veterans Affairs, <b>Evidence Intake Center</b>, PO Box 4444, Janesville, WI 53547-4444.</li>
+          <li>An accredited VSO representative can help for free.</li></ul></div>
+        <div class="box you"><h3>3. FDC: you send it all now</h3><ul>
+          <li>Send all private treatment records with the claim.</li>
+          <li>Name your VA and other federal treatment, and Guard or Reserve records.</li>
+          <li>Send anything later and VA moves the claim to the standard process. No risk to trying.</li></ul></div>
+        <div class="box doc"><h3>4. Standard: VA helps you get it</h3><ul>
+          <li>Sign 21-4142 and 21-4142a for private records you want VA to request.</li>
+          <li>You have <b>one year</b> from the date VA receives the claim to send evidence. If you send nothing in 30 days, VA may decide sooner, and you keep the rest of the year.</li></ul></div>
+        <div class="box"><h3>5. VA will</h3><ul>
+          <li>Get federal records you identify, such as VA medical center records.</li>
+          <li>Provide an exam or medical opinion if one is needed to decide the claim.</li>
+          <li>Standard process: make reasonable efforts for private and state records, and tell you if it can't get them.</li></ul></div>
+        <div class="box"><h3>6. Send these forms too, if they apply</h3><ul>
+          <li>Mental health: <b>21-0781</b>. Unemployability: <b>21-8940</b> (and 21-4192). Vet Center treatment: <b>21-4142</b>.</li>
+          <li>Dependents: <b>21-686c</b>; child 18–23 in school: <b>21-674</b>.</li>
+          <li>Aid and attendance: <b>21-2680</b>, or <b>21-0779</b> for a nursing home. Housing: <b>26-4555</b>. Auto: <b>21-4502</b>.</li></ul></div>
+      </div>
+      <div class="box"><h3>7. What the evidence must show</h3>
+        <div class="tscroll"><table class="stack keep">
+          <thead><tr><th scope="col">Claim</th><th scope="col">Evidence must show</th></tr></thead>
+          <tbody>
+            <tr><td>Direct</td><td>An injury, disease, or event in service; a current disability (medical evidence, or lay evidence of visible symptoms); and a link between them.</td></tr>
+            <tr><td>Presumptive</td><td>Qualifying service (POW, chronic disease after discharge, radiation, herbicide locations, Camp Lejeune, Gulf War and post-9/11 locations) and a qualifying current disability. No link needs proving.</td></tr>
+            <tr><td>Secondary</td><td>A current disability that a service-connected disability caused or made worse.</td></tr>
+            <tr><td>Increase</td><td>The condition got worse, and how the worsening affects your work.</td></tr>
+            <tr><td>Before discharge (BDD)</td><td>90–180 days from separation, available for exams for 45 days, Separation Health Assessment Part A, service treatment records, release date.</td></tr>
+            <tr><td>Temporary 100%</td><td>Over 21 days in the hospital for a service-connected condition, or surgery needing at least a month's recovery or severe residuals, or a cast on a major joint.</td></tr>
+            <tr><td>Unemployability</td><td>Service-connected conditions alone prevent substantially gainful work, and generally one at 60%, or one at 40% with a combined 70%.</td></tr>
+            <tr><td>Section 1151</td><td>An added disability from VA care, exam, or training through VA fault or an unforeseeable result, or from VA vocational rehab or work therapy.</td></tr>
+            <tr><td>SMC, spouse, child, housing, auto</td><td>Aid and attendance, housebound, a spouse's or helpless child's needs, or qualifying loss of use, vision, burns, or ALS. Spouse and child amounts need a 30% or higher rating.</td></tr>
+          </tbody></table></div></div>
+      <div class="cols">
+        <div class="box"><h3>8. When payments start</h3><p>Generally when VA received the claim or when the evidence shows the level of disability. Claims received within <b>one year of separation</b> can start the day after separation, if the disability was present then.</p></div>
+        <div class="box"><h3>9. How VA rates</h3><p>0% to 100% under 38 C.F.R. Part 4, based on symptoms, how severe and long-lasting they are, and their effect on work. Helpful evidence: treatment records VA doesn't have, Social Security decisions, employer statements, and statements from people who see your symptoms.</p></div>
+      </div>
+      <p class="muted" style="font-size:.86rem">You can ask for a hearing at any time. Questions: Ask VA online or 1-800-827-1000 (TTY: 711).</p>
+      <p class="cite"><span class="tag law">Law</span> 38 U.S.C. § 5103; 38 C.F.R. § 3.159(b)(1) <span class="tag guide">VA form</span> VA Form 21-526EZ (Jan 2026), pages 1–8, summarized in plain language. The form's own wording controls.</p>
+    </section>
+
+    <section class="panel" id="item1" aria-labelledby="item1-h">
+      <header><span class="eyebrow">Item 1</span><h2 id="item1-h">Fully Developed Claim or standard process</h2>
+        <p>Item 1 asks how you want VA to process the claim. It also offers two special programs for people still in the military.</p></header>
+      <div class="cols">
+        <div class="box you"><h3>FDC program (optional, faster)</h3><ul>
+          <li>You send all private treatment records with the claim.</li>
+          <li>You identify federal records, such as VA medical center records, and Guard or Reserve records.</li>
+          <li>VA gets the federal records and any exam or opinion it needs.</li>
+          <li>If you send more evidence later, or VA finds other records it needs, VA moves the claim to the standard process. The form says there is no risk to trying.</li>
+        </ul></div>
+        <div class="box doc"><h3>Standard process</h3><ul>
+          <li>You tell VA about evidence you want it to get, and sign VA Forms 21-4142 and 21-4142a for private records.</li>
+          <li>VA makes reasonable efforts to get private records: generally a first request and at least one follow-up.</li>
+          <li>VA keeps trying for federal records until they don't exist or more tries would be futile.</li>
+          <li>If VA can't get a record, it tells you. You are ultimately responsible for non-federal records.</li>
+        </ul></div>
+      </div>
+      <p><b>Either way, VA's duty to assist applies.</b> VA must provide an exam or medical opinion when one is necessary to decide the claim, for example when there is evidence of a current disability, an in-service event, and an indication that the two may be connected, but not enough medical evidence to decide.</p>
+      <details><summary>IDES and BDD (still serving)</summary>
+        <ul>
+          <li><b>IDES:</b> check this only if your military department referred you to the Integrated Disability Evaluation System.</li>
+          <li><b>BDD:</b> file 90 to 180 days before separation; be available for exams for 45 days after filing; send the Separation Health Assessment Part A self-assessment, copies of your service treatment records for this period, and your expected release date. Filing close to the 180-day mark gives time for exams before you leave. With fewer than 90 days left, the claim goes through the regular process.</li>
+        </ul>
+      </details>
+      <p class="cite"><span class="tag law">Law</span> 38 U.S.C. § 5103A; 38 C.F.R. § 3.159(c)(1), (c)(2), (c)(4)(i), (e) <span class="tag guide">VA form</span> 21-526EZ pages 1–3 and 5 (FDC, standard process, BDD)</p>
+    </section>
+
+    <section class="panel" id="map" aria-labelledby="map-h">
+      <header><span class="eyebrow">The form itself</span><h2 id="map-h">The 13 sections at a glance</h2>
+        <p>Tap a section to jump to it. If VA has decided a claim for you before, the form says only <b>Sections I, IV (if it applies), V, and a signature</b> are required.</p></header>
+      <ul class="map">
+        <li><a href="#summary"><span class="sec">p. 1–8</span><span>The instructions, on one page <small>What evidence each claim needs</small></span></a></li>
+        <li><a href="#s1"><span class="sec">I</span><span>Your identification <small>Items 2–12</small></span></a></li>
+        <li><a href="#s2"><span class="sec">II</span><span>Change of address <small>Item 13</small></span></a></li>
+        <li><a href="#s3"><span class="sec">III</span><span>Homeless information <small>Item 14</small></span></a></li>
+        <li><a href="#s4"><span class="sec">IV</span><span>Toxic exposure <small>Item 15</small></span></a></li>
+        <li><a href="#s5"><span class="sec">V</span><span>Your claimed conditions and treatment <small>Items 16–17, the heart of the form</small></span></a></li>
+        <li><a href="#s6"><span class="sec">VI</span><span>Service information <small>Items 18–23</small></span></a></li>
+        <li><a href="#s7"><span class="sec">VII</span><span>Retired, separation, severance, and training pay <small>Items 24–28</small></span></a></li>
+        <li><a href="#s8"><span class="sec">VIII</span><span>Direct deposit <small>Items 29–32</small></span></a></li>
+        <li><a href="#s9"><span class="sec">IX–XII</span><span>Signatures: you, witnesses, alternate signer, representative <small>Items 33–37</small></span></a></li>
+        <li><a href="#s13"><span class="sec">XIII</span><span>Addendum for more conditions <small>Page 15</small></span></a></li>
+      </ul>
+      <div class="privacy" role="note"><b>ClaimReady never asks for your Social Security number, VA file number, DoD ID, or bank information.</b> Those go only on the form you send to VA.</div>
+    </section>
+
+    <section class="panel" id="check" aria-labelledby="check-h">
+      <header><span class="eyebrow">Before you send it</span><h2 id="check-h">Six things a reviewer checks first</h2>
+        <p>These are the first things a reviewer looks at on a 21-526EZ. Check them yourself before you send it. A problem here can delay the claim or cost you your date.</p></header>
+      <ol class="flow">
+        <li><div><b>Your identifying information is complete.</b> Name, Social Security number, birth date, and service number in Section I, so VA can match the claim to you and your service records. <a href="#s1">Section I</a></div></li>
+        <li><div><b>It is signed.</b> No signature means it is not a complete claim. If you can't sign, use the witness or alternate signer sections. <a href="#s9">Section IX</a></div></li>
+        <li><div><b>VA medical center records are listed.</b> Name every VA medical center or military clinic where you were treated after discharge in Item 17, so VA knows which federal records to get. <a href="#s5">Item 17</a></div></li>
+        <li><div><b>Your current mailing address is right.</b> Item 10. Exam appointments and requests for evidence come by mail. <a href="#s1">Item 10</a></div></li>
+        <li><div><b>The homeless box is checked if it applies.</b> Item 14A or 14C. It tells VA you need a different way to be reached, and a point of contact. <a href="#s3">Section III</a></div></li>
+        <li><div><b>Exposure is not a claim.</b> Answering the toxic exposure questions in Section IV does not claim anything. Each condition must be listed in Item 16, for example "Asthma, burn pit exposure." <a href="#s4">Section IV</a></div></li>
+      </ol>
+      <p class="cite"><span class="tag law">Law</span> 38 C.F.R. § 3.160(a)(1)–(4); 38 C.F.R. § 3.159(c)(2) <span class="tag guide">VA form</span> 21-526EZ pages 9–13</p>
+    </section>
+
+    <div class="secgroup" aria-label="Form sections">
+      <details class="formsec" id="s1"><summary><span class="sec">I</span><span>Your identification<small>Items 2–12: name, SSN, prior claims, VA file number, birth date, service number, BDD release date, phone, address, email, VA employee</small></span></summary>
+        <div class="inner">
+          <div class="qa"><h3>Why it matters</h3><p>A complete claim must identify you and give VA enough to verify your service. The Privacy Act notice on page 14 says the Social Security number is required by law. Item 4 asks whether you ever filed with VA so VA can find your existing records.</p></div>
+          <div class="qa"><h3>Watch for</h3><ul>
+            <li>Item 8 is for BDD claims only: your date, or expected date, of release from active duty.</li>
+            <li>Item 11: checking the box lets VA send claim mail electronically. Use an email you check.</li>
+            <li>Item 12: if you work for VA, including work-study or internships, check the box.</li>
+          </ul></div>
+          <p class="cite"><span class="tag law">Law</span> 38 U.S.C. § 5101(c)(1); 38 C.F.R. § 3.160(a)(1) <span class="tag guide">VA form</span> 21-526EZ page 9 and Privacy Act notice, page 14</p>
+        </div></details>
+
+      <details class="formsec" id="s2"><summary><span class="sec">II</span><span>Change of address<small>Item 13: temporary or permanent, new address, dates</small></span></summary>
+        <div class="inner">
+          <div class="qa"><h3>Why it matters</h3><p>VA sends exam appointments and requests for evidence by mail. A missed letter can mean a missed exam or deadline. If the move is temporary, give both a beginning and an ending date.</p></div>
+          <p class="cite"><span class="tag guide">VA form</span> 21-526EZ page 9</p>
+        </div></details>
+
+      <details class="formsec" id="s3"><summary><span class="sec">III</span><span>Homeless information<small>Item 14: currently homeless or at risk, living situation, point of contact</small></span></summary>
+        <div class="inner">
+          <div class="qa"><h3>Why it matters</h3><p>Fill this in only if you are homeless or at risk of losing housing, for example housing that will be lost within 30 days. The point of contact in Items 14E and 14F gives VA a person who can reach you if mail can't.</p></div>
+          <div class="qa"><h3>Also worth knowing</h3><p>VA has a separate form, VA Form 20-10207, Priority Processing Request, for situations such as extreme financial hardship or terminal illness. Check VA's form page for its current edition and the situations it covers.</p></div>
+          <p class="cite"><span class="tag guide">VA form</span> 21-526EZ page 10; VA Form 20-10207</p>
+        </div></details>
+
+      <details class="formsec" id="s4"><summary><span class="sec">IV</span><span>Toxic exposure<small>Item 15: Gulf War and post-9/11 locations, herbicide locations, other exposures, dates</small></span></summary>
+        <div class="inner">
+          <div class="qa"><h3>Why it matters</h3><p>For many exposures, the law <b>presumes</b> certain diseases are connected to service, so you don't need a doctor's link. Answering Item 15 tells VA which presumptions and records to check. Page 4 of the notice lists the qualifying locations and dates, such as Vietnam and its offshore waters from January 9, 1962, to May 7, 1975, and Camp Lejeune for at least 30 days between August 1, 1953, and December 31, 1987.</p>
+            <p>Under the PACT Act, when you show a disability and a toxic exposure risk activity in service but the evidence doesn't yet establish service connection, VA must provide a medical exam and opinion that considers your total exposure across deployments.</p></div>
+          <div class="warn" role="note"><b>Exposure is not a claim.</b><span>Answering Section IV tells VA about your service; it does not claim a condition. List each condition you want decided in Item 16, and name the exposure there too, for example "Asthma, burn pit exposure."</span></div>
+          <div class="qa"><h3>Watch for</h3><ul>
+            <li>If you answer "Yes" in 15A, complete 15B through 15E.</li>
+            <li>Approximate dates, month and year, are acceptable.</li>
+            <li>15D covers more than locations: asbestos, mustard gas, radiation, SHAD, job-related toxins (MOS), and Camp Lejeune water.</li>
+            <li>List every exposure period in 15E, not just the first.</li>
+          </ul></div>
+          <p>Read more: ClaimReady's <a href="./#educ.pact">PACT Act summary</a> and <a href="herbicide-no-association.html">conditions VA has found no positive association with herbicides</a>.</p>
+          <p class="cite"><span class="tag law">Law</span> 38 U.S.C. § 1168(a) <span class="tag guide">VA form</span> 21-526EZ pages 4 and 10</p>
+        </div></details>
+
+      <details class="formsec" id="s5" open><summary><span class="sec">V</span><span>Your claimed conditions and treatment<small>Items 16–17: the heart of the form</small></span></summary>
+        <div class="inner">
+          <div class="qa"><h3>What Item 16 asks</h3><p>For each condition, four things: the <b>current disability or symptoms</b>; the <b>exposure, event, or injury</b> it comes from; <b>how it relates</b> to service; and the <b>approximate date</b> it began or got worse. There are 15 lines, and Section XIII adds 20 more.</p></div>
+          <div class="qa"><h3>Why it matters</h3><p>A complete claim must <b>identify the benefit sought</b> and describe the symptoms or medical conditions it is based on. What you list sets what VA looks at. VA also considers complications of a claimed condition and related "ancillary" benefits without you naming them, but naming each condition clearly is the safest way to make sure it is decided.</p></div>
+          <div class="box doc"><h3>How to describe a condition</h3><ul>
+            <li><b>Symptoms are fine.</b> The form asks for "disability(ies) or symptoms." You don't need a diagnosis to list something, for example "ringing in ears" or "low back pain."</li>
+            <li><b>Name secondary conditions.</b> If one service-connected condition caused or worsened another, say so, as in the form's own example: "Left knee, secondary to right knee." Secondary service connection covers conditions caused by a service-connected disability and conditions it made worse beyond their natural progress.</li>
+            <li><b>Tie it to service.</b> One line on what happened, such as "heavy equipment operator in service" for hearing loss.</li>
+            <li><b>Give a date, even if approximate.</b> Month and year help VA know which records to look at.</li>
+          </ul></div>
+          <div class="qa"><h3>What Item 17 asks</h3><p>VA medical centers and military treatment facilities where you were treated <b>after discharge</b> for the conditions in Item 16, with an approximate start date. If treatment began in 2005 or later, you don't need dates in 17B.</p>
+            <p><b>Why it matters:</b> these are federal records, and VA must keep trying to get them until they don't exist or more tries would be futile. If you leave a facility off, VA may not know to look. Private doctors go on VA Forms 21-4142 and 21-4142a, or send those records yourself.</p></div>
+          <div class="qa"><h3>Forms to attach for certain claims</h3>
+            <div class="tscroll"><table class="stack keep">
+              <thead><tr><th scope="col">If you are claiming</th><th scope="col">Attach</th></tr></thead>
+              <tbody>
+                <tr><td>A mental health condition</td><td>VA Form 21-0781 (in-service traumatic events). See ClaimReady's <a href="ptsd-stressor.html">PTSD stressor guide</a>.</td></tr>
+                <tr><td>Individual unemployability</td><td>VA Form 21-8940 (Item 17's note also lists 21-4192, the employer form)</td></tr>
+                <tr><td>Dependents</td><td>VA Form 21-686c; 21-674 for a child 18–23 in school</td></tr>
+                <tr><td>Aid and attendance (you or your spouse)</td><td>VA Form 21-2680, or 21-0779 for nursing home status. See <a href="spouse-aid-attendance.html">Spouse aid and attendance</a>.</td></tr>
+                <tr><td>Specially adapted housing or home adaptation</td><td>VA Form 26-4555</td></tr>
+                <tr><td>Auto allowance</td><td>VA Form 21-4502</td></tr>
+                <tr><td>Treatment at a Vet Center</td><td>VA Form 21-4142</td></tr>
+              </tbody></table></div></div>
+          <div class="example" role="note"><b>Fictional example</b>
+            <span>Dana's right knee is already service connected. Dana now has left knee pain from favoring the right knee, and trouble sleeping without a diagnosis yet. Dana lists two lines: "Left knee pain, secondary to service-connected right knee, began about 2024" and "Trouble sleeping, waking often, began 2023." Dana lists the VA clinic where both were treated in Item 17. This is a made-up illustration of how to describe conditions, not a VA decision or a prediction.</span></div>
+          <p class="cite"><span class="tag law">Law</span> 38 C.F.R. §§ 3.160(a)(3)–(4), 3.155(d)(2), 3.310(a)–(b), 3.159(c)(2) <span class="tag guide">VA form</span> 21-526EZ pages 10–11 and the Special Circumstances table, pages 2–3</p>
+        </div></details>
+
+      <details class="formsec" id="s6"><summary><span class="sec">VI</span><span>Service information<small>Items 18–23: other names, branch, component, dates, combat zone, Guard and Reserve, activation, POW</small></span></summary>
+        <div class="inner">
+          <div class="qa"><h3>Why it matters</h3><ul>
+            <li><b>Dates</b> decide the one-year effective date window, which presumptions apply, and which records VA requests. List every period of service in 20D.</li>
+            <li><b>Other names (18):</b> records filed under a prior name can be missed.</li>
+            <li><b>Guard and Reserve (21–22):</b> service connection for training periods follows different rules. For inactive duty training, it generally covers injuries, plus heart attack, cardiac arrest, or stroke, rather than any disease. Unit details help VA find records.</li>
+            <li><b>Former prisoners of war (23):</b> certain diseases are presumed service connected.</li>
+          </ul></div>
+          <div class="qa"><h3>Watch for</h3><p>"Served in a combat zone" (Item 20C) is not the same thing as "engaged in combat with the enemy," which is the phrase the law uses for the special rule that lets a combat veteran's own account prove an in-service event. <span class="tag bg">Background</span></p></div>
+          <p class="cite"><span class="tag law">Law</span> 38 U.S.C. § 1154(b) <span class="tag guide">VA form</span> 21-526EZ pages 4 and 12</p>
+        </div></details>
+
+      <details class="formsec" id="s7"><summary><span class="sec">VII</span><span>Retired, separation, severance, and training pay<small>Items 24–28, including two "Do NOT pay me" boxes</small></span></summary>
+        <div class="inner">
+          <div class="warn" role="note"><b>Read Items 26 and 28 slowly.</b><span>Checking Item 26 or Item 28 tells VA <b>not to pay you VA compensation</b>. If you already get compensation and check Item 26 while eligible for retired pay, the form says your compensation will be terminated. The form notes VA compensation is non-taxable and may be the greater benefit.</span></div>
+          <div class="qa"><h3>Why VA asks</h3><ul>
+            <li><b>Military retired pay (24–25):</b> filing waives retired pay equal to the VA award, unless you qualify for concurrent receipt. By law, concurrent retirement pay generally applies to retirees with a service-connected rating of <b>50% or more</b>, with special rules for disability (chapter 61) retirees.</li>
+            <li><b>Separation or disability severance pay (27):</b> VA may withhold compensation to recoup it. For disability severance pay after January 28, 2008, there is no recoupment for disabilities incurred in a combat zone or in combat-related operations.</li>
+            <li><b>Training pay (28):</b> you can't receive both drill pay and VA compensation for the same days. The form says keeping training pay and waiving VA benefits for those days is usually the better choice; if you check Item 28, VA adjusts the award for those days, which can create a debt.</li>
+          </ul></div>
+          <div class="qa"><h3>Watch for</h3><p>Report a lump sum you received, with the pre-tax amount. Leaving it off can create an overpayment later.</p></div>
+          <p class="cite"><span class="tag law">Law</span> 10 U.S.C. § 1414(a); 38 C.F.R. § 3.700(a)(1), (a)(3), (a)(5) <span class="tag guide">VA form</span> 21-526EZ pages 12–13</p>
+        </div></details>
+
+      <details class="formsec" id="s8"><summary><span class="sec">VIII</span><span>Direct deposit<small>Items 29–32</small></span></summary>
+        <div class="inner">
+          <div class="qa"><h3>Why it matters</h3><p>The form says the Treasury requires federal benefits to be paid electronically. Skip this section if you already have direct deposit with VA. If you don't have a bank account, the form points to the Veterans Benefits Banking Program.</p></div>
+          <p class="cite"><span class="tag guide">VA form</span> 21-526EZ page 13</p>
+        </div></details>
+
+      <details class="formsec" id="s9"><summary><span class="sec">IX–XII</span><span>Signatures<small>Items 33–37: your signature, witnesses, alternate signer, representative</small></span></summary>
+        <div class="inner">
+          <div class="qa"><h3>Section IX: your signature (required)</h3><p>A complete claim must be signed by you or someone legally authorized to sign for you. <b>An unsigned form is not a complete claim.</b> By signing, you certify the statements are true, authorize anyone with information about you to release it to VA, confirm you got the notice on pages 1–8, and confirm you sent your evidence, have none, or chose the standard process.</p></div>
+          <div class="qa"><h3>Section X: witnesses</h3><p>Only if you sign with an "X." A signature by mark must be witnessed by two people who sign and give their addresses, or certified another way the regulation allows, such as by a notary.</p></div>
+          <div class="qa"><h3>Section XI: alternate signer</h3><p>Only if Item 33A is blank. The law lets certain people sign for a claimant who is a minor, can't give accurate information because of mental incompetence, or is physically unable to sign: a court-appointed representative, a person responsible for the claimant's care such as a spouse, an agent under a durable power of attorney, or an institution's manager. VA Form 21-0972 must be on file or attached.</p></div>
+          <div class="qa"><h3>Section XII: representative</h3><p>A representative can sign only if VA Form 21-22 or 21-22a is already on file, and the form says a representative can't sign an original claim. An accredited VSO representative helps for free. Agents and attorneys may not charge for work before you get notice of VA's initial decision.</p></div>
+          <p class="cite"><span class="tag law">Law</span> 38 U.S.C. §§ 5101(a)(2), 5904(c)(1); 38 C.F.R. §§ 3.160(a)(2), 3.2130 <span class="tag guide">VA form</span> 21-526EZ pages 13–14</p>
+        </div></details>
+
+      <details class="formsec" id="s13"><summary><span class="sec">XIII</span><span>Addendum<small>Page 15: room for 20 more conditions</small></span></summary>
+        <div class="inner">
+          <p>Use it only if you run out of lines in Item 16. It has the same four columns. Make copies if you need more, and send it with the application.</p>
+          <p class="cite"><span class="tag guide">VA form</span> 21-526EZ page 15</p>
+        </div></details>
+    </div>
+
+    <section class="panel" id="mistakes" aria-labelledby="mis-h">
+      <header><span class="eyebrow">Common mistakes</span><h2 id="mis-h">What often goes wrong</h2></header>
+      <dl class="myths">
+        <dt>Filing without an intent to file, then taking months to finish.</dt><dd>The date usually controls when payments can start. Starting the online form or filing an intent to file holds it for a year.</dd>
+        <dt>Using this form for a decision from the last year.</dt><dd>Disagreeing with a recent decision, or a previously denied claim with new evidence, generally goes through a decision review form instead.</dd>
+        <dt>Leaving off a secondary condition because "it isn't from service."</dt><dd>A condition caused or worsened by a service-connected condition can be service connected. Write "secondary to" and name the condition.</dd>
+        <dt>Waiting for a diagnosis before listing something.</dt><dd>The form asks for disabilities <b>or symptoms</b>. VA can get an exam if it needs one.</dd>
+        <dt>Answering the exposure questions but not listing a condition.</dt><dd>Exposure is not a claim. Each condition goes in Item 16.</dd>
+        <dt>Skipping Section IV.</dt><dd>Without exposure details, VA may not apply a presumption that fits your service.</dd>
+        <dt>Leaving VA clinics out of Item 17.</dt><dd>VA must look for federal records you identify; it can't look for ones it doesn't know about.</dd>
+        <dt>Checking Item 26 or 28 by mistake.</dt><dd>Both tell VA not to pay compensation.</dd>
+        <dt>Not signing, or having a representative sign an original claim.</dt><dd>An unsigned form is incomplete. You have a year to fix it, but your date is at risk.</dd>
+        <dt>Forgetting the extra forms.</dt><dd>Mental health claims, unemployability, dependents, and aid and attendance each have a form VA asks you to attach.</dd>
+      </dl>
+    </section>
+
+    <section class="panel" id="sources" aria-labelledby="src-h">
+      <header><h2 id="src-h">Sources and dates</h2>
+        <p class="muted" style="font-size:.88rem"><span class="tag law">Law</span> statutes and regulations. <span class="tag guide">VA guidance</span> VA forms and instructions, which explain how VA applies the law but are not law. <span class="tag bg">Background</span> general explanation not taken from a source quoted here.</p></header>
+      <div class="tscroll"><table>
+        <thead><tr><th scope="col">Source</th><th scope="col">Type</th><th scope="col">Version used</th></tr></thead>
+        <tbody>
+          <tr><td><a href="https://www.va.gov/find-forms/about-form-21-526ez/" target="_blank" rel="noopener">VA Form 21-526EZ</a>, Application for Disability Compensation and Related Compensation Benefits, with attached notice</td><td><span class="tag guide">VA form</span></td><td class="num">JAN 2026 (supersedes NOV 2022)</td></tr>
+          <tr><td>38 U.S.C. §§ 5101 (claims; signing for a claimant; SSN), 5103 (notice), 5103A (duty to assist), 5904(c)(1) (fees)</td><td><span class="tag law">Law</span></td><td>Current</td></tr>
+          <tr><td>38 U.S.C. § 1168 (toxic exposure exams), § 1154(b) (combat)</td><td><span class="tag law">Law</span></td><td>Current</td></tr>
+          <tr><td>10 U.S.C. § 1414 (concurrent retirement and disability pay)</td><td><span class="tag law">Law</span></td><td>Current</td></tr>
+          <tr><td><a href="https://www.ecfr.gov/current/title-38/section-3.155" target="_blank" rel="noopener">38 C.F.R. § 3.155</a> (intent to file; incomplete and complete claims; scope)</td><td><span class="tag law">Law</span></td><td>Current eCFR</td></tr>
+          <tr><td><a href="https://www.ecfr.gov/current/title-38/section-3.159" target="_blank" rel="noopener">38 C.F.R. § 3.159</a> (notice; duty to assist; exams)</td><td><span class="tag law">Law</span></td><td>Current eCFR</td></tr>
+          <tr><td><a href="https://www.ecfr.gov/current/title-38/section-3.160" target="_blank" rel="noopener">38 C.F.R. § 3.160(a)</a> (complete claim)</td><td><span class="tag law">Law</span></td><td>Current eCFR</td></tr>
+          <tr><td><a href="https://www.ecfr.gov/current/title-38/section-3.310" target="_blank" rel="noopener">38 C.F.R. § 3.310</a> (secondary service connection)</td><td><span class="tag law">Law</span></td><td>Current eCFR</td></tr>
+          <tr><td><a href="https://www.ecfr.gov/current/title-38/section-3.400" target="_blank" rel="noopener">38 C.F.R. § 3.400</a> (effective dates)</td><td><span class="tag law">Law</span></td><td>Current eCFR</td></tr>
+          <tr><td><a href="https://www.ecfr.gov/current/title-38/section-3.700" target="_blank" rel="noopener">38 C.F.R. § 3.700</a> (retired, severance, separation, and drill pay)</td><td><span class="tag law">Law</span></td><td>Current eCFR</td></tr>
+          <tr><td><a href="https://www.ecfr.gov/current/title-38/section-3.2130" target="_blank" rel="noopener">38 C.F.R. § 3.2130</a> (signature by mark)</td><td><span class="tag law">Law</span></td><td>Current eCFR</td></tr>
+        </tbody>
+      </table></div>
+      <p class="muted" style="font-size:.86rem">Content reviewed <span class="num">Oct 24, 2026</span>. When VA updates a source, ClaimReady's weekly monitor flags it for review before this page changes.</p>
+    </section>
+  </main>
+
+  <footer>
+    <p>This guide explains the public VA Form 21-526EZ and the law behind it. It does not fill out the form, decide whether VA will grant a claim, or say what rating or payment VA will assign, and it is not legal or medical advice.</p>
+    <p>ClaimReady is independent and educational. It is not VA and is not a substitute for an accredited representative, who can help at no cost. Nothing on this page is saved or sent. <a href="./#about">About ClaimReady and full disclaimer</a></p>
+  </footer>
+</div>
+<script>
+(() => {
+  const radios = [...document.querySelectorAll('input[name="why"]')];
+  const answers = [...document.querySelectorAll('.answer')];
+  const note = document.getElementById('pickNote');
+  const names = { new: 'a new condition', worse: 'a rated condition that got worse', disagree: 'a recent decision you disagree with', denied: 'a claim VA denied before', active: 'filing while on active duty', other: 'pension or survivor benefits' };
+  function apply() {
+    const r = radios.find(x => x.checked); if (!r) return;
+    answers.forEach(a => { a.hidden = a.id !== 'ans-' + r.value; });
+    note.textContent = `Showing the form to use for ${names[r.value]}.`;
+  }
+  radios.forEach(r => r.addEventListener('change', apply));
+  // Jump links open the form section they point to.
+  function openTarget() {
+    const el = document.getElementById(location.hash.slice(1));
+    if (el && el.tagName === 'DETAILS') el.open = true;
+  }
+  window.addEventListener('hashchange', openTarget);
+  openTarget();
+  const h = location.hash.slice(1);
+  if (names[h]) { radios.find(r => r.value === h).checked = true; apply(); }
+  window.addEventListener('beforeprint', () => document.querySelectorAll('details').forEach(d => d.open = true));
+  document.getElementById('printBtn').addEventListener('click', () => window.print());
+  // Prints only the pages 1-8 summary; the class is removed once printing ends.
+  document.getElementById('printSum').addEventListener('click', () => { document.body.classList.add('print-one'); window.print(); });
+  window.addEventListener('afterprint', () => document.body.classList.remove('print-one'));
+})();
+</script>
+</body></html>
