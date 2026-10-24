@@ -2731,6 +2731,7 @@ if (typeof module !== 'undefined') module.exports = vciTests;
    Topic "doctorguide" is the standalone page public-src/doctor-guide.html; build.sh checks that its stated dates match.
    Topic "vietnamservice" is the standalone page vietnam-service.html (Featured article: proving Vietnam service; build.sh checks its stated dates).
    Topic "herbicidenoassoc" is the standalone page herbicide-no-association.html (Featured article: conditions with no positive association with herbicides; build.sh checks its stated dates).
+   Topic "hepatitis" is the standalone page hepatitis.html (Featured article: hepatitis claims, from M21-1 V.iii.6.3).
    Topics "supplemental" and "medicalopinions" are the standalone pages supplemental-claims.html and medical-opinions.html (Featured articles);
    build.sh checks the stated dates of every standalone page (doctor guide, PTSD stressor, both of these).
    VCI_UPDATES: the change log shown in "What's changed", topic badges, and the box at the top of each topic.
@@ -3527,6 +3528,9 @@ window.VCI_SOURCES = {
   "herbicidenoassoc": [
    "554400000177423"
   ],
+  "hepatitis": [
+   "554400000014523"
+  ],
   "vietnamservice": [
    "554400000177422",
    "554400000177423",
@@ -3890,6 +3894,10 @@ window.VCI_SOURCES = {
   ],
   "herbicidenoassoc": [
    "3"
+  ],
+  "hepatitis": [
+   "3",
+   "4"
   ],
   "decqual": [
    "3",
@@ -6704,6 +6712,7 @@ ${topics.length ? `<h2>5. For these conditions</h2><ul>${topics.map(t => `<li><b
         <div class="insuf-grid">${cardsHTML(HEART, [1, 2])}
           <div class="insuf-card vet"><h3 class="edu-h">For veterans</h3><ul class="plain-list"><li>Ask for the test results behind any heart diagnosis.</li><li>Find the blood pressure readings from when you were first diagnosed, before medication.</li><li>If a doctor told you to take aspirin for your heart, get that in writing.</li><li>Cold injury in Korea or the Bulge? Your service records may be enough to concede exposure.</li></ul></div></div></section>`;
       case 'digest': return `<section class="panel" id="ed-digest"><div class="panel-head"><h2>Digestive conditions and hepatitis</h2><span class="muted num">M21-1 V.iii.6</span></div>
+        <p class="must-read-link"><span class="top-flag"><span aria-hidden="true">★</span> Featured</span><a class="btn small" href="hepatitis.html">Hepatitis claims: blood tests, risk factors, and ratings</a></p>
         <div class="insuf-grid">${cardsHTML(DIG, [0, 3])}
           <div class="insuf-card vet"><h3 class="edu-h">For veterans</h3><ul class="plain-list"><li>List every digestive symptom, and which condition causes it.</li><li>For hepatitis, write down every risk factor, especially blood exposure as a medic or corpsman.</li><li>GERD on daily medication supports 10% even without imaging.</li></ul></div></div></section>`;
       case 'gu': return `<section class="panel" id="ed-gu"><div class="panel-head"><h2>Kidney, bladder, prostate, and ED</h2><span class="muted num">M21-1 V.iii.7</span></div>
