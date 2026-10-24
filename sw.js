@@ -1,5 +1,5 @@
 /* Offline support for VA Claims Intelligence. It caches only the app's own files, never veterans' data. */
-const VERSION = 'vci-20261024214109';
+const VERSION = 'vci-20261024214220';
 const CORE = ['./', './index.html', './temp-100.html', './ptsd-stressor.html', './doctor-guide.html', './supplemental-claims.html', './medical-opinions.html', './competency.html', './vietnam-service.html', './herbicide-no-association.html', './spouse-aid-attendance.html', './hepatitis.html', './form-526ez.html', './form-0995.html', './continuous-pursuit.html', './site-config.js', './manifest.webmanifest', './icons/icon-192.png', './icons/icon-512.png', './icons/apple-touch-icon.png',
   './fonts/public-sans-latin-400-normal.woff2', './fonts/public-sans-latin-500-normal.woff2', './fonts/public-sans-latin-600-normal.woff2', './fonts/public-sans-latin-700-normal.woff2',
   './fonts/source-serif-4-latin-400-normal.woff2', './fonts/source-serif-4-latin-600-normal.woff2', './fonts/source-serif-4-latin-400-italic.woff2', './fonts/source-serif-4-latin-600-italic.woff2',
