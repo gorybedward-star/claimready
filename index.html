@@ -717,6 +717,7 @@ fieldset.crit-pick legend { font-size: .95rem; color: var(--ink); margin-bottom:
 .wn-row { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 8px; padding: 6px 0; border-bottom: 1px solid var(--line); }
 .wn-sum { flex-basis: 100%; font-size: .88rem; color: var(--muted); }
 .whats-new details summary { cursor: pointer; margin-top: 8px; font-weight: 600; }
+.check-regs { margin: 0 0 12px; padding: 8px 12px; border-left: 4px solid var(--accent); background: var(--accent-soft); border-radius: 6px; font-size: .92rem; font-weight: 600; }
 .upd-box { border: 2px solid var(--ok); background: var(--ok-soft); border-radius: 10px; padding: 10px 14px; margin: 0 0 12px; font-size: .92rem; }
 .upd-box.pend { border-color: var(--bad); background: var(--bad-soft); }
 .upd-box .plain-list { margin: 6px 0 0; }
@@ -7262,6 +7263,9 @@ ${quickPanelHTML(sel)}
     const marks = topicUpdates(id).filter(x => ageDays(x.date) <= UPD_DAYS).flatMap(x => x.marks || []); if (!marks.length) return html;
     return html.replace(/<li>([\s\S]*?)<\/li>/g, (m, inner) => marks.some(k => inner.includes(k)) ? `<li class="chg">${inner}</li>` : m);
   }
+  // Shown at the top of every topic in place of the old review-pending notices (Gory, Oct 24, 2026).
+  const CHECK_REGS = 'Please check official VA regulations for current information.';
+  const checkRegsHTML = () => `<p class="check-regs" role="note">${CHECK_REGS}</p>`;
   function sourcesHTML(id) {
     const arts = (SRC.topics[id] || []).map(a => Object.assign({ id: a }, SRC.articles[a]));
     const web = SRC.web && SRC.web[id]; const ecfr = (SRC.ecfrTopics && SRC.ecfrTopics[id]) || [];
@@ -7279,7 +7283,7 @@ ${quickPanelHTML(sel)}
       const body = markChanges(cur, eduPanel(cur, sel)).replace(/(<div class="insuf-card vet"><h3 class="edu-h">[^<]*)(<\/h3>)/g, '$1 <span class="rule-tag tip">Educational tip</span>$2');
       return `<div class="page"><h1 class="sr-only">${label(cur)}</h1>
       <nav class="edu-crumb" aria-label="Breadcrumb">${(p => `<button class="btn link" data-go="learn.${p[0]}">Learn: ${p[1]}</button>`)(PILLARS.find(p => p[4].some(g => g[1].includes(cur))) || PILLARS[0])} <span aria-hidden="true">›</span> <span>${label(cur)}</span></nav>
-      <div id="edu-topic">${topicNoticeHTML(cur)}${body}
+      <div id="edu-topic">${topicNoticeHTML(cur)}${checkRegsHTML()}${body}
         ${sourcesHTML(cur)}
         <nav class="edu-pager" aria-label="Topics">${i > 0 ? `<button class="btn" data-act="eduTopic" data-id="${EDU_ORDER[i - 1]}">← ${label(EDU_ORDER[i - 1])}</button>` : '<span></span>'}<button class="btn link" data-act="eduTop">All topics</button>${i < EDU_ORDER.length - 1 ? `<button class="btn" data-act="eduTopic" data-id="${EDU_ORDER[i + 1]}">${label(EDU_ORDER[i + 1])} →</button>` : '<span></span>'}</nav></div>
       <p class="muted" style="font-size:.82rem">Summarized from VA's adjudication manual, M21-1, and 38 C.F.R. Each section shows its source. A plain-language summary, not legal or medical advice.</p>
@@ -7300,7 +7304,7 @@ ${quickPanelHTML(sel)}
       <section class="panel edu-index" aria-labelledby="edu-index-h"><div class="panel-head"><h2 id="edu-index-h">Learn by topic</h2><span class="muted">Choose one</span></div>
         ${EDU_GROUPS.map(([g, list]) => `<div class="edu-group"><span class="eyebrow">${g}</span><div class="edu-cards">${list.map(([id, t, sub]) => `<button class="edu-card${id === 'ptsd' ? ' ptsd' : id === 'fpow' ? ' fpow' : id === 'iu' ? ' iu' : id === 'smc' ? ' smc' : ''}${TOP_TOPICS.includes(id) ? ' top' : ''}" data-act="eduTopic" data-id="${id}" aria-pressed="${cur === id}">${TOP_TOPICS.includes(id) ? topFlag() : ''}<b>${t}</b>${updBadge(id)}<span>${sub}</span></button>`).join('')}</div></div>`).join('')}
       </section>
-      ${cur ? `<div id="edu-topic" tabindex="-1">${topicNoticeHTML(cur)}${markChanges(cur, eduPanel(cur, sel))}
+      ${cur ? `<div id="edu-topic" tabindex="-1">${topicNoticeHTML(cur)}${checkRegsHTML()}${markChanges(cur, eduPanel(cur, sel))}
         ${sourcesHTML(cur)}
         <nav class="edu-pager" aria-label="Topics">${i > 0 ? `<button class="btn" data-act="eduTopic" data-id="${EDU_ORDER[i - 1]}">← ${label(EDU_ORDER[i - 1])}</button>` : '<span></span>'}<button class="btn link" data-act="eduTop">All topics</button>${i < EDU_ORDER.length - 1 ? `<button class="btn" data-act="eduTopic" data-id="${EDU_ORDER[i + 1]}">${label(EDU_ORDER[i + 1])} →</button>` : '<span></span>'}</nav></div>`
         : '<p class="empty">Choose a topic above to read it. Everything is also in the full reference download.</p>'}
@@ -7396,7 +7400,7 @@ ${quickPanelHTML(sel)}
     const [, title, code, mlabel, mhelp, , example, extra] = EXPLAINERS.find(x => x[0] === id); const C = VCI.CRITERIA[id]; const v = exValue(id);
     return `<div class="page"><nav class="edu-crumb" aria-label="Breadcrumb"><button class="btn link" data-go="learn.ratings">Learn: Ratings</button> <span aria-hidden="true">›</span> <span>Rating-criteria explainer</span></nav>
       <div class="page-head"><span class="eyebrow">Ratings · Criteria explainer</span><h1>${title}</h1><p>See every level of VA's rating criteria for this measurement, in the regulation's own words, and where a number falls. This explains the criteria; it does not rate anyone. VA decides the rating from the whole record.</p></div>
-      ${frameNote(`The criteria are quoted from <a href="${P4_SECTION_URL}" target="_blank" rel="noopener">38 C.F.R. § 4.71a on eCFR</a> (current as of ${VCI.CRITERIA_ECFR}; checked ${VCI.CRITERIA_CHECKED}). This wording is stored in ClaimReady, not pulled live from eCFR; check eCFR for any change after that date.`)}
+      ${frameNote(`The criteria are quoted from <a href="${P4_SECTION_URL}" target="_blank" rel="noopener">38 C.F.R. § 4.71a on eCFR</a> (current as of ${VCI.CRITERIA_ECFR}; checked ${VCI.CRITERIA_CHECKED}). This wording is stored in ClaimReady, not pulled live from eCFR; check eCFR for any change after that date. ${CHECK_REGS}`)}
       <nav class="pillars ex-pick" aria-label="Choose a measurement">${EXPLAINERS.map(e => `<button class="pillar-tab" data-go="explain.${e[0]}" aria-pressed="${e[0] === id}">${{ kneeflex: 'Knee bending', kneeext: 'Knee straightening', spinetl: 'Back bending', spinecx: 'Neck bending' }[e[0]]}</button>`).join('')}</nav>
       <p class="example-note"><b>Fictional example.</b> ${example} Not a VA determination.</p>
       <div class="ex-grid">
@@ -7458,7 +7462,7 @@ ${quickPanelHTML(sel)}
     const a = UI.quiz || {};
     const done = QUIZ_ITEMS.filter(q => a[q[0]] != null).length; const right = QUIZ_ITEMS.filter(q => a[q[0]] === q[2]).length;
     return `<div class="page"><div class="page-head"><span class="eyebrow">Training · Knowledge checks</span><h1>Check what you know about VA claims</h1><p>Scenario questions on exams, benefits, and ratings. Pick an answer to see the rule behind it. Nothing is saved or sent anywhere.</p></div>
-      ${frameNote('This is not official VA training and is not a VA certification. The questions were written by VCI from public VA sources and the law, and each answer names its source.')}
+      ${frameNote('This is not official VA training and is not a VA certification. The questions were written by VCI from public VA sources and the law, and each answer names its source. ' + CHECK_REGS)}
       <p class="example-note"><b>Fictional scenarios.</b> Dana is not a real veteran, and these answers are not VA determinations.</p>
       <p class="muted" aria-live="polite" style="margin:0">${done ? `${done} of ${QUIZ_ITEMS.length} answered · ${right} right` : `${QUIZ_ITEMS.length} questions`} ${done ? '<button class="btn link" data-act="quizReset">Start over</button>' : ''}</p>
       ${QUIZ.map(([pid, pname, qs]) => `<section class="quiz-sec" aria-labelledby="qz-${pid}"><h2 id="qz-${pid}">${pname}</h2>
@@ -7486,6 +7490,7 @@ ${quickPanelHTML(sel)}
     t('Explainers: every explainer has quoted criteria', () => EXPLAINERS.every(e => VCI.CRITERIA[e[0]] && VCI.CRITERIA[e[0]].levels.length) || 'missing criteria');
     t('TERA article: Top pick, in the Exams pillar, with Law and VA guidance labels', () => { const h = eduPanel('teraexam', []); return (TOP_TOPICS.includes('teraexam') && pillarOf('exams')[4].some(g => g[1].includes('teraexam')) && h.includes('rule-tag law') && h.includes('rule-tag guide')) || 'missing'; });
     t('Decision quality article: Must read, first in Ratings Start here, nine questions with Law and VA guidance labels', () => { const h = eduPanel('decqual', []); return (TOP_TOPICS.includes('decqual') && pillarOf('ratings')[4][0][1][0] === 'decqual' && DQ_QS.length === 9 && h.includes('rule-tag law') && h.includes('rule-tag guide') && h.includes('Must read') && !/VBMS|Codesheet|\bEP \d/.test(h)) || 'missing'; });
+    t('Topics: the check-official-regulations note shows, and no review-pending labels', () => (checkRegsHTML().includes(CHECK_REGS) && !UPD.some(u => u.kind === 'pending') && !/review pending|awaiting expert review/i.test(EDU_ORDER.map(id => eduPanel(id, [])).join(''))) || 'found a review label');
     t('Disclaimers: the one-line banner and the full disclaimer are present', () => (BANNER.startsWith('Independent educational tool.') && DISCLAIMER_FULL.length === 5) || 'missing');
     return T;
   }
