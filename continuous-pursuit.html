@@ -1128,7 +1128,7 @@ const CPX = (() => {
 
     // References
     html.push(`<section class="card" aria-labelledby="ref-h"><p class="eyebrow">Legal references</p><h2 id="ref-h">Authorities applied</h2>
-      <div class="refs">${r.cites.map(k => { const c = CP_RULES.citations[k]; return `<div><a href="${esc(c.url)}" target="_blank" rel="noopener">${esc(c.cite)}</a> · ${esc(c.what)} <span class="k">${c.kind}${c.verified === 'source' ? ` · checked in source ${CP_RULES.checked}` : c.verified === 'owner' ? ' · from general knowledge, confirmed in expert review' : ' · from general knowledge, pending expert review'}</span></div>`; }).join('')}</div>
+      <div class="refs">${r.cites.map(k => { const c = CP_RULES.citations[k]; return `<div><a href="${esc(c.url)}" target="_blank" rel="noopener">${esc(c.cite)}</a> · ${esc(c.what)} <span class="k">${c.kind}${c.verified === 'source' ? ` · checked in source ${CP_RULES.checked}` : c.verified === 'owner' ? ' · from general knowledge, confirmed in expert review' : ' · from general knowledge'}</span></div>`; }).join('')}</div>
       <p class="note">Rules version ${esc(CP_RULES.version)} · sources: ${esc(CP_RULES.sourceAsOf)} · weekend and federal holiday deadlines follow 38 C.F.R. § 3.110 and § 20.110.</p>
     </section>`);
 
@@ -1262,7 +1262,7 @@ const CPX = (() => {
     line('MISSING INFORMATION AND UNVERIFIED ASSUMPTIONS'); [].concat(r.conflicts.map(c => 'Conflict: ' + c.text), r.missing.map(m => 'Missing: ' + m.text), r.verify.map(v => 'Unverified: ' + v.text)).forEach(t => line('- ' + t)); line('');
     if (r.exceptions.length) { line('EXCEPTIONS TO REVIEW'); r.exceptions.forEach(x => line(`- ${x.title}: ${x.text}`)); line(''); }
     line('RECOMMENDED VERIFICATION'); r.recommend.forEach((t, i) => line(`${i + 1}. ${t}`)); line('');
-    line('LEGAL REFERENCES'); r.cites.forEach(k => { const c = CP_RULES.citations[k]; line(`- ${c.cite}: ${c.what}${c.verified === 'source' ? '' : c.verified === 'owner' ? ' (from general knowledge, confirmed in expert review)' : ' (from general knowledge, pending expert review)'}`); }); line('');
+    line('LEGAL REFERENCES'); r.cites.forEach(k => { const c = CP_RULES.citations[k]; line(`- ${c.cite}: ${c.what}${c.verified === 'source' ? '' : c.verified === 'owner' ? ' (from general knowledge, confirmed in expert review)' : ' (from general knowledge)'}`); }); line('');
     line('DISCLAIMER'); line(DISCLAIMER);
     return L.join('\n');
   }
