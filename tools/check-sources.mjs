@@ -70,7 +70,7 @@ async function main() {
   let md = `Checked ${total} sources on ${new Date().toISOString().slice(0, 10)}.\n\n`;
   if (changed.length) md += `## Updated since VCI's version (${changed.length})\n\n| Source | Name | VCI version | Now | VCI topics |\n|---|---|---|---|---|\n` +
     changed.map(c => `| [${c.cite}](${c.url}) | ${c.name} | ${c.was || 'first check'} | **${c.now}** | ${c.topics.join(', ') || '—'} |`).join('\n') +
-    `\n\n**Next steps:** open each source, copy the updated section, and send it for review. After the topic is revised, add an entry to \`VCI_UPDATES\` in \`src/sources.js\` (kind \`updated\`), update that article's \`updated\` date in \`VCI_SOURCES\`, rebuild, and upload. Until then you can add a \`pending\` entry so the app shows "Review pending."\n\n`;
+    `\n\n**Next steps:** open each source, copy the updated section, and send it for review. After the topic is revised, add an entry to \`VCI_UPDATES\` in \`src/sources.js\` (kind \`updated\`), update that article's \`updated\` date in \`VCI_SOURCES\`, rebuild, and upload. Do not add "review pending" notices to the app.\n\n`;
   if (failed.length) md += `## Could not check (${failed.length})\n\nThe page may have moved, or KnowVA changed its layout. Open these by hand.\n\n` + failed.map(f => `- ${f.cite} (${f.id}): ${f.error}`).join('\n') + '\n';
   if (!changed.length && !failed.length) md += 'No changes found.\n';
   console.log(md);

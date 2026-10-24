@@ -717,6 +717,7 @@ fieldset.crit-pick legend { font-size: .95rem; color: var(--ink); margin-bottom:
 .wn-row { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 8px; padding: 6px 0; border-bottom: 1px solid var(--line); }
 .wn-sum { flex-basis: 100%; font-size: .88rem; color: var(--muted); }
 .whats-new details summary { cursor: pointer; margin-top: 8px; font-weight: 600; }
+.check-regs { margin: 0 0 12px; padding: 8px 12px; border-left: 4px solid var(--accent); background: var(--accent-soft); border-radius: 6px; font-size: .92rem; font-weight: 600; }
 .upd-box { border: 2px solid var(--ok); background: var(--ok-soft); border-radius: 10px; padding: 10px 14px; margin: 0 0 12px; font-size: .92rem; }
 .upd-box.pend { border-color: var(--bad); background: var(--bad-soft); }
 .upd-box .plain-list { margin: 6px 0 0; }
@@ -2797,8 +2798,9 @@ if (typeof module !== 'undefined') module.exports = vciTests;
    Topics "supplemental" and "medicalopinions" are the standalone pages supplemental-claims.html and medical-opinions.html (Featured articles);
    build.sh checks the stated dates of every standalone page (doctor guide, PTSD stressor, both of these).
    VCI_UPDATES: the change log shown in "What's changed", topic badges, and the box at the top of each topic.
-   To record a change: add an entry. kind is 'new' (new topic), 'updated' (VCI revised the topic), or 'pending'
-   (VA changed a source and VCI has not reviewed it yet). marks: short phrases whose list items are highlighted in the topic. */
+   To record a change: add an entry. kind is 'new' (new topic) or 'updated' (VCI revised the topic).
+   Do not add "review pending" or "awaiting review" notices to the app (Gory, Oct 24, 2026): they give readers no insight.
+   marks: short phrases whose list items are highlighted in the topic. */
 window.VCI_SOURCES = {
  "articles": {
   "554400000014407": {
@@ -4002,630 +4004,6 @@ window.VCI_SOURCES = {
  }
 };
 window.VCI_UPDATES = [
- {
-  "date": "2026-08-24",
-  "topic": "painmotion",
-  "kind": "pending",
-  "title": "Review pending: VA updated M21-1 V.iii.1.A",
-  "summary": "VA updated this source on August 24, 2026, after the version this topic was written from: M21-1 V.iii.1.A (Painful Motion and Functional Loss, version used: March 25, 2026). VCI has not reviewed the change yet. Check the current M21-1 on KnowVA before relying on this topic.",
-  "marks": []
- },
- {
-  "date": "2026-08-24",
-  "topic": "msk",
-  "kind": "pending",
-  "title": "Review pending: VA updated M21-1 V.iii.1.B",
-  "summary": "VA updated this source on August 24, 2026, after the version this topic was written from: M21-1 V.iii.1.B (Musculoskeletal Disabilities of the Extremities and Spine, version used: March 25, 2026). VCI has not reviewed the change yet. Check the current M21-1 on KnowVA before relying on this topic. The knee, ankle, and spine notes in Estimate a rating were taken from the current KnowVA text in October 2026; the rest of this topic has not been reviewed.",
-  "marks": []
- },
- {
-  "date": "2026-08-24",
-  "topic": "arthritis",
-  "kind": "pending",
-  "title": "Review pending: VA updated M21-1 V.iii.1.C, M21-1 V.iii.1.D, M21-1 V.iii.1.E, M21-1 V.iii.1.F",
-  "summary": "VA updated these sources on August 24, 2026, after the versions this topic was written from: M21-1 V.iii.1.C (Arthritis, version used: May 28, 2025); M21-1 V.iii.1.D (Osteomyelitis, version used: May 28, 2025); M21-1 V.iii.1.E (Muscle Injuries, version used: May 28, 2025); M21-1 V.iii.1.F (Other Musculoskeletal Considerations, version used: May 28, 2025). VCI has not reviewed the changes yet. Check the current M21-1 on KnowVA before relying on this topic.",
-  "marks": []
- },
- {
-  "date": "2026-08-24",
-  "topic": "eyes",
-  "kind": "pending",
-  "title": "Review pending: VA updated M21-1 V.iii.2.A",
-  "summary": "VA updated this source on August 24, 2026, after the version this topic was written from: M21-1 V.iii.2.A (Conditions of the Eyes, version used: May 28, 2025). VCI has not reviewed the change yet. Check the current M21-1 on KnowVA before relying on this topic.",
-  "marks": []
- },
- {
-  "date": "2026-08-24",
-  "topic": "ears",
-  "kind": "pending",
-  "title": "Review pending: VA updated M21-1 V.iii.2.B",
-  "summary": "VA updated this source on August 24, 2026, after the version this topic was written from: M21-1 V.iii.2.B (Conditions of the Auditory System, version used: May 28, 2025). VCI has not reviewed the change yet. Check the current M21-1 on KnowVA before relying on this topic.",
-  "marks": []
- },
- {
-  "date": "2026-08-24",
-  "topic": "infect",
-  "kind": "pending",
-  "title": "Review pending: VA updated M21-1 V.iii.3",
-  "summary": "VA updated this source on August 24, 2026, after the version this topic was written from: M21-1 V.iii.3 (Infectious Diseases, Immune Disorders, and Nutritional Deficiencies, version used: October 2, 2025). VCI has not reviewed the change yet. Check the current M21-1 on KnowVA before relying on this topic.",
-  "marks": []
- },
- {
-  "date": "2026-08-24",
-  "topic": "heart",
-  "kind": "pending",
-  "title": "Review pending: VA updated M21-1 V.iii.5",
-  "summary": "VA updated this source on August 24, 2026, after the version this topic was written from: M21-1 V.iii.5 (Cardiovascular System Conditions, version used: March 19, 2026). VCI has not reviewed the change yet. Check the current M21-1 on KnowVA before relying on this topic.",
-  "marks": []
- },
- {
-  "date": "2026-08-24",
-  "topic": "digest",
-  "kind": "pending",
-  "title": "Review pending: VA updated M21-1 V.iii.6",
-  "summary": "VA updated this source on August 24, 2026, after the version this topic was written from: M21-1 V.iii.6 (Digestive Disabilities, version used: May 28, 2025). VCI has not reviewed the change yet. Check the current M21-1 on KnowVA before relying on this topic.",
-  "marks": []
- },
- {
-  "date": "2026-08-24",
-  "topic": "aa",
-  "kind": "pending",
-  "title": "Review pending: VA updated M21-1 IX.ii.1.A, M21-1 IX.ii.1.B",
-  "summary": "VA updated these sources on August 24, 2026, after the versions this topic was written from: M21-1 IX.ii.1.A (General Information on Requirements for Aid and Attendance (A&A) and…, version used: May 28, 2025); M21-1 IX.ii.1.B (Aid and Attendance (A&A) Status for Beneficiaries Who Are Patients in…, version used: May 28, 2025). VCI has not reviewed the changes yet. Check the current M21-1 on KnowVA before relying on this topic.",
-  "marks": []
- },
- {
-  "date": "2026-08-24",
-  "topic": "hlr",
-  "kind": "pending",
-  "title": "Review pending: VA updated M21-5, Ch. 5",
-  "summary": "VA updated this source on August 24, 2026, after the version this topic was written from: M21-5, Ch. 5 (Higher-Level Review Procedures, version used: June 12, 2026). VCI has not reviewed the change yet. Check the current M21-1 on KnowVA before relying on this topic.",
-  "marks": []
- },
- {
-  "date": "2026-08-24",
-  "topic": "dea",
-  "kind": "pending",
-  "title": "Review pending: VA updated M21-1 XIII.i.1.B",
-  "summary": "VA updated this source on August 24, 2026, after the version this topic was written from: M21-1 XIII.i.1.B (Notification and Award Actions for Dependents' Educational Assistanc…, version used: February 6, 2026). VCI has not reviewed the change yet. Check the current M21-1 on KnowVA before relying on this topic.",
-  "marks": []
- },
- {
-  "date": "2026-08-24",
-  "topic": "housing",
-  "kind": "pending",
-  "title": "Review pending: VA updated M21-1 XIII.i.2.B",
-  "summary": "VA updated this source on August 24, 2026, after the version this topic was written from: M21-1 XIII.i.2.B (Specially Adapted Housing (SAH) or Special Home Adaptation (SHA) Gra…, version used: March 9, 2026). VCI has not reviewed the change yet. Check the current M21-1 on KnowVA before relying on this topic.",
-  "marks": []
- },
- {
-  "date": "2026-08-24",
-  "topic": "vre",
-  "kind": "pending",
-  "title": "Review pending: VA updated M21-1 XIII.i.5.B, M21-1 XIII.i.5.A",
-  "summary": "VA updated these sources on August 24, 2026, after the versions this topic was written from: M21-1 XIII.i.5.B (Memorandum Ratings for Veteran Readiness and Employment (VR&E) Purpo…, version used: December 16, 2025); M21-1 XIII.i.5.A (Veteran Readiness and Employment (VR&E) Eligibility, version used: December 15, 2025). VCI has not reviewed the changes yet. Check the current M21-1 on KnowVA before relying on this topic.",
-  "marks": []
- },
- {
-  "date": "2026-08-24",
-  "topic": "dentaltx",
-  "kind": "pending",
-  "title": "Review pending: VA updated M21-1 XIII.i.4.B, M21-1 XIII.i.4.A, M21-1 XIII.i.4.C",
-  "summary": "VA updated these sources on August 24, 2026, after the versions this topic was written from: M21-1 XIII.i.4.B (Processing Dental Claims, version used: May 29, 2025); M21-1 XIII.i.4.A (Overview of Classes of Eligibility for Dental Treatment, version used: May 29, 2025); M21-1 XIII.i.4.C (Ratings for Dental Treatment Purposes, version used: May 20, 2026). VCI has not reviewed the changes yet. Check the current M21-1 on KnowVA before relying on this topic.",
-  "marks": []
- },
- {
-  "date": "2026-08-24",
-  "topic": "champva",
-  "kind": "pending",
-  "title": "Review pending: VA updated M21-1 XIII.i.3.I",
-  "summary": "VA updated this source on August 24, 2026, after the version this topic was written from: M21-1 XIII.i.3.I (Civilian Health and Medical Program of the Department of Veterans Af…, version used: June 18, 2026). VCI has not reviewed the change yet. Check the current M21-1 on KnowVA before relying on this topic.",
-  "marks": []
- },
- {
-  "date": "2026-08-24",
-  "topic": "mod",
-  "kind": "pending",
-  "title": "Review pending: VA updated M21-1 XI.ii.2",
-  "summary": "VA updated this source on August 24, 2026, after the version this topic was written from: M21-1 XI.ii.2 (Month of Death (MOD) Benefit, version used: July 31, 2026). VCI has not reviewed the change yet. Check the current M21-1 on KnowVA before relying on this topic.",
-  "marks": []
- },
- {
-  "date": "2026-08-24",
-  "topic": "accrued",
-  "kind": "pending",
-  "title": "Review pending: VA updated M21-1 XI.ii.3.A, M21-1 XI.ii.3.C, M21-1 XI.ii.3.D, M21-1 XI.ii.3.E",
-  "summary": "VA updated these sources on August 24, 2026, after the versions this topic was written from: M21-1 XI.ii.3.A (Entitlement to Accrued Benefits Under 38 U.S.C. 5121, version used: January 21, 2026); M21-1 XI.ii.3.C (Development for Accrued and Requests for Substitution, version used: August 17, 2026); M21-1 XI.ii.3.D (Rating Accrued Claims, version used: May 29, 2025); M21-1 XI.ii.3.E (Accrued Authorization and Notification, version used: May 22, 2026). VCI has not reviewed the changes yet. Check the current M21-1 on KnowVA before relying on this topic.",
-  "marks": []
- },
- {
-  "date": "2026-08-24",
-  "topic": "itf",
-  "kind": "pending",
-  "title": "Review pending: VA updated M21-1 II.iii.2.A",
-  "summary": "VA updated this source on August 24, 2026, after the version this topic was written from: M21-1 II.iii.2.A (Intent to File (ITF), version used: August 3, 2026). VCI has not reviewed the change yet. Check the current M21-1 on KnowVA before relying on this topic.",
-  "marks": []
- },
- {
-  "date": "2026-08-24",
-  "topic": "dic",
-  "kind": "pending",
-  "title": "Review pending: VA updated M21-1 XII.i.1.A, M21-1 XII.i.1.C, M21-1 XII.i.2.A, M21-1 XII.i.2.B",
-  "summary": "VA updated these sources on August 24, 2026, after the versions this topic was written from: M21-1 XII.i.1.A (Overview of Dependency and Indemnity Compensation (DIC), version used: February 11, 2026); M21-1 XII.i.1.C (In-Service Death and Former Prisoner of War (FPOW) Dependency and Ind…, version used: December 31, 2025); M21-1 XII.i.2.A (Ratings for Dependency and Indemnity Compensation (DIC), version used: January 14, 2026); M21-1 XII.i.2.B (Aid and Attendance (A&A) and Housebound Determinations for Survivors, version used: May 29, 2025). VCI has not reviewed the changes yet. Check the current M21-1 on KnowVA before relying on this topic.",
-  "marks": []
- },
- {
-  "date": "2026-08-24",
-  "topic": "dependents",
-  "kind": "pending",
-  "title": "Review pending: VA updated M21-1 VII.i.1.A",
-  "summary": "VA updated this source on August 24, 2026, after the version this topic was written from: M21-1 VII.i.1.A (General Information on Relationship and Dependency, version used: August 29, 2025). VCI has not reviewed the change yet. Check the current M21-1 on KnowVA before relying on this topic.",
-  "marks": []
- },
- {
-  "date": "2026-08-24",
-  "topic": "ao",
-  "kind": "pending",
-  "title": "Review pending: VA updated M21-1 VIII.i.1.A, M21-1 VIII.i.1.B, M21-1 VIII.i.1.C, M21-1 VIII.i.1.D",
-  "summary": "VA updated these sources on August 24, 2026, after the versions this topic was written from: M21-1 VIII.i.1.A (General Information on Claims Based on Herbicide Exposure, version used: December 29, 2025); M21-1 VIII.i.1.B (Developing Claims for Service Connection (SC) Based on Herbicide Exp, version used: July 16, 2026); M21-1 VIII.i.1.C (Ratings for Disabilities Associated With Herbicide Exposure, version used: September 15, 2025); M21-1 VIII.i.1.D (Processing Claims Based on Nautical Herbicide Exposure, version used: September 17, 2025). VCI has not reviewed the changes yet. Check the current M21-1 on KnowVA before relying on this topic.",
-  "marks": []
- },
- {
-  "date": "2026-08-24",
-  "topic": "nehmer",
-  "kind": "pending",
-  "title": "Review pending: VA updated M21-1 VIII.i.2.C",
-  "summary": "VA updated this source on August 24, 2026, after the version this topic was written from: M21-1 VIII.i.2.C (Authorization Under the Nehmer Stipulation, version used: May 28, 2025). VCI has not reviewed the change yet. Check the current M21-1 on KnowVA before relying on this topic.",
-  "marks": []
- },
- {
-  "date": "2026-08-24",
-  "topic": "gulf",
-  "kind": "pending",
-  "title": "Review pending: VA updated M21-1 VIII.ii.1.A, M21-1 VIII.ii.1.B, M21-1 VIII.ii.1.C, M21-1 VIII.ii.1.D",
-  "summary": "VA updated these sources on August 24, 2026, after the versions this topic was written from: M21-1 VIII.ii.1.A (General Information on Presumptive Service Connection (SC) for Pers, version used: June 6, 2025); M21-1 VIII.ii.1.B (Developing Presumptive Service Connection (SC) Claims from Persian, version used: April 9, 2026); M21-1 VIII.ii.1.C (Rating Presumptive Service Connection (SC) Claims for Persian Gulf, version used: June 6, 2025); M21-1 VIII.ii.1.D (Presumptive Service Connection (SC) for Infectious Disease Under 38, version used: June 30, 2025). VCI has not reviewed the changes yet. Check the current M21-1 on KnowVA before relying on this topic.",
-  "marks": []
- },
- {
-  "date": "2026-08-24",
-  "topic": "bpot",
-  "kind": "pending",
-  "title": "Review pending: VA updated M21-1 VIII.ii.2.A, M21-1 VIII.ii.2.B, M21-1 VIII.ii.2.C",
-  "summary": "VA updated these sources on August 24, 2026, after the versions this topic was written from: M21-1 VIII.ii.2.A (General Information on Claims Based on Exposure to Burn Pits and Ot, version used: June 6, 2025); M21-1 VIII.ii.2.B (Developing Claims Based On Exposure to Burn Pits and Other Toxins,, version used: November 25, 2025); M21-1 VIII.ii.2.C (Rating Claims Based on Exposure to Burn Pits and Other Toxins, Incl, version used: June 6, 2025). VCI has not reviewed the changes yet. Check the current M21-1 on KnowVA before relying on this topic.",
-  "marks": []
- },
- {
-  "date": "2026-08-24",
-  "topic": "mustard",
-  "kind": "pending",
-  "title": "Review pending: VA updated M21-1 VIII.iii.3.A, M21-1 VIII.iii.3.B",
-  "summary": "VA updated these sources on August 24, 2026, after the versions this topic was written from: M21-1 VIII.iii.3.A (Developing Claims for Service Connection (SC) for Disabilities Res, version used: April 13, 2026); M21-1 VIII.iii.3.B (Rating Claims for Disabilities Associated With Mustard Gas or Lewi, version used: April 13, 2026). VCI has not reviewed the changes yet. Check the current M21-1 on KnowVA before relying on this topic.",
-  "marks": []
- },
- {
-  "date": "2026-08-24",
-  "topic": "radiation",
-  "kind": "pending",
-  "title": "Review pending: VA updated M21-1 VIII.iii.4.A, M21-1 VIII.iii.4.B, M21-1 VIII.iii.4.C",
-  "summary": "VA updated these sources on August 24, 2026, after the versions this topic was written from: M21-1 VIII.iii.4.A (Developing Claims for Service Connection (SC) for Disabilities Res, version used: December 23, 2025); M21-1 VIII.iii.4.B (Developing Claims for Service Connection (SC) for Disabilities Res, version used: December 23, 2025); M21-1 VIII.iii.4.C (Rating Claims for Disabilities Associated With Radiation Exposure, version used: December 23, 2025). VCI has not reviewed the changes yet. Check the current M21-1 on KnowVA before relying on this topic.",
-  "marks": []
- },
- {
-  "date": "2026-08-24",
-  "topic": "cbrne",
-  "kind": "pending",
-  "title": "Review pending: VA updated M21-1 VIII.iii.5.A",
-  "summary": "VA updated this source on August 24, 2026, after the version this topic was written from: M21-1 VIII.iii.5.A (Developing Claims Based on Participation in Chemical Biological Ra, version used: December 23, 2025). VCI has not reviewed the change yet. Check the current M21-1 on KnowVA before relying on this topic.",
-  "marks": []
- },
- {
-  "date": "2026-08-24",
-  "topic": "shad",
-  "kind": "pending",
-  "title": "Review pending: VA updated M21-1 VIII.iii.6.A",
-  "summary": "VA updated this source on August 24, 2026, after the version this topic was written from: M21-1 VIII.iii.6.A (Developing Claims Based on Participation in Project Shipboard Haza, version used: May 18, 2026). VCI has not reviewed the change yet. Check the current M21-1 on KnowVA before relying on this topic.",
-  "marks": []
- },
- {
-  "date": "2026-08-24",
-  "topic": "asbestos",
-  "kind": "pending",
-  "title": "Review pending: VA updated M21-1 VIII.iii.7.A, M21-1 VIII.iii.7.B, M21-1 VIII.iii.7.C",
-  "summary": "VA updated these sources on August 24, 2026, after the versions this topic was written from: M21-1 VIII.iii.7.A (General Information on Claims Based on Exposure to Asbestos, version used: May 28, 2025); M21-1 VIII.iii.7.B (Development and Examination Requests for Claims Based on Exposure, version used: February 11, 2026); M21-1 VIII.iii.7.C (Evaluating Evidence of Asbestos Exposure, version used: May 28, 2025). VCI has not reviewed the changes yet. Check the current M21-1 on KnowVA before relying on this topic.",
-  "marks": []
- },
- {
-  "date": "2026-08-24",
-  "topic": "lejeune",
-  "kind": "pending",
-  "title": "Review pending: VA updated M21-1 VIII.iii.8.A, M21-1 VIII.iii.8.B",
-  "summary": "VA updated these sources on August 24, 2026, after the versions this topic was written from: M21-1 VIII.iii.8.A (Developing Claims Based on Exposure to Contaminants in the Water S, version used: May 28, 2025); M21-1 VIII.iii.8.B (Rating Claims Based on Exposure to Contaminants in the Water Suppl, version used: May 28, 2025). VCI has not reviewed the changes yet. Check the current M21-1 on KnowVA before relying on this topic.",
-  "marks": []
- },
- {
-  "date": "2026-08-24",
-  "topic": "ptsd",
-  "kind": "pending",
-  "title": "Review pending: VA updated M21-1 VIII.iv.1.A, M21-1 VIII.iv.1.B, M21-1 VIII.iv.1.C, M21-1 VIII.iv.1.D, M21-1 VIII.iv.1.E",
-  "summary": "VA updated these sources on August 24, 2026, after the versions this topic was written from: M21-1 VIII.iv.1.A (General Information and Development for Posttraumatic Stress Disord, version used: March 17, 2026); M21-1 VIII.iv.1.B (Development for Posttraumatic Stress Disorder (PTSD) or Other Claim, version used: July 31, 2026); M21-1 VIII.iv.1.C (Examinations and Medical Opinions for Posttraumatic Stress Disorder, version used: May 28, 2025); M21-1 VIII.iv.1.D (Evidence Evaluation and Decisions for Posttraumatic Stress Disorder, version used: June 30, 2025); M21-1 VIII.iv.1.E (Evidence Evaluation and Decisions for Posttraumatic Stress Disorder, version used: September 16, 2025). VCI has not reviewed the changes yet. Check the current M21-1 on KnowVA before relying on this topic.",
-  "marks": []
- },
- {
-  "date": "2026-08-24",
-  "topic": "fpow",
-  "kind": "pending",
-  "title": "Review pending: VA updated M21-1 VIII.iv.2.A, M21-1 VIII.iv.2.B, M21-1 VIII.iv.2.C, M21-1 VIII.iv.2.D",
-  "summary": "VA updated these sources on August 24, 2026, after the versions this topic was written from: M21-1 VIII.iv.2.A (Former Prisoner of War (FPOW) Status, version used: May 28, 2025); M21-1 VIII.iv.2.B (Former Prisoner of War (FPOW) Service Records, version used: May 28, 2025); M21-1 VIII.iv.2.C (Development and Examination Request for Claims Based on Former Pris, version used: December 17, 2025); M21-1 VIII.iv.2.D (Rating Claims Based on Former Prisoner of War (FPOW) Status, version used: May 28, 2025). VCI has not reviewed the changes yet. Check the current M21-1 on KnowVA before relying on this topic.",
-  "marks": []
- },
- {
-  "date": "2026-08-24",
-  "topic": "iu",
-  "kind": "pending",
-  "title": "Review pending: VA updated M21-1 VIII.iv.3.A, M21-1 VIII.iv.3.B, M21-1 VIII.iv.3.C, M21-1 VIII.iv.3.D",
-  "summary": "VA updated these sources on August 24, 2026, after the versions this topic was written from: M21-1 VIII.iv.3.A (General Information on Individual Unemployability (IU) Claims, version used: September 18, 2025); M21-1 VIII.iv.3.B (Individual Unemployability (IU) Claims Development, version used: September 25, 2025); M21-1 VIII.iv.3.C (Individual Unemployability (IU) Rating and Decision Review, version used: June 9, 2025); M21-1 VIII.iv.3.D (Monitoring Income for Veterans in Receipt of Individual Unemployabi, version used: May 28, 2025). VCI has not reviewed the changes yet. Check the current M21-1 on KnowVA before relying on this topic.",
-  "marks": []
- },
- {
-  "date": "2026-08-24",
-  "topic": "temp",
-  "kind": "pending",
-  "title": "Review pending: VA updated M21-1 VIII.iv.8.A, M21-1 VIII.iv.8.B, M21-1 VIII.iv.8.C, M21-1 VIII.iv.8.D",
-  "summary": "VA updated these sources on August 24, 2026, after the versions this topic was written from: M21-1 VIII.iv.8.A (Prestabilization Ratings Under 38 CFR 4.28, version used: May 28, 2025); M21-1 VIII.iv.8.B (Hospitalization Ratings Under 38 CFR 4.29, version used: November 17, 2025); M21-1 VIII.iv.8.C (Convalescent Ratings Under 38 CFR 4.30, version used: November 20, 2025); M21-1 VIII.iv.8.D (Other Temporary Total Evaluations, version used: May 28, 2025). VCI has not reviewed the changes yet. Check the current M21-1 on KnowVA before relying on this topic.",
-  "marks": []
- },
- {
-  "date": "2026-08-24",
-  "topic": "smc",
-  "kind": "pending",
-  "title": "Review pending: VA updated M21-1 VIII.iv.4.A, M21-1 VIII.iv.4.B",
-  "summary": "VA updated these sources on August 24, 2026, after the versions this topic was written from: M21-1 VIII.iv.4.A (Special Monthly Compensation (SMC), version used: March 23, 2026); M21-1 VIII.iv.4.B (History of Special Monthly Compensation (SMC), version used: December 5, 2025). VCI has not reviewed the changes yet. Check the current M21-1 on KnowVA before relying on this topic.",
-  "marks": []
- },
- {
-  "date": "2026-08-24",
-  "topic": "smccheck",
-  "kind": "pending",
-  "title": "Review pending: VA updated M21-1 VIII.iv.4.A, M21-1 VIII.iv.4.B",
-  "summary": "VA updated these sources on August 24, 2026, after the versions this topic was written from: M21-1 VIII.iv.4.A (Special Monthly Compensation (SMC), version used: March 23, 2026); M21-1 VIII.iv.4.B (History of Special Monthly Compensation (SMC), version used: December 5, 2025). VCI has not reviewed the changes yet. Check the current M21-1 on KnowVA before relying on this topic.",
-  "marks": []
- },
- {
-  "date": "2026-08-24",
-  "topic": "chronic",
-  "kind": "pending",
-  "title": "Review pending: VA updated M21-1 VIII.iv.5",
-  "summary": "VA updated this source on August 24, 2026, after the version this topic was written from: M21-1 VIII.iv.5 (Service Connection (SC) for Chronic Diseases, version used: May 28, 2025). VCI has not reviewed the change yet. Check the current M21-1 on KnowVA before relying on this topic.",
-  "marks": []
- },
- {
-  "date": "2026-08-24",
-  "topic": "va1151",
-  "kind": "pending",
-  "title": "Review pending: VA updated M21-1 VIII.iv.6.A, M21-1 VIII.iv.6.B, M21-1 VIII.iv.6.C",
-  "summary": "VA updated these sources on August 24, 2026, after the versions this topic was written from: M21-1 VIII.iv.6.A (Developing Claims Filed Under 38 U.S.C. 1151, version used: January 28, 2026); M21-1 VIII.iv.6.B (Rating Claims Filed Under 38 U.S.C. 1151, version used: May 28, 2025); M21-1 VIII.iv.6.C (Authorization of Awards Under 38 U.S.C. 1151, version used: May 1, 2026). VCI has not reviewed the changes yet. Check the current M21-1 on KnowVA before relying on this topic.",
-  "marks": []
- },
- {
-  "date": "2026-08-24",
-  "topic": "paired",
-  "kind": "pending",
-  "title": "Review pending: VA updated M21-1 VIII.iv.7.A, M21-1 VIII.iv.7.B",
-  "summary": "VA updated these sources on August 24, 2026, after the versions this topic was written from: M21-1 VIII.iv.7.A (Compensation for Paired Organs or Extremities Under 38 CFR 3.383, version used: May 28, 2025); M21-1 VIII.iv.7.B (Awards and Offsets for Paired Organs and Extremities Under 38 CFR 3, version used: May 28, 2025). VCI has not reviewed the changes yet. Check the current M21-1 on KnowVA before relying on this topic.",
-  "marks": []
- },
- {
-  "date": "2026-08-24",
-  "topic": "diving",
-  "kind": "pending",
-  "title": "Review pending: VA updated M21-1 VIII.iv.9.B",
-  "summary": "VA updated this source on August 24, 2026, after the version this topic was written from: M21-1 VIII.iv.9.B (Diving-Related Disabilities, version used: May 29, 2025). VCI has not reviewed the change yet. Check the current M21-1 on KnowVA before relying on this topic.",
-  "marks": []
- },
- {
-  "date": "2026-08-24",
-  "topic": "supp",
-  "kind": "pending",
-  "title": "Review pending: VA updated M21-1 X.ii.2.A",
-  "summary": "VA updated this source on August 24, 2026, after the version this topic was written from: M21-1 X.ii.2.A (Revision Based on Specific Types of Submissions, Including Supplementa, version used: May 29, 2025). VCI has not reviewed the change yet. Check the current M21-1 on KnowVA before relying on this topic.",
-  "marks": []
- },
- {
-  "date": "2026-08-24",
-  "topic": "reduce",
-  "kind": "pending",
-  "title": "Review pending: VA updated M21-1 X.ii.3.C, M21-1 X.ii.3.D, M21-1 X.ii.4.A, M21-1 X.ii.4.B",
-  "summary": "VA updated these sources on August 24, 2026, after the versions this topic was written from: M21-1 X.ii.3.C (Contemporaneous Notice, version used: May 29, 2025); M21-1 X.ii.3.D (Completing Proposed Rating Decisions, version used: May 29, 2025); M21-1 X.ii.4.A (Rating Decisions for Reduction Due to Improvement, version used: May 29, 2025); M21-1 X.ii.4.B (Authorization for Reductions in Disability Evaluations Under 38 CFR 3., version used: June 26, 2026). VCI has not reviewed the changes yet. Check the current M21-1 on KnowVA before relying on this topic.",
-  "marks": []
- },
- {
-  "date": "2026-08-24",
-  "topic": "cue",
-  "kind": "pending",
-  "title": "Review pending: VA updated M21-1 X.ii.5.A, M21-1 X.ii.5.B, M21-1 X.ii.5.C",
-  "summary": "VA updated these sources on August 24, 2026, after the versions this topic was written from: M21-1 X.ii.5.A (Revision Due to Clear and Unmistakable Error (CUE), version used: May 29, 2025); M21-1 X.ii.5.B (Severance of Service Connection (SC), version used: May 13, 2026); M21-1 X.ii.5.C (Due Process and Authorization Issues for Clear and Unmistakable Error, version used: May 13, 2026). VCI has not reviewed the changes yet. Check the current M21-1 on KnowVA before relying on this topic.",
-  "marks": []
- },
- {
-  "date": "2026-08-24",
-  "topic": "competency",
-  "kind": "pending",
-  "title": "Review pending: VA updated M21-1 X.ii.6.A, M21-1 X.ii.6.C",
-  "summary": "VA updated these sources on August 24, 2026, after the versions this topic was written from: M21-1 X.ii.6.A (Evaluating and Rating Competency, version used: March 4, 2026); M21-1 X.ii.6.C (General Information on Incompetency and Fiduciary Cases, version used: January 12, 2026). VCI has not reviewed the changes yet. Check the current M21-1 on KnowVA before relying on this topic.",
-  "marks": []
- },
- {
-  "date": "2026-08-24",
-  "topic": "helpless",
-  "kind": "pending",
-  "title": "Review pending: VA updated M21-1 X.ii.6.B",
-  "summary": "VA updated this source on August 24, 2026, after the version this topic was written from: M21-1 X.ii.6.B (A Child’s Permanent Incapacity for Self-Support, version used: March 11, 2026). VCI has not reviewed the change yet. Check the current M21-1 on KnowVA before relying on this topic.",
-  "marks": []
- },
- {
-  "date": "2026-08-24",
-  "topic": "cod",
-  "kind": "pending",
-  "title": "Review pending: VA updated M21-1 X.iv.1.A, M21-1 X.iv.2.A, M21-1 X.iv.1.B",
-  "summary": "VA updated these sources on August 24, 2026, after the versions this topic was written from: M21-1 X.iv.1.A (Character of Discharge (COD) and Bars to Benefits, version used: August 1, 2025); M21-1 X.iv.2.A (Insanity Determinations, version used: May 29, 2025); M21-1 X.iv.1.B (Special Topics Involving Character of Discharge, version used: December 18, 2025). VCI has not reviewed the changes yet. Check the current M21-1 on KnowVA before relying on this topic.",
-  "marks": []
- },
- {
-  "date": "2026-08-24",
-  "topic": "lod",
-  "kind": "pending",
-  "title": "Review pending: VA updated M21-1 X.iv.1.C, M21-1 X.iv.1.D, M21-1 X.iv.2.A",
-  "summary": "VA updated these sources on August 24, 2026, after the versions this topic was written from: M21-1 X.iv.1.C (Willful Misconduct and Line of Duty (LOD), version used: May 29, 2025); M21-1 X.iv.1.D (Disability or Death from Use of Alcohol, Drugs, or Tobacco Products, version used: May 29, 2025); M21-1 X.iv.2.A (Insanity Determinations, version used: May 29, 2025). VCI has not reviewed the changes yet. Check the current M21-1 on KnowVA before relying on this topic.",
-  "marks": []
- },
- {
-  "date": "2026-08-24",
-  "topic": "debts",
-  "kind": "pending",
-  "title": "Review pending: VA updated M21-1 VI.iii.2.C",
-  "summary": "VA updated this source on August 24, 2026, after the version this topic was written from: M21-1 VI.iii.2.C (Debt Disputes and Collection, version used: June 4, 2025). VCI has not reviewed the change yet. Check the current M21-1 on KnowVA before relying on this topic.",
-  "marks": []
- },
- {
-  "date": "2026-08-24",
-  "topic": "direct",
-  "kind": "pending",
-  "title": "Review pending: VA updated M21-1 V.ii.2.A",
-  "summary": "VA updated this source on August 24, 2026, after the version this topic was written from: M21-1 V.ii.2.A (Direct Service Connection (SC) and Service Incurrence of an Injury, version used: January 14, 2026). VCI has not reviewed the change yet. Check the current M21-1 on KnowVA before relying on this topic.",
-  "marks": []
- },
- {
-  "date": "2026-08-24",
-  "topic": "presume",
-  "kind": "pending",
-  "title": "Review pending: VA updated M21-1 V.ii.2.B",
-  "summary": "VA updated this source on August 24, 2026, after the version this topic was written from: M21-1 V.ii.2.B (Presumptive Service Connection (SC), version used: May 27, 2025). VCI has not reviewed the change yet. Check the current M21-1 on KnowVA before relying on this topic.",
-  "marks": []
- },
- {
-  "date": "2026-08-24",
-  "topic": "preagg",
-  "kind": "pending",
-  "title": "Review pending: VA updated M21-1 V.ii.2.C",
-  "summary": "VA updated this source on August 24, 2026, after the version this topic was written from: M21-1 V.ii.2.C (In-Service Aggravation of a Pre-Service Disability, version used: May 27, 2025). VCI has not reviewed the change yet. Check the current M21-1 on KnowVA before relying on this topic.",
-  "marks": []
- },
- {
-  "date": "2026-08-24",
-  "topic": "obesity",
-  "kind": "pending",
-  "title": "Review pending: VA updated M21-1 V.ii.3.C",
-  "summary": "VA updated this source on August 24, 2026, after the version this topic was written from: M21-1 V.ii.3.C (Reviewing Diagnoses, version used: May 1, 2026). VCI has not reviewed the change yet. Check the current M21-1 on KnowVA before relying on this topic.",
-  "marks": []
- },
- {
-  "date": "2026-08-24",
-  "topic": "dx",
-  "kind": "pending",
-  "title": "Review pending: VA updated M21-1 V.ii.3.C",
-  "summary": "VA updated this source on August 24, 2026, after the version this topic was written from: M21-1 V.ii.3.C (Reviewing Diagnoses, version used: May 1, 2026). VCI has not reviewed the change yet. Check the current M21-1 on KnowVA before relying on this topic.",
-  "marks": []
- },
- {
-  "date": "2026-08-24",
-  "topic": "effdate",
-  "kind": "pending",
-  "title": "Review pending: VA updated M21-1 V.ii.4.A",
-  "summary": "VA updated this source on August 24, 2026, after the version this topic was written from: M21-1 V.ii.4.A (Effective Dates, version used: April 2, 2026). VCI has not reviewed the change yet. Check the current M21-1 on KnowVA before relying on this topic.",
-  "marks": []
- },
- {
-  "date": "2026-08-24",
-  "topic": "dental",
-  "kind": "pending",
-  "title": "Review pending: VA updated M21-1 V.iii.14",
-  "summary": "VA updated this source on August 24, 2026, after the version this topic was written from: M21-1 V.iii.14 (Dental and Oral Conditions, version used: March 20, 2026). VCI has not reviewed the change yet. Check the current M21-1 on KnowVA before relying on this topic.",
-  "marks": []
- },
- {
-  "date": "2026-08-24",
-  "topic": "gyn",
-  "kind": "pending",
-  "title": "Review pending: VA updated M21-1 V.iii.8.A",
-  "summary": "VA updated this source on August 24, 2026, after the version this topic was written from: M21-1 V.iii.8.A (Disabilities of the Gynecological System, version used: September 30, 2025). VCI has not reviewed the change yet. Check the current M21-1 on KnowVA before relying on this topic.",
-  "marks": []
- },
- {
-  "date": "2026-08-24",
-  "topic": "blood",
-  "kind": "pending",
-  "title": "Review pending: VA updated M21-1 V.iii.9",
-  "summary": "VA updated this source on August 24, 2026, after the version this topic was written from: M21-1 V.iii.9 (Hematologic and Lymphatic Systems, version used: September 15, 2025). VCI has not reviewed the change yet. Check the current M21-1 on KnowVA before relying on this topic.",
-  "marks": []
- },
- {
-  "date": "2026-08-24",
-  "topic": "conds",
-  "kind": "pending",
-  "title": "Review pending: VA updated M21-1 IV.i.3.A, M21-1 IV.i.3.B",
-  "summary": "VA updated these sources on August 24, 2026, after the versions this topic was written from: M21-1 IV.i.3.A (General Criteria for Sufficiency of Examination Reports, version used: January 12, 2026); M21-1 IV.i.3.B (Examination Sufficiency for Specific Disabilities, version used: May 27, 2025). VCI has not reviewed the changes yet. Check the current M21-1 on KnowVA before relying on this topic.",
-  "marks": []
- },
- {
-  "date": "2026-08-24",
-  "topic": "insuf",
-  "kind": "pending",
-  "title": "Review pending: VA updated M21-1 IV.i.3.A, M21-1 IV.i.3.C",
-  "summary": "VA updated these sources on August 24, 2026, after the versions this topic was written from: M21-1 IV.i.3.A (General Criteria for Sufficiency of Examination Reports, version used: January 12, 2026); M21-1 IV.i.3.C (Insufficient Examinations, version used: July 23, 2025). VCI has not reviewed the changes yet. Check the current M21-1 on KnowVA before relying on this topic.",
-  "marks": []
- },
- {
-  "date": "2026-08-24",
-  "topic": "exams",
-  "kind": "pending",
-  "title": "Review pending: VA updated M21-1 IV.i.3.A, M21-1 IV.i.1.A, M21-1 IV.i.1.B, M21-1 IV.i.2.A, M21-1 IV.i.2.E, M21-1 IV.i.2.F, M21-1 IV.i.3.B, M21-1 IV.i.3.C",
-  "summary": "VA updated these sources on August 24, 2026, after the versions this topic was written from: M21-1 IV.i.3.A (General Criteria for Sufficiency of Examination Reports, version used: January 12, 2026); M21-1 IV.i.1.A (Duty to Assist With Providing a Medical Examination or Opinion, version used: May 27, 2025); M21-1 IV.i.1.B (Evidentiary Standards for Finding an Examination or Opinion Necessary, version used: May 1, 2026); M21-1 IV.i.2.A (Examination Requests Overview, version used: August 18, 2026); M21-1 IV.i.2.E (Examinations in Special Situations, version used: August 18, 2026); M21-1 IV.i.2.F (Failure to Report and Rescheduling Examinations, version used: May 27, 2025); M21-1 IV.i.3.B (Examination Sufficiency for Specific Disabilities, version used: May 27, 2025); M21-1 IV.i.3.C (Insufficient Examinations, version used: July 23, 2025). VCI has not reviewed the changes yet. Check the current M21-1 on KnowVA before relying on this topic.",
-  "marks": []
- },
- {
-  "date": "2026-08-24",
-  "topic": "skin",
-  "kind": "pending",
-  "title": "Review pending: VA updated M21-1 V.iii.10",
-  "summary": "VA updated this source on August 24, 2026, after the version this topic was written from: M21-1 V.iii.10 (Skin Conditions, version used: January 14, 2026). VCI has not reviewed the change yet. Check the current M21-1 on KnowVA before relying on this topic.",
-  "marks": []
- },
- {
-  "date": "2026-08-24",
-  "topic": "endo",
-  "kind": "pending",
-  "title": "Review pending: VA updated M21-1 V.iii.11",
-  "summary": "VA updated this source on August 24, 2026, after the version this topic was written from: M21-1 V.iii.11 (Endocrine Conditions, version used: May 28, 2025). VCI has not reviewed the change yet. Check the current M21-1 on KnowVA before relying on this topic.",
-  "marks": []
- },
- {
-  "date": "2026-08-24",
-  "topic": "nerves",
-  "kind": "pending",
-  "title": "Review pending: VA updated M21-1 V.iii.12.A",
-  "summary": "VA updated this source on August 24, 2026, after the version this topic was written from: M21-1 V.iii.12.A (Neurological Conditions and Convulsive Disorders, version used: January 14, 2026). VCI has not reviewed the change yet. Check the current M21-1 on KnowVA before relying on this topic.",
-  "marks": []
- },
- {
-  "date": "2026-08-24",
-  "topic": "mentalr",
-  "kind": "pending",
-  "title": "Review pending: VA updated M21-1 V.iii.13",
-  "summary": "VA updated this source on August 24, 2026, after the version this topic was written from: M21-1 V.iii.13 (Mental Disorders, version used: May 27, 2026). VCI has not reviewed the change yet. Check the current M21-1 on KnowVA before relying on this topic.",
-  "marks": []
- },
- {
-  "date": "2026-08-24",
-  "topic": "ratingdec",
-  "kind": "pending",
-  "title": "Review pending: VA updated M21-1 V.iv.1.A, M21-1 V.iv.1.B, M21-1 V.iv.1.C",
-  "summary": "VA updated these sources on August 24, 2026, after the versions this topic was written from: M21-1 V.iv.1.A (Completing the Rating Decision Narrative, version used: July 29, 2026); M21-1 V.iv.1.B (Codesheet Section, version used: March 23, 2026); M21-1 V.iv.1.C (Coded Conclusion, version used: December 29, 2025). VCI has not reviewed the changes yet. Check the current M21-1 on KnowVA before relying on this topic.",
-  "marks": []
- },
- {
-  "date": "2026-08-24",
-  "topic": "gu",
-  "kind": "pending",
-  "title": "Review pending: VA updated M21-1 V.iii.7",
-  "summary": "VA updated this source on August 24, 2026, after the version this topic was written from: M21-1 V.iii.7 (Genitourinary Disabilities, version used: March 19, 2026). VCI has not reviewed the change yet. Check the current M21-1 on KnowVA before relying on this topic.",
-  "marks": []
- },
- {
-  "date": "2026-08-24",
-  "topic": "tbir",
-  "kind": "pending",
-  "title": "Review pending: VA updated M21-1 V.iii.12.B",
-  "summary": "VA updated this source on August 24, 2026, after the version this topic was written from: M21-1 V.iii.12.B (Traumatic Brain Injury (TBI), version used: December 29, 2025). VCI has not reviewed the change yet. Check the current M21-1 on KnowVA before relying on this topic.",
-  "marks": []
- },
- {
-  "date": "2026-08-24",
-  "topic": "neuro",
-  "kind": "pending",
-  "title": "Review pending: VA updated M21-1 V.iii.12.C",
-  "summary": "VA updated this source on August 24, 2026, after the version this topic was written from: M21-1 V.iii.12.C (Progressive Neurological Disorders, version used: July 17, 2025). VCI has not reviewed the change yet. Check the current M21-1 on KnowVA before relying on this topic.",
-  "marks": []
- },
- {
-  "date": "2026-08-24",
-  "topic": "resp",
-  "kind": "pending",
-  "title": "Review pending: VA updated M21-1 V.iii.4.B, M21-1 V.iii.4.A",
-  "summary": "VA updated these sources on August 24, 2026, after the versions this topic was written from: M21-1 V.iii.4.B (Tuberculosis, version used: May 28, 2025); M21-1 V.iii.4.A (Respiratory Conditions, version used: May 28, 2025). VCI has not reviewed the changes yet. Check the current M21-1 on KnowVA before relying on this topic.",
-  "marks": []
- },
- {
-  "date": "2026-08-24",
-  "topic": "programs",
-  "kind": "pending",
-  "title": "Review pending: VA updated M21-1 I.ii.2",
-  "summary": "VA updated this source on August 24, 2026, after the version this topic was written from: M21-1 I.ii.2 (Department of Veterans Affairs (VA) Benefit Programs, version used: May 27, 2025). VCI has not reviewed the change yet. Check the current M21-1 on KnowVA before relying on this topic.",
-  "marks": []
- },
- {
-  "date": "2026-08-24",
-  "topic": "emoh",
-  "kind": "pending",
-  "title": "Review pending: VA updated M21-1 VIII.iii.9.A, M21-1 VIII.iii.9.B",
-  "summary": "VA updated these sources on August 24, 2026, after the versions this topic was written from: M21-1 VIII.iii.9.A (General Information on Exposure to Specific Environmental or Milit, version used: December 23, 2025); M21-1 VIII.iii.9.B (Processing Claims Based on Exposure to Specific Environmental or M, version used: April 27, 2026). VCI has not reviewed the changes yet. Check the current M21-1 on KnowVA before relying on this topic.",
-  "marks": []
- },
- {
-  "date": "2026-08-24",
-  "topic": "incarc",
-  "kind": "pending",
-  "title": "Review pending: VA updated M21-1 VI.iv.2.B, M21-1 VI.iv.2.A",
-  "summary": "VA updated these sources on August 24, 2026, after the versions this topic was written from: M21-1 VI.iv.2.B (Paying Benefits to the Dependent(s) of an Incarcerated Veteran, version used: March 9, 2026); M21-1 VI.iv.2.A (Apportionment Process, version used: March 9, 2026). VCI has not reviewed the changes yet. Check the current M21-1 on KnowVA before relying on this topic.",
-  "marks": []
- },
- {
-  "date": "2026-08-24",
-  "topic": "vetstatus",
-  "kind": "pending",
-  "title": "Review pending: VA updated M21-1 III.i.1.A",
-  "summary": "VA updated this source on August 24, 2026, after the version this topic was written from: M21-1 III.i.1.A (Establishing Veteran Status, version used: May 27, 2025). VCI has not reviewed the change yet. Check the current M21-1 on KnowVA before relying on this topic.",
-  "marks": []
- },
- {
-  "date": "2026-08-24",
-  "topic": "civmm",
-  "kind": "pending",
-  "title": "Review pending: VA updated M21-1 X.i.5.A, M21-1 III.i.1.C",
-  "summary": "VA updated these sources on August 24, 2026, after the versions this topic was written from: M21-1 X.i.5.A (Establishing Veteran Status Based on Merchant Marine Service, version used: February 2, 2026); M21-1 III.i.1.C (Civilian Groups Approved for Veteran Status, version used: May 27, 2025). VCI has not reviewed the changes yet. Check the current M21-1 on KnowVA before relying on this topic.",
-  "marks": []
- },
- {
-  "date": "2026-08-24",
-  "topic": "evidence",
-  "kind": "pending",
-  "title": "Review pending: VA updated M21-1 V.ii.1.A, M21-1 V.ii.1.B",
-  "summary": "VA updated these sources on August 24, 2026, after the versions this topic was written from: M21-1 V.ii.1.A (Principles of Reviewing and Weighing Evidence, version used: May 27, 2025); M21-1 V.ii.1.B (Reviewing Testimony and Lay Evidence, version used: May 27, 2025). VCI has not reviewed the changes yet. Check the current M21-1 on KnowVA before relying on this topic.",
-  "marks": []
- },
- {
-  "date": "2026-08-24",
-  "topic": "congenital",
-  "kind": "pending",
-  "title": "Review pending: VA updated M21-1 V.ii.2.E",
-  "summary": "VA updated this source on August 24, 2026, after the version this topic was written from: M21-1 V.ii.2.E (SC for Congenital, Developmental, or Hereditary Disorders, version used: May 28, 2025). VCI has not reviewed the change yet. Check the current M21-1 on KnowVA before relying on this topic.",
-  "marks": []
- },
- {
-  "date": "2026-08-24",
-  "topic": "issues",
-  "kind": "pending",
-  "title": "Review pending: VA updated M21-1 V.ii.3.A, M21-1 V.ii.3.B",
-  "summary": "VA updated these sources on August 24, 2026, after the versions this topic was written from: M21-1 V.ii.3.A (Determining the Issues, version used: May 1, 2026); M21-1 V.ii.3.B (Making Partial Rating Decisions, version used: May 27, 2025). VCI has not reviewed the changes yet. Check the current M21-1 on KnowVA before relying on this topic.",
-  "marks": []
- },
- {
-  "date": "2026-08-24",
-  "topic": "evaluate",
-  "kind": "pending",
-  "title": "Review pending: VA updated M21-1 V.ii.3.D",
-  "summary": "VA updated this source on August 24, 2026, after the version this topic was written from: M21-1 V.ii.3.D (Evaluating Disabilities, version used: July 29, 2026). VCI has not reviewed the change yet. Check the current M21-1 on KnowVA before relying on this topic.",
-  "marks": []
- },
  {
   "date": "2026-10-20",
   "topic": "supp",
@@ -5931,7 +5309,7 @@ ${r.flags.length ? `<h2>Needs a closer look</h2><ul>${r.flags.map(f => `<li>${es
 <style>body{font:15px/1.5 Georgia,serif;color:#1a1a1a;max-width:760px;margin:24px auto;padding:0 18px}h1{font-size:22px;margin:0 0 4px}h3{font-size:14px;margin:10px 0 2px}li.sub{list-style:circle;margin-left:18px}h2{font-size:16px;margin:20px 0 6px;border-bottom:1px solid #ccc;padding-bottom:3px}p,li{margin:4px 0}.m{color:#555;font-size:13px}ul{padding-left:20px}.cb li{list-style:none;margin-left:-20px}.cb li:before{content:"\\2610  "}@media print{body{margin:0}}</style></head><body>
 <h1>For the provider completing a VA DBQ or medical opinion</h1>
 <p class="m">From your patient, who is filing a VA disability claim. This summarizes what VA's manual (${DOC_SRC}) says raters look for. Thank you for your help.</p>
-${(() => { const u = allUpdates().filter(x => x.kind === 'pending' || ageDays(x.date) <= UPD_DAYS); return u.length ? `<h2>Recent changes</h2><ul>${u.map(x => `<li><b>${KIND_LABEL[x.kind]}, ${VCI.fmt(x.date)}:</b> ${esc(topicLabel(x.topic))}. ${x.summary}</li>`).join('')}</ul>` : ''; })()}
+${(() => { const u = allUpdates().filter(x => ageDays(x.date) <= UPD_DAYS); return u.length ? `<h2>Recent changes</h2><ul>${u.map(x => `<li><b>${KIND_LABEL[x.kind]}, ${VCI.fmt(x.date)}:</b> ${esc(topicLabel(x.topic))}. ${x.summary}</li>`).join('')}</ul>` : ''; })()}
 ${DOC_GUIDE.map(g => `<h2>${g.title}</h2>${g.lead ? `<p>${strip(g.lead)}</p>` : ''}<ul class="${g.id === 'sign' ? 'cb' : ''}">${g.items.map(i => `<li>${strip(i)}</li>`).join('')}</ul>${g.after.map(t => `<p class="m">${strip(t)}</p>`).join('')}`).join('')}
 <h2>Writing the opinion</h2><ul>${DOC_OPINION.map(i => `<li>${esc(i)}</li>`).join('')}</ul>
 <h1 style="margin-top:28px">Important: DBQs not available for public use</h1><p>${NONPUBLIC_WHY}</p><ul>${NONPUBLIC_DBQ.map(d => `<li>${esc(d)}</li>`).join('')}</ul><p class="m">VA examiners complete these forms. A private provider's medical opinion or records are still evidence VA must consider. Current list: ${NONPUBLIC_URL}</p>
@@ -7143,7 +6521,7 @@ ${topics.length ? `<h1 style="margin-top:28px">Condition-specific requirements</
   ];
   const TERA_EFF = [
     ['What § 3.114 means, in plain words <span class="rule-tag law">Law</span>', ['<b>38 C.F.R. § 3.114(a)</b> applies when a benefit is granted or increased because of a <b>liberalizing law</b> or VA issue, a change that makes more people eligible. The payment start date follows the facts, but <b>never before</b> the date the change took effect. <span class="rule-tag guide">VA guidance</span> VA treats the PACT Act\'s new presumptions as a liberalizing law, with <b>August 10, 2022</b> as the earliest date; a presumption VA added later by its own rule starts no earlier than that rule.', '<b>Continuous eligibility:</b> to be paid back to an earlier date, the evidence must show you met <b>every</b> requirement on the day the change took effect, and kept meeting them from then until your claim or VA\'s decision.', '<b>(a)(1) Within 1 year:</b> if your request reaches VA, or VA reviews the claim on its own, within 1 year of the change, payment may start from the change\'s effective date.', '<b>(a)(2) VA reviews later:</b> if VA reviews it on its own more than 1 year after, payment may go back 1 year before VA\'s decision.', '<b>(a)(3) You ask later:</b> if your request reaches VA more than 1 year after, payment may go back 1 year before VA received it.', 'It covers original claims, supplemental claims, and claims for increase.']],
-    ['Everything else <span class="rule-tag law">Law</span>', ['Otherwise the usual rule applies: the date VA received the claim, or the date entitlement arose, whichever is later (38 C.F.R. § 3.400).', 'An <b>intent to file</b> holds your claim date for up to one year while you gather evidence (38 C.F.R. § 3.155).', '<span class="review-flag">Not settled here:</span> the public guidance VCI reviewed does not say whether § 3.114 applies to a grant based on a TERA opinion rather than a presumption. Ask an accredited representative.']],
+    ['Everything else <span class="rule-tag law">Law</span>', ['Otherwise the usual rule applies: the date VA received the claim, or the date entitlement arose, whichever is later (38 C.F.R. § 3.400).', 'An <b>intent to file</b> holds your claim date for up to one year while you gather evidence (38 C.F.R. § 3.155).', '<b>Not addressed in the public guidance:</b> it does not say whether § 3.114 applies to a grant based on a TERA opinion rather than a presumption. Ask an accredited representative.']],
   ];
   const TERA_FIX = [
     ['The decision did not consider your exposure', ['You showed a disability and a TERA, VA denied a condition that is not presumptive, and the decision neither discusses a TERA exam nor names an exception.', 'VA\'s manual treats a needed exam VA did not get as a <b>duty to assist error</b>. In a <b>Higher-Level Review</b>, the reviewer returns the issue for the exam and a new decision.', 'If you have <b>new</b> evidence, such as records showing where you served or a doctor\'s opinion, a <b>Supplemental Claim</b> lets VA consider it.']],
@@ -7676,7 +7054,7 @@ ${topics.length ? `<h2>5. For these conditions</h2><ul>${topics.map(t => `<li><b
         <h3 class="edu-h" style="margin-top:18px">When VA does not order a TERA exam <span class="rule-tag guide">VA guidance</span></h3>
         <p class="muted" style="font-size:.88rem;margin:0 0 8px">VA's guidance (VBA Letter 20-24-06, June 12, 2024) names the conditions and situations where VA has decided there is no indication of an association, so it does not order a TERA exam and opinion.</p>
         <div class="insuf-grid">${cardsHTML(TERA_EXC)}<div class="insuf-card must"><h3 class="edu-h">When VA orders it anyway</h3><ul class="plain-list"><li>For <b>physical trauma</b>, <b>mental disorders</b>, and <b>herbicide-only</b> conditions, VA orders the exam if you submit <b>competent medical or scientific evidence</b> linking the condition to your in-service exposure.</li><li>An exception never stops VA from deciding the claim on a direct, secondary, or presumptive basis.</li></ul></div></div>
-        <p class="src-box review-note" style="margin-top:10px" role="note"><b>Awaiting expert review.</b> These exception categories come from VA's 2024 guidance letter, which said they would be added to the M21-1 manual; VCI could not check the current M21-1 wording. VA has proposed writing them into 38 C.F.R. § 3.159 (89 Fed. Reg. 79815, October 1, 2024), but as of October 15, 2026 that rule was not final.</p>
+        <p class="src-box" style="margin-top:10px" role="note"><b>About these categories.</b> They come from VA's 2024 guidance letter, which said they would be added to the M21-1 manual; VCI could not check the current M21-1 wording. VA has proposed writing them into 38 C.F.R. § 3.159 (89 Fed. Reg. 79815, October 1, 2024), but as of October 15, 2026 that rule was not final.</p>
         <h3 class="edu-h" style="margin-top:18px">Agent Orange: two different lists</h3>
         <div class="insuf-grid">${cardsHTML(TERA_AO)}</div>
         <h3 class="edu-h" style="margin-top:18px">How VA generally applies the law, step by step</h3>
@@ -7856,56 +7234,47 @@ ${quickPanelHTML(sel)}
   const ageDays = iso => Math.round((Date.parse(TODAY) - Date.parse(iso)) / 864e5);
   const topicLabel = id => { const t = EDU_GROUPS.flatMap(g => g[1]).find(x => x[0] === id); return t ? t[1] : id; };
   function topicUpdates(id) {
-    const out = UPD.filter(u => u.topic === id).map(u => Object.assign({}, u));
+    const out = UPD.filter(u => u.topic === id && u.kind !== 'pending').map(u => Object.assign({}, u));
     const arts = (SRC.topics[id] || []).map(a => Object.assign({ id: a }, SRC.articles[a])).filter(a => a.updated);
     if (arts.length) { const a = arts.sort((x, y) => y.updated.localeCompare(x.updated))[0];
       if (ageDays(a.updated) <= UPD_DAYS) out.push({ date: a.updated, topic: id, kind: 'source', title: `VA updated ${a.cite}`, summary: `VA updated ${a.cite} (${a.name}) on ${VCI.fmt(a.updated)}. This topic was written from that version.`, marks: [] }); }
-    return out.sort((x, y) => (y.kind === 'pending') - (x.kind === 'pending') || y.date.localeCompare(x.date));
+    return out.sort((x, y) => y.date.localeCompare(x.date));
   }
-  function allUpdates() { return EDU_ORDER.flatMap(topicUpdates).sort((x, y) => (y.kind === 'pending') - (x.kind === 'pending') || y.date.localeCompare(x.date) || (x.kind === 'new') - (y.kind === 'new')); }
+  function allUpdates() { return EDU_ORDER.flatMap(topicUpdates).sort((x, y) => y.date.localeCompare(x.date) || (x.kind === 'new') - (y.kind === 'new')); }
   function updBadge(id) {
     const u = topicUpdates(id);
-    if (u.some(x => x.kind === 'pending')) return '<span class="upd-badge pend">Review pending</span>';
     if (u.some(x => x.kind === 'new' && ageDays(x.date) <= UPD_DAYS)) return '<span class="upd-badge new">New</span>';
     if (u.some(x => ageDays(x.date) <= UPD_DAYS)) return '<span class="upd-badge">Updated</span>';
     return '';
   }
-  const KIND_LABEL = { new: 'New topic', updated: 'VCI revised', source: 'Manual updated', pending: 'Review pending' };
+  const KIND_LABEL = { new: 'New topic', updated: 'VCI revised', source: 'Manual updated' };
   function whatsNewHTML() {
-    const all = allUpdates().filter(u => u.kind === 'pending' || ageDays(u.date) <= UPD_DAYS); if (!all.length) return '';
-    const row = u => `<li class="wn-row"><span class="upd-badge ${u.kind === 'pending' ? 'pend' : u.kind === 'new' ? 'new' : ''}">${KIND_LABEL[u.kind]}</span> <span class="num muted">${VCI.fmt(u.date)}</span> <button class="btn link" data-act="eduTopic" data-id="${u.topic}">${esc(topicLabel(u.topic))}</button><span class="wn-sum">${u.summary}</span></li>`;
+    const all = allUpdates().filter(u => ageDays(u.date) <= UPD_DAYS); if (!all.length) return '';
+    const row = u => `<li class="wn-row"><span class="upd-badge ${u.kind === 'new' ? 'new' : ''}">${KIND_LABEL[u.kind]}</span> <span class="num muted">${VCI.fmt(u.date)}</span> <button class="btn link" data-act="eduTopic" data-id="${u.topic}">${esc(topicLabel(u.topic))}</button><span class="wn-sum">${u.summary}</span></li>`;
     return `<section class="panel whats-new" aria-labelledby="wn-h"><div class="panel-head"><h2 id="wn-h">What's changed</h2><span class="muted">Last ${UPD_DAYS} days</span></div>
       <p class="muted" style="font-size:.86rem;margin:0 0 6px">New topics, VCI revisions, and M21-1 sections VA updated recently. Each topic's sources and dates are listed at its end.</p>
       <ul class="wn-list">${all.slice(0, 6).map(row).join('')}</ul>${all.length > 6 ? `<details><summary>Show all ${all.length} changes</summary><ul class="wn-list">${all.slice(6).map(row).join('')}</ul></details>` : ''}</section>`;
   }
   function topicNoticeHTML(id) {
-    const u = topicUpdates(id).filter(x => x.kind === 'pending' || ageDays(x.date) <= UPD_DAYS); if (!u.length) return '';
-    return `<div class="upd-box${u.some(x => x.kind === 'pending') ? ' pend' : ''}" role="note"><b>What changed</b><ul class="plain-list">${u.map(x => `<li><span class="upd-badge ${x.kind === 'pending' ? 'pend' : x.kind === 'new' ? 'new' : ''}">${KIND_LABEL[x.kind]}</span> <span class="num">${VCI.fmt(x.date)}</span>: ${x.summary}</li>`).join('')}</ul>${u.some(x => x.marks && x.marks.length) ? '<p class="muted" style="font-size:.82rem;margin:4px 0 0">Changed lines are highlighted below.</p>' : ''}</div>`;
+    const u = topicUpdates(id).filter(x => ageDays(x.date) <= UPD_DAYS); if (!u.length) return '';
+    return `<div class="upd-box" role="note"><b>What changed</b><ul class="plain-list">${u.map(x => `<li><span class="upd-badge ${x.kind === 'new' ? 'new' : ''}">${KIND_LABEL[x.kind]}</span> <span class="num">${VCI.fmt(x.date)}</span>: ${x.summary}</li>`).join('')}</ul>${u.some(x => x.marks && x.marks.length) ? '<p class="muted" style="font-size:.82rem;margin:4px 0 0">Changed lines are highlighted below.</p>' : ''}</div>`;
   }
   function markChanges(id, html) {
-    const marks = topicUpdates(id).filter(x => ageDays(x.date) <= UPD_DAYS || x.kind === 'pending').flatMap(x => x.marks || []); if (!marks.length) return html;
+    const marks = topicUpdates(id).filter(x => ageDays(x.date) <= UPD_DAYS).flatMap(x => x.marks || []); if (!marks.length) return html;
     return html.replace(/<li>([\s\S]*?)<\/li>/g, (m, inner) => marks.some(k => inner.includes(k)) ? `<li class="chg">${inner}</li>` : m);
   }
-  // Topics with content written from general knowledge rather than VA source text, until an expert reviews them.
-  const REVIEW_PENDING = {
-    part3: 'The section summaries and paragraph letters for 38 C.F.R. 3.105 and 3.303 to 3.400',
-    part4: 'The Part 4 section numbers and summaries',
-    exams: 'The exam-day tips',
-    teraexam: 'The step-by-step outline and the tips'
-  };
-  function reviewNoticeHTML(id) {
-    return REVIEW_PENDING[id] ? `<div class="src-box review-note" role="note"><b>Awaiting expert review.</b> ${REVIEW_PENDING[id]} in this topic were written from general knowledge, not copied from VA source text. Check the linked regulation before relying on a detail.</div>` : '';
-  }
+  // Shown at the top of every topic in place of the old review-pending notices (Gory, Oct 24, 2026).
+  const CHECK_REGS = 'Please check official VA regulations for current information.';
+  const checkRegsHTML = () => `<p class="check-regs" role="note">${CHECK_REGS}</p>`;
   function sourcesHTML(id) {
     const arts = (SRC.topics[id] || []).map(a => Object.assign({ id: a }, SRC.articles[a]));
     const web = SRC.web && SRC.web[id]; const ecfr = (SRC.ecfrTopics && SRC.ecfrTopics[id]) || [];
-    const pend = topicUpdates(id).some(x => x.kind === 'pending');
     const items = ecfr.map(pn => `<li><span class="rule-tag law">Law</span> <a href="https://www.ecfr.gov/current/title-38/chapter-I/part-${pn}" target="_blank" rel="noopener">38 C.F.R. Part ${pn}</a> (eCFR).</li>`)
       .concat(arts.map(a => `<li><span class="rule-tag guide">VA guidance</span> <a href="${KNOWVA_URL(a.id)}" target="_blank" rel="noopener">${a.cite}</a>, ${esc(a.name)}. <span class="muted">Version updated ${VCI.fmt(a.updated)}.</span></li>`))
       .concat(web ? [`<li><span class="rule-tag guide">VA guidance</span> <a href="${web.url}" target="_blank" rel="noopener">${esc(web.name)}</a>. <span class="muted">Checked ${VCI.fmt(web.updated)}.</span></li>`] : []);
-    return `<div class="src-box"><b>Sources for this topic</b>${pend ? ' <span class="upd-badge pend">Update pending review</span>' : ''}${items.length ? `<ul class="plain-list">${items.join('')}</ul>` : '<p class="muted" style="margin:2px 0 0">Cited in the section headings above.</p>'}
+    return `<div class="src-box"><b>Sources for this topic</b>${items.length ? `<ul class="plain-list">${items.join('')}</ul>` : '<p class="muted" style="margin:2px 0 0">Cited in the section headings above.</p>'}
       <p class="muted" style="font-size:.82rem;margin:4px 0 0"><b>Law</b> (38 U.S.C. and 38 C.F.R.) binds VA and the Board. <b>VA guidance</b> (the M21-1 manual and VA.gov) tells VA staff how to apply the law; the Board is not bound by it. <b>Educational tips</b> are general suggestions from VCI, not rules.</p>
-      <p class="muted" style="font-size:.82rem;margin:4px 0 0">VCI reviewed ${EDU_REVIEWED}. VA updates its manual often; check the source before relying on a detail.${pend ? ' VA has changed a source since this topic was written; parts may be out of date.' : ''}</p></div>`;
+      <p class="muted" style="font-size:.82rem;margin:4px 0 0">VCI reviewed ${EDU_REVIEWED}. VA updates its manual often; check the source before relying on a detail.</p></div>`;
   }
   function educPage(topic) {
     const sel = educSelected(); const cur = EDU_ORDER.includes(topic) ? topic : '';
@@ -7914,7 +7283,7 @@ ${quickPanelHTML(sel)}
       const body = markChanges(cur, eduPanel(cur, sel)).replace(/(<div class="insuf-card vet"><h3 class="edu-h">[^<]*)(<\/h3>)/g, '$1 <span class="rule-tag tip">Educational tip</span>$2');
       return `<div class="page"><h1 class="sr-only">${label(cur)}</h1>
       <nav class="edu-crumb" aria-label="Breadcrumb">${(p => `<button class="btn link" data-go="learn.${p[0]}">Learn: ${p[1]}</button>`)(PILLARS.find(p => p[4].some(g => g[1].includes(cur))) || PILLARS[0])} <span aria-hidden="true">›</span> <span>${label(cur)}</span></nav>
-      <div id="edu-topic">${topicNoticeHTML(cur)}${reviewNoticeHTML(cur)}${body}
+      <div id="edu-topic">${topicNoticeHTML(cur)}${checkRegsHTML()}${body}
         ${sourcesHTML(cur)}
         <nav class="edu-pager" aria-label="Topics">${i > 0 ? `<button class="btn" data-act="eduTopic" data-id="${EDU_ORDER[i - 1]}">← ${label(EDU_ORDER[i - 1])}</button>` : '<span></span>'}<button class="btn link" data-act="eduTop">All topics</button>${i < EDU_ORDER.length - 1 ? `<button class="btn" data-act="eduTopic" data-id="${EDU_ORDER[i + 1]}">${label(EDU_ORDER[i + 1])} →</button>` : '<span></span>'}</nav></div>
       <p class="muted" style="font-size:.82rem">Summarized from VA's adjudication manual, M21-1, and 38 C.F.R. Each section shows its source. A plain-language summary, not legal or medical advice.</p>
@@ -7935,7 +7304,7 @@ ${quickPanelHTML(sel)}
       <section class="panel edu-index" aria-labelledby="edu-index-h"><div class="panel-head"><h2 id="edu-index-h">Learn by topic</h2><span class="muted">Choose one</span></div>
         ${EDU_GROUPS.map(([g, list]) => `<div class="edu-group"><span class="eyebrow">${g}</span><div class="edu-cards">${list.map(([id, t, sub]) => `<button class="edu-card${id === 'ptsd' ? ' ptsd' : id === 'fpow' ? ' fpow' : id === 'iu' ? ' iu' : id === 'smc' ? ' smc' : ''}${TOP_TOPICS.includes(id) ? ' top' : ''}" data-act="eduTopic" data-id="${id}" aria-pressed="${cur === id}">${TOP_TOPICS.includes(id) ? topFlag() : ''}<b>${t}</b>${updBadge(id)}<span>${sub}</span></button>`).join('')}</div></div>`).join('')}
       </section>
-      ${cur ? `<div id="edu-topic" tabindex="-1">${topicNoticeHTML(cur)}${markChanges(cur, eduPanel(cur, sel))}
+      ${cur ? `<div id="edu-topic" tabindex="-1">${topicNoticeHTML(cur)}${checkRegsHTML()}${markChanges(cur, eduPanel(cur, sel))}
         ${sourcesHTML(cur)}
         <nav class="edu-pager" aria-label="Topics">${i > 0 ? `<button class="btn" data-act="eduTopic" data-id="${EDU_ORDER[i - 1]}">← ${label(EDU_ORDER[i - 1])}</button>` : '<span></span>'}<button class="btn link" data-act="eduTop">All topics</button>${i < EDU_ORDER.length - 1 ? `<button class="btn" data-act="eduTopic" data-id="${EDU_ORDER[i + 1]}">${label(EDU_ORDER[i + 1])} →</button>` : '<span></span>'}</nav></div>`
         : '<p class="empty">Choose a topic above to read it. Everything is also in the full reference download.</p>'}
@@ -8031,7 +7400,7 @@ ${quickPanelHTML(sel)}
     const [, title, code, mlabel, mhelp, , example, extra] = EXPLAINERS.find(x => x[0] === id); const C = VCI.CRITERIA[id]; const v = exValue(id);
     return `<div class="page"><nav class="edu-crumb" aria-label="Breadcrumb"><button class="btn link" data-go="learn.ratings">Learn: Ratings</button> <span aria-hidden="true">›</span> <span>Rating-criteria explainer</span></nav>
       <div class="page-head"><span class="eyebrow">Ratings · Criteria explainer</span><h1>${title}</h1><p>See every level of VA's rating criteria for this measurement, in the regulation's own words, and where a number falls. This explains the criteria; it does not rate anyone. VA decides the rating from the whole record.</p></div>
-      ${frameNote(`The criteria are quoted from <a href="${P4_SECTION_URL}" target="_blank" rel="noopener">38 C.F.R. § 4.71a on eCFR</a> (current as of ${VCI.CRITERIA_ECFR}; checked ${VCI.CRITERIA_CHECKED}). This wording is stored in ClaimReady, not pulled live from eCFR; check eCFR for any change after that date. <span class="review-flag">The plain-language notes were written by VCI and are awaiting expert review.</span>`)}
+      ${frameNote(`The criteria are quoted from <a href="${P4_SECTION_URL}" target="_blank" rel="noopener">38 C.F.R. § 4.71a on eCFR</a> (current as of ${VCI.CRITERIA_ECFR}; checked ${VCI.CRITERIA_CHECKED}). This wording is stored in ClaimReady, not pulled live from eCFR; check eCFR for any change after that date. ${CHECK_REGS}`)}
       <nav class="pillars ex-pick" aria-label="Choose a measurement">${EXPLAINERS.map(e => `<button class="pillar-tab" data-go="explain.${e[0]}" aria-pressed="${e[0] === id}">${{ kneeflex: 'Knee bending', kneeext: 'Knee straightening', spinetl: 'Back bending', spinecx: 'Neck bending' }[e[0]]}</button>`).join('')}</nav>
       <p class="example-note"><b>Fictional example.</b> ${example} Not a VA determination.</p>
       <div class="ex-grid">
@@ -8044,7 +7413,7 @@ ${quickPanelHTML(sel)}
         <section class="panel ex-out" id="ex-out" aria-live="polite" aria-labelledby="ex-lv-h">${explainOut(id)}</section>
       </div>
       <section class="panel" aria-labelledby="ex-o-h"><h2 id="ex-o-h">Other rules VA must consider</h2>
-        <ul class="plain-list">${EX_RULES.map(([cite, name, txt, quoted]) => `<li><span class="rule-tag law">Law</span> <b>${name} (38 C.F.R. ${cite}).</b> ${txt}${quoted ? ' <span class="muted">(Quoted; checked ' + VCI.CRITERIA_CHECKED + '.)</span>' : ' <span class="review-flag">Summary awaiting expert review.</span>'}</li>`).join('')}
+        <ul class="plain-list">${EX_RULES.map(([cite, name, txt, quoted]) => `<li><span class="rule-tag law">Law</span> <b>${name} (38 C.F.R. ${cite}).</b> ${txt}${quoted ? ' <span class="muted">(Quoted; checked ' + VCI.CRITERIA_CHECKED + '.)</span>' : ''}</li>`).join('')}
         ${extra.map(x => `<li>${x}</li>`).join('')}</ul></section>
       <p class="muted" style="font-size:.86rem">More: <button class="btn link" data-go="educ.painmotion">Painful motion and flare-ups</button> · <button class="btn link" data-go="educ.msk">Arms, hands, spine, legs, and feet</button> · <a href="https://www.ecfr.gov/current/title-38/chapter-I/part-4" target="_blank" rel="noopener">The full rating schedule (38 C.F.R. Part 4)</a></p>
       ${notice}</div>`;
@@ -8093,13 +7462,13 @@ ${quickPanelHTML(sel)}
     const a = UI.quiz || {};
     const done = QUIZ_ITEMS.filter(q => a[q[0]] != null).length; const right = QUIZ_ITEMS.filter(q => a[q[0]] === q[2]).length;
     return `<div class="page"><div class="page-head"><span class="eyebrow">Training · Knowledge checks</span><h1>Check what you know about VA claims</h1><p>Scenario questions on exams, benefits, and ratings. Pick an answer to see the rule behind it. Nothing is saved or sent anywhere.</p></div>
-      ${frameNote('This is not official VA training and is not a VA certification. The questions were written by VCI from public sources and are awaiting review by a VA-accredited representative or attorney before anyone uses them to train staff.')}
+      ${frameNote('This is not official VA training and is not a VA certification. The questions were written by VCI from public VA sources and the law, and each answer names its source. ' + CHECK_REGS)}
       <p class="example-note"><b>Fictional scenarios.</b> Dana is not a real veteran, and these answers are not VA determinations.</p>
       <p class="muted" aria-live="polite" style="margin:0">${done ? `${done} of ${QUIZ_ITEMS.length} answered · ${right} right` : `${QUIZ_ITEMS.length} questions`} ${done ? '<button class="btn link" data-act="quizReset">Start over</button>' : ''}</p>
       ${QUIZ.map(([pid, pname, qs]) => `<section class="quiz-sec" aria-labelledby="qz-${pid}"><h2 id="qz-${pid}">${pname}</h2>
         ${qs.map(([qid, text, ans, opts, why, kind, cite, checked], qi) => { const pick = a[qid]; const answered = pick != null; const ok = pick === ans;
           return `<div class="panel quiz-q"><h3 id="qq-${qid}">${qi + 1}. ${text}</h3><div class="quiz-opts" role="group" aria-labelledby="qq-${qid}">${opts.map((o, oi) => `<button id="qo-${qid}-${oi}" class="quiz-opt${pick === oi ? (ok ? ' right' : ' wrong') : answered && oi === ans ? ' answer' : ''}" data-act="quizPick" data-q="${qid}" data-o="${oi}" aria-pressed="${pick === oi}">${answered && oi === ans ? '<span class="sr-only">Correct answer: </span>' : ''}${o}</button>`).join('')}</div>
-            ${answered ? `<div class="quiz-fb ${ok ? 'right' : 'wrong'}" role="status"><b>${ok ? 'Right.' : 'Not quite.'}</b> ${why}<p class="quiz-src"><span class="rule-tag ${kind === 'Law' ? 'law' : 'guide'}">${kind}</span> ${cite}. ${checked ? `<span class="muted">Source text checked on eCFR, ${VCI.CRITERIA_CHECKED}.</span>` : '<span class="review-flag">Not yet checked against the source text; awaiting expert review.</span>'}</p></div>` : ''}</div>`; }).join('')}</section>`).join('')}
+            ${answered ? `<div class="quiz-fb ${ok ? 'right' : 'wrong'}" role="status"><b>${ok ? 'Right.' : 'Not quite.'}</b> ${why}<p class="quiz-src"><span class="rule-tag ${kind === 'Law' ? 'law' : 'guide'}">${kind}</span> ${cite}. ${checked ? `<span class="muted">Source text checked on eCFR, ${VCI.CRITERIA_CHECKED}.</span>` : ''}</p></div>` : ''}</div>`; }).join('')}</section>`).join('')}
       <p class="muted" style="font-size:.86rem">Want the full explanation? <button class="btn link" data-go="learn.exams">Learn: Exams</button> · <button class="btn link" data-go="learn.benefits">Learn: Benefits</button> · <button class="btn link" data-go="learn.ratings">Learn: Ratings</button></p>
       ${notice}</div>`;
   }
@@ -8121,6 +7490,7 @@ ${quickPanelHTML(sel)}
     t('Explainers: every explainer has quoted criteria', () => EXPLAINERS.every(e => VCI.CRITERIA[e[0]] && VCI.CRITERIA[e[0]].levels.length) || 'missing criteria');
     t('TERA article: Top pick, in the Exams pillar, with Law and VA guidance labels', () => { const h = eduPanel('teraexam', []); return (TOP_TOPICS.includes('teraexam') && pillarOf('exams')[4].some(g => g[1].includes('teraexam')) && h.includes('rule-tag law') && h.includes('rule-tag guide')) || 'missing'; });
     t('Decision quality article: Must read, first in Ratings Start here, nine questions with Law and VA guidance labels', () => { const h = eduPanel('decqual', []); return (TOP_TOPICS.includes('decqual') && pillarOf('ratings')[4][0][1][0] === 'decqual' && DQ_QS.length === 9 && h.includes('rule-tag law') && h.includes('rule-tag guide') && h.includes('Must read') && !/VBMS|Codesheet|\bEP \d/.test(h)) || 'missing'; });
+    t('Topics: the check-official-regulations note shows, and no review-pending labels', () => (checkRegsHTML().includes(CHECK_REGS) && !UPD.some(u => u.kind === 'pending') && !/review pending|awaiting expert review/i.test(EDU_ORDER.map(id => eduPanel(id, [])).join(''))) || 'found a review label');
     t('Disclaimers: the one-line banner and the full disclaimer are present', () => (BANNER.startsWith('Independent educational tool.') && DISCLAIMER_FULL.length === 5) || 'missing');
     return T;
   }
