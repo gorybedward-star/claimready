@@ -1,0 +1,258 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="description" content="Free, independent 7-lesson path through a VA disability claim, from service connection to your decision: the key rules in plain English with public sources, and links to the ClaimReady guides and tools for each step. Progress stays on your device.">
+<meta name="referrer" content="no-referrer"><meta name="theme-color" content="#1d5a70">
+<link rel="manifest" href="manifest.webmanifest"><link rel="icon" type="image/png" href="icons/favicon-32.png"><link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+<title>Your Claim, Step by Step</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<style>@font-face{font-family:'Public Sans';font-style:normal;font-weight:400;font-display:swap;src:url(fonts/public-sans-latin-400-normal.woff2) format('woff2')}@font-face{font-family:'Public Sans';font-style:normal;font-weight:500;font-display:swap;src:url(fonts/public-sans-latin-500-normal.woff2) format('woff2')}@font-face{font-family:'Public Sans';font-style:normal;font-weight:600;font-display:swap;src:url(fonts/public-sans-latin-600-normal.woff2) format('woff2')}@font-face{font-family:'Public Sans';font-style:normal;font-weight:700;font-display:swap;src:url(fonts/public-sans-latin-700-normal.woff2) format('woff2')}@font-face{font-family:'Source Serif 4';font-style:normal;font-weight:400;font-display:swap;src:url(fonts/source-serif-4-latin-400-normal.woff2) format('woff2')}@font-face{font-family:'Source Serif 4';font-style:normal;font-weight:600;font-display:swap;src:url(fonts/source-serif-4-latin-600-normal.woff2) format('woff2')}@font-face{font-family:'Source Serif 4';font-style:italic;font-weight:400;font-display:swap;src:url(fonts/source-serif-4-latin-400-italic.woff2) format('woff2')}@font-face{font-family:'Source Serif 4';font-style:italic;font-weight:600;font-display:swap;src:url(fonts/source-serif-4-latin-600-italic.woff2) format('woff2')}@font-face{font-family:'IBM Plex Mono';font-style:normal;font-weight:400;font-display:swap;src:url(fonts/ibm-plex-mono-latin-400-normal.woff2) format('woff2')}@font-face{font-family:'IBM Plex Mono';font-style:normal;font-weight:600;font-display:swap;src:url(fonts/ibm-plex-mono-latin-600-normal.woff2) format('woff2')}</style>
+<style>
+:root {
+  --paper: #f3f5f4; --surface: #ffffff; --sunk: #e9eeec; --ink: #16201d; --muted: #5a6763; --line: #d4dcd9;
+  --accent: #1d5a70; --accent-ink: #ffffff; --accent-soft: #dfecf0;
+  --ok: #2a774b; --ok-soft: #e0f0e6; --wait: #8a560a; --wait-soft: #f7ecd8;
+  --f-ui: "Public Sans", "Segoe UI", system-ui, sans-serif;
+  --f-serif: "Source Serif 4", Georgia, "Times New Roman", serif;
+  --f-mono: "IBM Plex Mono", ui-monospace, Menlo, monospace;
+  --r: 6px;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --paper: #111816; --surface: #19211f; --sunk: #0d1312; --ink: #e4ebe8; --muted: #98a6a1; --line: #2b3633;
+  --accent: #72b6cf; --accent-ink: #0d1a1f; --accent-soft: #1b3038;
+  --ok: #62c189; --ok-soft: #173426; --wait: #e2a849; --wait-soft: #392b12; color-scheme: dark; } }
+:root[data-theme="dark"] {
+  --paper: #111816; --surface: #19211f; --sunk: #0d1312; --ink: #e4ebe8; --muted: #98a6a1; --line: #2b3633;
+  --accent: #72b6cf; --accent-ink: #0d1a1f; --accent-soft: #1b3038;
+  --ok: #62c189; --ok-soft: #173426; --wait: #e2a849; --wait-soft: #392b12; color-scheme: dark; }
+:root { padding-top: env(safe-area-inset-top, 0px); padding-bottom: env(safe-area-inset-bottom, 0px); }
+* { box-sizing: border-box; }
+[hidden] { display: none !important; }
+body { margin: 0; background: var(--paper); color: var(--ink); font-family: var(--f-ui); font-size: 0.95rem; line-height: 1.5; }
+.wrap { max-width: 760px; margin: 0 auto; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+.skip { position: absolute; left: -9999px; } .skip:focus { left: 16px; top: 8px; z-index: 20; background: var(--surface); padding: 8px 12px; border-radius: var(--r); }
+.banner { background: var(--ink); color: var(--paper); font-size: 0.8rem; }
+.banner .wrap { padding-block: 8px; }
+header.top { padding-block: 24px 8px; display: grid; gap: 10px; }
+h1, h2, h3 { font-family: var(--f-serif); font-weight: 600; margin: 0; line-height: 1.2; text-wrap: balance; }
+h1 { font-size: 1.9rem; letter-spacing: -0.01em; }
+h2 { font-size: 1.3rem; }
+h3 { font-size: 1.02rem; }
+p { margin: 0; }
+ul, ol { margin: 0; padding-left: 20px; display: grid; gap: 6px; }
+a { color: var(--accent); }
+.muted { color: var(--muted); }
+.eyebrow { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.09em; text-transform: uppercase; color: var(--muted); }
+.crumbs { display: flex; flex-wrap: wrap; gap: 6px 14px; align-items: baseline; }
+.crumbs a { font-weight: 600; font-size: .9rem; text-decoration: none; }
+.crumbs a:hover { text-decoration: underline; }
+.tag { display: inline-block; font-size: .7rem; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; padding: 1px 7px; border-radius: 4px; border: 1px solid currentColor; white-space: nowrap; }
+.tag.law { color: var(--accent); } .tag.guide { color: var(--wait); } .tag.court { color: var(--ok); }
+.example { display: grid; gap: 4px; background: var(--wait-soft); border: 1px solid var(--line); border-radius: var(--r); padding: 10px 12px; }
+.example b:first-child { font-size: .78rem; letter-spacing: .06em; text-transform: uppercase; }
+button, input { font: inherit; color: inherit; }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.btn { border: 1px solid var(--line); background: var(--surface); border-radius: var(--r); padding: 8px 14px; cursor: pointer; min-height: 44px; }
+.btn.primary { background: var(--accent); color: var(--accent-ink); border-color: var(--accent); font-weight: 600; }
+.btn.link { border: 0; background: none; color: var(--accent); text-decoration: underline; padding: 4px 0; min-height: 0; }
+main { display: grid; gap: 20px; padding-block: 12px 48px; }
+.panel { background: var(--surface); border: 1px solid var(--line); border-radius: var(--r); padding: 18px; display: grid; gap: 14px; min-width: 0; }
+.panel > header { display: grid; gap: 6px; }
+fieldset { border: 0; padding: 0; margin: 0; display: grid; gap: 10px; min-width: 0; }
+legend { font-family: var(--f-serif); font-weight: 600; font-size: 1.15rem; padding: 0; margin-bottom: 4px; }
+.choices { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 8px; }
+.choice { display: flex; gap: 10px; align-items: flex-start; border: 1px solid var(--line); border-radius: var(--r); padding: 10px 12px; cursor: pointer; background: var(--paper); min-height: 44px; }
+.choice:has(input:checked) { border-color: var(--accent); background: var(--accent-soft); }
+.choice input { margin-top: 4px; width: 18px; height: 18px; accent-color: var(--accent); flex: none; }
+.choice small { display: block; color: var(--muted); }
+.row { display: flex; flex-wrap: wrap; gap: 8px 14px; align-items: center; }
+.cols { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 12px; }
+.box { border: 1px solid var(--line); border-radius: var(--r); padding: 12px 14px; display: grid; gap: 8px; align-content: start; background: var(--paper); }
+.box.you { border-left: 4px solid var(--ok); }
+.box.doc { border-left: 4px solid var(--accent); }
+.box h3 { font-family: var(--f-ui); font-size: .82rem; letter-spacing: .06em; text-transform: uppercase; }
+.flow { list-style: none; padding: 0; counter-reset: q; gap: 0; }
+.flow > li { counter-increment: q; display: grid; grid-template-columns: 30px 1fr; gap: 10px; padding-bottom: 14px; position: relative; }
+.flow > li::before { content: counter(q); width: 26px; height: 26px; border-radius: 50%; background: var(--accent); color: var(--accent-ink); font-family: var(--f-mono); font-size: .8rem; display: grid; place-items: center; }
+.flow > li::after { content: ""; position: absolute; left: 12px; top: 28px; bottom: 2px; width: 2px; background: var(--line); }
+.flow > li:last-child::after { display: none; }
+.flow .stop { display: block; font-size: .85rem; color: var(--muted); margin-top: 2px; }
+.flow ul { margin-top: 6px; }
+.quote { font-family: var(--f-serif); border-left: 3px solid var(--line); padding: 2px 0 2px 12px; color: var(--ink); }
+.pills { list-style: none; padding: 0; display: flex; flex-wrap: wrap; gap: 6px; }
+.pills li { border: 1px solid var(--line); border-radius: 999px; padding: 2px 10px; font-size: .85rem; background: var(--paper); }
+.patterns { list-style: none; padding: 0; display: grid; gap: 8px; counter-reset: p; }
+.patterns li { counter-increment: p; display: grid; grid-template-columns: 30px 1fr; gap: 10px; align-items: start; border: 1px solid var(--line); border-radius: var(--r); padding: 10px 12px; }
+.patterns li::before { content: counter(p); font-family: var(--f-mono); font-weight: 600; font-size: 1rem; }
+.patterns li.yes { background: var(--ok-soft); }
+.patterns small { display: block; color: var(--muted); }
+.cite { font-size: 0.8rem; color: var(--muted); display: flex; flex-wrap: wrap; gap: 6px 10px; align-items: center; border-top: 1px dashed var(--line); padding-top: 10px; }
+table { border-collapse: collapse; width: 100%; font-size: 0.88rem; }
+th, td { text-align: left; padding: 7px 8px; border-bottom: 1px solid var(--line); vertical-align: top; }
+th { font-weight: 600; color: var(--muted); font-size: 0.76rem; letter-spacing: 0.04em; text-transform: uppercase; }
+.tscroll { overflow-x: auto; }
+.num { font-family: var(--f-mono); font-variant-numeric: tabular-nums; font-size: .86em; white-space: nowrap; }
+details { border: 1px solid var(--line); border-radius: var(--r); background: var(--paper); padding: 10px 12px; }
+summary { cursor: pointer; font-weight: 600; min-height: 24px; }
+details > :not(summary) { margin-top: 10px; }
+footer { font-size: 0.82rem; color: var(--muted); display: grid; gap: 8px; padding-block: 0 40px; }
+@media (max-width: 520px) { h1 { font-size: 1.55rem; } .panel { padding: 14px; } }
+@media print {
+  .banner { background: none; color: #000; border-bottom: 1px solid #000; }
+  .noprint, .skip { display: none !important; }
+  body { background: #fff; color: #000; font-size: 10.5pt; }
+  .panel, .box, details { border-color: #999; break-inside: avoid-page; }
+  details > :not(summary) { display: block !important; }
+  a { color: #000; }
+}
+
+.sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+/* Lesson path: progress bar, lesson map with done ticks, one panel per lesson (what you'll learn, three key points, read next, done + next). */
+.progress { display: grid; gap: 6px; }
+.bar { height: 8px; border-radius: 999px; background: var(--sunk); border: 1px solid var(--line); overflow: hidden; }
+.bar > span { display: block; height: 100%; width: 0; background: var(--ok); transition: width .2s; }
+.lmap { list-style: none; padding: 0; display: grid; gap: 6px; }
+.lmap a { display: grid; grid-template-columns: 34px 1fr auto; gap: 10px; align-items: center; text-decoration: none; color: var(--ink); border: 1px solid var(--line); border-radius: var(--r); padding: 8px 12px; background: var(--paper); min-height: 44px; }
+.lmap a:hover { border-color: var(--accent); }
+.lmap .n { width: 28px; height: 28px; border-radius: 50%; background: var(--accent); color: var(--accent-ink); font-family: var(--f-mono); font-size: .82rem; display: grid; place-items: center; }
+.lmap .done .n { background: var(--ok); }
+.lmap small { display: block; color: var(--muted); }
+.lmap .st { font-size: .72rem; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); }
+.lmap .done .st { color: var(--ok); }
+.lesson { scroll-margin-top: 12px; }
+.lesson.is-done { border-left: 4px solid var(--ok); }
+.learn { background: var(--accent-soft); border-radius: var(--r); padding: 10px 12px; }
+.keys { list-style: none; padding: 0; counter-reset: k; gap: 10px; }
+.keys > li { counter-increment: k; display: grid; grid-template-columns: 30px 1fr; gap: 10px; }
+.keys > li::before { content: counter(k); width: 26px; height: 26px; border-radius: 50%; border: 2px solid var(--accent); color: var(--accent); font-family: var(--f-mono); font-weight: 600; font-size: .8rem; display: grid; place-items: center; }
+.keys .cite { display: block; line-height: 1.8; border-top: 0; padding-top: 4px; }
+.keys .cite .tag { margin-right: 4px; } .keys .cite .tag:not(:first-child) { margin-left: 6px; }
+.lesson h3 { margin-bottom: 10px; }
+.next { list-style: none; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 6px; }
+.next a { display: grid; gap: 2px; text-decoration: none; color: var(--ink); border: 1px solid var(--line); border-radius: var(--r); padding: 8px 12px; background: var(--paper); min-height: 44px; }
+.next a:hover { border-color: var(--accent); }
+.next a b { color: var(--accent); }
+.next small { color: var(--muted); font-size: .82rem; }
+.lfoot { display: flex; flex-wrap: wrap; gap: 8px 12px; align-items: center; justify-content: space-between; border-top: 1px solid var(--line); padding-top: 12px; }
+.btn[aria-pressed="true"] { background: var(--ok-soft); border-color: var(--ok); color: var(--ok); font-weight: 600; }
+a.btn { display: inline-flex; align-items: center; text-decoration: none; }
+@media print { .lfoot, .lmap .st { display: none !important; } }
+
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to the lessons</a>
+<div class="banner" role="note"><div class="wrap">Independent educational tool. Not affiliated with or endorsed by the U.S. Department of Veterans Affairs. Not legal or medical advice. VA decides every claim.</div></div>
+<div class="wrap">
+  <header class="top" id="top">
+    <div class="crumbs noprint"><a href="./#learn">← Learn</a><span class="eyebrow">Lesson path · Exams, Benefits, Ratings</span></div>
+    <h1>Your claim, step by step</h1>
+    <p>Seven short lessons that follow a VA disability claim in order, from how service connection works to what to do after a decision. Each lesson gives you three key points in plain English, the public law behind each one, and the ClaimReady guides to read next. Each takes about five minutes.</p>
+  </header>
+  <main id="main">
+    <section class="panel" aria-labelledby="map-h">
+      <header><h2 id="map-h">The seven lessons</h2>
+        <div class="progress noprint"><span class="muted" id="prog-t" aria-live="polite">0 of 7 lessons done</span><div class="bar" aria-hidden="true"><span id="prog-b"></span></div></div></header>
+      <ol class="lmap"><li><a href="#l1" data-map="l1"><span class="n" aria-hidden="true">1</span><span><b>How service connection works</b><small>The three things VA looks for</small></span><span class="st" data-st="l1">Not started</span></a></li><li><a href="#l2" data-map="l2"><span class="n" aria-hidden="true">2</span><span><b>Before you file</b><small>Protect your date and gather evidence</small></span><span class="st" data-st="l2">Not started</span></a></li><li><a href="#l3" data-map="l3"><span class="n" aria-hidden="true">3</span><span><b>Filing your claim</b><small>The form, and describing your conditions</small></span><span class="st" data-st="l3">Not started</span></a></li><li><a href="#l4" data-map="l4"><span class="n" aria-hidden="true">4</span><span><b>Your C&amp;P exam</b><small>When VA orders one, and what makes it adequate</small></span><span class="st" data-st="l4">Not started</span></a></li><li><a href="#l5" data-map="l5"><span class="n" aria-hidden="true">5</span><span><b>How ratings work</b><small>Rating criteria and combined ratings</small></span><span class="st" data-st="l5">Not started</span></a></li><li><a href="#l6" data-map="l6"><span class="n" aria-hidden="true">6</span><span><b>You got a decision</b><small>Read it, check it, and pick a review option</small></span><span class="st" data-st="l6">Not started</span></a></li><li><a href="#l7" data-map="l7"><span class="n" aria-hidden="true">7</span><span><b>Other benefits to know about</b><small>Benefits beyond your rating percentage</small></span><span class="st" data-st="l7">Not started</span></a></li></ol>
+      <p class="privacy" style="font-size:.88rem">Your progress is saved only in this browser on this device. Nothing is sent anywhere. <button class="btn link noprint" type="button" id="reset">Clear my progress</button></p>
+    </section>
+
+    <section class="panel lesson" id="l1" aria-labelledby="l1-h">
+      <header><span class="eyebrow">Lesson 1 of 7 · Benefits</span><h2 id="l1-h">How service connection works</h2></header>
+      <p class="learn"><b>What you'll learn:</b> The three things VA looks for in most claims, and the different ways a condition can be connected to service.</p>
+      <div><h3>Three key points</h3>
+      <ol class="keys"><li><div><p>Most claims need three things: a <b>current disability</b>, an <b>event, injury, or disease in service</b>, and a <b>link</b> between the two.</p><p class="cite"><span class="tag law">Law</span> <a href="https://www.ecfr.gov/current/title-38/section-3.303" target="_blank" rel="noopener">38 C.F.R. § 3.303</a> <span class="tag court">Court decision</span> <i>Shedden v. Principi</i>, 381 F.3d 1163 (Fed. Cir. 2004)</p></div></li><li><div><p>For some conditions the law <b>presumes the link</b>, so no medical opinion on it is needed. Examples are certain chronic diseases that show up within a set time after discharge, and conditions tied to toxic exposures, including those added by the PACT Act.</p><p class="cite"><span class="tag law">Law</span> <a href="https://www.ecfr.gov/current/title-38/section-3.307" target="_blank" rel="noopener">38 C.F.R. § 3.307</a>; <a href="https://www.ecfr.gov/current/title-38/section-3.309" target="_blank" rel="noopener">38 C.F.R. § 3.309</a></p></div></li><li><div><p>A condition can also be connected when a service-connected condition <b>caused or worsened it</b> (secondary), or when service <b>made a condition you already had worse</b> (aggravation).</p><p class="cite"><span class="tag law">Law</span> <a href="https://www.ecfr.gov/current/title-38/section-3.310" target="_blank" rel="noopener">38 C.F.R. § 3.310</a>; <a href="https://www.ecfr.gov/current/title-38/section-3.306" target="_blank" rel="noopener">38 C.F.R. § 3.306</a></p></div></li></ol></div>
+      <div><h3>Read next on ClaimReady</h3>
+      <ul class="next"><li><a href="./#educ.direct"><b>Began in service</b><small>Direct service connection</small></a></li><li><a href="./#educ.presume"><b>Presumptive conditions</b><small>When the link is presumed</small></a></li><li><a href="./#educ.pact"><b>PACT Act overview</b><small>Toxic exposure presumptions</small></a></li><li><a href="./#educ.secondary"><b>Secondary conditions</b><small>Caused or worsened by a rated condition</small></a></li><li><a href="./#educ.preagg"><b>Existed before service</b><small>Aggravation and the presumption of soundness</small></a></li></ul></div>
+      <div class="lfoot noprint"><button class="btn" type="button" data-done="l1" aria-pressed="false">Mark lesson 1 done</button><a class="btn primary" href="#l2">Next: Before you file →</a></div>
+    </section>
+    <section class="panel lesson" id="l2" aria-labelledby="l2-h">
+      <header><span class="eyebrow">Lesson 2 of 7 · Benefits</span><h2 id="l2-h">Before you file</h2></header>
+      <p class="learn"><b>What you'll learn:</b> How to protect your start date, and what evidence to gather before you file.</p>
+      <div><h3>Three key points</h3>
+      <ol class="keys"><li><div><p>An <b>intent to file</b> gives you up to one year to file the full claim and can protect an earlier effective date.</p><p class="cite"><span class="tag law">Law</span> <a href="https://www.ecfr.gov/current/title-38/section-3.155" target="_blank" rel="noopener">38 C.F.R. § 3.155</a>(b)</p></div></li><li><div><p>VA must <b>help you get records</b>. It requests federal records, such as service treatment records and VA treatment records. You can let VA request private records with VA Form 21-4142, or send them yourself.</p><p class="cite"><span class="tag law">Law</span> <a href="https://www.govinfo.gov/link/uscode/38/5103A" target="_blank" rel="noopener">38 U.S.C. § 5103A</a>; <a href="https://www.ecfr.gov/current/title-38/section-3.159" target="_blank" rel="noopener">38 C.F.R. § 3.159</a></p></div></li><li><div><p>Your own statements, and statements from people who know you, are <b>evidence</b> of what you saw, did, and felt.</p><p class="cite"><span class="tag law">Law</span> <a href="https://www.govinfo.gov/link/uscode/38/1154" target="_blank" rel="noopener">38 U.S.C. § 1154</a>(a) <span class="tag court">Court decision</span> <i>Jandreau v. Nicholson</i>, 492 F.3d 1372 (Fed. Cir. 2007)</p></div></li></ol></div>
+      <div><h3>Read next on ClaimReady</h3>
+      <ul class="next"><li><a href="./#educ.itf"><b>Intent to file</b><small>How it protects your date</small></a></li><li><a href="./#needed"><b>What evidence does VA need?</b><small>Evidence rules and extra forms</small></a></li><li><a href="./#educ.evidence"><b>How VA weighs evidence</b><small>Including lay statements</small></a></li><li><a href="form-4142.html"><b>Form 21-4142 guide</b><small>Private medical records, section by section</small></a></li><li><a href="./#educ.cod"><b>Character of discharge</b><small>For veterans with a bad paper discharge</small></a></li></ul></div>
+      <div class="lfoot noprint"><button class="btn" type="button" data-done="l2" aria-pressed="false">Mark lesson 2 done</button><a class="btn primary" href="#l3">Next: Filing your claim →</a></div>
+    </section>
+    <section class="panel lesson" id="l3" aria-labelledby="l3-h">
+      <header><span class="eyebrow">Lesson 3 of 7 · Benefits</span><h2 id="l3-h">Filing your claim</h2></header>
+      <p class="learn"><b>What you'll learn:</b> How to fill out the claim form, and how to describe your conditions so nothing is missed.</p>
+      <div><h3>Three key points</h3>
+      <ol class="keys"><li><div><p>A complete claim is filed on <b>VA's required form</b>. For disability compensation that is VA Form 21-526EZ.</p><p class="cite"><span class="tag law">Law</span> <a href="https://www.ecfr.gov/current/title-38/section-3.155" target="_blank" rel="noopener">38 C.F.R. § 3.155</a>; <a href="https://www.ecfr.gov/current/title-38/section-3.160" target="_blank" rel="noopener">38 C.F.R. § 3.160</a></p></div></li><li><div><p>Describe each condition and its <b>symptoms in plain words</b>. VA reads a claim by what you describe, not only by the name you give it.</p><p class="cite"><span class="tag court">Court decision</span> <i>Clemons v. Shinseki</i>, 23 Vet. App. 1 (2009)</p></div></li><li><div><p>You can file online, by mail, in person, or with <b>free help</b> from an accredited representative. No one may charge you for help preparing an initial claim.</p><p class="cite"><span class="tag law">Law</span> <a href="https://www.govinfo.gov/link/uscode/38/5904" target="_blank" rel="noopener">38 U.S.C. § 5904</a></p></div></li></ol></div>
+      <div><h3>Read next on ClaimReady</h3>
+      <ul class="next"><li><a href="form-526ez.html"><b>Form 21-526EZ guide</b><small>The claim form, section by section</small></a></li><li><a href="./#checklist"><b>Claim checklist</b><small>Every step to consider before you file</small></a></li><li><a href="./#educ.issues"><b>Everything VA must decide</b><small>The scope of your claim</small></a></li><li><a href="./#needed"><b>How to file and evidence</b><small>Two ways to file</small></a></li></ul></div>
+      <div class="lfoot noprint"><button class="btn" type="button" data-done="l3" aria-pressed="false">Mark lesson 3 done</button><a class="btn primary" href="#l4">Next: Your C&amp;P exam →</a></div>
+    </section>
+    <section class="panel lesson" id="l4" aria-labelledby="l4-h">
+      <header><span class="eyebrow">Lesson 4 of 7 · Examinations</span><h2 id="l4-h">Your C&amp;P exam</h2></header>
+      <p class="learn"><b>What you'll learn:</b> When VA orders an exam, how to prepare, and what makes an exam or medical opinion adequate.</p>
+      <div><h3>Three key points</h3>
+      <ol class="keys"><li><div><p>VA orders an exam when the record shows a current condition, something in service, and a sign they may be linked, but <b>not enough to decide</b> the claim.</p><p class="cite"><span class="tag law">Law</span> <a href="https://www.govinfo.gov/link/uscode/38/5103A" target="_blank" rel="noopener">38 U.S.C. § 5103A</a>(d); <a href="https://www.ecfr.gov/current/title-38/section-3.159" target="_blank" rel="noopener">38 C.F.R. § 3.159</a>(c)(4) <span class="tag court">Court decision</span> <i>McLendon v. Nicholson</i>, 20 Vet. App. 79 (2006)</p></div></li><li><div><p><b>Go to the exam.</b> If you miss it without good cause, VA may decide the claim on the record it has, or deny it.</p><p class="cite"><span class="tag law">Law</span> <a href="https://www.ecfr.gov/current/title-38/section-3.655" target="_blank" rel="noopener">38 C.F.R. § 3.655</a></p></div></li><li><div><p>A medical opinion needs a <b>reasoned explanation</b>, not just a conclusion. For joints, the exam should address painful motion and flare-ups.</p><p class="cite"><span class="tag court">Court decision</span> <i>Nieves-Rodriguez v. Peake</i>, 22 Vet. App. 295 (2008); <i>Sharp v. Shulkin</i>, 29 Vet. App. 26 (2017)</p></div></li></ol></div>
+      <div><h3>Read next on ClaimReady</h3>
+      <ul class="next"><li><a href="./#educ.exams"><b>C&amp;P exams: the complete guide</b><small>From the day you file to the report</small></a></li><li><a href="./#quick"><b>Quick sheet for your doctor</b><small>One page of what VA needs</small></a></li><li><a href="doctor-guide.html"><b>What VA asks your examiner</b><small>Extra questions VA adds</small></a></li><li><a href="medical-opinions.html"><b>What makes a medical opinion count</b><small>Rationale and adequacy</small></a></li><li><a href="./#opinions"><b>Exam opinion check</b><small>Check an opinion you received</small></a></li><li><a href="./#educ.painmotion"><b>Painful motion and flare-ups</b><small>Joint exams</small></a></li><li><a href="./#educ.teraexam"><b>Toxic exposure exams (TERA)</b><small>When VA orders one</small></a></li></ul></div>
+      <div class="lfoot noprint"><button class="btn" type="button" data-done="l4" aria-pressed="false">Mark lesson 4 done</button><a class="btn primary" href="#l5">Next: How ratings work →</a></div>
+    </section>
+    <section class="panel lesson" id="l5" aria-labelledby="l5-h">
+      <header><span class="eyebrow">Lesson 5 of 7 · Ratings</span><h2 id="l5-h">How ratings work</h2></header>
+      <p class="learn"><b>What you'll learn:</b> How VA matches your symptoms to rating criteria, and why ratings combine instead of adding up.</p>
+      <div><h3>Three key points</h3>
+      <ol class="keys"><li><div><p>Each condition is rated under a diagnostic code. When your symptoms fall between two levels, VA assigns the <b>higher one</b> if your disability more nearly matches it.</p><p class="cite"><span class="tag law">Law</span> <a href="https://www.ecfr.gov/current/title-38/section-4.7" target="_blank" rel="noopener">38 C.F.R. § 4.7</a></p></div></li><li><div><p>Ratings <b>combine</b> instead of adding up. For example, 50% and 30% combine to 65%, which rounds to 70%, not 80%. The same symptoms can't be rated twice under different codes.</p><p class="cite"><span class="tag law">Law</span> <a href="https://www.ecfr.gov/current/title-38/section-4.25" target="_blank" rel="noopener">38 C.F.R. § 4.25</a>; <a href="https://www.ecfr.gov/current/title-38/section-4.14" target="_blank" rel="noopener">38 C.F.R. § 4.14</a></p></div></li><li><div><p>When the evidence for and against is about equal, the veteran gets the <b>benefit of the doubt</b>.</p><p class="cite"><span class="tag law">Law</span> <a href="https://www.govinfo.gov/link/uscode/38/5107" target="_blank" rel="noopener">38 U.S.C. § 5107</a>(b)</p></div></li></ol></div>
+      <div><h3>Read next on ClaimReady</h3>
+      <ul class="next"><li><a href="./#educ.evaluate"><b>How VA assigns a rating</b><small>The steps VA follows</small></a></li><li><a href="./#educ.part4"><b>Key rating rules (Part 4)</b><small>Rules for every rating</small></a></li><li><a href="./#explain"><b>Rating-criteria explainer</b><small>Each level in plain words</small></a></li><li><a href="./#combine"><b>Combine ratings</b><small>See how ratings combine</small></a></li></ul></div>
+      <div class="lfoot noprint"><button class="btn" type="button" data-done="l5" aria-pressed="false">Mark lesson 5 done</button><a class="btn primary" href="#l6">Next: You got a decision →</a></div>
+    </section>
+    <section class="panel lesson" id="l6" aria-labelledby="l6-h">
+      <header><span class="eyebrow">Lesson 6 of 7 · Benefits</span><h2 id="l6-h">You got a decision</h2></header>
+      <p class="learn"><b>What you'll learn:</b> How to read your decision, check that it covers everything, and pick a review option without losing your effective date.</p>
+      <div><h3>Three key points</h3>
+      <ol class="keys"><li><div><p>VA's decision notice must tell you <b>what was decided</b>, the reasons, and your review options.</p><p class="cite"><span class="tag law">Law</span> <a href="https://www.govinfo.gov/link/uscode/38/5104" target="_blank" rel="noopener">38 U.S.C. § 5104</a>; <a href="https://www.ecfr.gov/current/title-38/section-3.103" target="_blank" rel="noopener">38 C.F.R. § 3.103</a>(f)</p></div></li><li><div><p>There are <b>three review options</b>: a Supplemental Claim with new and relevant evidence (VA Form 20-0995), a Higher-Level Review of the same record (VA Form 20-0996), or an appeal to the Board (VA Form 10182).</p><p class="cite"><span class="tag law">Law</span> <a href="https://www.ecfr.gov/current/title-38/section-3.2500" target="_blank" rel="noopener">38 C.F.R. § 3.2500</a>; <a href="https://www.ecfr.gov/current/title-38/section-3.2501" target="_blank" rel="noopener">38 C.F.R. § 3.2501</a>; <a href="https://www.ecfr.gov/current/title-38/section-3.2601" target="_blank" rel="noopener">38 C.F.R. § 3.2601</a>; <a href="https://www.ecfr.gov/current/title-38/section-20.202" target="_blank" rel="noopener">38 C.F.R. § 20.202</a></p></div></li><li><div><p>Filing a review option <b>within one year</b> of the decision generally keeps your original effective date. This is called continuous pursuit.</p><p class="cite"><span class="tag law">Law</span> <a href="https://www.ecfr.gov/current/title-38/section-3.2500" target="_blank" rel="noopener">38 C.F.R. § 3.2500</a>(h)</p></div></li></ol></div>
+      <div><h3>Read next on ClaimReady</h3>
+      <ul class="next"><li><a href="./#educ.ratingdec"><b>Reading your rating decision</b><small>Each section and the codes</small></a></li><li><a href="./#educ.decqual"><b>Does your decision cover everything?</b><small>Nine questions to ask</small></a></li><li><a href="supplemental-claims.html"><b>Supplemental Claims</b><small>Featured article</small></a></li><li><a href="form-0995.html"><b>Form 20-0995 guide</b><small>Supplemental Claim</small></a></li><li><a href="form-0996.html"><b>Form 20-0996 guide</b><small>Higher-Level Review</small></a></li><li><a href="form-10182.html"><b>Form 10182 guide</b><small>Board appeal</small></a></li><li><a href="continuous-pursuit.html"><b>Continuous Pursuit Review</b><small>Beta: check your timeline</small></a></li><li><a href="./#educ.effdate"><b>Effective dates</b><small>When payments can start</small></a></li></ul></div>
+      <div class="lfoot noprint"><button class="btn" type="button" data-done="l6" aria-pressed="false">Mark lesson 6 done</button><a class="btn primary" href="#l7">Next: Other benefits to know about →</a></div>
+    </section>
+    <section class="panel lesson" id="l7" aria-labelledby="l7-h">
+      <header><span class="eyebrow">Lesson 7 of 7 · Benefits</span><h2 id="l7-h">Other benefits to know about</h2></header>
+      <p class="learn"><b>What you'll learn:</b> The benefits beyond your rating percentage that are worth asking about.</p>
+      <div><h3>Three key points</h3>
+      <ol class="keys"><li><div><p>If service-connected conditions keep you from holding a steady job, you may be paid at the 100% rate through <b>Individual Unemployability</b> (TDIU), claimed on VA Form 21-8940. The usual threshold is one condition at 60%, or 70% combined with one condition at 40%.</p><p class="cite"><span class="tag law">Law</span> <a href="https://www.ecfr.gov/current/title-38/section-4.16" target="_blank" rel="noopener">38 C.F.R. § 4.16</a></p></div></li><li><div><p><b>Special monthly compensation</b> is added for things like loss of use, needing help with daily activities, or being housebound. VA Form 21-2680 is the exam form for aid and attendance or housebound status. A spouse who needs aid and attendance can add to the payment too.</p><p class="cite"><span class="tag law">Law</span> <a href="https://www.govinfo.gov/link/uscode/38/1114" target="_blank" rel="noopener">38 U.S.C. § 1114</a>(k)–(s); <a href="https://www.govinfo.gov/link/uscode/38/1115" target="_blank" rel="noopener">38 U.S.C. § 1115</a>; <a href="https://www.ecfr.gov/current/title-38/section-3.350" target="_blank" rel="noopener">38 C.F.R. § 3.350</a>; <a href="https://www.ecfr.gov/current/title-38/section-3.351" target="_blank" rel="noopener">38 C.F.R. § 3.351</a>; <a href="https://www.ecfr.gov/current/title-38/section-3.352" target="_blank" rel="noopener">38 C.F.R. § 3.352</a></p></div></li><li><div><p>A <b>temporary 100% rating</b> can apply during a hospital stay of more than 21 days or recovery from certain surgery. Family benefits, such as Chapter 35 education and CHAMPVA, may follow a permanent and total rating.</p><p class="cite"><span class="tag law">Law</span> <a href="https://www.ecfr.gov/current/title-38/section-4.29" target="_blank" rel="noopener">38 C.F.R. § 4.29</a>; <a href="https://www.ecfr.gov/current/title-38/section-4.30" target="_blank" rel="noopener">38 C.F.R. § 4.30</a></p></div></li></ol></div>
+      <div><h3>Read next on ClaimReady</h3>
+      <ul class="next"><li><a href="./#educ.iu"><b>Individual Unemployability</b><small>TDIU explained</small></a></li><li><a href="./#tdiu"><b>TDIU calculator</b><small>Check the percentage rules</small></a></li><li><a href="form-8940.html"><b>Form 21-8940 guide</b><small>The TDIU form</small></a></li><li><a href="./#educ.smc"><b>Special monthly compensation</b><small>SMC explained</small></a></li><li><a href="./#smccheck"><b>SMC checklist</b><small>Which levels may fit</small></a></li><li><a href="form-2680.html"><b>Form 21-2680 guide</b><small>Aid and attendance exam</small></a></li><li><a href="spouse-aid-attendance.html"><b>Spouse aid and attendance</b><small>Featured article</small></a></li><li><a href="temp-100.html"><b>Temporary 100% Timeline</b><small>Hospital stays and surgery</small></a></li><li><a href="./#educ.dea"><b>Chapter 35 education (DEA)</b><small>For families</small></a></li><li><a href="./#educ.champva"><b>CHAMPVA for families</b><small>Health coverage</small></a></li><li><a href="./#educ.vre"><b>Veteran Readiness and Employment</b><small>VR&amp;E</small></a></li></ul></div>
+      <div class="lfoot noprint"><button class="btn" type="button" data-done="l7" aria-pressed="false">Mark lesson 7 done</button><a class="btn primary" href="#top">Back to the start ↑</a></div>
+    </section>
+    <section class="panel" id="sources" aria-labelledby="src-h">
+      <header><h2 id="src-h">About these lessons</h2></header>
+      <p class="muted" style="font-size:.88rem"><span class="tag law">Law</span> statutes and regulations. <span class="tag court">Court decision</span> decisions of the federal courts that interpret them. Each lesson is a short summary, not the full rule; the linked guides go deeper. Content reviewed <span class="num">Oct 25, 2026</span>. Please check official VA regulations for current information.</p>
+    </section>
+  </main>
+  <footer>
+    <p>These lessons explain how VA decides claims under public law. They do not decide whether you qualify, predict a rating or payment, or fill out any form for you, and they are not legal or medical advice.</p>
+    <p>ClaimReady is independent and educational. It is not VA and is not a substitute for an accredited representative, who can help at no cost. Your lesson progress stays on this device. <a href="./#about">About ClaimReady and full disclaimer</a></p>
+  </footer>
+</div>
+<script>
+(() => {
+  const KEY = 'vci.path.done', ids = ["l1","l2","l3","l4","l5","l6","l7"];
+  let done = [];
+  try { done = JSON.parse(localStorage.getItem(KEY) || '[]').filter(x => ids.includes(x)); } catch (e) { done = []; }
+  const save = () => { try { localStorage.setItem(KEY, JSON.stringify(done)); } catch (e) { } };
+  function paint() {
+    ids.forEach((id, i) => {
+      const on = done.includes(id);
+      const b = document.querySelector('[data-done="' + id + '"]');
+      b.setAttribute('aria-pressed', on); b.textContent = on ? 'Lesson ' + (i + 1) + ' done ✓' : 'Mark lesson ' + (i + 1) + ' done';
+      document.getElementById(id).classList.toggle('is-done', on);
+      document.querySelector('[data-map="' + id + '"]').parentElement.classList.toggle('done', on);
+      document.querySelector('[data-st="' + id + '"]').textContent = on ? 'Done' : 'Not started';
+    });
+    document.getElementById('prog-t').textContent = done.length + ' of ' + ids.length + ' lessons done';
+    document.getElementById('prog-b').style.width = (100 * done.length / ids.length) + '%';
+  }
+  document.addEventListener('click', e => {
+    const b = e.target.closest('[data-done]');
+    if (b) { const id = b.dataset.done; done = done.includes(id) ? done.filter(x => x !== id) : done.concat(id); save(); paint(); }
+    if (e.target.id === 'reset') { done = []; save(); paint(); }
+  });
+  paint();
+})();
+</script>
+</body></html>
