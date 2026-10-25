@@ -792,6 +792,9 @@
   "hepatitis": [
    "554400000014523"
   ],
+  "somaticneuroinsomnia": [
+   "554400000180520"
+  ],
   "vietnamservice": [
    "554400000177422",
    "554400000177423",
@@ -1157,6 +1160,10 @@
    "3"
   ],
   "hepatitis": [
+   "3",
+   "4"
+  ],
+  "somaticneuroinsomnia": [
    "3",
    "4"
   ],

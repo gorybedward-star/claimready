@@ -1,0 +1,421 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="description" content="Free, independent educational guide to how VA handles somatic symptom disorder, ADHD, autism and other neurodevelopmental disorders, and insomnia: what can be service connected, the exceptions, and how each is rated. Nothing is saved or sent.">
+<meta name="referrer" content="no-referrer"><meta name="theme-color" content="#1d5a70">
+<link rel="manifest" href="manifest.webmanifest"><link rel="icon" type="image/png" href="icons/favicon-32.png"><link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+<title>Somatic, ADHD, and Insomnia Claims</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<style>@font-face{font-family:'Public Sans';font-style:normal;font-weight:400;font-display:swap;src:url(fonts/public-sans-latin-400-normal.woff2) format('woff2')}@font-face{font-family:'Public Sans';font-style:normal;font-weight:500;font-display:swap;src:url(fonts/public-sans-latin-500-normal.woff2) format('woff2')}@font-face{font-family:'Public Sans';font-style:normal;font-weight:600;font-display:swap;src:url(fonts/public-sans-latin-600-normal.woff2) format('woff2')}@font-face{font-family:'Public Sans';font-style:normal;font-weight:700;font-display:swap;src:url(fonts/public-sans-latin-700-normal.woff2) format('woff2')}@font-face{font-family:'Source Serif 4';font-style:normal;font-weight:400;font-display:swap;src:url(fonts/source-serif-4-latin-400-normal.woff2) format('woff2')}@font-face{font-family:'Source Serif 4';font-style:normal;font-weight:600;font-display:swap;src:url(fonts/source-serif-4-latin-600-normal.woff2) format('woff2')}@font-face{font-family:'Source Serif 4';font-style:italic;font-weight:400;font-display:swap;src:url(fonts/source-serif-4-latin-400-italic.woff2) format('woff2')}@font-face{font-family:'Source Serif 4';font-style:italic;font-weight:600;font-display:swap;src:url(fonts/source-serif-4-latin-600-italic.woff2) format('woff2')}@font-face{font-family:'IBM Plex Mono';font-style:normal;font-weight:400;font-display:swap;src:url(fonts/ibm-plex-mono-latin-400-normal.woff2) format('woff2')}@font-face{font-family:'IBM Plex Mono';font-style:normal;font-weight:600;font-display:swap;src:url(fonts/ibm-plex-mono-latin-600-normal.woff2) format('woff2')}</style>
+<style>
+/* Layout: one reading column. Banner, header, situation chooser, types, tests with lab helper, risk factors, drug use, records, exam, ratings, example, myths, sources, footer. ClaimReady tokens (same as ptsd-stressor.html). */
+:root {
+  --paper: #f3f5f4; --surface: #ffffff; --sunk: #e9eeec; --ink: #16201d; --muted: #5a6763; --line: #d4dcd9;
+  --accent: #1d5a70; --accent-ink: #ffffff; --accent-soft: #dfecf0;
+  --ok: #2a774b; --ok-soft: #e0f0e6; --wait: #8a560a; --wait-soft: #f7ecd8;
+  --f-ui: "Public Sans", "Segoe UI", system-ui, sans-serif;
+  --f-serif: "Source Serif 4", Georgia, "Times New Roman", serif;
+  --f-mono: "IBM Plex Mono", ui-monospace, Menlo, monospace;
+  --r: 6px;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --paper: #111816; --surface: #19211f; --sunk: #0d1312; --ink: #e4ebe8; --muted: #98a6a1; --line: #2b3633;
+  --accent: #72b6cf; --accent-ink: #0d1a1f; --accent-soft: #1b3038;
+  --ok: #62c189; --ok-soft: #173426; --wait: #e2a849; --wait-soft: #392b12; color-scheme: dark; } }
+:root[data-theme="dark"] {
+  --paper: #111816; --surface: #19211f; --sunk: #0d1312; --ink: #e4ebe8; --muted: #98a6a1; --line: #2b3633;
+  --accent: #72b6cf; --accent-ink: #0d1a1f; --accent-soft: #1b3038;
+  --ok: #62c189; --ok-soft: #173426; --wait: #e2a849; --wait-soft: #392b12; color-scheme: dark; }
+:root { padding-top: env(safe-area-inset-top, 0px); padding-bottom: env(safe-area-inset-bottom, 0px); }
+* { box-sizing: border-box; }
+[hidden] { display: none !important; }
+body { margin: 0; background: var(--paper); color: var(--ink); font-family: var(--f-ui); font-size: 0.95rem; line-height: 1.5; }
+.wrap { max-width: 760px; margin: 0 auto; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+.skip { position: absolute; left: -9999px; } .skip:focus { left: 16px; top: 8px; z-index: 20; background: var(--surface); padding: 8px 12px; border-radius: var(--r); }
+.banner { background: var(--ink); color: var(--paper); font-size: 0.8rem; }
+.banner .wrap { padding-block: 8px; }
+header.top { padding-block: 24px 8px; display: grid; gap: 10px; }
+h1, h2, h3 { font-family: var(--f-serif); font-weight: 600; margin: 0; line-height: 1.2; text-wrap: balance; }
+h1 { font-size: 1.9rem; letter-spacing: -0.01em; }
+h2 { font-size: 1.3rem; }
+h3 { font-size: 1.02rem; }
+p { margin: 0; }
+ul, ol { margin: 0; padding-left: 20px; display: grid; gap: 6px; }
+a { color: var(--accent); }
+.muted { color: var(--muted); }
+.eyebrow { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.09em; text-transform: uppercase; color: var(--muted); }
+.crumbs { display: flex; flex-wrap: wrap; gap: 6px 14px; align-items: baseline; }
+.crumbs a { font-weight: 600; font-size: .9rem; text-decoration: none; }
+.crumbs a:hover { text-decoration: underline; }
+.tag { display: inline-block; font-size: .7rem; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; padding: 1px 7px; border-radius: 4px; border: 1px solid currentColor; white-space: nowrap; }
+.tag.law { color: var(--accent); } .tag.guide { color: var(--wait); } .tag.court { color: var(--ok); }
+.example { display: grid; gap: 4px; background: var(--wait-soft); border: 1px solid var(--line); border-radius: var(--r); padding: 10px 12px; }
+.example b:first-child { font-size: .78rem; letter-spacing: .06em; text-transform: uppercase; }
+button, input { font: inherit; color: inherit; }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.btn { border: 1px solid var(--line); background: var(--surface); border-radius: var(--r); padding: 8px 14px; cursor: pointer; min-height: 44px; }
+.btn.primary { background: var(--accent); color: var(--accent-ink); border-color: var(--accent); font-weight: 600; }
+.btn.link { border: 0; background: none; color: var(--accent); text-decoration: underline; padding: 4px 0; min-height: 0; }
+main { display: grid; gap: 20px; padding-block: 12px 48px; }
+.panel { background: var(--surface); border: 1px solid var(--line); border-radius: var(--r); padding: 18px; display: grid; gap: 14px; min-width: 0; }
+.panel > header { display: grid; gap: 6px; }
+fieldset { border: 0; padding: 0; margin: 0; display: grid; gap: 10px; min-width: 0; }
+legend { font-family: var(--f-serif); font-weight: 600; font-size: 1.15rem; padding: 0; margin-bottom: 4px; }
+.choices { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 8px; }
+.choice { display: flex; gap: 10px; align-items: flex-start; border: 1px solid var(--line); border-radius: var(--r); padding: 10px 12px; cursor: pointer; background: var(--paper); min-height: 44px; }
+.choice:has(input:checked) { border-color: var(--accent); background: var(--accent-soft); }
+.choice input { margin-top: 4px; width: 18px; height: 18px; accent-color: var(--accent); flex: none; }
+.choice small { display: block; color: var(--muted); }
+.row { display: flex; flex-wrap: wrap; gap: 8px 14px; align-items: center; }
+.cols { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 12px; }
+.box { border: 1px solid var(--line); border-radius: var(--r); padding: 12px 14px; display: grid; gap: 8px; align-content: start; background: var(--paper); }
+.box.you { border-left: 4px solid var(--ok); }
+.box.doc { border-left: 4px solid var(--accent); }
+.box h3 { font-family: var(--f-ui); font-size: .82rem; letter-spacing: .06em; text-transform: uppercase; }
+.flow { list-style: none; padding: 0; counter-reset: q; gap: 0; }
+.flow > li { counter-increment: q; display: grid; grid-template-columns: 30px 1fr; gap: 10px; padding-bottom: 14px; position: relative; }
+.flow > li::before { content: counter(q); width: 26px; height: 26px; border-radius: 50%; background: var(--accent); color: var(--accent-ink); font-family: var(--f-mono); font-size: .8rem; display: grid; place-items: center; }
+.flow > li::after { content: ""; position: absolute; left: 12px; top: 28px; bottom: 2px; width: 2px; background: var(--line); }
+.flow > li:last-child::after { display: none; }
+.flow .stop { display: block; font-size: .85rem; color: var(--muted); margin-top: 2px; }
+.flow ul { margin-top: 6px; }
+.quote { font-family: var(--f-serif); border-left: 3px solid var(--line); padding: 2px 0 2px 12px; color: var(--ink); }
+.pills { list-style: none; padding: 0; display: flex; flex-wrap: wrap; gap: 6px; }
+.pills li { border: 1px solid var(--line); border-radius: 999px; padding: 2px 10px; font-size: .85rem; background: var(--paper); }
+.patterns { list-style: none; padding: 0; display: grid; gap: 8px; counter-reset: p; }
+.patterns li { counter-increment: p; display: grid; grid-template-columns: 30px 1fr; gap: 10px; align-items: start; border: 1px solid var(--line); border-radius: var(--r); padding: 10px 12px; }
+.patterns li::before { content: counter(p); font-family: var(--f-mono); font-weight: 600; font-size: 1rem; }
+.patterns li.yes { background: var(--ok-soft); }
+.patterns small { display: block; color: var(--muted); }
+.cite { font-size: 0.8rem; color: var(--muted); display: flex; flex-wrap: wrap; gap: 6px 10px; align-items: center; border-top: 1px dashed var(--line); padding-top: 10px; }
+table { border-collapse: collapse; width: 100%; font-size: 0.88rem; }
+th, td { text-align: left; padding: 7px 8px; border-bottom: 1px solid var(--line); vertical-align: top; }
+th { font-weight: 600; color: var(--muted); font-size: 0.76rem; letter-spacing: 0.04em; text-transform: uppercase; }
+.tscroll { overflow-x: auto; }
+.num { font-family: var(--f-mono); font-variant-numeric: tabular-nums; font-size: .86em; white-space: nowrap; }
+details { border: 1px solid var(--line); border-radius: var(--r); background: var(--paper); padding: 10px 12px; }
+summary { cursor: pointer; font-weight: 600; min-height: 24px; }
+details > :not(summary) { margin-top: 10px; }
+footer { font-size: 0.82rem; color: var(--muted); display: grid; gap: 8px; padding-block: 0 40px; }
+@media (max-width: 520px) { h1 { font-size: 1.55rem; } .panel { padding: 14px; } }
+@media print {
+  .banner { background: none; color: #000; border-bottom: 1px solid #000; }
+  .noprint, .skip { display: none !important; }
+  body { background: #fff; color: #000; font-size: 10.5pt; }
+  .panel, .box, details { border-color: #999; break-inside: avoid-page; }
+  details > :not(summary) { display: block !important; }
+  a { color: #000; }
+}
+
+.sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+tr.dim td { opacity: .45; }
+.checklist { gap: 8px; }
+.myths { margin: 0; display: grid; gap: 4px 0; }
+.myths dt { font-weight: 600; margin-top: 8px; }
+.myths dt:first-child { margin-top: 0; }
+.myths dd { margin: 0; color: var(--ink); }
+@media (max-width: 520px) { table.stack thead { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); } table.stack, table.stack tbody, table.stack tr, table.stack td { display: block; } table.stack tr { border-bottom: 1px solid var(--line); padding: 8px 0; } table.stack td { border: 0; padding: 2px 0; } table.stack td:first-child { font-weight: 600; } table.stack td:last-child { font-size: .8rem; color: var(--muted); } }
+@media print { tr.dim td { opacity: 1; } .topic[hidden] { display: grid !important; } }
+.tag.bg { color: var(--muted); }
+.cite { display: block; line-height: 1.9; } .cite .tag { margin-right: 4px; } .cite .tag:not(:first-child) { margin-left: 6px; }
+@media (max-width: 520px) { table.stack.keep td:last-child { font-size: inherit; color: var(--ink); } }
+.alert { border: 1px solid var(--wait); border-left: 6px solid var(--wait); background: var(--wait-soft); border-radius: var(--r); padding: 14px 16px; display: grid; gap: 8px; }
+.alert p.big { font-family: var(--f-serif); font-size: 1.12rem; font-weight: 600; line-height: 1.35; }
+.no { font-weight: 700; color: var(--wait); white-space: nowrap; }
+.three { list-style: none; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 8px; counter-reset: t; }
+.three li { counter-increment: t; border: 1px solid var(--line); border-radius: var(--r); padding: 10px 12px; background: var(--paper); display: grid; gap: 4px; align-content: start; }
+.three li::before { content: "Question " counter(t); font-size: .72rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+.timeline { list-style: none; padding: 0; margin: 0; display: grid; gap: 0; }
+.timeline > li { display: grid; grid-template-columns: 64px 1fr; gap: 12px; position: relative; padding-bottom: 16px; }
+.timeline > li::after { content: ""; position: absolute; left: 31px; top: 30px; bottom: 0; width: 2px; background: var(--line); }
+.timeline > li:last-child::after { display: none; }
+.timeline .yr { font-family: var(--f-mono); font-weight: 600; font-size: .85rem; background: var(--sunk); border: 1px solid var(--line); border-radius: 999px; height: 28px; display: grid; place-items: center; position: relative; z-index: 1; }
+.timeline .key .yr { background: var(--accent); color: var(--accent-ink); border-color: var(--accent); }
+.timeline .ev { display: grid; gap: 2px; padding-top: 3px; }
+.timeline .ev b { font-size: .98rem; }
+.timeline .ev small { color: var(--muted); font-size: .84rem; }
+.dir { font-size: .72rem; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; padding: 1px 7px; border-radius: 4px; justify-self: start; }
+.dir.narrow { background: var(--wait-soft); color: var(--wait); }
+.dir.wide { background: var(--ok-soft); color: var(--ok); }
+.answer { border: 1px solid var(--accent); background: var(--accent-soft); border-radius: var(--r); padding: 12px 14px; display: grid; gap: 8px; }
+.outcomes { display: grid; gap: 8px; }
+.outcomes .box h3 { font-family: var(--f-serif); font-size: 1rem; letter-spacing: 0; text-transform: none; }
+@media print { .answer[hidden] { display: none !important; } }
+.three li::before { content: "Point " counter(t); }
+.filter { display: grid; gap: 6px; }
+.filter input { border: 1px solid var(--line); border-radius: var(--r); background: var(--paper); padding: 10px 12px; min-height: 44px; width: 100%; }
+.nl li.dim { opacity: .55; }
+.nl li.hit { background: var(--accent-soft); border-radius: 4px; padding: 0 4px; margin-left: -4px; }
+.exc { color: var(--wait); font-weight: 600; }
+@media print { .nl li.dim { opacity: 1; } }
+</style>
+<style>
+/* Somatic, neurodevelopmental, and insomnia article extras: insomnia path cards. */
+.paths { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 12px; }
+.paths .box h3 { font-family: var(--f-serif); font-size: 1.02rem; letter-spacing: 0; text-transform: none; }
+.paths .if { font-size: .74rem; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); }
+.medflag { border: 1px dashed var(--muted); border-radius: var(--r); padding: 10px 12px; font-size: .88rem; display: grid; gap: 4px; }
+.medflag b:first-child { font-size: .74rem; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); }
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to the article</a>
+<div class="banner" role="note"><div class="wrap">Independent educational tool. Not affiliated with or endorsed by the U.S. Department of Veterans Affairs. Not legal or medical advice. VA decides every claim.</div></div>
+<div class="wrap">
+  <header class="top">
+    <div class="crumbs noprint"><a href="./#educ.mentalr">← Mental disorders: rating rules</a><span class="eyebrow"><span aria-hidden="true">★</span> Featured · Benefits and ratings</span></div>
+    <h1>Somatic symptom disorder, ADHD and other neurodevelopmental disorders, and insomnia: how VA decides service connection</h1>
+    <p>These three groups of conditions are handled differently from most mental health claims. <b>Somatic symptom disorder</b> is accepted as a disability and rated on what it actually causes. <b>Neurodevelopmental disorders</b> such as ADHD and autism generally cannot be service connected directly, with two exceptions. <b>Insomnia</b> is usually treated as a symptom of another condition, and only rarely as its own rated disability. This article explains each rule, the exceptions, and what the medical evidence needs to show.</p>
+    <p class="muted" style="font-size:.86rem">Based on public sources: <b>38 U.S.C. § 1111</b>, <b>38 C.F.R. §§ 3.303(c), 3.306, 3.310, 4.14, 4.20, 4.125(a), 4.126(d), 4.127, and 4.130</b>, published court decisions, and VA's procedures manual, <b>M21-1, Part V, Subpart iii, 13.1.i, j, and k</b>. Medical background that does not come from VA is marked. For education only. <a href="#sources">Sources and dates</a></p>
+    <div class="row noprint"><button class="btn" type="button" id="printBtn">Print or save this article</button></div>
+  </header>
+
+  <main id="main" tabindex="-1">
+
+    <section class="panel" id="start" aria-labelledby="start-h">
+      <header><span class="eyebrow">Start here</span><h2 id="start-h">Three rules in one page</h2></header>
+      <ol class="three">
+        <li><b>Somatic symptom disorder is a disability</b><span>VA accepts it for compensation and rates it under the code that best fits what it causes.</span></li>
+        <li><b>Neurodevelopmental disorders usually are not</b><span>ADHD, autism, and similar conditions begin in childhood, so VA generally does not service connect them directly. An in-service injury or abnormal worsening in service can change that.</span></li>
+        <li><b>Insomnia usually belongs to another condition</b><span>If something else causes it, the sleep problems are counted in that condition's rating. A separate rating is only for insomnia disorder with no other cause.</span></li>
+      </ol>
+      <fieldset class="noprint">
+        <legend>What brings you here?</legend>
+        <div class="choices">
+          <label class="choice"><input type="radio" name="why" value="somatic"><span>Somatic symptom disorder<small>Or chronic pain syndrome, fibromyalgia</small></span></label>
+          <label class="choice"><input type="radio" name="why" value="neuro"><span>ADHD, autism, or a learning disorder<small>Or another childhood-onset condition</small></span></label>
+          <label class="choice"><input type="radio" name="why" value="sleep"><span>Insomnia or trouble sleeping<small>On its own or with another condition</small></span></label>
+          <label class="choice"><input type="radio" name="why" value="decision"><span>I'm reading a decision<small>And want to check how it was handled</small></span></label>
+        </div>
+      </fieldset>
+      <p class="muted noprint" id="pickNote" aria-live="polite" style="font-size:.88rem"></p>
+      <div class="answer" id="ans-somatic" hidden><p><b>Somatic symptom disorder.</b> VA accepts it as a disability. What matters most is medical evidence that describes the specific symptoms and limits it causes, because VA rates it under the code that fits that picture.</p><p><a href="#somatic">Somatic symptom disorder</a> · <a href="#overlap">Physical and mental symptoms together</a></p></div>
+      <div class="answer" id="ans-neuro" hidden><p><b>A neurodevelopmental disorder.</b> VA generally does not grant service connection for the condition itself. Look at whether an in-service injury such as a TBI caused the diagnosis, whether it worsened at an abnormally high rate in service, and whether another mental disorder developed on top of it.</p><p><a href="#neuro">Neurodevelopmental disorders</a> · <a href="#exceptions">The exceptions</a> · <a href="#superimposed">A separate condition on top</a></p></div>
+      <div class="answer" id="ans-sleep" hidden><p><b>Insomnia.</b> First ask what causes it. If a service-connected condition such as depression, PTSD, or pain causes it, the sleep problems belong in that condition's rating. A separate rating needs a DSM-5 diagnosis of insomnia disorder, a link to service, and no other cause.</p><p><a href="#insomnia">Insomnia</a> · <a href="#paths">The two paths</a></p></div>
+      <div class="answer" id="ans-decision" hidden><p><b>Reading a decision.</b> Check which code was used and why, whether the decision explains that insomnia symptoms were counted in another rating, and whether the exceptions for neurodevelopmental disorders were considered when the evidence raised them.</p><p><a href="#check">Questions to ask about a decision</a> · <a href="#myths">Common misunderstandings</a></p></div>
+    </section>
+
+    <section class="panel" id="somatic" aria-labelledby="som-h">
+      <header><span class="eyebrow">Part 1</span><h2 id="som-h">Somatic symptom disorder</h2>
+        <p>Somatic symptom disorder involves physical symptoms, such as pain, along with distress or excessive thoughts, feelings, or behaviors about those symptoms. VA's manual says it is widely recognized as disabling and is <b>accepted as a disability for compensation purposes</b>.</p></header>
+      <div class="cols">
+        <div class="box doc"><h3>What VA's manual says</h3><ul>
+          <li>It can come from an underlying disease, such as <b>multiple sclerosis</b> or <b>arthritis</b>.</li>
+          <li>Variations of it can show up in <b>every body system</b>.</li>
+          <li>So VA rates it under the <b>most appropriate diagnostic code</b> for the clinical picture, which may be a mental disorder code or a physical one.</li>
+          <li>VA already recognizes <b>fibromyalgia</b> and <b>low back pain syndrome</b>, which the manual calls forms of somatic symptom disorder.</li>
+          <li>DSM-5 replaced the older diagnosis of <b>chronic pain syndrome</b> with somatic symptom disorder.</li>
+        </ul></div>
+        <div class="box you"><h3>What the evidence needs to show</h3>
+          <p>VA's manual says adequate medical evidence must <b>identify the specific manifestations</b> present. A diagnosis alone is not enough to rate it accurately.</p>
+          <ul>
+            <li>Which symptoms you have, and where in the body</li>
+            <li>How often and how severe they are</li>
+            <li>How they affect work, daily activities, and relationships</li>
+            <li>Any underlying disease the symptoms come from</li>
+          </ul></div>
+      </div>
+      <p>The mental disorder part of the rating schedule lists somatic symptom disorder as <b>diagnostic code 9421</b>, with related codes 9422 to 9425 (other specified and unspecified somatic symptom disorders, conversion disorder, and illness anxiety disorder). Those codes use the General Rating Formula for Mental Disorders, which looks at occupational and social impairment.</p>
+      <p class="cite"><span class="tag law">Law</span> 38 C.F.R. § 4.130, DCs 9421–9425 <span class="tag guide">VA guidance</span> M21-1 V.iii.13.1.i</p>
+    </section>
+
+    <section class="panel" id="overlap" aria-labelledby="ov-h">
+      <header><span class="eyebrow">Part 1, continued</span><h2 id="ov-h">When one condition has physical and mental symptoms</h2>
+        <p>Because somatic symptom disorder sits between the body and the mind, the same symptoms can look like a physical condition or a mental one. The rating rules prevent counting them twice.</p></header>
+      <ul>
+        <li><b>Rate the dominant part.</b> When a single disability is diagnosed both as a physical condition and as a mental disorder, VA uses the code for the <b>dominant, more disabling</b> aspect.</li>
+        <li><b>No double counting.</b> The same disability, or the same symptoms, cannot be rated twice under different diagnoses. This rule is called the rule against pyramiding.</li>
+        <li><b>Separate problems can still be rated separately.</b> If a physical condition and a mental condition cause different symptoms, each can have its own rating.</li>
+      </ul>
+      <p class="cite"><span class="tag law">Law</span> 38 C.F.R. §§ 4.14, 4.126(d) <span class="tag guide">VA guidance</span> M21-1 V.iii.13.1.h (referenced in 13.1.i)</p>
+    </section>
+
+    <section class="panel" id="neuro" aria-labelledby="neuro-h">
+      <header><span class="eyebrow">Part 2</span><h2 id="neuro-h">ADHD, autism, and other neurodevelopmental disorders</h2>
+        <p>Neurodevelopmental disorders begin during the developmental period. DSM-5 describes them as typically showing up early in life, with developmental deficits in several areas of functioning. VA's manual lists these as examples, but the group is not limited to them:</p></header>
+      <ul class="pills">
+        <li>Attention-deficit/hyperactivity disorder (ADHD, also called ADD)</li>
+        <li>Autism spectrum disorder</li>
+        <li>Specific learning disorder</li>
+        <li>Tic disorder</li>
+        <li>Childhood-onset fluency disorder (stuttering)</li>
+        <li>Intellectual developmental disorder (intellectual disability)</li>
+      </ul>
+      <div class="alert" role="note">
+        <p class="big">VA treats neurodevelopmental disorders as not "diseases or injuries" under 38 C.F.R. § 3.303(c), so they are generally not service connected on a direct basis.</p>
+        <p>The regulation itself says congenital or developmental defects, personality disorders, and mental deficiency are not diseases or injuries for compensation purposes. VA's manual applies that rule to the whole group of neurodevelopmental disorders. A separate regulation, § 4.127, says the same for intellectual disability specifically.</p>
+      </div>
+      <p class="cite"><span class="tag law">Law</span> 38 C.F.R. §§ 3.303(c), 4.127 <span class="tag guide">VA guidance</span> M21-1 V.iii.13.1.j</p>
+    </section>
+
+    <section class="panel" id="exceptions" aria-labelledby="exc-h">
+      <header><span class="eyebrow">Part 2, continued</span><h2 id="exc-h">Two exceptions in VA's manual</h2>
+        <p>"Generally not" is not "never." VA's manual names two situations where service connection should be considered.</p></header>
+      <ol class="flow">
+        <li><div><b>An in-service injury caused the diagnosis.</b> If the evidence <b>clearly</b> shows the diagnosis developed because of an injury in service, such as a <b>traumatic brain injury (TBI)</b>, VA considers service connection for any diagnosis directly related to that injury.<span class="stop">Example: attention and concentration problems that first appear after a documented head injury in service, with a medical opinion linking them to the TBI.</span></div></li>
+        <li><div><b>The condition worsened at an abnormally high rate during service.</b> If it progressed faster than its normal course while you were in service, VA considers service connection by aggravation under 38 C.F.R. § 3.306.<span class="stop">Under § 3.306, a preexisting condition that increases in severity during service is presumed aggravated unless the increase is shown to be its natural progress.</span></div></li>
+      </ol>
+      <div class="cols">
+        <div class="box doc"><h3>The presumption of soundness</h3>
+          <p>By law, a veteran is presumed to have been in sound condition at entry, except for conditions <b>noted</b> on the entry exam. VA can rebut that only with clear and unmistakable evidence that the condition existed before service <b>and</b> was not aggravated by it.</p>
+          <p class="muted" style="font-size:.86rem">VA's manual points to <i>Horn v. Shinseki</i> (2012) for this topic. Board decisions cite <i>Horn</i> for the two parts of that test, called the preexistence prong and the aggravation prong, and for the meaning of "clear and unmistakable": evidence that is undebatable.</p></div>
+        <div class="box you"><h3>What to look for in your records</h3><ul>
+          <li>Was the condition <b>noted on your entry exam</b>, or not?</li>
+          <li>Is there a documented <b>head injury</b> or other injury in service, and did new symptoms follow it?</li>
+          <li>Do service records show the condition getting <b>much worse</b>, such as new treatment, duty limits, or a medical board?</li>
+          <li>Does a doctor explain whether the change was faster than the condition's normal course?</li>
+        </ul></div>
+      </div>
+      <p><a href="./#educ.preagg">Existed before service</a> · <a href="./#educ.tbir">Traumatic brain injury</a> · <a href="medical-opinions.html">Medical opinions</a></p>
+      <p class="cite"><span class="tag law">Law</span> 38 U.S.C. § 1111; 38 C.F.R. § 3.306 <span class="tag court">Court</span> <i>Horn v. Shinseki</i>, 25 Vet. App. 231 (2012) <span class="tag guide">VA guidance</span> M21-1 V.iii.13.1.j; V.ii.2.C and E; V.iii.12.B</p>
+    </section>
+
+    <section class="panel" id="superimposed" aria-labelledby="sup-h">
+      <header><span class="eyebrow">Part 2, continued</span><h2 id="sup-h">A separate condition on top of a neurodevelopmental disorder</h2>
+        <p>Even when the neurodevelopmental disorder itself cannot be service connected, a <b>different</b> condition that develops in or because of service is its own claim.</p></header>
+      <ul>
+        <li>For intellectual disability, the regulation says disability from a mental disorder <b>superimposed</b> on it may be service connected.</li>
+        <li>A veteran with ADHD who develops depression or PTSD from service can claim the depression or PTSD. The ADHD diagnosis does not block it.</li>
+        <li>A TBI, PTSD, or other service-connected condition is evaluated on its own symptoms, so the record should separate which symptoms come from which condition where a doctor can do that.</li>
+      </ul>
+      <div class="medflag"><b>From ClaimReady's research, not the M21-1 text</b><p>Board decisions also rely on VA General Counsel opinions (VAOPGCPREC 82-90 and 67-90) that separate congenital or developmental <b>defects</b>, which are generally stable, from <b>diseases</b>, which can improve or worsen, and say a defect can be subject to a superimposed disease or injury. VA's manual does not cite those opinions in this section.</p></div>
+      <p class="cite"><span class="tag law">Law</span> 38 C.F.R. § 4.127 <span class="tag bg">Background</span> VAOPGCPREC 82-90, 67-90, as described in published Board decisions</p>
+    </section>
+
+    <section class="panel" id="insomnia" aria-labelledby="ins-h">
+      <header><span class="eyebrow">Part 3</span><h2 id="ins-h">Insomnia: a symptom or its own condition?</h2>
+        <p>VA's manual says to consider the evidence carefully. Insomnia is <b>generally a symptom</b> of another disability. It can occur on its own, but it is often part of:</p></header>
+      <div class="cols">
+        <div class="box"><h3>Another mental disorder</h3><p>For example, major depressive disorder or PTSD</p></div>
+        <div class="box"><h3>A medical condition</h3><p>For example, pain that keeps you awake</p></div>
+        <div class="box"><h3>Another sleep disorder</h3><p>For example, a breathing-related sleep disorder such as sleep apnea</p></div>
+      </div>
+      <p>Chronic sleep impairment is already one of the symptoms listed in the General Rating Formula for Mental Disorders, at the 30% level. That is one reason sleep problems caused by a mental disorder are counted inside that disorder's rating.</p>
+      <p class="cite"><span class="tag law">Law</span> 38 C.F.R. § 4.130 <span class="tag guide">VA guidance</span> M21-1 V.iii.13.1.k</p>
+    </section>
+
+    <section class="panel" id="paths" aria-labelledby="paths-h">
+      <header><span class="eyebrow">Part 3, continued</span><h2 id="paths-h">The two paths for insomnia</h2>
+        <p>VA's manual uses a simple table. Which path applies depends on whether something else causes the insomnia.</p></header>
+      <div class="paths">
+        <div class="box doc"><span class="if">Path A · If</span><h3>Insomnia is caused by, or is a symptom of, another service-connected condition</h3>
+          <ul>
+            <li>No separate rating for insomnia on a secondary basis.</li>
+            <li>VA service connects the <b>underlying</b> condition, if it is not already.</li>
+            <li>The insomnia symptoms are <b>included in the rating</b> for that underlying condition.</li>
+            <li>The decision should explain that insomnia was counted there because that condition causes it.</li>
+            <li>No rating under a mental disorder code just for insomnia, <b>unless</b> the condition causing it is another mental disorder with a DSM-5 diagnosis.</li>
+          </ul></div>
+        <div class="box you"><span class="if">Path B · If all three are true</span><h3>Insomnia disorder on its own, linked to service</h3>
+          <ul>
+            <li>A <b>current DSM-5 diagnosis of insomnia disorder</b>, meaning it is not tied to another disease or injury</li>
+            <li>An <b>event in service</b>, such as a diagnosis of primary insomnia or insomnia disorder during service</li>
+            <li>A <b>medical link (nexus)</b> between today's diagnosis and that event</li>
+          </ul>
+          <p><b>Then:</b> service connection on a direct basis, rated <b>by analogy</b> under a mental disorder code in § 4.130, because the schedule has no code of its own for insomnia.</p></div>
+      </div>
+      <div class="alert" role="note">
+        <p class="big">A separate rating for insomnia disorder is only warranted if all other possible causes are ruled out and it is service connected directly.</p>
+        <p>DSM-5 renamed "primary insomnia" to "insomnia disorder." VA's manual reads both versions as requiring that other causes be ruled out, so a valid diagnosis means the insomnia is not caused by, or secondary to, another condition.</p>
+      </div>
+      <div class="medflag"><b>Medical background, not from VA</b><p>DSM-5 says insomnia disorder is not adequately explained by coexisting conditions, and it also lets a clinician note insomnia disorder alongside another mental or medical condition when the insomnia needs attention on its own. So a medical record may list insomnia disorder next to depression or pain. How that fits VA's two paths is a question for the examiner's explanation and for VA. Ask your doctor to explain what is causing your insomnia.</p></div>
+      <details><summary>What "rated by analogy" means</summary>
+        <p>When a condition is not listed in the rating schedule, VA may rate it under a closely related condition where the functions affected, the part of the body, and the symptoms are closely analogous. The rule avoids guesswork analogies and analogous ratings for conditions of doubtful diagnosis or not fully supported by clinical findings. For insomnia disorder, that means a mental disorder code and the General Rating Formula.</p>
+        <p class="cite"><span class="tag law">Law</span> 38 C.F.R. § 4.20 <span class="tag guide">VA guidance</span> M21-1 V.iv.1.C.2.a; V.ii.3.D.1.c</p>
+      </details>
+      <p class="cite"><span class="tag law">Law</span> 38 C.F.R. §§ 3.310, 4.14, 4.20, 4.125(a), 4.130 <span class="tag guide">VA guidance</span> M21-1 V.iii.13.1.k</p>
+    </section>
+
+    <section class="panel" id="dsm" aria-labelledby="dsm-h">
+      <header><span class="eyebrow">Ties it together</span><h2 id="dsm-h">Why the DSM-5 diagnosis matters</h2></header>
+      <p>For any mental disorder, VA requires a diagnosis that follows <b>DSM-5</b> and is supported by the exam findings. If it is not, the regulation says VA returns the report to the examiner to support the diagnosis. That rule is why the exact wording matters in all three parts of this article: a DSM-5 somatic symptom disorder, a neurodevelopmental diagnosis, and a DSM-5 insomnia disorder each lead to a different result.</p>
+      <p class="cite"><span class="tag law">Law</span> 38 C.F.R. § 4.125(a)</p>
+    </section>
+
+    <section class="panel" id="check" aria-labelledby="chk-h">
+      <header><span class="eyebrow">For veterans, representatives, and decision makers</span><h2 id="chk-h">Questions to ask about a decision</h2></header>
+      <ul class="checklist">
+        <li><b>Somatic symptom disorder:</b> Does the medical evidence describe the specific symptoms, and does the code chosen fit that clinical picture? If the same condition has physical and mental symptoms, was the dominant part rated, without counting symptoms twice?</li>
+        <li><b>Neurodevelopmental disorder:</b> If the record shows a head injury or other injury in service, or a sharp worsening in service, did the decision consider those exceptions? Was a separate mental disorder on top of it considered on its own?</li>
+        <li><b>Insomnia, Path A:</b> If insomnia was not rated separately, does the decision say which condition it was counted in, and is that condition service connected?</li>
+        <li><b>Insomnia, Path B:</b> Is there a DSM-5 diagnosis of insomnia disorder, an in-service event, and a medical opinion that explains the link and why other causes were ruled out?</li>
+        <li><b>Diagnosis:</b> Does the exam give a DSM-5 diagnosis supported by its findings?</li>
+      </ul>
+      <p><a href="./#educ.secondary">Secondary service connection</a> · <a href="medical-opinions.html">Medical opinions</a> · <a href="supplemental-claims.html">Supplemental Claims</a></p>
+    </section>
+
+    <section class="panel" id="example" aria-labelledby="ex-h">
+      <header><span class="eyebrow">Examples</span><h2 id="ex-h">How this might look</h2></header>
+      <div class="example">
+        <b>Fictional example 1: insomnia</b>
+        <p>An Army veteran is service connected for PTSD and also claims insomnia. The examiner explains that the sleep problems are part of the PTSD.</p>
+        <ul>
+          <li>This is Path A. No separate insomnia rating.</li>
+          <li>The sleep problems are counted in the PTSD rating under the General Rating Formula, and the decision explains that.</li>
+        </ul>
+      </div>
+      <div class="example">
+        <b>Fictional example 2: ADHD</b>
+        <p>A Marine veteran was diagnosed with ADHD as a child, and it was not noted at entry. In service, the veteran had a documented TBI from a blast, followed by new memory and concentration problems.</p>
+        <ul>
+          <li>The ADHD itself is generally not service connected.</li>
+          <li>VA considers service connection for any diagnosis directly related to the TBI, and a medical opinion helps separate TBI symptoms from long-standing ADHD symptoms.</li>
+        </ul>
+      </div>
+      <p class="muted" style="font-size:.86rem">These are made-up examples to show how the rules fit together. They are not real VA decisions and do not predict any outcome.</p>
+    </section>
+
+    <section class="panel" id="myths" aria-labelledby="myth-h">
+      <header><span class="eyebrow">Common misunderstandings</span><h2 id="myth-h">What people often get wrong</h2></header>
+      <dl class="myths">
+        <dt>"Somatic symptom disorder isn't a real disability for VA."</dt><dd>VA's manual says it is accepted as a disability for compensation. It is rated under the code that best fits the symptoms.</dd>
+        <dt>"ADHD can never be connected to service."</dt><dd>Generally not directly, but VA considers it when an in-service injury caused the diagnosis or the condition worsened at an abnormally high rate in service. A separate mental disorder on top of it is its own claim.</dd>
+        <dt>"I should get a separate rating for insomnia on top of my PTSD rating."</dt><dd>Usually not. When another condition causes insomnia, the sleep problems are counted in that condition's rating.</dd>
+        <dt>"Insomnia can't be service connected at all."</dt><dd>It can, on a direct basis, when there is a DSM-5 insomnia disorder with no other cause, an event in service, and a medical link.</dd>
+        <dt>"Insomnia from back pain gets its own mental health rating."</dt><dd>VA's manual says no mental disorder code just for insomnia when it is secondary to another disability, unless that disability is itself a DSM-5 mental disorder.</dd>
+      </dl>
+    </section>
+
+    <section class="panel" id="sources" aria-labelledby="src-h">
+      <header><h2 id="src-h">Sources and dates</h2>
+        <p class="muted" style="font-size:.88rem"><span class="tag law">Law</span> statutes, regulations, and General Counsel precedent opinions. <span class="tag court">Court</span> published court decisions. <span class="tag guide">VA guidance</span> VA's procedures manual, which explains how VA applies the law but is not law. <span class="tag bg">Medical</span> general medical sources, not VA.</p></header>
+      <div class="tscroll"><table>
+        <thead><tr><th scope="col">Source</th><th scope="col">Type</th><th scope="col">Version used</th></tr></thead>
+        <tbody>
+          <tr><td><a href="https://www.law.cornell.edu/uscode/text/38/1111" target="_blank" rel="noopener">38 U.S.C. § 1111</a></td><td><span class="tag law">Law</span></td><td>Current</td></tr>
+          <tr><td><a href="https://www.law.cornell.edu/cfr/text/38/3.303" target="_blank" rel="noopener">38 C.F.R. § 3.303(c)</a>, <a href="https://www.law.cornell.edu/cfr/text/38/3.306" target="_blank" rel="noopener">§ 3.306</a>, <a href="https://www.law.cornell.edu/cfr/text/38/3.310" target="_blank" rel="noopener">§ 3.310</a></td><td><span class="tag law">Law</span></td><td>Current</td></tr>
+          <tr><td>38 C.F.R. §§ 4.14, <a href="https://www.law.cornell.edu/cfr/text/38/4.20" target="_blank" rel="noopener">4.20</a></td><td><span class="tag law">Law</span></td><td>Current</td></tr>
+          <tr><td><a href="https://www.law.cornell.edu/cfr/text/38/4.125" target="_blank" rel="noopener">38 C.F.R. § 4.125(a)</a>, <a href="https://www.law.cornell.edu/cfr/text/38/4.126" target="_blank" rel="noopener">§ 4.126(d)</a>, <a href="https://www.law.cornell.edu/cfr/text/38/4.127" target="_blank" rel="noopener">§ 4.127</a>, <a href="https://www.law.cornell.edu/cfr/text/38/4.130" target="_blank" rel="noopener">§ 4.130</a></td><td><span class="tag law">Law</span></td><td>79 FR 45100 (Aug 4, 2014)</td></tr>
+          <tr><td>VAOPGCPREC 82-90 and 67-90</td><td><span class="tag law">Law</span></td><td>1990</td></tr>
+          <tr><td><i>Horn v. Shinseki</i>, 25 Vet. App. 231</td><td><span class="tag court">Court</span></td><td>2012</td></tr>
+          <tr><td><a href="https://www.knowva.ebenefits.va.gov/system/templates/selfservice/va_ssnew/help/customer/locale/en-US/portal/554400000001018/content/554400000180520/M21-1-Part-V-Subpart-iii-Chapter-13-Mental-Disorders" target="_blank" rel="noopener">M21-1, Part V, Subpart iii, 13.1.i–k, Mental Disorders</a> (text reviewed Oct 25, 2026)</td><td><span class="tag guide">VA guidance</span></td><td class="num" data-src="554400000180520">May 27, 2026</td></tr>
+          <tr><td>American Psychiatric Association, DSM-5 (2013), as incorporated by 38 C.F.R. § 4.125(a)</td><td><span class="tag bg">Medical</span></td><td>2013</td></tr>
+        </tbody>
+      </table></div>
+      <p class="muted" style="font-size:.86rem">Content reviewed <span class="num">Oct 25, 2026</span>. Please check official VA regulations for current information.</p>
+    </section>
+  </main>
+
+  <footer>
+    <p>This article explains public law and VA guidance about somatic symptom disorder, neurodevelopmental disorders, and insomnia. It does not decide whether VA will grant a claim or what rating it will assign, and it is not legal or medical advice. Talk with your doctor about your own diagnosis.</p>
+    <p>ClaimReady is independent and educational. It is not VA and is not a substitute for an accredited representative, who can help at no cost. Nothing on this page is saved or sent. <a href="./#about">About ClaimReady and full disclaimer</a></p>
+  </footer>
+</div>
+<script>
+(() => {
+  const radios = [...document.querySelectorAll('input[name="why"]')];
+  const answers = [...document.querySelectorAll('.answer[id^="ans-"]')];
+  const note = document.getElementById('pickNote');
+  const names = { somatic: 'somatic symptom disorder', neuro: 'a neurodevelopmental disorder', sleep: 'insomnia', decision: 'reading a decision' };
+  function apply() {
+    const r = radios.find(x => x.checked); if (!r) return;
+    answers.forEach(a => { a.hidden = a.id !== 'ans-' + r.value; });
+    note.textContent = `Showing what matters most for ${names[r.value]}.`;
+  }
+  radios.forEach(r => r.addEventListener('change', apply));
+  // A link such as somatic-neurodevelopmental-insomnia.html#sleep opens with that answer picked.
+  const h = location.hash.slice(1);
+  if (names[h]) { radios.find(r => r.value === h).checked = true; apply(); }
+  document.getElementById('printBtn').addEventListener('click', () => window.print());
+})();
+</script>
+</body></html>

@@ -2795,6 +2795,7 @@ if (typeof module !== 'undefined') module.exports = vciTests;
    Topic "vietnamservice" is the standalone page vietnam-service.html (Featured article: proving Vietnam service; build.sh checks its stated dates).
    Topic "herbicidenoassoc" is the standalone page herbicide-no-association.html (Featured article: conditions with no positive association with herbicides; build.sh checks its stated dates).
    Topic "hepatitis" is the standalone page hepatitis.html (Featured article: hepatitis claims, from M21-1 V.iii.6.3; build.sh checks its stated dates).
+   Topic "somaticneuroinsomnia" is the standalone page somatic-neurodevelopmental-insomnia.html (Featured article from M21-1 V.iii.13.1.i-k; build.sh checks its stated dates).
    Topics "supplemental" and "medicalopinions" are the standalone pages supplemental-claims.html and medical-opinions.html (Featured articles);
    build.sh checks the stated dates of every standalone page (doctor guide, PTSD stressor, both of these).
    VCI_UPDATES: the change log shown in "What's changed", topic badges, and the box at the top of each topic.
@@ -3595,6 +3596,9 @@ window.VCI_SOURCES = {
   "hepatitis": [
    "554400000014523"
   ],
+  "somaticneuroinsomnia": [
+   "554400000180520"
+  ],
   "vietnamservice": [
    "554400000177422",
    "554400000177423",
@@ -3960,6 +3964,10 @@ window.VCI_SOURCES = {
    "3"
   ],
   "hepatitis": [
+   "3",
+   "4"
+  ],
+  "somaticneuroinsomnia": [
    "3",
    "4"
   ],
@@ -4994,7 +5002,7 @@ window.VCI_UPDATES = [
     ['Checklists', [['checklist', 'Claim checklist', 'Every step and benefit to consider before you file, with a few questions to fit it to you.'], ['form-526ez.html', 'Form 21-526EZ guide', 'The claim form section by section, the six things a reviewer checks first, and the 8 pages of instructions on one page.'], ['form-0995.html', 'Form 20-0995 guide', 'The Supplemental Claim form section by section: timing, new and relevant evidence, and the two checks that prevent delays.'], ['form-0996.html', 'Form 20-0996 guide', 'The Higher-Level Review form section by section: how the review works, the informal conference, and the one-year deadline.'], ['form-8940.html', 'Form 21-8940 guide', 'The Individual Unemployability form section by section: the percentage rules, marginal employment, and the work history VA needs.'], ['form-2680.html', 'Form 21-2680 guide', 'The Aid and Attendance or Housebound exam form section by section: who fills out each part and what VA needs to see.'], ['form-4142.html', 'Form 21-4142 guide', 'The private records release (21-4142 and 21-4142a) section by section: what VA does with your permission and the checks that prevent delays.'], ['smccheck', 'SMC checklist', 'Which special monthly compensation levels may fit, and what an exam should document.']]],
     ['For your doctor', [['doctor-guide.html', 'What VA asks your examiner', 'The extra questions VA adds for joint exams when medicine helps, increases, Gulf War illness, digestive conditions, and changed rating rules.'], ['medical-opinions.html#doc', 'What makes a medical opinion count', 'For doctors, lawyers, and VSOs: rationale, adequacy, lay statements, speculation, and a checklist before signing.'], ['quick', 'Quick sheet', 'A one-page sheet of what VA needs in an exam or opinion, for your claim type and conditions.'], ['doctors', 'Doctor guide', 'The full guide for a provider writing a VA medical opinion or DBQ.'], ['opinions', 'Check an exam opinion', 'Paste a C&P exam opinion to spot common problems VA should fix.']]],
     ['Ratings and dates', [['temp-100.html', 'Temporary 100% Timeline', 'Joint replacement, surgery recovery, or a hospital stay over 21 days: the months at 100%, when pay can start, and what comes after.'], ['tdiu', 'TDIU calculator', 'Check whether your ratings and work situation fit Individual Unemployability (paid at the 100% rate).'], ['explain', 'Rating-criteria explainer', 'Each level of the criteria, quoted from 38 C.F.R. Part 4, and where a measurement falls.'], ['rating', 'Estimate a rating', 'Match your symptoms to VA\'s rating criteria.'], ['combine', 'Combine ratings', 'VA math: how separate ratings combine, including the bilateral factor.'], ['effcheck', 'Effective date check', 'Compare the date VA picked with the rules.'], ['continuous-pursuit.html', 'Continuous pursuit review (beta)', 'Tell your claim history in your own words. See whether each review was filed in time to keep your original claim date.']]],
-    ['Learn', [['learn', 'Learn by Exams, Benefits, Ratings', 'Every guide sorted into the three parts of a claim, with search.'], ['educ', 'Provider education', 'Plain-language guides to VA\'s manual, by topic, with search.'], ['training', 'Knowledge checks', 'Scenario questions for trainers and service officers.']]],
+    ['Learn', [['learn', 'Learn by Exams, Benefits, Ratings', 'Every guide sorted into the three parts of a claim, with search.'], ['educ', 'Provider education', 'Plain-language guides to VA\'s manual, by topic, with search.'], ['training', 'Knowledge checks', 'Scenario questions for trainers and service officers.'], ['somatic-neurodevelopmental-insomnia.html', 'Somatic, ADHD, and insomnia', 'Featured article: when VA service connects somatic symptom disorder, ADHD, autism, and insomnia, and how each is rated.']]],
   ];
   function subnav(cur) {
     return `<nav class="sub-groups" aria-label="Tools"><button class="sg-home" data-go="tools" ${cur === 'tools' ? 'aria-current="page"' : ''}>All tools</button>${TOOL_GROUPS.map(([g, items]) => `<span class="sg"><span class="sg-lbl">${g}</span>${items.map(([r, l]) => isPage(r) ? `<a class="sg-page" href="${r}"><span class="sg-star" aria-hidden="true">★</span>${l}</a>` : `<button data-go="${r}" ${cur === r ? 'aria-current="page"' : ''}>${TOP_TOOLS.includes(r) ? '<span class="sg-star" aria-hidden="true">★</span>' : ''}${l}</button>`).join('')}</span>`).join('')}</nav>`;
@@ -7041,6 +7049,7 @@ ${topics.length ? `<h2>5. For these conditions</h2><ul>${topics.map(t => `<li><b
       case 'neuro': return `<section class="panel" id="ed-neuro"><div class="panel-head"><h2>MS, ALS, and Parkinson's</h2><span class="muted num">M21-1 V.iii.12.C</span></div>
         <div class="insuf-grid">${cardsHTML(NEURO, [3])}</div></section>`;
       case 'mentalr': return `<section class="panel" id="ed-mentalr"><div class="panel-head"><h2>Mental disorders: rating rules</h2><span class="muted num">M21-1 V.iii.13</span></div>
+        <p class="must-read-link"><span class="top-flag"><span aria-hidden="true">★</span> Featured</span><a class="btn small" href="somatic-neurodevelopmental-insomnia.html">Somatic symptom disorder, ADHD and other neurodevelopmental disorders, and insomnia: how VA decides service connection</a></p>
         <div class="insuf-grid">${cardsHTML(MENTALR, [4])}</div></section>`;
       case 'dental': return `<section class="panel" id="ed-dental"><div class="panel-head"><h2>Dental and jaw conditions</h2><span class="muted num">M21-1 V.iii.14</span></div>
         <div class="insuf-grid">${cardsHTML(DENTAL, [3])}</div></section>`;
