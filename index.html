@@ -960,6 +960,9 @@ a.tool-card, a.learn-row, a.sg-page { text-decoration: none; }
   body.ref-mode .no-print { display: none !important; }
   body.ref-mode .ref-doc { border: 0; padding: 0; max-width: none; background: none; color: #000; }
 }
+
+.dash-cards .path-card { grid-column: 1 / -1; }
+.tool-groups ~ .path-card, .page > .path-card { margin-top: 0; }
 </style>
 <script src="site-config.js"></script>
 <script>
@@ -4497,7 +4500,8 @@ window.VCI_UPDATES = [
         ${recent.length ? `<div class="timeline">${recent.map(x => eventRow(x.c, x.e, true)).join('')}</div>` : '<p class="empty">No decisions recorded yet.</p>'}</section>
       ${notice}</div>`;
   }
-  // The five Dashboard topics are always shown, with or without a folder: the wayfinder and these four cards.
+  // The five Dashboard topics are always shown, with or without a folder: the wayfinder and these four cards. The lesson path card follows How to file a claim (Gory, Oct 25).
+  const PATH_CARD = `<section class="panel start-hero flagship-hero path-card" aria-labelledby="path-h"><span class="eyebrow"><span aria-hidden="true">★</span> Flagship · New</span><h2 id="path-h" style="margin:2px 0 6px">Your claim, step by step</h2><p style="margin:0 0 10px">Seven short lessons that follow a claim in order: how service connection works, before you file, filing, your C&amp;P exam, how ratings work, what to do after a decision, and other benefits. Each gives three key points with the law behind them and the guides to read next. About five minutes each.</p><a class="btn primary" href="claim-path.html">Start lesson 1</a></section>`;
   function dashTopicsHTML() {
     return `<div class="dash-cards"><section class="panel need-card-dash"><div class="spread"><div><h2>What evidence does VA need?</h2><p class="muted" style="margin:4px 0 0">A short summary of VA's evidence rules and the additional forms some claims need, marked for your folder.</p></div>
         <div class="row" style="gap:8px"><button class="btn primary" data-go="needed">See what VA needs</button><button class="btn" data-act="needForms">Additional forms</button></div>
@@ -4518,7 +4522,8 @@ window.VCI_UPDATES = [
         </ul>
         <p class="must-read-link" style="width:100%"><span class="top-flag"><span aria-hidden="true">★</span> Featured</span><a class="btn small" href="form-526ez.html">VA Form 21-526EZ, section by section: what each part asks and why it matters</a> <a class="btn small" href="form-0995.html">VA Form 20-0995, Supplemental Claim, section by section</a> <a class="btn small" href="form-0996.html">VA Form 20-0996, Higher-Level Review, section by section</a> <a class="btn small" href="form-8940.html">VA Form 21-8940, Individual Unemployability, section by section</a> <a class="btn small" href="form-2680.html">VA Form 21-2680, Aid and Attendance or Housebound exam, section by section</a> <a class="btn small" href="form-4142.html">VA Forms 21-4142 and 21-4142a, private medical records, section by section</a> <a class="btn small" href="form-10182.html">VA Form 10182, Board appeal, section by section</a></p>
         <div class="row" style="gap:8px"><a class="btn primary" href="https://www.va.gov/disability/how-to-file-claim/" target="_blank" rel="noopener">File a claim (VA.gov)</a><a class="btn" href="https://www.va.gov/forms/" target="_blank" rel="noopener">Find a VA form</a></div>
-        <p class="muted" style="font-size:.8rem;margin:0;width:100%">Common forms: 21-526EZ (claim), 21-0966 (intent to file), 20-0995 (Supplemental Claim), 20-0996 (Higher-Level Review), 10182 (Board appeal), 21-4142 (release of private records), 21-8940 (IU), 21-2680 (aid and attendance).</p></div></section></div>`;
+        <p class="muted" style="font-size:.8rem;margin:0;width:100%">Common forms: 21-526EZ (claim), 21-0966 (intent to file), 20-0995 (Supplemental Claim), 20-0996 (Higher-Level Review), 10182 (Board appeal), 21-4142 (release of private records), 21-8940 (IU), 21-2680 (aid and attendance).</p></div></section>
+      ${PATH_CARD}</div>`;
   }
   function welcome() {
     return `<div class="page">
@@ -5012,6 +5017,7 @@ window.VCI_UPDATES = [
     return `<div class="page"><div class="page-head"><h1>Tools</h1><p>Everything you need to prepare, file, and follow up, grouped by what you are trying to do.</p></div>
       ${subnav('tools')}
       ${wayfinderHTML()}
+      ${PATH_CARD}
       <div class="tool-groups">${TOOL_GROUPS.map(([g, items]) => `<section class="panel tool-group" aria-labelledby="tg-${g.replace(/\W/g, '')}"><h2 id="tg-${g.replace(/\W/g, '')}">${g}</h2><div class="tool-cards">${items.map(([r, l, d]) => isPage(r) ? `<a class="tool-card top flagship" href="${r}"><span class="top-flag"><span aria-hidden="true">★</span> ${/^continuous-pursuit/.test(r) ? 'Beta · pilot' : 'Flagship · New'}</span><b>${l}</b><span>${d}</span></a>` : `<button class="tool-card${TOP_TOOLS.includes(r) ? ' top' : ''}" data-go="${r}">${TOP_TOOLS.includes(r) ? topFlag() : ''}<b>${l}</b><span>${d}</span></button>`).join('')}</div></section>`).join('')}
         <section class="panel tool-group" aria-labelledby="tg-more"><h2 id="tg-more">Also useful</h2><div class="tool-cards"><button class="tool-card" data-go="add"><b>Add a condition or paste a decision</b><span>Record a grant, denial, or pending claim, or paste your rating decision.</span></button><button class="tool-card" data-go="benefits"><b>Find benefits</b><span>Presumptive conditions guide and special benefits to ask about.</span></button></div></section></div></div>`;
   }
