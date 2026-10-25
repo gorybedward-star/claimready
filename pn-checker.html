@@ -1,0 +1,606 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#1d5a70">
+<link rel="manifest" href="manifest.webmanifest"><link rel="icon" type="image/png" href="icons/favicon-32.png"><link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+<title>Nerve Findings Checker</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="An independent, educational checker that lines up peripheral nerve exam findings with the 38 CFR 4.124a criteria and M21-1 guidance. Nothing is saved or sent.">
+<meta name="referrer" content="no-referrer">
+<style>@font-face{font-family:'Public Sans';font-style:normal;font-weight:400;font-display:swap;src:url(fonts/public-sans-latin-400-normal.woff2) format('woff2')}@font-face{font-family:'Public Sans';font-style:normal;font-weight:500;font-display:swap;src:url(fonts/public-sans-latin-500-normal.woff2) format('woff2')}@font-face{font-family:'Public Sans';font-style:normal;font-weight:600;font-display:swap;src:url(fonts/public-sans-latin-600-normal.woff2) format('woff2')}@font-face{font-family:'Public Sans';font-style:normal;font-weight:700;font-display:swap;src:url(fonts/public-sans-latin-700-normal.woff2) format('woff2')}@font-face{font-family:'Source Serif 4';font-style:normal;font-weight:600;font-display:swap;src:url(fonts/source-serif-4-latin-600-normal.woff2) format('woff2')}@font-face{font-family:'IBM Plex Mono';font-style:normal;font-weight:400;font-display:swap;src:url(fonts/ibm-plex-mono-latin-400-normal.woff2) format('woff2')}@font-face{font-family:'IBM Plex Mono';font-style:normal;font-weight:600;font-display:swap;src:url(fonts/ibm-plex-mono-latin-600-normal.woff2) format('woff2')}</style>
+<style>
+:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}[hidden]{display:none!important}
+/* Layout: banner, header, the "rating activity decides" box, then the DBQ findings form in section order, then the line-up panel.
+   A slim bar pinned to the bottom always shows what the current findings line up with. ClaimReady / Pro Series tokens. */
+:root {
+  --paper: #f3f5f4; --surface: #ffffff; --sunk: #e9eeec; --ink: #16201d; --muted: #5a6763; --line: #d4dcd9;
+  --accent: #1d5a70; --accent-ink: #ffffff; --accent-soft: #dfecf0;
+  --ok: #2a774b; --ok-soft: #e0f0e6; --wait: #8a560a; --wait-soft: #f7ecd8; --pro: #5b3f86; --pro-soft: #ece6f5;
+  --alert: #a3262a; --alert-soft: #fbe7e6;
+  --f-ui: "Public Sans", "Segoe UI", system-ui, sans-serif;
+  --f-serif: "Source Serif 4", Georgia, "Times New Roman", serif;
+  --f-mono: "IBM Plex Mono", ui-monospace, Menlo, monospace;
+  --r: 6px;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --paper: #111816; --surface: #19211f; --sunk: #0d1312; --ink: #e4ebe8; --muted: #98a6a1; --line: #2b3633;
+  --accent: #72b6cf; --accent-ink: #0d1a1f; --accent-soft: #1b3038;
+  --ok: #62c189; --ok-soft: #173426; --wait: #e2a849; --wait-soft: #392b12; --pro: #b9a0e0; --pro-soft: #2a2238;
+  --alert: #f08a84; --alert-soft: #3a1b1a; color-scheme: dark; } }
+:root[data-theme="dark"] {
+  --paper: #111816; --surface: #19211f; --sunk: #0d1312; --ink: #e4ebe8; --muted: #98a6a1; --line: #2b3633;
+  --accent: #72b6cf; --accent-ink: #0d1a1f; --accent-soft: #1b3038;
+  --ok: #62c189; --ok-soft: #173426; --wait: #e2a849; --wait-soft: #392b12; --pro: #b9a0e0; --pro-soft: #2a2238;
+  --alert: #f08a84; --alert-soft: #3a1b1a; color-scheme: dark; }
+* { box-sizing: border-box; }
+[hidden] { display: none !important; }
+body { margin: 0; background: var(--paper); color: var(--ink); font-family: var(--f-ui); font-size: 0.95rem; line-height: 1.5; }
+.wrap { max-width: 760px; margin: 0 auto; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+.banner { background: var(--ink); color: var(--paper); font-size: 0.8rem; }
+.banner .wrap { padding-block: 8px; }
+h1, h2, h3 { font-family: var(--f-serif); font-weight: 600; margin: 0; line-height: 1.2; text-wrap: balance; }
+h1 { font-size: 1.9rem; letter-spacing: -0.01em; }
+h2 { font-size: 1.25rem; }
+h3 { font-size: 1rem; }
+p { margin: 0; }
+ul { margin: 0; padding-left: 20px; display: grid; gap: 6px; }
+a { color: var(--accent); }
+.muted { color: var(--muted); }
+.crumbs a { font-size: .88rem; }
+.eyebrow { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.09em; text-transform: uppercase; color: var(--pro); }
+header.top { padding-block: 24px 4px; display: grid; gap: 10px; }
+main { display: grid; gap: 18px; padding-block: 14px 96px; }
+.panel { background: var(--surface); border: 1px solid var(--line); border-radius: var(--r); padding: 18px; display: grid; gap: 14px; min-width: 0; }
+.important { border: 2px solid var(--alert); background: var(--alert-soft); border-radius: var(--r); padding: 14px 16px; display: grid; gap: 6px; }
+.important .lab { font-size: .74rem; font-weight: 700; letter-spacing: .09em; text-transform: uppercase; color: var(--alert); }
+.important.ue p, .important.le p { font-size: .95rem; }
+.important ul { padding-left: 20px; gap: 2px; }
+.important blockquote { margin: 0; font-family: var(--f-serif); font-size: 1.08rem; line-height: 1.4; }
+.example { background: var(--wait-soft); border: 1px solid var(--line); border-radius: var(--r); padding: 10px 14px; display: flex; flex-wrap: wrap; gap: 8px 14px; align-items: center; justify-content: space-between; }
+button { font: inherit; color: inherit; }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.btn { border: 1px solid var(--line); background: var(--surface); border-radius: var(--r); padding: 8px 14px; cursor: pointer; min-height: 44px; }
+.btn.primary { background: var(--accent); color: var(--accent-ink); border-color: var(--accent); font-weight: 600; }
+
+/* Findings form */
+fieldset { border: 0; margin: 0; padding: 0; display: grid; gap: 8px; min-width: 0; }
+legend { padding: 0; font-weight: 600; margin-bottom: 4px; }
+.sec { display: grid; gap: 16px; padding-top: 14px; border-top: 1px solid var(--line); }
+.sec:first-of-type { border-top: 0; padding-top: 0; }
+.sechead { display: flex; gap: 10px; align-items: baseline; flex-wrap: wrap; }
+.dbq { font-family: var(--f-mono); font-size: .76rem; color: var(--pro); background: var(--pro-soft); border-radius: 4px; padding: 1px 6px; white-space: nowrap; }
+.hint { font-size: .84rem; color: var(--muted); }
+.hint.confirm { border-left: 3px solid var(--wait); padding-left: 10px; color: var(--ink); }
+.chips { display: flex; flex-wrap: wrap; gap: 6px; }
+.chips label { position: relative; }
+.chips input { position: absolute; opacity: 0; inset: 0; margin: 0; cursor: pointer; }
+.chips span { display: inline-flex; align-items: center; min-height: 40px; padding: 6px 12px; border: 1px solid var(--line); border-radius: 999px; background: var(--surface); font-size: .88rem; cursor: pointer; }
+.chips input:checked + span { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); font-weight: 600; }
+.chips input:focus-visible + span { outline: 2px solid var(--accent); outline-offset: 2px; }
+.chips input.nt + span { border-style: dashed; color: var(--muted); }
+.chips input.nt:checked + span { background: var(--sunk); color: var(--ink); border-color: var(--muted); }
+select { font: inherit; color: var(--ink); background: var(--surface); border: 1px solid var(--line); border-radius: var(--r); padding: 10px; min-height: 44px; width: 100%; max-width: 100%; }
+
+/* Results */
+.result-head { display: grid; gap: 8px; }
+.levelbar { display: grid; grid-template-columns: repeat(5, 1fr); gap: 3px; }
+.levelbar div { font-size: .7rem; text-align: center; padding: 8px 2px; background: var(--sunk); color: var(--muted); border-radius: 3px; line-height: 1.2; }
+.levelbar div.on { background: var(--accent); color: var(--accent-ink); font-weight: 700; }
+.levelbar div.none { text-decoration: line-through; opacity: .55; }
+.big { font-family: var(--f-serif); font-size: 1.6rem; font-weight: 600; line-height: 1.15; }
+.tag { display: inline-block; font-size: .68rem; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; padding: 1px 7px; border-radius: 4px; border: 1px solid currentColor; white-space: nowrap; }
+.tag.law { color: var(--accent); } .tag.guide { color: var(--wait); } .tag.court { color: var(--ok); } .tag.pro { color: var(--pro); }
+.box { border-left: 3px solid var(--line); padding: 2px 0 2px 12px; display: grid; gap: 6px; }
+.box.warn { border-color: var(--wait); }
+.box.limit { border-color: var(--accent); }
+.box.cmp { border-color: var(--pro); }
+.item { display: grid; gap: 3px; }
+.cites { font-size: .78rem; color: var(--muted); }
+table { border-collapse: collapse; width: 100%; font-size: 0.86rem; }
+th, td { text-align: left; padding: 7px 8px; border-bottom: 1px solid var(--line); vertical-align: top; }
+th { font-weight: 600; color: var(--muted); font-size: 0.74rem; letter-spacing: 0.04em; text-transform: uppercase; }
+td.pct { font-family: var(--f-mono); white-space: nowrap; font-variant-numeric: tabular-nums; }
+tr.hit td { background: var(--accent-soft); }
+tr.hit td:first-child { box-shadow: inset 3px 0 0 var(--accent); }
+.yours { font-size: .68rem; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: var(--accent); white-space: nowrap; }
+.tscroll { overflow-x: auto; }
+.m21 { display: grid; gap: 10px; }
+.m21 .lvl { border: 1px solid var(--line); border-radius: var(--r); padding: 12px 14px; display: grid; gap: 6px; }
+.m21 .lvl.hit { border-color: var(--accent); background: var(--accent-soft); box-shadow: inset 3px 0 0 var(--accent); }
+.m21 .lvl.off { opacity: .6; }
+.m21 h3 { display: flex; gap: 10px; align-items: baseline; flex-wrap: wrap; }
+details { border-top: 1px solid var(--line); padding-top: 10px; }
+summary { cursor: pointer; font-weight: 600; min-height: 32px; }
+details > div { padding-top: 10px; display: grid; gap: 10px; }
+.dock { position: fixed; left: 0; right: 0; bottom: 0; z-index: 5; background: var(--ink); color: var(--paper); padding-bottom: env(safe-area-inset-bottom, 0px); }
+.dock .wrap { display: flex; gap: 10px; align-items: center; justify-content: space-between; padding-block: 8px; }
+.dock a { color: var(--paper); font-weight: 600; white-space: nowrap; }
+.dock-actions { display: flex; gap: 14px; align-items: center; }
+.dock button { background: none; border: 1px solid var(--paper); color: var(--paper); border-radius: var(--r); padding: 4px 10px; min-height: 36px; cursor: pointer; font-weight: 600; }
+.row-end { display: flex; flex-wrap: wrap; gap: 8px 14px; align-items: center; }
+.dock b { font-family: var(--f-serif); font-size: 1.05rem; }
+footer { font-size: 0.82rem; color: var(--muted); display: grid; gap: 8px; padding-block: 0 110px; }
+/* One-page summary sheet: shown on screen as a preview, printed alone on one Letter page. */
+.sheet { background: #fff; color: #111; border: 1px solid var(--line); border-radius: var(--r); padding: 18px 20px; font-size: .78rem; line-height: 1.35; display: grid; gap: 8px; min-width: 560px; max-width: 8.5in; }
+.sheet h3 { font-size: 1.05rem; color: #111; }
+.sheet h4 { margin: 0; font-size: .8rem; text-transform: uppercase; letter-spacing: .06em; color: #333; border-bottom: 1.5px solid #111; padding-bottom: 2px; }
+.sheet .sh-top { display: flex; justify-content: space-between; gap: 10px; align-items: baseline; border-bottom: 2px solid #111; padding-bottom: 6px; }
+.sheet .sh-banner { font-size: .68rem; color: #333; }
+.sheet .sh-imp { border: 1.5px solid #a3262a; padding: 4px 8px; font-size: .74rem; }
+.sheet .sh-imp b { color: #a3262a; }
+.sheet .sh-res { display: grid; grid-template-columns: auto 1fr; gap: 4px 12px; align-items: baseline; border: 1.5px solid #1d5a70; background: #eef5f7; padding: 6px 10px; }
+.sheet .sh-res .lv { font-family: var(--f-serif); font-size: 1.15rem; font-weight: 600; color: #111; }
+.sheet .cols { display: grid; grid-template-columns: 1fr 1fr; gap: 8px 14px; }
+.sheet table { font-size: .74rem; } .sheet th, .sheet td { padding: 2px 5px; border-bottom: 1px solid #ccc; color: #111; } .sheet th { color: #444; font-size: .68rem; }
+.sheet tr.hit td { background: #dfecf0; font-weight: 600; } .sheet tr.hit td:first-child { box-shadow: none; }
+.sheet ul { padding-left: 16px; gap: 1px; } .sheet p { margin: 0; }
+.sheet .cites, .sheet .muted { color: #444; font-size: .68rem; }
+.sheet .lines { border-bottom: 1px solid #999; height: 18px; }
+@media print {
+  body { background: #fff !important; }
+  body > *:not(.wrap), .wrap > header, main > *:not(.sumwrap), .sumwrap > :not(.tscroll), .dock, footer { display: none !important; }
+  main { display: block; padding: 0; } .wrap { padding: 0 !important; max-width: none; }
+  .sumwrap { border: 0; padding: 0; background: none; display: block; } .tscroll { overflow: visible; }
+  .sheet { border: 0; padding: 0; min-width: 0; max-width: none; font-size: 8pt; }
+  @page { size: letter; margin: 0.45in; }
+}
+@media (max-width: 520px) { h1 { font-size: 1.55rem; } .panel { padding: 14px; } .big { font-size: 1.35rem; } .levelbar div { font-size: .62rem; } }
+@media (prefers-reduced-motion: no-preference) { html { scroll-behavior: smooth; } }
+</style>
+
+</head><body>
+<div class="banner"><div class="wrap">Independent educational tool. Not affiliated with or endorsed by the U.S. Department of Veterans Affairs. Not legal or medical advice. VA decides every claim.</div></div>
+
+<div class="wrap">
+<header class="top">
+  <div class="crumbs"><a href="./#learn.ratings">← Learn: Ratings</a></div>
+  <span class="eyebrow">Peripheral nerves and diabetic neuropathy</span>
+  <h1>Nerve findings checker</h1>
+  <p>Enter the objective findings from a Peripheral Nerves exam, one nerve and one limb at a time. The checker shows which severity level in 38 CFR 4.124a those findings line up with, which findings point higher or lower, and the nerve's published criteria. It doesn't decide a rating. Nothing you enter is saved or sent.</p>
+</header>
+
+<main>
+  <section class="important" aria-labelledby="imp-h">
+    <span class="lab" id="imp-h">Important</span>
+    <blockquote id="imp-q"></blockquote>
+    <span class="cites" id="imp-c"></span>
+  </section>
+
+  <div class="example" id="example" role="status">
+    <span id="example-text"><b>You are looking at a fictional example.</b> Dana's right leg exam is filled in below.</span>
+    <span style="display:flex;gap:8px;flex-wrap:wrap">
+      <button class="btn" type="button" id="clear">Reset</button>
+      <button class="btn" type="button" id="load">Load Dana's example</button>
+    </span>
+  </div>
+
+  <form class="panel" id="form" aria-labelledby="form-h" novalidate>
+    <div class="sechead"><h2 id="form-h">The exam findings</h2></div>
+    <p class="hint">Follow the Peripheral Nerves Conditions DBQ. Pick "Not tested" when the exam doesn't report a finding. A missing finding isn't a normal finding.</p>
+
+    <div class="sec">
+      <div class="sechead"><h3>The nerve</h3><span class="dbq">Sections X–XI</span></div>
+      <fieldset><legend>Is a peripheral nerve condition diagnosed? <span class="dbq">1A</span></legend>
+        <p class="hint">Mild is the default once the symptoms, however slight, were enough to support the diagnosis.</p>
+        <div class="chips" data-name="dx"></div></fieldset>
+      <div class="item"><label for="nerve"><b>Which nerve does the evidence identify?</b></label>
+        <select id="nerve" name="nerve"></select>
+        <p class="hint" id="nerve-note" hidden></p></div>
+      <div id="le-box" hidden><div class="important le" role="note"><span class="lab">Important: lower extremity</span><p>Unlike the upper extremities, separate evaluations of the lower extremities may be assigned for symptoms that are separate and distinct, do not overlap, and are attributed to different lower extremity nerves. This means that separate evaluations are warranted when symptoms arise from any of the five nerve branches listed in the table in M21-1, Part V, Subpart iii, 12.A.2.e.</p><p>If symptoms arise from within the same nerve branch of any of the five individual nerve branches in the lower extremity, separate evaluations for those symptoms are not warranted as this would constitute pyramiding.</p><p class="branch"></p><span class="cites">M21-1, Part V, Subpart iii, 12.A.2.f, Assigning Separate Evaluations for Lower Extremity Peripheral Nerves</span></div></div>
+      <div id="ue-box" hidden><div class="important ue" role="note"><span class="lab">Important: upper extremity</span><p><b>Separate evaluations may not be assigned when evaluating an upper extremity peripheral nerve disability.</b> See note under <a href="https://www.ecfr.gov/current/title-38/section-4.124a" target="_blank" rel="noopener">38 CFR 4.124a, DC 8719</a>.</p><span class="cites">M21-1, Part V, Subpart iii, 12.A.2.c, Assigning Level of Incomplete Paralysis, Neuritis, or Neuralgia</span></div></div>
+      <fieldset id="hand-f" hidden><legend>Dominant hand <span class="dbq">2B</span></legend>
+        <div class="chips" data-name="hand"></div></fieldset>
+      <fieldset><legend>How is the condition rated?</legend>
+        <p class="hint">Diabetic peripheral neuropathy and radiculopathy are usually rated as incomplete paralysis of the nerve involved.</p>
+        <div class="chips" data-name="type"></div></fieldset>
+    </div>
+
+
+    <div class="sec">
+      <div class="sechead"><h3>Muscle strength and atrophy</h3><span class="dbq">Section IV</span></div>
+      <fieldset><legend>Lowest strength grade in the muscles this nerve supplies <span class="dbq">4A</span></legend>
+        <p class="hint">5/5 normal, 4/5 active movement against some resistance, 3/5 against gravity, 2/5 with gravity eliminated, 1/5 a muscle flicker, 0/5 none.</p>
+        <div class="chips" data-name="str"></div></fieldset>
+      <fieldset><legend>Muscle atrophy <span class="dbq">4B</span></legend><div class="chips" data-name="atrophy"></div></fieldset>
+    </div>
+
+    <div class="sec">
+      <div class="sechead"><h3>Reflexes</h3><span class="dbq">Section V</span></div>
+      <fieldset><legend>Worst reflex grade at this nerve's sites</legend><div class="chips" data-name="refl"></div></fieldset>
+    </div>
+
+    <div class="sec">
+      <div class="sechead"><h3>Sensory exam</h3><span class="dbq">Section VI</span></div>
+      <fieldset><legend>Worst light touch result in this nerve's area</legend><div class="chips" data-name="sens"></div></fieldset>
+    </div>
+
+    <div class="sec">
+      <div class="sechead"><h3>Trophic changes and gait</h3><span class="dbq">Sections VII–VIII</span></div>
+      <fieldset><legend>Trophic changes (hair loss, smooth or shiny skin) attributed to the nerve</legend><div class="chips" data-name="troph"></div></fieldset>
+      <fieldset><legend>Gait</legend><div class="chips" data-name="gait"></div></fieldset>
+    </div>
+
+    <div class="sec">
+      <div class="sechead"><h3>Function</h3><span class="dbq">Sections XII, XIII, XVI</span></div>
+      <fieldset><legend>Functional impairment from this nerve condition</legend>
+        <p class="hint">Major means the limb doesn't function normally, for example foot drop, constant use of a brace for this condition, or a hand that can't grip.</p>
+        <div class="chips" data-name="func"></div></fieldset>
+      <fieldset><legend>Remaining effective function: did the examiner check loss of use? <span class="dbq">13</span></legend><div class="chips" data-name="lou"></div></fieldset>
+    </div>
+
+
+    <div class="sec"><div class="row-end"><button class="btn" type="button" id="reset2">Reset all findings</button><span class="hint">Clears every answer so you can check another nerve or limb.</span></div></div>
+  </form>
+
+  <section class="panel" id="result" aria-live="polite" aria-labelledby="res-h" tabindex="-1"></section>
+
+
+
+
+
+  <section class="panel" aria-labelledby="src-h">
+    <h2 id="src-h">Sources</h2>
+    <ul id="sources"></ul>
+    <p class="hint">Please check official VA regulations for current information.</p>
+  </section>
+</main>
+
+<footer>
+  <p>ClaimReady is an independent educational resource based on public VA laws, regulations, and guidance. It is not the U.S. Department of Veterans Affairs and isn't a substitute for an accredited representative, attorney, or claims agent. The "practice tip" items are an experienced reviewer's indicators, not VA's position. The fictional example uses a made-up veteran named Dana and isn't a real VA determination.</p>
+  <p>Nothing you enter leaves this page. Closing or reloading clears it. <a href="./#about">About ClaimReady and full disclaimer</a></p>
+</footer>
+</div>
+
+<div class="dock" aria-hidden="false"><div class="wrap"><span>Lines up with: <b id="dock-level"></b></span><span class="dock-actions"><button type="button" id="reset3">Reset</button><a href="#result">See why</a></span></div></div>
+
+<script>
+var PNDATA = {"important":{"quote":"The rating activity, not the examining medical professional, determines whether the overall evidentiary record shows the severity of the condition meets the criteria for a classification of mild, moderate, moderately severe, or severe.","cite":"M21-1 V.iii.12.A.2.d, Considering the Complete Findings When Evaluating Incomplete Paralysis","auth":["m21-pn-whole"]},"caution":"Practice tips from an experienced reviewer, not VA's position. Every severity here is a review indicator, not a rating: absent sensation doesn't automatically mean moderate, weakness doesn't automatically mean above moderate, and a strength score alone doesn't establish complete paralysis. Apply the specific nerve's criteria, and record a different evaluation when the evidence supports it.","chart":{"cols":["Finding","Where to Look on Exam","Typical Severity Impact"],"rows":[["Subjective Symptoms Only","Section III Symptoms (pain, numbness, paresthesias) with no abnormal exam findings","Mild"],["Decreased Sensation","Sensory Exam: \"Decreased\"","Usually Mild"],["Absent Sensation","Sensory Exam: \"Absent\"","Usually Moderate"],["Abnormal Reflexes","Reflex Exam: 1+, 0, 3+, or 4+","Moderate or higher depending on severity"],["Weakness","Muscle Strength Testing: less than 5/5","Consider above Moderate"],["Atrophy","Muscle Atrophy section","Strong evidence for higher evaluation"],["Functional Impairment","Gait, Assistive Devices, Functional Impact, Loss of Use","Supports Severe when significant"],["Complete Loss of Function","0/5 or 1/5 strength, loss of use, complete paralysis criteria met","Complete Paralysis"]]},"decisions":[["Any loss of use or complete paralysis?","Yes: verify Complete Paralysis criteria."],["Any significant functional impairment, atrophy, or major weakness?","Yes: consider Severe."],["Any weakness or meaningful reflex abnormality?","Yes: consider Moderately Severe (sciatic only) or another appropriate higher severity level."],["Any absent sensation?","Yes: usually Moderate."],["Any decreased sensation only?","Yes: usually Mild."],["Symptoms only with normal examination?","Yes: consider Mild."]],"levels":[{"name":"Mild","tone":"l1","items":["Subjective symptoms only.","Decreased sensation.","Normal strength.","No atrophy.","Normal function."],"extra":"Typical: Pain, numbness, tingling, decreased sensation."},{"name":"Moderate","tone":"l2","items":["Significant sensory impairment.","Absent sensation.","Sensory loss with mild reflex changes.","Still primarily sensory."],"tip":"Absent sensation generally suggests considering moderate impairment."},{"name":"Moderately severe (sciatic only)","tone":"l3","items":["Weakness present.","Significant reflex abnormalities.","Functional impairment.","Not sensory-only."],"tip":"Do not assign based solely on sensory findings."},{"name":"Severe","tone":"l4","items":["Significant weakness.","Atrophy.","Major functional impairment.","Limb does not function normally."]},{"name":"Complete paralysis","tone":"l5","items":["Strength 0/5 or 1/5 may be present.","No meaningful remaining function.","Applicable diagnostic-code criteria met."]}],"oneLine":"Start with sensation. If the evidence shows only sensory impairment, think Mild or Moderate. To get above Moderate, look for weakness, atrophy, reflex loss with impairment, or actual loss of function.","m21c":{"cite":"M21-1, Part V, Subpart iii, 12.A.2.c, Assigning Level of Incomplete Paralysis, Neuritis, or Neuralgia","intro":"The table below provides general guidelines for each level of incomplete paralysis of the upper and lower peripheral nerves.","levels":[{"level":1,"name":"Mild","items":["As this is the lowest level of evaluation for each nerve, this is the default assigned based on the symptoms, however slight, as long as they were sufficient to support a diagnosis of the peripheral nerve impairment for SC purposes.","In general, look for a disability limited to sensory deficits that are lower graded, less persistent, or affecting a small area.","A very minimal reflex or motor abnormality potentially could also be consistent with mild incomplete paralysis."]},{"level":2,"name":"Moderate","items":["Moderate is the maximum evaluation reserved for the most significant cases of sensory-only impairment (38 CFR 4.124a).","Symptoms will likely be described by the claimants and medically graded as significantly disabling.","In such cases a larger area in the nerve distribution may be affected by sensory symptoms.",["Other sign/symptom combinations that may fall into the moderate category include",["combinations of significant sensory changes and reflex or motor changes of a lower degree, or","motor and/or reflex impairment such as weakness or diminished or hyperactive reflexes (with or without sensory impairment) graded as medically moderate."]],["Moderate is also the maximum evaluation that can be assigned for",["neuritis not characterized by organic changes referred to in 38 CFR 4.123, or","neuralgia characterized usually by a dull and intermittent pain in the distribution of a nerve (38 CFR 4.124)."]]]},{"level":3,"name":"Moderately Severe","items":["The moderately severe evaluation level is only applicable for involvement of the sciatic nerve.","This is the maximum rating for sciatic nerve neuritis not characterized by the organic changes specified in 38 CFR 4.123.","Motor and/or reflex impairment (for example, weakness or diminished or hyperactive reflexes) at a grade reflecting a high level of limitation or disability is expected.","Atrophy may be present.  However, for marked muscular atrophy see the criteria for a severe evaluation under 38 CFR 4.124a, DC 8520."]},{"level":4,"name":"Severe","items":["In general, expect motor and/or reflex impairment (for example, atrophy, weakness, or diminished or hyperactive reflexes) at a grade reflecting a very high level of limitation or disability.","Trophic changes may be seen in severe longstanding neuropathy cases.","For the sciatic nerve (38 CFR 4.124a, DC 8520) marked muscular atrophy is expected.","Even though severe incomplete paralysis cases should show findings substantially less than representative findings for complete impairment of the nerve, the disability picture for severe incomplete paralysis may contain signs/symptoms resembling some of those expected in cases of complete paralysis of the nerve.","Neuritis characterized by loss of reflexes, muscle atrophy, sensory disturbances, and constant pain should be rated as high as severe incomplete paralysis of the nerve (38 CFR 4.123)."]}],"notes":["Always consider the specific criteria in the 38 CFR 4.124a DC at issue, as well as the general guidance on neuritis and neuralgia under 38 CFR 4.123 and 38 CFR 4.124.","This guidance also applies to radiculopathy, which is evaluated under a peripheral nerve code.","Separate evaluations may not be assigned when evaluating an upper extremity peripheral nerve disability. See note under 38 CFR 4.124a, DC 8719."],"reference":"For more information on evaluating peripheral nerves, see the Peripheral Nerve Evaluation Matrix."},"sensory":[{"kind":"law","cite":"38 CFR 4.124a, note before DC 8510 (Diseases of the Peripheral Nerves)","text":"The term “incomplete paralysis,” with this and other peripheral nerve injuries, indicates a degree of lost or impaired function substantially less than the type picture for complete paralysis given with each nerve, whether due to varied level of the nerve lesion or to partial regeneration. When the involvement is wholly sensory, the rating should be for the mild, or at most, the moderate degree. The ratings for the peripheral nerves are for unilateral involvement; when bilateral, combine with application of the bilateral factor."},{"kind":"guide","cite":"M21-1, Part V, Subpart iii, 12.A.2.a, Regulations for Evaluating Peripheral Nerves","text":"38 CFR 4.124a, DCs 8510-8730, provides evaluation levels for complete paralysis, incomplete paralysis, neuritis, or neuralgia of peripheral nerves. At the beginning of the DCs for the peripheral nerves, the regulation also states that “incomplete paralysis” anticipates substantially less impaired function than described for complete paralysis of the nerve. When impairment is wholly sensory, the evaluation should be that specified for the mild, or at most, the moderate degree of incomplete paralysis for the nerve."},{"kind":"guide","cite":"M21-1, Part V, Subpart iii, 12.A.2.d, Considering the Complete Findings When Evaluating Incomplete Paralysis, Example 2","text":"An examiner renders an assessment of “severe incomplete paralysis” when the objective test results are wholly sensory. Therefore, the condition warrants an evaluation no higher than moderate incomplete paralysis under 38 CFR 4.124a."},{"kind":"dbq","cite":"Peripheral Nerves Conditions DBQ, Sections X and XI (Severity Evaluation for Upper and Lower Extremity Nerves), note","text":"For VA purposes, the term “incomplete paralysis” indicates a degree of lost or impaired function substantially less than the description of complete paralysis that is given with each nerve. If the nerve is completely paralyzed, check the box for “complete paralysis.” If the nerve is not completely paralyzed, check the box for “incomplete paralysis” and indicate severity. For VA purposes, when nerve impairment is wholly sensory, the evaluation should be mild, or at most, moderate."}],"nerves":[["8520","Sciatic (DC 8520)"],["8521","Common peroneal, external popliteal (DC 8521)"],["8522","Superficial peroneal, musculocutaneous (DC 8522)"],["8523","Deep peroneal, anterior tibial (DC 8523)"],["8524","Tibial, internal popliteal (DC 8524)"],["8525","Posterior tibial (DC 8525)"],["8526","Femoral, anterior crural (DC 8526)"],["8527","Internal saphenous (DC 8527)"],["8528","Obturator (DC 8528)"],["8529","External cutaneous nerve of the thigh (DC 8529)"],["8530","Ilio-inguinal (DC 8530)"],["8514","Radial, musculospiral (DC 8514)"],["8515","Median (DC 8515)"],["8516","Ulnar (DC 8516)"],["8517","Musculocutaneous, arm (DC 8517)"],["8518","Circumflex (DC 8518)"],["8519","Long thoracic (DC 8519)"],["8510","Upper radicular group (DC 8510)"],["8511","Middle radicular group (DC 8511)"],["8512","Lower radicular group (DC 8512)"],["8513","All radicular groups (DC 8513)"],["unknown","Not identified"]],"unknownNote":"No nerve is identified. With no other evidence: radial (DC 8514) for an arm, common peroneal (DC 8521) for a leg, or sciatic (DC 8520) for leg radiculopathy with a service-connected low back.","criteria":{"title":"Peripheral nerve criteria","auth":"cfr-4.124a-pn","pickBy":"pn.nerve","pickHint":"Pick the nerve under \"Which nerve\" to see its criteria.","versions":[{"key":"8520","label":"DC 8520, Sciatic nerve","nodate":true,"levels":[[80,"Complete: the foot dangles and drops, no active movement possible of muscles below the knee, flexion of knee weakened or (very rarely) lost"],[60,"Incomplete, severe, with marked muscular atrophy"],[40,"Incomplete, moderately severe"],[20,"Incomplete, moderate"],[10,"Incomplete, mild"]],"note":"Checked against the current regulation on October 22, 2026. Neuritis DC 8620, neuralgia DC 8720."},{"key":"8521","label":"DC 8521, External popliteal (common peroneal) nerve","nodate":true,"levels":[[40,"Complete: foot drop and slight droop of first phalanges of all toes, cannot dorsiflex the foot, extension of proximal phalanges of toes lost; abduction of foot lost, adduction weakened; anesthesia covers entire dorsum of foot and toes"],[30,"Incomplete, severe"],[20,"Incomplete, moderate"],[10,"Incomplete, mild"]],"note":"Checked October 22, 2026. Sciatic branch."},{"key":"8522","label":"DC 8522, Musculocutaneous (superficial peroneal) nerve","nodate":true,"levels":[[30,"Complete: eversion of foot weakened"],[20,"Incomplete, severe"],[10,"Incomplete, moderate"],[0,"Incomplete, mild"]],"note":"Percentages checked October 22, 2026; complete paralysis wording follows the DBQ summary. Sciatic branch."},{"key":"8523","label":"DC 8523, Anterior tibial (deep peroneal) nerve","nodate":true,"levels":[[30,"Complete: dorsal flexion of foot lost"],[20,"Incomplete, severe"],[10,"Incomplete, moderate"],[0,"Incomplete, mild"]],"note":"Percentages checked October 22, 2026; complete paralysis wording follows the DBQ summary. Sciatic branch."},{"key":"8524","label":"DC 8524, Internal popliteal (tibial) nerve","nodate":true,"levels":[[40,"Complete: plantar flexion lost, frank adduction of foot impossible, flexion and separation of toes abolished; no muscle in sole can move"],[30,"Incomplete, severe"],[20,"Incomplete, moderate"],[10,"Incomplete, mild"]],"note":"Checked October 22, 2026. Sciatic branch."},{"key":"8525","label":"DC 8525, Posterior tibial nerve","nodate":true,"levels":[[30,"Complete: paralysis of all muscles of sole of foot, frequently with painful paralysis of a causalgic nature; toes cannot be flexed; adduction weakened; plantar flexion impaired"],[20,"Incomplete, severe"],[10,"Incomplete, moderate"],[10,"Incomplete, mild"]],"note":"Percentages checked October 22, 2026; complete paralysis wording follows the DBQ summary. Sciatic branch."},{"key":"8526","label":"DC 8526, Anterior crural (femoral) nerve","nodate":true,"levels":[[40,"Complete: paralysis of quadriceps extensor muscles"],[30,"Incomplete, severe"],[20,"Incomplete, moderate"],[10,"Incomplete, mild"]],"note":"Checked October 22, 2026. Femoral branch."},{"key":"8527","label":"DC 8527, Internal saphenous nerve","nodate":true,"levels":[[10,"Severe to complete paralysis"],[0,"Mild to moderate"]],"note":"Checked October 22, 2026. Femoral branch."},{"key":"8528","label":"DC 8528, Obturator nerve","nodate":true,"levels":[[10,"Severe to complete paralysis"],[0,"Mild or moderate"]],"note":"Checked October 22, 2026. Its own branch."},{"key":"8529","label":"DC 8529, External cutaneous nerve of the thigh","nodate":true,"levels":[[10,"Severe to complete paralysis"],[0,"Mild or moderate"]],"note":"Checked October 22, 2026. Its own branch."},{"key":"8530","label":"DC 8530, Ilio-inguinal nerve","nodate":true,"levels":[[10,"Severe to complete paralysis"],[0,"Mild or moderate"]],"note":"Checked October 22, 2026. Its own branch."},{"key":"8514","label":"DC 8514, Musculospiral (radial) nerve","nodate":true,"levels":[["70% / 60%","Complete: drop of hand and fingers, wrist and fingers perpetually flexed; cannot extend hand at wrist, extend proximal phalanges of fingers, extend thumb, or make lateral movement of wrist; hand grip seriously impaired"],["50% / 40%","Incomplete, severe"],["30% / 20%","Incomplete, moderate"],["20% / 20%","Incomplete, mild"]],"note":"Major / minor. Checked October 22, 2026."},{"key":"8515","label":"DC 8515, Median nerve","nodate":true,"levels":[["70% / 60%","Complete: the hand inclined to the ulnar side, index and middle fingers more extended than normally, considerable atrophy of the thenar eminence (ape hand); cannot make a fist; defective opposition and abduction of the thumb; flexion of wrist weakened; pain with trophic disturbances"],["50% / 40%","Incomplete, severe"],["30% / 20%","Incomplete, moderate"],["10% / 10%","Incomplete, mild"]],"note":"Major / minor. Checked October 22, 2026."},{"key":"8516","label":"DC 8516, Ulnar nerve","nodate":true,"levels":[["60% / 50%","Complete: the \"griffin claw\" deformity, atrophy very marked in dorsal interspace and thenar and hypothenar eminences; cannot spread the fingers, cannot adduct the thumb; flexion of wrist weakened"],["40% / 30%","Incomplete, severe"],["30% / 20%","Incomplete, moderate"],["10% / 10%","Incomplete, mild"]],"note":"Major / minor. Checked October 22, 2026."},{"key":"8517","label":"DC 8517, Musculocutaneous nerve (arm)","nodate":true,"levels":[["30% / 20%","Complete: weakness of flexion of elbow and supination of forearm"],["20% / 20%","Incomplete, severe"],["10% / 10%","Incomplete, moderate"],["0% / 0%","Incomplete, mild"]],"note":"Major / minor. Percentages checked October 22, 2026; complete paralysis wording follows the DBQ summary."},{"key":"8518","label":"DC 8518, Circumflex nerve","nodate":true,"levels":[["50% / 40%","Complete: abduction of arm is impossible, outward rotation is weakened; muscles supplied are deltoid and teres minor"],["30% / 20%","Incomplete, severe"],["10% / 10%","Incomplete, moderate"],["0% / 0%","Incomplete, mild"]],"note":"Major / minor. Percentages checked October 22, 2026; complete paralysis wording follows the DBQ summary."},{"key":"8519","label":"DC 8519, Long thoracic nerve","nodate":true,"levels":[["30% / 20%","Complete: inability to raise arm above shoulder level, winged scapula deformity"],["20% / 20%","Incomplete, severe"],["10% / 10%","Incomplete, moderate"],["0% / 0%","Incomplete, mild"]],"note":"Major / minor. Percentages checked October 22, 2026; complete paralysis wording follows the DBQ summary."},{"key":"8510","label":"DC 8510, Upper radicular group (5th and 6th cervicals)","nodate":true,"levels":[["70% / 60%","Complete: all shoulder and elbow movements lost or severely affected; hand and wrist movements not affected"],["50% / 40%","Incomplete, severe"],["40% / 30%","Incomplete, moderate"],["20% / 20%","Incomplete, mild"]],"note":"Major / minor. Percentages checked October 22, 2026; complete paralysis wording follows the DBQ summary."},{"key":"8511","label":"DC 8511, Middle radicular group","nodate":true,"levels":[["70% / 60%","Complete: adduction, abduction, and rotation of arm, flexion of elbow, and extension of wrist lost or severely affected"],["50% / 40%","Incomplete, severe"],["40% / 30%","Incomplete, moderate"],["20% / 20%","Incomplete, mild"]],"note":"Major / minor. Percentages checked October 22, 2026; complete paralysis wording follows the DBQ summary."},{"key":"8512","label":"DC 8512, Lower radicular group","nodate":true,"levels":[["70% / 60%","Complete: all intrinsic muscles of hand, and some or all of flexors of wrist and fingers, paralyzed (substantial loss of use of hand)"],["50% / 40%","Incomplete, severe"],["40% / 30%","Incomplete, moderate"],["20% / 20%","Incomplete, mild"]],"note":"Major / minor. Percentages checked October 22, 2026; complete paralysis wording follows the DBQ summary."},{"key":"8513","label":"DC 8513, All radicular groups","nodate":true,"levels":[["90% / 80%","Complete"],["70% / 60%","Incomplete, severe"],["40% / 30%","Incomplete, moderate"],["20% / 20%","Incomplete, mild"]],"note":"Major / minor. Percentages checked October 22, 2026."}]},"auth":{"m21-pn-whole":{"cite":"M21-1, Part V, Subpart iii, 12.A.2.d","type":"guide","url":"","checked":"2026-10-22","about":"Evaluate from the complete findings, not only the examiner's severity checkbox. The decision maker, not the examiner, decides the level."},"m21-pn-sens":{"cite":"M21-1, Part V, Subpart iii, 12.A.2.b","type":"guide","url":"","checked":"2026-10-22","about":"Wholly sensory impairment: mild when recurrent, lower graded, or a smaller area; moderate for continuous, higher graded, or a larger area. A non-sensory finding doesn't by itself require more than moderate."},"m21-pn-level":{"cite":"M21-1, Part V, Subpart iii, 12.A.2.c","type":"guide","url":"","checked":"2026-10-22","about":"General guidelines for mild, moderate, moderately severe (sciatic only), and severe incomplete paralysis, neuritis, and neuralgia."},"m21-pn-which":{"cite":"M21-1, Part V, Subpart iii, 12.A.2.g","type":"guide","url":"","checked":"2026-10-22","about":"Identifying the nerve affected: most beneficial nerve within a branch when the evidence conflicts; radial (DC 8514) or common peroneal (DC 8521) when no nerve can be identified; sciatic (DC 8520) for lower extremity radiculopathy with a service-connected thoracolumbar spine."},"m21-pn-branch":{"cite":"M21-1, Part V, Subpart iii, 12.A.2.e–f","type":"guide","url":"","checked":"2026-10-22","about":"Five lower extremity nerve branches (sciatic, femoral, obturator, external cutaneous nerve of thigh, ilio-inguinal). Separate evaluations across branches; within one branch would be pyramiding."},"cfr-4.120":{"cite":"38 C.F.R. § 4.120","type":"law","url":"https://www.ecfr.gov/current/title-38/section-4.120","checked":"2026-10-22","about":"Peripheral nerve injuries: consider the relative impairment of motor function, trophic changes, and sensory disturbances, and the site and character of the injury."},"cfr-4.123":{"cite":"38 C.F.R. § 4.123","type":"law","url":"https://www.ecfr.gov/current/title-38/section-4.123","checked":"2026-10-22","about":"Neuritis (loss of reflexes, muscle atrophy, sensory disturbances, constant pain) is rated on the nerve's scale up to severe incomplete paralysis; without organic changes, up to moderate, or moderately severe for the sciatic nerve."},"cfr-4.124":{"cite":"38 C.F.R. § 4.124","type":"law","url":"https://www.ecfr.gov/current/title-38/section-4.124","checked":"2026-10-22","about":"Neuralgia (usually dull and intermittent pain in a nerve's distribution) is rated up to moderate incomplete paralysis."},"cfr-4.124a-pn":{"cite":"38 C.F.R. § 4.124a, DCs 8510–8530 and note before DC 8510","type":"law","url":"https://www.ecfr.gov/current/title-38/section-4.124a","checked":"2026-10-22","about":"Peripheral nerve criteria. Incomplete paralysis is substantially less than complete; when wholly sensory, the rating should be mild, or at most, moderate. Combined upper extremity nerve injuries are rated by the major involvement or a radicular group."},"miller":{"cite":"Miller v. Shulkin, 28 Vet. App. 376 (2017)","type":"court","url":"","checked":"2026-10-22","about":"Wholly sensory peripheral nerve impairment: mild, or at most moderate, and a non-sensory finding doesn't automatically require more than moderate."},"cfr-3.350a2":{"cite":"38 C.F.R. § 3.350(a)(2)","type":"law","url":"https://www.ecfr.gov/current/title-38/section-3.350","checked":"2026-10-22","about":"Loss of use of a hand or foot exists when no effective function remains other than what an amputation stump with a suitable prosthesis would serve equally well."},"cfr-4.26":{"cite":"38 C.F.R. § 4.26","type":"law","url":"https://www.ecfr.gov/current/title-38/section-4.26","checked":"2026-10-22","about":"The bilateral factor for disabilities affecting both arms, both legs, or paired skeletal muscles."}}};
+/* Peripheral nerve findings checker: pure logic, no DOM. Draft 0.1.0, October 25, 2026.
+   Lines up the objective findings a user enters with the review indicators in the Pro Series PN cliff notes
+   (Step 2 chart and Step 4 quick decision rule), then applies the limits in 38 CFR 4.120 to 4.124a.
+   It never assigns a rating: the output is a level range, the findings behind it, and the nerve's published criteria. */
+(function (root) {
+  var LV = ['No level', 'Mild', 'Moderate', 'Moderately severe', 'Severe', 'Complete paralysis'];
+  var SCIATIC = '8520', GROUPED = ['8527', '8528', '8529', '8530'];
+  var ARM = ['8510', '8511', '8512', '8513', '8514', '8515', '8516', '8517', '8518', '8519'];
+
+  // Which severity levels a criteria row covers, read from its published wording.
+  function rowLevels(text) {
+    var t = text.toLowerCase();
+    if (/^severe to complete/.test(t)) return [4, 5];
+    if (/^mild (to|or) moderate/.test(t)) return [1, 2];
+    if (/^complete/.test(t)) return [5];
+    if (/moderately severe/.test(t)) return [3];
+    if (/severe/.test(t)) return [4];
+    if (/moderate/.test(t)) return [2];
+    if (/mild/.test(t)) return [1];
+    return [];
+  }
+  function nerveLevels(version) {
+    var out = [];
+    version.levels.forEach(function (r) { rowLevels(r[1]).forEach(function (l) { if (out.indexOf(l) < 0) out.push(l); }); });
+    return out.sort();
+  }
+  function rangeText(lo, hi) { return lo === hi ? LV[lo] : LV[lo] + ' to ' + LV[hi].toLowerCase(); }
+
+  // f: { nerve, hand, type, sym, area, sens, refl, str, atrophy, troph, gait, func, lou, exam, decision }
+  function check(f, criteria) {
+    var nerve = f.nerve || 'unknown';
+    var version = criteria.versions.filter(function (v) { return v.key === nerve; })[0] || null;
+    var sciatic = nerve === SCIATIC, grouped = GROUPED.indexOf(nerve) >= 0;
+    var str = f.str === 'nt' || !f.str ? null : Number(f.str);
+    var drivers = [], notes = [], missing = [], rule = 0, lo = 0, hi = 0;
+    var cite = { chart: 'Practice tip (Step 2 chart and Step 4 quick decision rule)' };
+
+    // Missing is not normal.
+    if (f.sens === 'nt') missing.push('Sensory exam (Section VI)');
+    if (f.refl === 'nt') missing.push('Reflexes (Section V)');
+    if (str === null) missing.push('Muscle strength (Section IV, 4A)');
+    if (f.atrophy === 'nr') missing.push('Muscle atrophy (Section IV, 4B)');
+
+    var weak = str !== null && str < 5;
+    var reflAbs = f.refl === 'absent', reflMild = f.refl === 'decreased' || f.refl === 'hyper';
+    var nonSensory = weak || reflAbs || reflMild || f.atrophy === 'present' || f.atrophy === 'marked' ||
+      f.troph === 'present' || f.gait === 'nerve' || f.func === 'some' || f.func === 'major' || f.lou === 'yes';
+
+    // Step 4 quick decision rule: start at the bottom of the exam and work upward; the first yes sets the indicator.
+    if (f.lou === 'yes' || (str !== null && str <= 1)) {
+      rule = 1; lo = hi = 5;
+      if (f.lou === 'yes') drivers.push('Loss of use checked (Section XIII)');
+      if (str !== null && str <= 1) drivers.push('Strength ' + str + '/5 (Section IV)');
+      notes.push({ kind: 'law', text: 'Verify the complete paralysis criteria for this nerve. A strength score alone doesn\'t establish complete paralysis.' });
+    } else if (f.atrophy === 'present' || f.atrophy === 'marked' || f.func === 'major' || (str !== null && str <= 3)) {
+      rule = 2; lo = hi = 4;
+      if (f.atrophy === 'marked') drivers.push('Marked muscle atrophy (Section IV, 4B)');
+      else if (f.atrophy === 'present') drivers.push('Muscle atrophy (Section IV, 4B)');
+      if (f.func === 'major') drivers.push('Major functional impairment: the limb doesn\'t function normally (Sections VIII, XII, XVI)');
+      if (str !== null && str <= 3) drivers.push('Significant weakness, strength ' + str + '/5 (Section IV)');
+      if (f.troph === 'present') notes.push({ kind: 'guide', text: 'Trophic changes may be seen in severe longstanding neuropathy cases.', auth: ['m21-pn-level'] });
+    } else if (weak || reflAbs || f.gait === 'nerve' || f.func === 'some') {
+      rule = 3;
+      if (weak) drivers.push('Weakness, strength ' + str + '/5 (Section IV)');
+      if (reflAbs) drivers.push('Absent reflex, 0 (Section V)');
+      if (f.gait === 'nerve') drivers.push('Abnormal gait the examiner attributes to the nerve condition (Section VIII)');
+      if (f.func === 'some') drivers.push('Functional impairment from the nerve condition (Sections XII, XVI)');
+      if (sciatic) {
+        hi = 3; lo = f.gait === 'nerve' || f.func === 'some' ? 3 : 2;
+        if (lo === 2) notes.push({ kind: 'guide', text: 'Weakness or reflex changes graded as medically moderate may fall into moderate. Moderately severe expects motor or reflex impairment at a grade reflecting a high level of limitation or disability.', auth: ['m21-pn-level'] });
+      }
+      else { lo = 2; hi = 4; notes.push({ kind: 'law', text: 'Only the sciatic nerve has a moderately severe level. For this nerve the next level above moderate is severe, so the decision maker weighs whether these findings reach severe or stay at moderate.' }); }
+      notes.push({ kind: 'court', text: 'A finding that isn\'t sensory doesn\'t automatically require a level above moderate.', auth: ['miller', 'm21-pn-sens'] });
+    } else if (f.sens === 'absent' || reflMild) {
+      rule = 4; lo = hi = 2;
+      if (f.sens !== 'absent') { lo = 1; notes.push({ kind: 'guide', text: 'A very minimal reflex or motor abnormality potentially could also be consistent with mild incomplete paralysis. Reflex changes of a lower degree combined with significant sensory changes may fall into moderate.', auth: ['m21-pn-level'] }); }
+      if (f.sens === 'absent') drivers.push('Absent sensation (Section VI)');
+      if (reflMild) drivers.push((f.refl === 'hyper' ? 'Hyperactive reflex, 3+ or 4+' : 'Decreased reflex, 1+') + ' (Section V)');
+      if (f.sens === 'absent') notes.push({ kind: 'pro', text: 'Absent sensation usually lines up with moderate, but it doesn\'t make the case moderate on its own. The area affected matters.' });
+    } else if (f.sens === 'decreased') {
+      rule = 5; lo = hi = 1;
+      drivers.push('Decreased sensation (Section VI)');
+      if (f.sym === 'constant' || f.area === 'large') {
+        hi = 2;
+        notes.push({ kind: 'guide', text: 'For sensory-only impairment, M21-1 points toward moderate when the symptoms are continuous, higher graded, or cover a larger area of the nerve\'s distribution, and toward mild when they are recurrent, lower graded, or a smaller area.', auth: ['m21-pn-sens'] });
+      }
+    } else if (f.sym === 'intermittent' || f.sym === 'constant') {
+      rule = 6; lo = hi = 1;
+      drivers.push((f.sym === 'constant' ? 'Constant' : 'Intermittent') + ' symptoms with no abnormal exam findings (Section III)');
+      notes.push({ kind: 'pro', text: 'Pain severity alone doesn\'t establish a higher level.' });
+    }
+
+    // Mild is the default: a diagnosed nerve condition supports at least mild, however slight the symptoms (M21-1 V.iii.12.A.2.c).
+    if (!rule && f.dx === 'yes') {
+      rule = 7; lo = hi = 1;
+      drivers.push('A diagnosed peripheral nerve condition (Section I)');
+    }
+    if (f.dx === 'yes' && (rule === 5 || rule === 6 || rule === 7)) notes.push({ kind: 'guide', text: 'Mild is the lowest level of evaluation for each nerve. It is the default assigned based on the symptoms, however slight, as long as they were sufficient to support a diagnosis of the peripheral nerve impairment for service connection.', auth: ['m21-pn-level'] });
+
+    // Limits in the regulation.
+    var capped = [];
+    function cap(max, why, auth) { if (hi > max) { hi = max; if (lo > hi) lo = hi; capped.push({ text: why, auth: auth }); } }
+    if (!nonSensory && rule) cap(2, 'The findings entered are wholly sensory. When the involvement is wholly sensory, the rating should be for the mild, or at most, the moderate degree.', ['cfr-4.124a-pn', 'miller']);
+    if (f.type === 'neuralgia') cap(2, 'Neuralgia is rated up to moderate incomplete paralysis.', ['cfr-4.124']);
+    if (f.type === 'neuritis') {
+      var organic = f.refl === 'decreased' || reflAbs || f.atrophy === 'present' || f.atrophy === 'marked' || f.sens === 'decreased' || f.sens === 'absent';
+      if (organic) cap(4, 'Neuritis with organic changes is rated up to severe incomplete paralysis.', ['cfr-4.123']);
+      else cap(sciatic ? 3 : 2, 'Neuritis without organic changes (loss of reflexes, muscle atrophy, sensory disturbances) is rated up to moderate, or moderately severe for the sciatic nerve.', ['cfr-4.123']);
+    }
+    if (sciatic && hi === 4 && f.atrophy !== 'marked') {
+      if (f.atrophy === 'nr') notes.push({ kind: 'law', text: 'Severe incomplete paralysis of the sciatic nerve is "severe, with marked muscular atrophy." Atrophy wasn\'t reported, so the record can\'t show that level yet.', auth: ['cfr-4.124a-pn'] });
+      cap(3, 'Severe incomplete paralysis of the sciatic nerve requires marked muscular atrophy. Without it, the highest sciatic level below complete is moderately severe.', ['cfr-4.124a-pn']);
+    }
+
+    // Fit the range to the levels this nerve actually has.
+    var avail = version ? nerveLevels(version) : [1, 2, 3, 4, 5];
+    if (!sciatic) { if (lo === 3) lo = 2; if (hi === 3) hi = 4; }
+    if (version && grouped && rule) notes.push({ kind: 'law', text: 'This nerve has two levels only: mild or moderate, and severe to complete paralysis.' });
+    if (!rule) { lo = hi = 0; }
+
+    // The examiner's checkbox and the decision, compared with the range.
+    function compare(v) { var n = Number(v); if (!(n >= 0) || v === '' || v == null || v === 'unknown') return null; return n < lo ? 'below' : n > hi ? 'above' : 'within'; }
+    var exam = compare(f.exam), decision = compare(f.decision);
+
+    // What would point higher or lower.
+    var higher = [], lower = [];
+    if (rule === 0) higher.push('A diagnosis of the nerve condition supports mild as the default. Objective findings (decreased or absent sensation, reflex changes, weakness, or atrophy) show how far above that the picture goes.');
+    if (rule === 7) higher.push('Objective findings on the exam (decreased or absent sensation, reflex changes, weakness, or atrophy) would show whether the picture goes above mild.');
+    if (rule === 6) higher.push('Decreased sensation on the sensory exam (Section VI) would line up with mild on objective findings.', 'Absent sensation, or reflex changes, would point toward moderate.');
+    if (rule === 5) higher.push('Absent sensation, or symptoms that are continuous and cover a larger area of the nerve\'s distribution, would point toward moderate.', 'To go above moderate, the record needs findings that aren\'t sensory: weakness, absent reflexes, atrophy, or functional impairment from the nerve.');
+    if (rule === 4) higher.push('To go above moderate, the record needs findings that aren\'t sensory: weakness (strength below 5/5), absent reflexes, atrophy, or functional impairment from the nerve.');
+    if (rule === 3) higher.push(sciatic ? 'Marked muscular atrophy is required for severe sciatic incomplete paralysis.' : 'Atrophy, significant weakness (3/5 or lower), or major functional impairment would point toward severe.');
+    if (rule === 2 && sciatic && f.atrophy !== 'marked') higher.push('Marked muscular atrophy, located and measured, is required for severe sciatic incomplete paralysis.');
+    if (rule === 2 || rule === 3) higher.push('Loss of use, or no active movement (0/5 or 1/5), would raise the complete paralysis question for this nerve.');
+    if (rule >= 1 && rule <= 4 && drivers.length) lower.push('These indicators rest on: ' + drivers.join('; ') + '. If the complete record doesn\'t support them (for example, a later exam shows the finding is gone or belongs to another nerve or condition), the indicator moves down.');
+    if (rule >= 5) lower.push('Mild is the lowest level of incomplete paralysis. Findings that are normal throughout, with no symptoms, wouldn\'t line up with any level.');
+    if (missing.length) higher.push('Findings that weren\'t tested or reported could change the picture once they are in the record.');
+
+    // M21-1 V.iii.12.A.2.h: EMG is required unless an earlier EMG is of record or the clinical findings are sufficient.
+    var noEmg = f.emg === 'none' || f.emg === 'nt' || !f.emg;
+    var emgWarn = noEmg && missing.length > 0;
+
+    return {
+      rule: rule, lo: lo, hi: hi, label: rule ? rangeText(lo, hi) : 'No level lines up yet',
+      drivers: drivers, notes: notes, capped: capped, missing: missing, higher: higher, lower: lower,
+      exam: exam, decision: decision, emgWarn: emgWarn, untestedMotor: [str === null ? 'muscle strength' : '', f.refl === 'nt' ? 'reflexes' : '', f.atrophy === 'nr' ? 'atrophy' : '', f.troph === 'nr' ? 'trophic changes' : '', f.gait === 'nr' ? 'gait' : ''].filter(Boolean), wholly: rule > 0 && !nonSensory,
+      nerve: nerve, version: version, avail: avail, arm: ARM.indexOf(nerve) >= 0,
+      rowLevels: version ? version.levels.map(function (r) { return rowLevels(r[1]); }) : [],
+    };
+  }
+
+  var api = { check: check, rowLevels: rowLevels, LV: LV };
+  if (typeof module !== 'undefined' && module.exports) module.exports = api; else root.PNC = api;
+})(this);
+
+(function () {
+  var D = PNDATA, A = D.auth, LITE = true;
+  var CH = {
+    emg: [['current', 'Yes, reflects the current condition'], ['older', 'Yes, older'], ['none', 'No'], ['nt', 'Not stated']],
+    dx: [['yes', 'Yes'], ['no', 'No'], ['nt', 'Not stated']],
+    hand: [['major', 'Dominant side'], ['minor', 'Non-dominant side']],
+    type: [['paralysis', 'Incomplete paralysis (85xx)'], ['neuritis', 'Neuritis (86xx)'], ['neuralgia', 'Neuralgia (87xx)']],
+    sym: [['none', 'None'], ['intermittent', 'Intermittent'], ['constant', 'Constant'], ['nt', 'Not reported']],
+    area: [['small', 'A smaller area'], ['large', 'A larger area'], ['nt', 'Not stated']],
+    str: [['5', '5/5'], ['4', '4/5'], ['3', '3/5'], ['2', '2/5'], ['1', '1/5'], ['0', '0/5'], ['nt', 'Not tested']],
+    atrophy: [['none', 'None'], ['present', 'Present'], ['marked', 'Marked'], ['nr', 'Not reported']],
+    refl: [['normal', '2+ normal'], ['decreased', '1+ decreased'], ['absent', '0 absent'], ['hyper', '3+ or 4+'], ['nt', 'Not tested']],
+    sens: [['normal', 'Normal'], ['decreased', 'Decreased'], ['absent', 'Absent'], ['nt', 'Not tested']],
+    troph: [['none', 'None'], ['present', 'Present'], ['nr', 'Not reported']],
+    gait: [['normal', 'Normal'], ['nerve', 'Abnormal, from the nerve'], ['other', 'Abnormal, other cause'], ['nr', 'Not reported']],
+    func: [['none', 'None'], ['some', 'Some'], ['major', 'Major'], ['nr', 'Not described']],
+    lou: [['no', 'No'], ['yes', 'Yes'], ['nr', 'Not answered']],
+    exam: [['', 'None checked'], ['0', 'Normal'], ['1', 'Mild'], ['2', 'Moderate'], ['3', 'Moderately severe'], ['4', 'Severe'], ['5', 'Complete']],
+    decision: [['unknown', 'Not sure'], ['1', 'Mild'], ['2', 'Moderate'], ['3', 'Moderately severe'], ['4', 'Severe'], ['5', 'Complete']],
+  };
+  var BLANK = { emg: 'nt', dx: 'nt', nerve: 'unknown', hand: 'major', type: 'paralysis', sym: 'nt', area: 'nt', str: 'nt', atrophy: 'nr', refl: 'nt', sens: 'nt', troph: 'nr', gait: 'nr', func: 'nr', lou: 'nr', exam: '', decision: 'unknown' };
+  // Dana: fictional, from the Pro Series PN example (sciatic, absent sensation lower leg and foot, reflexes 1+, strength and atrophy not reported, examiner checked mild).
+  var DANA = { emg: 'none', dx: 'yes', nerve: '8520', hand: 'major', type: 'paralysis', sym: 'constant', area: 'large', str: 'nt', atrophy: 'nr', refl: 'decreased', sens: 'absent', troph: 'nr', gait: 'nr', func: 'nr', lou: 'nr', exam: '1', decision: '1' };
+  var $ = function (id) { return document.getElementById(id); };
+  var esc = function (s) { return String(s).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); };
+  var EXL = ['normal', 'mild', 'moderate', 'moderately severe', 'severe', 'complete paralysis'];
+  var KIND = { law: 'Regulation', guide: 'M21-1 guidance', court: 'Court decision', pro: 'Practice tip' };
+  function citeText(keys) { return (keys || []).map(function (k) { return A[k] ? A[k].cite : k; }).join('; '); }
+
+  // Build the controls.
+  var sel = $('nerve'), legs = D.nerves.filter(function (o) { return /^85(2|3)/.test(o[0]); }), arms = D.nerves.filter(function (o) { return /^85(1)/.test(o[0]); });
+  sel.innerHTML = '<option value="unknown">Not identified</option><optgroup label="Leg">' + legs.map(function (o) { return '<option value="' + o[0] + '">' + esc(o[1]) + '</option>'; }).join('') + '</optgroup><optgroup label="Arm">' + arms.map(function (o) { return '<option value="' + o[0] + '">' + esc(o[1]) + '</option>'; }).join('') + '</optgroup>';
+  document.querySelectorAll('.chips').forEach(function (box) {
+    var n = box.getAttribute('data-name');
+    box.innerHTML = CH[n].map(function (o, i) {
+      var id = 'f-' + n + '-' + i, nt = /^(nt|nr|unknown)$/.test(o[0]) || o[0] === '';
+      return '<label for="' + id + '"><input type="radio" id="' + id + '" name="' + n + '" value="' + o[0] + '"' + (nt ? ' class="nt"' : '') + '><span>' + esc(o[1]) + '</span></label>';
+    }).join('');
+  });
+  $('imp-q').textContent = '“' + D.important.quote + '”';
+  $('imp-c').textContent = D.important.cite;
+  if (!LITE) { $('caution').textContent = D.caution;
+  $('m21-cite').textContent = D.m21c.cite;
+  var SK = { law: ['law', 'Regulation'], guide: ['guide', 'M21-1 guidance'], dbq: ['pro', 'DBQ'] };
+  $('ws-src').innerHTML = D.sensory.map(function (q) { return '<div class="lvl"><p><span class="tag ' + SK[q.kind][0] + '">' + SK[q.kind][1] + '</span></p><blockquote style="margin:0;font-family:var(--f-serif);font-weight:400;font-size:1rem;line-height:1.45">' + esc(q.text) + '</blockquote><span class="cites">' + esc(q.cite) + '</span></div>'; }).join(''); }
+  if (!LITE) $('oneline').innerHTML = '<b>In one line:</b> ' + esc(D.oneLine);
+
+  function set(v) {
+    sel.value = v.nerve;
+    Object.keys(CH).forEach(function (n) { var el = document.querySelector('input[name="' + n + '"][value="' + v[n] + '"]'); if (el) el.checked = true; });
+  }
+  function read() {
+    var v = { nerve: sel.value };
+    Object.keys(CH).forEach(function (n) { var el = document.querySelector('input[name="' + n + '"]:checked'); v[n] = el ? el.value : BLANK[n]; });
+    return v;
+  }
+
+  var isExample = true;
+  function render() {
+    var f = read(), r = PNC.check(f, D.criteria), LV = PNC.LV;
+    $('hand-f').hidden = !r.arm;
+    $('ue-box').hidden = !r.arm;
+    var BR = { '8520': 'Sciatic', '8521': 'Sciatic', '8522': 'Sciatic', '8523': 'Sciatic', '8524': 'Sciatic', '8525': 'Sciatic', '8526': 'Femoral', '8527': 'Femoral', '8528': 'Obturator', '8529': 'External cutaneous nerve of the thigh', '8530': 'Ilio-inguinal' }, br = BR[r.nerve];
+    var branchLine = br ? '<b>This nerve\'s branch: ' + br + '.</b> The five branches are sciatic (with the peroneal and tibial nerves), femoral (with the saphenous), obturator, external cutaneous nerve of the thigh, and ilio-inguinal. Check each other leg nerve rated for this limb against this branch.' : '';
+    $('le-box').hidden = !br; $('le-box').querySelector('.branch').innerHTML = branchLine;
+    var nn = $('nerve-note'); nn.hidden = r.nerve !== 'unknown'; nn.textContent = D.unknownNote;
+    $('example').querySelector('#example-text').innerHTML = isExample ? '<b>You are looking at a fictional example.</b> Dana\'s right leg exam is filled in below.' : 'Your entries. Nothing is saved.';
+    $('dock-level').textContent = r.label;
+
+    var h = [];
+    h.push('<div class="result-head"><span class="eyebrow">' + (r.version ? esc(r.version.label) : 'Nerve not identified') + '</span>');
+    h.push('<h2 id="res-h">What these findings line up with</h2>');
+    h.push('<p class="big">' + esc(r.label) + '</p>');
+    var avail = r.version ? r.avail : [1, 2, 3, 4, 5];
+    h.push('<div class="levelbar" role="img" aria-label="Severity scale, ' + esc(r.label) + ' highlighted">' + [1, 2, 3, 4, 5].map(function (l) {
+      var on = r.rule && l >= r.lo && l <= r.hi && avail.indexOf(l) >= 0, none = avail.indexOf(l) < 0;
+      return '<div class="' + (on ? 'on' : '') + (none ? ' none' : '') + '"' + (none ? ' title="This nerve has no ' + LV[l].toLowerCase() + ' level"' : '') + '>' + LV[l] + '</div>';
+    }).join('') + '</div>');
+    h.push('<p class="hint">A review indicator, not a rating. The rating activity decides the level from the complete record.' + (r.version && avail.indexOf(3) < 0 ? ' Struck-through levels don\'t exist for this nerve.' : '') + '</p></div>');
+
+    if (br) h.push('<div class="important le" role="note"><span class="lab">Important: lower extremity</span><p>Unlike the upper extremities, separate evaluations of the lower extremities may be assigned for symptoms that are separate and distinct, do not overlap, and are attributed to different lower extremity nerves. This means that separate evaluations are warranted when symptoms arise from any of the five nerve branches listed in the table in M21-1, Part V, Subpart iii, 12.A.2.e.</p><p>If symptoms arise from within the same nerve branch of any of the five individual nerve branches in the lower extremity, separate evaluations for those symptoms are not warranted as this would constitute pyramiding.</p><p class="branch"></p><span class="cites">M21-1, Part V, Subpart iii, 12.A.2.f, Assigning Separate Evaluations for Lower Extremity Peripheral Nerves</span></div>'.replace('<p class="branch"></p>', '<p class="branch">' + branchLine + '</p>'));
+    if (r.arm) h.push('<div class="important ue" role="note"><span class="lab">Important: upper extremity</span><p><b>Separate evaluations may not be assigned when evaluating an upper extremity peripheral nerve disability.</b> See note under <a href="https://www.ecfr.gov/current/title-38/section-4.124a" target="_blank" rel="noopener">38 CFR 4.124a, DC 8719</a>.</p><span class="cites">M21-1, Part V, Subpart iii, 12.A.2.c, Assigning Level of Incomplete Paralysis, Neuritis, or Neuralgia</span></div>');
+    if (r.drivers.length) h.push('<div class="box"><h3>Findings behind it</h3><ul>' + r.drivers.map(function (d) { return '<li>' + esc(d) + '</li>'; }).join('') + '</ul><span class="cites">' + (r.rule === 7 ? esc(D.m21c.cite) + ': mild is the default for a diagnosed condition.' : 'Rule ' + r.rule + ' of the quick decision rule: ' + esc(D.decisions[r.rule - 1][0]) + ' ' + esc(D.decisions[r.rule - 1][1])) + '</span></div>');
+    else h.push('<div class="box"><p>Nothing entered yet lines up with a level. Answer whether the condition is diagnosed, then enter the sensory, reflex, and strength results.</p></div>');
+
+    if (r.emgWarn && !LITE) h.push('<div class="box warn"><h3>Is the exam sufficient?</h3><p>No EMG reflecting the current condition was entered, and some clinical findings weren\'t tested or reported. EMG results are required unless there is a previous EMG test of record or the record contains sufficient clinical evidence to determine the extent of paralysis. The rating activity decides whether the examination was sufficient.</p><span class="cites">M21-1, Part V, Subpart iii, 12.A.2.h</span></div>');
+    if (r.missing.length) h.push('<div class="box warn"><h3>Not tested or not reported</h3><ul>' + r.missing.map(function (m) { return '<li>' + esc(m) + '</li>'; }).join('') + '</ul><p class="hint">Missing isn\'t normal and isn\'t abnormal. The level can\'t be lined up fully without these.</p></div>');
+
+    if (r.wholly) h.push('<div class="box limit"><h3>Wholly sensory</h3><p>The findings entered are sensory only, so the evaluation should be mild, or at most, moderate. ' + (LITE ? 'Sensory only means the exam shows no weakness, abnormal reflex, atrophy, trophic change, or gait or function problem from the nerve.' : '<a href="#wholly">What "wholly sensory" means</a>') + '</p>' + (r.untestedMotor.length ? '<p><b>Not tested:</b> ' + esc(r.untestedMotor.join(', ')) + '. Without them, the record can\'t show whether the involvement goes past sensory.</p>' : '') + '</div>');
+    if (r.capped.length) h.push('<div class="box limit"><h3>Limits in the regulation</h3>' + r.capped.map(function (c) { return '<div class="item"><p>' + esc(c.text) + '</p><span class="cites">' + esc(citeText(c.auth)) + '</span></div>'; }).join('') + '</div>');
+    var notes = LITE ? r.notes.filter(function (n) { return n.kind !== 'pro'; }) : r.notes;
+    if (notes.length) h.push('<div class="box limit"><h3>Keep in mind</h3>' + notes.map(function (n) { return '<div class="item"><p><span class="tag ' + n.kind + '">' + KIND[n.kind] + '</span> ' + esc(n.text) + '</p>' + (n.auth ? '<span class="cites">' + esc(citeText(n.auth)) + '</span>' : '') + '</div>'; }).join('') + '</div>');
+
+    // Compare with the examiner and the decision.
+    var cmp = [];
+    if (r.exam === 'below') cmp.push('The examiner checked <b>' + esc(EXL[+f.exam]) + '</b>, but the findings you entered line up higher. M21-1 gives this example: the examiner checks mild, but the DBQ shows more; the complete record controls.');
+    if (r.exam === 'above') cmp.push('The examiner checked <b>' + esc(EXL[+f.exam]) + '</b>, but the findings you entered line up lower.' + (r.wholly ? ' M21-1 gives this example: severe is checked but the findings are wholly sensory, so the evaluation can be no higher than moderate.' : ' The complete record controls, not the checkbox.'));
+    if (r.exam === 'within') cmp.push('The severity the examiner checked fits the findings you entered.');
+    if (r.decision === 'below') cmp.push('<b>The findings you entered line up above the level in your decision.</b> These are the specific findings a disagreement would point to: ' + esc(r.drivers.join('; ')) + '.');
+    if (r.decision === 'within') cmp.push('<b>The findings you entered line up with the level in your decision.</b> A disagreement would need evidence that isn\'t in what you entered, such as the findings listed under "What would point higher."');
+    if (r.decision === 'above') cmp.push('<b>The level in your decision is above what these findings alone line up with.</b> Other evidence in the record may support it.');
+    if (cmp.length && !LITE) h.push('<div class="box cmp"><h3>Compared with the exam and the decision</h3>' + cmp.map(function (c) { return '<p>' + c + '</p>'; }).join('') + '<span class="cites">' + esc(citeText(['m21-pn-whole'])) + '</span></div>');
+
+    if (r.higher.length) h.push('<div class="box"><h3>What would point higher</h3><ul>' + r.higher.map(function (x) { return '<li>' + esc(x) + '</li>'; }).join('') + '</ul></div>');
+    if (r.lower.length) h.push('<div class="box"><h3>What would point lower</h3><ul>' + r.lower.map(function (x) { return '<li>' + esc(x) + '</li>'; }).join('') + '</ul></div>');
+
+    // The nerve's own criteria, as published.
+    if (r.version) {
+      var arm = r.arm, minor = f.hand === 'minor';
+      h.push('<div class="item"><h3>The published criteria for ' + esc(r.version.label) + '</h3><div class="tscroll"><table><thead><tr><th scope="col">Rating</th><th scope="col">Criteria</th></tr></thead><tbody>' + r.version.levels.map(function (row, i) {
+        var hit = r.rule && r.rowLevels[i].some(function (l) { return l >= r.lo && l <= r.hi; });
+        var pct = String(row[0]); pct = /%/.test(pct) ? pct : pct + '%';
+        if (arm) { var p = pct.split(' / '); pct = '<span' + (minor ? ' class="muted"' : '') + '>' + p[0] + '</span> / <span' + (minor ? '' : ' class="muted"') + '>' + p[1] + '</span>'; }
+        return '<tr' + (hit ? ' class="hit"' : '') + '><td class="pct">' + pct + '</td><td>' + esc(row[1]) + (hit ? ' <span class="yours">Lines up</span>' : '') + '</td></tr>';
+      }).join('') + '</tbody></table></div><p class="cites">38 C.F.R. § 4.124a. ' + (arm ? 'Major (dominant) / minor side. ' : '') + esc(r.version.note) + ' Neuritis and neuralgia use the same scale under 86xx and 87xx, with the limits in §§ 4.123 and 4.124.</p></div>');
+    } else h.push('<p class="hint">Pick the nerve to see its published criteria.</p>');
+
+    $('result').innerHTML = h.join('');
+    if (LITE) return;
+    summary(f, r, br);
+
+    // M21-1 V.iii.12.A.2.c, verbatim, with the level(s) the findings line up with marked.
+    var M = D.m21c, li = function (x) { return Array.isArray(x) ? '<li>' + esc(x[0]) + '<ul>' + x[1].map(function (y) { return '<li>' + esc(y) + '</li>'; }).join('') + '</ul></li>' : '<li>' + esc(x) + '</li>'; };
+    $('m21').innerHTML = '<p>' + esc(M.intro) + '</p>' + M.levels.map(function (L) {
+      var off = L.level === 3 && r.version && r.avail.indexOf(3) < 0, hit = r.rule && !off && L.level >= r.lo && L.level <= r.hi;
+      return '<div class="lvl' + (hit ? ' hit' : '') + (off ? ' off' : '') + '"><h3>' + esc(L.name) + (hit ? ' <span class="yours">Lines up</span>' : '') + (off ? ' <span class="muted" style="font-size:.8rem;font-family:var(--f-ui)">Not a level for this nerve</span>' : '') + '</h3><ul>' + L.items.map(li).join('') + '</ul></div>';
+    }).join('') + '<div class="item"><b>Notes</b><ul>' + M.notes.map(li).join('') + '</ul><p class="hint">' + esc(M.reference) + '</p></div>';
+
+    // Mark the chart rows the entries touch.
+    var hits = [f.sym !== 'nt' && f.sym !== 'none' && r.rule === 6, f.sens === 'decreased', f.sens === 'absent', /decreased|absent|hyper/.test(f.refl), f.str !== 'nt' && +f.str < 5, /present|marked/.test(f.atrophy), /some|major/.test(f.func) || f.gait === 'nerve', f.lou === 'yes' || (f.str !== 'nt' && +f.str <= 1)];
+    var c = D.chart;
+    $('chart').innerHTML = '<thead><tr>' + c.cols.map(function (x) { return '<th scope="col">' + esc(x) + '</th>'; }).join('') + '</tr></thead><tbody>' + c.rows.map(function (row, i) {
+      return '<tr' + (hits[i] ? ' class="hit"' : '') + '>' + row.map(function (x, j) { return '<td>' + esc(x) + (j === 0 && hits[i] ? ' <span class="yours">In your entries</span>' : '') + '</td>'; }).join('') + '</tr>';
+    }).join('') + '</tbody>';
+  }
+
+  $('sources').innerHTML = Object.keys(A).map(function (k) {
+    var a = A[k], t = a.type === 'guide' ? 'guide' : a.type === 'court' ? 'court' : 'law';
+    return '<li><span class="tag ' + t + '">' + KIND[t] + '</span> ' + (a.url ? '<a href="' + esc(a.url) + '" target="_blank" rel="noopener">' + esc(a.cite) + '</a>' : esc(a.cite)) + '. ' + esc(a.about) + '</li>';
+  }).join('') + '<li><span class="tag pro">Practice tip</span> Where each finding usually points, and the quick decision rule: an experienced reviewer\'s indicators, not VA\'s position.</li>';
+
+  $('form').addEventListener('change', function () { isExample = false; render(); });
+  // One-page summary: the entries, the line-up, and the rules behind it.
+  var LBL = function (n, v) { var o = (CH[n] || []).filter(function (x) { return x[0] === v; })[0]; return o ? o[1] : v; };
+  var sumText = '';
+  function summary(f, r, br) {
+    var LV = PNC.LV, nerveName = r.version ? r.version.label : 'Nerve not identified';
+    var rows = [['Diagnosed (1A)', LBL('dx', f.dx)], ['Nerve', nerveName + (r.arm ? ' (' + LBL('hand', f.hand).toLowerCase() + ')' : '') + (br ? '; ' + br + ' branch' : '')], ['Rated as', LBL('type', f.type)],
+      ['Symptoms (III, confirmation only)', LBL('sym', f.sym) + '; area: ' + LBL('area', f.area).toLowerCase()], ['Lowest strength (4A)', LBL('str', f.str)], ['Atrophy (4B)', LBL('atrophy', f.atrophy)],
+      ['Worst reflex (V)', LBL('refl', f.refl)], ['Sensation, light touch (VI)', LBL('sens', f.sens)], ['Trophic changes (VII)', LBL('troph', f.troph)], ['Gait (VIII)', LBL('gait', f.gait)],
+      ['Functional impairment (XII, XVI)', LBL('func', f.func)], ['Loss of use (XIII)', LBL('lou', f.lou)], ['EMG of record (XV)', LBL('emg', f.emg)],
+      ['Examiner\'s severity (X\u2013XI)', LBL('exam', f.exam)], ['Level in the decision', LBL('decision', f.decision)]];
+    var cmp = [];
+    var EXL = ['normal', 'mild', 'moderate', 'moderately severe', 'severe', 'complete paralysis'];
+    if (r.exam) cmp.push('Examiner checked ' + EXL[+f.exam] + ': the findings line up ' + (r.exam === 'within' ? 'with it.' : r.exam === 'below' ? 'higher.' : 'lower.'));
+    if (r.decision) cmp.push('Decision level ' + EXL[+f.decision] + ': the findings line up ' + (r.decision === 'within' ? 'with it.' : r.decision === 'below' ? 'above it.' : 'below it.'));
+    var lim = r.capped.map(function (c) { return c.text; });
+    if (r.wholly) lim.unshift('Wholly sensory: mild, or at most moderate (38 CFR 4.124a, note before DC 8510).' + (r.untestedMotor.length ? ' Not tested: ' + r.untestedMotor.join(', ') + '.' : ''));
+    var warn = [];
+    if (r.missing.length) warn.push('Not tested or reported (missing, not normal): ' + r.missing.join('; ') + '.');
+    if (r.emgWarn) warn.push('No current EMG entered and some clinical findings are missing. EMG is required unless a previous EMG is of record or the clinical evidence is sufficient; the rating activity decides sufficiency (M21-1 V.iii.12.A.2.h).');
+    var extremity = r.arm ? 'Upper extremity: separate evaluations may not be assigned (note under 38 CFR 4.124a, DC 8719; M21-1 V.iii.12.A.2.c).' : br ? 'Lower extremity: separate evaluations only for separate, non-overlapping symptoms from different branches; within one branch is pyramiding (M21-1 V.iii.12.A.2.f).' : '';
+    var crit = r.version ? '<table><thead><tr><th>Rating</th><th>' + esc(r.version.label) + ' (38 CFR 4.124a)</th></tr></thead><tbody>' + r.version.levels.map(function (row, i) {
+      var hit = r.rule && r.rowLevels[i].some(function (l) { return l >= r.lo && l <= r.hi; }); var pct = String(row[0]); pct = /%/.test(pct) ? pct : pct + '%';
+      return '<tr' + (hit ? ' class="hit"' : '') + '><td class="pct">' + esc(pct) + '</td><td>' + esc(row[1]) + (hit ? ' \u2190 lines up' : '') + '</td></tr>'; }).join('') + '</tbody></table>' + (r.arm ? '<p class="cites">Major (dominant) / minor side.</p>' : '') : '<p class="muted">No nerve identified. ' + esc(D.unknownNote) + '</p>';
+    var today = new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+    var ul = function (a) { return a.length ? '<ul>' + a.map(function (x) { return '<li>' + esc(x) + '</li>'; }).join('') + '</ul>' : '<p class="muted">None.</p>'; };
+    $('summary').innerHTML = '<div class="sh-top"><h3>Nerve findings checker: summary</h3><span class="muted">Prepared ' + esc(today) + '</span></div>'
+      + '<p class="sh-banner">Independent educational tool. Not affiliated with or endorsed by the U.S. Department of Veterans Affairs. Not legal or medical advice. VA decides every claim. This summary lines up entered findings with published criteria and guidance; it is not a rating.</p>'
+      + '<p class="sh-imp"><b>Important:</b> \u201cThe rating activity, not the examining medical professional, determines whether the overall evidentiary record shows the severity of the condition meets the criteria for a classification of mild, moderate, moderately severe, or severe.\u201d M21-1 V.iii.12.A.2.d</p>'
+      + '<div class="sh-res"><span class="muted">Findings line up with</span><span class="lv">' + esc(r.label) + '</span><span class="muted">Behind it</span><span>' + esc(r.drivers.join('; ') || 'No finding entered yet.') + '</span>' + (cmp.length ? '<span class="muted">Compared</span><span>' + esc(cmp.join(' ')) + '</span>' : '') + '</div>'
+      + '<div class="cols"><div><h4>Findings entered</h4><table><tbody>' + rows.map(function (x) { return '<tr><th scope="row">' + esc(x[0]) + '</th><td>' + esc(x[1]) + '</td></tr>'; }).join('') + '</tbody></table></div>'
+      + '<div style="display:grid;gap:6px;align-content:start"><h4>Published criteria</h4>' + crit + '<h4>Limits applied</h4>' + ul(lim) + '<h4>Check before relying on this</h4>' + ul(warn.concat(extremity ? [extremity] : [])) + '</div></div>'
+      + '<div class="cols"><div><h4>What would point higher</h4>' + ul(r.higher) + '</div><div><h4>What would point lower</h4>' + ul(r.lower) + '</div></div>'
+      + '<div><h4>Reviewer notes</h4><div class="lines"></div><div class="lines"></div></div>'
+      + '<p class="cites">Sources: 38 CFR 4.120, 4.123, 4.124, 4.124a; M21-1 V.iii.12.A.2.a, c, d, f, h. Practice-tip indicators (where each finding usually points) are an experienced reviewer\'s, not VA\'s position. Please check official VA regulations for current information.</p>';
+    sumText = ['NERVE FINDINGS CHECKER: SUMMARY (' + today + ')', 'Educational; not a rating. VA decides every claim.', '', 'Lines up with: ' + r.label, 'Behind it: ' + (r.drivers.join('; ') || 'none entered'), cmp.join(' '), '', 'FINDINGS ENTERED'].concat(rows.map(function (x) { return '- ' + x[0] + ': ' + x[1]; }), ['', 'LIMITS APPLIED'], lim.map(function (x) { return '- ' + x; }), ['', 'CHECK BEFORE RELYING ON THIS'], warn.concat(extremity ? [extremity] : []).map(function (x) { return '- ' + x; }), ['', 'WHAT WOULD POINT HIGHER'], r.higher.map(function (x) { return '- ' + x; }), ['', 'WHAT WOULD POINT LOWER'], r.lower.map(function (x) { return '- ' + x; }), ['', 'The rating activity, not the examiner, determines the level (M21-1 V.iii.12.A.2.d). Sources: 38 CFR 4.120-4.124a; M21-1 V.iii.12.A.2.']).filter(function (x, i, a) { return !(x === '' && a[i - 1] === ''); }).join('\n');
+  }
+  if (!LITE) {
+  $('print').addEventListener('click', function () { try { window.print(); } catch (e) {} if (window.self !== window.top) $('print-hint').hidden = false; });
+  $('copy').addEventListener('click', function () {
+    var done = function (ok) { $('copy-status').textContent = ok ? 'Copied.' : 'Select the summary text and copy it.'; };
+    try { navigator.clipboard.writeText(sumText).then(function () { done(true); }, function () { done(false); }); } catch (e) { done(false); }
+  });
+
+  }
+
+  function reset() { isExample = false; $('form').reset(); set(BLANK); render(); $('form-h').scrollIntoView({ block: 'start' }); sel.focus({ preventScroll: true }); }
+  ['clear', 'reset2', 'reset3'].forEach(function (id) { $(id).addEventListener('click', reset); });
+  $('load').addEventListener('click', function () { isExample = true; set(DANA); render(); });
+  set(DANA); render();
+})();
+</script>
+
+</body></html>
