@@ -689,6 +689,7 @@ fieldset.crit-pick legend { font-size: .95rem; color: var(--ink); margin-bottom:
 .ck-list { display: grid; gap: 8px; }
 .ck-item { display: grid; grid-template-columns: minmax(0, 1fr) 190px; gap: 8px; align-items: center; }
 .ck-go { white-space: nowrap; justify-self: start; }
+.must-read-link.ck-feat { grid-column: 1 / -1; margin: 0 0 4px; }
 @media (max-width: 640px) { .ck-item { grid-template-columns: 1fr; } .ck-go { justify-self: start; } }
 
 /* Education search */
@@ -4852,7 +4853,7 @@ window.VCI_UPDATES = [
       ['joints', 'Joints, back, neck, and feet', 'Pain, stiffness, flare-ups, old fractures (even healed), flat feet, plantar fasciitis, shin splints. A painful joint gets at least the minimum rating.', 'educ.painmotion', 'Painful motion'],
       ['nerves', 'Numbness, tingling, sciatica, migraines, seizures', 'Leg or arm symptoms from your back or neck are rated separately. Keep a headache journal.', 'educ.nerves', 'Nerves and migraines'],
       ['head', 'Head injury, concussion, or blast exposure', 'Any hit to the head, crash, fall, or blast. TBI can be service connected at 0% and later bring other conditions.', 'educ.tbir', 'TBI'],
-      ['mental', 'Mental health', 'Depression, anxiety, PTSD, trouble sleeping, anger, memory or concentration problems.', 'educ.mentalr', 'Mental disorders'],
+      ['mental', 'Mental health', 'Depression, anxiety, PTSD, trouble sleeping, anger, memory or concentration problems.', 'educ.mentalr', 'Mental disorders', ['ptsd-stressor.html', 'Your PTSD stressor: how VA accepts that it happened']],
       ['hear', 'Hearing loss and ringing in the ears', 'Noise exposure is conceded for many jobs and for combat. Claim both if you have both.', 'educ.ears', 'Hearing and tinnitus'],
       ['eyes', 'Eyes', 'Vision loss from injury or disease, glaucoma, cataracts, dry eye, double vision.', 'educ.eyes', 'Eyes'],
       ['lungs', 'Breathing, sinuses, and sleep', 'Asthma, sinusitis, rhinitis, COPD, sleep apnea (needs a sleep study).', 'educ.resp', 'Lungs and sleep apnea'],
@@ -4953,7 +4954,7 @@ window.VCI_UPDATES = [
         <nav class="jump" aria-label="Checklist sections">${secs.map((s, i) => `<button class="chip" data-act="jump" data-to="ck-${s[0]}">${i + 1}. ${s[1]}</button>`).join('')}</nav></section>
       ${secs.map(([sid, title, intro, items], i) => { const k = items.filter(it => c[sid + '.' + it[0]]).length;
         return `<section class="panel ck-sec" id="ck-${sid}"><div class="panel-head"><h2>${i + 1}. ${title}</h2><span class="muted num" data-ck-sec="${sid}">${k}/${items.length}</span></div><p class="muted" style="font-size:.9rem;margin:0 0 8px">${intro}</p>
-          <div class="ck-list">${items.map(([iid, t, dsc, go, lbl]) => `<div class="ck-item"><label class="doc-check"><input type="checkbox" data-change="ckToggle" data-key="${sid}.${iid}" ${c[sid + '.' + iid] ? 'checked' : ''}><span class="stack" style="gap:2px"><b>${t}</b><span class="muted" style="font-size:.86rem">${dsc}</span></span></label>${go ? `<button class="btn small link ck-go" data-go="${go}">${lbl} →</button>` : ''}</div>`).join('')}</div></section>`; }).join('')}
+          <div class="ck-list">${items.map(([iid, t, dsc, go, lbl, feat]) => `<div class="ck-item"><label class="doc-check"><input type="checkbox" data-change="ckToggle" data-key="${sid}.${iid}" ${c[sid + '.' + iid] ? 'checked' : ''}><span class="stack" style="gap:2px"><b>${t}</b><span class="muted" style="font-size:.86rem">${dsc}</span></span></label>${go ? `<button class="btn small link ck-go" data-go="${go}">${lbl} →</button>` : ''}${feat ? `<p class="must-read-link ck-feat"><span class="top-flag"><span aria-hidden="true">★</span> Featured</span><a class="btn small" href="${feat[0]}">${feat[1]}</a></p>` : ''}</div>`).join('')}</div></section>`; }).join('')}
       ${mine ? `<p class="muted" style="font-size:.88rem">Showing ${n} of ${CK_ITEMS.length} items. <button class="btn link" data-act="ckView" data-v="all">Show all ${CK_ITEMS.length}</button> to see every benefit VCI covers.</p>` : ''}
       <p class="muted" style="font-size:.82rem">A guide, not legal advice. Built from VA's M21-1 manual as summarized in Education. Your checks are saved only on this device.</p></div>`;
   }
