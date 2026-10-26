@@ -814,6 +814,7 @@ a.tool-card, a.learn-row, a.sg-page { text-decoration: none; }
 .wf-picks { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(240px, 100%), 1fr)); gap: 10px; }
 .wf-pick { width: 100%; height: 100%; display: flex; gap: 10px; align-items: flex-start; text-align: left; background: var(--surface); color: var(--ink); border: 1px solid var(--line); border-radius: var(--r); padding: 12px; font: inherit; cursor: pointer; }
 .wf-pick:hover { border-color: var(--accent); }
+a.wf-pick { text-decoration: none; }
 .wf-picks li:first-child .wf-pick { border: 2px solid var(--wait); background: var(--wait-soft); }
 .wf-rank { flex: none; display: inline-grid; place-items: center; width: 28px; height: 28px; border-radius: 50%; background: var(--accent); color: var(--accent-ink); font-weight: 700; }
 .wf-picks li:first-child .wf-rank { background: var(--wait); color: var(--surface); }
@@ -963,6 +964,32 @@ a.tool-card, a.learn-row, a.sg-page { text-decoration: none; }
 
 .dash-cards .path-card { grid-column: 1 / -1; }
 .tool-groups ~ .path-card, .page > .path-card { margin-top: 0; }
+
+/* Site-wide search */
+.search-btn { display: inline-flex; align-items: center; gap: 6px; font-weight: 650; white-space: nowrap; }
+.search-btn[aria-current="page"] { border-color: var(--accent); background: var(--accent-soft); }
+.site-search .page-head { margin-bottom: 4px; }
+.site-box { display: flex; flex-direction: column; gap: 8px; }
+.site-box > label { font-size: 1.05rem; }
+.site-field { position: relative; max-width: 720px; }
+.site-field svg { position: absolute; left: 14px; top: 50%; transform: translateY(-50%); color: var(--muted); pointer-events: none; }
+.site-field input { width: 100%; box-sizing: border-box; min-height: 52px; padding: 10px 14px 10px 44px; font-size: 1.08rem; border: 2px solid var(--line); border-radius: 999px; background: var(--surface); color: var(--ink); }
+.site-field input:focus { border-color: var(--accent); outline: 3px solid var(--accent-soft); outline-offset: 0; }
+.site-try .chip { min-height: 44px; }
+.site-count { margin: 6px 0 2px; font-size: .9rem; color: var(--muted); }
+.site-wait { font-size: .86rem; margin: 2px 0; }
+.site-results { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; max-width: 760px; }
+.site-hit { display: flex; flex-direction: column; gap: 2px; padding: 14px 0; border-bottom: 1px solid var(--line); min-width: 0; }
+.site-hit:last-child { border-bottom: 0; }
+.site-hit .eyebrow { font-size: .74rem; overflow-wrap: anywhere; }
+.site-title { font-family: var(--f-serif); font-weight: 600; font-size: 1.14rem; color: var(--accent); text-decoration: none; line-height: 1.3; padding: 2px 0; overflow-wrap: anywhere; }
+.site-title:hover { text-decoration: underline; }
+.site-sub { font-size: .86rem; color: var(--muted); }
+.site-hit .snip { margin: 2px 0 0; font-size: .9rem; color: var(--ink); overflow-wrap: anywhere; line-height: 1.45; }
+.site-hit mark { background: var(--accent-soft); color: var(--ink); padding: 0; border-radius: 3px; font-weight: 600; }
+.site-more { list-style: none; margin: 6px 0 0; padding: 0 0 0 12px; border-left: 2px solid var(--line); display: flex; flex-direction: column; gap: 2px; }
+.site-more a { display: inline-block; padding: 6px 0; font-size: .9rem; color: var(--accent); min-height: 24px; }
+@media (max-width: 760px) { .search-btn { min-height: 44px; } }
 </style>
 <script src="site-config.js"></script>
 <script>
@@ -4321,11 +4348,13 @@ window.VCI_UPDATES = [
   let toastTimer;
   function toast(m) { UI.toast = m; const el = $('.toast'); if (el) { el.textContent = m; el.hidden = false; } clearTimeout(toastTimer); toastTimer = setTimeout(() => { UI.toast = ''; const t = $('.toast'); if (t) t.hidden = true; }, 2600); }
   let settingHash = false;
-  function focusHeading() { const h = document.querySelector('#edu-topic h2') || document.querySelector('#main h1'); if (h) { h.setAttribute('tabindex', '-1'); h.focus({ preventScroll: true }); } }
+  function focusHeading() { if (UI.route === 'search') { const q = document.getElementById('site-q'); if (q) { q.focus({ preventScroll: true }); return; } } const h = document.querySelector('#edu-topic h2') || document.querySelector('#main h1'); if (h) { h.setAttribute('tabindex', '-1'); h.focus({ preventScroll: true }); } }
   const TEXT_SIZES = [{ label: 'standard', scale: 1 }, { label: 'large', scale: 1.15 }, { label: 'extra large', scale: 1.3 }];
   function applyTextSize() { document.documentElement.style.fontSize = (16 * TEXT_SIZES[UI.textSize].scale) + 'px'; }
+  // A search link such as #search?q=back%20pay opens the search page with that search; the query is kept in the address only.
+  function siteHash(h) { const m = /^search\?q=(.*)$/.exec(h); if (!m) return h; try { UI.siteQ = decodeURIComponent(m[1]); } catch (e) { } return 'search'; }
   function go(route) { UI.route = route; UI.editEvent = null; UI.confirm = null; UI.activeCheck = null; UI.editOpText = false; render(); window.scrollTo(0, 0); focusHeading(); try { settingHash = true; location.hash = route; } catch (e) { } setTimeout(() => settingHash = false, 0); }
-  window.addEventListener('hashchange', () => { if (settingHash) return; const h = location.hash.slice(1); if (h && h !== UI.route) { UI.route = h; render(); window.scrollTo(0, 0); focusHeading(); } });
+  window.addEventListener('hashchange', () => { if (settingHash) return; const h = siteHash(location.hash.slice(1)); if (h && h !== UI.route) { UI.route = h; render(); window.scrollTo(0, 0); focusHeading(); } });
 
   // ================= HELPERS =================
   const opt = (v, l, cur) => `<option value="${esc(v)}"${String(v) === String(cur == null ? '' : cur) ? ' selected' : ''}>${esc(l)}</option>`;
@@ -4351,7 +4380,7 @@ window.VCI_UPDATES = [
   const inp = (id, name, val, type, extra) => `<input id="${id}" name="${name}" type="${type || 'text'}" value="${esc(val || '')}" ${extra || ''}>`;
 
   // ================= SHELL =================
-  const GROUP = { home: 'home', needed: 'home', conditions: 'conditions', cond: 'conditions', add: 'conditions', opinion: 'opinions', opinions: 'opinions', rating: 'opinions', combine: 'opinions', effcheck: 'opinions', checklist: 'opinions', smccheck: 'opinions', quick: 'opinions', tools: 'opinions', tdiu: 'opinions', doctors: 'opinions', fullref: 'opinions', educ: 'learn', learn: 'learn', explain: 'learn', training: 'learn', benefits: 'benefits', info: 'info', about: 'backup', terms: 'backup', backup: 'backup' };
+  const GROUP = { search: 'search', home: 'home', needed: 'home', conditions: 'conditions', cond: 'conditions', add: 'conditions', opinion: 'opinions', opinions: 'opinions', rating: 'opinions', combine: 'opinions', effcheck: 'opinions', checklist: 'opinions', smccheck: 'opinions', quick: 'opinions', tools: 'opinions', tdiu: 'opinions', doctors: 'opinions', fullref: 'opinions', educ: 'learn', learn: 'learn', explain: 'learn', training: 'learn', benefits: 'benefits', info: 'info', about: 'backup', terms: 'backup', backup: 'backup' };
   const LEGACY = { sc: ['conditions', 'sc'], denied: ['conditions', 'denied'], pending: ['conditions', 'open'], history: ['home'], evidence: ['home'], service: ['info'], log: ['info'], help: ['benefits'] };
   const LEGAL_LINE = 'Educational information based on public information from VA\'s M21-1 Adjudication Procedures Manual (published on KnowVA) and Title 38 of the Code of Federal Regulations (eCFR). Not affiliated with VA. VA decides every claim.';
   const BANNER = 'Independent educational tool. Not affiliated with or endorsed by the U.S. Department of Veterans Affairs. Not legal or medical advice. VA decides every claim.';
@@ -4372,6 +4401,7 @@ window.VCI_UPDATES = [
       <a class="skip" href="#main" data-act="skip">Skip to main content</a>
       <header class="topbar">
         <div class="brand"><span class="mark">VCI</span><span class="name">VA Claims Intelligence</span></div>
+        <button class="btn small search-btn" data-go="search" ${g === 'search' ? 'aria-current="page"' : ''}><svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5" fill="none" stroke="currentColor" stroke-width="2.2"/><path d="M15.5 15.5 21 21" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg>Search</button>
         <nav class="toptabs" aria-label="Sections">${tab('home', 'Dashboard')}${tab('learn', 'Learn')}${tab('conditions', 'Conditions')}${tab('opinions', 'Tools', 'tools')}${tab('info', 'My info')}${tab('benefits', 'Find benefits')}${tab('backup', 'Backup')}</nav>
         <button class="btn small doc-btn" data-act="openQuick">Quick sheet for my doctor</button>
         <span class="store ${store.mode}" title="${store.mode === 'account' ? 'Saved to your private space in your account. Only you can see it.' : 'Saved in this browser only.'}">Private<span class="store-more">${store.mode === 'account' ? ' · saved to your account' : ' · saved on this device'}</span></span>
@@ -4401,6 +4431,7 @@ window.VCI_UPDATES = [
         case 'quick': return quickPage();
         case 'tdiu': return tdiuPage();
         case 'tools': return toolsPage();
+        case 'search': return searchPage();
         case 'needed': return neededPage();
         case 'doctors': return doctorsPage();
         case 'fullref': return fullRefPage(id);
@@ -4976,10 +5007,12 @@ window.VCI_UPDATES = [
       ['quick', 'Tool', 'Quick sheet for your doctor', 'One page of what VA needs, for your claim type and conditions.'],
       ['doctors', 'Guide', 'Guide for your doctor', 'What a provider writing a DBQ or opinion needs to know.']]],
     ['decision', 'Got a decision', 'VA sent you a rating decision.', [
+      ['decision-letter.html', 'Featured guide', 'Decode your decision letter', 'What common phrases like "no nexus" mean, the law behind them, and the next step that fits.'],
       ['educ.ratingdec', 'Guide', 'Reading your rating decision', 'Each section, favorable findings, and the codes.'],
       ['educ.issues', 'Guide', 'Everything VA must decide', 'Complications, SMC, IU, and other issues VA should have addressed.'],
       ['effcheck', 'Tool', 'Effective date check', 'Compare the date VA picked with the rules.']]],
     ['denied', 'Was denied', 'VA denied a claim, or the rating seems too low.', [
+      ['decision-letter.html', 'Featured guide', 'Decode your decision letter', 'What common phrases like "no nexus" mean, the law behind them, and what evidence would matter.'],
       ['educ.supp', 'Guide', 'Supplemental Claims', 'Add new and relevant evidence and keep your effective date.'],
       ['opinions', 'Tool', 'Check an exam opinion', 'Spot the problems in a negative opinion that VA should fix.'],
       ['educ.hlr', 'Guide', 'Higher-Level Review', 'A senior reviewer looks again at the same evidence.']]],
@@ -4996,11 +5029,11 @@ window.VCI_UPDATES = [
   function whereState() { if (!UI.where) { try { UI.where = localStorage.getItem('vci.where') || 'start'; } catch (e) { UI.where = 'start'; } } return WHERE.find(w => w[0] === UI.where) ? UI.where : 'start'; }
   function whereBody(cur) {
     const w = WHERE.find(x => x[0] === cur);
-    return `<p class="muted wf-lead">${w[2]} Start with these three:</p><ol class="wf-picks">${w[3].map(([r, kind, t, d], i) => `<li><button class="wf-pick" data-go="${r}"><span class="wf-rank" aria-hidden="true">${i + 1}</span><span class="wf-text"><span class="wf-kind">${i === 0 ? '<span aria-hidden="true">★</span> Top pick · ' : ''}${kind}</span><b>${t}</b><span>${d}</span></span><span class="wf-go" aria-hidden="true">→</span></button></li>`).join('')}</ol>`;
+    return `<p class="muted wf-lead">${w[2]} Start with these ${['', 'one', 'two', 'three', 'four'][w[3].length] || ''}:</p><ol class="wf-picks">${w[3].map(([r, kind, t, d], i) => `<li>${isPage(r) ? `<a class="wf-pick" href="${r}">` : `<button class="wf-pick" data-go="${r}">`}<span class="wf-rank" aria-hidden="true">${i + 1}</span><span class="wf-text"><span class="wf-kind">${i === 0 ? '<span aria-hidden="true">★</span> Top pick · ' : ''}${kind}</span><b>${t}</b><span>${d}</span></span><span class="wf-go" aria-hidden="true">→</span>${isPage(r) ? '</a>' : '</button>'}</li>`).join('')}</ol>`;
   }
   function wayfinderHTML() {
     const cur = whereState();
-    return `<section class="panel wayfinder" aria-labelledby="wf-h"><div class="spread" style="align-items:baseline"><h2 id="wf-h">Where are you in your claim?</h2><span class="muted" style="font-size:.86rem">Pick one to see the three most useful places to start.</span></div>
+    return `<section class="panel wayfinder" aria-labelledby="wf-h"><div class="spread" style="align-items:baseline"><h2 id="wf-h">Where are you in your claim?</h2><span class="muted" style="font-size:.86rem">Pick one to see the most useful places to start.</span></div>
       <div class="wf-tabs" role="group" aria-label="Where are you in your claim">${WHERE.map(([id, l]) => `<button class="wf-tab" data-act="where" data-w="${id}" aria-pressed="${id === cur}">${l}</button>`).join('')}</div>
       <div class="wf-body" aria-live="polite">${whereBody(cur)}</div></section>`;
   }
@@ -5008,7 +5041,7 @@ window.VCI_UPDATES = [
     ['Checklists', [['checklist', 'Claim checklist', 'Every step and benefit to consider before you file, with a few questions to fit it to you.'], ['form-526ez.html', 'Form 21-526EZ guide', 'The claim form section by section, the six things a reviewer checks first, and the 8 pages of instructions on one page.'], ['form-0995.html', 'Form 20-0995 guide', 'The Supplemental Claim form section by section: timing, new and relevant evidence, and the two checks that prevent delays.'], ['form-0996.html', 'Form 20-0996 guide', 'The Higher-Level Review form section by section: how the review works, the informal conference, and the one-year deadline.'], ['form-8940.html', 'Form 21-8940 guide', 'The Individual Unemployability form section by section: the percentage rules, marginal employment, and the work history VA needs.'], ['form-2680.html', 'Form 21-2680 guide', 'The Aid and Attendance or Housebound exam form section by section: who fills out each part and what VA needs to see.'], ['form-4142.html', 'Form 21-4142 guide', 'The private records release (21-4142 and 21-4142a) section by section: what VA does with your permission and the checks that prevent delays.'], ['form-10182.html', 'Form 10182 guide', 'The Board appeal form section by section: the three dockets, the one-year deadline, evidence windows, and changing dockets.'], ['smccheck', 'SMC checklist', 'Which special monthly compensation levels may fit, and what an exam should document.']]],
     ['For your doctor', [['doctor-guide.html', 'What VA asks your examiner', 'The extra questions VA adds for joint exams when medicine helps, increases, Gulf War illness, digestive conditions, and changed rating rules.'], ['medical-opinions.html#doc', 'What makes a medical opinion count', 'For doctors, lawyers, and VSOs: rationale, adequacy, lay statements, speculation, and a checklist before signing.'], ['quick', 'Quick sheet', 'A one-page sheet of what VA needs in an exam or opinion, for your claim type and conditions.'], ['doctors', 'Doctor guide', 'The full guide for a provider writing a VA medical opinion or DBQ.'], ['opinions', 'Check an exam opinion', 'Paste a C&P exam opinion to spot common problems VA should fix.']]],
     ['Ratings and dates', [['temp-100.html', 'Temporary 100% Timeline', 'Joint replacement, surgery recovery, or a hospital stay over 21 days: the months at 100%, when pay can start, and what comes after.'], ['pn-checker.html', 'Nerve findings checker', 'Peripheral nerves and diabetic neuropathy: enter the exam findings and see which severity level in 38 C.F.R. \u00a7 4.124a they line up with, and why.'], ['tdiu', 'TDIU calculator', 'Check whether your ratings and work situation fit Individual Unemployability (paid at the 100% rate).'], ['explain', 'Rating-criteria explainer', 'Each level of the criteria, quoted from 38 C.F.R. Part 4, and where a measurement falls.'], ['rating', 'Estimate a rating', 'Match your symptoms to VA\'s rating criteria.'], ['combine', 'Combine ratings', 'VA math: how separate ratings combine, including the bilateral factor.'], ['effcheck', 'Effective date check', 'Compare the date VA picked with the rules.'], ['continuous-pursuit.html', 'Continuous pursuit review (beta)', 'Tell your claim history in your own words. See whether each review was filed in time to keep your original claim date.']]],
-    ['Learn', [['claim-path.html', 'Your claim, step by step', 'Seven short lessons that follow a claim in order, from service connection to your decision, with the law behind each step.'], ['learn', 'Learn by Exams, Benefits, Ratings', 'Every guide sorted into the three parts of a claim, with search.'], ['educ', 'Provider education', 'Plain-language guides to VA\'s manual, by topic, with search.'], ['training', 'Knowledge checks', 'Scenario questions for trainers and service officers.'], ['somatic-neurodevelopmental-insomnia.html', 'Somatic, ADHD, and insomnia', 'Featured article: when VA service connects somatic symptom disorder, ADHD, autism, and insomnia, and how each is rated.']]],
+    ['Learn', [['claim-path.html', 'Your claim, step by step', 'Seven short lessons that follow a claim in order, from service connection to your decision, with the law behind each step.'], ['decision-letter.html', 'Decode your decision letter', 'Featured guide: 27 common phrases in VA rating decisions, what each means, the law behind it, and the next step that fits.'], ['learn', 'Learn by Exams, Benefits, Ratings', 'Every guide sorted into the three parts of a claim, with search.'], ['educ', 'Provider education', 'Plain-language guides to VA\'s manual, by topic, with search.'], ['training', 'Knowledge checks', 'Scenario questions for trainers and service officers.'], ['somatic-neurodevelopmental-insomnia.html', 'Somatic, ADHD, and insomnia', 'Featured article: when VA service connects somatic symptom disorder, ADHD, autism, and insomnia, and how each is rated.']]],
   ];
   function subnav(cur) {
     return `<nav class="sub-groups" aria-label="Tools"><button class="sg-home" data-go="tools" ${cur === 'tools' ? 'aria-current="page"' : ''}>All tools</button>${TOOL_GROUPS.map(([g, items]) => `<span class="sg"><span class="sg-lbl">${g}</span>${items.map(([r, l]) => isPage(r) ? `<a class="sg-page" href="${r}"><span class="sg-star" aria-hidden="true">★</span>${l}</a>` : `<button data-go="${r}" ${cur === r ? 'aria-current="page"' : ''}>${TOP_TOOLS.includes(r) ? '<span class="sg-star" aria-hidden="true">★</span>' : ''}${l}</button>`).join('')}</span>`).join('')}</nav>`;
@@ -6582,7 +6615,7 @@ ${topics.length ? `<h1 style="margin-top:28px">Condition-specific requirements</
       [['educ.part4', 'Key rating rules (Part 4)']]],
     ['denials', 'Are the denials correct?',
       'It does not deny service connection for a condition that is already service connected.',
-      'For a denial, the notice must say which elements were not met (38 U.S.C. § 5104(b); 38 C.F.R. § 3.103(f)). Favorable findings bind later VA decisions unless clear and convincing evidence rebuts them (38 U.S.C. § 5104A; 38 C.F.R. § 3.104(c)).',
+      'For a denial, the notice must say which elements were not met (38 U.S.C. § 5104(b); 38 C.F.R. § 3.103(f)). Favorable findings bind later VA decisions. The statute allows a departure only on clear and convincing evidence to the contrary (38 U.S.C. § 5104A); VA\'s regulation allows it only on evidence that identifies a clear and unmistakable error in the finding (38 C.F.R. § 3.104(c)).',
       ['Does the decision say exactly which element was missing: a current diagnosis, an in-service event, or the link between them?', 'Does it list favorable findings? Those carry forward.'],
       [['educ.ratingdec', 'Reading your rating decision'], ['educ.direct', 'Began in service']]],
     ['evals', 'Are the ratings correct, including the combined rating and SMC?',
@@ -6619,7 +6652,7 @@ ${topics.length ? `<h1 style="margin-top:28px">Condition-specific requirements</
     ['Decision (1.A.3)', ['Each issue is numbered, with its outcome, the rating, and the <b>effective date</b>. Grants come first, then denials, then deferred issues.', 'VA uses the examiner\'s diagnosis and shows your words in parentheses, for example "tinnitus (claimed as ringing in the ears)."', 'Related issues decided along with yours (such as competency) appear here too.']],
     ['Evidence (1.A.4)', ['Every piece of evidence considered, with dates: service records, VA and private records, exams, statements, and forms.', 'Evidence VA asked for but did not get is listed as "requested, but not received."', '<b>Check that everything you sent is listed.</b>']],
     ['Reasons for Decision (1.A.5)', ['<b>Grant:</b> the legal basis (such as secondary), the symptoms behind the rating, <b>what the next higher rating requires</b>, the effective date and why, and whether a future exam is planned.', '<b>Rating continued:</b> the basis, the next higher rating\'s requirements, and why there is no sustained improvement, if relevant.', '<b>Denial:</b> the theory considered, your contention, the <b>element that was not met</b>, and any favorable findings. Each theory raised must be discussed.', 'More complex decisions use a longer format with a fuller discussion of the evidence: higher-level reviews, legacy appeal grants, TBI, PTSD denials based on MST or fear, § 1151 denials, proposed reductions or severance, incompetency, cause-of-death and pension denials, and clear and unmistakable error.']],
-    ['Favorable findings (1.A.5.f–h)', ['A favorable finding is a fact or conclusion VA decided in your favor, such as "your service records show you injured your left shoulder in June 1998."', 'VA must list them, specific enough to tell what evidence they rest on. Under 38 C.F.R. § 3.104(c), later decision makers are bound by them unless clear and convincing evidence shows otherwise.', '<b>Use them:</b> they tell you what is already proven, so new evidence can focus on what is missing.']],
+    ['Favorable findings (1.A.5.f–h)', ['A favorable finding is a fact or conclusion VA decided in your favor, such as "your service records show you injured your left shoulder in June 1998."', 'VA must list them, specific enough to tell what evidence they rest on. Later decision makers are bound by them. The statute allows a departure only on clear and convincing evidence to the contrary (38 U.S.C. § 5104A); VA\'s regulation allows it only on evidence that identifies a clear and unmistakable error in the finding (38 C.F.R. § 3.104(c)).', '<b>Use them:</b> they tell you what is already proven, so new evidence can focus on what is missing.']],
     ['Coded conclusion (1.C)', ['Each service-connected disability with its <b>diagnostic code</b>, rating, effective date, and basis: incurred, aggravated, presumptive, secondary, or paired extremity.', '<b>Hyphenated codes:</b> the first code is the disease, the second the criteria used (5002-5214: wrist ankylosis from rheumatoid arthritis). A first code ending in <b>99</b> means rated by analogy (6599-6516). MS, Parkinson\'s, and stroke list each manifestation separately as secondary.', '<b>Combined rating</b> with its dates. A bilateral factor (10% of the combined value for both arms, both legs, or paired muscles) is added before combining the rest, and rounding happens once, at the end.', 'Denied conditions appear under not service connected, with the reason and the original date of denial.']],
     ['Other Codesheet entries (1.B)', ['<b>Combat status:</b> whether any disabilities were incurred in combat.', '<b>Special provision codes</b> flag unusual results, for example 3 for extra-schedular IU or pension, 4 for a rating reduced by the level of a pre-service disability, and 7 for § 1151.', '<b>SMC codes</b>, a <b>future exam date</b> if VA plans to reexamine, and any withholding for severance or separation pay.', 'Some decisions need a second signature, including SMC at the (l) rate or higher, TBI, former POW issues, MST, and proposals to sever service connection.']],
   ];
@@ -6659,7 +6692,7 @@ ${topics.length ? `<h1 style="margin-top:28px">Condition-specific requirements</
   // Summarized from M21-5, Chapter 5, Higher-Level Review Procedures (updated June 12, 2026).
   const HLR_SRC = 'M21-5, Chapter 5, Higher-Level Review Procedures';
   const HLR = [
-    ['What it is (5.1.a–b, d)', ['A new look at the same issues, requested on <b>VA Form 20-0996</b>. An experienced reviewer who had no part in the earlier decision decides it again <b>without deference</b> to that decision (de novo).', 'The reviewer can change the decision on a <b>difference of opinion</b>, weighing the same evidence differently, but only in your favor.', 'Favorable findings already made stay binding unless clear and unmistakable evidence rebuts them.', 'The reviewer can also correct a <b>clear and unmistakable error</b> in any prior decision, even one that hurts you.']],
+    ['What it is (5.1.a–b, d)', ['A new look at the same issues, requested on <b>VA Form 20-0996</b>. An experienced reviewer who had no part in the earlier decision decides it again <b>without deference</b> to that decision (de novo).', 'The reviewer can change the decision on a <b>difference of opinion</b>, weighing the same evidence differently, but only in your favor.', 'Favorable findings already made stay binding unless evidence identifies a clear and unmistakable error in them (38 C.F.R. § 3.104(c)).', 'The reviewer can also correct a <b>clear and unmistakable error</b> in any prior decision, even one that hurts you.']],
     ['Deadlines and limits (5.1.c, f, g)', ['VA must <b>receive</b> the form within <b>one year</b> of the date of the decision notice letter. Issues filed late are rejected; timely issues on the same form go ahead.', 'No HLR of an HLR, and no HLR of a Board decision on the same issue. VA must make another decision in between.', 'No HLR of a <b>proposed</b> decision; wait for the final one.', 'After a Board grant, the issues VA then decides (rating, effective date, ancillary benefits) can be reviewed. VA\'s example: the Board grants hearing loss, VA assigns 0%, and you can file an HLR on the 0%.', 'One form can list issues from decisions of different dates, if each is within a year. Legacy appeals could opt in within 60 days of a Statement of the Case sent on or after February 19, 2019.']],
     ['The record is closed (5.1.c; 5.4)', ['The reviewer can consider only evidence VA had as of the date of the decision notice. Mail stamped as received before that date still counts.', '<b>New evidence is not considered</b>, even if it would win. The decision will say VA received it; file a <b>Supplemental Claim within one year</b> to keep your date.', '<b>New argument is allowed.</b> Point out how VA misread the facts already in the record or misapplied the law. New facts, including your own statements, are evidence and are not considered.']],
     ['Informal conference (5.3)', ['Ask for it <b>on the 20-0996</b> (item 16). A request sent later cannot be honored. If you leave item 16 blank, VA assumes you do not want one.', 'One call, usually by phone or video, with the reviewer who will decide. You, your representative, or both can attend. Its only purpose is to point out <b>errors of law or fact</b>; no new evidence.', 'If you gave VA an email, you may get a link to self-schedule. Otherwise VA makes two phone attempts, about three business days apart, leaving a voicemail. Answer unknown numbers and return the call.', 'VA aims to hold it within 14 days of reaching you. If you miss the call, VA tries three times about five minutes apart, then decides without it.', 'If your representative should be called instead, say so in item 16 and list them in item 17 with their contact information.']],
@@ -7092,6 +7125,7 @@ ${topics.length ? `<h2>5. For these conditions</h2><ul>${topics.map(t => `<li><b
       case 'decqual': {
         const go = links => links.map(([r, l]) => `<button class="btn small" data-go="${r}">${l}</button>`).join(' ');
         return `<section class="panel" id="ed-decqual"><div class="panel-head"><h2>Does your rating decision cover everything? Questions to ask</h2><span class="muted num">M21-4 6.B</span></div>
+        <p class="must-read-link"><span class="top-flag"><span aria-hidden="true">★</span> Featured</span><a class="btn small" href="decision-letter.html">Decode your decision letter: what common phrases mean</a></p>
         ${frameNote('Independent education, not VA\'s position. This article is not written by, for, or on behalf of VA, and is not affiliated with or endorsed by VA. VA decides every claim.')}
         <div class="aa-callout" role="note"><span class="top-flag"><span aria-hidden="true">★</span> Must read</span><br>VA checks samples of its own rating decisions for quality. VA's public guidance for those reviews (the M21-4 manual) lists what a complete, accurate decision should cover. Use the same nine questions when you read your decision letter. A "no" does not mean VA made a mistake; it means the issue is worth a closer look, and maybe a question for your accredited representative.</div>
         <h3 class="edu-h">The nine questions</h3>
@@ -7117,6 +7151,7 @@ ${topics.length ? `<h2>5. For these conditions</h2><ul>${topics.map(t => `<li><b
         <div class="insuf-grid">${cardsHTML(PACT, [7])}</div></section>`;
       case 'ratingdec': return `<section class="panel" id="ed-ratingdec"><div class="panel-head"><h2>Reading your rating decision</h2><span class="muted num">M21-1 V.iv.1</span></div>
         ${mustReadLink()}
+        <p class="must-read-link"><span class="top-flag"><span aria-hidden="true">★</span> Featured</span><a class="btn small" href="decision-letter.html">Decode your decision letter: what common phrases mean</a></p>
         <p class="muted" style="font-size:.88rem">What each part of a VA rating decision tells you, and what to check.</p>
         <div class="insuf-grid">${cardsHTML(RDEC, [3, 4])}
           <div class="insuf-card vet"><h3 class="edu-h">Checklist when your decision arrives</h3><ul class="plain-list"><li>Your name and service dates are right.</li><li>Every condition you claimed was decided or listed as deferred.</li><li>Everything you sent appears in the Evidence list.</li><li>For each denial, find the element not met. For each rating, read what the next higher rating requires.</li><li>Note the favorable findings and the effective dates.</li><li>Check the combined rating with <button class="btn link" data-go="combine">Combine ratings</button>, and record the decision in your folder's Decision history so VA's one-year review window is tracked.</li></ul></div></div></section>`;
@@ -7214,6 +7249,116 @@ ${topics.length ? `<h2>5. For these conditions</h2><ul>${topics.map(t => `<li><b
       let snip = '';
       if (pos >= 0) { const a = Math.max(0, pos - 70); const b = Math.min(e.text.length, pos + hit.length + 110); snip = (a ? '…' : '') + esc(e.text.slice(a, pos)) + '<mark>' + esc(e.text.slice(pos, pos + hit.length)) + '</mark>' + esc(e.text.slice(pos + hit.length, b)) + (b < e.text.length ? '…' : ''); }
       return `<button class="edu-hit" data-act="eduTopic" data-id="${e.id}"><span class="eyebrow">${esc(e.group)}</span><b>${esc(e.title)}</b>${snip ? `<span class="snip">${snip}</span>` : `<span class="snip">${esc(e.sub)}</span>`}</button>`; }).join('')}</div>`;
+  }
+  // ---- Site-wide search: every Learn topic, tool, and standalone page, searched on this device ----
+  // Standalone pages come from src/site-index.js (built by tools/site-index.py); the public site loads it on first use.
+  const SITE_SYN = { ...EDU_SYN, denied: ['denied', 'denial'], denial: ['denial', 'denied'], deny: ['denied', 'denial'], rejected: ['denied', 'denial'], 'turned down': ['denied', 'denial'], 'decision letter': ['decision letter', 'rating decision', 'decision notice'], letter: ['letter', 'decision notice'], 'back pay': ['back pay', 'effective date', 'retroactive', 'earlier date'], 'start date': ['effective date', 'start date'], increase: ['increase', 'worse', 'higher rating'], worse: ['worse', 'increase', 'aggravat'], 'higher rating': ['higher rating', 'higher evaluation', 'increase'], percent: ['percent', '%', 'rating'], appeal: ['appeal', 'board', 'review'], 'new evidence': ['new and relevant', 'new evidence'], sciatica: ['radiculopathy', 'sciatic'], neuropathy: ['neuropathy', 'nerve'], numbness: ['numb', 'nerve', 'neuropathy'], ears: ['hearing', 'tinnitus', 'ear'], hearing: ['hearing'], back: ['back', 'spine', 'thoracolumbar'], spine: ['spine', 'back'], 'blood pressure': ['blood pressure', 'hypertension'], hbp: ['hypertension'], depression: ['depress', 'mental'], anxiety: ['anxiety', 'mental'], ptsd: ['ptsd', 'stressor'], mst: ['military sexual trauma', 'mst', 'personal assault'], 'aid and attendance': ['aid and attendance', 'housebound'], 'a&a': ['aid and attendance'], doctor: ['doctor', 'examiner', 'provider'], dbq: ['dbq', 'disability benefits questionnaire'], vietnam: ['vietnam'], hepatitis: ['hepatitis'], adhd: ['adhd', 'attention deficit'], autism: ['autism'], insomnia: ['insomnia', 'sleep'], records: ['records'], 'private records': ['private', '4142'], surgery: ['surgery', 'convalescen', 'temporary 100'], vso: ['representative', 'vso', 'service officer'], lawyer: ['attorney', 'agent', 'representative'], deadline: ['deadline', 'one year', 'within one year'], hurts: ['pain', 'hurt'], hurt: ['pain', 'hurt'], sore: ['pain', 'sore'] };
+  // In-app tools and pages that are not Learn topics. Extra words help plain-English searches find them.
+  const SITE_TOOL_KW = { checklist: 'before you file claim checklist steps', smccheck: 'special monthly compensation smc loss of use', quick: 'doctor quick sheet one page exam opinion', doctors: 'doctor provider dbq medical opinion', opinions: 'check c&p exam opinion problems inadequate', tdiu: 'tdiu unemployability individual unemployability can\'t work calculator', explain: 'rating criteria percentages part 4 diagnostic code', rating: 'estimate rating diagnostic code percent knee back ankle', combine: 'combined rating va math bilateral factor calculator percent', effcheck: 'effective date start date back pay check', learn: 'learn exams benefits ratings', educ: 'provider education manual m21-1', training: 'knowledge checks training quiz trainers vso', add: 'add a condition paste rating decision', benefits: 'find benefits presumptive special benefits', about: 'about privacy disclaimer independent' };
+  const SITE_TOOLS = () => [...TOOL_GROUPS.flatMap(([g, items]) => items.filter(([r]) => !isPage(r)).map(([r, l, d]) => [r, l, d, g])),
+    ['add', 'Add a condition or paste a decision', 'Record a grant, denial, or pending claim, or paste your rating decision.', 'Your folder'],
+    ['benefits', 'Find benefits', 'Presumptive conditions guide and special benefits to ask about.', 'Find benefits'],
+    ['about', 'About and privacy', 'How this tool works, where your information is kept, and the full disclaimer.', 'About']]
+    .filter((t, i, a) => a.findIndex(x => x[0] === t[0]) === i);
+  const SITE_TRY = ['denied', 'back pay', 'tinnitus', 'sleep apnea', '0995', 'PTSD stressor', 'aid and attendance', 'TDIU'];
+  let SITE_APP = null; let siteLoading = false; let siteFailed = false;
+  function siteEntries() {
+    if (!SITE_APP) {
+      const d = document.createElement('div'); // a space after each block so words from separate lines do not run together
+      const spaced = id => { d.innerHTML = eduPanel(id, []).replace(/<\/(p|li|h\d|div|td|th|summary)>/g, ' $&'); return d.textContent.replace(/\s+/g, ' ').trim(); };
+      SITE_APP = [...eduIndex().map(e => ({ href: '#educ.' + e.id, page: 'Learn', kind: 'Learn · ' + e.group, title: e.title, sub: e.sub, text: spaced(e.id) })),
+        ...SITE_TOOLS().map(([r, l, t, g]) => ({ href: '#' + r, page: 'Tools', kind: 'Tool · ' + g, title: l, sub: t, kw: SITE_TOOL_KW[r] || '', text: t }))];
+    }
+    if (!window.VCI_SITE_INDEX && !siteLoading && !siteFailed) {
+      siteLoading = true; const s = document.createElement('script'); s.src = 'site-index.js';
+      s.onload = () => { siteLoading = false; siteRefresh(); }; s.onerror = () => { siteLoading = false; siteFailed = true; siteRefresh(); };
+      document.head.appendChild(s);
+    }
+    return SITE_APP.concat(window.VCI_SITE_INDEX || []);
+  }
+  const SITE_STOP = new Set('a an and are about can did do does for from get has have help how i i\'m in is it me my need of on or the to va was what when why with'.split(' '));
+  function searchTerms(q, syn, stop) {
+    let terms = []; let rest = q;
+    Object.keys(syn).filter(k => k.includes(' ')).forEach(k => { if (rest.includes(k)) { terms.push([k, ...syn[k]]); rest = rest.replace(k, ' '); } });
+    rest.split(/[^a-z0-9§.&%']+/).filter(w => (w.length > 1 || /\d/.test(w)) && !(stop && stop.has(w))).forEach(w => terms.push(syn[w] || (w.length > 4 && /[^s]s$/.test(w) ? [w, w.slice(0, -1)] : [w])));
+    return terms;
+  }
+  // Closest word in the index, for one typo or two ("tinnitis" finds "tinnitus").
+  let SITE_WORDS = null;
+  function siteFix(w) {
+    if (w.length < 5 || /\d/.test(w)) return null;
+    if (!SITE_WORDS) { const set = new Set(); siteEntries().forEach(e => (e.title + ' ' + e.text).toLowerCase().split(/[^a-z]+/).forEach(x => { if (x.length > 3) set.add(x); })); SITE_WORDS = [...set]; }
+    const max = w.length > 7 ? 2 : 1; let best = null; let bd = max + 1;
+    for (const x of SITE_WORDS) { if (Math.abs(x.length - w.length) > max) continue; const d = editDist(w, x, bd); if (d < bd) { bd = d; best = x; if (d === 1) break; } }
+    return best;
+  }
+  function editDist(a, b, cap) {
+    let prev = Array.from({ length: b.length + 1 }, (_, i) => i);
+    for (let i = 1; i <= a.length; i++) { const cur = [i]; let low = i;
+      for (let j = 1; j <= b.length; j++) { cur[j] = Math.min(prev[j] + 1, cur[j - 1] + 1, prev[j - 1] + (a[i - 1] === b[j - 1] ? 0 : 1)); low = Math.min(low, cur[j]); }
+      if (low >= cap) return cap; prev = cur; }
+    return prev[b.length];
+  }
+  function siteScore(e, terms, all) {
+    const title = e.title.toLowerCase(); const meta = ((e.sub || '') + ' ' + (e.kw || '')).toLowerCase(); const page = (e.page + ' ' + e.kind).toLowerCase(); const low = e._low || (e._low = e.text.toLowerCase());
+    let score = 0; let n = 0;
+    for (const alts of terms) {
+      let best = 0;
+      for (const a of alts) { const s = (title.includes(a) ? 30 : 0) + (meta.includes(a) ? 12 : 0) + (page.includes(a) ? 6 : 0) + Math.min(8, low.split(a).length - 1); if (s > best) best = s + (a === alts[0] ? 2 : 0); }
+      if (best) { score += best; n++; } else if (all) return 0;
+    }
+    return n ? score * n / terms.length : 0;
+  }
+  function siteSearch(q) {
+    q = (q || '').trim().toLowerCase(); if (q.length < 2) return null;
+    let terms = (searchTerms(q, SITE_SYN, SITE_STOP).length ? searchTerms(q, SITE_SYN, SITE_STOP) : searchTerms(q, SITE_SYN)); if (!terms.length) return null;
+    const run = (t, all) => {
+      const groups = new Map();
+      siteEntries().forEach(e => { const s = siteScore(e, t, all); if (!s) return; const k = e.href.split('#').slice(0, e.href[0] === '#' ? 2 : 1).join('#'); const g = groups.get(k) || { hits: [], score: 0 }; g.hits.push({ e, s }); groups.set(k, g); });
+      return [...groups.values()].map(g => { g.hits.sort((a, b) => b.s - a.s); g.score = g.hits[0].s + Math.min(10, g.hits.length - 1) * 1.5; return g; }).sort((a, b) => b.score - a.score);
+    };
+    let r = run(terms, true); let fixed = ''; let partial = false;
+    if (!r.length) { const words = q.split(/\s+/); const fx = words.map(w => SITE_SYN[w] || SITE_STOP.has(w) ? w : siteFix(w) || w); if (fx.join(' ') !== words.join(' ')) { fixed = fx.join(' '); terms = searchTerms(fixed, SITE_SYN, SITE_STOP); r = run(terms, true); } }
+    if (!r.length && terms.length > 1) { r = run(terms, false); partial = r.length > 0; }
+    return { r, terms, fixed, partial };
+  }
+  function siteSnip(text, terms) {
+    const low = text.toLowerCase(); let pos = -1; let len = 0;
+    terms.forEach(alts => alts.forEach(a => { const p = low.indexOf(a); if (p >= 0 && (pos < 0 || p < pos)) { pos = p; len = a.length; } }));
+    if (pos < 0) return '';
+    const a = Math.max(0, low.lastIndexOf(' ', Math.max(0, pos - 80)) + 1); const b = Math.min(text.length, pos + len + 140);
+    let s = esc(text.slice(a, b));
+    const words = [...new Set(terms.flat())].filter(w => w.length > 1).sort((x, y) => y.length - x.length).map(w => esc(w).replace(/[.*+?^${}()|[\]\\]/g, '\\$&'));
+    if (words.length) s = s.replace(new RegExp('(' + words.join('|') + ')', 'gi'), '<mark>$1</mark>');
+    return (a ? '…' : '') + s + (b < text.length ? '…' : '');
+  }
+  function siteResultsHTML(q) {
+    const res = siteSearch(q);
+    if (!res) return `<div class="site-try"><p class="muted" style="margin:0 0 6px">Type a few words, like a condition, a form number, or what happened. For example:</p><div class="row" style="gap:6px">${SITE_TRY.map(t => `<button type="button" class="chip" data-act="siteTry" data-q="${esc(t)}">${esc(t)}</button>`).join('')}</div></div>`;
+    const { r, terms, fixed, partial } = res; const wait = siteLoading ? '<p class="muted site-wait">Still loading the articles and form guides…</p>' : siteFailed ? '<p class="muted site-wait">The articles and form guides could not be loaded, so only the Learn topics and tools were searched. Check your connection and try again.</p>' : '';
+    if (!r.length) return `<p class="empty" style="margin:10px 0 0">Nothing on the site mentions "${esc(q.trim())}". Try fewer or simpler words, like "knee," "spouse," or "deadline."</p>${wait}`;
+    const shown = r.slice(0, 20);
+    return `<p class="site-count">${fixed ? `Showing results for <b>${esc(fixed)}</b>. ` : ''}${partial ? 'No page has all of your words. These have some of them. ' : ''}${r.length} page${r.length === 1 ? '' : 's'} found${r.length > 20 ? '; showing the best 20' : ''}.</p>${wait}
+      <ol class="site-results">${shown.map(({ hits }) => { const lead = hits[0].e; const onPage = lead.href[0] !== '#';
+        const more = onPage ? hits.slice(1).filter(h => h.e.href.includes('#')).slice(0, 3) : [];
+        const snip = siteSnip(lead.text, terms) || esc(lead.sub || '');
+        return `<li class="site-hit"><span class="eyebrow">${esc(lead.kind)}${onPage ? ' · ' + esc(lead.page) : ''}</span>
+          <a class="site-title" href="${esc(lead.href)}">${esc(lead.title)}</a>${onPage && lead.href.includes('#') && lead.sub ? `<span class="site-sub">${esc(lead.sub)}</span>` : ''}
+          ${snip ? `<p class="snip">${snip}</p>` : ''}
+          ${more.length ? `<ul class="site-more" aria-label="More on this page">${more.map(h => `<li><a href="${esc(h.e.href)}">${esc(h.e.title)}</a>${h.e.sub ? `<span class="site-sub"> · ${esc(h.e.sub)}</span>` : ''}</li>`).join('')}</ul>` : ''}</li>`; }).join('')}</ol>`;
+  }
+  function siteRefresh() {
+    const box = $('#site-results'); if (!box) return;
+    try { const q = (UI.siteQ || '').trim(); history.replaceState(null, '', '#search' + (q ? '?q=' + encodeURIComponent(q).replace(/\./g, '%2E') : '')); } catch (e) { } const inBox = box.contains(document.activeElement);
+    box.innerHTML = siteResultsHTML(UI.siteQ); const st = $('#site-status'); const c = box.querySelector('.site-count, .empty'); if (st) st.textContent = c ? c.textContent : ''; if (inBox) { const f = box.querySelector('.site-title, .chip'); if (f) f.focus(); }
+  }
+  function searchPage() {
+    siteEntries(); // start loading the article index while the person types
+    return `<div class="page site-search"><div class="page-head"><h1>Search the site</h1><p>Search every guide, lesson, form guide, and tool on this site.</p></div>
+      <form class="panel site-box" role="search" aria-label="Search the site" data-sitesearch><label for="site-q"><b>What do you need help with?</b></label>
+        <div class="site-field"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M15.5 15.5 21 21" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg><input id="site-q" type="search" autocomplete="off" autocapitalize="none" spellcheck="false" enterkeyhint="search" placeholder="e.g. tinnitus, denied, 0995" value="${esc(UI.siteQ || '')}" data-live="siteSearch"></div>
+        <p class="sr-only" id="site-status" role="status"></p><div id="site-results">${siteResultsHTML(UI.siteQ)}</div></form>
+      ${frameNote('Search results point to ClaimReady\'s own educational pages. They are not advice about your claim. VA decides every claim.')}</div>`;
   }
   function quickPanelHTML(sel) {
     return `      ${UI.educFor ? `<p class="ok-note">Prepared for <b>${esc(UI.educFor)}</b>. Topics and claim type are selected for this condition. <button class="btn link" data-act="educReset">Use my whole folder instead</button></p>` : ''}
@@ -8030,6 +8175,7 @@ ${p.toxic.answer || p.toxic.exposures.length ? sec('Toxic exposure', `<p>Believe
     openQuick: () => { UI.educ = null; UI.educTh = null; UI.educFor = ''; go('quick'); },
     qsReset: () => { UI.educ = []; UI.educTh = []; UI.educFor = ''; UI.qsOpen = true; render(); toast('Selections cleared'); const f = document.querySelector('[data-change="educTheory"]'); if (f) f.focus(); },
     eduTopic: el => go('educ.' + el.dataset.id),
+    siteTry: el => { UI.siteQ = el.dataset.q; const i = $('#site-q'); if (i) { i.value = UI.siteQ; i.focus(); } siteRefresh(); },
     eduTop: () => { const prev = UI.route.split('.')[1] || ''; go('educ'); const b = prev && document.querySelector(`.edu-card[data-id="${prev}"]`); if (b) { b.scrollIntoView({ block: 'center' }); b.focus({ preventScroll: true }); } },
     educReset: () => { UI.educ = null; UI.educTh = null; UI.educFor = ''; render(); },
     shareDoc: el => { const c = byId(S.conditions, el.dataset.cond); UI.educ = EDU.filter(t => t.re.test(c.name)).map(t => t.id); UI.educTh = [c.theory]; UI.educFor = c.name; UI.qsOpen = true; go('quick'); },
@@ -8160,6 +8306,13 @@ ${p.toxic.answer || p.toxic.exposures.length ? sec('Toxic exposure', `<p>Believe
     if (ev.target.dataset.live !== 'exVal') return; const st = explainState(); const C = VCI.CRITERIA[st.id]; const n = ev.target.value === '' ? null : Number(ev.target.value);
     if (n == null || isNaN(n)) return; st.v[st.id] = Math.max(C.min, Math.min(C.max, Math.round(n))); explainRefresh();
   });
+  let siteT = 0;
+  document.addEventListener('input', ev => {
+    if (ev.target.dataset.live !== 'siteSearch') return; UI.siteQ = ev.target.value; clearTimeout(siteT); siteT = setTimeout(siteRefresh, 150);
+  });
+  document.addEventListener('submit', ev => {
+    if (!ev.target.matches('form[data-sitesearch]')) return; ev.preventDefault(); clearTimeout(siteT); UI.siteQ = $('#site-q').value; siteRefresh(); const f = $('#site-results .site-title'); if (f) f.focus();
+  });
   let eduT = 0;
   document.addEventListener('input', ev => {
     if (ev.target.dataset.live !== 'eduSearch') return; UI.eduQ = ev.target.value; clearTimeout(eduT);
@@ -8203,7 +8356,7 @@ ${p.toxic.answer || p.toxic.exposures.length ? sec('Toxic exposure', `<p>Believe
   // ================= BOOT =================
   applyTextSize();
   if (window.VCI_INSTALL) window.VCI_INSTALL.onChange(() => render());
-  const h = (location.hash || '').slice(1); if (h) UI.route = h;
+  const h = siteHash((location.hash || '').slice(1)); if (h) UI.route = h;
   if (!hasData(S) && wantsExample()) { S = VCI.normalize(vciExample(TODAY)); UI.autoExample = true; }
   render(); connect();
 })();

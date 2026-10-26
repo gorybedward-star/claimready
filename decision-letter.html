@@ -1,0 +1,475 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="description" content="Free, independent educational guide to the common phrases in VA rating decision letters: what each one means in plain English, the law behind it, and which next step fits. Nothing is uploaded, saved, or sent.">
+<meta name="referrer" content="no-referrer"><meta name="theme-color" content="#1d5a70">
+<link rel="manifest" href="manifest.webmanifest"><link rel="icon" type="image/png" href="icons/favicon-32.png"><link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+<title>Decode Your Decision Letter</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<style>@font-face{font-family:'Public Sans';font-style:normal;font-weight:400;font-display:swap;src:url(fonts/public-sans-latin-400-normal.woff2) format('woff2')}@font-face{font-family:'Public Sans';font-style:normal;font-weight:500;font-display:swap;src:url(fonts/public-sans-latin-500-normal.woff2) format('woff2')}@font-face{font-family:'Public Sans';font-style:normal;font-weight:600;font-display:swap;src:url(fonts/public-sans-latin-600-normal.woff2) format('woff2')}@font-face{font-family:'Public Sans';font-style:normal;font-weight:700;font-display:swap;src:url(fonts/public-sans-latin-700-normal.woff2) format('woff2')}@font-face{font-family:'Source Serif 4';font-style:normal;font-weight:400;font-display:swap;src:url(fonts/source-serif-4-latin-400-normal.woff2) format('woff2')}@font-face{font-family:'Source Serif 4';font-style:normal;font-weight:600;font-display:swap;src:url(fonts/source-serif-4-latin-600-normal.woff2) format('woff2')}@font-face{font-family:'Source Serif 4';font-style:italic;font-weight:400;font-display:swap;src:url(fonts/source-serif-4-latin-400-italic.woff2) format('woff2')}@font-face{font-family:'Source Serif 4';font-style:italic;font-weight:600;font-display:swap;src:url(fonts/source-serif-4-latin-600-italic.woff2) format('woff2')}@font-face{font-family:'IBM Plex Mono';font-style:normal;font-weight:400;font-display:swap;src:url(fonts/ibm-plex-mono-latin-400-normal.woff2) format('woff2')}@font-face{font-family:'IBM Plex Mono';font-style:normal;font-weight:600;font-display:swap;src:url(fonts/ibm-plex-mono-latin-600-normal.woff2) format('woff2')}</style>
+<style>
+/* Layout: one reading column. Banner, header, phrase finder, what every notice must include, four groups of phrase entries (collapsible), which review fits, mistakes, sources, footer. Same tokens and classes as form-10182.html. */
+:root {
+  --paper: #f3f5f4; --surface: #ffffff; --sunk: #e9eeec; --ink: #16201d; --muted: #5a6763; --line: #d4dcd9;
+  --accent: #1d5a70; --accent-ink: #ffffff; --accent-soft: #dfecf0;
+  --ok: #2a774b; --ok-soft: #e0f0e6; --wait: #8a560a; --wait-soft: #f7ecd8;
+  --f-ui: "Public Sans", "Segoe UI", system-ui, sans-serif;
+  --f-serif: "Source Serif 4", Georgia, "Times New Roman", serif;
+  --f-mono: "IBM Plex Mono", ui-monospace, Menlo, monospace;
+  --r: 6px;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --paper: #111816; --surface: #19211f; --sunk: #0d1312; --ink: #e4ebe8; --muted: #98a6a1; --line: #2b3633;
+  --accent: #72b6cf; --accent-ink: #0d1a1f; --accent-soft: #1b3038;
+  --ok: #62c189; --ok-soft: #173426; --wait: #e2a849; --wait-soft: #392b12; color-scheme: dark; } }
+:root[data-theme="dark"] {
+  --paper: #111816; --surface: #19211f; --sunk: #0d1312; --ink: #e4ebe8; --muted: #98a6a1; --line: #2b3633;
+  --accent: #72b6cf; --accent-ink: #0d1a1f; --accent-soft: #1b3038;
+  --ok: #62c189; --ok-soft: #173426; --wait: #e2a849; --wait-soft: #392b12; color-scheme: dark; }
+:root { padding-top: env(safe-area-inset-top, 0px); padding-bottom: env(safe-area-inset-bottom, 0px); }
+* { box-sizing: border-box; }
+[hidden] { display: none !important; }
+body { margin: 0; background: var(--paper); color: var(--ink); font-family: var(--f-ui); font-size: 0.95rem; line-height: 1.5; }
+.wrap { max-width: 760px; margin: 0 auto; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+.skip { position: absolute; left: -9999px; } .skip:focus { left: 16px; top: 8px; z-index: 20; background: var(--surface); padding: 8px 12px; border-radius: var(--r); }
+.banner { background: var(--ink); color: var(--paper); font-size: 0.8rem; }
+.banner .wrap { padding-block: 8px; }
+header.top { padding-block: 24px 8px; display: grid; gap: 10px; }
+h1, h2, h3 { font-family: var(--f-serif); font-weight: 600; margin: 0; line-height: 1.2; text-wrap: balance; }
+h1 { font-size: 1.9rem; letter-spacing: -0.01em; }
+h2 { font-size: 1.3rem; }
+h3 { font-size: 1.02rem; }
+p { margin: 0; }
+ul, ol { margin: 0; padding-left: 20px; display: grid; gap: 6px; }
+a { color: var(--accent); }
+.muted { color: var(--muted); }
+.eyebrow { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.09em; text-transform: uppercase; color: var(--muted); }
+.crumbs { display: flex; flex-wrap: wrap; gap: 6px 14px; align-items: baseline; }
+.crumbs a { font-weight: 600; font-size: .9rem; text-decoration: none; }
+.crumbs a:hover { text-decoration: underline; }
+.tag { display: inline-block; font-size: .7rem; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; padding: 1px 7px; border-radius: 4px; border: 1px solid currentColor; white-space: nowrap; }
+.tag.law { color: var(--accent); } .tag.guide { color: var(--wait); } .tag.court { color: var(--ok); }
+.example { display: grid; gap: 4px; background: var(--wait-soft); border: 1px solid var(--line); border-radius: var(--r); padding: 10px 12px; }
+.example b:first-child { font-size: .78rem; letter-spacing: .06em; text-transform: uppercase; }
+button, input { font: inherit; color: inherit; }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.btn { border: 1px solid var(--line); background: var(--surface); border-radius: var(--r); padding: 8px 14px; cursor: pointer; min-height: 44px; }
+.btn.primary { background: var(--accent); color: var(--accent-ink); border-color: var(--accent); font-weight: 600; }
+.btn.link { border: 0; background: none; color: var(--accent); text-decoration: underline; padding: 4px 0; min-height: 0; }
+main { display: grid; gap: 20px; padding-block: 12px 48px; }
+.panel { background: var(--surface); border: 1px solid var(--line); border-radius: var(--r); padding: 18px; display: grid; gap: 14px; min-width: 0; }
+.panel > header { display: grid; gap: 6px; }
+fieldset { border: 0; padding: 0; margin: 0; display: grid; gap: 10px; min-width: 0; }
+legend { font-family: var(--f-serif); font-weight: 600; font-size: 1.15rem; padding: 0; margin-bottom: 4px; }
+.choices { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 8px; }
+.choice { display: flex; gap: 10px; align-items: flex-start; border: 1px solid var(--line); border-radius: var(--r); padding: 10px 12px; cursor: pointer; background: var(--paper); min-height: 44px; }
+.choice:has(input:checked) { border-color: var(--accent); background: var(--accent-soft); }
+.choice input { margin-top: 4px; width: 18px; height: 18px; accent-color: var(--accent); flex: none; }
+.choice small { display: block; color: var(--muted); }
+.row { display: flex; flex-wrap: wrap; gap: 8px 14px; align-items: center; }
+.cols { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 12px; }
+.box { border: 1px solid var(--line); border-radius: var(--r); padding: 12px 14px; display: grid; gap: 8px; align-content: start; background: var(--paper); }
+.box.you { border-left: 4px solid var(--ok); }
+.box.doc { border-left: 4px solid var(--accent); }
+.box h3 { font-family: var(--f-ui); font-size: .82rem; letter-spacing: .06em; text-transform: uppercase; }
+.flow { list-style: none; padding: 0; counter-reset: q; gap: 0; }
+.flow > li { counter-increment: q; display: grid; grid-template-columns: 30px 1fr; gap: 10px; padding-bottom: 14px; position: relative; }
+.flow > li::before { content: counter(q); width: 26px; height: 26px; border-radius: 50%; background: var(--accent); color: var(--accent-ink); font-family: var(--f-mono); font-size: .8rem; display: grid; place-items: center; }
+.flow > li::after { content: ""; position: absolute; left: 12px; top: 28px; bottom: 2px; width: 2px; background: var(--line); }
+.flow > li:last-child::after { display: none; }
+.flow .stop { display: block; font-size: .85rem; color: var(--muted); margin-top: 2px; }
+.flow ul { margin-top: 6px; }
+.quote { font-family: var(--f-serif); border-left: 3px solid var(--line); padding: 2px 0 2px 12px; color: var(--ink); }
+.pills { list-style: none; padding: 0; display: flex; flex-wrap: wrap; gap: 6px; }
+.pills li { border: 1px solid var(--line); border-radius: 999px; padding: 2px 10px; font-size: .85rem; background: var(--paper); }
+.patterns { list-style: none; padding: 0; display: grid; gap: 8px; counter-reset: p; }
+.patterns li { counter-increment: p; display: grid; grid-template-columns: 30px 1fr; gap: 10px; align-items: start; border: 1px solid var(--line); border-radius: var(--r); padding: 10px 12px; }
+.patterns li::before { content: counter(p); font-family: var(--f-mono); font-weight: 600; font-size: 1rem; }
+.patterns li.yes { background: var(--ok-soft); }
+.patterns small { display: block; color: var(--muted); }
+.cite { font-size: 0.8rem; color: var(--muted); display: flex; flex-wrap: wrap; gap: 6px 10px; align-items: center; border-top: 1px dashed var(--line); padding-top: 10px; }
+table { border-collapse: collapse; width: 100%; font-size: 0.88rem; }
+th, td { text-align: left; padding: 7px 8px; border-bottom: 1px solid var(--line); vertical-align: top; }
+th { font-weight: 600; color: var(--muted); font-size: 0.76rem; letter-spacing: 0.04em; text-transform: uppercase; }
+.tscroll { overflow-x: auto; }
+.num { font-family: var(--f-mono); font-variant-numeric: tabular-nums; font-size: .86em; white-space: nowrap; }
+details { border: 1px solid var(--line); border-radius: var(--r); background: var(--paper); padding: 10px 12px; }
+summary { cursor: pointer; font-weight: 600; min-height: 24px; }
+details > :not(summary) { margin-top: 10px; }
+footer { font-size: 0.82rem; color: var(--muted); display: grid; gap: 8px; padding-block: 0 40px; }
+@media (max-width: 520px) { h1 { font-size: 1.55rem; } .panel { padding: 14px; } }
+@media print {
+  .banner { background: none; color: #000; border-bottom: 1px solid #000; }
+  .noprint, .skip { display: none !important; }
+  body { background: #fff; color: #000; font-size: 10.5pt; }
+  .panel, .box, details { border-color: #999; break-inside: avoid-page; }
+  details > :not(summary) { display: block !important; }
+  a { color: #000; }
+}
+
+.sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+tr.dim td { opacity: .45; }
+.checklist { gap: 8px; }
+.myths { margin: 0; display: grid; gap: 4px 0; }
+.myths dt { font-weight: 600; margin-top: 8px; }
+.myths dt:first-child { margin-top: 0; }
+.myths dd { margin: 0; color: var(--ink); }
+@media (max-width: 520px) { table.stack thead { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); } table.stack, table.stack tbody, table.stack tr, table.stack td { display: block; } table.stack tr { border-bottom: 1px solid var(--line); padding: 8px 0; } table.stack td { border: 0; padding: 2px 0; } table.stack td:first-child { font-weight: 600; } table.stack td:last-child { font-size: .8rem; color: var(--muted); } }
+@media print { tr.dim td { opacity: 1; } .topic[hidden] { display: grid !important; } }
+.tag.bg { color: var(--muted); }
+.cite { display: block; line-height: 1.9; } .cite .tag { margin-right: 4px; } .cite .tag:not(:first-child) { margin-left: 6px; }
+@media (max-width: 520px) { table.stack.keep td:last-child { font-size: inherit; color: var(--ink); } }
+.alert { border: 1px solid var(--wait); border-left: 6px solid var(--wait); background: var(--wait-soft); border-radius: var(--r); padding: 14px 16px; display: grid; gap: 8px; }
+.alert p.big { font-family: var(--f-serif); font-size: 1.12rem; font-weight: 600; line-height: 1.35; }
+.no { font-weight: 700; color: var(--wait); white-space: nowrap; }
+.three { list-style: none; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 8px; counter-reset: t; }
+.three li { counter-increment: t; border: 1px solid var(--line); border-radius: var(--r); padding: 10px 12px; background: var(--paper); display: grid; gap: 4px; align-content: start; }
+.three li::before { content: "Question " counter(t); font-size: .72rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+.timeline { list-style: none; padding: 0; margin: 0; display: grid; gap: 0; }
+.timeline > li { display: grid; grid-template-columns: 64px 1fr; gap: 12px; position: relative; padding-bottom: 16px; }
+.timeline > li::after { content: ""; position: absolute; left: 31px; top: 30px; bottom: 0; width: 2px; background: var(--line); }
+.timeline > li:last-child::after { display: none; }
+.timeline .yr { font-family: var(--f-mono); font-weight: 600; font-size: .85rem; background: var(--sunk); border: 1px solid var(--line); border-radius: 999px; height: 28px; display: grid; place-items: center; position: relative; z-index: 1; }
+.timeline .key .yr { background: var(--accent); color: var(--accent-ink); border-color: var(--accent); }
+.timeline .ev { display: grid; gap: 2px; padding-top: 3px; }
+.timeline .ev b { font-size: .98rem; }
+.timeline .ev small { color: var(--muted); font-size: .84rem; }
+.dir { font-size: .72rem; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; padding: 1px 7px; border-radius: 4px; justify-self: start; }
+.dir.narrow { background: var(--wait-soft); color: var(--wait); }
+.dir.wide { background: var(--ok-soft); color: var(--ok); }
+.answer { border: 1px solid var(--accent); background: var(--accent-soft); border-radius: var(--r); padding: 12px 14px; display: grid; gap: 8px; }
+.outcomes { display: grid; gap: 8px; }
+.outcomes .box h3 { font-family: var(--f-serif); font-size: 1rem; letter-spacing: 0; text-transform: none; }
+@media print { .answer[hidden] { display: none !important; } }
+.three li::before { content: "Requirement " counter(t); }
+.filter { display: grid; gap: 6px; }
+.filter input { border: 1px solid var(--line); border-radius: var(--r); background: var(--paper); padding: 10px 12px; min-height: 44px; width: 100%; }
+.nl li.dim { opacity: .55; }
+.nl li.hit { background: var(--accent-soft); border-radius: 4px; padding: 0 4px; margin-left: -4px; }
+.exc { color: var(--wait); font-weight: 600; }
+@media print { .nl li.dim { opacity: 1; } }
+<style>
+.edition { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 8px; }
+.edition div { border: 1px solid var(--line); border-radius: var(--r); background: var(--surface); padding: 8px 12px; display: grid; gap: 2px; }
+.edition small { color: var(--muted); font-size: .75rem; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; }
+.map { list-style: none; padding: 0; display: grid; gap: 6px; }
+.map a { display: grid; grid-template-columns: 54px 1fr; gap: 10px; align-items: baseline; text-decoration: none; color: var(--ink); border: 1px solid var(--line); border-radius: var(--r); padding: 8px 12px; background: var(--paper); min-height: 44px; }
+.map a:hover { border-color: var(--accent); }
+.map .sec { font-family: var(--f-mono); font-weight: 600; font-size: .82rem; color: var(--accent); }
+.map small { color: var(--muted); }
+.formsec { padding: 0; background: var(--surface); }
+.formsec > summary { padding: 12px 14px; display: grid; grid-template-columns: 54px 1fr; gap: 10px; align-items: baseline; }
+.formsec > summary .sec { font-family: var(--f-mono); font-weight: 600; font-size: .82rem; color: var(--accent); }
+.formsec > summary small { display: block; font-weight: 400; color: var(--muted); font-size: .84rem; }
+.formsec > .inner { padding: 0 14px 14px; display: grid; gap: 10px; margin-top: 0; }
+.qa { display: grid; gap: 4px; }
+.qa h3 { font-family: var(--f-ui); font-size: .78rem; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); }
+.warn { border-left: 4px solid var(--wait); background: var(--wait-soft); border-radius: var(--r); padding: 10px 12px; display: grid; gap: 4px; }
+.privacy { border-left: 4px solid var(--ok); background: var(--ok-soft); border-radius: var(--r); padding: 10px 12px; }
+.secgroup { display: grid; gap: 8px; }
+.sumgrid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 10px; }
+.onepage .box h3 { font-size: .78rem; }
+.onepage .box ul { gap: 4px; }
+@media print { .formsec > .inner { display: grid !important; } }
+@media print {
+  body.print-one .banner, body.print-one header.top, body.print-one footer, body.print-one main > :not(#summary) { display: none !important; }
+  body.print-one #summary::before { content: "Independent educational tool. Not affiliated with or endorsed by the U.S. Department of Veterans Affairs. Not legal or medical advice. VA decides every claim."; font-size: 7.5pt; border-bottom: 1px solid #000; padding-bottom: 3pt; }
+  body.print-one main { padding: 0; }
+  body.print-one #summary { border: 0; padding: 0; gap: 5pt; font-size: 7.6pt; line-height: 1.25; }
+  body.print-one #summary h2 { font-size: 12pt; }
+  body.print-one #summary .sumgrid { grid-template-columns: repeat(3, 1fr); gap: 5pt; }
+  body.print-one #summary .cols { grid-template-columns: 1fr 1fr; gap: 5pt; }
+  body.print-one #summary .box { padding: 4pt 6pt; gap: 2pt; }
+  body.print-one #summary th, body.print-one #summary td { padding: 2pt 4pt; }
+  body.print-one #summary table, body.print-one #summary .muted, body.print-one #summary .cite, body.print-one #summary th { font-size: 7.4pt !important; }
+  body.print-one #summary .box h3 { font-size: 7.4pt; }
+  body.print-one #summary .cite { padding-top: 3pt; line-height: 1.4; }
+  @page { margin: 0.4in; }
+}
+.lbl { display: none; } @media (max-width: 520px) { .lbl { display: inline; font-weight: 600; } }
+</style>
+<style>
+.phrase > summary { grid-template-columns: 1fr; }
+.phrase .ph q { font-family: var(--f-serif); font-weight: 600; font-size: 1.02rem; }
+.phrase .seen { font-size: .86rem; }
+.jump a { text-decoration: none; font-weight: 600; }
+.nl { gap: 4px; }
+q { quotes: "\201C" "\201D"; }
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to the guide</a>
+<div class="banner" role="note"><div class="wrap">Independent educational tool. Not affiliated with or endorsed by the U.S. Department of Veterans Affairs. Not legal or medical advice. VA decides every claim.</div></div>
+<div class="wrap">
+  <header class="top">
+    <div class="crumbs noprint"><a href="claim-path.html#l6">← Lesson 6: You got a decision</a><span class="eyebrow">Guide · Benefits and ratings</span></div>
+    <h1>Decode your decision letter</h1>
+    <p>VA rating decisions use the same phrases again and again: "no nexus," "not shown in service," "evaluation continued." Look up a phrase from your letter to see <b>what it means</b> in plain English, <b>the law behind it</b>, and <b>which next step may fit</b>. This guide explains common wording; it does not read your letter or decide your claim. You don't upload anything, and nothing you type here is saved or sent.</p>
+  </header>
+
+  <main id="main">
+    <section class="panel noprint" id="find" aria-labelledby="find-h">
+      <header><h2 id="find-h">Search this page</h2></header>
+      <div class="filter"><label for="q">Type a word you see in your letter, such as <i>nexus</i>, <i>diagnosis</i>, or <i>effective</i>, to jump to what it means. Or scroll the four groups below.</label>
+        <input id="q" type="search" autocomplete="off" spellcheck="false" aria-describedby="qcount"></div>
+      <p id="qcount" class="muted" role="status" aria-live="polite">27 phrases in four groups.</p>
+      <ul class="pills jump"><li><a href="#g-parts">Parts of the letter</a></li><li><a href="#g-denied">Why a claim was denied</a></li><li><a href="#g-rating">Rating phrases</a></li><li><a href="#g-dates">Dates, doubt, and what comes next</a></li><li><a href="#which">Which review fits</a></li></ul>
+    </section>
+
+    <section class="panel" id="must" aria-labelledby="must-h">
+      <header><span class="eyebrow">Start here</span><h2 id="must-h">What every decision notice must tell you</h2>
+        <p class="muted">Federal law lists what VA's written notice of a decision must include. If one is missing, that is worth asking about.</p></header>
+      <ol class="nl">
+        <li>The issues decided</li>
+        <li>A summary of the evidence considered</li>
+        <li>A summary of the laws and regulations that apply</li>
+        <li>Any findings in your favor</li>
+        <li>For a denial, the element or elements not met</li>
+        <li>If applicable, what it takes to grant service connection or the next higher rating</li>
+        <li>How to get the evidence used in the decision</li>
+        <li>Your review options</li>
+      </ol>
+      <div class="example"><b>How to read a denial</b><p>Most service connection denials turn on one of three questions: Do you have a <b>current condition</b>? Did something happen <b>in service</b>? Is there a <b>link</b> between them? The favorable findings tell you which ones are already answered yes. The reasons tell you which one is not.</p></div>
+      <p class="cite"><span class="tag law">Law</span> <a href="https://www.govinfo.gov/link/uscode/38/5104" target="_blank" rel="noopener">38 U.S.C. § 5104</a>(b); <a href="https://www.ecfr.gov/current/title-38/section-3.103" target="_blank" rel="noopener">38 C.F.R. § 3.103</a>(f)(1)–(8) <span class="tag court">Court decision</span> <i>Shedden v. Principi</i>, 381 F.3d 1163 (Fed. Cir. 2004)</p>
+    </section>
+
+    <section class="panel group" id="g-parts" aria-labelledby="g-parts-h">
+      <header><span class="eyebrow">7 phrases</span><h2 id="g-parts-h">Parts of the letter</h2><p class="muted">The sections every rating decision has, and what to look for in each.</p></header>
+      <div class="secgroup">
+        <details class="formsec phrase" id="p-decision" data-s="decision decision the list of what va decided issues adjudicated granted outcome claimed as"><summary><span class="ph"><q>Decision</q><small>The list of what VA decided</small></span></summary>
+        <div class="inner">
+          <div class="qa"><h3>What it means</h3><p>Each issue is numbered with its outcome: granted, denied, continued, or deferred. A grant shows the percentage and the <b>effective date</b>. VA usually names the condition with the examiner's diagnosis and puts your words in parentheses, for example "tinnitus (claimed as ringing in the ears)."</p></div>
+          <div class="qa"><h3>A next step that may fit</h3><ul><li>Check that <b>every condition you claimed</b> appears, either decided or deferred. A claimed issue with no outcome is worth asking about.</li><li>If the name looks different from what you claimed, the words in parentheses tell you it is the same claim.</li><li>Read <a href="./#educ.decqual">Does your decision cover everything?</a> for the nine questions to ask.</li></ul></div>
+          <p class="cite"><span class="tag law">Law</span> <a href="https://www.govinfo.gov/link/uscode/38/5104" target="_blank" rel="noopener">38 U.S.C. § 5104</a>(b)(1); <a href="https://www.ecfr.gov/current/title-38/section-3.103" target="_blank" rel="noopener">38 C.F.R. § 3.103</a>(f)(1) <span class="tag guide">VA guidance</span> M21-1, Part V, Subpart iv, Chapter 1 (rating decision format)</p>
+        </div></details><details class="formsec phrase" id="p-evidence" data-s="evidence evidence evidence considered what va looked at evidence list records reviewed exam report"><summary><span class="ph"><q>Evidence</q><small>What VA looked at</small></span></summary>
+        <div class="inner"><p class="muted seen">You may also see: <q>Evidence considered</q></p>
+          <div class="qa"><h3>What it means</h3><p>A list of everything VA reviewed, usually with dates: service records, VA and private treatment records, exam reports, statements, and forms. VA must give a summary of the evidence it considered.</p></div>
+          <div class="qa"><h3>A next step that may fit</h3><ul><li>Make sure <b>everything you sent</b> is on the list. If a key record is missing, that matters for the next step you choose.</li><li>If VA had the record but misread it, a <a href="form-0996.html#error">Higher-Level Review guide (20-0996)</a> fits. If the record was never in the file, a <a href="form-0995.html#newev">Supplemental Claim guide (20-0995)</a> lets you add it.</li><li>You can ask VA for a copy of the evidence used. The notice must explain how to get it.</li></ul></div>
+          <p class="cite"><span class="tag law">Law</span> <a href="https://www.govinfo.gov/link/uscode/38/5104" target="_blank" rel="noopener">38 U.S.C. § 5104</a>(b)(2), (6); <a href="https://www.ecfr.gov/current/title-38/section-3.103" target="_blank" rel="noopener">38 C.F.R. § 3.103</a>(f)(2), (7) <span class="tag guide">VA guidance</span> M21-1, Part V, Subpart iv, Chapter 1 (rating decision format)</p>
+        </div></details><details class="formsec phrase" id="p-notreceived" data-s="requested, but not received requested, but not received we asked for … but did not receive records va tried and failed to get duty to assist records missing private doctor 4142"><summary><span class="ph"><q>Requested, but not received</q><small>Records VA tried and failed to get</small></span></summary>
+        <div class="inner"><p class="muted seen">You may also see: <q>We asked for … but did not receive</q></p>
+          <div class="qa"><h3>What it means</h3><p>VA asked someone, such as a private doctor or a records office, for records and did not get them. When VA cannot get records, it must tell you which ones, what it tried, what it will do next, and that you are ultimately responsible for getting them to VA.</p></div>
+          <div class="qa"><h3>A next step that may fit</h3><ul><li>If you can get those records yourself, sending them with a <a href="form-0995.html#newev">Supplemental Claim guide (20-0995)</a> puts them in the record.</li><li>If you told VA about records and the letter does not show that VA tried to get them, that may be a duty-to-assist question. A <a href="form-0996.html#error">Higher-Level Review guide (20-0996)</a> can look at it.</li><li>The <a href="form-4142.html">Form 21-4142 guide</a> explains how to authorize VA to request private records.</li></ul></div>
+          <p class="cite"><span class="tag law">Law</span> <a href="https://www.govinfo.gov/link/uscode/38/5103A" target="_blank" rel="noopener">38 U.S.C. § 5103A</a>(b); <a href="https://www.ecfr.gov/current/title-38/section-3.159" target="_blank" rel="noopener">38 C.F.R. § 3.159</a>(c), (e)(1)</p>
+        </div></details><details class="formsec phrase" id="p-reasons" data-s="reasons for decision reasons for decision why va decided each issue the way it did explanation analysis why denied"><summary><span class="ph"><q>Reasons for decision</q><small>Why VA decided each issue the way it did</small></span></summary>
+        <div class="inner">
+          <div class="qa"><h3>What it means</h3><p>This is the most important part of the letter. For each issue, VA explains the law it applied and how the evidence fits. For a <b>grant</b>, it explains the rating, what the next higher rating requires, and why it picked the effective date. For a <b>denial</b>, it names the requirement that was not met.</p></div>
+          <div class="qa"><h3>A next step that may fit</h3><ul><li>For each denial, underline the sentence that names the <b>missing element</b>. The entries under <a href="#g-denied">Why a claim was denied</a> explain the common ones.</li><li>For each grant, find the sentence about the next higher rating. That is the gap between your symptoms and the next level.</li><li>If a theory you raised (such as secondary) is not discussed, that is worth raising in a review.</li></ul></div>
+          <p class="cite"><span class="tag law">Law</span> <a href="https://www.govinfo.gov/link/uscode/38/5104" target="_blank" rel="noopener">38 U.S.C. § 5104</a>(b)(3), (5), (7); <a href="https://www.ecfr.gov/current/title-38/section-3.103" target="_blank" rel="noopener">38 C.F.R. § 3.103</a>(f)(3), (5), (6) <span class="tag guide">VA guidance</span> M21-1, Part V, Subpart iv, Chapter 1 (rating decision format)</p>
+        </div></details><details class="formsec phrase" id="p-favorable" data-s="favorable findings favorable findings the evidence shows … we have made the following favorable findings facts va already decided in your favor binding favorable finding proven 5104a"><summary><span class="ph"><q>Favorable findings</q><small>Facts VA already decided in your favor</small></span></summary>
+        <div class="inner"><p class="muted seen">You may also see: <q>The evidence shows …</q>; <q>We have made the following favorable findings</q></p>
+          <div class="qa"><h3>What it means</h3><p>A favorable finding is a fact or conclusion VA decided for you, even in a denial. For example: "Your service treatment records show you injured your left knee in June 1998," or "You have a current diagnosis of sleep apnea." VA must list them in the notice.</p></div>
+          <div class="qa"><h3>A next step that may fit</h3><ul><li><b>These are already proven.</b> Later VA decision makers and the Board are bound by them, so new evidence can focus only on what is still missing.</li><li>Example: if the findings say you have a diagnosis and an injury in service, the denial was about the <b>link</b>. A medical opinion on the link is what would matter. See <a href="medical-opinions.html">Medical opinions explained</a>.</li><li>The statute lets a later decision maker set a finding aside only with clear and convincing evidence to the contrary. VA's regulation phrases the bar as evidence showing clear and unmistakable error in the finding.</li></ul></div>
+          <p class="cite"><span class="tag law">Law</span> <a href="https://www.govinfo.gov/link/uscode/38/5104" target="_blank" rel="noopener">38 U.S.C. § 5104</a>(b)(4); <a href="https://www.govinfo.gov/link/uscode/38/5104A" target="_blank" rel="noopener">38 U.S.C. § 5104A</a>; <a href="https://www.ecfr.gov/current/title-38/section-3.103" target="_blank" rel="noopener">38 C.F.R. § 3.103</a>(f)(4); <a href="https://www.ecfr.gov/current/title-38/section-3.104" target="_blank" rel="noopener">38 C.F.R. § 3.104</a>(c)</p>
+        </div></details><details class="formsec phrase" id="p-refs" data-s="references references laws and regulations title 38 code of federal regulations the rules va applied cfr part 3 part 4 regulation statute"><summary><span class="ph"><q>References</q><small>The rules VA applied</small></span></summary>
+        <div class="inner"><p class="muted seen">You may also see: <q>Laws and regulations</q>; <q>Title 38 Code of Federal Regulations</q></p>
+          <div class="qa"><h3>What it means</h3><p>A list or summary of the statutes and regulations VA used. "38 C.F.R." is the Code of Federal Regulations, Title 38, where VA's rules live. Part 3 covers service connection and effective dates; Part 4 is the rating schedule.</p></div>
+          <div class="qa"><h3>A next step that may fit</h3><ul><li>Look up any section on eCFR (links in this guide go there). The rule's exact words often show what evidence would meet it.</li><li>If the letter cites a rating code (for example 5260 for limited knee bending), the criteria for each percentage are in Part 4. See <a href="claim-path.html#l5">Lesson 5: How ratings work</a>.</li></ul></div>
+          <p class="cite"><span class="tag law">Law</span> <a href="https://www.govinfo.gov/link/uscode/38/5104" target="_blank" rel="noopener">38 U.S.C. § 5104</a>(b)(3); <a href="https://www.ecfr.gov/current/title-38/section-3.103" target="_blank" rel="noopener">38 C.F.R. § 3.103</a>(f)(3)</p>
+        </div></details><details class="formsec phrase" id="p-options" data-s="your review options your review options what you should do if you disagree with our decision how to ask for another look disagree appeal review lane one year"><summary><span class="ph"><q>Your review options</q><small>How to ask for another look</small></span></summary>
+        <div class="inner"><p class="muted seen">You may also see: <q>What you should do if you disagree with our decision</q></p>
+          <div class="qa"><h3>What it means</h3><p>The notice must summarize your review options: a Supplemental Claim, a Higher-Level Review, or a Board appeal. Usually you have <b>one year from the date of the notice</b> to choose one and keep your original effective date.</p></div>
+          <div class="qa"><h3>A next step that may fit</h3><ul><li>See <a href="#which">Which review fits</a> below, and <a href="claim-path.html#l6">Lesson 6: You got a decision</a>.</li><li>Only one review option at a time can be pending for the same issue.</li><li>An accredited representative (VSO, agent, or attorney) can help you choose. VSOs help at no cost.</li></ul></div>
+          <p class="cite"><span class="tag law">Law</span> <a href="https://www.govinfo.gov/link/uscode/38/5104" target="_blank" rel="noopener">38 U.S.C. § 5104</a>(a); <a href="https://www.ecfr.gov/current/title-38/section-3.103" target="_blank" rel="noopener">38 C.F.R. § 3.103</a>(f)(8); <a href="https://www.ecfr.gov/current/title-38/section-3.2500" target="_blank" rel="noopener">38 C.F.R. § 3.2500</a>(b), (c)</p>
+        </div></details>
+      </div>
+    </section>
+    <section class="panel group" id="g-denied" aria-labelledby="g-denied-h">
+      <header><span class="eyebrow">9 phrases</span><h2 id="g-denied-h">Why a claim was denied</h2><p class="muted">Each denial phrase points to one missing piece. Find the piece, and you know what evidence would matter.</p></header>
+      <div class="secgroup">
+        <details class="formsec phrase" id="p-nodx" data-s="no current diagnosis no current diagnosis the evidence does not show a current disability not shown by the evidence of record missing piece: a current condition diagnosis current disability symptoms only pain"><summary><span class="ph"><q>No current diagnosis</q><small>Missing piece: a current condition</small></span></summary>
+        <div class="inner"><p class="muted seen">You may also see: <q>The evidence does not show a current disability</q>; <q>not shown by the evidence of record</q></p>
+          <div class="qa"><h3>What it means</h3><p>Service connection needs a disability that exists now (or at some point while the claim was pending). VA found no diagnosis, or found symptoms alone without an underlying condition. Pain alone can count as a disability if it causes functional impairment, according to a 2018 federal court decision.</p></div>
+          <div class="qa"><h3>A next step that may fit</h3><ul><li>Evidence that would matter: a diagnosis from a treating provider, or treatment records showing the condition during the claim period.</li><li>If an exam was not done, or the examiner did not test the claimed condition, see <a href="medical-opinions.html">Medical opinions explained</a> and <a href="supplemental-claims.html">Supplemental Claims and new exams</a>.</li><li>New evidence goes with a <a href="form-0995.html#newev">Supplemental Claim guide (20-0995)</a>.</li></ul></div>
+          <p class="cite"><span class="tag law">Law</span> <a href="https://www.govinfo.gov/link/uscode/38/1110" target="_blank" rel="noopener">38 U.S.C. § 1110</a>; <a href="https://www.ecfr.gov/current/title-38/section-3.303" target="_blank" rel="noopener">38 C.F.R. § 3.303</a>(a) <span class="tag court">Court decision</span> <i>Brammer v. Derwinski</i>, 3 Vet. App. 223 (1992); <i>McClain v. Nicholson</i>, 21 Vet. App. 319 (2007); <i>Saunders v. Wilkie</i>, 886 F.3d 1356 (Fed. Cir. 2018)</p>
+        </div></details><details class="formsec phrase" id="p-noservice" data-s="not shown in service not shown in service there is no record of … during military service the evidence does not show an event, disease, or injury in service missing piece: something in service in-service event injury service treatment records buddy statement combat"><summary><span class="ph"><q>Not shown in service</q><small>Missing piece: something in service</small></span></summary>
+        <div class="inner"><p class="muted seen">You may also see: <q>There is no record of … during military service</q>; <q>The evidence does not show an event, disease, or injury in service</q></p>
+          <div class="qa"><h3>What it means</h3><p>VA did not find an injury, disease, or event during service. Service treatment records are one source, but not the only one: VA must consider all lay and medical evidence, including your own statement and statements from people who served with you.</p></div>
+          <div class="qa"><h3>A next step that may fit</h3><ul><li>Evidence that would matter: buddy statements, letters home, personnel records, unit records, or your own detailed statement of what happened, when, and where.</li><li>For combat veterans, VA accepts satisfactory lay evidence of an injury in combat if it fits the circumstances of that service.</li><li>For conditions VA presumes, such as PACT Act conditions, the in-service piece may be met by where and when you served. See <a href="./#educ.presume">Presumptive service connection</a>.</li></ul></div>
+          <p class="cite"><span class="tag law">Law</span> <a href="https://www.govinfo.gov/link/uscode/38/1154" target="_blank" rel="noopener">38 U.S.C. § 1154</a>(a), (b); <a href="https://www.ecfr.gov/current/title-38/section-3.303" target="_blank" rel="noopener">38 C.F.R. § 3.303</a>(a); <a href="https://www.ecfr.gov/current/title-38/section-3.304" target="_blank" rel="noopener">38 C.F.R. § 3.304</a>(d) <span class="tag guide">VA guidance</span> <a href="./#educ.evidence">What evidence does VA need?</a></p>
+        </div></details><details class="formsec phrase" id="p-nonexus" data-s="no nexus no nexus not related to your military service the evidence does not show a link less likely than not missing piece: the link to service nexus link medical opinion less likely than not examiner rationale"><summary><span class="ph"><q>No nexus</q><small>Missing piece: the link to service</small></span></summary>
+        <div class="inner"><p class="muted seen">You may also see: <q>not related to your military service</q>; <q>The evidence does not show a link</q>; <q>less likely than not</q></p>
+          <div class="qa"><h3>What it means</h3><p>VA accepted (or did not dispute) that you have a condition and that something happened in service, but found no link between them. Usually this follows a medical opinion that said the link is "less likely than not" (below a 50% probability).</p></div>
+          <div class="qa"><h3>A next step that may fit</h3><ul><li>Read the examiner's <b>rationale</b>, not just the conclusion. An opinion that ignores your records or your statements, or gives no reasons, carries less weight. See <a href="medical-opinions.html">Medical opinions explained</a>.</li><li>Evidence that would matter: a medical opinion from a provider who reviewed your history and explains why the link is at least as likely as not. That goes with a <a href="form-0995.html#newev">Supplemental Claim guide (20-0995)</a>.</li><li>If VA relied on an opinion with a clear gap that was already visible in the file, a <a href="form-0996.html#error">Higher-Level Review guide (20-0996)</a> can look at it.</li><li>Check the <b>favorable findings</b> first: they tell you the other pieces are already proven.</li></ul></div>
+          <p class="cite"><span class="tag law">Law</span> <a href="https://www.ecfr.gov/current/title-38/section-3.303" target="_blank" rel="noopener">38 C.F.R. § 3.303</a>(a), (d); <a href="https://www.ecfr.gov/current/title-38/section-3.159" target="_blank" rel="noopener">38 C.F.R. § 3.159</a>(c)(4) <span class="tag court">Court decision</span> <i>Shedden v. Principi</i>, 381 F.3d 1163 (Fed. Cir. 2004) (the three elements); <i>Nieves-Rodriguez v. Peake</i>, 22 Vet. App. 295 (2008) (weight of opinions)</p>
+        </div></details><details class="formsec phrase" id="p-secondary" data-s="not proximately due to, the result of, or aggravated by not proximately due to, the result of, or aggravated by service connection on a secondary basis is denied missing piece: the link to a service-connected condition secondary aggravation proximately due caused by"><summary><span class="ph"><q>not proximately due to, the result of, or aggravated by</q><small>Missing piece: the link to a service-connected condition</small></span></summary>
+        <div class="inner"><p class="muted seen">You may also see: <q>Service connection on a secondary basis is denied</q></p>
+          <div class="qa"><h3>What it means</h3><p>You claimed the condition was caused by a condition that is already service connected. VA found neither cause nor <b>aggravation</b> (being made worse beyond its natural course). Both questions must be answered; an opinion that addresses only "caused by" is incomplete.</p></div>
+          <div class="qa"><h3>A next step that may fit</h3><ul><li>Check whether the opinion answered <b>both</b> caused-by and aggravated-by. If it skipped aggravation, that is a known gap a review can raise.</li><li>Evidence that would matter: a medical opinion explaining how the service-connected condition caused or worsened this one.</li><li>See <a href="./#educ.secondary">Secondary service connection</a>.</li></ul></div>
+          <p class="cite"><span class="tag law">Law</span> <a href="https://www.ecfr.gov/current/title-38/section-3.310" target="_blank" rel="noopener">38 C.F.R. § 3.310</a>(a), (b) <span class="tag court">Court decision</span> <i>El-Amin v. Shinseki</i>, 26 Vet. App. 136 (2013) (aggravation must be addressed)</p>
+        </div></details><details class="formsec phrase" id="p-preexist" data-s="existed prior to service existed prior to service preexisting condition not aggravated by service before service: was it made worse? preexisting sound condition entrance exam aggravation"><summary><span class="ph"><q>existed prior to service</q><small>Before service: was it made worse?</small></span></summary>
+        <div class="inner"><p class="muted seen">You may also see: <q>preexisting condition</q>; <q>not aggravated by service</q></p>
+          <div class="qa"><h3>What it means</h3><p>VA found the condition began before you entered service. If it was <b>not noted</b> on your entrance exam, VA presumes you were sound, and VA must show by clear and unmistakable evidence both that it existed before service and that service did not aggravate it. If it <b>was noted</b>, the question is whether it got worse in service beyond its natural progress.</p></div>
+          <div class="qa"><h3>A next step that may fit</h3><ul><li>Look at your entrance exam. Whether the condition was written down there changes the rules.</li><li>Evidence that would matter: records or statements showing it got worse during service, and a medical opinion on aggravation.</li><li>See <a href="./#educ.preagg">Existed before service</a>.</li></ul></div>
+          <p class="cite"><span class="tag law">Law</span> <a href="https://www.govinfo.gov/link/uscode/38/1111" target="_blank" rel="noopener">38 U.S.C. § 1111</a>; <a href="https://www.govinfo.gov/link/uscode/38/1153" target="_blank" rel="noopener">38 U.S.C. § 1153</a>; <a href="https://www.ecfr.gov/current/title-38/section-3.304" target="_blank" rel="noopener">38 C.F.R. § 3.304</a>(b); <a href="https://www.ecfr.gov/current/title-38/section-3.306" target="_blank" rel="noopener">38 C.F.R. § 3.306</a>(a), (b) <span class="tag court">Court decision</span> <i>Wagner v. Principi</i>, 370 F.3d 1089 (Fed. Cir. 2004)</p>
+        </div></details><details class="formsec phrase" id="p-notdisability" data-s="not a disability for va compensation purposes not a disability for va compensation purposes congenital or developmental defect refractive error a condition the law does not compensate by itself congenital developmental defect refractive error personality disorder"><summary><span class="ph"><q>not a disability for VA compensation purposes</q><small>A condition the law does not compensate by itself</small></span></summary>
+        <div class="inner"><p class="muted seen">You may also see: <q>congenital or developmental defect</q>; <q>refractive error</q></p>
+          <div class="qa"><h3>What it means</h3><p>Some conditions are not "diseases or injuries" under VA's rules: congenital or developmental defects, refractive error of the eye (such as nearsightedness), and personality disorders. They cannot be service connected by themselves.</p></div>
+          <div class="qa"><h3>A next step that may fit</h3><ul><li>A <b>disease</b> (as opposed to a defect) that began in or was worsened by service can still be service connected, and so can a new disability added on top of a defect during service. Ask whether the letter treated your condition as a defect or a disease.</li><li>Evidence that would matter: a medical opinion explaining whether the condition is a disease and whether service added to it.</li></ul></div>
+          <p class="cite"><span class="tag law">Law</span> <a href="https://www.ecfr.gov/current/title-38/section-3.303" target="_blank" rel="noopener">38 C.F.R. § 3.303</a>(c); <a href="https://www.ecfr.gov/current/title-38/section-4.9" target="_blank" rel="noopener">38 C.F.R. § 4.9</a>; <a href="https://www.ecfr.gov/current/title-38/section-4.127" target="_blank" rel="noopener">38 C.F.R. § 4.127</a> <span class="tag guide">VA guidance</span> VA General Counsel opinions 82-90 and 67-90 (defect vs. disease)</p>
+        </div></details><details class="formsec phrase" id="p-noshow" data-s="failed to report for a va examination failed to report for a va examination did not attend the exam without good cause the exam did not happen missed exam failure to report no show good cause address"><summary><span class="ph"><q>failed to report for a VA examination</q><small>The exam did not happen</small></span></summary>
+        <div class="inner"><p class="muted seen">You may also see: <q>did not attend the exam</q>; <q>without good cause</q></p>
+          <div class="qa"><h3>What it means</h3><p>If you miss a required exam without good cause, VA decides an original compensation claim on the evidence it has, which often leads to a denial. A claim for increase or a Supplemental Claim is denied. Good cause includes illness, hospitalization, or a death in the immediate family.</p></div>
+          <div class="qa"><h3>A next step that may fit</h3><ul><li>If you had a good reason, or never got the exam notice (for example, it went to an old address), tell VA, and say you are willing to report. Update your address on VA.gov.</li><li>A <a href="form-0995.html#newev">Supplemental Claim guide (20-0995)</a> can restart the claim if a new exam is what is needed. See <a href="claim-path.html#l4">Lesson 4: Your C&amp;P exam</a>.</li></ul></div>
+          <p class="cite"><span class="tag law">Law</span> <a href="https://www.ecfr.gov/current/title-38/section-3.655" target="_blank" rel="noopener">38 C.F.R. § 3.655</a>(a), (b)</p>
+        </div></details><details class="formsec phrase" id="p-notnew" data-s="no new and relevant evidence no new and relevant evidence insufficient evidence to readjudicate not new and relevant a supplemental claim was not reopened new and relevant supplemental readjudicate reopen"><summary><span class="ph"><q>no new and relevant evidence</q><small>A Supplemental Claim was not reopened</small></span></summary>
+        <div class="inner"><p class="muted seen">You may also see: <q>insufficient evidence to readjudicate</q>; <q>not new and relevant</q></p>
+          <div class="qa"><h3>What it means</h3><p>On a Supplemental Claim, VA decides the claim again only if it gets evidence that is <b>new</b> (not already in the record) and <b>relevant</b> (tends to prove or disprove a matter at issue, or raises a new theory). VA found nothing that met that bar, so it did not look at the claim again on its merits.</p></div>
+          <div class="qa"><h3>A next step that may fit</h3><ul><li>Evidence that would matter: evidence aimed at the specific element the earlier denial named. A copy of a record VA already had is not new.</li><li>A new <b>theory</b>, such as secondary or presumptive service connection, can count as relevant.</li><li>See <a href="supplemental-claims.html">Supplemental Claims and new exams</a> and the <a href="form-0995.html#newev">Supplemental Claim guide (20-0995)</a>.</li></ul></div>
+          <p class="cite"><span class="tag law">Law</span> <a href="https://www.govinfo.gov/link/uscode/38/5108" target="_blank" rel="noopener">38 U.S.C. § 5108</a>; <a href="https://www.ecfr.gov/current/title-38/section-3.2501" target="_blank" rel="noopener">38 C.F.R. § 3.2501</a>(a), (b)</p>
+        </div></details><details class="formsec phrase" id="p-presumpt" data-s="the presumption does not apply the presumption does not apply not a presumptive condition not within the presumptive period a presumption did not fit presumptive pact agent orange burn pit chronic disease one year"><summary><span class="ph"><q>The presumption does not apply</q><small>A presumption did not fit</small></span></summary>
+        <div class="inner"><p class="muted seen">You may also see: <q>not a presumptive condition</q>; <q>not within the presumptive period</q></p>
+          <div class="qa"><h3>What it means</h3><p>Presumptions remove the need to prove a link, but only for listed conditions, for qualifying service, and sometimes within a set time after service. VA found one of those requirements was not met.</p></div>
+          <div class="qa"><h3>A next step that may fit</h3><ul><li>A failed presumption does <b>not</b> end the claim. VA must still consider direct service connection with a medical link.</li><li>Check the dates and places of service in the letter against your records. See <a href="./#educ.presume">Presumptive service connection</a> and <a href="./#educ.pact">PACT Act</a>.</li></ul></div>
+          <p class="cite"><span class="tag law">Law</span> <a href="https://www.govinfo.gov/link/uscode/38/1112" target="_blank" rel="noopener">38 U.S.C. § 1112</a>; <a href="https://www.govinfo.gov/link/uscode/38/1116" target="_blank" rel="noopener">38 U.S.C. § 1116</a>; <a href="https://www.ecfr.gov/current/title-38/section-3.307" target="_blank" rel="noopener">38 C.F.R. § 3.307</a>; <a href="https://www.ecfr.gov/current/title-38/section-3.309" target="_blank" rel="noopener">38 C.F.R. § 3.309</a>; <a href="https://www.ecfr.gov/current/title-38/section-3.303" target="_blank" rel="noopener">38 C.F.R. § 3.303</a>(d) <span class="tag court">Court decision</span> <i>Combee v. Brown</i>, 34 F.3d 1039 (Fed. Cir. 1994)</p>
+        </div></details>
+      </div>
+    </section>
+    <section class="panel group" id="g-rating" aria-labelledby="g-rating-h">
+      <header><span class="eyebrow">7 phrases</span><h2 id="g-rating-h">Rating phrases</h2><p class="muted">What the words around your percentage mean.</p></header>
+      <div class="secgroup">
+        <details class="formsec phrase" id="p-continued" data-s="continued continued evaluation is continued remains at your rating stayed the same continued same rating increase denied stays"><summary><span class="ph"><q>continued</q><small>Your rating stayed the same</small></span></summary>
+        <div class="inner"><p class="muted seen">You may also see: <q>evaluation is continued</q>; <q>remains at</q></p>
+          <div class="qa"><h3>What it means</h3><p>You asked for a higher rating (or VA reviewed the condition) and VA kept the same percentage. The letter should say what the next higher rating requires.</p></div>
+          <div class="qa"><h3>A next step that may fit</h3><ul><li>Compare your symptoms with the next higher rating's criteria quoted in the letter. That is the gap.</li><li>Evidence that would matter: treatment records or a statement showing symptoms that match the higher criteria, including flare-ups and how the condition limits work and daily life.</li><li>If the exam left out flare-ups or functional loss, see <a href="./#educ.painmotion">Pain and motion</a>.</li></ul></div>
+          <p class="cite"><span class="tag law">Law</span> <a href="https://www.ecfr.gov/current/title-38/section-4.1" target="_blank" rel="noopener">38 C.F.R. § 4.1</a>; <a href="https://www.ecfr.gov/current/title-38/section-4.7" target="_blank" rel="noopener">38 C.F.R. § 4.7</a>; <a href="https://www.ecfr.gov/current/title-38/section-3.103" target="_blank" rel="noopener">38 C.F.R. § 3.103</a>(f)(6)</p>
+        </div></details><details class="formsec phrase" id="p-nexthigher" data-s="a higher evaluation of … is not warranted unless a higher evaluation of … is not warranted unless the next higher evaluation requires what the next level needs next higher criteria more nearly approximates 4.7"><summary><span class="ph"><q>A higher evaluation of … is not warranted unless</q><small>What the next level needs</small></span></summary>
+        <div class="inner"><p class="muted seen">You may also see: <q>The next higher evaluation requires</q></p>
+          <div class="qa"><h3>What it means</h3><p>This sentence quotes the rating schedule for the next percentage up. When symptoms fall between two levels, VA assigns the higher one if the picture more nearly approximates it.</p></div>
+          <div class="qa"><h3>A next step that may fit</h3><ul><li>Treat it as a checklist. Which of those symptoms do you have, and do your records show them?</li><li>VA must consider all of your symptoms, not only the ones listed, for some conditions such as mental health.</li><li>See <a href="claim-path.html#l5">Lesson 5: How ratings work</a>.</li></ul></div>
+          <p class="cite"><span class="tag law">Law</span> <a href="https://www.ecfr.gov/current/title-38/section-4.7" target="_blank" rel="noopener">38 C.F.R. § 4.7</a>; <a href="https://www.ecfr.gov/current/title-38/section-4.21" target="_blank" rel="noopener">38 C.F.R. § 4.21</a> <span class="tag court">Court decision</span> <i>Mauerhan v. Principi</i>, 16 Vet. App. 436 (2002) (mental health symptoms are examples)</p>
+        </div></details><details class="formsec phrase" id="p-staged" data-s="from … to …, and … from … from … to …, and … from … staged different percentages for different periods staged ratings date ranges periods"><summary><span class="ph"><q>from … to …, and … from …</q><small>Different percentages for different periods</small></span></summary>
+        <div class="inner"><p class="muted seen">You may also see: <q>staged</q></p>
+          <div class="qa"><h3>What it means</h3><p>VA can assign different ratings for different stretches of time when the evidence shows the condition changed. This is called a staged rating.</p></div>
+          <div class="qa"><h3>A next step that may fit</h3><ul><li>Check each date range against your records. If you were worse earlier than VA found, records from that period would matter.</li></ul></div>
+          <p class="cite"><span class="tag court">Court decision</span> <i>Fenderson v. West</i>, 12 Vet. App. 119 (1999); <i>Hart v. Mansfield</i>, 21 Vet. App. 505 (2007)</p>
+        </div></details><details class="formsec phrase" id="p-combined" data-s="combined evaluation combined evaluation combined rating bilateral factor why the total is not a simple sum combined rating table math bilateral factor 4.25"><summary><span class="ph"><q>Combined evaluation</q><small>Why the total is not a simple sum</small></span></summary>
+        <div class="inner"><p class="muted seen">You may also see: <q>Combined rating</q>; <q>bilateral factor</q></p>
+          <div class="qa"><h3>What it means</h3><p>VA combines ratings with a table that applies each rating to the "remaining" efficiency, then rounds to the nearest 10. So 50% and 30% combine to 70%, not 80%. When both arms or both legs (or paired muscles) are rated, a bilateral factor of 10% of their combined value is added first.</p></div>
+          <div class="qa"><h3>A next step that may fit</h3><ul><li>Check the math with <a href="./#combine">Combine ratings</a>.</li></ul></div>
+          <p class="cite"><span class="tag law">Law</span> <a href="https://www.ecfr.gov/current/title-38/section-4.25" target="_blank" rel="noopener">38 C.F.R. § 4.25</a>; <a href="https://www.ecfr.gov/current/title-38/section-4.26" target="_blank" rel="noopener">38 C.F.R. § 4.26</a></p>
+        </div></details><details class="formsec phrase" id="p-future" data-s="future examination future examination routine future exam not static va may check the condition again future exam reexamination static permanent reduction"><summary><span class="ph"><q>future examination</q><small>VA may check the condition again</small></span></summary>
+        <div class="inner"><p class="muted seen">You may also see: <q>routine future exam</q>; <q>not static</q></p>
+          <div class="qa"><h3>What it means</h3><p>VA may schedule a reexamination if the condition is likely to improve. A future exam is not a reduction. A rating can only be reduced after VA proposes it and gives you notice and time to respond.</p></div>
+          <div class="qa"><h3>A next step that may fit</h3><ul><li>Keep treatment records current so a later exam reflects your whole history.</li><li>If you get a <b>proposal</b> to reduce, deadlines are short. See <a href="./#educ.reduce">Proposed reductions</a>.</li></ul></div>
+          <p class="cite"><span class="tag law">Law</span> <a href="https://www.ecfr.gov/current/title-38/section-3.327" target="_blank" rel="noopener">38 C.F.R. § 3.327</a>; <a href="https://www.ecfr.gov/current/title-38/section-3.105" target="_blank" rel="noopener">38 C.F.R. § 3.105</a>(e), (i); <a href="https://www.ecfr.gov/current/title-38/section-3.344" target="_blank" rel="noopener">38 C.F.R. § 3.344</a></p>
+        </div></details><details class="formsec phrase" id="p-deferred" data-s="deferred deferred deferred pending not decided yet deferred pending later decision not decided"><summary><span class="ph"><q>Deferred</q><small>Not decided yet</small></span></summary>
+        <div class="inner"><p class="muted seen">You may also see: <q>deferred pending</q></p>
+          <div class="qa"><h3>What it means</h3><p>VA has not decided this issue yet, usually because it is waiting for an exam, an opinion, or records. A deferred issue is still pending, so there is nothing to appeal for it yet.</p></div>
+          <div class="qa"><h3>A next step that may fit</h3><ul><li>Watch for a later decision on that issue. Its review window starts from that later notice.</li><li>Answer any VA request for information promptly.</li></ul></div>
+          <p class="cite"><span class="tag guide">VA guidance</span> M21-1, Part V, Subpart iv, Chapter 1 (rating decision format) <span class="tag bg">Background</span> "Deferred" is a VA decision-writing practice, not a term defined in the statute or regulations.</p>
+        </div></details><details class="formsec phrase" id="p-pt" data-s="permanent and total permanent and total p&amp;t no future exams rated total and not expected to improve permanent and total p&amp;t 100 percent family dea champva"><summary><span class="ph"><q>permanent and total</q><small>Rated total and not expected to improve</small></span></summary>
+        <div class="inner"><p class="muted seen">You may also see: <q>P&amp;T</q>; <q>no future exams</q></p>
+          <div class="qa"><h3>What it means</h3><p>VA found your disability totally disabling and reasonably certain to continue for life. Some family benefits, such as Chapter 35 education and CHAMPVA, depend on this finding.</p></div>
+          <div class="qa"><h3>A next step that may fit</h3><ul><li>See <a href="./#educ.dea">Chapter 35 education</a> and <a href="./#educ.champva">CHAMPVA</a>.</li></ul></div>
+          <p class="cite"><span class="tag law">Law</span> <a href="https://www.ecfr.gov/current/title-38/section-3.340" target="_blank" rel="noopener">38 C.F.R. § 3.340</a>(a), (b); <a href="https://www.govinfo.gov/link/uscode/38/3501" target="_blank" rel="noopener">38 U.S.C. § 3501</a></p>
+        </div></details>
+      </div>
+    </section>
+    <section class="panel group" id="g-dates" aria-labelledby="g-dates-h">
+      <header><span class="eyebrow">4 phrases</span><h2 id="g-dates-h">Dates, doubt, and what comes next</h2><p class="muted">When payments start, how close calls are decided, and how to keep your date.</p></header>
+      <div class="secgroup">
+        <details class="formsec phrase" id="p-effdate" data-s="effective date effective date we granted … effective the date benefits start counting from effective date start date intent to file back pay retro"><summary><span class="ph"><q>Effective date</q><small>The date benefits start counting from</small></span></summary>
+        <div class="inner"><p class="muted seen">You may also see: <q>We granted … effective</q></p>
+          <div class="qa"><h3>What it means</h3><p>Usually the later of the date VA received your claim (or intent to file) and the date the condition began or met the criteria. If you claimed within one year after leaving service, it can be the day after discharge. Payment starts the first day of the month after the effective date.</p></div>
+          <div class="qa"><h3>A next step that may fit</h3><ul><li>Compare the date with your intent to file, your claim, and any earlier claim that was continuously pursued.</li><li>An earlier date is worth asking about if VA overlooked an earlier filing. See <a href="./#educ.effdate">Effective dates</a> and the <a href="continuous-pursuit.html">Continuous Pursuit Review</a> tool.</li></ul></div>
+          <p class="cite"><span class="tag law">Law</span> <a href="https://www.govinfo.gov/link/uscode/38/5110" target="_blank" rel="noopener">38 U.S.C. § 5110</a>(a), (b)(1); <a href="https://www.govinfo.gov/link/uscode/38/5111" target="_blank" rel="noopener">38 U.S.C. § 5111</a>(a); <a href="https://www.ecfr.gov/current/title-38/section-3.400" target="_blank" rel="noopener">38 C.F.R. § 3.400</a>(b)(2)(i); <a href="https://www.ecfr.gov/current/title-38/section-3.155" target="_blank" rel="noopener">38 C.F.R. § 3.155</a>(b)</p>
+        </div></details><details class="formsec phrase" id="p-arose" data-s="date entitlement arose date entitlement arose the date the evidence first showed why va picked a date later than your claim entitlement arose later date increase one year"><summary><span class="ph"><q>date entitlement arose</q><small>Why VA picked a date later than your claim</small></span></summary>
+        <div class="inner"><p class="muted seen">You may also see: <q>the date the evidence first showed</q></p>
+          <div class="qa"><h3>What it means</h3><p>If the evidence shows the condition met the criteria only after your claim arrived, VA uses that later date. For an increase, VA can go back up to one year before the claim if records show the increase happened then.</p></div>
+          <div class="qa"><h3>A next step that may fit</h3><ul><li>Records from before the date VA picked, showing the same symptoms, would matter.</li></ul></div>
+          <p class="cite"><span class="tag law">Law</span> <a href="https://www.govinfo.gov/link/uscode/38/5110" target="_blank" rel="noopener">38 U.S.C. § 5110</a>(b)(3); <a href="https://www.ecfr.gov/current/title-38/section-3.400" target="_blank" rel="noopener">38 C.F.R. § 3.400</a>(o)(2)</p>
+        </div></details><details class="formsec phrase" id="p-doubt" data-s="benefit of the doubt benefit of the doubt reasonable doubt approximate balance ties go to the veteran benefit of doubt reasonable doubt equipoise balance"><summary><span class="ph"><q>benefit of the doubt</q><small>Ties go to the veteran</small></span></summary>
+        <div class="inner"><p class="muted seen">You may also see: <q>reasonable doubt</q>; <q>approximate balance</q></p>
+          <div class="qa"><h3>What it means</h3><p>When the evidence for and against an issue is in approximate balance, VA must resolve the doubt in your favor. It does not apply when the evidence clearly weighs against the claim.</p></div>
+          <div class="qa"><h3>A next step that may fit</h3><ul><li>If the letter says the evidence was against you, look for whether it explains why the opposing evidence carried more weight.</li></ul></div>
+          <p class="cite"><span class="tag law">Law</span> <a href="https://www.govinfo.gov/link/uscode/38/5107" target="_blank" rel="noopener">38 U.S.C. § 5107</a>(b); <a href="https://www.ecfr.gov/current/title-38/section-3.102" target="_blank" rel="noopener">38 C.F.R. § 3.102</a> <span class="tag court">Court decision</span> <i>Gilbert v. Derwinski</i>, 1 Vet. App. 49 (1990); <i>Lynch v. McDonough</i>, 21 F.4th 776 (Fed. Cir. 2021) (en banc)</p>
+        </div></details><details class="formsec phrase" id="p-final" data-s="this decision becomes final this decision becomes final within one year from the date of this letter your window to ask for review one year deadline final continuous pursuit"><summary><span class="ph"><q>This decision becomes final</q><small>Your window to ask for review</small></span></summary>
+        <div class="inner"><p class="muted seen">You may also see: <q>within one year from the date of this letter</q></p>
+          <div class="qa"><h3>What it means</h3><p>You generally have one year from the date of the notice to file a Supplemental Claim, Higher-Level Review, or Board appeal and keep the original effective date. After that, a Supplemental Claim can still be filed, but the effective date generally can be no earlier than when VA receives it.</p></div>
+          <div class="qa"><h3>A next step that may fit</h3><ul><li>Write the deadline down the day the letter arrives. Use the date on the letter, not the date you opened it.</li><li>Track your filings with the <a href="continuous-pursuit.html">Continuous Pursuit Review</a> tool.</li></ul></div>
+          <p class="cite"><span class="tag law">Law</span> <a href="https://www.ecfr.gov/current/title-38/section-3.2500" target="_blank" rel="noopener">38 C.F.R. § 3.2500</a>(a), (h)(1)–(2); <a href="https://www.ecfr.gov/current/title-38/section-3.2501" target="_blank" rel="noopener">38 C.F.R. § 3.2501</a></p>
+        </div></details>
+      </div>
+    </section>
+
+    <section class="panel" id="which" aria-labelledby="which-h">
+      <header><span class="eyebrow">Next steps</span><h2 id="which-h">Which review fits what you found</h2>
+        <p class="muted">These match the problem to the option. They don't predict a result. An accredited representative can help you choose, and VSOs help at no cost.</p></header>
+      <div class="tscroll"><table class="stack keep">
+        <thead><tr><th scope="col">What you found</th><th scope="col">Option that fits</th><th scope="col">Guide</th></tr></thead>
+        <tbody>
+          <tr><td>You have <b>new evidence</b>, such as a medical opinion, records VA didn't have, or a new theory</td><td>Supplemental Claim</td><td><a href="form-0995.html#newev">20-0995 guide</a></td></tr>
+          <tr><td>VA <b>misread or overlooked</b> evidence it already had, or applied the law wrong</td><td>Higher-Level Review (no new evidence)</td><td><a href="form-0996.html#error">20-0996 guide</a></td></tr>
+          <tr><td>You want a <b>Veterans Law Judge</b> to decide, with or without new evidence or a hearing</td><td>Board appeal</td><td><a href="form-10182.html#judge">10182 guide</a></td></tr>
+          <tr><td>The decision is <b>more than a year old</b></td><td>Supplemental Claim; the effective date generally starts later</td><td><a href="form-0996.html#late">Late options</a></td></tr>
+          <tr><td>A claimed condition got <b>worse</b> since the decision</td><td>A new claim for increase</td><td><a href="form-0995.html#worse">When it got worse</a></td></tr>
+        </tbody></table></div>
+      <p class="cite"><span class="tag law">Law</span> <a href="https://www.ecfr.gov/current/title-38/section-3.2500" target="_blank" rel="noopener">38 C.F.R. § 3.2500</a>(b), (c), (h); <a href="https://www.ecfr.gov/current/title-38/section-3.2501" target="_blank" rel="noopener">38 C.F.R. § 3.2501</a>; <a href="https://www.ecfr.gov/current/title-38/section-3.2601" target="_blank" rel="noopener">38 C.F.R. § 3.2601</a>; <a href="https://www.ecfr.gov/current/title-38/section-20.202" target="_blank" rel="noopener">38 C.F.R. § 20.202</a></p>
+      <p>Go deeper: <a href="claim-path.html#l6">Lesson 6: You got a decision</a> · <a href="./#educ.ratingdec">Reading your rating decision</a> · <a href="./#educ.decqual">Does your decision cover everything?</a> · <a href="continuous-pursuit.html">Continuous Pursuit Review</a></p>
+    </section>
+
+    <section class="panel" id="mistakes" aria-labelledby="mis-h">
+      <header><span class="eyebrow">Common mistakes</span><h2 id="mis-h">What often goes wrong after a decision</h2></header>
+      <dl class="myths">
+        <dt>Reading only the first page.</dt><dd>The percentage is on page one, but the reasons and favorable findings, which tell you what is missing, come later.</dd>
+        <dt>Sending the same records again.</dt><dd>A copy of what VA already had is not new evidence. Aim new evidence at the element the denial named.</dd>
+        <dt>Ignoring the favorable findings.</dt><dd>They are already decided in your favor. Building evidence for something already proven wastes time.</dd>
+        <dt>Missing the one-year window.</dt><dd>Filing within a year of the notice generally keeps your original effective date.</dd>
+        <dt>Treating "deferred" as "denied."</dt><dd>A deferred issue is still pending. Wait for its decision.</dd>
+        <dt>Paying someone to file a first claim.</dt><dd>It is illegal to charge for help preparing an initial claim. Accredited VSOs help for free at every stage.</dd>
+      </dl>
+      <p class="cite"><span class="tag law">Law</span> <a href="https://www.govinfo.gov/link/uscode/38/5904" target="_blank" rel="noopener">38 U.S.C. § 5904</a>(c)(1); <a href="https://www.ecfr.gov/current/title-38/section-3.104" target="_blank" rel="noopener">38 C.F.R. § 3.104</a>(c); <a href="https://www.ecfr.gov/current/title-38/section-3.2500" target="_blank" rel="noopener">38 C.F.R. § 3.2500</a>(h); <a href="https://www.ecfr.gov/current/title-38/section-3.2501" target="_blank" rel="noopener">38 C.F.R. § 3.2501</a></p>
+    </section>
+
+    <section class="panel" id="sources" aria-labelledby="src-h">
+      <header><h2 id="src-h">Sources and dates</h2>
+        <p class="muted" style="font-size:.88rem"><span class="tag law">Law</span> statutes and regulations. <span class="tag court">Court decision</span> federal court decisions that interpret them. <span class="tag guide">VA guidance</span> VA manuals and opinions, which explain how VA applies the law but are not law. <span class="tag bg">Background</span> general knowledge of VA practice, not tied to a specific rule.</p></header>
+      <div class="tscroll"><table>
+        <thead><tr><th scope="col">Source</th><th scope="col">Type</th><th scope="col">Version used</th></tr></thead>
+        <tbody>
+          <tr><td><a href="https://www.govinfo.gov/link/uscode/38/5104" target="_blank" rel="noopener">38 U.S.C. § 5104</a> (notice contents) and <a href="https://www.govinfo.gov/link/uscode/38/5104A" target="_blank" rel="noopener">38 U.S.C. § 5104A</a> (favorable findings)</td><td><span class="tag law">Law</span></td><td>Current U.S. Code</td></tr>
+          <tr><td><a href="https://www.ecfr.gov/current/title-38/section-3.103" target="_blank" rel="noopener">38 C.F.R. § 3.103</a>(f) (notice of decisions) and <a href="https://www.ecfr.gov/current/title-38/section-3.104" target="_blank" rel="noopener">38 C.F.R. § 3.104</a>(c) (favorable findings)</td><td><span class="tag law">Law</span></td><td>Current eCFR</td></tr>
+          <tr><td><a href="https://www.ecfr.gov/current/title-38/section-3.159" target="_blank" rel="noopener">38 C.F.R. § 3.159</a> (duty to assist), <a href="https://www.ecfr.gov/current/title-38/section-3.303" target="_blank" rel="noopener">38 C.F.R. § 3.303</a>, <a href="https://www.ecfr.gov/current/title-38/section-3.304" target="_blank" rel="noopener">38 C.F.R. § 3.304</a>, <a href="https://www.ecfr.gov/current/title-38/section-3.306" target="_blank" rel="noopener">38 C.F.R. § 3.306</a>, <a href="https://www.ecfr.gov/current/title-38/section-3.310" target="_blank" rel="noopener">38 C.F.R. § 3.310</a> (service connection), <a href="https://www.ecfr.gov/current/title-38/section-3.655" target="_blank" rel="noopener">38 C.F.R. § 3.655</a> (missed exams)</td><td><span class="tag law">Law</span></td><td>Current eCFR</td></tr>
+          <tr><td><a href="https://www.ecfr.gov/current/title-38/section-3.2500" target="_blank" rel="noopener">38 C.F.R. § 3.2500</a>, <a href="https://www.ecfr.gov/current/title-38/section-3.2501" target="_blank" rel="noopener">38 C.F.R. § 3.2501</a>, <a href="https://www.ecfr.gov/current/title-38/section-3.400" target="_blank" rel="noopener">38 C.F.R. § 3.400</a>; 38 C.F.R. Part 4 (<a href="https://www.ecfr.gov/current/title-38/section-4.7" target="_blank" rel="noopener">38 C.F.R. § 4.7</a>, <a href="https://www.ecfr.gov/current/title-38/section-4.25" target="_blank" rel="noopener">38 C.F.R. § 4.25</a>)</td><td><span class="tag law">Law</span></td><td>Current eCFR</td></tr>
+          <tr><td>Court decisions named in each entry</td><td><span class="tag court">Court decision</span></td><td>As cited</td></tr>
+          <tr><td>M21-1, Part V, Subpart iv, Chapter 1 (rating decision format)</td><td><span class="tag guide">VA guidance</span></td><td>Public KnowVA edition</td></tr>
+        </tbody>
+      </table></div>
+      <p class="muted" style="font-size:.86rem">Phrases are typical wording; your letter may say it differently. Examples are general and are not real VA decisions. Content reviewed <span class="num">Oct 26, 2026</span>. Please check official VA regulations for current information.</p>
+    </section>
+  </main>
+
+  <footer>
+    <p>This guide explains common wording in VA decision letters and the public law behind it. It does not read your letter, decide whether a review will succeed, or say what rating or payment VA will assign, and it is not legal or medical advice.</p>
+    <p>ClaimReady is independent and educational. It is not VA and is not a substitute for an accredited representative, who can help at no cost. Nothing on this page is saved or sent. <a href="./#about">About ClaimReady and full disclaimer</a></p>
+  </footer>
+</div>
+<script>
+(() => {
+  const items = [...document.querySelectorAll('.phrase')];
+  const groups = [...document.querySelectorAll('.group')];
+  const q = document.getElementById('q'), out = document.getElementById('qcount');
+  const total = items.length;
+  function filter() {
+    const words = q.value.toLowerCase().trim().split(/\s+/).filter(Boolean);
+    let n = 0;
+    items.forEach(d => {
+      const hit = words.every(w => d.dataset.s.includes(w));
+      d.hidden = !hit; if (hit) n++;
+      d.open = hit && words.length > 0 && n <= 3;
+    });
+    groups.forEach(g => { g.hidden = !g.querySelector('.phrase:not([hidden])'); });
+    out.textContent = words.length ? (n ? `${n} of ${total} phrases match.` : 'No phrase matches. Try one word, such as "nexus" or "date".') : `${total} phrases in four groups.`;
+  }
+  q.addEventListener('input', filter);
+  // Jump links open the phrase they point to.
+  function openTarget() {
+    const el = document.getElementById(location.hash.slice(1));
+    if (el && el.tagName === 'DETAILS') el.open = true;
+  }
+  window.addEventListener('hashchange', openTarget);
+  openTarget();
+  window.addEventListener('beforeprint', () => { q.value = ''; filter(); items.forEach(d => d.open = true); });
+})();
+</script>
+</body></html>
