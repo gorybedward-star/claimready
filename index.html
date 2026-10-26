@@ -964,6 +964,32 @@ a.wf-pick { text-decoration: none; }
 
 .dash-cards .path-card { grid-column: 1 / -1; }
 .tool-groups ~ .path-card, .page > .path-card { margin-top: 0; }
+
+/* Site-wide search */
+.search-btn { display: inline-flex; align-items: center; gap: 6px; font-weight: 650; white-space: nowrap; }
+.search-btn[aria-current="page"] { border-color: var(--accent); background: var(--accent-soft); }
+.site-search .page-head { margin-bottom: 4px; }
+.site-box { display: flex; flex-direction: column; gap: 8px; }
+.site-box > label { font-size: 1.05rem; }
+.site-field { position: relative; max-width: 720px; }
+.site-field svg { position: absolute; left: 14px; top: 50%; transform: translateY(-50%); color: var(--muted); pointer-events: none; }
+.site-field input { width: 100%; box-sizing: border-box; min-height: 52px; padding: 10px 14px 10px 44px; font-size: 1.08rem; border: 2px solid var(--line); border-radius: 999px; background: var(--surface); color: var(--ink); }
+.site-field input:focus { border-color: var(--accent); outline: 3px solid var(--accent-soft); outline-offset: 0; }
+.site-try .chip { min-height: 44px; }
+.site-count { margin: 6px 0 2px; font-size: .9rem; color: var(--muted); }
+.site-wait { font-size: .86rem; margin: 2px 0; }
+.site-results { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; max-width: 760px; }
+.site-hit { display: flex; flex-direction: column; gap: 2px; padding: 14px 0; border-bottom: 1px solid var(--line); min-width: 0; }
+.site-hit:last-child { border-bottom: 0; }
+.site-hit .eyebrow { font-size: .74rem; overflow-wrap: anywhere; }
+.site-title { font-family: var(--f-serif); font-weight: 600; font-size: 1.14rem; color: var(--accent); text-decoration: none; line-height: 1.3; padding: 2px 0; overflow-wrap: anywhere; }
+.site-title:hover { text-decoration: underline; }
+.site-sub { font-size: .86rem; color: var(--muted); }
+.site-hit .snip { margin: 2px 0 0; font-size: .9rem; color: var(--ink); overflow-wrap: anywhere; line-height: 1.45; }
+.site-hit mark { background: var(--accent-soft); color: var(--ink); padding: 0; border-radius: 3px; font-weight: 600; }
+.site-more { list-style: none; margin: 6px 0 0; padding: 0 0 0 12px; border-left: 2px solid var(--line); display: flex; flex-direction: column; gap: 2px; }
+.site-more a { display: inline-block; padding: 6px 0; font-size: .9rem; color: var(--accent); min-height: 24px; }
+@media (max-width: 760px) { .search-btn { min-height: 44px; } }
 </style>
 <script src="site-config.js"></script>
 <script>
@@ -4322,11 +4348,13 @@ window.VCI_UPDATES = [
   let toastTimer;
   function toast(m) { UI.toast = m; const el = $('.toast'); if (el) { el.textContent = m; el.hidden = false; } clearTimeout(toastTimer); toastTimer = setTimeout(() => { UI.toast = ''; const t = $('.toast'); if (t) t.hidden = true; }, 2600); }
   let settingHash = false;
-  function focusHeading() { const h = document.querySelector('#edu-topic h2') || document.querySelector('#main h1'); if (h) { h.setAttribute('tabindex', '-1'); h.focus({ preventScroll: true }); } }
+  function focusHeading() { if (UI.route === 'search') { const q = document.getElementById('site-q'); if (q) { q.focus({ preventScroll: true }); return; } } const h = document.querySelector('#edu-topic h2') || document.querySelector('#main h1'); if (h) { h.setAttribute('tabindex', '-1'); h.focus({ preventScroll: true }); } }
   const TEXT_SIZES = [{ label: 'standard', scale: 1 }, { label: 'large', scale: 1.15 }, { label: 'extra large', scale: 1.3 }];
   function applyTextSize() { document.documentElement.style.fontSize = (16 * TEXT_SIZES[UI.textSize].scale) + 'px'; }
+  // A search link such as #search?q=back%20pay opens the search page with that search; the query is kept in the address only.
+  function siteHash(h) { const m = /^search\?q=(.*)$/.exec(h); if (!m) return h; try { UI.siteQ = decodeURIComponent(m[1]); } catch (e) { } return 'search'; }
   function go(route) { UI.route = route; UI.editEvent = null; UI.confirm = null; UI.activeCheck = null; UI.editOpText = false; render(); window.scrollTo(0, 0); focusHeading(); try { settingHash = true; location.hash = route; } catch (e) { } setTimeout(() => settingHash = false, 0); }
-  window.addEventListener('hashchange', () => { if (settingHash) return; const h = location.hash.slice(1); if (h && h !== UI.route) { UI.route = h; render(); window.scrollTo(0, 0); focusHeading(); } });
+  window.addEventListener('hashchange', () => { if (settingHash) return; const h = siteHash(location.hash.slice(1)); if (h && h !== UI.route) { UI.route = h; render(); window.scrollTo(0, 0); focusHeading(); } });
 
   // ================= HELPERS =================
   const opt = (v, l, cur) => `<option value="${esc(v)}"${String(v) === String(cur == null ? '' : cur) ? ' selected' : ''}>${esc(l)}</option>`;
@@ -4352,7 +4380,7 @@ window.VCI_UPDATES = [
   const inp = (id, name, val, type, extra) => `<input id="${id}" name="${name}" type="${type || 'text'}" value="${esc(val || '')}" ${extra || ''}>`;
 
   // ================= SHELL =================
-  const GROUP = { home: 'home', needed: 'home', conditions: 'conditions', cond: 'conditions', add: 'conditions', opinion: 'opinions', opinions: 'opinions', rating: 'opinions', combine: 'opinions', effcheck: 'opinions', checklist: 'opinions', smccheck: 'opinions', quick: 'opinions', tools: 'opinions', tdiu: 'opinions', doctors: 'opinions', fullref: 'opinions', educ: 'learn', learn: 'learn', explain: 'learn', training: 'learn', benefits: 'benefits', info: 'info', about: 'backup', terms: 'backup', backup: 'backup' };
+  const GROUP = { search: 'search', home: 'home', needed: 'home', conditions: 'conditions', cond: 'conditions', add: 'conditions', opinion: 'opinions', opinions: 'opinions', rating: 'opinions', combine: 'opinions', effcheck: 'opinions', checklist: 'opinions', smccheck: 'opinions', quick: 'opinions', tools: 'opinions', tdiu: 'opinions', doctors: 'opinions', fullref: 'opinions', educ: 'learn', learn: 'learn', explain: 'learn', training: 'learn', benefits: 'benefits', info: 'info', about: 'backup', terms: 'backup', backup: 'backup' };
   const LEGACY = { sc: ['conditions', 'sc'], denied: ['conditions', 'denied'], pending: ['conditions', 'open'], history: ['home'], evidence: ['home'], service: ['info'], log: ['info'], help: ['benefits'] };
   const LEGAL_LINE = 'Educational information based on public information from VA\'s M21-1 Adjudication Procedures Manual (published on KnowVA) and Title 38 of the Code of Federal Regulations (eCFR). Not affiliated with VA. VA decides every claim.';
   const BANNER = 'Independent educational tool. Not affiliated with or endorsed by the U.S. Department of Veterans Affairs. Not legal or medical advice. VA decides every claim.';
@@ -4373,6 +4401,7 @@ window.VCI_UPDATES = [
       <a class="skip" href="#main" data-act="skip">Skip to main content</a>
       <header class="topbar">
         <div class="brand"><span class="mark">VCI</span><span class="name">VA Claims Intelligence</span></div>
+        <button class="btn small search-btn" data-go="search" ${g === 'search' ? 'aria-current="page"' : ''}><svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5" fill="none" stroke="currentColor" stroke-width="2.2"/><path d="M15.5 15.5 21 21" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg>Search</button>
         <nav class="toptabs" aria-label="Sections">${tab('home', 'Dashboard')}${tab('learn', 'Learn')}${tab('conditions', 'Conditions')}${tab('opinions', 'Tools', 'tools')}${tab('info', 'My info')}${tab('benefits', 'Find benefits')}${tab('backup', 'Backup')}</nav>
         <button class="btn small doc-btn" data-act="openQuick">Quick sheet for my doctor</button>
         <span class="store ${store.mode}" title="${store.mode === 'account' ? 'Saved to your private space in your account. Only you can see it.' : 'Saved in this browser only.'}">Private<span class="store-more">${store.mode === 'account' ? ' · saved to your account' : ' · saved on this device'}</span></span>
@@ -4402,6 +4431,7 @@ window.VCI_UPDATES = [
         case 'quick': return quickPage();
         case 'tdiu': return tdiuPage();
         case 'tools': return toolsPage();
+        case 'search': return searchPage();
         case 'needed': return neededPage();
         case 'doctors': return doctorsPage();
         case 'fullref': return fullRefPage(id);
@@ -7220,6 +7250,116 @@ ${topics.length ? `<h2>5. For these conditions</h2><ul>${topics.map(t => `<li><b
       if (pos >= 0) { const a = Math.max(0, pos - 70); const b = Math.min(e.text.length, pos + hit.length + 110); snip = (a ? '…' : '') + esc(e.text.slice(a, pos)) + '<mark>' + esc(e.text.slice(pos, pos + hit.length)) + '</mark>' + esc(e.text.slice(pos + hit.length, b)) + (b < e.text.length ? '…' : ''); }
       return `<button class="edu-hit" data-act="eduTopic" data-id="${e.id}"><span class="eyebrow">${esc(e.group)}</span><b>${esc(e.title)}</b>${snip ? `<span class="snip">${snip}</span>` : `<span class="snip">${esc(e.sub)}</span>`}</button>`; }).join('')}</div>`;
   }
+  // ---- Site-wide search: every Learn topic, tool, and standalone page, searched on this device ----
+  // Standalone pages come from src/site-index.js (built by tools/site-index.py); the public site loads it on first use.
+  const SITE_SYN = { ...EDU_SYN, denied: ['denied', 'denial'], denial: ['denial', 'denied'], deny: ['denied', 'denial'], rejected: ['denied', 'denial'], 'turned down': ['denied', 'denial'], 'decision letter': ['decision letter', 'rating decision', 'decision notice'], letter: ['letter', 'decision notice'], 'back pay': ['back pay', 'effective date', 'retroactive', 'earlier date'], 'start date': ['effective date', 'start date'], increase: ['increase', 'worse', 'higher rating'], worse: ['worse', 'increase', 'aggravat'], 'higher rating': ['higher rating', 'higher evaluation', 'increase'], percent: ['percent', '%', 'rating'], appeal: ['appeal', 'board', 'review'], 'new evidence': ['new and relevant', 'new evidence'], sciatica: ['radiculopathy', 'sciatic'], neuropathy: ['neuropathy', 'nerve'], numbness: ['numb', 'nerve', 'neuropathy'], ears: ['hearing', 'tinnitus', 'ear'], hearing: ['hearing'], back: ['back', 'spine', 'thoracolumbar'], spine: ['spine', 'back'], 'blood pressure': ['blood pressure', 'hypertension'], hbp: ['hypertension'], depression: ['depress', 'mental'], anxiety: ['anxiety', 'mental'], ptsd: ['ptsd', 'stressor'], mst: ['military sexual trauma', 'mst', 'personal assault'], 'aid and attendance': ['aid and attendance', 'housebound'], 'a&a': ['aid and attendance'], doctor: ['doctor', 'examiner', 'provider'], dbq: ['dbq', 'disability benefits questionnaire'], vietnam: ['vietnam'], hepatitis: ['hepatitis'], adhd: ['adhd', 'attention deficit'], autism: ['autism'], insomnia: ['insomnia', 'sleep'], records: ['records'], 'private records': ['private', '4142'], surgery: ['surgery', 'convalescen', 'temporary 100'], vso: ['representative', 'vso', 'service officer'], lawyer: ['attorney', 'agent', 'representative'], deadline: ['deadline', 'one year', 'within one year'], hurts: ['pain', 'hurt'], hurt: ['pain', 'hurt'], sore: ['pain', 'sore'] };
+  // In-app tools and pages that are not Learn topics. Extra words help plain-English searches find them.
+  const SITE_TOOL_KW = { checklist: 'before you file claim checklist steps', smccheck: 'special monthly compensation smc loss of use', quick: 'doctor quick sheet one page exam opinion', doctors: 'doctor provider dbq medical opinion', opinions: 'check c&p exam opinion problems inadequate', tdiu: 'tdiu unemployability individual unemployability can\'t work calculator', explain: 'rating criteria percentages part 4 diagnostic code', rating: 'estimate rating diagnostic code percent knee back ankle', combine: 'combined rating va math bilateral factor calculator percent', effcheck: 'effective date start date back pay check', learn: 'learn exams benefits ratings', educ: 'provider education manual m21-1', training: 'knowledge checks training quiz trainers vso', add: 'add a condition paste rating decision', benefits: 'find benefits presumptive special benefits', about: 'about privacy disclaimer independent' };
+  const SITE_TOOLS = () => [...TOOL_GROUPS.flatMap(([g, items]) => items.filter(([r]) => !isPage(r)).map(([r, l, d]) => [r, l, d, g])),
+    ['add', 'Add a condition or paste a decision', 'Record a grant, denial, or pending claim, or paste your rating decision.', 'Your folder'],
+    ['benefits', 'Find benefits', 'Presumptive conditions guide and special benefits to ask about.', 'Find benefits'],
+    ['about', 'About and privacy', 'How this tool works, where your information is kept, and the full disclaimer.', 'About']]
+    .filter((t, i, a) => a.findIndex(x => x[0] === t[0]) === i);
+  const SITE_TRY = ['denied', 'back pay', 'tinnitus', 'sleep apnea', '0995', 'PTSD stressor', 'aid and attendance', 'TDIU'];
+  let SITE_APP = null; let siteLoading = false; let siteFailed = false;
+  function siteEntries() {
+    if (!SITE_APP) {
+      const d = document.createElement('div'); // a space after each block so words from separate lines do not run together
+      const spaced = id => { d.innerHTML = eduPanel(id, []).replace(/<\/(p|li|h\d|div|td|th|summary)>/g, ' $&'); return d.textContent.replace(/\s+/g, ' ').trim(); };
+      SITE_APP = [...eduIndex().map(e => ({ href: '#educ.' + e.id, page: 'Learn', kind: 'Learn · ' + e.group, title: e.title, sub: e.sub, text: spaced(e.id) })),
+        ...SITE_TOOLS().map(([r, l, t, g]) => ({ href: '#' + r, page: 'Tools', kind: 'Tool · ' + g, title: l, sub: t, kw: SITE_TOOL_KW[r] || '', text: t }))];
+    }
+    if (!window.VCI_SITE_INDEX && !siteLoading && !siteFailed) {
+      siteLoading = true; const s = document.createElement('script'); s.src = 'site-index.js';
+      s.onload = () => { siteLoading = false; siteRefresh(); }; s.onerror = () => { siteLoading = false; siteFailed = true; siteRefresh(); };
+      document.head.appendChild(s);
+    }
+    return SITE_APP.concat(window.VCI_SITE_INDEX || []);
+  }
+  const SITE_STOP = new Set('a an and are about can did do does for from get has have help how i i\'m in is it me my need of on or the to va was what when why with'.split(' '));
+  function searchTerms(q, syn, stop) {
+    let terms = []; let rest = q;
+    Object.keys(syn).filter(k => k.includes(' ')).forEach(k => { if (rest.includes(k)) { terms.push([k, ...syn[k]]); rest = rest.replace(k, ' '); } });
+    rest.split(/[^a-z0-9§.&%']+/).filter(w => (w.length > 1 || /\d/.test(w)) && !(stop && stop.has(w))).forEach(w => terms.push(syn[w] || (w.length > 4 && /[^s]s$/.test(w) ? [w, w.slice(0, -1)] : [w])));
+    return terms;
+  }
+  // Closest word in the index, for one typo or two ("tinnitis" finds "tinnitus").
+  let SITE_WORDS = null;
+  function siteFix(w) {
+    if (w.length < 5 || /\d/.test(w)) return null;
+    if (!SITE_WORDS) { const set = new Set(); siteEntries().forEach(e => (e.title + ' ' + e.text).toLowerCase().split(/[^a-z]+/).forEach(x => { if (x.length > 3) set.add(x); })); SITE_WORDS = [...set]; }
+    const max = w.length > 7 ? 2 : 1; let best = null; let bd = max + 1;
+    for (const x of SITE_WORDS) { if (Math.abs(x.length - w.length) > max) continue; const d = editDist(w, x, bd); if (d < bd) { bd = d; best = x; if (d === 1) break; } }
+    return best;
+  }
+  function editDist(a, b, cap) {
+    let prev = Array.from({ length: b.length + 1 }, (_, i) => i);
+    for (let i = 1; i <= a.length; i++) { const cur = [i]; let low = i;
+      for (let j = 1; j <= b.length; j++) { cur[j] = Math.min(prev[j] + 1, cur[j - 1] + 1, prev[j - 1] + (a[i - 1] === b[j - 1] ? 0 : 1)); low = Math.min(low, cur[j]); }
+      if (low >= cap) return cap; prev = cur; }
+    return prev[b.length];
+  }
+  function siteScore(e, terms, all) {
+    const title = e.title.toLowerCase(); const meta = ((e.sub || '') + ' ' + (e.kw || '')).toLowerCase(); const page = (e.page + ' ' + e.kind).toLowerCase(); const low = e._low || (e._low = e.text.toLowerCase());
+    let score = 0; let n = 0;
+    for (const alts of terms) {
+      let best = 0;
+      for (const a of alts) { const s = (title.includes(a) ? 30 : 0) + (meta.includes(a) ? 12 : 0) + (page.includes(a) ? 6 : 0) + Math.min(8, low.split(a).length - 1); if (s > best) best = s + (a === alts[0] ? 2 : 0); }
+      if (best) { score += best; n++; } else if (all) return 0;
+    }
+    return n ? score * n / terms.length : 0;
+  }
+  function siteSearch(q) {
+    q = (q || '').trim().toLowerCase(); if (q.length < 2) return null;
+    let terms = (searchTerms(q, SITE_SYN, SITE_STOP).length ? searchTerms(q, SITE_SYN, SITE_STOP) : searchTerms(q, SITE_SYN)); if (!terms.length) return null;
+    const run = (t, all) => {
+      const groups = new Map();
+      siteEntries().forEach(e => { const s = siteScore(e, t, all); if (!s) return; const k = e.href.split('#').slice(0, e.href[0] === '#' ? 2 : 1).join('#'); const g = groups.get(k) || { hits: [], score: 0 }; g.hits.push({ e, s }); groups.set(k, g); });
+      return [...groups.values()].map(g => { g.hits.sort((a, b) => b.s - a.s); g.score = g.hits[0].s + Math.min(10, g.hits.length - 1) * 1.5; return g; }).sort((a, b) => b.score - a.score);
+    };
+    let r = run(terms, true); let fixed = ''; let partial = false;
+    if (!r.length) { const words = q.split(/\s+/); const fx = words.map(w => SITE_SYN[w] || SITE_STOP.has(w) ? w : siteFix(w) || w); if (fx.join(' ') !== words.join(' ')) { fixed = fx.join(' '); terms = searchTerms(fixed, SITE_SYN, SITE_STOP); r = run(terms, true); } }
+    if (!r.length && terms.length > 1) { r = run(terms, false); partial = r.length > 0; }
+    return { r, terms, fixed, partial };
+  }
+  function siteSnip(text, terms) {
+    const low = text.toLowerCase(); let pos = -1; let len = 0;
+    terms.forEach(alts => alts.forEach(a => { const p = low.indexOf(a); if (p >= 0 && (pos < 0 || p < pos)) { pos = p; len = a.length; } }));
+    if (pos < 0) return '';
+    const a = Math.max(0, low.lastIndexOf(' ', Math.max(0, pos - 80)) + 1); const b = Math.min(text.length, pos + len + 140);
+    let s = esc(text.slice(a, b));
+    const words = [...new Set(terms.flat())].filter(w => w.length > 1).sort((x, y) => y.length - x.length).map(w => esc(w).replace(/[.*+?^${}()|[\]\\]/g, '\\$&'));
+    if (words.length) s = s.replace(new RegExp('(' + words.join('|') + ')', 'gi'), '<mark>$1</mark>');
+    return (a ? '…' : '') + s + (b < text.length ? '…' : '');
+  }
+  function siteResultsHTML(q) {
+    const res = siteSearch(q);
+    if (!res) return `<div class="site-try"><p class="muted" style="margin:0 0 6px">Type a few words, like a condition, a form number, or what happened. For example:</p><div class="row" style="gap:6px">${SITE_TRY.map(t => `<button type="button" class="chip" data-act="siteTry" data-q="${esc(t)}">${esc(t)}</button>`).join('')}</div></div>`;
+    const { r, terms, fixed, partial } = res; const wait = siteLoading ? '<p class="muted site-wait">Still loading the articles and form guides…</p>' : siteFailed ? '<p class="muted site-wait">The articles and form guides could not be loaded, so only the Learn topics and tools were searched. Check your connection and try again.</p>' : '';
+    if (!r.length) return `<p class="empty" style="margin:10px 0 0">Nothing on the site mentions "${esc(q.trim())}". Try fewer or simpler words, like "knee," "spouse," or "deadline."</p>${wait}`;
+    const shown = r.slice(0, 20);
+    return `<p class="site-count">${fixed ? `Showing results for <b>${esc(fixed)}</b>. ` : ''}${partial ? 'No page has all of your words. These have some of them. ' : ''}${r.length} page${r.length === 1 ? '' : 's'} found${r.length > 20 ? '; showing the best 20' : ''}.</p>${wait}
+      <ol class="site-results">${shown.map(({ hits }) => { const lead = hits[0].e; const onPage = lead.href[0] !== '#';
+        const more = onPage ? hits.slice(1).filter(h => h.e.href.includes('#')).slice(0, 3) : [];
+        const snip = siteSnip(lead.text, terms) || esc(lead.sub || '');
+        return `<li class="site-hit"><span class="eyebrow">${esc(lead.kind)}${onPage ? ' · ' + esc(lead.page) : ''}</span>
+          <a class="site-title" href="${esc(lead.href)}">${esc(lead.title)}</a>${onPage && lead.href.includes('#') && lead.sub ? `<span class="site-sub">${esc(lead.sub)}</span>` : ''}
+          ${snip ? `<p class="snip">${snip}</p>` : ''}
+          ${more.length ? `<ul class="site-more" aria-label="More on this page">${more.map(h => `<li><a href="${esc(h.e.href)}">${esc(h.e.title)}</a>${h.e.sub ? `<span class="site-sub"> · ${esc(h.e.sub)}</span>` : ''}</li>`).join('')}</ul>` : ''}</li>`; }).join('')}</ol>`;
+  }
+  function siteRefresh() {
+    const box = $('#site-results'); if (!box) return;
+    try { const q = (UI.siteQ || '').trim(); history.replaceState(null, '', '#search' + (q ? '?q=' + encodeURIComponent(q).replace(/\./g, '%2E') : '')); } catch (e) { } const inBox = box.contains(document.activeElement);
+    box.innerHTML = siteResultsHTML(UI.siteQ); const st = $('#site-status'); const c = box.querySelector('.site-count, .empty'); if (st) st.textContent = c ? c.textContent : ''; if (inBox) { const f = box.querySelector('.site-title, .chip'); if (f) f.focus(); }
+  }
+  function searchPage() {
+    siteEntries(); // start loading the article index while the person types
+    return `<div class="page site-search"><div class="page-head"><h1>Search the site</h1><p>Search every guide, lesson, form guide, and tool on this site.</p></div>
+      <form class="panel site-box" role="search" aria-label="Search the site" data-sitesearch><label for="site-q"><b>What do you need help with?</b></label>
+        <div class="site-field"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M15.5 15.5 21 21" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg><input id="site-q" type="search" autocomplete="off" autocapitalize="none" spellcheck="false" enterkeyhint="search" placeholder="e.g. tinnitus, denied, 0995" value="${esc(UI.siteQ || '')}" data-live="siteSearch"></div>
+        <p class="sr-only" id="site-status" role="status"></p><div id="site-results">${siteResultsHTML(UI.siteQ)}</div></form>
+      ${frameNote('Search results point to ClaimReady\'s own educational pages. They are not advice about your claim. VA decides every claim.')}</div>`;
+  }
   function quickPanelHTML(sel) {
     return `      ${UI.educFor ? `<p class="ok-note">Prepared for <b>${esc(UI.educFor)}</b>. Topics and claim type are selected for this condition. <button class="btn link" data-act="educReset">Use my whole folder instead</button></p>` : ''}
       <section class="panel quick-panel" id="ed-share"><div class="panel-head"><h2>Make a quick sheet for your doctor</h2><div class="row" style="gap:8px"><button class="btn" data-act="qsReset">Reset selections</button><button class="btn primary" data-act="downloadQuick">Download quick sheet (1 page)</button><button class="btn" data-act="downloadEduc">Full reference</button></div></div>
@@ -8035,6 +8175,7 @@ ${p.toxic.answer || p.toxic.exposures.length ? sec('Toxic exposure', `<p>Believe
     openQuick: () => { UI.educ = null; UI.educTh = null; UI.educFor = ''; go('quick'); },
     qsReset: () => { UI.educ = []; UI.educTh = []; UI.educFor = ''; UI.qsOpen = true; render(); toast('Selections cleared'); const f = document.querySelector('[data-change="educTheory"]'); if (f) f.focus(); },
     eduTopic: el => go('educ.' + el.dataset.id),
+    siteTry: el => { UI.siteQ = el.dataset.q; const i = $('#site-q'); if (i) { i.value = UI.siteQ; i.focus(); } siteRefresh(); },
     eduTop: () => { const prev = UI.route.split('.')[1] || ''; go('educ'); const b = prev && document.querySelector(`.edu-card[data-id="${prev}"]`); if (b) { b.scrollIntoView({ block: 'center' }); b.focus({ preventScroll: true }); } },
     educReset: () => { UI.educ = null; UI.educTh = null; UI.educFor = ''; render(); },
     shareDoc: el => { const c = byId(S.conditions, el.dataset.cond); UI.educ = EDU.filter(t => t.re.test(c.name)).map(t => t.id); UI.educTh = [c.theory]; UI.educFor = c.name; UI.qsOpen = true; go('quick'); },
@@ -8165,6 +8306,13 @@ ${p.toxic.answer || p.toxic.exposures.length ? sec('Toxic exposure', `<p>Believe
     if (ev.target.dataset.live !== 'exVal') return; const st = explainState(); const C = VCI.CRITERIA[st.id]; const n = ev.target.value === '' ? null : Number(ev.target.value);
     if (n == null || isNaN(n)) return; st.v[st.id] = Math.max(C.min, Math.min(C.max, Math.round(n))); explainRefresh();
   });
+  let siteT = 0;
+  document.addEventListener('input', ev => {
+    if (ev.target.dataset.live !== 'siteSearch') return; UI.siteQ = ev.target.value; clearTimeout(siteT); siteT = setTimeout(siteRefresh, 150);
+  });
+  document.addEventListener('submit', ev => {
+    if (!ev.target.matches('form[data-sitesearch]')) return; ev.preventDefault(); clearTimeout(siteT); UI.siteQ = $('#site-q').value; siteRefresh(); const f = $('#site-results .site-title'); if (f) f.focus();
+  });
   let eduT = 0;
   document.addEventListener('input', ev => {
     if (ev.target.dataset.live !== 'eduSearch') return; UI.eduQ = ev.target.value; clearTimeout(eduT);
@@ -8208,7 +8356,7 @@ ${p.toxic.answer || p.toxic.exposures.length ? sec('Toxic exposure', `<p>Believe
   // ================= BOOT =================
   applyTextSize();
   if (window.VCI_INSTALL) window.VCI_INSTALL.onChange(() => render());
-  const h = (location.hash || '').slice(1); if (h) UI.route = h;
+  const h = siteHash((location.hash || '').slice(1)); if (h) UI.route = h;
   if (!hasData(S) && wantsExample()) { S = VCI.normalize(vciExample(TODAY)); UI.autoExample = true; }
   render(); connect();
 })();
