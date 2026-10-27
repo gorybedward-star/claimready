@@ -829,6 +829,23 @@ a.wf-pick { text-decoration: none; }
 .edu-card.top, .tool-card.top { border-color: var(--wait); box-shadow: inset 4px 0 0 var(--wait); }
 .sg-star { color: var(--wait); margin-right: 3px; }
 @media print { .wayfinder { display: none; } }
+/* Promise line and "I am a..." picker (Dashboard top) */
+.promise { border-left: 4px solid var(--accent); padding: 4px 0 4px 14px; display: flex; flex-direction: column; gap: 6px; }
+.promise-line { margin: 0; font-family: var(--f-serif); font-size: 1.32rem; line-height: 1.3; font-weight: 600; color: var(--ink); text-wrap: balance; }
+.promise-sub { margin: 0; font-size: .9rem; color: var(--muted); }
+.promise-sub .btn.link { font-size: inherit; }
+.who { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 10px; }
+.who-lbl { font-weight: 700; font-size: .92rem; }
+.who-tabs { margin: 4px 0; }
+.who-hint { margin: 0; font-size: .86rem; }
+.who-picks li:first-child .wf-pick { border: 1px solid var(--line); background: var(--surface); }
+.who-picks li:first-child .wf-kind { color: var(--muted); }
+.dl-list { columns: 2 260px; column-gap: 24px; }
+.dl-list li { break-inside: avoid; margin-bottom: 6px; }
+@media (max-width: 760px) { .promise-line { font-size: 1.15rem; } }
+@media print { .promise { display: none; } }
+#wf-h { scroll-margin-top: 140px; }
+@media (max-width: 900px) { #wf-h { scroll-margin-top: 220px; } }
 /* Learn by pillar, rating-criteria explainer, knowledge checks, disclaimer */
 .frame-note { margin: 0; padding: 10px 14px; border-radius: var(--r); background: var(--accent-soft); border: 1px solid var(--accent); font-size: .9rem; line-height: 1.45; }
 .frame-note a { color: var(--accent); }
@@ -4380,7 +4397,7 @@ window.VCI_UPDATES = [
   const inp = (id, name, val, type, extra) => `<input id="${id}" name="${name}" type="${type || 'text'}" value="${esc(val || '')}" ${extra || ''}>`;
 
   // ================= SHELL =================
-  const GROUP = { search: 'search', home: 'home', needed: 'home', conditions: 'conditions', cond: 'conditions', add: 'conditions', opinion: 'opinions', opinions: 'opinions', rating: 'opinions', combine: 'opinions', effcheck: 'opinions', checklist: 'opinions', smccheck: 'opinions', quick: 'opinions', tools: 'opinions', tdiu: 'opinions', doctors: 'opinions', fullref: 'opinions', educ: 'learn', learn: 'learn', explain: 'learn', training: 'learn', benefits: 'benefits', info: 'info', about: 'backup', terms: 'backup', backup: 'backup' };
+  const GROUP = { search: 'search', home: 'home', needed: 'home', conditions: 'conditions', cond: 'conditions', add: 'conditions', opinion: 'opinions', opinions: 'opinions', rating: 'opinions', combine: 'opinions', effcheck: 'opinions', checklist: 'opinions', smccheck: 'opinions', quick: 'opinions', tools: 'opinions', downloads: 'opinions', tdiu: 'opinions', doctors: 'opinions', fullref: 'opinions', educ: 'learn', learn: 'learn', explain: 'learn', training: 'learn', benefits: 'benefits', info: 'info', about: 'backup', terms: 'backup', backup: 'backup' };
   const LEGACY = { sc: ['conditions', 'sc'], denied: ['conditions', 'denied'], pending: ['conditions', 'open'], history: ['home'], evidence: ['home'], service: ['info'], log: ['info'], help: ['benefits'] };
   const LEGAL_LINE = 'Educational information based on public information from VA\'s M21-1 Adjudication Procedures Manual (published on KnowVA) and Title 38 of the Code of Federal Regulations (eCFR). Not affiliated with VA. VA decides every claim.';
   const BANNER = 'Independent educational tool. Not affiliated with or endorsed by the U.S. Department of Veterans Affairs. Not legal or medical advice. VA decides every claim.';
@@ -4432,6 +4449,7 @@ window.VCI_UPDATES = [
         case 'tdiu': return tdiuPage();
         case 'tools': return toolsPage();
         case 'search': return searchPage();
+        case 'downloads': return downloadsPage();
         case 'needed': return neededPage();
         case 'doctors': return doctorsPage();
         case 'fullref': return fullRefPage(id);
@@ -4501,6 +4519,7 @@ window.VCI_UPDATES = [
     const sc = o.sc.slice().sort((a, b) => (b.s.rating || 0) - (a.s.rating || 0));
     const tile = (f, n, l, cls) => `<button class="tile ${cls}" data-act="filter" data-f="${f}"><span class="big">${n}</span><span class="lbl">${l}</span></button>`;
     return `<div class="page">
+      ${promiseHTML()}
       <div class="spread"><div class="page-head"><span class="eyebrow">${VCI.fmt(TODAY)}</span><h1>${pr.name ? esc(pr.name.split(' ')[0]) + '\'s dashboard' : 'My dashboard'}</h1></div><div class="row"><button class="btn" data-act="downloadSummary2">Summary for my representative</button><button class="btn primary" data-go="add">+ Add a condition</button></div></div>
       ${wayfinderHTML()}
       <div class="overview-top">
@@ -4558,6 +4577,7 @@ window.VCI_UPDATES = [
   }
   function welcome() {
     return `<div class="page">
+      ${promiseHTML()}
       <section class="welcome">
         <span class="eyebrow">Private claims folder</span>
         <h1>Keep your whole VA claim history in one place.</h1>
@@ -5037,6 +5057,60 @@ window.VCI_UPDATES = [
       <div class="wf-tabs" role="group" aria-label="Where are you in your claim">${WHERE.map(([id, l]) => `<button class="wf-tab" data-act="where" data-w="${id}" aria-pressed="${id === cur}">${l}</button>`).join('')}</div>
       <div class="wf-body" aria-live="polite">${whereBody(cur)}</div></section>`;
   }
+  // ---- Promise line and "I am a..." picker at the top of the Dashboard (Oct 27). It sorts people by who they are; the wayfinder below sorts by claim stage. ----
+  const PROMISE = 'Understand your VA claim, exam, and rating in plain English, based on the law.';
+  const WHO = [
+    ['veteran', 'Veteran', 'Start with the lessons, then use "Where are you in your claim?" below for your stage.', [
+      ['claim-path.html', 'Lessons', 'Your claim, step by step', 'Seven short lessons that follow a claim in order, with the law behind each step.'],
+      ['jump:wf-h', 'On this page', 'Where are you in your claim?', 'Pick your stage to see the most useful places to start.'],
+      ['decision-letter.html', 'Guide', 'Decode your decision letter', 'What common phrases in a rating decision mean, and the next step that fits.'],
+      ['downloads', 'Free', 'Free downloads', 'One-page form summaries and sheets for your doctor.']]],
+    ['vso', 'VSO or advocate', 'Reference guides to check a decision and prepare a claim, each with its sources.', [
+      ['educ.decqual', 'Must read', 'Does the decision cover everything?', 'Nine questions to ask of any rating decision.'],
+      ['educ.issues', 'Guide', 'Everything VA must decide', 'Complications, SMC, IU, and other issues a decision should address.'],
+      ['medical-opinions.html#doc', 'Guide', 'What makes a medical opinion count', 'Rationale, adequacy, lay statements, and speculation.'],
+      ['downloads', 'Free', 'Free downloads', 'One-page form summaries you can print or share.']]],
+    ['pro', 'VA or training professional', 'Scenario questions and reference guides built from public law and VA\'s published manual. Not official VA training.', [
+      ['training', 'Practice', 'Knowledge checks', 'Scenario questions on exams, benefits, and ratings, each with its source.'],
+      ['learn', 'Reference', 'Learn by Exams, Benefits, Ratings', 'Every guide sorted into the three parts of a claim.'],
+      ['explain', 'Reference', 'Rating-criteria explainer', 'Each level of the criteria, quoted from 38 C.F.R. Part 4.'],
+      ['doctor-guide.html', 'Reference', 'What VA asks your examiner', 'The extra questions VA adds to certain exams.']]],
+  ];
+  function whoState() { if (UI.who == null) { try { UI.who = localStorage.getItem('vci.who') || ''; } catch (e) { UI.who = ''; } } return WHO.find(w => w[0] === UI.who) ? UI.who : ''; }
+  function whoBody(cur) {
+    const w = WHO.find(x => x[0] === cur); if (!w) return '<p class="muted who-hint">Pick one to see where to start.</p>';
+    const open = r => r.startsWith('jump:') ? `<button class="wf-pick" data-act="jump" data-to="${r.slice(5)}">` : isPage(r) ? `<a class="wf-pick" href="${r}">` : `<button class="wf-pick" data-go="${r}">`;
+    return `<p class="muted wf-lead">${w[2]}</p><ul class="wf-picks who-picks">${w[3].map(([r, kind, t, d]) => `<li>${open(r)}<span class="wf-text"><span class="wf-kind">${kind}</span><b>${t}</b><span>${d}</span></span><span class="wf-go" aria-hidden="true">→</span>${isPage(r) ? '</a>' : '</button>'}</li>`).join('')}</ul>`;
+  }
+  function promiseHTML() {
+    const cur = whoState();
+    return `<section class="promise" aria-labelledby="promise-h"><p class="promise-line" id="promise-h">${PROMISE}</p>
+      <p class="promise-sub">Free and independent. Nothing to sign up for, and what you enter stays on your device. <button class="btn link" data-go="downloads">Free downloads</button></p>
+      <div class="who"><span class="who-lbl" id="who-l">I am a</span><div class="wf-tabs who-tabs" role="group" aria-labelledby="who-l">${WHO.map(([id, l]) => `<button class="wf-tab" data-act="who" data-w="${id}" aria-pressed="${id === cur}">${l}</button>`).join('')}</div></div>
+      <div class="who-body" aria-live="polite">${whoBody(cur)}</div></section>`;
+  }
+  // ---- Free downloads: the printable one-page summaries and sheets already on the site, gathered on one page ----
+  const DL_FORMS = [['form-526ez.html', 'VA Form 21-526EZ', 'Disability claim. The 8 pages of instructions on one page.'], ['form-0995.html', 'VA Form 20-0995', 'Supplemental Claim. Timing and new and relevant evidence.'], ['form-0996.html', 'VA Form 20-0996', 'Higher-Level Review. How the review works and the one-year deadline.'], ['form-10182.html', 'VA Form 10182', 'Board appeal. The three dockets and evidence windows.'], ['form-8940.html', 'VA Form 21-8940', 'Individual Unemployability. The percentage rules and work history.'], ['form-2680.html', 'VA Form 21-2680', 'Aid and Attendance or Housebound exam. Who fills out each part.'], ['form-4142.html', 'VA Forms 21-4142 and 21-4142a', 'Private medical records release. What VA does with your permission.']];
+  const DL_ARTICLES = [['ptsd-stressor.html', 'Your PTSD stressor'], ['supplemental-claims.html', 'Supplemental Claims'], ['medical-opinions.html', 'Medical opinions'], ['competency.html', 'VA competency'], ['hepatitis.html', 'Hepatitis claims'], ['vietnam-service.html', 'Proving Vietnam service'], ['herbicide-no-association.html', 'Herbicides: no positive association'], ['spouse-aid-attendance.html', 'Spouse aid and attendance'], ['somatic-neurodevelopmental-insomnia.html', 'Somatic, ADHD, and insomnia claims']];
+  function downloadsPage() {
+    const card = (open, kind, t, d, close) => `${open}<span class="top-flag">${kind}</span><b>${t}</b><span>${d}</span>${close}`;
+    return `<div class="page"><div class="page-head"><span class="eyebrow">Free · No sign-up</span><h1>Free downloads</h1><p>One-page summaries and sheets from across the site, in one place. Each opens a page with a print button. On the print screen, choose <b>Save as PDF</b> to keep a copy or share it.</p></div>
+      ${frameNote('Educational summaries prepared from public VA forms, regulations, and guidance. They are not VA forms and do not replace the official instructions. Please check official VA regulations for current information.')}
+      <section class="panel tool-group" aria-labelledby="dl-forms"><h2 id="dl-forms">One-page form summaries</h2><p class="muted" style="margin:0 0 10px;font-size:.9rem">Open the summary, then select <b>Print this one-page summary</b>.</p>
+        <div class="tool-cards">${DL_FORMS.map(([r, t, d]) => card(`<a class="tool-card" href="${r}#summary">`, 'One page', t, d, '</a>')).join('')}</div></section>
+      <section class="panel tool-group" aria-labelledby="dl-doc"><h2 id="dl-doc">For your doctor</h2>
+        <div class="tool-cards">${card('<button class="tool-card" data-act="dashQuick">', 'Download', 'Quick sheet for my doctor', 'One page: how to sign, VA\'s standard of proof, and what your claims need. Prepared from your folder.', '</button>')}
+          ${card('<a class="tool-card" href="doctor-guide.html">', 'Print or save', 'What VA asks your examiner', 'The extra questions VA adds for joint exams, increases, Gulf War illness, digestive conditions, and changed rating rules.', '</a>')}
+          ${card('<a class="tool-card" href="medical-opinions.html#doc">', 'Print or save', 'What makes a medical opinion count', 'For doctors, lawyers, and VSOs: rationale, adequacy, lay statements, and a checklist before signing.', '</a>')}</div>
+        <p style="margin:10px 0 0;font-size:.9rem"><button class="btn link" data-go="quick">Customize the quick sheet</button></p></section>
+      <section class="panel tool-group" aria-labelledby="dl-own"><h2 id="dl-own">From your own folder</h2><p class="muted" style="margin:0 0 10px;font-size:.9rem">Made on this device from what you entered. Nothing is sent anywhere.</p>
+        <div class="tool-cards">${card('<button class="tool-card" data-act="downloadSummary2">', 'Download', 'Summary for my representative', 'Your conditions, ratings, dates, and next steps on one printable page.', '</button>')}
+          ${card('<a class="tool-card" href="pn-checker.html">', 'Print or save', 'Nerve findings summary', 'Enter peripheral nerve exam findings in the checker, then print its one-page summary.', '</a>')}
+          ${card('<button class="tool-card" data-go="backup">', 'Download', 'Backup of your folder', 'A file that restores your folder on any device.', '</button>')}</div></section>
+      <section class="panel tool-group" aria-labelledby="dl-art"><h2 id="dl-art">Articles you can print</h2><p class="muted" style="margin:0 0 10px;font-size:.9rem">Each article has a <b>Print or save this article</b> button at the top.</p>
+        <ul class="plain-list dl-list">${DL_ARTICLES.map(([r, t]) => `<li><a href="${r}">${t}</a></li>`).join('')}</ul></section>
+      ${notice}</div>`;
+  }
   const TOOL_GROUPS = [
     ['Checklists', [['checklist', 'Claim checklist', 'Every step and benefit to consider before you file, with a few questions to fit it to you.'], ['form-526ez.html', 'Form 21-526EZ guide', 'The claim form section by section, the six things a reviewer checks first, and the 8 pages of instructions on one page.'], ['form-0995.html', 'Form 20-0995 guide', 'The Supplemental Claim form section by section: timing, new and relevant evidence, and the two checks that prevent delays.'], ['form-0996.html', 'Form 20-0996 guide', 'The Higher-Level Review form section by section: how the review works, the informal conference, and the one-year deadline.'], ['form-8940.html', 'Form 21-8940 guide', 'The Individual Unemployability form section by section: the percentage rules, marginal employment, and the work history VA needs.'], ['form-2680.html', 'Form 21-2680 guide', 'The Aid and Attendance or Housebound exam form section by section: who fills out each part and what VA needs to see.'], ['form-4142.html', 'Form 21-4142 guide', 'The private records release (21-4142 and 21-4142a) section by section: what VA does with your permission and the checks that prevent delays.'], ['form-10182.html', 'Form 10182 guide', 'The Board appeal form section by section: the three dockets, the one-year deadline, evidence windows, and changing dockets.'], ['smccheck', 'SMC checklist', 'Which special monthly compensation levels may fit, and what an exam should document.']]],
     ['For your doctor', [['doctor-guide.html', 'What VA asks your examiner', 'The extra questions VA adds for joint exams when medicine helps, increases, Gulf War illness, digestive conditions, and changed rating rules.'], ['medical-opinions.html#doc', 'What makes a medical opinion count', 'For doctors, lawyers, and VSOs: rationale, adequacy, lay statements, speculation, and a checklist before signing.'], ['quick', 'Quick sheet', 'A one-page sheet of what VA needs in an exam or opinion, for your claim type and conditions.'], ['doctors', 'Doctor guide', 'The full guide for a provider writing a VA medical opinion or DBQ.'], ['opinions', 'Check an exam opinion', 'Paste a C&P exam opinion to spot common problems VA should fix.']]],
@@ -5052,7 +5126,7 @@ window.VCI_UPDATES = [
       ${wayfinderHTML()}
       ${PATH_CARD}
       <div class="tool-groups">${TOOL_GROUPS.map(([g, items]) => `<section class="panel tool-group" aria-labelledby="tg-${g.replace(/\W/g, '')}"><h2 id="tg-${g.replace(/\W/g, '')}">${g}</h2><div class="tool-cards">${items.map(([r, l, d]) => isPage(r) ? `<a class="tool-card top flagship" href="${r}"><span class="top-flag"><span aria-hidden="true">★</span> ${/^continuous-pursuit/.test(r) ? 'Beta · pilot' : 'Flagship · New'}</span><b>${l}</b><span>${d}</span></a>` : `<button class="tool-card${TOP_TOOLS.includes(r) ? ' top' : ''}" data-go="${r}">${TOP_TOOLS.includes(r) ? topFlag() : ''}<b>${l}</b><span>${d}</span></button>`).join('')}</div></section>`).join('')}
-        <section class="panel tool-group" aria-labelledby="tg-more"><h2 id="tg-more">Also useful</h2><div class="tool-cards"><button class="tool-card" data-go="add"><b>Add a condition or paste a decision</b><span>Record a grant, denial, or pending claim, or paste your rating decision.</span></button><button class="tool-card" data-go="benefits"><b>Find benefits</b><span>Presumptive conditions guide and special benefits to ask about.</span></button></div></section></div></div>`;
+        <section class="panel tool-group" aria-labelledby="tg-more"><h2 id="tg-more">Also useful</h2><div class="tool-cards"><button class="tool-card" data-go="add"><b>Add a condition or paste a decision</b><span>Record a grant, denial, or pending claim, or paste your rating decision.</span></button><button class="tool-card" data-go="benefits"><b>Find benefits</b><span>Presumptive conditions guide and special benefits to ask about.</span></button><button class="tool-card" data-go="downloads"><b>Free downloads</b><span>One-page form summaries and sheets for your doctor, gathered on one page.</span></button></div></section></div></div>`;
   }
   function raterField(f, vals) {
     const v = vals[f.key];
@@ -7254,10 +7328,11 @@ ${topics.length ? `<h2>5. For these conditions</h2><ul>${topics.map(t => `<li><b
   // Standalone pages come from src/site-index.js (built by tools/site-index.py); the public site loads it on first use.
   const SITE_SYN = { ...EDU_SYN, denied: ['denied', 'denial'], denial: ['denial', 'denied'], deny: ['denied', 'denial'], rejected: ['denied', 'denial'], 'turned down': ['denied', 'denial'], 'decision letter': ['decision letter', 'rating decision', 'decision notice'], letter: ['letter', 'decision notice'], 'back pay': ['back pay', 'effective date', 'retroactive', 'earlier date'], 'start date': ['effective date', 'start date'], increase: ['increase', 'worse', 'higher rating'], worse: ['worse', 'increase', 'aggravat'], 'higher rating': ['higher rating', 'higher evaluation', 'increase'], percent: ['percent', '%', 'rating'], appeal: ['appeal', 'board', 'review'], 'new evidence': ['new and relevant', 'new evidence'], sciatica: ['radiculopathy', 'sciatic'], neuropathy: ['neuropathy', 'nerve'], numbness: ['numb', 'nerve', 'neuropathy'], ears: ['hearing', 'tinnitus', 'ear'], hearing: ['hearing'], back: ['back', 'spine', 'thoracolumbar'], spine: ['spine', 'back'], 'blood pressure': ['blood pressure', 'hypertension'], hbp: ['hypertension'], depression: ['depress', 'mental'], anxiety: ['anxiety', 'mental'], ptsd: ['ptsd', 'stressor'], mst: ['military sexual trauma', 'mst', 'personal assault'], 'aid and attendance': ['aid and attendance', 'housebound'], 'a&a': ['aid and attendance'], doctor: ['doctor', 'examiner', 'provider'], dbq: ['dbq', 'disability benefits questionnaire'], vietnam: ['vietnam'], hepatitis: ['hepatitis'], adhd: ['adhd', 'attention deficit'], autism: ['autism'], insomnia: ['insomnia', 'sleep'], records: ['records'], 'private records': ['private', '4142'], surgery: ['surgery', 'convalescen', 'temporary 100'], vso: ['representative', 'vso', 'service officer'], lawyer: ['attorney', 'agent', 'representative'], deadline: ['deadline', 'one year', 'within one year'], hurts: ['pain', 'hurt'], hurt: ['pain', 'hurt'], sore: ['pain', 'sore'] };
   // In-app tools and pages that are not Learn topics. Extra words help plain-English searches find them.
-  const SITE_TOOL_KW = { checklist: 'before you file claim checklist steps', smccheck: 'special monthly compensation smc loss of use', quick: 'doctor quick sheet one page exam opinion', doctors: 'doctor provider dbq medical opinion', opinions: 'check c&p exam opinion problems inadequate', tdiu: 'tdiu unemployability individual unemployability can\'t work calculator', explain: 'rating criteria percentages part 4 diagnostic code', rating: 'estimate rating diagnostic code percent knee back ankle', combine: 'combined rating va math bilateral factor calculator percent', effcheck: 'effective date start date back pay check', learn: 'learn exams benefits ratings', educ: 'provider education manual m21-1', training: 'knowledge checks training quiz trainers vso', add: 'add a condition paste rating decision', benefits: 'find benefits presumptive special benefits', about: 'about privacy disclaimer independent' };
+  const SITE_TOOL_KW = { checklist: 'before you file claim checklist steps', smccheck: 'special monthly compensation smc loss of use', quick: 'doctor quick sheet one page exam opinion', doctors: 'doctor provider dbq medical opinion', opinions: 'check c&p exam opinion problems inadequate', tdiu: 'tdiu unemployability individual unemployability can\'t work calculator', explain: 'rating criteria percentages part 4 diagnostic code', rating: 'estimate rating diagnostic code percent knee back ankle', combine: 'combined rating va math bilateral factor calculator percent', effcheck: 'effective date start date back pay check', learn: 'learn exams benefits ratings', educ: 'provider education manual m21-1', training: 'knowledge checks training quiz trainers vso', add: 'add a condition paste rating decision', benefits: 'find benefits presumptive special benefits', about: 'about privacy disclaimer independent', downloads: 'free downloads download print pdf one page summary printable handout' };
   const SITE_TOOLS = () => [...TOOL_GROUPS.flatMap(([g, items]) => items.filter(([r]) => !isPage(r)).map(([r, l, d]) => [r, l, d, g])),
     ['add', 'Add a condition or paste a decision', 'Record a grant, denial, or pending claim, or paste your rating decision.', 'Your folder'],
     ['benefits', 'Find benefits', 'Presumptive conditions guide and special benefits to ask about.', 'Find benefits'],
+    ['downloads', 'Free downloads', 'One-page form summaries and sheets for your doctor, gathered on one page.', 'Your folder'],
     ['about', 'About and privacy', 'How this tool works, where your information is kept, and the full disclaimer.', 'About']]
     .filter((t, i, a) => a.findIndex(x => x[0] === t[0]) === i);
   const SITE_TRY = ['denied', 'back pay', 'tinnitus', 'sleep apnea', '0995', 'PTSD stressor', 'aid and attendance', 'TDIU'];
@@ -8139,6 +8214,7 @@ ${p.toxic.answer || p.toxic.exposures.length ? sec('Toxic exposure', `<p>Believe
     install: async () => { const ok = await window.VCI_INSTALL.prompt(); toast(ok ? 'VCI installed' : 'Install canceled'); render(); },
     copyContact: () => copyText((window.VCI_SITE || {}).contact || '', '#contact-addr'),
     filter: el => { UI.filter = el.dataset.f; go('conditions'); },
+    who: el => { UI.who = el.dataset.w; try { localStorage.setItem('vci.who', UI.who); } catch (e) { } document.querySelectorAll('.promise').forEach(sec => { sec.querySelectorAll('.wf-tab').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.w === UI.who))); sec.querySelector('.who-body').innerHTML = whoBody(UI.who); }); },
     where: el => { UI.where = el.dataset.w; try { localStorage.setItem('vci.where', UI.where); } catch (e) { } document.querySelectorAll('.wayfinder').forEach(sec => { sec.querySelectorAll('.wf-tab').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.w === UI.where))); sec.querySelector('.wf-body').innerHTML = whereBody(UI.where); }); },
     askConfirm: el => { UI.confirm = el.dataset.key; render(); },
     cancelConfirm: () => { UI.confirm = null; render(); },
