@@ -1,0 +1,200 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="description" content="Free, independent roadmap of a VA disability claim in seven stages: find your stage, the one thing that matters most there with the public law behind it, and where to start on ClaimReady.">
+<meta name="referrer" content="no-referrer"><meta name="theme-color" content="#1d5a70">
+<link rel="manifest" href="manifest.webmanifest"><link rel="icon" type="image/png" href="icons/favicon-32.png"><link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+<title>Claim Roadmap Basics</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<style>@font-face{font-family:'Public Sans';font-style:normal;font-weight:400;font-display:swap;src:url(fonts/public-sans-latin-400-normal.woff2) format('woff2')}@font-face{font-family:'Public Sans';font-style:normal;font-weight:500;font-display:swap;src:url(fonts/public-sans-latin-500-normal.woff2) format('woff2')}@font-face{font-family:'Public Sans';font-style:normal;font-weight:600;font-display:swap;src:url(fonts/public-sans-latin-600-normal.woff2) format('woff2')}@font-face{font-family:'Public Sans';font-style:normal;font-weight:700;font-display:swap;src:url(fonts/public-sans-latin-700-normal.woff2) format('woff2')}@font-face{font-family:'Source Serif 4';font-style:normal;font-weight:400;font-display:swap;src:url(fonts/source-serif-4-latin-400-normal.woff2) format('woff2')}@font-face{font-family:'Source Serif 4';font-style:normal;font-weight:600;font-display:swap;src:url(fonts/source-serif-4-latin-600-normal.woff2) format('woff2')}@font-face{font-family:'Source Serif 4';font-style:italic;font-weight:400;font-display:swap;src:url(fonts/source-serif-4-latin-400-italic.woff2) format('woff2')}@font-face{font-family:'Source Serif 4';font-style:italic;font-weight:600;font-display:swap;src:url(fonts/source-serif-4-latin-600-italic.woff2) format('woff2')}@font-face{font-family:'IBM Plex Mono';font-style:normal;font-weight:400;font-display:swap;src:url(fonts/ibm-plex-mono-latin-400-normal.woff2) format('woff2')}@font-face{font-family:'IBM Plex Mono';font-style:normal;font-weight:600;font-display:swap;src:url(fonts/ibm-plex-mono-latin-600-normal.woff2) format('woff2')}</style>
+<style>
+:root {
+  --paper: #f3f5f4; --surface: #ffffff; --sunk: #e9eeec; --ink: #16201d; --muted: #5a6763; --line: #d4dcd9;
+  --accent: #1d5a70; --accent-ink: #ffffff; --accent-soft: #dfecf0;
+  --ok: #2a774b; --ok-soft: #e0f0e6; --wait: #8a560a; --wait-soft: #f7ecd8;
+  --f-ui: "Public Sans", "Segoe UI", system-ui, sans-serif;
+  --f-serif: "Source Serif 4", Georgia, "Times New Roman", serif;
+  --f-mono: "IBM Plex Mono", ui-monospace, Menlo, monospace;
+  --r: 6px;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --paper: #111816; --surface: #19211f; --sunk: #0d1312; --ink: #e4ebe8; --muted: #98a6a1; --line: #2b3633;
+  --accent: #72b6cf; --accent-ink: #0d1a1f; --accent-soft: #1b3038;
+  --ok: #62c189; --ok-soft: #173426; --wait: #e2a849; --wait-soft: #392b12; color-scheme: dark; } }
+:root[data-theme="dark"] {
+  --paper: #111816; --surface: #19211f; --sunk: #0d1312; --ink: #e4ebe8; --muted: #98a6a1; --line: #2b3633;
+  --accent: #72b6cf; --accent-ink: #0d1a1f; --accent-soft: #1b3038;
+  --ok: #62c189; --ok-soft: #173426; --wait: #e2a849; --wait-soft: #392b12; color-scheme: dark; }
+:root { padding-top: env(safe-area-inset-top, 0px); padding-bottom: env(safe-area-inset-bottom, 0px); }
+* { box-sizing: border-box; }
+[hidden] { display: none !important; }
+body { margin: 0; background: var(--paper); color: var(--ink); font-family: var(--f-ui); font-size: 0.95rem; line-height: 1.5; }
+.wrap { max-width: 760px; margin: 0 auto; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+.skip { position: absolute; left: -9999px; } .skip:focus { left: 16px; top: 8px; z-index: 20; background: var(--surface); padding: 8px 12px; border-radius: var(--r); }
+.banner { background: var(--ink); color: var(--paper); font-size: 0.8rem; }
+.banner .wrap { padding-block: 8px; }
+header.top { padding-block: 24px 8px; display: grid; gap: 10px; }
+h1, h2, h3 { font-family: var(--f-serif); font-weight: 600; margin: 0; line-height: 1.2; text-wrap: balance; }
+h1 { font-size: 1.9rem; letter-spacing: -0.01em; }
+h2 { font-size: 1.3rem; }
+h3 { font-size: 1.02rem; }
+p { margin: 0; }
+ul, ol { margin: 0; padding-left: 20px; display: grid; gap: 6px; }
+a { color: var(--accent); }
+.muted { color: var(--muted); }
+.eyebrow { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.09em; text-transform: uppercase; color: var(--muted); }
+.crumbs { display: flex; flex-wrap: wrap; gap: 6px 14px; align-items: baseline; }
+.crumbs a { font-weight: 600; font-size: .9rem; text-decoration: none; }
+.crumbs a:hover { text-decoration: underline; }
+.tag { display: inline-block; font-size: .7rem; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; padding: 1px 7px; border-radius: 4px; border: 1px solid currentColor; white-space: nowrap; }
+.tag.law { color: var(--accent); } .tag.guide { color: var(--wait); } .tag.court { color: var(--ok); }
+.example { display: grid; gap: 4px; background: var(--wait-soft); border: 1px solid var(--line); border-radius: var(--r); padding: 10px 12px; }
+.example b:first-child { font-size: .78rem; letter-spacing: .06em; text-transform: uppercase; }
+button, input { font: inherit; color: inherit; }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.btn { border: 1px solid var(--line); background: var(--surface); border-radius: var(--r); padding: 8px 14px; cursor: pointer; min-height: 44px; }
+.btn.primary { background: var(--accent); color: var(--accent-ink); border-color: var(--accent); font-weight: 600; }
+.btn.link { border: 0; background: none; color: var(--accent); text-decoration: underline; padding: 4px 0; min-height: 0; }
+main { display: grid; gap: 20px; padding-block: 12px 48px; }
+.panel { background: var(--surface); border: 1px solid var(--line); border-radius: var(--r); padding: 18px; display: grid; gap: 14px; min-width: 0; }
+.panel > header { display: grid; gap: 6px; }
+fieldset { border: 0; padding: 0; margin: 0; display: grid; gap: 10px; min-width: 0; }
+legend { font-family: var(--f-serif); font-weight: 600; font-size: 1.15rem; padding: 0; margin-bottom: 4px; }
+.choices { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 8px; }
+.choice { display: flex; gap: 10px; align-items: flex-start; border: 1px solid var(--line); border-radius: var(--r); padding: 10px 12px; cursor: pointer; background: var(--paper); min-height: 44px; }
+.choice:has(input:checked) { border-color: var(--accent); background: var(--accent-soft); }
+.choice input { margin-top: 4px; width: 18px; height: 18px; accent-color: var(--accent); flex: none; }
+.choice small { display: block; color: var(--muted); }
+.row { display: flex; flex-wrap: wrap; gap: 8px 14px; align-items: center; }
+.cols { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 12px; }
+.box { border: 1px solid var(--line); border-radius: var(--r); padding: 12px 14px; display: grid; gap: 8px; align-content: start; background: var(--paper); }
+.box.you { border-left: 4px solid var(--ok); }
+.box.doc { border-left: 4px solid var(--accent); }
+.box h3 { font-family: var(--f-ui); font-size: .82rem; letter-spacing: .06em; text-transform: uppercase; }
+.flow { list-style: none; padding: 0; counter-reset: q; gap: 0; }
+.flow > li { counter-increment: q; display: grid; grid-template-columns: 30px 1fr; gap: 10px; padding-bottom: 14px; position: relative; }
+.flow > li::before { content: counter(q); width: 26px; height: 26px; border-radius: 50%; background: var(--accent); color: var(--accent-ink); font-family: var(--f-mono); font-size: .8rem; display: grid; place-items: center; }
+.flow > li::after { content: ""; position: absolute; left: 12px; top: 28px; bottom: 2px; width: 2px; background: var(--line); }
+.flow > li:last-child::after { display: none; }
+.flow .stop { display: block; font-size: .85rem; color: var(--muted); margin-top: 2px; }
+.flow ul { margin-top: 6px; }
+.quote { font-family: var(--f-serif); border-left: 3px solid var(--line); padding: 2px 0 2px 12px; color: var(--ink); }
+.pills { list-style: none; padding: 0; display: flex; flex-wrap: wrap; gap: 6px; }
+.pills li { border: 1px solid var(--line); border-radius: 999px; padding: 2px 10px; font-size: .85rem; background: var(--paper); }
+.patterns { list-style: none; padding: 0; display: grid; gap: 8px; counter-reset: p; }
+.patterns li { counter-increment: p; display: grid; grid-template-columns: 30px 1fr; gap: 10px; align-items: start; border: 1px solid var(--line); border-radius: var(--r); padding: 10px 12px; }
+.patterns li::before { content: counter(p); font-family: var(--f-mono); font-weight: 600; font-size: 1rem; }
+.patterns li.yes { background: var(--ok-soft); }
+.patterns small { display: block; color: var(--muted); }
+.cite { font-size: 0.8rem; color: var(--muted); display: flex; flex-wrap: wrap; gap: 6px 10px; align-items: center; border-top: 1px dashed var(--line); padding-top: 10px; }
+table { border-collapse: collapse; width: 100%; font-size: 0.88rem; }
+th, td { text-align: left; padding: 7px 8px; border-bottom: 1px solid var(--line); vertical-align: top; }
+th { font-weight: 600; color: var(--muted); font-size: 0.76rem; letter-spacing: 0.04em; text-transform: uppercase; }
+.tscroll { overflow-x: auto; }
+.num { font-family: var(--f-mono); font-variant-numeric: tabular-nums; font-size: .86em; white-space: nowrap; }
+details { border: 1px solid var(--line); border-radius: var(--r); background: var(--paper); padding: 10px 12px; }
+summary { cursor: pointer; font-weight: 600; min-height: 24px; }
+details > :not(summary) { margin-top: 10px; }
+footer { font-size: 0.82rem; color: var(--muted); display: grid; gap: 8px; padding-block: 0 40px; }
+@media (max-width: 520px) { h1 { font-size: 1.55rem; } .panel { padding: 14px; } }
+@media print {
+  .banner { background: none; color: #000; border-bottom: 1px solid #000; }
+  .noprint, .skip { display: none !important; }
+  body { background: #fff; color: #000; font-size: 10.5pt; }
+  .panel, .box, details { border-color: #999; break-inside: avoid-page; }
+  details > :not(summary) { display: block !important; }
+  a { color: #000; }
+}
+
+.sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+/* Claim roadmap: stage picker, numbered stage strip, one panel per stage (here if, focus, can wait, mistakes, ready when, go deeper). */
+.tag.tip { color: var(--muted); }
+.picker { display: flex; flex-wrap: wrap; gap: 6px; }
+.picker .btn { flex: 1 1 140px; text-align: left; }
+.strip { list-style: none; padding: 0; margin: 0; display: grid; gap: 0; }
+.strip li { position: relative; }
+.strip a { display: grid; grid-template-columns: 34px 1fr auto; gap: 10px; align-items: center; text-decoration: none; color: var(--ink); padding: 6px 4px; min-height: 44px; border-radius: var(--r); }
+.strip a:hover b { color: var(--accent); }
+.strip li:not(:last-child)::after { content: ""; position: absolute; left: 17px; top: 38px; bottom: -6px; width: 2px; background: var(--line); }
+.strip .n { width: 28px; height: 28px; border-radius: 50%; border: 2px solid var(--accent); color: var(--accent); background: var(--surface); font-family: var(--f-mono); font-weight: 600; font-size: .8rem; display: grid; place-items: center; position: relative; z-index: 1; }
+.strip small { display: block; color: var(--muted); }
+.strip .here { font-size: .72rem; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: var(--ok); visibility: hidden; }
+.strip li.cur a { background: var(--ok-soft); }
+.strip li.cur .n { background: var(--ok); border-color: var(--ok); color: var(--surface); }
+.strip li.cur .here { visibility: visible; }
+.stage { scroll-margin-top: 12px; }
+.stage.cur { border-left: 4px solid var(--ok); }
+.stage .youhere { display: none; color: var(--ok); font-weight: 700; font-size: .72rem; letter-spacing: .06em; text-transform: uppercase; }
+.stage.cur .youhere { display: inline; }
+.herei { background: var(--accent-soft); border-radius: var(--r); padding: 10px 12px; }
+.grid3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 10px; }
+.box.focus { border-left: 4px solid var(--accent); } .box.wait { border-left: 4px solid var(--muted); } .box.miss { border-left: 4px solid var(--wait); }
+.box ul { list-style: none; padding: 0; margin: 0; display: grid; gap: 10px; }
+.box li p { margin: 0; }
+.box .cite { display: block; font-size: .78rem; line-height: 1.7; border-top: 0; padding-top: 2px; }
+.box .cite .tag { margin-right: 4px; }
+.ready { border: 1px dashed var(--ok); border-radius: var(--r); padding: 10px 12px; }
+.next { list-style: none; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 6px; }
+.next a { display: grid; gap: 2px; text-decoration: none; color: var(--ink); border: 1px solid var(--line); border-radius: var(--r); padding: 8px 12px; background: var(--paper); min-height: 44px; }
+.next a:hover { border-color: var(--accent); }
+.next a b { color: var(--accent); }
+.next small { color: var(--muted); font-size: .82rem; }
+.sfoot { display: flex; flex-wrap: wrap; gap: 8px 12px; justify-content: space-between; border-top: 1px solid var(--line); padding-top: 12px; }
+.btn[aria-pressed="true"] { background: var(--ok-soft); border-color: var(--ok); color: var(--ok); font-weight: 600; }
+a.btn { display: inline-flex; align-items: center; text-decoration: none; }
+.lite { list-style: none; padding: 0; margin: 0; display: grid; gap: 10px; }
+.lstage { border: 1px solid var(--line); border-radius: var(--r); background: var(--paper); padding: 12px 14px; display: grid; gap: 6px; scroll-margin-top: 12px; }
+.lstage p { margin: 0; }
+.lstage .cite { display: block; font-size: .78rem; color: var(--muted); }
+.lhead { display: flex; gap: 10px; align-items: center; }
+.lhead h2 { font-size: 1.1rem; }
+.lhead .n { width: 28px; height: 28px; flex: none; border-radius: 50%; border: 2px solid var(--accent); color: var(--accent); font-family: var(--f-mono); font-weight: 600; font-size: .8rem; display: grid; place-items: center; }
+@media print { .sfoot, .strip .here, .picker { display: none !important; } .stage { break-inside: avoid; } }
+
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to the stages</a>
+<div class="banner" role="note"><div class="wrap">Independent educational tool. Not affiliated with or endorsed by the U.S. Department of Veterans Affairs. Not legal or medical advice. VA decides every claim.</div></div>
+<div class="wrap">
+  <header class="top" id="top">
+    <div class="crumbs noprint"><a href="./#learn">← Learn</a><span class="eyebrow">Roadmap · Exams, Benefits, Ratings</span></div>
+    <h1>Your claim roadmap: the basics</h1>
+    <p>A VA disability claim moves through seven stages. Find yours to see the one thing that matters most there and where to start. Each point shows the public law or VA guidance behind it, or says when it is a general tip. For the rules explained in more depth, see <a href="claim-path.html">Your claim, step by step</a>.</p>
+  </header>
+  <main id="main">
+    <section class="panel" id="stages" aria-label="The seven stages">
+      <div class="lite"><section class="lstage" id="s1" aria-labelledby="s1-h"><div class="lhead"><span class="n" aria-hidden="true">1</span><h2 id="s1-h">Leaving the military</h2></div>
+      <p><b>You are here if:</b> You have 180 days or less left in service, or you separated within the last year.</p>
+      <p><b>Most important:</b> A claim received <b>within one year after separation</b> can take an effective date of the day after you left service.<span class="cite"><span class="tag law">Law</span> <a href="https://www.ecfr.gov/current/title-38/section-3.400" target="_blank" rel="noopener">38 C.F.R. § 3.400</a>(b)(2)(i)</span></p>
+      <p><a href="./#educ.itf">Start here: Intent to file →</a></p></section><section class="lstage" id="s2" aria-labelledby="s2-h"><div class="lhead"><span class="n" aria-hidden="true">2</span><h2 id="s2-h">Getting ready to file</h2></div>
+      <p><b>You are here if:</b> You have a condition you believe is related to service, and you have not filed for it yet.</p>
+      <p><b>Most important:</b> Send an <b>intent to file</b>. It gives you up to one year to file the full claim and can protect an earlier effective date.<span class="cite"><span class="tag law">Law</span> <a href="https://www.ecfr.gov/current/title-38/section-3.155" target="_blank" rel="noopener">38 C.F.R. § 3.155</a>(b)</span></p>
+      <p><a href="./#checklist">Start here: Claim checklist →</a></p></section><section class="lstage" id="s3" aria-labelledby="s3-h"><div class="lhead"><span class="n" aria-hidden="true">3</span><h2 id="s3-h">Filing your claim</h2></div>
+      <p><b>You are here if:</b> You are ready to send your claim, or you are filling out the form now.</p>
+      <p><b>Most important:</b> File on <b>VA Form 21-526EZ</b>, complete and <b>signed</b>. An unsigned form is not a complete claim.<span class="cite"><span class="tag law">Law</span> <a href="https://www.ecfr.gov/current/title-38/section-3.155" target="_blank" rel="noopener">38 C.F.R. § 3.155</a>; <a href="https://www.ecfr.gov/current/title-38/section-3.160" target="_blank" rel="noopener">38 C.F.R. § 3.160</a> <span class="tag guide">VA guidance</span> <a href="https://www.vba.va.gov/pubs/forms/VBA-21-526EZ-ARE.pdf" target="_blank" rel="noopener">VA Form 21-526EZ instructions</a></span></p>
+      <p><a href="form-526ez.html">Start here: Form 21-526EZ guide →</a></p></section><section class="lstage" id="s4" aria-labelledby="s4-h"><div class="lhead"><span class="n" aria-hidden="true">4</span><h2 id="s4-h">Your C&amp;P exam</h2></div>
+      <p><b>You are here if:</b> VA scheduled a compensation and pension (C&amp;P) exam, or you expect one.</p>
+      <p><b>Most important:</b> <b>Go to the exam</b>, or contact VA before it to reschedule. Missing it without good cause can lead VA to decide on the record it has, or to deny the claim.<span class="cite"><span class="tag law">Law</span> <a href="https://www.ecfr.gov/current/title-38/section-3.655" target="_blank" rel="noopener">38 C.F.R. § 3.655</a></span></p>
+      <p><a href="./#educ.exams">Start here: C&amp;P exams: the complete guide →</a></p></section><section class="lstage" id="s5" aria-labelledby="s5-h"><div class="lhead"><span class="n" aria-hidden="true">5</span><h2 id="s5-h">Your decision arrives</h2></div>
+      <p><b>You are here if:</b> VA sent you a decision letter or rating decision.</p>
+      <p><b>Most important:</b> Note the <b>decision date</b>. Most review options keep your effective date only if filed within one year of it.<span class="cite"><span class="tag law">Law</span> <a href="https://www.ecfr.gov/current/title-38/section-3.2500" target="_blank" rel="noopener">38 C.F.R. § 3.2500</a>(h)</span></p>
+      <p><a href="decision-letter.html">Start here: Decode your decision letter →</a></p></section><section class="lstage" id="s6" aria-labelledby="s6-h"><div class="lhead"><span class="n" aria-hidden="true">6</span><h2 id="s6-h">If you disagree</h2></div>
+      <p><b>You are here if:</b> You disagree with all or part of a decision, or think a rating is too low.</p>
+      <p><b>Most important:</b> File <b>within one year</b> of the decision to keep your original effective date.<span class="cite"><span class="tag law">Law</span> <a href="https://www.ecfr.gov/current/title-38/section-3.2500" target="_blank" rel="noopener">38 C.F.R. § 3.2500</a>(h)</span></p>
+      <p><a href="claim-path.html#l6">Start here: Lesson 6: You got a decision →</a></p></section><section class="lstage" id="s7" aria-labelledby="s7-h"><div class="lhead"><span class="n" aria-hidden="true">7</span><h2 id="s7-h">After your rating</h2></div>
+      <p><b>You are here if:</b> You have one or more service-connected conditions and want to know what else to consider.</p>
+      <p><b>Most important:</b> Ask about benefits <b>beyond the percentage</b>: Individual Unemployability, special monthly compensation, a temporary 100% rating, and family benefits.<span class="cite"><span class="tag law">Law</span> <a href="https://www.ecfr.gov/current/title-38/section-4.16" target="_blank" rel="noopener">38 C.F.R. § 4.16</a>; <a href="https://www.ecfr.gov/current/title-38/section-3.350" target="_blank" rel="noopener">38 C.F.R. § 3.350</a>; <a href="https://www.ecfr.gov/current/title-38/section-4.29" target="_blank" rel="noopener">38 C.F.R. § 4.29</a>; <a href="https://www.ecfr.gov/current/title-38/section-4.30" target="_blank" rel="noopener">38 C.F.R. § 4.30</a></span></p>
+      <p><a href="claim-path.html#l7">Start here: Lesson 7: Other benefits →</a></p></section></div>
+      <p class="muted" style="font-size:.88rem;margin:0">Many veterans are in two stages at once, such as rated for one condition and filing for another. Use the stage that fits each condition.</p>
+    </section>
+    <section class="panel" id="sources" aria-labelledby="src-h">
+      <header><h2 id="src-h">About this roadmap</h2></header>
+      <p class="muted" style="font-size:.88rem"><span class="tag law">Law</span> statutes and regulations. <span class="tag court">Court decision</span> federal court decisions that interpret them. <span class="tag guide">VA guidance</span> VA's public website and form instructions, which explain the rules but are not law. <span class="tag tip">General tip</span> practical advice that is not a legal rule. Each point is a short summary, not the full rule. Content reviewed <span class="num">Oct 28, 2026</span>. Please check official VA regulations for current information.</p>
+    </section>
+  </main>
+  <footer>
+    <p>This roadmap explains how a VA claim generally moves and what the public rules say at each stage. It does not decide whether you qualify, predict a rating, payment, or timeline, or fill out any form for you, and it is not legal or medical advice.</p>
+    <p>ClaimReady is independent and educational. It is not VA and is not a substitute for an accredited representative, who can help at no cost. <a href="./#about">About ClaimReady and full disclaimer</a></p>
+  </footer>
+</div>
+</body></html>
