@@ -1073,6 +1073,10 @@ const VCI = (() => {
     stefl: { cite: 'Stefl v. Nicholson, 21 Vet. App. 120 (2007)', name: 'Stefl', holding: 'An adequate opinion considers the history and explains its conclusion.' },
     barr: { cite: 'Barr v. Nicholson, 21 Vet. App. 303 (2007)', name: 'Barr', holding: 'Once VA gives an exam, the exam must be adequate.' },
     dalton: { cite: 'Dalton v. Nicholson, 21 Vet. App. 23 (2007)', name: 'Dalton', holding: 'An exam is inadequate if it ignores the veteran\'s account and relies on missing service records.' },
+    soundness: { cite: '38 U.S.C. § 1111; 38 C.F.R. § 3.304(b)', name: 'Presumption of soundness', holding: 'A condition not noted at entry is presumed to have begun in service unless clear and unmistakable evidence shows it existed before service and was not aggravated by service.' },
+    wagner: { cite: 'Wagner v. Principi, 370 F.3d 1089 (Fed. Cir. 2004)', name: 'Wagner', holding: 'To rebut the presumption of soundness, VA must show both that the condition existed before service and that service did not aggravate it.' },
+    cfr3_306: { cite: '38 C.F.R. § 3.306', name: 'Aggravation of a condition that existed before service', holding: 'A condition that existed before service is aggravated when it increased in disability during service, unless the increase was its natural progress.' },
+    maxson: { cite: 'Maxson v. Gober, 230 F.3d 1330 (Fed. Cir. 2000)', name: 'Maxson', holding: 'A long gap with no complaints after service is one factor VA may weigh, along with all the other evidence.' },
     buchanan: { cite: 'Buchanan v. Nicholson, 451 F.3d 1331 (Fed. Cir. 2006)', name: 'Buchanan', holding: 'Lay evidence cannot be rejected only because there are no medical records from the time.' },
     reonal: { cite: 'Reonal v. Brown, 5 Vet. App. 458 (1993)', name: 'Reonal', holding: 'An opinion based on a wrong fact has no value.' },
     bloom: { cite: 'Bloom v. West, 12 Vet. App. 185 (1999)', name: 'Bloom', holding: '"Could be related" without reasoning is too speculative.' },
@@ -1583,23 +1587,33 @@ const VCI = (() => {
   // ---------- Opinion check ----------
   function spans(text, re) { const out = []; const r = new RegExp(re.source, 'gi'); let m; while ((m = r.exec(text))) { out.push({ start: m.index, end: m.index + m[0].length, text: m[0] }); if (!m[0].length) r.lastIndex++; } return out; }
   const RX = {
-    standard: /\b(at least as likely(?: as not)?|as likely as not|more likely than not|less likely than not|likely as not|(?:less|more) than (?:a )?50 ?(?:percent|%) (?:probability|likelihood)|50 ?(?:percent|%) or greater probability)\b/,
+    standard: /\b(at least as likely(?: as not)?|as likely as not|more likely than not|less likely(?: than not)?|likely as not|(?:less|more) than (?:a )?50 ?(?:percent|%) (?:probability|likelihood)|50 ?(?:percent|%) or greater probability)\b/,
     hedge: /\b(could (?:be|have)|may have|might (?:be|have)|possibly|it is possible|cannot (?:be )?rule[d]? out|unable to rule out)\b/,
     speculation: /\b(?:without (?:resort(?:ing)? to )?(?:mere )?speculation|would (?:be|require) (?:mere )?speculation|speculative)\b/,
     specExplained: /\b(because|due to|insufficient|lack of|no (?:medical )?literature|not enough|cannot be determined because|the reason)\b/,
-    connectors: /\b(because|due to|since|rationale|as evidenced by|based on|consistent with|therefore|thus|literature|studies|which explains|supports)\b/,
+    connectors: /\b(because|due to|since(?! (?:service|discharge|separation|military|active duty|then|that time|\d))|rationale|as evidenced by|based on|consistent with|therefore|thus|literature|studies|which explains|supports)\b/,
     history: /\b(claims file|c-?file|vbms|service treatment records|strs?\b|records? (?:was|were) reviewed|reviewed the (?:records|file|claims file)|medical records|reviewed (?:in|the) (?:vbms|file))/,
     layDiscussed: /\b(veteran (?:reports?|reported|states?|stated|described|describes|endorses|endorsed|testified)|lay (?:statement|evidence)|buddy statement|statement from|spouse|wife|husband|witness|in support of claim|21-10210|21-4138|according to the veteran|veteran's (?:report|account|statement))/,
-    absence: /\b(no documentation|not documented|(?:was|were|is) silent|silent for|no records? of|no evidence of (?:treatment|complaints?|injury)|absence of (?:treatment|records|documentation)|no treatment (?:was )?sought|did not seek treatment|not seek(?:ing)? treatment until)/,
+    absence: /\b(no documentation|not documented|(?:was|were|is) silent|silent for|no records? of|no evidence of (?:treatment|complaints?|injury)|absence of (?:treatment|records|documentation)|no treatment (?:was )?sought|did not seek treatment|not seek(?:ing)? treatment until|negative for (?:any )?(?:complaints?|symptoms|treatment)|(?:no|not|did not) complain\w*|no (?:complaints?|treatment|care) (?:of|for)|(?:no|not) (?:complaints? or )?(?:treatment|care)\b[^.]{0,60}\buntil|no (?:medical )?(?:treatment|records?) (?:between|from|after|since)|(?:a |the )?(?:\d+|long|lengthy|\w+-year) (?:year )?gap)/,
     hensley: /\b(?:normal hearing|within normal limits|hearing was normal|normal (?:audiogram|audiometric (?:testing|results)))[^.]*\b(?:separation|discharge|exit|release)\b|\b(?:separation|discharge|exit)\b[^.]*\b(?:normal hearing|within normal limits|hearing was normal)\b/,
+    layWeighed: /\b(credib\w*|probative|outweigh\w*|consistent with|inconsistent with|accept\w*|reject\w*|discount\w*|(?:gave|give|given) (?:it |more |less |little )?weight|considered (?:the )?(?:veteran'?s? )?(?:lay )?(?:statement|report|account)|(?:is|was) not supported by|does not (?:fit|match)|despite (?:the )?(?:veteran'?s? )?(?:lay )?(?:statement|report))/,
+    altCause: /\b(post[- ]?service (?:event|injury|disease|incident|cause|trauma|activit\w*)(?:\/(?:event|injury|disease))*|(?:another|other|an intercurrent|an intervening|a different|some other) (?:cause|event|injury|etiology|incident)|other than (?:military |active )?service|after (?:military )?service (?:event|injury))/,
+    inService: /\b(service treatment records? (?:reported|report|show\w*|note\w*|document\w*|reflect\w*|indicate\w*)|(?:in-service|in service|during service|while in service|on active duty)\b[^.]{0,40}\b(?:complain\w*|pain|treat\w*|injur\w*|strain|sprain|seen|visit))/,
+    inServiceExplained: /\b(resolved|acute and transitory|acute and self-limit\w*|self-limit\w*|healed|no residuals?|without residuals?|not chronic|did not become chronic|one-time|isolated (?:episode|complaint)|different (?:condition|diagnosis|joint|side)|unrelated (?:condition|diagnosis))/,
+    preexisting: /\b(exist\w* (?:prior to|before) (?:his |her |the veteran'?s? )?(?:military |active )?(?:service|entry|enlistment|induction)|pre-?exist\w*|EPTS|prior to (?:entry into|enlistment|induction)|before (?:entering|entry into|joining) (?:the )?(?:military|service))/,
+    cue: /\bclear(?:ly)? and unmistakabl\w*/,
+    inPerson: /\b(examined|in-person|in person|face-to-face|physical exam\w*|on (?:physical )?exam(?:ination)?\b|range of motion|palpation|was seen (?:today|in clinic)|during (?:the|today'?s) exam\w*)/,
+    recordsOnly: /\b(records? review(?: only)?|review of (?:the )?(?:claims file|records|c-?file) only|without (?:an )?(?:in-person )?exam\w*|did not examine|not examined|acceptable clinical evidence|ACE\b|telephone interview|by telephone|tele(?:health|video))/,
     aggravation: /\b(aggravat\w*|permanently worsen\w*|worsen\w* beyond (?:its |the )?natural progress|but[- ]for|less severe but)/,
     noEvent: /\b(no (?:in-service|in service) (?:injury|event|treatment|complaints?|exposure)|no evidence of (?:an )?(?:in-service|in service)|did not (?:sustain|have) (?:an|any) (?:injury|event) (?:in|during) service|no (?:injury|treatment) during service)/,
     serviceRef: /\b(service|military|active duty|deploy\w*|in-service)\b/,
   };
-  // Which way an opinion comes out. Negative phrasing is checked first because it contains the positive phrases.
-  const NEG = /\b(less likely than not|not at least as likely|less than (?:a )?50 ?(?:percent|%)|(?:is|was|are|were) not (?:caused by|related to|due to|the result of|a result of)|not (?:caused by|related to|due to) (?:military|service)|unrelated to|no nexus|unlikely)\b/i;
+  // Which way an opinion comes out. Negative phrases start before the positive phrases they contain, so they win a tie.
+  const NEG = /\b(less likely|not (?:at least )?as likely|less than (?:a )?50 ?(?:percent|%)|(?:is|was|are|were) not (?:caused by|related to|due to|the result of|a result of)|not (?:caused by|related to|due to) (?:military|service)|unrelated to|no nexus|unlikely)\b/i;
   const POS = /\b(at least as likely|as likely as not|more likely than not|50 ?(?:percent|%) or greater|(?:is|was|are|were) (?:caused by|related to|due to|the result of|a result of)|likely (?:caused by|related to|due to))\b/i;
-  function opinionDirection(text) { return NEG.test(text || '') ? 'against' : POS.test(text || '') ? 'supports' : 'unclear'; }
+  // When both appear (e.g. "less likely due to service... likely due to a post-service injury"), the first conclusion wins.
+  function opinionDirection(text) { const t = text || ''; const n = t.search(NEG), p = t.search(POS);
+    return n < 0 && p < 0 ? 'unclear' : n < 0 ? 'supports' : p < 0 || n <= p ? 'against' : 'supports'; }
   function opinionStance(st, op) {
     if (op.stance === 'supports' || op.stance === 'against') return op.stance;
     const ev = op.evidenceId ? byId(st.evidence, op.evidenceId) : null;
@@ -1619,6 +1633,12 @@ const VCI = (() => {
       premise: { flag: 'The opinion states a fact that conflicts with your records.', ok: 'No conflict with your records was found automatically. Read it for wrong dates or facts.' },
       theory: { flag: 'The opinion does not answer the exact question your claim asks.', ok: 'Answers the question your claim asks.' },
       competence: { flag: 'The examiner\'s specialty may not fit the question.', ok: 'Examiners are presumed qualified. If the specialty does not fit, you have to raise it yourself.' },
+      preexisting: { flag: 'The doctor said it existed before service without meeting VA\'s "clear and unmistakable" bar for both parts.', ok: 'Uses VA\'s "clear and unmistakable" standard. Check what evidence it relies on.' },
+      baseline: { flag: 'The doctor said it was not made worse but did not describe how severe it was before.', ok: 'Describes the severity before any worsening.' },
+      method: { flag: '', ok: 'Check whether the doctor examined you or only reviewed records.' },
+      matches: { flag: 'The opinion may not be about the condition or side you claimed.', ok: 'Names the condition you claimed.' },
+      altCause: { flag: 'The doctor blamed something after service but did not say what it was or where the record shows it.', ok: 'Names the other cause. Check that your records show it.' },
+      inService: { flag: 'The doctor noted a problem in service but did not explain why it is not the start of your current condition.', ok: 'Explains why the problem in service is not the start of your current condition.' },
       naturalProgress: { flag: 'The doctor used "natural progress," a standard VA no longer applies to conditions made worse by a service-connected condition.', ok: '' },
       rebuttal: { flag: 'Your condition is presumptive. This opinion does not meet VA\'s bar to overcome the presumption.', ok: 'Check that the other cause it names is backed by evidence.' },
     },
@@ -1652,10 +1672,10 @@ const VCI = (() => {
       add({ id: 'probability', label: P, result: explained ? 'warn' : 'flag', severity: explained ? 'moderate' : 'serious', excerpts: spec, auth: ['jones', 'cfr3_159'],
         finding: explained ? 'Says it cannot decide without speculating, and gives a reason. Check whether the reason is a gap VA could have filled.' : 'Says it cannot decide without speculating, and does not explain why.' });
     } else if (std.length) {
-      const shortForm = std.every(s => /^at least as likely$/i.test(s.text));
+      const shortForm = std.every(s => /^(?:at least as likely|less likely)$/i.test(s.text)); const neg = std.some(s => /^less/i.test(s.text));
       add({ id: 'probability', label: P, result: hedge.length ? 'warn' : 'pass', severity: hedge.length ? 'moderate' : 'info', excerpts: std.concat(hedge), auth: ['cfr3_102'],
         finding: hedge.length ? 'Gives an answer in VA\'s terms, but also uses hedging words. Check whether they undercut the answer.'
-          : shortForm ? 'Says "at least as likely," which meets VA\'s standard. The full phrase "at least as likely as not (50 percent or greater probability)" is the clearest form.' : `Answers in VA's terms ("${std[0].text}").` });
+          : shortForm ? (neg ? 'Says "less likely," VA\'s term for an answer against the claim. The full phrase "less likely than not (less than 50 percent probability)" is the clearest form.' : 'Says "at least as likely," which meets VA\'s standard. The full phrase "at least as likely as not (50 percent or greater probability)" is the clearest form.') : `Answers in VA's terms ("${std[0].text}").` });
     } else if (hedge.length) {
       add({ id: 'probability', label: P, result: 'flag', severity: 'serious', excerpts: hedge, auth: ['bloom', 'cfr3_102'], finding: `Uses speculative wording ("${hedge[0].text}") instead of a likely-or-not answer.` });
     } else if (direction !== 'unclear') {
@@ -1673,21 +1693,43 @@ const VCI = (() => {
     add(hist.length ? { id: 'history', label: 'Based on your records', result: 'pass', severity: 'info', excerpts: hist, auth: ['stefl'], finding: 'Says records or the claims file were reviewed.' }
       : { id: 'history', label: 'Based on your records', result: 'warn', severity: 'moderate', auth: ['stefl', 'nieves'], finding: fav ? 'Does not list the records reviewed. Ask the doctor to name them, such as service treatment records and VA records.' : 'Does not say which records were reviewed.' });
     // 4. Lay evidence
-    const layHit = spans(text, RX.layDiscussed);
-    if (layHit.length) add({ id: 'lay', label: 'Considers your statements', result: 'pass', severity: 'info', excerpts: layHit, finding: 'Refers to your account. Check that it matches what you reported.' });
+    const layHit = spans(text, RX.layDiscussed); const layWeighed = spans(text, RX.layWeighed);
+    const layRecited = !fav && layHit.length && !layWeighed.length;
+    if (layRecited) add({ id: 'lay', label: 'Considers your statements', result: 'warn', severity: 'moderate', excerpts: layHit, auth: ['dalton', 'buchanan'], plainFlag: 'The doctor repeated your statement but did not say why it was not accepted.', finding: 'Repeats your statement but does not say how it was weighed or why it was not accepted. Mentioning it is not the same as considering it.' });
+    else if (layHit.length) add({ id: 'lay', label: 'Considers your statements', result: 'pass', severity: 'info', excerpts: layHit, finding: 'Refers to your account. Check that it matches what you reported.' });
     else if (fav) add({ id: 'lay', label: 'Considers your statements', result: 'pass', severity: 'info', finding: 'Not required for a favorable opinion. Mentioning your account can make it stronger.' });
     else if (!layOnRecord.length) add({ id: 'lay', label: 'Considers your statements', result: 'pass', severity: 'info', finding: 'You have no personal or buddy statements logged for this condition. Adding one can help.' });
     else add({ id: 'lay', label: 'Considers your statements', result: 'flag', severity: 'serious', auth: ['dalton', 'buchanan'], finding: `You have ${layOnRecord.length} statement${layOnRecord.length > 1 ? 's' : ''} on file (${layOnRecord.map(e => e.title).join('; ')}) that the opinion does not discuss.` });
     // 5–6. Checks that only matter when an opinion goes against you
     if (!fav) {
       const abs = spans(text, RX.absence);
-      if (abs.length) { const ignored = layOnRecord.length && !layHit.length;
-        add({ id: 'absence', label: 'Relies on missing records', result: ignored ? 'flag' : 'warn', severity: ignored ? 'serious' : 'moderate', excerpts: abs, auth: ['dalton', 'buchanan'],
-          finding: ignored ? 'Reasons from what is missing in the records while ignoring your statements.' : 'Reasons partly from what is missing in the records.' }); }
+      if (abs.length) { const ignored = (layOnRecord.length && !layHit.length) || layRecited;
+        add({ id: 'absence', label: 'Relies on missing records', result: ignored ? 'flag' : 'warn', severity: ignored ? 'serious' : 'moderate', excerpts: abs, auth: ['dalton', 'buchanan', 'maxson'],
+          finding: (ignored ? (layRecited ? 'Reasons from what is missing in the records, and sets aside your statement without saying why.' : 'Reasons from what is missing in the records while ignoring your statements.') : 'Reasons partly from what is missing in the records.')
+            + ' A long gap with no treatment can be weighed, but it cannot by itself be the reason to reject your statement.' }); }
+      // Another cause named only in general terms ("post-service event/injury")
+      const alt = spans(text, RX.altCause);
+      if (alt.length) { const sentence = alt.map(a => { const b = text.lastIndexOf('.', a.start) + 1, e = text.indexOf('.', a.end); return text.slice(b, e < 0 ? text.length : e); });
+        const named = sentence.some(x => /\b(?:19|20)\d\d\b|\b(?:fell|fall|accident|motor vehicle|mva|work(?:ed|ing)? (?:injury|as)|sports?|lifting|surgery|obesity|weight)\b/i.test(x));
+        add(named ? { id: 'altCause', label: 'Names the other cause', result: 'manual', severity: 'info', excerpts: alt, auth: ['nieves'], finding: 'Points to another cause. Check that the record actually shows it.' }
+          : { id: 'altCause', label: 'Names the other cause', result: 'flag', severity: 'moderate', excerpts: alt, auth: ['nieves', 'stefl'], finding: 'Points to another cause in general terms only. It does not name the event or injury, when it happened, or the record that shows it.' }); }
+      // An in-service finding the opinion notes but does not explain away
+      const ins = spans(text, RX.inService);
+      if (ins.length) { const why = spans(text, RX.inServiceExplained);
+        add(why.length ? { id: 'inService', label: 'Explains the in-service finding', result: 'pass', severity: 'info', excerpts: why, auth: ['nieves'], finding: 'Explains why the problem in service is not the start of the current condition. Check that the reason fits your records.' }
+          : { id: 'inService', label: 'Explains the in-service finding', result: 'warn', severity: 'moderate', excerpts: ins, auth: ['nieves', 'stefl'], finding: 'Notes a problem in service but does not explain why it is not the start of the current condition.' }); }
       if (c && /hearing/i.test(c.name)) { const hz = spans(text, RX.hensley);
         add(hz.length ? { id: 'hensley', label: 'Normal hearing at separation', result: 'flag', severity: 'serious', excerpts: hz, auth: ['hensley', 'cfr3_385'], finding: 'Rests on normal hearing at separation.' }
           : { id: 'hensley', label: 'Normal hearing at separation', result: 'pass', severity: 'info', auth: ['hensley'], finding: 'Does not rest on normal hearing at separation.' }); }
     }
+    // 6b. Existed before service: VA must show it clearly and unmistakably, and that service did not make it worse
+    if (!fav) { const pre = spans(text, RX.preexisting);
+      if (pre.length) { const cue = spans(text, RX.cue); const agg = spans(text, /\b(aggravat\w*|not (?:made )?worse|increase\w* in (?:disability|severity)|worsen\w*|natural progress\w*)\b/);
+        const problems = [];
+        if (!cue.length) problems.push('does not say the evidence is clear and unmistakable that it existed before service');
+        if (!agg.length) problems.push('does not address whether service made it worse');
+        add(problems.length ? { id: 'preexisting', label: 'Existed before service: meets VA\'s bar', result: 'flag', severity: 'serious', excerpts: pre, auth: ['soundness', 'wagner', 'cfr3_306'], finding: 'Says the condition existed before service, but ' + problems.join(', and ') + '. If it was not noted when you entered service, VA must prove both parts.' }
+          : { id: 'preexisting', label: 'Existed before service: meets VA\'s bar', result: 'manual', severity: 'info', excerpts: pre.concat(cue), auth: ['soundness', 'wagner', 'cfr3_306'], finding: 'Uses the clear and unmistakable standard and addresses worsening. Check whether it was noted at your entry exam, and what evidence the doctor relies on.' }); } }
     // 7. Secondary claims
     if (c && c.theory === 'secondary') { const ag = spans(text, RX.aggravation);
       if (fav) { const link = spans(text, /\b(caused by|due to|result of|secondary to|aggravat\w*)\b/);
@@ -1700,6 +1742,8 @@ const VCI = (() => {
       const aggTalk = spans(text, /\b(aggravat\w*|worsen\w*|made worse|less severe|increase in severity)\b/);
       const np = spans(text, /\bnatural (?:progress\w*|course|history)\b/);
       if (!fav && np.length) add({ id: 'naturalProgress', label: 'Uses the current aggravation standard', result: 'flag', severity: 'serious', excerpts: np, auth: ['spicer'], finding: 'Relies on "natural progress." VA no longer considers natural progress for secondary aggravation; the question is whether it would have been less severe but for the service-connected condition.' });
+      const baseRx = /\b(baseline|prior to (?:the )?(?:onset|worsening|aggravation)|before (?:the )?(?:onset|worsening|aggravation)|previously documented|pre-?aggravation|cannot (?:be )?(?:establish|determin)\w* (?:a )?baseline)\b/;
+      if (!fav && aggTalk.length && !spans(text, baseRx).length) add({ id: 'baseline', label: 'States a baseline', result: 'warn', severity: 'moderate', excerpts: aggTalk, auth: ['allen', 'cfr3_310'], finding: 'Says your service-connected condition did not make this one worse, but never describes how severe it was before, or why that cannot be determined. Without a baseline, it is hard to tell what the doctor compared.' });
       if (fav && aggTalk.length) { const base = spans(text, /\b(baseline|prior to (?:the )?(?:onset|worsening|aggravation)|before (?:the )?(?:onset|worsening|aggravation)|previously documented|pre-?aggravation)\b/);
         add(base.length ? { id: 'baseline', label: 'States a baseline', result: 'pass', severity: 'info', excerpts: base, auth: ['allen'], finding: 'Describes the severity before the worsening.' }
           : { id: 'baseline', label: 'States a baseline', result: 'warn', severity: 'moderate', excerpts: aggTalk, auth: ['allen'], finding: 'Argues the condition was made worse but does not state how severe it was before. VA needs a baseline to grant aggravation.' }); }
@@ -1735,13 +1779,27 @@ const VCI = (() => {
         add(sv.length ? { id: 'theory', label: 'Answers your claim\'s question', result: 'pass', severity: 'info', excerpts: sv.slice(0, 2), auth: ['shedden'], finding: 'Addresses the link to service.' }
           : { id: 'theory', label: 'Answers your claim\'s question', result: 'flag', severity: 'moderate', auth: ['shedden'], finding: 'Does not address the link to service.' }); }
     }
+    // 9b. How the opinion was formed
+    const inp = spans(text, RX.inPerson), rec = spans(text, RX.recordsOnly);
+    add({ id: 'method', label: 'How the opinion was formed', result: 'manual', severity: 'info', excerpts: rec.length ? rec : inp,
+      finding: rec.length && !inp.length ? 'Appears to be based on a records review without an in-person exam. That can be enough for a question about cause. If your claim depends on current symptoms or measurements, check whether an exam was needed.'
+        : inp.length ? 'Describes an exam. Check that the findings it reports match what happened at your appointment.' : 'Does not say whether the doctor examined you or only reviewed records. Check the full exam report.' });
+    // 9c. Answers the question for the claimed condition and side
+    if (c) { const side = n => /\bbilateral|both\b/i.test(n) ? 'both' : /\bleft\b/i.test(n) ? 'left' : /\bright\b/i.test(n) ? 'right' : '';
+      const want = side(c.name); const saysL = /\bleft\b/i.test(text), saysR = /\bright\b/i.test(text);
+      const words = c.name.toLowerCase().split(/[^a-z]+/).filter(w => w.length >= 4 && !['left', 'right', 'bilateral', 'both', 'syndrome', 'condition', 'conditions', 'residuals', 'disorder', 'disease', 'chronic', 'with', 'service', 'connected', 'secondary'].includes(w));
+      const named = words.filter(w => new RegExp('\\b' + w.slice(0, Math.max(4, w.length - 2)), 'i').test(text));
+      const wrongSide = (want === 'left' && saysR && !saysL) || (want === 'right' && saysL && !saysR);
+      add(wrongSide ? { id: 'matches', label: 'Matches the claimed condition', result: 'flag', severity: 'moderate', excerpts: spans(text, /\b(left|right)\b/), finding: `Your claim is for the ${want} side, but the opinion talks about the other side.` }
+        : words.length && !named.length ? { id: 'matches', label: 'Matches the claimed condition', result: 'warn', severity: 'moderate', finding: `Does not seem to name the condition you claimed (${c.name}). Check that it answers the right question.` }
+        : { id: 'matches', label: 'Matches the claimed condition', result: 'pass', severity: 'info', excerpts: named.length ? spans(text, new RegExp('\\b' + named[0].slice(0, Math.max(4, named[0].length - 2)) + '\\w*')) : [], finding: 'Names the condition you claimed. Check the diagnosis and side match.' }); }
     // 10. Qualifications
     add({ id: 'competence', label: 'Examiner qualifications', result: 'manual', severity: 'info', auth: ['rizzo'], finding: fav ? PLAIN.fav.competence.ok : PLAIN.neg.competence.ok });
 
     const mode = fav ? 'fav' : 'neg';
     const ov = op.overrides || {};
     checks.forEach(x => { x.auto = x.result; const o = ov[x.id]; if (o && o.result) { x.result = o.result; x.overridden = true; if (o.result === 'flag' && x.severity === 'info') x.severity = 'moderate'; } x.note = (o && o.note) || '';
-      const pl = PLAIN[mode][x.id] || PLAIN.neg[x.id] || {}; x.plain = x.result === 'flag' || x.result === 'warn' ? (pl.flag || x.finding) : (pl.ok || x.finding); });
+      const pl = PLAIN[mode][x.id] || PLAIN.neg[x.id] || {}; x.plain = x.result === 'flag' || x.result === 'warn' ? (x.plainFlag || pl.flag || x.finding) : (pl.ok || x.finding); });
     const serious = checks.filter(x => x.result === 'flag' && x.severity === 'serious').length;
     const moderate = checks.filter(x => (x.result === 'flag' && x.severity === 'moderate') || x.result === 'warn').length;
     const level = serious >= 2 ? 'High' : serious === 1 || moderate >= 3 ? 'Elevated' : 'Low';
@@ -2643,6 +2701,47 @@ function vciTests(VCI, vciExample) {
   t('Opinion check: wording direction is detected and a wrong setting is flagged', () => {
     eq(VCI.opinionDirection(GOOD), 'supports'); eq(VCI.opinionDirection('It is less likely than not related to service.'), 'against'); eq(VCI.opinionDirection('It is not at least as likely as not caused by service.'), 'against');
     const st = fresh(); st.opinions.push({ id: 'g', conditionId: 'c6', text: GOOD, overrides: {}, stance: 'against' }); ok(VCI.reviewOpinion(st, VCI.byId(st.opinions, 'g')).stanceMismatch);
+  });
+  // Fictional knee opinion (Oct 2026 beta test): short "less likely" wording, a gap in treatment, a repeated but unweighed lay statement, and an unnamed post-service cause.
+  const KNEE = 'The claimed left knee strain is less likely due to military service.  Service treatment records reported knee pain in 1999.  Separation examination in 2001 was negative for complaints of knee.  The veteran lay statement reported knee pain since service.  The record between 2001 to present reported not complain or treatment for knee pain until 3 months ago.  Therefore, the left knee strain is likely due to post service event/injury/disease.';
+  const kneeSt = () => { const st = { conditions: [{ id: 'k', name: 'Left knee strain', theory: 'direct', events: [] }], evidence: [], opinions: [{ id: 'k1', conditionId: 'k', text: KNEE, overrides: {} }] }; return [st, VCI.reviewOpinion(st, st.opinions[0])]; };
+  const kc = (r, id) => r.checks.find(x => x.id === id);
+  t('Opinion check: "less likely" reads as against the claim even when the text later says "likely due to" another cause', () => {
+    const [, r] = kneeSt(); eq([r.direction, r.stance, r.mode], ['against', 'against', 'neg']);
+    eq(VCI.opinionDirection('It is at least as likely as not caused by service. Other causes are less likely.'), 'supports');
+  });
+  t('Opinion check: short "less likely" counts as VA\'s term, with the full phrase suggested', () => { const [, r] = kneeSt(); const p = kc(r, 'probability'); eq(p.result, 'pass'); ok(/less likely than not \(less than 50 percent probability\)/.test(p.finding)); });
+  t('Opinion check: a lay statement repeated but not weighed, plus a treatment gap, is flagged (Dalton, Buchanan, Maxson)', () => {
+    const [, r] = kneeSt(); eq(kc(r, 'lay').result, 'warn'); const a = kc(r, 'absence'); eq([a.result, a.severity], ['flag', 'serious']); ok(a.auth.includes('maxson'));
+  });
+  t('Opinion check: a weighed lay statement is not flagged as merely repeated', () => {
+    const st = { conditions: [{ id: 'k', name: 'Left knee strain', theory: 'direct', events: [] }], evidence: [], opinions: [{ id: 'k1', conditionId: 'k', overrides: {}, text: KNEE + ' The veteran\'s statement of pain since service was considered but is inconsistent with the normal separation examination.' }] };
+    eq(kc(VCI.reviewOpinion(st, st.opinions[0]), 'lay').result, 'pass');
+  });
+  t('Opinion check: an unnamed post-service cause and an unexplained in-service finding are flagged', () => {
+    const [, r] = kneeSt(); eq(kc(r, 'altCause').result, 'flag'); eq(kc(r, 'inService').result, 'warn'); eq(r.level, 'Elevated');
+  });
+  t('Opinion check: "since service" is not counted as a reason', () => { const [, r] = kneeSt(); ok(!kc(r, 'rationale').excerpts.some(x => /^since$/i.test(x.text))); });
+  t('Opinion check: an in-service finding that "resolved" counts as explained', () => { const st = fresh(); eq(chk(st, 'o1', 'inService').result, 'pass'); });
+  const one = (name, text, extra) => { const st = { conditions: [Object.assign({ id: 'x', name, theory: 'direct', events: [] }, extra || {}), { id: 'p', name: 'Lumbar strain', theory: 'direct', events: [] }], evidence: [], opinions: [{ id: 'q', conditionId: 'x', text, overrides: {} }] }; return VCI.reviewOpinion(st, st.opinions[0]); };
+  t('Opinion check: "existed prior to service" without clear and unmistakable evidence of both parts is flagged (38 U.S.C. 1111, Wagner)', () => {
+    const r = one('Left knee strain', 'The left knee condition is less likely than not related to service because it existed prior to service, as the veteran played football in high school.');
+    const k = kc(r, 'preexisting'); eq([k.result, k.severity], ['flag', 'serious']); ok(/clear and unmistakable/.test(k.finding) && /made it worse/.test(k.finding));
+    const r2 = one('Left knee strain', 'The left knee condition clearly and unmistakably existed prior to service and was clearly and unmistakably not aggravated by service, because the 1998 orthopedic records show the same findings.');
+    eq(kc(r2, 'preexisting').result, 'manual');
+  });
+  t('Opinion check: a secondary opinion against the claim that says "not aggravated" without a baseline is flagged', () => {
+    const t1 = 'Radiculopathy is less likely than not caused by or aggravated by the lumbar strain, because the nerve study points to diabetes.';
+    eq(kc(one('Radiculopathy', t1, { theory: 'secondary', primaryId: 'p' }), 'baseline').result, 'warn');
+    eq(kc(one('Radiculopathy', t1 + ' The baseline severity in the 2019 nerve study was mild.', { theory: 'secondary', primaryId: 'p' }), 'baseline'), undefined);
+  });
+  t('Opinion check: an opinion about the wrong side or condition is flagged', () => {
+    eq(kc(one('Left knee strain', 'The right knee strain is less likely than not related to service.'), 'matches').result, 'flag');
+    eq(kc(one('Left knee strain', 'The lumbar spine condition is less likely than not related to service.'), 'matches').result, 'warn');
+    eq(kc(one('Left knee strain', 'The left knee strain is less likely than not related to service.'), 'matches').result, 'pass');
+  });
+  t('Opinion check: notes when an opinion was formed from a records review only', () => {
+    ok(/records review without an in-person exam/.test(kc(one('Left knee strain', 'Records review only. The left knee strain is less likely than not related to service.'), 'method').finding));
   });
   t('Opinion check: an unfavorable opinion on a presumptive condition that only "suggests" another cause is flagged', () => {
     const st = { conditions: [{ id: 'x', name: 'Non-Hodgkin lymphoma', theory: 'presumptive', events: [] }], evidence: [], opinions: [] };
